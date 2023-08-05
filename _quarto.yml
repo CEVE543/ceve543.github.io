@@ -5,15 +5,12 @@ project:
 
 website:
   page-navigation: true
-  title: "BEE 4750 - Fall 2023"
-  description: "Homepage for BEE 4750/57e50, Environmental Systems Analysis, at Cornell University, Fall 2023."
-  site-url: "https://viveks.me/environmental-systems-analysis"
-
-  repo-url: https://github.com/vsrikrish/environmental-systems-analysis
+  title: "{{< var course.number >}} - {{< var course.semester >}}"
+  description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
+  site-url: https://jdossgollin.github.io/ceve543-f23
+  repo-url: https://github.com/jdossgollin/ceve543-f23
   repo-actions: [edit, issue]
-
   open-graph: true
-
 
   page-footer:
     right: |
@@ -30,19 +27,16 @@ website:
   sidebar:
     style: docked
     align: center
-    logo: _assets/logos/cornell-reduced-red.svg
+    logo: _assets/logos/Rice_Logo_280_Blue.svg
     title: "{{< var course.number >}}"
     search: true
     tools: 
       - icon: github
-        href: https://github.com/vsrikrish/environmental-systems-analysis
+        href: "{{var course.github}}"
         text: "Github Repository"
       - icon: journal-check
-        href: https://canvas.cornell.edu
+        href: https://canvas.rice.edu
         text: "Canvas"
-      - icon: chat-fill
-        text: "Ed Discussion"
-        url: https://edstem.org
       - icon: bar-chart-fill
         text: "Gradescope"
         url: https://gradescope.com
@@ -64,7 +58,8 @@ website:
         contents:
           - href: labs/lab01/lab01.qmd
             text: Lab 1
-      - section: project.qmd
+      - text: "Final Project"
+        href: project.qmd
       - text: "Tools Setup"
         href: setup.qmd
       - text: "FAQ"
@@ -77,9 +72,6 @@ website:
             text: Making Plots
           - href: tutorials/latex-notebook.qmd
             text: Math in Notebooks
-          - href: tutorials/julia-jump.qmd
-            text: Solving Linear Programs
-      - section: "Supplemental Notes"
       - section: Resources
         contents:
           - href: resources/julia.qmd
@@ -88,8 +80,6 @@ website:
             text: GitHub
           - href: resources/markdown.qmd
             text: Markdown
-          - href: resources/optimization.qmd
-            text: Optimization and Decision-Making
 
 
 format:

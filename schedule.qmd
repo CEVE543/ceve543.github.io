@@ -1,43 +1,62 @@
 ---
-title: "BEE 4750: Environmental Systems Analysis"
+title: "{{< var course.number >}}: {{< var course.title >}}"
 tbl-colwidths: [5, 10, 25, 5, 5, 5, 5]
 ---
 
 This page contains a schedule of the topics, content, and assignments for the semester.
-Note that this schedule will be updated as necessary the semester progresses, with all changes documented here.
+This schedule **will be updated as necessary** over the course of the semester to accommodate logistics and to adapt to student needs.
 
 ::: column-screen-inset-right
 | Week | Date        | Topic | Slides | Lab | HW | Project |
 :-----:|:------------|:------|:------:|:--:|:---:|:--:|:-------:|
-| 1    | Mon, Aug 21 | Welcome to BEE 4750! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | | |
-|      | Wed, Aug 23 | Introduction to Systems Analysis | [{{< fa sharp presentation-screen >}}](slides/lecture01-2.qmd){target="_blank"}   | | | | 
-|      | Fri, Aug 25 | Lab: Julia and GitHub Setup | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) |  [{{< fa sharp pen-field title="HW1" >}}](hw/hw01/hw01.qmd) | | 
-| 2    | Mon, Aug 28 | Modeling Systems | [{{< fa sharp presentation-screen >}}](slides/lecture02-1.qmd){target="_blank"} | | | |
-|      | Wed, Aug 30 | Example: Wastewater Transport | [{{< fa sharp presentation-screen >}}](slides/lecture02-2.qmd){target="_blank"} | | | | 
-|      | Fri, Sep 01 | Example: Shallow Lake Eutrophication | [{{< fa sharp presentation-screen >}}](slides/lecture02-3.qmd){target="_blank"} | [{{< fa sharp check-to-slot >}}]{style="color:#6EB43F"} | | |
-| 3    | Mon, Sep 04 | **No Class: Labor Day** | | | |
-|       | Wed, Sep 06 | Simulating Systems and Box Models | [{{< fa sharp presentation-screen >}}](slides/lecture03-2.qmd){target="_blank"} | | | |
-|       | Fri, Sep 08 | Plume Dispersion Models | [{{< fa sharp presentation-screen >}}](slides/lecture03-3.qmd){target="_blank"} | |  [{{< fa sharp check-to-slot >}}]{style="color:#6EB43F"} | |
-| 4   | Mon, Sep 11 | Plume Dispersion Models | [{{< fa sharp presentation-screen >}}](slides/lecture04-1.qmd){target="_blank"} | |  [{{< fa sharp pen-field >}}](hw/hw02/hw02.qmd) | |
-|    | Wed, Sep 13 | Uncertainty and Risk |  [{{< fa sharp presentation-screen >}}](slides/lecture04-2.qmd){target="_blank"} | | | |
-|   | Fri, Sep 15 | Monte Carlo Simulation | [{{< fa sharp presentation-screen >}}](slides/lecture04-3.qmd){target="_blank"} | | | |
-|  5  | Mon, Sep 18 | Lab: Monte Carlo | | [{{< fa sharp laptop-code >}}](labs/lab02/lab02.qmd) | | |
-|     | Wed, Sep 20 | Dissolved Oxygen | [{{< fa sharp presentation-screen >}}](slides/lecture05-2.qmd){target="_blank"} | | | | 
-|     | Fri, Sep 22 | Dissolved Oxygen Simulation | [{{< fa sharp presentation-screen >}}](slides/lecture05-3.qmd){target="_blank"} | [{{< fa sharp check-to-slot >}}]{style="color:#6EB43F"} |  [{{< fa sharp check-to-slot >}}]{style="color:#6EB43F"} | |
-|  6  | Mon, Sep 25 | Prescriptive Modeling | [{{< fa sharp presentation-screen >}}](slides/lecture06-1.qmd){target="_blank"}  | | [{{< fa sharp pen-field >}}](hw/hw03/hw03.qmd) | |
-|   | Wed, Sep 27 | Introduction to Optimization | [{{< fa sharp presentation-screen >}}](slides/lecture06-2.qmd){target="_blank"} | |   | |
-|      | Fri, Sep 29 | Linear Programming | [{{< fa sharp presentation-screen >}}](slides/lecture06-3.qmd){target="_blank"} |  | | |
-|  7   | Mon, Oct 02 | LP Example: Resource Allocation | [{{< fa sharp presentation-screen >}}](slides/lecture07-1.qmd){target="_blank"} | | | |
-|      | Wed, Oct 04 | **Guest Lecture**: Diana Hackett | | | | |
-|      | Fri, Oct 06 | Lab: Optimization with JuMP.jl | | [{{< fa sharp laptop-code >}}](labs/lab03/lab03.qmd) | [{{< fa sharp check-to-slot >}}]{style="color:#6EB43F"} |  |
-|  8  | Mon, Oct 09 | **No Class: Indigeneous People's Day** | | | | |
-|     | Wed, Oct 11 | Power Systems, Generating Capacity Expansion | [{{< fa sharp presentation-screen >}}](slides/lecture08-2.qmd){target="_blank"} | | | |
-|     | Fri, Oct 13 | Economic Dispatch | | | | |
-|  9  | Mon, Oct 16 | Managing Multiple Air Pollutant Sources | | | [{{< fa sharp pen-field >}}](hw/hw04/hw04.qmd) | |
-|     | Wed, Oct 18 | Lake Eutrophication | | | | |
-|     | Fri, Oct 20 | Lake Eutrophication II | | | | |
-| 10  | Mon, Oct 23 |  Mixed Integer Programming | | | | |
-|     | Wed, Oct 25 | Solid Waste Management | | | | |
-|     | Fri, Oct 27 | Unit Commitment | | | | |
+|      | **Module 1:** | **Fundamentals** | | | | |
+| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | | |
+|      | Wed., Aug. 23 | Uncertainty matters | [{{< fa sharp presentation-screen >}}](slides/lecture01-2.qmd){target="_blank"}   | | | | 
+|      | Fri., Aug. 25 | Lab: Julia and GitHub setup | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) |  [{{< fa sharp pen-field title="HW1" >}}](hw/hw01/hw01.qmd) | | 
+| 2    | Mon., Aug. 28 | Conditional and marginal probability distributions | | | | |
+|      | Wed., Aug. 30 | Common distributions | | | | |
+|      | Fri., Sep. 1  | Lab: Convergence | | | | |
+| 3    | Mon., Sep. 4  | *No class* | | | |
+|      | Wed., Sep. 6  | Maximum likelihood estimation | | | | |
+|      | Fri., Sep. 8  | Lab: optimization | | | | |
+| 4    | Mon., Sep. 11 | Bayesian inference I | | | | |
+|      | Wed., Sep. 13 | Bayesian inference II | | | | |
+|      | Fri., Sep. 15 | Lab: Monte Carlo estimation | | | | |
+|  5   | Mon., Sep. 18 | *Recorded lecture*: linear regression | | | | |
+|      | Wed., Sep. 20 | Decision trees | | | | |
+|      | Fri., Sep. 22 | Lab: regression modeling | | | | |
+|      | **Module 2:** | **Precipitation Frequency Analysis** | | | | |
+|  6   | Mon., Sep. 25 | Motivation (the problem) | | | | |
+|      | Wed., Sep. 27 | Extreme value theory | | | | |
+|      | Fri., Sep. 29 | Lab: tabular data | | | | |
+|  7   | Mon., Oct. 2  | Maximum likelihood GEV model | | | | |
+|      | Wed., Oct. 4  | Bayesian GEV model | | | | |
+|      | Fri., Oct. 6  | Lab: applied MCMC | | | | |
+|  8   | Mon., Oct. 9  | *No class* | | | | |
+|      | Wed., Oct. 11 | Nonstationarity | | | | |
+|      | Fri., Oct. 13 | Work on project for module 2 | | | | |
+|  9   | Mon., Oct. 16 | Checking model convergence | | | | |
+|      | Wed., Oct. 18 | Quantitative model comparison | | | | |
+|      | Fri., Oct. 20 | Lab: qualitative model diagnostics | | | | |
+|      | **Module 3:** | **Flood Prediction** | | | | |
+| 10   | Mon., Oct. 23 | Motivation (the problem) | | | | |
+|      | Wed., Oct. 25 | Random forests | | | | |
+|      | Fri., Oct. 27 | Lab: spatial data | | | | |
+| 11   | Mon., Oct. 30 | Support vector machines | | | | |
+|      | Wed., Nov. 1  | Cross-validation | | | | |
+|      | Fri., Nov. 3  | Lab: ML | | | | |
+| 12   | Mon., Nov. 6  | Hyperparameter selection and optimization | | | | |
+|      | Wed., Nov. 8  | Work on project for module 3 | | | | |
+|      | Fri., Nov. 10 | Lab: K-fold CV with grid search | | | | |
+|      | **Module 4:** | **Weather Typing** | | | | |
+| 13   | Mon., Nov. 13 | Motivation (the problem) | | | | |
+|      | Wed., Nov. 15 | Nearest-neighbor algorithms | | | | |
+|      | Fri., Nov. 17 | Lab: KNN | | | | |
+| 14   | Mon., Nov. 20 | Principal components analysis | | | | |
+|      | Wed., Nov. 22 | *No class* | | | | |
+|      | Fri., Nov. 24 | *No class* | | | | |
+| 15   | Mon., Nov. 27 | Work on project for module 4 | | | | |
+|      | Wed., Nov. 29 | Clustering | | | | |
+|      | Fri., Dec. 1  | Review | | | | |
 
 :::

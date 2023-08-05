@@ -19,6 +19,7 @@ format:
     toc: true
     toc-depth: 2
     number-sections: false
+jupyter: julia-1.9
 ---
 
 ```{julia}
@@ -52,9 +53,9 @@ This is a 3 credit course which is required for the Environmental Engineering ma
 ::: {.column width="30%"}
 ### TA
 
-- {{< fa sharp user title="Name" >}} [TBD]{.ms-1}
-- {{< fa sharp envelope title="Email" >}} [TBD]{.ms-1}
-- {{< fa sharp building title="Office" >}} [TBD]{.ms-2}
+- {{< fa sharp user title="Name" >}} [[{{< var ta.name_no_title >}}]({{< var ta.url >}})]{.ms-1}
+- {{< fa sharp envelope title="Email" >}} [[{{< var ta.email >}}](mailto:{{< var ta.email >}})]{.ms-1}
+- {{< fa sharp building title="Office" >}} [{{< var ta.office >}}]{.ms-2}
 ::::
 
 ::: {.column width="30%"}

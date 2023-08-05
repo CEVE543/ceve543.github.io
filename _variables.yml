@@ -1,34 +1,43 @@
-author: Vivek Srikrishnan
+author: James Doss-Gollin
 
 instructor:
-  name: Professor Vivek Srikrishnan
-  name_no_title: Vivek Srikrishnan
-  email: viveks@cornell.edu
-  url: "https://viveks.me"
-  github: vsrikrish
-  office: "318 Riley-Robb"
+  name: Professor James Doss-Gollin
+  name_no_title: James Doss-Gollin
+  email: jdossgollin@rice.edu
+  url: "https://jdossgollin.me"
+  github: jdossgollin
+  office: "Ryon 215"
   contact_policy: >-
-    Use the class's Ed Discussion board for any class-related queries.
-  appointment_url: https://calendly.com/vsrikrish/
+    Email for appointment.
+
+ta:
+  name: Yuchen Lu
+  name_no_title: Yuchen Lu
+  email: yl238@rice.edu
+  url: "https://dossgollin-lab.github.io/group-members#yuchenlu"
+  github: yuchenluv
+  office: "Ryon B28"
+  contact_policy: >-
+    Email for appointment.
 
 course:
-  number: "BEE 4750/5750"
-  title: "Environmental Systems Analysis"
-  semester: "Spring 2023"
+  number: "CEVE 543"
+  title: "WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment"
+  semester: "Fall 2023"
   days: "MWF"
-  time: "1:25-2:15pm"
-  location: "TBD"
-  github: "https://www.github.com/vsrikrish/environmental-systems-analysis"
-  url: "https://viveks.me/environmental-systems-analysis"
+  time: "11-11:50am"
+  location: "Keck 107"
+  github: "https://www.github.com/jdossgollin/ceve543-f23"
+  url: "https://jdossgollin.github.io/ceve543-f23"
   copyright_year: "2023"
 
 university:
-  name: Cornell University
-  url: "https://www.cornell.edu"
+  name: Rice University
+  url: "https://www.rice.edu"
 
 department:
-  name: Department of Biological & Environmental Engineering
-  url: "https://bee.cals.cornell.edu"
+  name: Department of Civil & Environmental Engineering
+  url: "https://cee.rice.edu"
 
 github_org:
-  repo: "https://github.com/BEE4750"
+  repo: "https://github.com/jdossgollin"
