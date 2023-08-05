@@ -1,0 +1,919 @@
+[
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nHW\nProject\n\n\n\n\n\n\nModule 1:\nFundamentals\n\n\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\n\n\nWed., Aug. 23\nUncertainty matters\n\n\n\n\n\n\n\n\nFri., Aug. 25\nLab: Julia and GitHub setup\n\n\n\n\n\n\n\n2\nMon., Aug. 28\nConditional and marginal probability distributions\n\n\n\n\n\n\n\n\nWed., Aug. 30\nCommon distributions\n\n\n\n\n\n\n\n\nFri., Sep. 1\nLab: Convergence\n\n\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\n\n\nFri., Sep. 8\nLab: optimization\n\n\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\n\n\nFri., Sep. 15\nLab: Monte Carlo estimation\n\n\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: linear regression\n\n\n\n\n\n\n\n\nWed., Sep. 20\nDecision trees\n\n\n\n\n\n\n\n\nFri., Sep. 22\nLab: regression modeling\n\n\n\n\n\n\n\n\nModule 2:\nPrecipitation Frequency Analysis\n\n\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation (the problem)\n\n\n\n\n\n\n\n\nWed., Sep. 27\nExtreme value theory\n\n\n\n\n\n\n\n\nFri., Sep. 29\nLab: tabular data\n\n\n\n\n\n\n\n7\nMon., Oct. 2\nMaximum likelihood GEV model\n\n\n\n\n\n\n\n\nWed., Oct. 4\nBayesian GEV model\n\n\n\n\n\n\n\n\nFri., Oct. 6\nLab: applied MCMC\n\n\n\n\n\n\n\n8\nMon., Oct. 9\nNo class\n\n\n\n\n\n\n\n\nWed., Oct. 11\nNonstationarity\n\n\n\n\n\n\n\n\nFri., Oct. 13\nWork on project for module 2\n\n\n\n\n\n\n\n9\nMon., Oct. 16\nChecking model convergence\n\n\n\n\n\n\n\n\nWed., Oct. 18\nQuantitative model comparison\n\n\n\n\n\n\n\n\nFri., Oct. 20\nLab: qualitative model diagnostics\n\n\n\n\n\n\n\n\nModule 3:\nFlood Prediction\n\n\n\n\n\n\n\n10\nMon., Oct. 23\nMotivation (the problem)\n\n\n\n\n\n\n\n\nWed., Oct. 25\nRandom forests\n\n\n\n\n\n\n\n\nFri., Oct. 27\nLab: spatial data\n\n\n\n\n\n\n\n11\nMon., Oct. 30\nSupport vector machines\n\n\n\n\n\n\n\n\nWed., Nov. 1\nCross-validation\n\n\n\n\n\n\n\n\nFri., Nov. 3\nLab: ML\n\n\n\n\n\n\n\n12\nMon., Nov. 6\nHyperparameter selection and optimization\n\n\n\n\n\n\n\n\nWed., Nov. 8\nWork on project for module 3\n\n\n\n\n\n\n\n\nFri., Nov. 10\nLab: K-fold CV with grid search\n\n\n\n\n\n\n\n\nModule 4:\nWeather Typing\n\n\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation (the problem)\n\n\n\n\n\n\n\n\nWed., Nov. 15\nNearest-neighbor algorithms\n\n\n\n\n\n\n\n\nFri., Nov. 17\nLab: KNN\n\n\n\n\n\n\n\n14\nMon., Nov. 20\nPrincipal components analysis\n\n\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n\n\n15\nMon., Nov. 27\nWork on project for module 4\n\n\n\n\n\n\n\n\nWed., Nov. 29\nClustering\n\n\n\n\n\n\n\n\nFri., Dec. 1\nReview"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Final Project",
+    "section": "",
+    "text": "The final project gives you an opportunity to use and extend the methods we have learned in class to an environmental system of your choosing. More details will be provided over the semester. We will discuss each component in class as well as providing relevant information on this page."
+  },
+  {
+    "objectID": "project.html#overview",
+    "href": "project.html#overview",
+    "title": "Final Project",
+    "section": "",
+    "text": "The final project gives you an opportunity to use and extend the methods we have learned in class to an environmental system of your choosing. More details will be provided over the semester. We will discuss each component in class as well as providing relevant information on this page."
+  },
+  {
+    "objectID": "project.html#overall-instructions",
+    "href": "project.html#overall-instructions",
+    "title": "Final Project",
+    "section": "Overall Instructions",
+    "text": "Overall Instructions\n\nStudents in 4750 should work in groups of 2-3, while students in 5750 must work alone."
+  },
+  {
+    "objectID": "project.html#schedule",
+    "href": "project.html#schedule",
+    "title": "Final Project",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\nMilestone\nInstructions\nRubric\nDue Date\n\n\n\n\nProposal\n\n\nFri, Feb 23\n\n\nRegulations Report\n\n\nFri, Mar 29\n\n\nPoster\n\n\nWed, May 08"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "This is a 3 credit course which is required for the Environmental Engineering major, and can only be taken for a letter grade."
+  },
+  {
+    "objectID": "syllabus.html#course-information",
+    "href": "syllabus.html#course-information",
+    "title": "Syllabus",
+    "section": "Course Information",
+    "text": "Course Information\n\n\n\nInstructor\n\n James Doss-Gollin\n jdossgollin@rice.edu\n Ryon 215\n\n\n\n\nTA\n\n Yuchen Lu\n yl238@rice.edu\n Ryon B28\n\n\n\n\nMeetings\n\n MWF\n 11-11:50am\n Keck 107\n\n\n\n\n\nCourse Description\nEnvironmental systems involve multiple interacting processes, uncertainties, and potentially conflicting objectives. These dynamics can complicate analyses which focus on a single component of the system, such as an individual pollution source, or a single outcome of interest. In this course, we will adopt a systems approach to environmental quality modeling and management, including applications in air and water pollution control and solid waste management. In particular, we will:\n\ndefine systems and their boundaries;\nsimulate system dynamics using computer models;\nformulate and solve decision problems for systems management;\nanalyze and assess risk;\nmake decisions under uncertainty; and\nexplore trade-offs across competing objectives."
+  },
+  {
+    "objectID": "syllabus.html#learning-objectives",
+    "href": "syllabus.html#learning-objectives",
+    "title": "Syllabus",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nAt the end of this class, students will:\n\nConstruct mathematical models of environmental systems;\nUse systems models to simulate dynamics and outcomes;\nAnalyze environmental system risk and vulnerabilities.\nDetermine strategies for managing systems using optimization;\nIdentify the trade-offs that result from competing objectives in environmental decision -making;\nEvaluate modeled outcomes with respect to model assumptions and limits."
+  },
+  {
+    "objectID": "syllabus.html#prerequisites-preparation",
+    "href": "syllabus.html#prerequisites-preparation",
+    "title": "Syllabus",
+    "section": "Prerequisites & Preparation",
+    "text": "Prerequisites & Preparation\nThe following courses/material would be ideal preparation:\n\nEnvironmental Processes (BEE 2510 or BEE 2600)\nEngineering Computation (ENGRD/CEE 3200)\nOne course in probability or statistics (ENGRD 2700, CEE 3040, or equivalent)\n\nIn the absence of one or more these prerequisites, you can seek the permission of instructor.\n\n\n\n\n\n\nWhat If My Programming or Stats Skills Are Rusty?\n\n\n\nIf your programming or statistics skills are a little rusty, don’t worry! We will review concepts and build skills as needed."
+  },
+  {
+    "objectID": "syllabus.html#topics",
+    "href": "syllabus.html#topics",
+    "title": "Syllabus",
+    "section": "Topics",
+    "text": "Topics\n\nIntroduction to environmental systems,\nModeling system dynamics\nMultiple objectives and trade-offs\nUncertainty and risk (Monte Carlo analysis)\nDissolved oxygen in streams and rivers; waste load allocation (system simulation)\nModeling of watersheds & lakes (defining objectives, constraints)\nModeling for air pollution control (model linearization; linear programming)\nLocation of waste disposal facilities (integer linear programming)\nRobustness of solutions and sensitivity analysis"
+  },
+  {
+    "objectID": "syllabus.html#course-philosophy-and-expectations",
+    "href": "syllabus.html#course-philosophy-and-expectations",
+    "title": "Syllabus",
+    "section": "Course Philosophy and Expectations",
+    "text": "Course Philosophy and Expectations\nThe goal of our course is to help you gain competancy and knowledge in the area of environmental systems analysis. This involves a dual responsibility on the part of the instructor and the student. As the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I will commit to:\n\nprovide organized and focused lectures, in-class activities, and assignments;\nencourage students to regularly evaluate and provide feedback on the course;\nmanage the classroom atmosphere to promote learning;\nschedule sufficient out-of-class contact opportunities, such as office hours;\nallow adequate time for assignment completion;\nmake lecture materials, class policies, activities, and assignments accessible to students.\n\nStudents are encouraged to discuss any concerns with me during office hours or through a course communications channel.\nStudents can optimize their performance in the course by:\n\nattending all lectures;\ndoing any required preparatory work before class;\nactively participating in online and in-class discussions;\nbeginning assignments and other work early;\nand attending office hours as needed."
+  },
+  {
+    "objectID": "syllabus.html#community",
+    "href": "syllabus.html#community",
+    "title": "Syllabus",
+    "section": "Community",
+    "text": "Community\n\nDiversity and Inclusion\nOur goal in this class is to foster an inclusive learning environment and make everyone feel comfortable in the classroom, regardless of social identity, background, and specific learning needs. As engineers, our work touches on many critical aspects of society, and questions of inclusion and social justice cannot be separated from considerations of systems analysis, objective selection, risk analysis, and trade-offs.\nIn all communications and interactions with each other, members of this class community (students and instructors) are expected to be respectful and inclusive. In this spirit, we ask all participants to:\n\nshare their experiences, values, and beliefs;\nbe open to and respectful of the views of others; and\nvalue each other’s opinions and communicate in a respectful manner.\n\nPlease let me know if you feel any aspect(s) of class could be made more inclusive. Please also share any preferred name(s) and/or your pronouns with me if you wish: I use he/him/his, and you can refer to me either as Vivek or Prof. Srikrishnan.\n\n\n\n\n\n\nPlease, Be Excellent To Teach Other\n\n\n\nWe all make mistakes in our communications with one another, both when speaking and listening. Be mindful of how spoken or written language might be misunderstood, and be aware that, for a variety of reasons, how others perceive your words and actions may not be exactly how you intended them. At the same time, it is also essential that we be respectful and interpret each other’s comments and actions in good faith.\n\n\n\n\nStudent Accomodations\nLet me know if you have any access barriers in this course, whether they relate to course materials, assignments, or communications. If any special accomodations would help you navigate any barriers and improve your chances of success, please exercise your right to those accomodations and reach out to me as early as possible with your Student Disability Services (SDS) accomodation letter. This will ensure that we have enough time to make appropriate arrangements.\nIf you need more immediate accomodations, but do not yet have a letter, please let me know and then follow up with SDS.\n\n\nCourse Communications\nMost course communications will occur via Ed Discussion. Public Ed posts are generally preferred to private posts or emails, as other students can benefit from the discussions. If you would like to discuss something privately, please do reach out through email or a private Ed post (which will only be viewable by you and the course staff).\nAnnouncements will be made on the course website and in Ed. Emergency announcements will also be made on Canvas.\n\n\n\n\n\n\nEd Tips\n\n\n\n\nIf you wait until the day an assignment is due (or even late the previous night) to ask a question on Ed, there is a strong chance that I will not see your post prior to the deadline.\nBut if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.\n\n\n\n\n\nMental Health Resources\nWe all have to take care of our mental health, just as we would our physical health. As a student, you may experience a range of issues which can negatively impact your mental health. Please do not ignore any of these stressors, or feel like you have to navigate these challenges alone! You are part of a community of students, faculty, and staff, who have a responsibility to look for one another’s well-being. If you are struggling with managing your mental health, or if you believe a classmate may be struggling, please reach out to the course instructor, the TA, or, for broader support, please take advantage of Cornell’s mental health resources.\n\n\n\n\n\n\nMental Health And This Class\n\n\n\nI am not a trained counselor, but I am here to support you in whatever capacity we can. You should never feel that you need to push yourself past your limits to complete any assignment for this class or any other. If we need to make modifications to the course or assignment schedule, you can certainly reach out to me, and all relevant discussions will be kept strictly confidential."
+  },
+  {
+    "objectID": "syllabus.html#course-policies",
+    "href": "syllabus.html#course-policies",
+    "title": "Syllabus",
+    "section": "Course Policies",
+    "text": "Course Policies\n\nAttendance\nAttendance is not required, but in general, students who attend class regularly will do better and get more out of the class than students who do not. Your class participation grade will reflect both the quantity and quality of your participation, only some of which can occur asynchronously. I will put as many course materials, such as lecture notes and announcements, as possible online, but viewing materials online is not the same as active participation and engagement. Life happens, of course, and this may lead you to miss class. Let me know if you need any appropriate arrangements ahead of time.\n\n\n\n\n\n\nWhat If I’m Sick?\n\n\n\nPlease stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.\n\n\n\n\nMask Policies\nMasks are encouraged but not required in the classroom, per university policy. However, the University strongly encourages compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests if you cannot wear a mask.\n\n\n\n\n\n\nMasks Will Be Required In My Office\n\n\n\nI will require masks to be worn in my office or during in-person office hours, as we are necessarily interacting in close quarters without great airflow.\n\n\n\n\nAcademic Integrity\n\n\n\n\n\n\nTL;DR: Don’t cheat, copy, or plagiarize!\n\n\n\nThis class is designed to encourage collaboration, and students are encouraged to discuss their work with other students. However, I expect students to abide by the Cornell University Code of Academic Integrity in all aspects of this class. All work submitted must represent the students’ own work and understanding, whether individually or as a group (depending on the particulars of the assignment). This includes analyses, code, software runs, and reports. Engineering as a profession relies upon the honesty and integrity of its practitioners (see e.g. the American Society for Civil Engineers’ Code of Ethics).\n\n\nExternal Resources\nThe collaborative environment in this class should not be viewed as an invitation for plagiarism. Plagiarism occurs when a writer intentionally misrepresents another’s words or ideas (including code!) as their own without acknowledging the source. All external resources which are consulted while working on an assignment should be referenced, including other students and faculty with whom the assignment is discussed. You will never be penalized for consulting an external source for help and referencing it, but plagiarism will result in a zero for that assignment as well as the potential for your case to be passed on for additional disciplinary action.\n\n\nAI/ML Resource Policy\nAs noted, all work submitted for a grade in this course must reflect your own understanding. The use and consulation of AI/ML tools, such as ChatGPT or similar, must be pre-approved and clearly referenced. If approved, you must:\n\nreference the URL of the service you are using, including the specific date you accessed it;\nprovide the exact query or queries used to interact with the tool; and\nreport the exact response received.\n\nFailure to attain prior approval or fully reference the interaction, as described above, will be treated as plagiarism and referred to the University accordingly.\n\n\nLate Work Policy\nIn general, late work will be subjected to a 10% penalty per day, which can accumulate to 100% of the total grade. However, sometimes things come up in life. Please reach out ahead of time if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived."
+  },
+  {
+    "objectID": "syllabus.html#assessments",
+    "href": "syllabus.html#assessments",
+    "title": "Syllabus",
+    "section": "Assessments",
+    "text": "Assessments\n\nLab Notebooks: 20%\nSome classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These classes will be announced on the course website ahead of time so anyone who is able can bring a laptop to class, and notebooks will be provided on GitHub. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own notebook for grading.\nSome details on lab logistics:\n\nSome of the labs may some time outside of class, but they will not be as intensive as a homework assignment.\nYou will be required to submit a PDF of your completed notebook to Gradescope by 9:00pm by the due date (which will be approximately one week) after the lab session. Tag the answers to each question: points will be deducted if this is not done.\nWhile your lowest lab grade will not be dropped, late penalties will be waived for appropriate reasons discussed with the instructor (ideally ahead of time when circumstances allow).\nRubrics will be provided for lab grading as part of the lab assignments.\n\n\n\nHomework Assignments: 40%\nApproximately 5-6 homework assignments will be assigned throughout the semester; the specifics depend on how quickly we move through the material. You will typically have 10 days to 2 weeks to work on Students are encouraged to collaborate and learn from each other on homework assignments, but each student must submit their own solutions reflecting their understanding of the material. Consulting and referencing external resources and your peers is encouraged (engineering is a collaborative discipline!), but plagiarism is a violation of academic integrity.\nSome notes on assignment and grading logistics:\n\nHomework assignments will be distributed using GitHub Classroom. Students should make sure they update their GitHub repositories as they work on the assignments; this helps with answering questions and gives you a backstop in case something goes wrong and you can’t submit your assignment on time.\nHomeworks are due by 9:00pm Eastern Time on the designed due date. Your assignment notebook (which include your writeup and codes) should be submitted to Gradescope as a PDF with the answers to each question tagged (a failure to do this will result in deductions).\nRubrics will be provided for the homeworks as part of the assignments.\nYour lowest homework grade will be dropped. We can discuss arrangements if multiple assignments will be missed for university-approved reasons, preferably ahead of time.\nRegrade requests for specific problems must be made within a week of the grading of that assignment. However, note that regrades can cut both ways: the TA can take away points as well!\n\n\n\nFinal Term Project: 40%\nThis course will culminate with a term project with a topic selected from a suggested list (provided mid-semester). The goal of this project is to apply and extend the tools and approaches we will learn in class. While we encourage drawing on other classes or interests when developing and working on your project, submitting work from another course or work which was completed prior to the course is not permitted.\nThe term project will be completed in small groups (2-3 students) for students enrolled in BEE 4750 and individually for those in BEE 5750. The final deliverable for this project will be a poster summarizing the project and results. Ahead of that, you will submit the following:\n\na proposal for feedback on the scope of your project; and\na 2-3 page report on the status and history of a regulation of interest relevant to the system you are studying.\n\nRubrics will be provided for the components of the project."
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html",
+    "href": "tutorials/latex-notebook.html",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "",
+    "text": "This tutorial was inspired and draws from Justin Bois’ tutorial."
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html#overview",
+    "href": "tutorials/latex-notebook.html#overview",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "Overview",
+    "text": "Overview\nIn this tutorial, you will learn how to typeset mathematics and equations in Jupyter notebooks using LaTeX."
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html#inline-mathematics",
+    "href": "tutorials/latex-notebook.html#inline-mathematics",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "Inline Mathematics",
+    "text": "Inline Mathematics\nTo include mathematical notation within text, enclose the LaTeX within dollar signs $. For example, to obtain the output\n\nthe objective function is \\(4x + 7x\\),\n\nyou would enter\n\nthe objective function is $4x + 7x$.\n\nYou can enter subscripts and superscripts with _ and ^, respectively; to get\n\nthe function is \\(f(x_i) = x_i^2\\),\n\ntype\n\nthe function is $f(x_i) = x_i^2$.\n\nIf you want multiple characters to be enclosed in a subscript or superscript, enclose them in braces {}:\n\n\\(e^{i \\pi} - 1 = 0\\) is produced by\n\n\n$e^{i \\pi} - 1 = 0$.\n\nTo get special characters like \\(\\pi\\) (or other Greek letters), precede their name (or sometimes a code) with a backslash: $\\pi$. There are a number of special characters like this, which you can find in cheatsheets like this one.\nBold characters, which you might use to denote vectors, can be rendered using \\mathbf:\n\n\\(\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\\)\n\n\n$\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i$\n\nFractions can be displayed using \\frac{}{}, where the first bracket encloses the numerator and the second the denominator, as in\n\n\\(\\frac{1}{2}\\)\n\n\n$\\frac{1}{2}$"
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html#displaying-equations",
+    "href": "tutorials/latex-notebook.html#displaying-equations",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "Displaying Equations",
+    "text": "Displaying Equations\nTo place equations or other mathematics on their own line(s), enclose the entire block in two dollar signs $$. For example, the prior dot-product definition could be displayed as \\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\n\\] using\n$$\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\n$$\nDisplaying equations on their own line(s) can improve the spacing of symbols like sums (as above) or fractions: compare the inline\n\n\\(x &lt; \\frac{1}{2}\\)\n\nto \\[\nx &lt; \\frac{1}{2}.\n\\]\nTo display multiple related lines in a single block, there are two environments of note. The first will center all of the equations, and is obtained by enclosing the equations in \\begin{gather} and \\end{gather}. Each line should be separated with \\\\:\n\\[\n\\begin{gather}\nx_1 + x_2 \\leq 5 \\\\\ny \\leq \\frac{1}{2}.\n\\end{gather}\n\\]\n$$\n\\begin{gather}\nx_1 + x_2 \\leq 5 \\\\\ny \\leq \\frac{1}{2}.\n\\end{gather}\n$$\nThe second environment will let you align the equations as you wish instead of automatically centering them, and is used by enclosing the equations with \\begin{align} and \\end{align}, with an ampersand & in front of the characters which will be used on each line to align the equations:\n\\[\n\\begin{align}\nx_1 + x_2 &\\leq 5 \\\\\ny &\\leq \\frac{1}{2}.\n\\end{align}\n\\]\n$$\n\\begin{align}\nx_1 + x_2 &\\leq 5 \\\\\ny &\\leq \\frac{1}{2}.\n\\end{align}\n$$"
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html#sizing-parentheses-or-brackets",
+    "href": "tutorials/latex-notebook.html#sizing-parentheses-or-brackets",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "Sizing Parentheses or Brackets",
+    "text": "Sizing Parentheses or Brackets\nBy default, parentheses and brackets are sized for simple characters, but will look bad when used to surround fractions or sums, particularly when they are not used in-line: \\[\nx_n = (\\frac{1}{2})^n.\n\\] To make this look better, use \\left and \\right around the left and right parentheses or brackets: \\[\nx_n = \\left(\\frac{1}{2}\\right)^n\n\\]\n$$\nx_n = \\left(\\frac{1}{2}\\right)^n.\n$$\nThis is totally optional, but helps!"
+  },
+  {
+    "objectID": "tutorials/latex-notebook.html#using-latex-in-figures",
+    "href": "tutorials/latex-notebook.html#using-latex-in-figures",
+    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "section": "Using LaTeX in Figures",
+    "text": "Using LaTeX in Figures\nYou may want to use LaTeX in figures, for example if your \\(x\\)-axis should have a title like \\(x\\). To do this, load the LaTeXStrings package and precede the relevant LaTeX-formatted string (within in-line dollar signs $) with L, as in:\n\nusing Plots\nusing LaTeXStrings\n\nx = -2π:0.01:2π  \nplot(x, exp.(sin.(x)), xlabel=L\"$x$\", ylabel=L\"$e^{\\sin(x)}$\", legend=false)"
+  },
+  {
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Julia is open source. It has a great balance between intuitive syntax and speed. It was originally designed to share MATLAB’s mathematically-oriented syntax and Python’s readability. It can be used interactively, as more of a “scripting” language, but can be optimized to run code almost as quickly as C/C++. And it has a committed development base which is actively extending its capabilities: JuMP.jl lets us program optimization problems in a syntax that’s very close to the mathematical expressions, and the Turing.jl ecosystem has added some fantastic statistical and machine-learning libraries, among others. It’s becoming a common language among power systems modelers and environmental economists, among other applied communities.\nWhy not some common alternatives?\n\nR is fantastic for statistics, but it has a very unique syntax, and can be slow and struggles to scale to large-scale problems; while we won’t approach those limits in this class, there’s no need to go there for our purposes.\nPython is extremely readable, but also can be very slow unless you’re using libraries which are written in C++, and the syntax for these can be jarringly different than native Python.\nC/C++ are overkill for this class, and focusing on them would distract from our core engineering learning objectives.\nMATLAB is not free or open source. It also has some features which do not align with good broader coding and code maintainance practices (for example, having a single long function per file).\n\nUltimately, there are trade-offs with any language, and in this case, some specifics of Julia syntax and coding style may take an adjustment, but the pros outweigh the cons given the variety of programming tasks that we will be doing in this course.\n\n\n\nThere are a few on the Julia Resources page; please suggest additional resources!"
+  },
+  {
+    "objectID": "faq.html#julia",
+    "href": "faq.html#julia",
+    "title": "FAQ",
+    "section": "",
+    "text": "Julia is open source. It has a great balance between intuitive syntax and speed. It was originally designed to share MATLAB’s mathematically-oriented syntax and Python’s readability. It can be used interactively, as more of a “scripting” language, but can be optimized to run code almost as quickly as C/C++. And it has a committed development base which is actively extending its capabilities: JuMP.jl lets us program optimization problems in a syntax that’s very close to the mathematical expressions, and the Turing.jl ecosystem has added some fantastic statistical and machine-learning libraries, among others. It’s becoming a common language among power systems modelers and environmental economists, among other applied communities.\nWhy not some common alternatives?\n\nR is fantastic for statistics, but it has a very unique syntax, and can be slow and struggles to scale to large-scale problems; while we won’t approach those limits in this class, there’s no need to go there for our purposes.\nPython is extremely readable, but also can be very slow unless you’re using libraries which are written in C++, and the syntax for these can be jarringly different than native Python.\nC/C++ are overkill for this class, and focusing on them would distract from our core engineering learning objectives.\nMATLAB is not free or open source. It also has some features which do not align with good broader coding and code maintainance practices (for example, having a single long function per file).\n\nUltimately, there are trade-offs with any language, and in this case, some specifics of Julia syntax and coding style may take an adjustment, but the pros outweigh the cons given the variety of programming tasks that we will be doing in this course.\n\n\n\nThere are a few on the Julia Resources page; please suggest additional resources!"
+  },
+  {
+    "objectID": "faq.html#github",
+    "href": "faq.html#github",
+    "title": "FAQ",
+    "section": "GitHub",
+    "text": "GitHub\n\nWhy are we using GitHub?\nGitHub is an industry-standard version control platform. Anecdotally, adding GitHub to your skillset is a great resume booster for engineers who work in computing-heavy environments. For the purposes of our class, GitHub facilitates:\n\nAssignment management through GitHub Classroom;\nSharing of code/notebooks for debugging and asking for help (otherwise, I end up with many files with the same name, and might not open the right one…);\nUsing your repository as your submission in case something goes wrong and you can’t submit your completed assignment on time.\n\n\n\nWhat level of GitHub familiarity will I need?\nNone from the start! And the following commands are all you will need for this course (you can also use GitHub Desktop or use the GitHub functionality in VS Code, which we will discuss in class):\n\ngit clone &lt;github-repository-url&gt;: This is needed to “clone” your assignment repository (initialize your local repository).\ngit commit -m &lt;message&gt;: This is used to “lock in” changes that you’ve made to your files. You should make commits frequently as you make changes so you can revert to prior versions if something goes wrong (and make your messages meaningful so you know what changes you’ve made!)\ngit push: This syncs any committed changes to the remote GitHub repository. You must do this prior to using your repository to ask for help."
+  },
+  {
+    "objectID": "faq.html#assignments-homework-labs-and-aes",
+    "href": "faq.html#assignments-homework-labs-and-aes",
+    "title": "FAQ",
+    "section": "Assignments (Homework, Labs, and AEs)",
+    "text": "Assignments (Homework, Labs, and AEs)\n\nHow do I access assignments?\nCanvas\n\n\nWhat if there’s an error in the assignment repository?\nThat’s certainly possible! Email me.\n\n\nHelp! My code isn’t working.\nHere are some steps I would follow:\n\nSearch for the error message you’re seeing. Often, you can find posts in the r/Julia subreddit, the official Julia forum, or Stack Overflow for the same or similar issues. You should do this first: if you can find the answer this way, it will be faster than other options, and if you can rule out some approaches that you’ve already tried, it will make the following steps go more smoothly.\nPost on Ed Discussion. For the most effective help, follow the following guidelines (adapted from Stack Overflow’s “How Do I Ask A Good Question?”):\n\nMake your post subject specific and descriptive. “Problem with HW 1 Problem 3” makes it hard for other members of the class community to know if they’re having a similar issue or if they can help. Since the TA and I may not be checking Ed religiously, you’ll get faster responses if other students feel prepared to help.\nIntroduce the problem. What have you tried? What error message are you getting? Have you been able to identify a specific line of code or section of code that’s causing the problem?\nProvide code. It’s very difficult to get a sense of what might be going wrong if you just say that you have a problem, even if you share the error message. If you have a small question (you can demonstrate the error with a brief snippet of code), you can directly put this into your Ed post, but otherwise, please provide a link to your GitHub repository and where to find the relevant codes.\n\n\n\n\n\n\n## Update Your Repository!\nYou must commit and push your current files to GitHub prior to asking for help, or we won’t be able to see the code that you’re having trouble with.\n\n\n\n\nCome to office hours. If you can identify the problem, but we’re having trouble solving it via Ed or more urgency is required, please come to office hours and we can try to work through the issue. This is most helpful if you’ve already done some problem-solving on your own.\n\n\n\n\n\n\n## Give Yourself Time To Problem-Solve\nWaiting until the last day or two to start an assignment can cause problems if you don't have time to work through the following steps. If office hours are busy and you haven't gone through the prior steps, you may be prioritized below than students who are have, and we may not have time to solve your problem. **Running into coding challenges is not a valid reason to get an extension on an assignment!**\n\n\n\n\n\n\nHow do I get a PDF of my notebook for submission?\nThere are two main options, depending on what you’ve already got set up on your computer.\n\n\n\n\n\n\nRun Notebook Cells Before Submission\n\n\n\nRemember to “Run All” cells prior to conversion and submission, or else we won’t see your results!\n\n\n\nIf you have a Python installation, you can use a tool called nbconvert to convert to a PDF (if you also have LaTeX installed) or HTML (and then you can use your browser to print to a PDF).\nIf you don’t have a Python installation, within VS Code, you can use IJulia.jl (which will be included in the environments provided with assignments in this class) as follows (enter these commands into the REPL) to open your notebook in your browser:\nusing IJulia\nnotebook()\nThis should open a Jupyter notebook interface in your browser. Navigate to and open the notebook, and once it has completed running, go to File -&gt; Print Preview in the browser menu and Print to PDF.\n\n\n\nHow do I submit my PDF to Gradescope?\nThe instructions for submitting your assignment to Gradescope can be found here.\n\n\n\n\n\n\nTag Pages\n\n\n\nMake sure that you mark/tag the pages corresponding to each question! Otherwise, we will deduct 10%. If a problem spans multiple pages, tag them all; if a page includes multiple problems, tag it several times."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About This Website",
+    "section": "",
+    "text": "This website contains course materials for the Fall 2023 edition of WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment, taught by James Doss-Gollin at Rice University."
+  },
+  {
+    "objectID": "about.html#acknowledgements",
+    "href": "about.html#acknowledgements",
+    "title": "About This Website",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nMuch of the material for this course has evolved from its prior iterations, taught by Doug Haith and C. Lindsay Anderson.\nThe layout for this site was also inspired by and draws from STA 210 at Duke University and Andrew Heiss’s course materials at Georgia State."
+  },
+  {
+    "objectID": "about.html#tools-and-generation-workflow",
+    "href": "about.html#tools-and-generation-workflow",
+    "title": "About This Website",
+    "section": "Tools and Generation Workflow",
+    "text": "Tools and Generation Workflow\nThis website was built with Quarto, which allows me to integrate Julia code and output with the web content, pdfs, and slides in an amazingly clean fashion, while simplifying the process of generation. All materials can be generated through a simple workflow from the [GitHub Repository]."
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html",
+    "href": "slides/notebooks/shallow-lake.html",
+    "title": "Shallow Lake Problem",
+    "section": "",
+    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#introduction",
+    "href": "slides/notebooks/shallow-lake.html#introduction",
+    "title": "Shallow Lake Problem",
+    "section": "Introduction",
+    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "title": "Shallow Lake Problem",
+    "section": "The Shallow Lake Problem",
+    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "title": "Shallow Lake Problem",
+    "section": "Lake Problem Dynamics",
+    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "title": "Shallow Lake Problem",
+    "section": "Simulating The Model Under Constant Inflows",
+    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#overview",
+    "href": "slides/lecture01-3.html#overview",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link in Ed Discussion.\nWill have your own repository — let’s discuss how to use it.\nDon’t have to finish these in class, but due by the end of next week (Friday, 9/1, 9pm)."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#github-workflow",
+    "href": "slides/lecture01-3.html#github-workflow",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "GitHub Workflow",
+    "text": "GitHub Workflow\n\n“clone” repositories on GitHub (remote → local).\n“commit” and “push” changes (local → remote)"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#clone-repositories-github",
+    "href": "slides/lecture01-3.html#clone-repositories-github",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Clone Repositories: GitHub",
+    "text": "Clone Repositories: GitHub\n\n\n\nOnce you have created your account, navigate to the GitHub repository for the assignment.\nClick the green “Code” button, and copy the URL by clicking on the clipboard icon.\n\n\n\n\n\nCode Clone Interface on GitHub"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#clone-repositories-vs-code",
+    "href": "slides/lecture01-3.html#clone-repositories-vs-code",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Clone Repositories: VS Code",
+    "text": "Clone Repositories: VS Code\n\n\n\nOpen a new VS Code window.\nClick “Clone Git Repository”.\nPaste the URL you copied from GitHub into the search bar and select the repository, then pick a location to save.\n\n\n\n\n\nVS Code New Window"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#using-local-repositories",
+    "href": "slides/lecture01-3.html#using-local-repositories",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Using Local Repositories",
+    "text": "Using Local Repositories\n\nYou will be prompted to open the new folder.\nThe next step you open VS Code, pick “Open Folder” from the initial New Window page.\n\n\n\n\n\n\n\nOpen Folders, Not Files\n\n\nOpening a folder is recommended because it gives you access to a wider set of tools and the version control interface."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#notebooks-consist-of-cells",
+    "href": "slides/lecture01-3.html#notebooks-consist-of-cells",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Notebooks Consist of Cells",
+    "text": "Notebooks Consist of Cells\nJupyter notebooks consist of two cell types:\n\n“Text” cells, which use Markdown and LaTeX syntax for text and math.\n“Code” cells, which contain code which can be evaluated (in this case Julia)."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#notebook-kernels",
+    "href": "slides/lecture01-3.html#notebook-kernels",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Notebook Kernels",
+    "text": "Notebook Kernels\n\n\nYou need to pick a kernel to tell Jupyter what language and version to use for code evaluation.\nAfter pressing the kernel selection button (right):\n\n\n\n\nKernel Selection Button\n\n\n\n\n\nSelect “Select Another Kernel”.\n“Julia Language Support”\n“Julia 1.9 Channel”"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#editing-notebook-cells",
+    "href": "slides/lecture01-3.html#editing-notebook-cells",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Editing Notebook Cells",
+    "text": "Editing Notebook Cells\n\nDouble click the text cell at the top of the notebook that includes the “Name:” and “ID:” prompts. Add your name and Cornell NetID.\nCreate a new cell by hovering your cursor over the bottom of a cell. You should see the buttons on the bottom right pop up.\n\n\n\nClick on “+Code” or “+Markdown” and the new cell should appear.\n\n\n\n\nCreate New Cell"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#committing-changes",
+    "href": "slides/lecture01-3.html#committing-changes",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Committing Changes",
+    "text": "Committing Changes\n“Committing” is the git term for locking in a particular repository state.\n\nOnce changes are committed, you can restore that version of the files by reverting later changes.\nCommits are associated with messages which briefly describe the change(s) that were made.\nCommit meaningful changes often and use informative messages!"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#vs-code-and-git",
+    "href": "slides/lecture01-3.html#vs-code-and-git",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "VS Code and Git",
+    "text": "VS Code and Git\n\n\nYou will see the icon on the right on the left-most (vertical) bar. This is the “Source Control” icon.\n\n\n\n\nVS Code Source Control Icon\n\n\n\n\n\n\nClick this and the “Explorer” panel will change to the “Source Control” panel.\nClick the “+” button next to any files you want to commit, add a message, and click “Commit”."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#pushing-changes",
+    "href": "slides/lecture01-3.html#pushing-changes",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Pushing Changes",
+    "text": "Pushing Changes\n“Pushing” syncs committed changes from the local repository to the remote repository on GitHub.\n\nOnce commits are pushed, they can be viewed on the repository by anyone with access.\nYour repositories are all public, so your classmates, the TA, and I can see your code and try to help debug!"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#pushing-and-vs-code",
+    "href": "slides/lecture01-3.html#pushing-and-vs-code",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Pushing and VS Code",
+    "text": "Pushing and VS Code\nOnce you’ve made commits, you will see the following on the bottom of your VS Code window:\n\n\n\nThe number by : # of remote commits which are not present locally.\nThe number by : # of local commits which have not been synchronized.\n\n\n\n\n\nVS Code Sync\n\n\n\nClick the button and VS Code will “pull” remote changes and “push” local changes."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#exporting-your-notebook-to-pdf",
+    "href": "slides/lecture01-3.html#exporting-your-notebook-to-pdf",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Exporting Your Notebook to PDF",
+    "text": "Exporting Your Notebook to PDF\nYou’ll need to export your notebook to a PDF to submit to Gradescope.\nYou should see the following menu bar at the top of the VS Code window:"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#export-steps",
+    "href": "slides/lecture01-3.html#export-steps",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Export Steps",
+    "text": "Export Steps\n\nClick “Run All” to execute all cells in order.\nClick the ellipsis (“…”) and select “Export”, then click “HTML”.\nSave the file, then when prompted open it (should open in your browser).\nGo to the print interface and save as a PDF."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#next-classes",
+    "href": "slides/lecture01-3.html#next-classes",
+    "title": "Getting Started with Julia and GitHub",
+    "section": "Next Classes",
+    "text": "Next Classes\nMonday: Modeling Systems\nWednesday/Friday: Examples of Systems Models\n\n\nBEE 4750, Environmental Systems Analysis"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#course-overview",
+    "href": "slides/lecture01-1.html#course-overview",
+    "title": "Welcome to BEE 4750!",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\nTopics\n\nDefine systems\nSimulate system dynamics\nAnalyze and assess risk\nMake decisions with optimization\nExplore trade-offs across objectives\n\n\n\n\nExample Systems\n\nAir pollution\nWastewater management\nElectric power systems\nSolid waste management"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#what-do-you-hope-to-get-out-of-this-course",
+    "href": "slides/lecture01-1.html#what-do-you-hope-to-get-out-of-this-course",
+    "title": "Welcome to BEE 4750!",
+    "section": "What Do You Hope To Get Out Of This Course?",
+    "text": "What Do You Hope To Get Out Of This Course?\n\n\n\n\n\n\n\n\nText: VSRIKRISH to 22333\nURL: https://pollev.com/vsrikrish  See Results"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#course-organization",
+    "href": "slides/lecture01-1.html#course-organization",
+    "title": "Welcome to BEE 4750!",
+    "section": "Course Organization",
+    "text": "Course Organization\n\nIntroduction to Systems Analysis\nSimulating Systems and Risk\nSystems Management and Optimization\nAnalyzing Assumptions\nDecision-Making Under Uncertainty"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#grades",
+    "href": "slides/lecture01-1.html#grades",
+    "title": "Welcome to BEE 4750!",
+    "section": "Grades",
+    "text": "Grades\n\n\n\nAssessment\n% of Grade\n\n\n\n\nLab Notebooks\n20%\n\n\nHomework Assignments\n40%\n\n\nFinal Project\n40%"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#overall-guidelines",
+    "href": "slides/lecture01-1.html#overall-guidelines",
+    "title": "Welcome to BEE 4750!",
+    "section": "Overall Guidelines",
+    "text": "Overall Guidelines\n\nCollaboration highly encouraged, but all work must reflect your own understanding\nSubmit PDFs on Gradescope\n10% penalty per day late\nRubrics will be made available as relevant\nAlways cite external references\nCurve unlikely (not worth asking about…)"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#labs-20",
+    "href": "slides/lecture01-1.html#labs-20",
+    "title": "Welcome to BEE 4750!",
+    "section": "Labs (20%)",
+    "text": "Labs (20%)\n\nIn-class guided activities, but may need some time after class to complete\nFocus on “how” to apply methods and concepts from class\nIf you can’t bring a laptop to these classes, you can work with someone else\nCan work in groups, but must submit your own notebook\nDue by 9:00 next Thursday (one week) after lab session.\nWill drop one."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#homework-assignments-40",
+    "href": "slides/lecture01-1.html#homework-assignments-40",
+    "title": "Welcome to BEE 4750!",
+    "section": "Homework Assignments (40%)",
+    "text": "Homework Assignments (40%)\n\nRoughly every other week (5-6 in total?)\nFocus on new or extended applications and conceptual questions\nManaged with GitHub Classroom\nDue by 9:00pm on the due date (usually Thursday)\nWill not drop any of these; you have lots of time!"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#final-project-40",
+    "href": "slides/lecture01-1.html#final-project-40",
+    "title": "Welcome to BEE 4750!",
+    "section": "Final Project (40%)",
+    "text": "Final Project (40%)\n\nAnalyze a system of interest\nGo beyond class examples/methods\nWork in groups of 2 – 3 for BEE 4750, individually for BEE 5750"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#final-project-deliverables",
+    "href": "slides/lecture01-1.html#final-project-deliverables",
+    "title": "Welcome to BEE 4750!",
+    "section": "Final Project: Deliverables",
+    "text": "Final Project: Deliverables\n\nProposal: one page overview of system and model plan\nRegulatory Review: 2–3 page report on relevant regulations\nLiterature Review (BEE 5750): 2 page synthesis of relevant literature\nPoster: Overview and results (due end of semester)"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#attendance",
+    "href": "slides/lecture01-1.html#attendance",
+    "title": "Welcome to BEE 4750!",
+    "section": "Attendance",
+    "text": "Attendance\nNot required, but students tend to do better when they’re actively engaged in class."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#office-hours",
+    "href": "slides/lecture01-1.html#office-hours",
+    "title": "Welcome to BEE 4750!",
+    "section": "Office Hours",
+    "text": "Office Hours\n\nTime TBD (will send out poll)\nAlmost impossible to find a time that works for all (or even most); please feel free to make appointments as/if needed."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#accomodations",
+    "href": "slides/lecture01-1.html#accomodations",
+    "title": "Welcome to BEE 4750!",
+    "section": "Accomodations",
+    "text": "Accomodations\nIf you have any access barriers in this class, please seek out any helpful accomodations.\n\nGet an SDS letter.\nIf you need an accomodation before you have an official letter, please reach out to me ASAP!"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity",
+    "href": "slides/lecture01-1.html#academic-integrity",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nHopefully not a concern…\n\nCollaboration is great and is encouraged!\nKnowing how to find and use helpful resources is a skill we want to develop.\n\n\n\nDon’t just copy…learn from others and give credit.\nSubmit your own original work."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-1",
+    "href": "slides/lecture01-1.html#academic-integrity-1",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nObviously, just copying down answers from Chegg or ChatGPT and passing them off as your own is not ok.\nBut often lines aren’t that simple. Let’s quickly consider some scenarios (h/t to Tony Wong for these)."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-1",
+    "href": "slides/lecture01-1.html#academic-integrity-scenario-1",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity: Scenario 1",
+    "text": "Academic Integrity: Scenario 1\nDan searches the internet for relevant code and copy-pastes it into his Jupyter notebook. He cites the source of the codes.\n\n\n\n\n\n\nIs this ok?\n\n\n\nProbably Not\n\nWhat portion of the work is Dan’s?\nHow important were the codes?\nDid Dan understand what he copied?"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-1-1",
+    "href": "slides/lecture01-1.html#academic-integrity-scenario-1-1",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity: Scenario 1",
+    "text": "Academic Integrity: Scenario 1\nDan searches the internet for relevant code and copy-pastes it into his Jupyter notebook. He cites the source of the codes.\n\n\n\n\n\n\nWhat Should Dan Do?\n\n\n\nDan should paraphrase the codes he found to incorporate them with his own code, and then also cite them."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-2",
+    "href": "slides/lecture01-1.html#academic-integrity-scenario-2",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity: Scenario 2",
+    "text": "Academic Integrity: Scenario 2\nMatthew and Rhonda work together to figure out how to implement the codes, but each works on their own computer and develops their own solutions.\n\n\n\n\n\n\nIs this ok?\n\n\n\nDefinitely!\n\nIndependent implementations shows understanding."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-3",
+    "href": "slides/lecture01-1.html#academic-integrity-scenario-3",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity: Scenario 3",
+    "text": "Academic Integrity: Scenario 3\nFelix and Rachel are working together on a problem involving a derivation. Rachel types it up in LaTeX and sends the code to Felix, who pastes it into his Jupyter notebook.\n\n\n\n\n\n\nIs this ok?\n\n\n\nLikely Not\n\nDid Felix contribute enough to the derivation?\nDefinitely not OK if Felix doesn’t give Rachel credit for her contribution."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-4",
+    "href": "slides/lecture01-1.html#academic-integrity-scenario-4",
+    "title": "Welcome to BEE 4750!",
+    "section": "Academic Integrity: Scenario 4",
+    "text": "Academic Integrity: Scenario 4\nDarren uses ChatGPT to debug an error in his homework code. He fixes the error and credits ChatGPT in his References section.\n\n\n\n\n\n\nIs this ok?\n\n\n\nWell-meaning, but no!\n\nUsing ChatGPT (or other ML tools) can be ok, but…\nNeed to ask permission and thoroughly document the query and the exact response."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#chatgpt-the-stochastic-parrot",
+    "href": "slides/lecture01-1.html#chatgpt-the-stochastic-parrot",
+    "title": "Welcome to BEE 4750!",
+    "section": "ChatGPT: The Stochastic Parrot",
+    "text": "ChatGPT: The Stochastic Parrot\nWhy is ChatGPT (and other ML/AI tools) singled out?\n\n\nStochasticity: Response to a given prompt is not necessarily the same, so need to track what you received.\nLack of Transparency: Not clear what the training data is, so documentation is essential (ML is not great at extrapolation).\nNot Well-Suited to All Tasks: Can be useful for getting a skeleton, starter code, or debugging. Really (and obviously) bad at interpretation and analysis."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#communications",
+    "href": "slides/lecture01-1.html#communications",
+    "title": "Welcome to BEE 4750!",
+    "section": "Communications",
+    "text": "Communications\nUse Ed Discussion for questions and discussions about class, homework assignments, etc.\n\nTry to use public posts so others can benefit from questions and can weigh in.\nI will make announcements through Ed.\n\nWhen urgency or privacy is required, email is ok."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#course-website",
+    "href": "slides/lecture01-1.html#course-website",
+    "title": "Welcome to BEE 4750!",
+    "section": "Course Website",
+    "text": "Course Website\nhttps://viveks.me/environmental-systems-analysis\n\nCentral hub for information, schedule, and policies\nWill add link and some information to Canvas (assignment due dates, etc)"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#computing-tools",
+    "href": "slides/lecture01-1.html#computing-tools",
+    "title": "Welcome to BEE 4750!",
+    "section": "Computing Tools",
+    "text": "Computing Tools\nSystems analysis requires mathematical modeling, and computing allows that to scale."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#julia",
+    "href": "slides/lecture01-1.html#julia",
+    "title": "Welcome to BEE 4750!",
+    "section": "Julia",
+    "text": "Julia\nIn this course, we will use the Julia programming language.\nAll assignments, labs, and AEs will be provided as Jupyter Notebooks."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#what-is-your-programming-experience",
+    "href": "slides/lecture01-1.html#what-is-your-programming-experience",
+    "title": "Welcome to BEE 4750!",
+    "section": "What Is Your Programming Experience?",
+    "text": "What Is Your Programming Experience?\n\n\n\n\n\n\n\n\nText: VSRIKRISH to 22333\nURL: https://pollev.com/vsrikrish  See Results"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#jupyter-notebooks",
+    "href": "slides/lecture01-1.html#jupyter-notebooks",
+    "title": "Welcome to BEE 4750!",
+    "section": "Jupyter Notebooks",
+    "text": "Jupyter Notebooks\nWe will use Jupyter Notebooks for most computing tasks (including assignments).\n\nAllow for interactive evaluation of code and integration with text (including nicely typeset mathematics)\nCan export to PDF (or HTML -&gt; PDF) for submission to Gradescope.\nBe careful before submitting: Evaluate all cells in order"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#github-classroom",
+    "href": "slides/lecture01-1.html#github-classroom",
+    "title": "Welcome to BEE 4750!",
+    "section": "GitHub Classroom",
+    "text": "GitHub Classroom\nHomework assignments and labs will be distributed using GitHub Classroom.\n\nEvery student will have a unique “repository.”\nWhen assignment is released, I will share the link for repository creation on Ed Discussion.\nMakes it easy to share code for assistance and debugging (share links to repositories, not out-of-context code and screenshots)."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#next-classes",
+    "href": "slides/lecture01-1.html#next-classes",
+    "title": "Welcome to BEE 4750!",
+    "section": "Next Classes",
+    "text": "Next Classes\nWednesday: Introduction to Systems Analysis\nFriday: Work on Lab 1.\n\nPreparation:\n\nLab 1 link is available on Ed. Click it to accept the lab before class.\n\n\n\n\nBEE 4750, Environmental Systems Analysis"
+  },
+  {
+    "objectID": "website.html",
+    "href": "website.html",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "website.html#quarto",
+    "href": "website.html#quarto",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "resources/julia.html",
+    "href": "resources/julia.html",
+    "title": "Julia Resources",
+    "section": "",
+    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
+  },
+  {
+    "objectID": "resources/github.html",
+    "href": "resources/github.html",
+    "title": "GitHub Resources",
+    "section": "",
+    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
+  },
+  {
+    "objectID": "resources/markdown.html",
+    "href": "resources/markdown.html",
+    "title": "Markdown Resources",
+    "section": "",
+    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
+  },
+  {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
+    "section": "",
+    "text": "This page contains information about and a schedule of the lab assignments for the semester."
+  },
+  {
+    "objectID": "labs.html#general-information",
+    "href": "labs.html#general-information",
+    "title": "Labs",
+    "section": "General Information",
+    "text": "General Information\n\nYou can download each lab notebook through the link below..\nSubmit assignments by 9:00pm Eastern Time on the due date on Gradescope.\nSubmissions must be PDFs. Make sure that you tag the pages corresponding to each question; points will be deducted otherwise.\nTo convert the assignment notebook to PDF, you can use VS Code to render the notebook to HTML, and then use your browser to print to PDF. If you have set up LaTeX with VS Code, you can convert directly to a PDF."
+  },
+  {
+    "objectID": "labs.html#schedule",
+    "href": "labs.html#schedule",
+    "title": "Labs",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\nLab\nInstructions\nRubric\nDue Date\n\n\n\n\nLab 1\n\n\nSep 01, 2023"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics and weekly materials can be found in the schedule."
+  },
+  {
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#what-is-a-system",
+    "href": "slides/lecture01-2.html#what-is-a-system",
+    "title": "Introduction to Systems Analysis!",
+    "section": "What Is A System?",
+    "text": "What Is A System?\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#examples-of-systems",
+    "href": "slides/lecture01-2.html#examples-of-systems",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Examples of Systems",
+    "text": "Examples of Systems\nCan we think of any examples of systems?\n\nWhat about things that are not systems?"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#why-are-systems-interesting",
+    "href": "slides/lecture01-2.html#why-are-systems-interesting",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Why Are Systems Interesting?",
+    "text": "Why Are Systems Interesting?\nIn other words, a system involves an interconnected set of components.\nThose interconnections can lead to very different dynamics and outcomes than if the component processes were studied in isolation.\nThis is called emergence."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#system-state",
+    "href": "slides/lecture01-2.html#system-state",
+    "title": "Introduction to Systems Analysis!",
+    "section": "System State",
+    "text": "System State\nSystem State: quantities or variables which evolve over time based on external inputs and system dynamics.\nThe state gives you a “snapshot” of the system at a given point in time."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#stocks-and-flows",
+    "href": "slides/lecture01-2.html#stocks-and-flows",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Stocks and Flows",
+    "text": "Stocks and Flows\n\nA stock is the amount of a system property: concentrations of a pollutant, numbers of currency units, etc.\nA flow is the way in which a stock changes: decay, diffusion, production, consumption, etc."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#modeling-flows",
+    "href": "slides/lecture01-2.html#modeling-flows",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Modeling Flows",
+    "text": "Modeling Flows\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#feedback-loops",
+    "href": "slides/lecture01-2.html#feedback-loops",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Feedback Loops",
+    "text": "Feedback Loops\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#tipping-points",
+    "href": "slides/lecture01-2.html#tipping-points",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Tipping Points",
+    "text": "Tipping Points\n\n\nAnother important systems concept is a tipping point, where the system changes states abruptly and drastically.\nExamples include lake eutrophication and ice-sheet melting.\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#systems-analysis-overview",
+    "href": "slides/lecture01-2.html#systems-analysis-overview",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Systems Analysis Overview",
+    "text": "Systems Analysis Overview\n\n\nWhat We Study\n\nSystem dynamics;\nResponse to inputs;\nAlternatives for management or design.\n\n\nNeeds\n\n\nDefinition of the system\nSystems model"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
+    "href": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
+    "title": "Introduction to Systems Analysis!",
+    "section": "What Do We Need To Define A System?",
+    "text": "What Do We Need To Define A System?\n\n\nComponents: relevant processes, agents, etc\nInterconnections: relationships between system components\nControl volume: internal vs. external components\nInputs: control policies and/or external forcings\nOutputs: measured quantities of interest"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#key-takeaways-1",
+    "href": "slides/lecture01-2.html#key-takeaways-1",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nA system is an interconnected set of components.\nSystems are interesting because interconnections can result in unexpected outcomes.\nKey terms:\n\nstate\nstocks\nflows"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#key-takeaways-2",
+    "href": "slides/lecture01-2.html#key-takeaways-2",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nTo define a system, need to specify:\n\ncomponents\ninterconnections\ncontrol volume\nexternal inputs\noutputs of interest"
+  },
+  {
+    "objectID": "slides/lecture01-2.html#next-classes",
+    "href": "slides/lecture01-2.html#next-classes",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Next Classes",
+    "text": "Next Classes\nFriday: Work on Lab 1.\n\nPreparation:\n\nFollow the steps in Tools Setup to get GitHub and Julia set up.\nClick the Lab 1 link in Ed Discussion to link your GitHub account to the class roster and create your Lab 1 repository."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#next-classes-1",
+    "href": "slides/lecture01-2.html#next-classes-1",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Next Classes",
+    "text": "Next Classes\nMonday: Modeling Systems\n\n\nBEE 4750, Environmental Systems Analysis"
+  },
+  {
+    "objectID": "slides/notebooks/dissolved-oxygen.html",
+    "href": "slides/notebooks/dissolved-oxygen.html",
+    "title": "{{< var course.number >}} - {{< var course.semester >}}",
+    "section": "",
+    "text": "---\ntitle: \"Dissolved Oxygen\"\nauthor: \"Vivek Srikrishnan\"\ndate: \"5/13/2023\"\nformat:\n  html:\n    code-fold: true\n  ipynb: default\njupyter: julia-1.9\n---\n\n\nimport Pkg\nPkg.activate(\"..\")\nPkg.instantiate()\n\n  Activating project at `~/Teaching/environmental-systems-analysis/website/slides`\n\n\n\nusing Plots\nusing Measures\nusing LaTeXStrings\n\nA first-order model for dissolved oxygen (DO) is\n\\[\\begin{align}\nU \\frac{dC}{dx} &= k_a (C_s - C) + P - R - S_B - k_cB_0\\exp\\left(\\frac{-k_cx}{U}\\right) - k_n N_0\\exp\\left(\\frac{-k_nx}{U}\\right)\n\\end{align}\\]\nwhich has solution\n\\[C(x) = C_s(1 - \\alpha_1) + C_0 \\alpha_1 - B_0 \\alpha_2 - N_0 \\alpha_3 + \\left(\\frac{P-R-S_B}{k_a}\\right) (1-\\alpha_1),\\]\nbut we’ll ignore \\(P\\), \\(R\\), and \\(S_B\\) as these just modify \\(C_s\\).\n\n## function to simulate DO given parameters\n\nfunction do_simulate(x, C0, B0, N0, ka, kn, kc, Cs, U)\n    B = B0 .* exp.(-kc .* x ./ U)\n    N = N0 .* exp.(-kn .* x ./ U)\n    alpha1 = exp.(-ka .* x ./ U)\n    alpha2 = (kc/(ka-kc)) .* (exp.(-kc .* x / U) - exp.(-ka .* x / U))\n    alpha3 = (kn/(ka-kn)) .* (exp.(-kn .* x / U) - exp.(-ka .* x / U))\n    C = Cs .* (1 .- alpha1) + (C0 .* alpha1) - (B0 .* alpha2) - (N0 .* alpha3)\n    return (C, B, N)\nend  \n\ndo_simulate (generic function with 1 method)\n\n\n\n\nka = 0.8\nkc = 0.4\nkn = 0.25\n\nx = 0:40\n\nC, B, N = do_simulate(x, 12, 10, 6, ka, kc, kn, 10, 6)\n\n([12.0, 11.00645310548937, 10.175859173274619, 9.485735592776512, 8.916529246889715, 8.451243511008714, 8.075112259659466, 7.7753149851202945, 7.540727870097758, 7.3617063020117754  …  8.192305787065738, 8.267173709636479, 8.339934969497461, 8.410487111173717, 8.47875989610827, 8.544710197112913, 8.608317593145037, 8.669580573208266, 8.72851326979175, 8.785142652415068], [10.0, 9.591894571091382, 9.200444146293233, 8.824969025845954, 8.464817248906142, 8.11936346150635, 7.788007830714049, 7.470175003104326, 7.1653131057378925, 6.872892787909723  …  2.748123805594897, 2.6359713811572676, 2.5283959580474646, 2.425210746356487, 2.326236579172927, 2.231301601484298, 2.140240971774475, 2.052896575799093, 1.9691167520419406, 1.8887560283756186], [6.0, 5.613041910189707, 5.251039914257685, 4.912384518467891, 4.595570030187892, 4.299187863442736, 4.0219202762138355, 3.7625345116383366, 3.5198773170601907, 3.292869816564159  …  0.7596426167345016, 0.7106509740828222, 0.6648189501740032, 0.6219427716691671, 0.5818318071864303, 0.5443077197364751, 0.5092036738201045, 0.47636359366246933, 0.44564146928600323, 0.4169007073368093])\n\n\n\np1 = plot(x, C, grid=false, color=:black, ylabel=\"DO/OD (mg/l)\", xlabel=\"Distance (km)\", label=\"DO\", linewidth=3, left_margin=8mm, top_margin=10mm, guidefontsize=16, legendfontsize=16, tickfontsize=14, xticks=:false, yticks=:false, legend=:right)\nplot!(x, B, color=:green, label=\"CBOD\", linestyle=:dash, linewidth=3)\nplot!(x, N, color=:blue, label=\"NBOD\", linestyle=:dash, linewidth=3)\nplot!(x, 10 * ones(length(x)), color=:purple, label=L\"C_s\", linestyle=:dot, linewidth=3)\n\nannotate!(1.5, 12.75, text(\"Waste Discharge\", pointsize=16, color=:red))\nvline!([0], color=:red, linewidth=2, label=:false)\nplot!(size=(700, 500))\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Sag curve for dissolved oxygen.\n\n\n\n\nC0 = 6.2\nB0 = 9\nN0 = 7\n\nka = 0.8\nkc = 0.5\nkn = 0.4\nCs = 7\nU = 5\n\n5\n\n\n\nfunction dissolved_oxygen(x, Cs, C0, B0, N0, ka, kc, kn, U)\n    α1 = exp(-ka * x / U)\n    α2 = (kc / (ka - kc)) * (exp(-kc * x / U) - α1)\n    α3 = (kn / (ka - kn)) * (exp(-kn * x / U) - α1)\n    C = (Cs * (1 - α1)) + (C0 * α1) - (B0 * α2) - (N0 * α3)\n    return C\nend\n\nx = 0:0.1:20\nC = (y -&gt; dissolved_oxygen(y, Cs, C0, B0, N0, ka, kc, kn, U)).(x)\n\n\n\nCode\nplot(x, C; linewidth=3, \n    label=\"Dissolved Oxygen\", \n    tickfontsize=16, \n    guidefontsize=16, \n    legendfontsize=16)\nxlabel!(L\"$x$ (km)\")\nylabel!(\"DO Concentration (mg/L)\")\nhline!([3], color=:red, \n    linestyle=:dash, \n    label=\"Regulatory Standard\")\nplot!(size=(500, 500))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Single-Release Dissolved Oxygen Example\n\n\n\n\nQ1 = 100000\nQ2 = 20000\nQ3 = 25000\n\nx0 = 0\nx1 = 18\nx2 = 30\nx3 = 45\n\nC01 = 6\nB01 = 5\nN01 = 4.5\n\nC1, B1, N1 = do_simulate(x0:x1, C01, B01, N01, ka, kc, kn, 9, 6)\n\nC02 = (C1[length(C1)] * Q1 + 3 * Q2) / (Q1 + Q2)\nB02 = (B1[length(B1)] * Q1 + 55 * Q2) / (Q1 + Q2)\nN02 = (N1[length(N1)] * Q1 + 50 * Q2) / (Q1 + Q2)\n\nC2, B2, N2 = do_simulate(x0:(x2-x1), C02, B02, N02, ka, kc, kn, 9, 6)\n\nC03 = (C2[length(C2)] * (Q1 + Q2) + 4 * Q3) / (Q1 + Q2 + Q3)\nB03 = (B2[length(B2)] * (Q1 + Q2) + 40 * Q3) / (Q1 + Q2 + Q3)\nN03 = (N2[length(N2)] * (Q1 + Q2) + 30 * Q3) / (Q1 + Q2 + Q3)\n\nC3, B3, N3 = do_simulate(x0:(x3-x2), C03, B03, N03, ka, kc, kn, 9, 6)\n\nplot(x0:x1, C1, grid=false, color=:black, ylabel=\"DO (mg/L)\", xlabel=\"Distance (km)\", label=\"DO\", xticks=:false, yticks=:false, linewidth=3, left_margin=12mm, top_margin=10mm, bottom_margin=20mm, guidefontsize=16, tickfontsize=16, legendfontsize=16)\nplot!(x1:x2, C2, color=:black, label=false, linewidth=3)\nplot!(x2:x3, C3, color=:black, label=false, linewidth=3)\nplot!(size=(1200, 500))\n\nvline!([x0, x1, x2], color=:green, linewidth=3, label=\"Discharge\")\nhline!([3], color=:red, linewidth=3, label=\"Regulation\", linestyle=:dash)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Multi-Release Dissolved Oxygen Example"
+  },
+  {
+    "objectID": "slides/notebooks/economic-dispatch.html",
+    "href": "slides/notebooks/economic-dispatch.html",
+    "title": "Economic Dispatch with JuMP",
+    "section": "",
+    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\n\n\n  Activating project at `~/Teaching/environmental-systems-analysis/website/slides`\nCode\nusing DataFrames\nusing LaTeXStrings\nusing PrettyTables\nusing JuMP\nusing HiGHS\nusing Plots\nusing Measures"
+  },
+  {
+    "objectID": "slides/notebooks/economic-dispatch.html#overview-of-economic-dispatch",
+    "href": "slides/notebooks/economic-dispatch.html#overview-of-economic-dispatch",
+    "title": "Economic Dispatch with JuMP",
+    "section": "Overview of Economic Dispatch",
+    "text": "Overview of Economic Dispatch\nA key goal in power systems operations is how to meet demand by generating electricity from a variety of generators with varying costs and engineering constraints, including: * ramping limits; * minimum/maximum power outputs; * network constraints (we will ignore these here).\nEconomic dispatch refers to solving this problem with an objective of minimizing total costs of production. Economic dispatch is typically formulated as a linear programming problem, and we will use JuMP to formulate and solve it for a simple portfolio of generators over: * a single period * multiple periods with ramping constraints."
+  },
+  {
+    "objectID": "slides/notebooks/economic-dispatch.html#single-period-economic-dispatch",
+    "href": "slides/notebooks/economic-dispatch.html#single-period-economic-dispatch",
+    "title": "Economic Dispatch with JuMP",
+    "section": "Single-Period Economic Dispatch",
+    "text": "Single-Period Economic Dispatch\nLet’s say that we have a fleet of the following generators.\n\n\nCode\nheader = [\"Plant\", \"P&lt;sub&gt;min&lt;/sub&gt; (MW)\", \"P&lt;sub&gt;max&lt;/sub&gt; (MW)\", \"VarCost (\\$/MW)\"]\ngen_names = [\"Hydro\", \"Wind\", \"Nuclear\", \"Coal\", \"Natural Gas\"]\ngen_minpower = [0, 0, 200, 160, 40]\ngen_maxpower = [150, 200, 1000, 700, 500]\ngen_varcost = [0, 0, 2, 21.50, 23]\ngen_data = DataFrame(name=gen_names, Pmin=gen_minpower, Pmax=gen_maxpower, varcost=gen_varcost)\npretty_table(gen_data; backend = Val(:html), header=header, allow_html_in_cells=true)\n\n\n\n\n\nPlant\nPmin (MW)\nPmax (MW)\nVarCost ($/MW)\n\n\n\n\nHydro\n0\n150\n0.0\n\n\nWind\n0\n200\n0.0\n\n\nNuclear\n200\n1000\n2.0\n\n\nCoal\n160\n700\n21.5\n\n\nNatural Gas\n40\n500\n23.0\n\n\n\n\n\nLet’s also assume that demand in this period is 1800 MW."
+  },
+  {
+    "objectID": "slides/notebooks/economic-dispatch.html#jump-formulation",
+    "href": "slides/notebooks/economic-dispatch.html#jump-formulation",
+    "title": "Economic Dispatch with JuMP",
+    "section": "JuMP Formulation",
+    "text": "JuMP Formulation\n\n\nCode\ndemand = 1800\n\nG = 1:nrow(gen_data)\ndispatch = Model(HiGHS.Optimizer)\n@variable(dispatch, gen_minpower[g] &lt;= y[g in G] &lt;= gen_maxpower[g])\n@objective(dispatch, Min, sum(gen_varcost .* y))\n@constraint(dispatch, load, sum(y) == demand)\n\nlatex_formulation(dispatch)\n\n\n\\[ \\begin{aligned}\n\\min\\quad & 2 y_{3} + 21.5 y_{4} + 23 y_{5}\\\\\n\\text{Subject to} \\quad & y_{1} + y_{2} + y_{3} + y_{4} + y_{5} = 1800.0\\\\\n& y_{1} \\geq 0.0\\\\\n& y_{2} \\geq 0.0\\\\\n& y_{3} \\geq 200.0\\\\\n& y_{4} \\geq 160.0\\\\\n& y_{5} \\geq 40.0\\\\\n& y_{1} \\leq 150.0\\\\\n& y_{2} \\leq 200.0\\\\\n& y_{3} \\leq 1000.0\\\\\n& y_{4} \\leq 700.0\\\\\n& y_{5} \\leq 500.0\\\\\n\\end{aligned} \\]\n\n\n\n\nCode\nset_silent(dispatch)\noptimize!(dispatch)\n\n\n\n\nCode\ngen_sol = value.(y).data\nresults = DataFrame(name=gen_names, dispatch=gen_sol\n, pmin=gen_minpower, pmax=gen_maxpower)\nresults_header = [\"Plant\", \"Dispatch (MW)\", \"P&lt;sub&gt;min&lt;/sub&gt; (MW)\", \"P&lt;sub&gt;max&lt;/sub&gt; (MW)\"]\npretty_table(results; backend = Val(:html), header=results_header, allow_html_in_cells=true)\n\n\n\n\n\nPlant\nDispatch (MW)\nPmin (MW)\nPmax (MW)\n\n\n\n\nHydro\n150.0\n0\n150\n\n\nWind\n200.0\n0\n200\n\n\nNuclear\n1000.0\n200\n1000\n\n\nCoal\n410.0\n160\n700\n\n\nNatural Gas\n40.0\n40\n500\n\n\n\n\n\n\nMarginal Generators\nOnce we hit the minimum for each generator, we then “fill up” capacity from lowest-cost generators first, then move on.\nFor this problem, the coal generator is the marginal generator. If we had used all of our coal capacity, the natural gas unit would be the marginal generator. The concept of the marginal generator is important, as the marginal generation unit sets the price of electricity.\n\n\nMerit Order and the Dispatch Stack\nThis procedure of starting with the lowest-cost generation and adding generation sequentially from generators in order of cost is the concept of merit order: plants are scheduled to supply additional electricity based (mostly) on their variable costs. We can visualize the supply curve (or the dispatch stack) to see the order in which electricity is dispatched.\n\n\nCode\nsupply_curve = DataFrame( \n    name = gen_names, \n    pmin = gen_minpower, \n    cap = gen_maxpower .- gen_minpower,\n    varcost = gen_varcost \n)\n\nsort!(supply_curve, [:varcost, order(:cap, rev=true)])\n\n\n5×4 DataFrame\n\n\n\nRow\nname\npmin\ncap\nvarcost\n\n\n\nString\nInt64\nInt64\nFloat64\n\n\n\n\n1\nWind\n0\n200\n0.0\n\n\n2\nHydro\n0\n150\n0.0\n\n\n3\nNuclear\n200\n800\n2.0\n\n\n4\nCoal\n160\n540\n21.5\n\n\n5\nNatural Gas\n40\n460\n23.0\n\n\n\n\n\n\n\n\nCode\nrectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h]) \n\np = plot(grid=:false, color_palette=:tol_muted, legend=:left, legendfontsize=20, tickfontsize=20, guidefontsize=20) \nmarg_gen = 0 \nmarg_price = 0 \nx = 0 \n\nplot!(p, rectangle(sum(supply_curve.pmin), 0.5, x, 0), opacity=.5, label = \"minimum\", color=\"black\") \nx = x + sum(supply_curve.pmin) \nfor i in 1:nrow(supply_curve) \n    if supply_curve[i, :varcost] == 0 \n        plot!(p, rectangle(supply_curve[i, :cap], 0.5,x,0), opacity=.5, label = supply_curve[i, :name]) \n    else \n        plot!(p, rectangle(supply_curve[i, :cap], supply_curve[i, :varcost],x,0), opacity=.5, label = supply_curve[i, :name]) \n    end \n    if (x &lt; demand) && (x + supply_curve[i,:cap] &gt; demand) \n        marg_gen = i \n        marg_price = supply_curve[i,:varcost] \n    end \n    x = x + supply_curve[i,:cap] \nend \nvline!([demand],linecolor=\"black\",linewidth=5, linestyle=:dash, label = \"demand\") \nhline!([marg_price],linecolor=\"blue\", linestyle=:dot, linewidth=5, label = \"Electricity Price\") \nxlabel!(\"Capacity (MW)\") \nylabel!(\"Marginal Cost (\\$/MW)\") \nplot!(size=(800, 600))\nplot!(right_margin=13mm, left_margin=5mm, bottom_margin=5mm)"
+  },
+  {
+    "objectID": "slides/notebooks/economic-dispatch.html#multiple-period-dispatch",
+    "href": "slides/notebooks/economic-dispatch.html#multiple-period-dispatch",
+    "title": "Economic Dispatch with JuMP",
+    "section": "Multiple-Period Dispatch",
+    "text": "Multiple-Period Dispatch\nWhat changes for multiple periods?\n\nNeed to meet demand at every time period\nWe have additional ramping constraints: plants can only increase and decrease their output by so much from time to time, by \\(R_g\\).\n\n\nJuMP Implementation\n\n\nCode\nramp = [150, 200, 100, 250, 300]\ndemand = [1725, 1596, 1476, 1408, 1530, 1714, 1820, 1973, 2081, 2202, 2105, 2065, \n    2045, 2195, 2309, 2390, 2486, 2515, 2075, 2006, 1956, 1902, 1865, 1820]\nh = length(demand)\nT = 1:h\n\ndispatch2 = Model(HiGHS.Optimizer)\n@variable(dispatch2, gen_minpower[g] &lt;= y[g in G, t in T] &lt;= gen_maxpower[g])\n@objective(dispatch2, Min, sum(gen_varcost .* sum([y[:, t] for t in T])))\n@constraint(dispatch2, load[t in T], sum(y[:, t]) == demand[t])\n@constraint(dispatch2, rampup[g in G, t in 1:h-1], y[g, t+1] - y[g, t] &lt;= ramp[g])\n@constraint(dispatch2, rampdown[g in G, t in 1:h-1], y[g, t] - y[g, t+1] &lt;= ramp[g])\n\nlatex_formulation(dispatch2)\n\n\n\\[ \\begin{aligned}\n\\min\\quad & 2 y_{3,1} + 2 y_{3,2} + 2 y_{3,3} + 2 y_{3,4} + 2 y_{3,5} + 2 y_{3,6} + 2 y_{3,7} + 2 y_{3,8} + 2 y_{3,9} + 2 y_{3,10} + 2 y_{3,11} + 2 y_{3,12} + 2 y_{3,13} + 2 y_{3,14} + 2 y_{3,15} + 2 y_{3,16} + 2 y_{3,17} + 2 y_{3,18} + 2 y_{3,19} + 2 y_{3,20} + 2 y_{3,21} + 2 y_{3,22} + 2 y_{3,23} + 2 y_{3,24} + 21.5 y_{4,1} + 21.5 y_{4,2} + 21.5 y_{4,3} + 21.5 y_{4,4} + 21.5 y_{4,5} + 21.5 y_{4,6} + 21.5 y_{4,7} + 21.5 y_{4,8} + 21.5 y_{4,9} + 21.5 y_{4,10} + 21.5 y_{4,11} + 21.5 y_{4,12} + 21.5 y_{4,13} + 21.5 y_{4,14} + 21.5 y_{4,15} + 21.5 y_{4,16} + 21.5 y_{4,17} + 21.5 y_{4,18} + 21.5 y_{4,19} + 21.5 y_{4,20} + 21.5 y_{4,21} + 21.5 y_{4,22} + 21.5 y_{4,23} + 21.5 y_{4,24} + 23 y_{5,1} + 23 y_{5,2} + 23 y_{5,3} + 23 y_{5,4} + 23 y_{5,5} + 23 y_{5,6} + 23 y_{5,7} + 23 y_{5,8} + 23 y_{5,9} + 23 y_{5,10} + 23 y_{5,11} + 23 y_{5,12} + 23 y_{5,13} + 23 y_{5,14} + 23 y_{5,15} + 23 y_{5,16} + 23 y_{5,17} + 23 y_{5,18} + 23 y_{5,19} + 23 y_{5,20} + 23 y_{5,21} + 23 y_{5,22} + 23 y_{5,23} + 23 y_{5,24}\\\\\n\\text{Subject to} \\quad & y_{1,1} + y_{2,1} + y_{3,1} + y_{4,1} + y_{5,1} = 1725.0\\\\\n& y_{1,2} + y_{2,2} + y_{3,2} + y_{4,2} + y_{5,2} = 1596.0\\\\\n& y_{1,3} + y_{2,3} + y_{3,3} + y_{4,3} + y_{5,3} = 1476.0\\\\\n& y_{1,4} + y_{2,4} + y_{3,4} + y_{4,4} + y_{5,4} = 1408.0\\\\\n& y_{1,5} + y_{2,5} + y_{3,5} + y_{4,5} + y_{5,5} = 1530.0\\\\\n& y_{1,6} + y_{2,6} + y_{3,6} + y_{4,6} + y_{5,6} = 1714.0\\\\\n& y_{1,7} + y_{2,7} + y_{3,7} + y_{4,7} + y_{5,7} = 1820.0\\\\\n& y_{1,8} + y_{2,8} + y_{3,8} + y_{4,8} + y_{5,8} = 1973.0\\\\\n& y_{1,9} + y_{2,9} + y_{3,9} + y_{4,9} + y_{5,9} = 2081.0\\\\\n& y_{1,10} + y_{2,10} + y_{3,10} + y_{4,10} + y_{5,10} = 2202.0\\\\\n& y_{1,11} + y_{2,11} + y_{3,11} + y_{4,11} + y_{5,11} = 2105.0\\\\\n& y_{1,12} + y_{2,12} + y_{3,12} + y_{4,12} + y_{5,12} = 2065.0\\\\\n& y_{1,13} + y_{2,13} + y_{3,13} + y_{4,13} + y_{5,13} = 2045.0\\\\\n& y_{1,14} + y_{2,14} + y_{3,14} + y_{4,14} + y_{5,14} = 2195.0\\\\\n& y_{1,15} + y_{2,15} + y_{3,15} + y_{4,15} + y_{5,15} = 2309.0\\\\\n& y_{1,16} + y_{2,16} + y_{3,16} + y_{4,16} + y_{5,16} = 2390.0\\\\\n& y_{1,17} + y_{2,17} + y_{3,17} + y_{4,17} + y_{5,17} = 2486.0\\\\\n& y_{1,18} + y_{2,18} + y_{3,18} + y_{4,18} + y_{5,18} = 2515.0\\\\\n& y_{1,19} + y_{2,19} + y_{3,19} + y_{4,19} + y_{5,19} = 2075.0\\\\\n& y_{1,20} + y_{2,20} + y_{3,20} + y_{4,20} + y_{5,20} = 2006.0\\\\\n& y_{1,21} + y_{2,21} + y_{3,21} + y_{4,21} + y_{5,21} = 1956.0\\\\\n& y_{1,22} + y_{2,22} + y_{3,22} + y_{4,22} + y_{5,22} = 1902.0\\\\\n& y_{1,23} + y_{2,23} + y_{3,23} + y_{4,23} + y_{5,23} = 1865.0\\\\\n& y_{1,24} + y_{2,24} + y_{3,24} + y_{4,24} + y_{5,24} = 1820.0\\\\\n& -y_{1,1} + y_{1,2} \\leq 150.0\\\\\n& -y_{2,1} + y_{2,2} \\leq 200.0\\\\\n& -y_{3,1} + y_{3,2} \\leq 100.0\\\\\n& -y_{4,1} + y_{4,2} \\leq 250.0\\\\\n& -y_{5,1} + y_{5,2} \\leq 300.0\\\\\n& -y_{1,2} + y_{1,3} \\leq 150.0\\\\\n& -y_{2,2} + y_{2,3} \\leq 200.0\\\\\n& -y_{3,2} + y_{3,3} \\leq 100.0\\\\\n& -y_{4,2} + y_{4,3} \\leq 250.0\\\\\n& -y_{5,2} + y_{5,3} \\leq 300.0\\\\\n& -y_{1,3} + y_{1,4} \\leq 150.0\\\\\n& -y_{2,3} + y_{2,4} \\leq 200.0\\\\\n& -y_{3,3} + y_{3,4} \\leq 100.0\\\\\n& -y_{4,3} + y_{4,4} \\leq 250.0\\\\\n& -y_{5,3} + y_{5,4} \\leq 300.0\\\\\n& -y_{1,4} + y_{1,5} \\leq 150.0\\\\\n& -y_{2,4} + y_{2,5} \\leq 200.0\\\\\n& -y_{3,4} + y_{3,5} \\leq 100.0\\\\\n& -y_{4,4} + y_{4,5} \\leq 250.0\\\\\n& -y_{5,4} + y_{5,5} \\leq 300.0\\\\\n& -y_{1,5} + y_{1,6} \\leq 150.0\\\\\n& -y_{2,5} + y_{2,6} \\leq 200.0\\\\\n& -y_{3,5} + y_{3,6} \\leq 100.0\\\\\n& -y_{4,5} + y_{4,6} \\leq 250.0\\\\\n& -y_{5,5} + y_{5,6} \\leq 300.0\\\\\n& -y_{1,6} + y_{1,7} \\leq 150.0\\\\\n& -y_{2,6} + y_{2,7} \\leq 200.0\\\\\n& -y_{3,6} + y_{3,7} \\leq 100.0\\\\\n& -y_{4,6} + y_{4,7} \\leq 250.0\\\\\n& -y_{5,6} + y_{5,7} \\leq 300.0\\\\\n& -y_{1,7} + y_{1,8} \\leq 150.0\\\\\n& -y_{2,7} + y_{2,8} \\leq 200.0\\\\\n& -y_{3,7} + y_{3,8} \\leq 100.0\\\\\n& -y_{4,7} + y_{4,8} \\leq 250.0\\\\\n& -y_{5,7} + y_{5,8} \\leq 300.0\\\\\n& -y_{1,8} + y_{1,9} \\leq 150.0\\\\\n& -y_{2,8} + y_{2,9} \\leq 200.0\\\\\n& -y_{3,8} + y_{3,9} \\leq 100.0\\\\\n& -y_{4,8} + y_{4,9} \\leq 250.0\\\\\n& -y_{5,8} + y_{5,9} \\leq 300.0\\\\\n& -y_{1,9} + y_{1,10} \\leq 150.0\\\\\n& -y_{2,9} + y_{2,10} \\leq 200.0\\\\\n& -y_{3,9} + y_{3,10} \\leq 100.0\\\\\n& -y_{4,9} + y_{4,10} \\leq 250.0\\\\\n& -y_{5,9} + y_{5,10} \\leq 300.0\\\\\n& -y_{1,10} + y_{1,11} \\leq 150.0\\\\\n& -y_{2,10} + y_{2,11} \\leq 200.0\\\\\n& -y_{3,10} + y_{3,11} \\leq 100.0\\\\\n& -y_{4,10} + y_{4,11} \\leq 250.0\\\\\n& -y_{5,10} + y_{5,11} \\leq 300.0\\\\\n& -y_{1,11} + y_{1,12} \\leq 150.0\\\\\n& -y_{2,11} + y_{2,12} \\leq 200.0\\\\\n& -y_{3,11} + y_{3,12} \\leq 100.0\\\\\n& -y_{4,11} + y_{4,12} \\leq 250.0\\\\\n& -y_{5,11} + y_{5,12} \\leq 300.0\\\\\n& -y_{1,12} + y_{1,13} \\leq 150.0\\\\\n& -y_{2,12} + y_{2,13} \\leq 200.0\\\\\n& -y_{3,12} + y_{3,13} \\leq 100.0\\\\\n& -y_{4,12} + y_{4,13} \\leq 250.0\\\\\n& -y_{5,12} + y_{5,13} \\leq 300.0\\\\\n& -y_{1,13} + y_{1,14} \\leq 150.0\\\\\n& -y_{2,13} + y_{2,14} \\leq 200.0\\\\\n& -y_{3,13} + y_{3,14} \\leq 100.0\\\\\n& -y_{4,13} + y_{4,14} \\leq 250.0\\\\\n& -y_{5,13} + y_{5,14} \\leq 300.0\\\\\n& -y_{1,14} + y_{1,15} \\leq 150.0\\\\\n& -y_{2,14} + y_{2,15} \\leq 200.0\\\\\n& -y_{3,14} + y_{3,15} \\leq 100.0\\\\\n& -y_{4,14} + y_{4,15} \\leq 250.0\\\\\n& -y_{5,14} + y_{5,15} \\leq 300.0\\\\\n& -y_{1,15} + y_{1,16} \\leq 150.0\\\\\n& -y_{2,15} + y_{2,16} \\leq 200.0\\\\\n& -y_{3,15} + y_{3,16} \\leq 100.0\\\\\n& -y_{4,15} + y_{4,16} \\leq 250.0\\\\\n& -y_{5,15} + y_{5,16} \\leq 300.0\\\\\n& -y_{1,16} + y_{1,17} \\leq 150.0\\\\\n& -y_{2,16} + y_{2,17} \\leq 200.0\\\\\n& -y_{3,16} + y_{3,17} \\leq 100.0\\\\\n& -y_{4,16} + y_{4,17} \\leq 250.0\\\\\n& -y_{5,16} + y_{5,17} \\leq 300.0\\\\\n& -y_{1,17} + y_{1,18} \\leq 150.0\\\\\n& -y_{2,17} + y_{2,18} \\leq 200.0\\\\\n& -y_{3,17} + y_{3,18} \\leq 100.0\\\\\n& -y_{4,17} + y_{4,18} \\leq 250.0\\\\\n& -y_{5,17} + y_{5,18} \\leq 300.0\\\\\n& -y_{1,18} + y_{1,19} \\leq 150.0\\\\\n& -y_{2,18} + y_{2,19} \\leq 200.0\\\\\n& -y_{3,18} + y_{3,19} \\leq 100.0\\\\\n& -y_{4,18} + y_{4,19} \\leq 250.0\\\\\n& -y_{5,18} + y_{5,19} \\leq 300.0\\\\\n& -y_{1,19} + y_{1,20} \\leq 150.0\\\\\n& -y_{2,19} + y_{2,20} \\leq 200.0\\\\\n& -y_{3,19} + y_{3,20} \\leq 100.0\\\\\n& -y_{4,19} + y_{4,20} \\leq 250.0\\\\\n& -y_{5,19} + y_{5,20} \\leq 300.0\\\\\n& -y_{1,20} + y_{1,21} \\leq 150.0\\\\\n& -y_{2,20} + y_{2,21} \\leq 200.0\\\\\n& -y_{3,20} + y_{3,21} \\leq 100.0\\\\\n& -y_{4,20} + y_{4,21} \\leq 250.0\\\\\n& -y_{5,20} + y_{5,21} \\leq 300.0\\\\\n& -y_{1,21} + y_{1,22} \\leq 150.0\\\\\n& -y_{2,21} + y_{2,22} \\leq 200.0\\\\\n& -y_{3,21} + y_{3,22} \\leq 100.0\\\\\n& -y_{4,21} + y_{4,22} \\leq 250.0\\\\\n& -y_{5,21} + y_{5,22} \\leq 300.0\\\\\n& -y_{1,22} + y_{1,23} \\leq 150.0\\\\\n& -y_{2,22} + y_{2,23} \\leq 200.0\\\\\n& -y_{3,22} + y_{3,23} \\leq 100.0\\\\\n& -y_{4,22} + y_{4,23} \\leq 250.0\\\\\n& -y_{5,22} + y_{5,23} \\leq 300.0\\\\\n& -y_{1,23} + y_{1,24} \\leq 150.0\\\\\n& -y_{2,23} + y_{2,24} \\leq 200.0\\\\\n& -y_{3,23} + y_{3,24} \\leq 100.0\\\\\n& -y_{4,23} + y_{4,24} \\leq 250.0\\\\\n& -y_{5,23} + y_{5,24} \\leq 300.0\\\\\n& y_{1,1} - y_{1,2} \\leq 150.0\\\\\n& y_{2,1} - y_{2,2} \\leq 200.0\\\\\n& y_{3,1} - y_{3,2} \\leq 100.0\\\\\n& y_{4,1} - y_{4,2} \\leq 250.0\\\\\n& y_{5,1} - y_{5,2} \\leq 300.0\\\\\n& y_{1,2} - y_{1,3} \\leq 150.0\\\\\n& y_{2,2} - y_{2,3} \\leq 200.0\\\\\n& y_{3,2} - y_{3,3} \\leq 100.0\\\\\n& y_{4,2} - y_{4,3} \\leq 250.0\\\\\n& y_{5,2} - y_{5,3} \\leq 300.0\\\\\n& y_{1,3} - y_{1,4} \\leq 150.0\\\\\n& y_{2,3} - y_{2,4} \\leq 200.0\\\\\n& y_{3,3} - y_{3,4} \\leq 100.0\\\\\n& y_{4,3} - y_{4,4} \\leq 250.0\\\\\n& y_{5,3} - y_{5,4} \\leq 300.0\\\\\n& y_{1,4} - y_{1,5} \\leq 150.0\\\\\n& y_{2,4} - y_{2,5} \\leq 200.0\\\\\n& y_{3,4} - y_{3,5} \\leq 100.0\\\\\n& y_{4,4} - y_{4,5} \\leq 250.0\\\\\n& y_{5,4} - y_{5,5} \\leq 300.0\\\\\n& y_{1,5} - y_{1,6} \\leq 150.0\\\\\n& y_{2,5} - y_{2,6} \\leq 200.0\\\\\n& y_{3,5} - y_{3,6} \\leq 100.0\\\\\n& y_{4,5} - y_{4,6} \\leq 250.0\\\\\n& y_{5,5} - y_{5,6} \\leq 300.0\\\\\n& y_{1,6} - y_{1,7} \\leq 150.0\\\\\n& y_{2,6} - y_{2,7} \\leq 200.0\\\\\n& y_{3,6} - y_{3,7} \\leq 100.0\\\\\n& y_{4,6} - y_{4,7} \\leq 250.0\\\\\n& y_{5,6} - y_{5,7} \\leq 300.0\\\\\n& y_{1,7} - y_{1,8} \\leq 150.0\\\\\n& y_{2,7} - y_{2,8} \\leq 200.0\\\\\n& y_{3,7} - y_{3,8} \\leq 100.0\\\\\n& y_{4,7} - y_{4,8} \\leq 250.0\\\\\n& y_{5,7} - y_{5,8} \\leq 300.0\\\\\n& y_{1,8} - y_{1,9} \\leq 150.0\\\\\n& y_{2,8} - y_{2,9} \\leq 200.0\\\\\n& y_{3,8} - y_{3,9} \\leq 100.0\\\\\n& y_{4,8} - y_{4,9} \\leq 250.0\\\\\n& y_{5,8} - y_{5,9} \\leq 300.0\\\\\n& y_{1,9} - y_{1,10} \\leq 150.0\\\\\n& y_{2,9} - y_{2,10} \\leq 200.0\\\\\n& y_{3,9} - y_{3,10} \\leq 100.0\\\\\n& y_{4,9} - y_{4,10} \\leq 250.0\\\\\n& y_{5,9} - y_{5,10} \\leq 300.0\\\\\n& y_{1,10} - y_{1,11} \\leq 150.0\\\\\n& y_{2,10} - y_{2,11} \\leq 200.0\\\\\n& y_{3,10} - y_{3,11} \\leq 100.0\\\\\n& y_{4,10} - y_{4,11} \\leq 250.0\\\\\n& y_{5,10} - y_{5,11} \\leq 300.0\\\\\n& y_{1,11} - y_{1,12} \\leq 150.0\\\\\n& y_{2,11} - y_{2,12} \\leq 200.0\\\\\n& y_{3,11} - y_{3,12} \\leq 100.0\\\\\n& y_{4,11} - y_{4,12} \\leq 250.0\\\\\n& y_{5,11} - y_{5,12} \\leq 300.0\\\\\n& y_{1,12} - y_{1,13} \\leq 150.0\\\\\n& y_{2,12} - y_{2,13} \\leq 200.0\\\\\n& y_{3,12} - y_{3,13} \\leq 100.0\\\\\n& y_{4,12} - y_{4,13} \\leq 250.0\\\\\n& y_{5,12} - y_{5,13} \\leq 300.0\\\\\n& y_{1,13} - y_{1,14} \\leq 150.0\\\\\n& y_{2,13} - y_{2,14} \\leq 200.0\\\\\n& y_{3,13} - y_{3,14} \\leq 100.0\\\\\n& y_{4,13} - y_{4,14} \\leq 250.0\\\\\n& y_{5,13} - y_{5,14} \\leq 300.0\\\\\n& y_{1,14} - y_{1,15} \\leq 150.0\\\\\n& y_{2,14} - y_{2,15} \\leq 200.0\\\\\n& y_{3,14} - y_{3,15} \\leq 100.0\\\\\n& y_{4,14} - y_{4,15} \\leq 250.0\\\\\n& y_{5,14} - y_{5,15} \\leq 300.0\\\\\n& y_{1,15} - y_{1,16} \\leq 150.0\\\\\n& y_{2,15} - y_{2,16} \\leq 200.0\\\\\n& y_{3,15} - y_{3,16} \\leq 100.0\\\\\n& y_{4,15} - y_{4,16} \\leq 250.0\\\\\n& y_{5,15} - y_{5,16} \\leq 300.0\\\\\n& y_{1,16} - y_{1,17} \\leq 150.0\\\\\n& y_{2,16} - y_{2,17} \\leq 200.0\\\\\n& y_{3,16} - y_{3,17} \\leq 100.0\\\\\n& y_{4,16} - y_{4,17} \\leq 250.0\\\\\n& y_{5,16} - y_{5,17} \\leq 300.0\\\\\n& y_{1,17} - y_{1,18} \\leq 150.0\\\\\n& y_{2,17} - y_{2,18} \\leq 200.0\\\\\n& y_{3,17} - y_{3,18} \\leq 100.0\\\\\n& y_{4,17} - y_{4,18} \\leq 250.0\\\\\n& y_{5,17} - y_{5,18} \\leq 300.0\\\\\n& y_{1,18} - y_{1,19} \\leq 150.0\\\\\n& y_{2,18} - y_{2,19} \\leq 200.0\\\\\n& y_{3,18} - y_{3,19} \\leq 100.0\\\\\n& y_{4,18} - y_{4,19} \\leq 250.0\\\\\n& y_{5,18} - y_{5,19} \\leq 300.0\\\\\n& y_{1,19} - y_{1,20} \\leq 150.0\\\\\n& y_{2,19} - y_{2,20} \\leq 200.0\\\\\n& y_{3,19} - y_{3,20} \\leq 100.0\\\\\n& y_{4,19} - y_{4,20} \\leq 250.0\\\\\n& y_{5,19} - y_{5,20} \\leq 300.0\\\\\n& y_{1,20} - y_{1,21} \\leq 150.0\\\\\n& y_{2,20} - y_{2,21} \\leq 200.0\\\\\n& y_{3,20} - y_{3,21} \\leq 100.0\\\\\n& y_{4,20} - y_{4,21} \\leq 250.0\\\\\n& y_{5,20} - y_{5,21} \\leq 300.0\\\\\n& y_{1,21} - y_{1,22} \\leq 150.0\\\\\n& y_{2,21} - y_{2,22} \\leq 200.0\\\\\n& y_{3,21} - y_{3,22} \\leq 100.0\\\\\n& y_{4,21} - y_{4,22} \\leq 250.0\\\\\n& y_{5,21} - y_{5,22} \\leq 300.0\\\\\n& y_{1,22} - y_{1,23} \\leq 150.0\\\\\n& y_{2,22} - y_{2,23} \\leq 200.0\\\\\n& y_{3,22} - y_{3,23} \\leq 100.0\\\\\n& y_{4,22} - y_{4,23} \\leq 250.0\\\\\n& y_{5,22} - y_{5,23} \\leq 300.0\\\\\n& y_{1,23} - y_{1,24} \\leq 150.0\\\\\n& y_{2,23} - y_{2,24} \\leq 200.0\\\\\n& y_{3,23} - y_{3,24} \\leq 100.0\\\\\n& y_{4,23} - y_{4,24} \\leq 250.0\\\\\n& y_{5,23} - y_{5,24} \\leq 300.0\\\\\n& y_{1,1} \\geq 0.0\\\\\n& y_{2,1} \\geq 0.0\\\\\n& y_{3,1} \\geq 200.0\\\\\n& y_{4,1} \\geq 160.0\\\\\n& y_{5,1} \\geq 40.0\\\\\n& y_{1,2} \\geq 0.0\\\\\n& y_{2,2} \\geq 0.0\\\\\n& y_{3,2} \\geq 200.0\\\\\n& y_{4,2} \\geq 160.0\\\\\n& y_{5,2} \\geq 40.0\\\\\n& y_{1,3} \\geq 0.0\\\\\n& y_{2,3} \\geq 0.0\\\\\n& y_{3,3} \\geq 200.0\\\\\n& y_{4,3} \\geq 160.0\\\\\n& y_{5,3} \\geq 40.0\\\\\n& y_{1,4} \\geq 0.0\\\\\n& y_{2,4} \\geq 0.0\\\\\n& y_{3,4} \\geq 200.0\\\\\n& y_{4,4} \\geq 160.0\\\\\n& y_{5,4} \\geq 40.0\\\\\n& y_{1,5} \\geq 0.0\\\\\n& y_{2,5} \\geq 0.0\\\\\n& y_{3,5} \\geq 200.0\\\\\n& y_{4,5} \\geq 160.0\\\\\n& y_{5,5} \\geq 40.0\\\\\n& y_{1,6} \\geq 0.0\\\\\n& y_{2,6} \\geq 0.0\\\\\n& y_{3,6} \\geq 200.0\\\\\n& y_{4,6} \\geq 160.0\\\\\n& y_{5,6} \\geq 40.0\\\\\n& y_{1,7} \\geq 0.0\\\\\n& y_{2,7} \\geq 0.0\\\\\n& y_{3,7} \\geq 200.0\\\\\n& y_{4,7} \\geq 160.0\\\\\n& y_{5,7} \\geq 40.0\\\\\n& y_{1,8} \\geq 0.0\\\\\n& y_{2,8} \\geq 0.0\\\\\n& y_{3,8} \\geq 200.0\\\\\n& y_{4,8} \\geq 160.0\\\\\n& y_{5,8} \\geq 40.0\\\\\n& y_{1,9} \\geq 0.0\\\\\n& y_{2,9} \\geq 0.0\\\\\n& y_{3,9} \\geq 200.0\\\\\n& y_{4,9} \\geq 160.0\\\\\n& y_{5,9} \\geq 40.0\\\\\n& y_{1,10} \\geq 0.0\\\\\n& y_{2,10} \\geq 0.0\\\\\n& y_{3,10} \\geq 200.0\\\\\n& y_{4,10} \\geq 160.0\\\\\n& y_{5,10} \\geq 40.0\\\\\n& y_{1,11} \\geq 0.0\\\\\n& y_{2,11} \\geq 0.0\\\\\n& y_{3,11} \\geq 200.0\\\\\n& y_{4,11} \\geq 160.0\\\\\n& y_{5,11} \\geq 40.0\\\\\n& y_{1,12} \\geq 0.0\\\\\n& y_{2,12} \\geq 0.0\\\\\n& y_{3,12} \\geq 200.0\\\\\n& y_{4,12} \\geq 160.0\\\\\n& y_{5,12} \\geq 40.0\\\\\n& y_{1,13} \\geq 0.0\\\\\n& y_{2,13} \\geq 0.0\\\\\n& y_{3,13} \\geq 200.0\\\\\n& y_{4,13} \\geq 160.0\\\\\n& y_{5,13} \\geq 40.0\\\\\n& y_{1,14} \\geq 0.0\\\\\n& y_{2,14} \\geq 0.0\\\\\n& y_{3,14} \\geq 200.0\\\\\n& y_{4,14} \\geq 160.0\\\\\n& y_{5,14} \\geq 40.0\\\\\n& y_{1,15} \\geq 0.0\\\\\n& y_{2,15} \\geq 0.0\\\\\n& y_{3,15} \\geq 200.0\\\\\n& y_{4,15} \\geq 160.0\\\\\n& y_{5,15} \\geq 40.0\\\\\n& y_{1,16} \\geq 0.0\\\\\n& y_{2,16} \\geq 0.0\\\\\n& y_{3,16} \\geq 200.0\\\\\n& y_{4,16} \\geq 160.0\\\\\n& y_{5,16} \\geq 40.0\\\\\n& y_{1,17} \\geq 0.0\\\\\n& y_{2,17} \\geq 0.0\\\\\n& y_{3,17} \\geq 200.0\\\\\n& y_{4,17} \\geq 160.0\\\\\n& y_{5,17} \\geq 40.0\\\\\n& y_{1,18} \\geq 0.0\\\\\n& y_{2,18} \\geq 0.0\\\\\n& y_{3,18} \\geq 200.0\\\\\n& y_{4,18} \\geq 160.0\\\\\n& y_{5,18} \\geq 40.0\\\\\n& y_{1,19} \\geq 0.0\\\\\n& y_{2,19} \\geq 0.0\\\\\n& y_{3,19} \\geq 200.0\\\\\n& y_{4,19} \\geq 160.0\\\\\n& y_{5,19} \\geq 40.0\\\\\n& y_{1,20} \\geq 0.0\\\\\n& y_{2,20} \\geq 0.0\\\\\n& y_{3,20} \\geq 200.0\\\\\n& y_{4,20} \\geq 160.0\\\\\n& y_{5,20} \\geq 40.0\\\\\n& y_{1,21} \\geq 0.0\\\\\n& y_{2,21} \\geq 0.0\\\\\n& y_{3,21} \\geq 200.0\\\\\n& y_{4,21} \\geq 160.0\\\\\n& y_{5,21} \\geq 40.0\\\\\n& y_{1,22} \\geq 0.0\\\\\n& y_{2,22} \\geq 0.0\\\\\n& y_{3,22} \\geq 200.0\\\\\n& y_{4,22} \\geq 160.0\\\\\n& y_{5,22} \\geq 40.0\\\\\n& y_{1,23} \\geq 0.0\\\\\n& y_{2,23} \\geq 0.0\\\\\n& y_{3,23} \\geq 200.0\\\\\n& y_{4,23} \\geq 160.0\\\\\n& y_{5,23} \\geq 40.0\\\\\n& y_{1,24} \\geq 0.0\\\\\n& y_{2,24} \\geq 0.0\\\\\n& y_{3,24} \\geq 200.0\\\\\n& y_{4,24} \\geq 160.0\\\\\n& y_{5,24} \\geq 40.0\\\\\n& y_{1,1} \\leq 150.0\\\\\n& y_{2,1} \\leq 200.0\\\\\n& y_{3,1} \\leq 1000.0\\\\\n& y_{4,1} \\leq 700.0\\\\\n& y_{5,1} \\leq 500.0\\\\\n& y_{1,2} \\leq 150.0\\\\\n& y_{2,2} \\leq 200.0\\\\\n& y_{3,2} \\leq 1000.0\\\\\n& y_{4,2} \\leq 700.0\\\\\n& y_{5,2} \\leq 500.0\\\\\n& y_{1,3} \\leq 150.0\\\\\n& y_{2,3} \\leq 200.0\\\\\n& y_{3,3} \\leq 1000.0\\\\\n& y_{4,3} \\leq 700.0\\\\\n& y_{5,3} \\leq 500.0\\\\\n& y_{1,4} \\leq 150.0\\\\\n& y_{2,4} \\leq 200.0\\\\\n& y_{3,4} \\leq 1000.0\\\\\n& y_{4,4} \\leq 700.0\\\\\n& y_{5,4} \\leq 500.0\\\\\n& y_{1,5} \\leq 150.0\\\\\n& y_{2,5} \\leq 200.0\\\\\n& y_{3,5} \\leq 1000.0\\\\\n& y_{4,5} \\leq 700.0\\\\\n& y_{5,5} \\leq 500.0\\\\\n& y_{1,6} \\leq 150.0\\\\\n& y_{2,6} \\leq 200.0\\\\\n& y_{3,6} \\leq 1000.0\\\\\n& y_{4,6} \\leq 700.0\\\\\n& y_{5,6} \\leq 500.0\\\\\n& y_{1,7} \\leq 150.0\\\\\n& y_{2,7} \\leq 200.0\\\\\n& y_{3,7} \\leq 1000.0\\\\\n& y_{4,7} \\leq 700.0\\\\\n& y_{5,7} \\leq 500.0\\\\\n& y_{1,8} \\leq 150.0\\\\\n& y_{2,8} \\leq 200.0\\\\\n& y_{3,8} \\leq 1000.0\\\\\n& y_{4,8} \\leq 700.0\\\\\n& y_{5,8} \\leq 500.0\\\\\n& y_{1,9} \\leq 150.0\\\\\n& y_{2,9} \\leq 200.0\\\\\n& y_{3,9} \\leq 1000.0\\\\\n& y_{4,9} \\leq 700.0\\\\\n& y_{5,9} \\leq 500.0\\\\\n& y_{1,10} \\leq 150.0\\\\\n& y_{2,10} \\leq 200.0\\\\\n& y_{3,10} \\leq 1000.0\\\\\n& y_{4,10} \\leq 700.0\\\\\n& y_{5,10} \\leq 500.0\\\\\n& y_{1,11} \\leq 150.0\\\\\n& y_{2,11} \\leq 200.0\\\\\n& y_{3,11} \\leq 1000.0\\\\\n& y_{4,11} \\leq 700.0\\\\\n& y_{5,11} \\leq 500.0\\\\\n& y_{1,12} \\leq 150.0\\\\\n& y_{2,12} \\leq 200.0\\\\\n& y_{3,12} \\leq 1000.0\\\\\n& y_{4,12} \\leq 700.0\\\\\n& y_{5,12} \\leq 500.0\\\\\n& y_{1,13} \\leq 150.0\\\\\n& y_{2,13} \\leq 200.0\\\\\n& y_{3,13} \\leq 1000.0\\\\\n& y_{4,13} \\leq 700.0\\\\\n& y_{5,13} \\leq 500.0\\\\\n& y_{1,14} \\leq 150.0\\\\\n& y_{2,14} \\leq 200.0\\\\\n& y_{3,14} \\leq 1000.0\\\\\n& y_{4,14} \\leq 700.0\\\\\n& y_{5,14} \\leq 500.0\\\\\n& y_{1,15} \\leq 150.0\\\\\n& y_{2,15} \\leq 200.0\\\\\n& y_{3,15} \\leq 1000.0\\\\\n& y_{4,15} \\leq 700.0\\\\\n& y_{5,15} \\leq 500.0\\\\\n& y_{1,16} \\leq 150.0\\\\\n& y_{2,16} \\leq 200.0\\\\\n& y_{3,16} \\leq 1000.0\\\\\n& y_{4,16} \\leq 700.0\\\\\n& y_{5,16} \\leq 500.0\\\\\n& y_{1,17} \\leq 150.0\\\\\n& y_{2,17} \\leq 200.0\\\\\n& y_{3,17} \\leq 1000.0\\\\\n& y_{4,17} \\leq 700.0\\\\\n& y_{5,17} \\leq 500.0\\\\\n& y_{1,18} \\leq 150.0\\\\\n& y_{2,18} \\leq 200.0\\\\\n& y_{3,18} \\leq 1000.0\\\\\n& y_{4,18} \\leq 700.0\\\\\n& y_{5,18} \\leq 500.0\\\\\n& y_{1,19} \\leq 150.0\\\\\n& y_{2,19} \\leq 200.0\\\\\n& y_{3,19} \\leq 1000.0\\\\\n& y_{4,19} \\leq 700.0\\\\\n& y_{5,19} \\leq 500.0\\\\\n& y_{1,20} \\leq 150.0\\\\\n& y_{2,20} \\leq 200.0\\\\\n& y_{3,20} \\leq 1000.0\\\\\n& y_{4,20} \\leq 700.0\\\\\n& y_{5,20} \\leq 500.0\\\\\n& y_{1,21} \\leq 150.0\\\\\n& y_{2,21} \\leq 200.0\\\\\n& y_{3,21} \\leq 1000.0\\\\\n& y_{4,21} \\leq 700.0\\\\\n& y_{5,21} \\leq 500.0\\\\\n& y_{1,22} \\leq 150.0\\\\\n& y_{2,22} \\leq 200.0\\\\\n& y_{3,22} \\leq 1000.0\\\\\n& y_{4,22} \\leq 700.0\\\\\n& y_{5,22} \\leq 500.0\\\\\n& y_{1,23} \\leq 150.0\\\\\n& y_{2,23} \\leq 200.0\\\\\n& y_{3,23} \\leq 1000.0\\\\\n& y_{4,23} \\leq 700.0\\\\\n& y_{5,23} \\leq 500.0\\\\\n& y_{1,24} \\leq 150.0\\\\\n& y_{2,24} \\leq 200.0\\\\\n& y_{3,24} \\leq 1000.0\\\\\n& y_{4,24} \\leq 700.0\\\\\n& y_{5,24} \\leq 500.0\\\\\n\\end{aligned} \\]\n\n\n\n\nCode\n\nset_silent(dispatch2)\noptimize!(dispatch2)\n\ngen = value.(y).data\n\n\n5×24 Matrix{Float64}:\n  150.0   150.0  150.0  128.0  150.0  …   150.0   150.0   150.0   150.0\n  200.0   200.0  200.0  200.0  200.0      200.0   200.0   200.0   200.0\n 1000.0  1000.0  926.0  880.0  980.0     1000.0  1000.0  1000.0  1000.0\n  335.0   206.0  160.0  160.0  160.0      566.0   512.0   475.0   430.0\n   40.0    40.0   40.0   40.0   40.0       40.0    40.0    40.0    40.0\n\n\n\n\nCode\nareaplot(gen', \n    label=permutedims(gen_names), \n    xlabel = \"Hour\", \n    ylabel =\"Generated Electricity (MW)\", \n    color_palette=:tol_muted, \n    size=(1200, 600), \n    left_margin=6mm, \n    bottom_margin=6mm,\n    grid=:false,\n    legend = :outerright, ylim=(0, 2800),\n    legendfontsize=20, tickfontsize=20, \n    guidefontsize=20\n)\nplot!(demand, color=:red, \n    label=\"demand\", linestyle=:dash,\n    linewidth=5)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\np = plot(gen', \n    label=permutedims(gen_names), \n    xlabel = \"Hour\", \n    ylabel =\"Generated Electricity (MW)\", \n    color_palette=:tol_muted, \n    linewidth=5,\n    size=(1200, 600), left_margin=6mm, \n    bottom_margin=6mm,\n    legendfontsize=20, tickfontsize=20, \n    guidefontsize=20,\n    legend=:outerright\n)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice that even though hydro is effectively zero-cost, we reduce dispatched hydropower in hour 4 because coal is at its minimum generating capacity and nuclear can’t be ramped down further. These constraints complicate the simple merit order that we previously saw.\nThese constraints also play a major role in systems with high levels of renewable penetration. For example, the so-called California “duck curve” is created by the challenges of ramping generation between the early afternoon, when solar generation is at its maximum, and in the evening, when solar generation is decreasing and demand increases rapidly.\n\n\n\nCalifornia Duck Curve"
+  },
+  {
+    "objectID": "rubrics/hw01.html",
+    "href": "rubrics/hw01.html",
+    "title": "Homework 1 Rubric",
+    "section": "",
+    "text": "This is the grading rubric for Homework 1. The rubric does not provide specifics"
+  },
+  {
+    "objectID": "rubrics/hw01.html#rubric",
+    "href": "rubrics/hw01.html#rubric",
+    "title": "Homework 1 Rubric",
+    "section": "Rubric",
+    "text": "Rubric\n\nProblem 1 (20 Points)\n\nProblem 1.1 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nMissing or logic error incorrectly identified.\nLogic error correctly identifed, but unclear description which makes the connection to the code tenuous.\nLogic error correctly identified and connected to the code, but some lack of clarity in the description.\nLogic error correctly identified and clearly described, including where it occurs in the code.\n\n\n\n\n\nProblem 1.2 (5 points)\n\n\n\n\n\n\n\n\nNeeds Improvement (0-2)\nAbove Average (3-4)\nExcellent (5)\n\n\n\n\nNo fixed code provided or new function does not fix the underlying error.\nCode fixes the underlying error, but has no comments or additional mistakes.\nCode fixes the error without other bugs and includes comments indicating the change.\n\n\n\n\n\nProblem 1.3 (5 points)\n\n\n\n\n\n\n\n\nNeeds Improvement (0-2)\nAbove Average (3-4)\nExcellent (5)\n\n\n\n\nFixed function not used.\nFixed function used, but incorrectly applied.\nFixed function used and produces the correct value.\n\n\n\n\n\n\nProblem 2 (20 points)\n\nProblem 2.1 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nMissing or logic error incorrectly identified.\nLogic error correctly identifed, but unclear description which makes the connection to the code tenuous.\nLogic error correctly identified and connected to the code, but some lack of clarity in the description.\nLogic error correctly identified and clearly described, including where it occurs in the code.\n\n\n\n\n\nProblem 2.2 (5 points)\n\n\n\n\n\n\n\n\nNeeds Improvement (0-2)\nAbove Average (3-4)\nExcellent (5)\n\n\n\n\nNo fixed code provided or new function does not fix the underlying error.\nCode fixes the underlying error, but has no comments or additional mistakes.\nCode fixes the error without other bugs and includes comments indicating the change.\n\n\n\n\n\nProblem 2.3 (5 points)\n\n\n\n\n\n\n\n\nNeeds Improvement (0-2)\nAbove Average (3-4)\nExcellent (5)\n\n\n\n\nFixed function not used.\nFixed function used, but incorrectly applied.\nFixed function used and produces the correct value.\n\n\n\n\n\n\nProblem 3 (20 points)\n\nProblem 3.1 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nAnswer missing or explained purpose is incorrect.\nExplanation of purpose is vague and does not reflect understanding of what code does.\nExplanation of purpose is mostly correct, but may have some slight vagueness or lack of clarity.\nPurpose is explained accurately and clearly.\n\n\n\n\n\nProblem 3.2 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nComments missing or do not help explain the purpose of the code.\nComments are incomplete, but the ones that are present are helpful.\nComments generally provided and helpful, but some are not clear.\nComments clearly explain why and how the code works.\n\n\n\n\n\n\nProblem 4 (40 points)\n\nProblem 4.1 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nLabels missing or have no or little relationship to the problem description.\nLabels reflect the correct quantities but are misapplied to the system diagram.\nLabels have some slight mistakes but reflect understanding of description and diagram.\nLabels are correct and appear on the right vertices.\n\n\n\n\n\nProblem 4.2 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nModel is missing or does not reflect problem description.\nModel missing components or equations have large errors and/or no or little justification from the stated problem.\nEquations are generally correct and but may include some small mistakes or justification is vague at points.\nEquations are correct and well-justified with reference to the problem description.\n\n\n\n\n\nProblem 4.3 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nCode is missing or contains serious mistakes that prevent it from running.\nFunction runs, but has serious errors which prevent it from implementing the derived equations.\nFunction contains minor errors or is missing clarifying comments.\nFunction correctly implements model and is appropriately commented.\n\n\n\n\n\nProblem 4.4 (10 points)\n\n\n\n\n\n\n\n\n\nNeeds Improvement (0-3)\nDeveloping (4-6)\nAbove Average (7-9)\nExcellent (10)\n\n\n\n\nExperiments or explanations are missing (e.g. there is only a reporting of results) or aren’t reflective of the questions.\nExperiments present and sufficient but explanations are sketchy and do not address the questions.\nExperiments present and sufficient, but questions are not fully engaged with, or minor errors (plot labels not labeled, etc) in presentation.\nExperiments present and sufficient and discussion of questions is complete."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html",
+    "href": "tutorials/julia-basics.html",
+    "title": "Tutorial: Julia Basics",
+    "section": "",
+    "text": "This tutorial will give some examples of basic Julia commands and syntax."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#overview",
+    "href": "tutorials/julia-basics.html#overview",
+    "title": "Tutorial: Julia Basics",
+    "section": "",
+    "text": "This tutorial will give some examples of basic Julia commands and syntax."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#getting-help",
+    "href": "tutorials/julia-basics.html#getting-help",
+    "title": "Tutorial: Julia Basics",
+    "section": "Getting Help",
+    "text": "Getting Help\n\nCheck out the official documentation for Julia: https://docs.julialang.org/en/v1/.\nStack Overflow is a commonly-used resource for programming assistance.\nAt a code prompt or in the REPL, you can always type ?functionname to get help."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#comments",
+    "href": "tutorials/julia-basics.html#comments",
+    "title": "Tutorial: Julia Basics",
+    "section": "Comments",
+    "text": "Comments\nComments hide statements from the interpreter or compiler. It’s a good idea to liberally comment your code so readers (including yourself!) know why your code is structured and written the way it is. Single-line comments in Julia are preceded with a #. Multi-line comments are preceded with #= and ended with =#"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#suppressing-output",
+    "href": "tutorials/julia-basics.html#suppressing-output",
+    "title": "Tutorial: Julia Basics",
+    "section": "Suppressing Output",
+    "text": "Suppressing Output\nYou can suppress output using a semi-colon (;).\n\n4+8;\n\nThat didn’t show anything, as opposed to:\n\n4+8\n\n12"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#variables",
+    "href": "tutorials/julia-basics.html#variables",
+    "title": "Tutorial: Julia Basics",
+    "section": "Variables",
+    "text": "Variables\nVariables are names which correspond to some type of object. These names are bound to objects (and hence their values) using the = operator.\n\nx = 5\n\n5\n\n\nVariables can be manipulated with standard arithmetic operators.\n\n4 + x\n\n9\n\n\nAnother advantage of Julia is the ability to use Greek letters (or other Unicode characters) as variable names. For example, type a backslash followed by the name of the Greek letter (i.e. \\alpha) followed by TAB.\n\nα = 3\n\n3\n\n\nYou can also include subscripts or superscripts in variable names using \\_ and \\^, respectively, followed by TAB. If using a Greek letter followed by a sub- or super-script, make sure you TAB following the name of the letter before the sub- or super-script. Effectively, TAB after you finish typing the name of each \\character.\n\nβ₁ = 10 # The name of this variable was entered with \\beta + TAB + \\_1 + TAB\n\n10\n\n\nHowever, try not to overwrite predefined names! For example, you might not want to use π as a variable name…\n\nπ\n\nπ = 3.1415926535897...\n\n\nIn the grand scheme of things, overwriting π is not a huge deal unless you want to do some trigonometry. However, there are more important predefined functions and variables that you may want to be aware of. Always check that a variable or function name is not predefined!"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#data-types",
+    "href": "tutorials/julia-basics.html#data-types",
+    "title": "Tutorial: Julia Basics",
+    "section": "Data Types",
+    "text": "Data Types\nEach datum (importantly, not the variable which is bound to it) has a data type. Julia types are similar to C types, in that they require not only the type of data (Int, Float, String, etc), but also the precision (which is related to the amount of memory allocated to the variable). Issues with precision won’t be a big deal in this class, though they matter when you’re concerned about performance vs. decimal accuracy of code.\nYou can identify the type of a variable or expression with the typeof() function.\n\ntypeof(\"This is a string.\")\n\nString\n\n\n\ntypeof(x)\n\nInt64\n\n\n\nNumeric types\nA key distinction is between an integer type (or Int) and a floating-point number type (or float). Integers only hold whole numbers, while floating-point numbers correspond to numbers with fractional (or decimal) parts. For example, 9 is an integer, while 9.25 is a floating point number. The difference between the two has to do with the way the number is stored in memory. 9, an integer, is handled differently in memory than 9.0, which is a floating-point number, even though they’re mathematically the same value.\n\ntypeof(9)\n\nInt64\n\n\n\ntypeof(9.25)\n\nFloat64\n\n\nSometimes certain function specifications will require you to use a Float variable instead of an Int. One way to force an Int variable to be a Float is to add a decimal point at the end of the integer.\n\ntypeof(9.)\n\nFloat64\n\n\n\n\nStrings\nStrings hold characters, rather than numeric values. Even if a string contains what seems like a number, it is actually stored as the character representation of the digits. As a result, you cannot use arithmetic operators (for example) on this datum.\n\n\"5\" + 5\n\nLoadError: MethodError: no method matching +(::String, ::Int64)\n\n\u001b[0mClosest candidates are:\n\u001b[0m  +(::Any, ::Any, \u001b[91m::Any\u001b[39m, \u001b[91m::Any...\u001b[39m)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4moperators.jl:578\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::T\u001b[39m, ::T) where T&lt;:Union{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8}\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4mint.jl:87\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::LinearAlgebra.UniformScaling\u001b[39m, ::Number)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[35mLinearAlgebra\u001b[39m \u001b[90m~/.julia/juliaup/julia-1.9.2+0.x64.apple.darwin14/share/julia/stdlib/v1.9/LinearAlgebra/src/\u001b[39m\u001b[90m\u001b[4muniformscaling.jl:144\u001b[24m\u001b[39m\n\u001b[0m  ...\n\n\nHowever, you can try to tell Julia to interpret a string encoding a numeric character as a numeric value using the parse() function. This can also be used to encode a numeric data as a string.\n\nparse(Int64, \"5\") + 5\n\n10\n\n\nTwo strings can be concatenated using *:\n\n\"Hello\" * \" \" * \"there\"\n\n\"Hello there\"\n\n\n\n\nBooleans\nBoolean variables (or Bools) are logical variables, that can have true or false as values.\n\nb = true\n\ntrue\n\n\nNumerical comparisons, such as ==, !=, or &lt;, return a Bool.\n\nc = 9 &gt; 11\n\nfalse\n\n\nBools are important for logical flows, such as if-then-else blocks or certain types of loops."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#mathematical-operations",
+    "href": "tutorials/julia-basics.html#mathematical-operations",
+    "title": "Tutorial: Julia Basics",
+    "section": "Mathematical operations",
+    "text": "Mathematical operations\nAddition, subtraction, multiplication, and division work as you would expect. Just pay attention to types! The type of the output is influenced by the type of the inputs: adding or multiplying an Int by a Float will always result in a Float, even if the Float is mathematically an integer. Division is a little special: dividing an Int by another Int will still return a float, because Julia doesn’t know ahead of time if the denominator is a factor of the numerator.\n\n3 + 5\n\n8\n\n\n\n3 * 2\n\n6\n\n\n\n3 * 2.\n\n6.0\n\n\n\n6 - 2\n\n4\n\n\n\n9 / 3\n\n3.0\n\n\nRaising a base to an exponent uses ^, not **.\n\n3^2\n\n9\n\n\nJulia allows the use of updating operators to simplify updating a variable in place (in other words, using x += 5 instead of x = x + 5.\n\nBoolean algebra\nLogical operations can be used on variables of type Bool. Typical operators are && (and), || (or), and ! (not).\n\ntrue && true\n\ntrue\n\n\n\ntrue && false\n\nfalse\n\n\n\ntrue || false\n\ntrue\n\n\n\n!true\n\nfalse\n\n\nComparisons can be chained together.\n\n3 &lt; 4 || 8 == 12\n\ntrue\n\n\nWe didn’t do this above, since Julia doesn’t require it, but it’s easier to understand these types of compound expressions if you use parentheses to signal the order of operations. This helps with debugging!\n\n(3 &lt; 4) || (8 == 12)\n\ntrue"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#data-structures",
+    "href": "tutorials/julia-basics.html#data-structures",
+    "title": "Tutorial: Julia Basics",
+    "section": "Data Structures",
+    "text": "Data Structures\nData structures are containers which hold multiple values in a convenient fashion. Julia has several built-in data structures, and there are many extensions provided in additional packages.\n\nTuples\nTuples are collections of values. Julia will pay attention to the types of these values, but they can be mixed. Tuples are also immutable: their values cannot be changed once they are defined.\nTuples can be defined by just separating values with commas.\n\ntest_tuple = 4, 5, 6\n\n(4, 5, 6)\n\n\nTo access a value, use square brackets and the desired index. Note: Julia indexing starts at 1, not 0!\n\ntest_tuple[1]\n\n4\n\n\nAs mentioned above, tuples are immutable. What happens if we try to change the value of the first element of test_tuple?\n\ntest_tuple[1] = 5\n\nLoadError: MethodError: no method matching setindex!(::Tuple{Int64, Int64, Int64}, ::Int64, ::Int64)\n\n\nTuples also do not have to hold the same types of values.\n\ntest_tuple_2 = 4, 5., 'h'\ntypeof(test_tuple_2)\n\nTuple{Int64, Float64, Char}\n\n\nTuples can also be defined by enclosing the values in parentheses.\ntest_tuple_3 = (4, 5., 'h')\ntypeof(test_tuple_3)\n\n\nArrays\nArrays also hold multiple values, which can be accessed based on their index position. Arrays are commonly defined using square brackets.\n\ntest_array = [1, 4, 7, 8]\ntest_array[2]\n\n4\n\n\nUnlike tuples, arrays are mutable, and their contained values can be changed later.\n\ntest_array[1] = 6\ntest_array\n\n4-element Vector{Int64}:\n 6\n 4\n 7\n 8\n\n\nArrays also can hold multiple types. Unlike tuples, this causes the array to no longer care about types at all.\n\ntest_array_2 = [6, 5., 'h']\ntypeof(test_array_2)\n\n\nVector{Any} (alias for Array{Any, 1})\n\n\n\nCompare this with test_array:\n\ntypeof(test_array)\n\n\nVector{Int64} (alias for Array{Int64, 1})\n\n\n\n\n\nDictionaries\nInstead of using integer indices based on position, dictionaries are indexed by keys. They are specified by passing key-value pairs to the Dict() method.\n\ntest_dict = Dict(\"A\"=&gt;1, \"B\"=&gt;2)\ntest_dict[\"B\"]\n\n2\n\n\n\n\nComprehensions\nCreating a data structure with more than a handful of elements can be tedious to do by hand. If your desired array follows a certain pattern, you can create structures using a comprehension. Comprehensions iterate over some other data structure (such as an array) implicitly and populate the new data structure based on the specified instructions.\n\n[i^2 for i in 0:1:5]\n\n6-element Vector{Int64}:\n  0\n  1\n  4\n  9\n 16\n 25\n\n\nFor dictionaries, make sure that you also specify the keys.\n\nDict(string(i) =&gt; i^2 for i in 0:1:5)\n\nDict{String, Int64} with 6 entries:\n  \"4\" =&gt; 16\n  \"1\" =&gt; 1\n  \"5\" =&gt; 25\n  \"0\" =&gt; 0\n  \"2\" =&gt; 4\n  \"3\" =&gt; 9"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#functions",
+    "href": "tutorials/julia-basics.html#functions",
+    "title": "Tutorial: Julia Basics",
+    "section": "Functions",
+    "text": "Functions\nA function is an object which accepts a tuple of arguments and maps them to a return value. In Julia, functions are defined using the following syntax.\n\nfunction my_actual_function(x, y)\n    return x + y\nend\nmy_actual_function(3, 5)\n\n8\n\n\nFunctions in Julia do not require explicit use of a return statement. They will return the last expression evaluated in their definition. However, it’s good style to explicitly return function outputs. This improves readability and debugging, especially when functions can return multiple expressions based on logical control flows (if-then-else blocks).\nFunctions in Julia are objects, and can be treated like other objects. They can be assigned to new variables or passed as arguments to other functions.\n\ng = my_actual_function\ng(3, 5)\n\n8\n\n\n\nfunction function_of_functions(f, x, y)\n    return f(x, y)\nend\nfunction_of_functions(g, 3, 5)\n\n8\n\n\n\nShort and Anonymous Functions\nIn addition to the long form of the function definition shown above, simple functions can be specified in more compact forms when helpful.\nThis is the short form:\n\nh₁(x) = x^2 # make the subscript using \\_1 + &lt;TAB&gt;\nh₁(4)\n\n16\n\n\nThis is the anonymous form:\n\nx-&gt;sin(x)\n(x-&gt;sin(x))(π/4)\n\n0.7071067811865475\n\n\n\n\nMutating Functions\nThe convention in Julia is that functions should not modify (or mutate) their input data. The reason for this is to ensure that the data is preserved. Mutating functions are mainly appropriate for applications where performance needs to be optimized, and making a copy of the input data would be too memory-intensive.\nIf you do write a mutating function in Julia, the convention is to add a ! to its name, like my_mutating_function!(x).\n\n\nOptional arguments\nThere are two extremes with regard to function parameters which do not always need to be changed. The first is to hard-code them into the function body, which has a clear downside: when you do want to change them, the function needs to be edited directly. The other extreme is to treat them as regular arguments, passing them every time the function is called. This has the downside of potentially creating bloated function calls, particularly when there is a standard default value that makes sense for most function evaluations.\nMost modern languages, including Julia, allow an alternate solution, which is to make these arguments optional. This involves setting a default value, which is used unless the argument is explicitly defined in a function call.\n\nfunction setting_optional_arguments(x, y, c=0.5)\n    return c * (x + y)\nend\n\nsetting_optional_arguments (generic function with 2 methods)\n\n\nIf we want to stick with the fixed value \\(c=0.5\\), all we have to do is call setting_optional_arguments with the x and y arguments.\n\nsetting_optional_arguments(3, 5)\n\n4.0\n\n\nOtherwise, we can pass a new value for c.\n\nsetting_optional_arguments(3, 5, 2)\n\n16\n\n\n\n\nPassing data structures as arguments\nInstead of passing variables individually, it may make sense to pass a data structure, such as an array or a tuple, and then unpacking within the function definition. This is straightforward in long form: access the appropriate elements using their index.\nIn short or anonymous form, there is a trick which allows the use of readable variables within the function definition.\n\nh₂((x,y)) = x*y # enclose the input arguments in parentheses to tell Julia to expect and unpack a tuple\n\nh₂ (generic function with 1 method)\n\n\n\nh₂((2, 3)) # this works perfectly, as we passed in a tuple\n\n6\n\n\n\nh₂(2, 3) # this gives an error, as h₂ expects a single tuple, not two different numeric values\n\nLoadError: MethodError: no method matching h₂(::Int64, ::Int64)\n\n\u001b[0mClosest candidates are:\n\u001b[0m  h₂(::Any)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[32mMain\u001b[39m \u001b[90m\u001b[4mIn[50]:1\u001b[24m\u001b[39m\n\n\n\nh₂([3, 10]) # this also works with arrays instead of tuples\n\n30\n\n\n\n\nVectorized operations\nJulia uses dot syntax to vectorize an operation and apply it element-wise across an array.\nFor example, to calculate the square root of 3:\n\nsqrt(3)\n\n1.7320508075688772\n\n\nTo calculate the square roots of every integer between 1 and 5:\n\nsqrt.([1, 2, 3, 4, 5])\n\n5-element Vector{Float64}:\n 1.0\n 1.4142135623730951\n 1.7320508075688772\n 2.0\n 2.23606797749979\n\n\nThe same dot syntax is used for arithmetic operations over arrays, since these operations are really functions.\n\n[1, 2, 3, 4] .* 2\n\n4-element Vector{Int64}:\n 2\n 4\n 6\n 8\n\n\nVectorization can be faster and is more concise to write and read than applying the same function to multiple variables or objects explicitly, so take advantage!\n\n\nReturning multiple values\nYou can return multiple values by separating them with a comma. This implicitly causes the function to return a tuple of values.\n\nfunction return_multiple_values(x, y)\n    return x + y, x * y\nend\nreturn_multiple_values(3, 5)\n\n(8, 15)\n\n\nThese values can be unpacked into multiple variables.\n\nn, ν = return_multiple_values(3, 5)\nn\n\n8\n\n\n\nν\n\n15\n\n\n\n\nReturning nothing\nSometimes you don’t want a function to return any values at all. For example, you might want a function that only prints a string to the console.\n\nfunction print_some_string(x)\n    println(\"x: $x\")\n    return nothing\nend\nprint_some_string(42)\n\nx: 42"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#printing-text-output",
+    "href": "tutorials/julia-basics.html#printing-text-output",
+    "title": "Tutorial: Julia Basics",
+    "section": "Printing Text Output",
+    "text": "Printing Text Output\nThe Text() function returns its argument as a plain text string. Notice how this is different from evaluating a string!\n\nText(\"I'm printing a string.\")\n\nI'm printing a string.\n\n\nText() is used in this tutorial as it returns the string passed to it. To print directly to the console, use println().\n\nprintln(\"I'm writing a string to the console.\")\n\nI'm writing a string to the console.\n\n\n\nPrinting Variables In a String\nWhat if we want to include the value of a variable inside of a string? We do this using string interpolation, using $variablename inside of the string.\n\nbar = 42\nText(\"Now I'm printing a variable: $bar\")\n\nNow I'm printing a variable: 42"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#control-flows",
+    "href": "tutorials/julia-basics.html#control-flows",
+    "title": "Tutorial: Julia Basics",
+    "section": "Control Flows",
+    "text": "Control Flows\nOne of the tricky things about learning a new programming language can be getting used to the specifics of control flow syntax. These types of flows include conditional if-then-else statements or loops.\n\nConditional Blocks\nConditional blocks allow different pieces of code to be evaluated depending on the value of a boolean expression or variable. For example, if we wanted to compute the absolute value of a number, rather than using abs():\n\nfunction our_abs(x)\n    if x &gt;= 0\n        return x\n    else\n        return -x\n    end\nend\n\nour_abs (generic function with 1 method)\n\n\n\nour_abs(4)\n\n4\n\n\n\nour_abs(-4)\n\n4\n\n\nTo nest conditional statements, use elseif.\n\nfunction test_sign(x)\n    if x &gt; 0\n        return Text(\"x is positive.\")\n    elseif x &lt; 0\n        return Text(\"x is negative.\")\n    else\n        return Text(\"x is zero.\")\n    end\nend\n\ntest_sign (generic function with 1 method)\n\n\n\ntest_sign(-5)\n\nx is negative.\n\n\n\ntest_sign(0)\n\nx is zero.\n\n\n\n\nLoops\nLoops allow expressions to be evaluated repeatedly until they are terminated. The two main types of loops are while loops and for loops.\n\nWhile loops\nwhile loops continue to evaluate an expression so long as a specified boolean condition is true. This is useful when you don’t know how many iterations it will take for the desired goal to be reached.\n\nfunction compute_factorial(x)\n    factorial = 1\n    while (x &gt; 1)\n        factorial *= x\n        x -= 1\n    end\n    return factorial\nend\ncompute_factorial(5)\n\n120\n\n\n\nWhile loops can easily turn into infinite loops if the condition is never meaningfully updated. Be careful, and look there if your programs are getting stuck. Also, If the expression in a while loop is false when the loop is reached, the loop will never be evaluated.\n\n\n\nFor loops\nfor loops run for a finite number of iterations, based on some defined index variable.\n\nfunction add_some_numbers(x)\n    total_sum = 0 # initialize at zero since we're adding\n    for i=1:x # the counter i is updated every iteration\n        total_sum += i\n    end\n    return total_sum\nend\nadd_some_numbers(4)\n\n10\n\n\nfor loops can also iterate over explicitly passed containers, rather than iterating over an incrementally-updated index sequence. Use the in keyword when defining the loop.\n\nfunction add_passed_numbers(set)\n    total_sum = 0\n    for i in set # this is the syntax we use when we want i to correspond to different container values\n        total_sum += i\n    end\n    return total_sum\nend\nadd_passed_numbers([1, 3, 5])\n\n9"
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#linear-algebra",
+    "href": "tutorials/julia-basics.html#linear-algebra",
+    "title": "Tutorial: Julia Basics",
+    "section": "Linear algebra",
+    "text": "Linear algebra\nMatrices are defined in Julia as 2d arrays. Unlike basic arrays, matrices need to contain the same data type so Julia knows what operations are allowed. When defining a matrix, use semicolons to separate rows. Row elements should not be separated by commas.\n\ntest_matrix = [1 2 3; 4 5 6]\n\n2×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n\n\nYou can also specify matrices using spaces and newlines.\n\ntest_matrix_2 = [1 2 3\n                 4 5 6]\n\n2×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n\n\nFinally, matrices can be created using comprehensions by separating the inputs by a comma.\n\n[i*j for i in 1:1:5, j in 1:1:5]\n\n5×5 Matrix{Int64}:\n 1   2   3   4   5\n 2   4   6   8  10\n 3   6   9  12  15\n 4   8  12  16  20\n 5  10  15  20  25\n\n\nVectors are treated as 1d matrices.\n\ntest_row_vector = [1 2 3]\n\n1×3 Matrix{Int64}:\n 1  2  3\n\n\n\ntest_col_vector = [1; 2; 3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\nMany linear algebra operations on vectors and matrices can be loaded using the LinearAlgebra package."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#package-management",
+    "href": "tutorials/julia-basics.html#package-management",
+    "title": "Tutorial: Julia Basics",
+    "section": "Package management",
+    "text": "Package management\nSometimes you might need functionality that does not exist in base Julia. Julia handles packages using the Pkg package manager. After finding a package which has the functions that you need, you have two options:\n\nUse the package management prompt in the Julia REPL (the standard Julia interface; what you get when you type julia in your terminal). Enter this by typing ] at the standard green Julia prompt julia&gt;. This will become a blue pkg&gt;. You can then add new packages using add packagename.\nFrom the standard prompt, enter import Pkg; Pkg.add(packagename). The packagename package can then be used by adding using packagename to the start of the script."
+  },
+  {
+    "objectID": "tutorials/julia-plots.html",
+    "href": "tutorials/julia-plots.html",
+    "title": "Tutorial: Making Plots with Julia",
+    "section": "",
+    "text": "This tutorial will give some examples of plotting and plotting features in Julia, as well as providing references to some relevant resources. The main plotting library is Plots.jl, but there are some others that provide useful features."
+  },
+  {
+    "objectID": "tutorials/julia-plots.html#overview",
+    "href": "tutorials/julia-plots.html#overview",
+    "title": "Tutorial: Making Plots with Julia",
+    "section": "",
+    "text": "This tutorial will give some examples of plotting and plotting features in Julia, as well as providing references to some relevant resources. The main plotting library is Plots.jl, but there are some others that provide useful features."
+  },
+  {
+    "objectID": "tutorials/julia-plots.html#some-resources",
+    "href": "tutorials/julia-plots.html#some-resources",
+    "title": "Tutorial: Making Plots with Julia",
+    "section": "Some Resources",
+    "text": "Some Resources\n\nPlots.jl useful tips\nPlots.jl examples\nPlot attributes\nAxis attributes\nColor names"
+  },
+  {
+    "objectID": "tutorials/julia-plots.html#demos",
+    "href": "tutorials/julia-plots.html#demos",
+    "title": "Tutorial: Making Plots with Julia",
+    "section": "Demos",
+    "text": "Demos\n\nusing Plots\nusing Random\nRandom.seed!(1);\n\n\nLine Plots\nTo generate a basic line plot, use plot.\n\ny = rand(5)\nplot(y, label=\"original data\", legend=:topright)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThere’s a lot of customization here that can occur, a lot of which is discussed in the docs or can be found with some Googling.\n\n\nAdding Plot Elements\nNow we can add some other lines and point markers.\n\ny2 = rand(5)\ny3 = rand(5)\nplot!(y2, label=\"new data\")\nscatter!(y3, label=\"even more data\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRemember that an exclamation mark (!) at the end of a function name means that function modifies an object in-place, so plot! and scatter! modify the current plotting object, they don’t create a new plot.\n\n\nRemoving Plot Elements\nSometimes we want to remove legends, axes, grid lines, and ticks.\n\nplot!(legend=false, axis=false, grid=false, ticks=false)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nAspect Ratio\nIf we want to have a square aspect ratio, use ratio = 1.\n\nv = rand(5)\nplot(v, ratio=1, legend=false)\nscatter!(v)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHeatmaps\nA heatmap is effectively a plotted matrix with colors chosen according to the values. Use clim to specify a fixed range for the color limits.\n\nA = rand(10, 10)\nheatmap(A, clim=(0, 1), ratio=1, legend=false, axis=false, ticks=false)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\nM = [ 0 1 0; 0 0 0; 1 0 0]\nwhiteblack = [RGBA(1,1,1,0), RGB(0,0,0)]\nheatmap(c=whiteblack, M, aspect_ratio = 1, ticks=.5:3.5, lims=(.5,3.5), gridalpha=1, legend=false, axis=false, ylabel=\"i\", xlabel=\"j\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustom Colors\n\nusing Colors\n\nmycolors = [colorant\"lightslateblue\",colorant\"limegreen\",colorant\"red\"]\nA = [i for i=50:300, j=1:100]\nheatmap(A, c=mycolors, clim=(1,300))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\nPlotting Areas Under Curves\n\ny = rand(10)\nplot(y, fillrange= y.*0 .+ .5, label= \"above/below 1/2\", legend =:top)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx = LinRange(0,2,100)\ny1 = exp.(x)\ny2 = exp.(1.3 .* x)\nplot(x, y1, fillrange = y2, fillalpha = 0.35, c = 1, label = \"Confidence band\", legend = :topleft)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx = -3:.01:3\nareaplot(x, exp.(-x.^2/2)/√(2π),alpha=.25,legend=false)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nM = [1 2 3; 7 8 9; 4 5 6; 0 .5 1.5]\nareaplot(1:3, M, seriescolor = [:red :green :blue ], fillalpha = [0.2 0.3 0.4])\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nusing SpecialFunctions\nf = x-&gt;exp(-x^2/2)/√(2π)\nδ = .01\nplot()\nx = √2 .* erfinv.(2 .*(δ/2 : δ : 1) .- 1)\nareaplot(x, f.(x), seriescolor=[ :red,:blue], legend=false)\nplot!(x, f.(x),c=:black)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotting Shapes\n\nrectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h])\ncircle(r,x,y) = (θ = LinRange(0,2π,500); (x.+r.*cos.(θ), y.+r.*sin.(θ)))\nplot(circle(5,0,0), ratio=1, c=:red, fill=true)\nplot!(rectangle(5*√2,5*√2,-2.5*√2,-2.5*√2),c=:white,fill=true,legend=false)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotting Distributions\nThe StatsPlots.jl package is very useful for making various plots of probability distributions.\n\nusing Distributions, StatsPlots\nplot(Normal(2, 5))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nscatter(LogNormal(0.8, 1.5))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe can also use this functionality to plot distributions of data in tabular data structures like DataFrames.\n\nusing DataFrames\ndat = DataFrame(a = 1:10, b = 10 .+ rand(10), c = 10 .* rand(10))\n@df dat density([:b :c], color=[:black :red])\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEditing Plots Manually\n\npl = plot(1:4,[1, 4, 9, 16])\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npl.attr\n\nRecipesPipeline.DefaultsDict with 30 entries:\n  :dpi                      =&gt; 96\n  :background_color_outside =&gt; :match\n  :plot_titlefontvalign     =&gt; :vcenter\n  :warn_on_unsupported      =&gt; true\n  :background_color         =&gt; RGBA{Float64}(1.0,1.0,1.0,1.0)\n  :inset_subplots           =&gt; nothing\n  :size                     =&gt; (672, 480)\n  :display_type             =&gt; :auto\n  :overwrite_figure         =&gt; true\n  :html_output_format       =&gt; :svg\n  :plot_titlefontfamily     =&gt; :match\n  :plot_titleindex          =&gt; 0\n  :foreground_color         =&gt; RGB{N0f8}(0.0,0.0,0.0)\n  :window_title             =&gt; \"Plots.jl\"\n  :plot_titlefontrotation   =&gt; 0.0\n  :extra_plot_kwargs        =&gt; Dict{Any, Any}()\n  :pos                      =&gt; (0, 0)\n  :plot_titlefonthalign     =&gt; :hcenter\n  :tex_output_standalone    =&gt; false\n  :extra_kwargs             =&gt; :series\n  :thickness_scaling        =&gt; 1\n  :layout                   =&gt; 1\n  :plot_titlelocation       =&gt; :center\n  :plot_titlefontsize       =&gt; 16\n  :plot_title               =&gt; \"\"\n  ⋮                         =&gt; ⋮\n\n\n\npl.series_list[1]\n\nPlots.Series(RecipesPipeline.DefaultsDict(:plot_object =&gt; Plot{Plots.GRBackend() n=1}, :subplot =&gt; Subplot{1}, :label =&gt; \"y1\", :fillalpha =&gt; nothing, :linealpha =&gt; nothing, :linecolor =&gt; RGBA{Float64}(0.0,0.6056031611752245,0.9786801175696073,1.0), :x_extrema =&gt; (NaN, NaN), :series_index =&gt; 1, :markerstrokealpha =&gt; nothing, :markeralpha =&gt; nothing…))\n\n\n\npl[:size]=(300,200)\n\n(300, 200)\n\n\n\npl\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLog-Scaled Axes\n\nxx = .1:.1:10\nplot(xx.^2, xaxis=:log, yaxis=:log)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nplot(exp.(x), yaxis=:log)"
+  },
+  {
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Homework",
+    "section": "",
+    "text": "This page contains information about and a schedule of the homework assignments for the semester."
+  },
+  {
+    "objectID": "hw.html#general-information",
+    "href": "hw.html#general-information",
+    "title": "Homework",
+    "section": "General Information",
+    "text": "General Information\n\nWhile the instructions for each assignment are available through the linked pages for quick and public access, if you are in the class you must use the link provided in Ed Discussion to accept the assignment. This will ensure that:\n\nYou have compatible versions of all relevant packages provided in the environment;\nYou have a GitHub repository that you can use to share your code.\n\nSubmit assignments by 9:00pm Eastern Time on the due date on Gradescope.\nSubmissions must be PDFs. Make sure that you tag the pages corresponding to each question; points will be deducted otherwise.\nTo convert the assignment notebook to PDF, you can use VS Code to render the notebook to HTML, and then use your browser to print to PDF. If you have set up LaTeX with VS Code, you can convert directly to a PDF."
+  },
+  {
+    "objectID": "hw.html#schedule",
+    "href": "hw.html#schedule",
+    "title": "Homework",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\n\nAssignment\nInstructions\nRubric\nSolutions\nDue Date\n\n\n\n\nHW1\n\n\n\nSep 08, 2023\n\n\nHW2\n\n\n\nSep 22, 2023\n\n\nHW3\n\n\n\nOct 06, 2023\n\n\nHW4\n\n\n\nOct 27, 2023"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "First Time: Tools Setup",
+    "section": "",
+    "text": "Getting set up for this course requires the following steps, if you haven’t done them for a previous course, club, or project:"
+  },
+  {
+    "objectID": "setup.html#instructions",
+    "href": "setup.html#instructions",
+    "title": "First Time: Tools Setup",
+    "section": "Instructions",
+    "text": "Instructions\n\nInstall Git\nIf you have already installed git, you don’t need to worry about this section. If you haven’t, download the appropriate version for your operating system.\n\n\n\n\n\n\nMac Versions\n\n\n\nIf you have a Mac, be aware if you have an Apple Silicon (M1 or M2) Mac or an Intel Mac. Many of the installations you will go through in this exercise have different versions for each processor type, and the program may not work properly if you still the wrong version. There’s nothing that can’t be undone, but it’s easier to be install the correct version first!\n\n\n\n\nInstall Julia\nI recommend installing Julia using the juliaup tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the JuliaUp GitHub repository, but we will summarize them here.\n\nInstalling Juliaup on Windows\nIf your computer uses Windows, you can install Juliaup from the Windows Store.\n\n\nInstalling Juliaup on MacOS\nIf you have a Mac, open a terminal (such as the Terminal app) and enter:\ncurl -fsSL https://install.julialang.org | sh\n\n\nInstalling Julia 1.8.5\nOnce you install Juliaup, install Julia version 1.8.5 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:\njulia add 1.8.5\njulia default 1.8.5\nThis will install Julia 1.8.5 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can follow the Juliaup instructions.\n\n\n\nInstall and Set Up VS Code\nYou can skip this section if you already have a coding environment you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow this guide for setting up VS Code with Julia.\n\nInstalling VS Code\nYou can download it here; open the downloaded file to install.\n\n\nInstall the Julia Extension\n\nOpen VS Code.\nSelect View and click Extensions to open the Extension View. This view can also be found on the sidebar with the following logo:\n.\nSearch for julia in the search box. Click the green install button.\nRestart VS Code once the installation is complete. It should automatically find your Julia installation; talk to Vivek if not.\n\nThe Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the “Command Palette” (View -&gt; Command Palette, or CTRL/CMD+SHIFT+P) and typing “REPL” to bring up “Julia: Start REPL”. You can also create *.jl files to write Julia code and execute line by line. However, we will primarily use Jupyter notebooks in this class, but this might be useful for testing code or for your project.\n\n\nInstall the Jupyter Notebook Extension\nThe Jupyter Notebook extension allows you to export a Jupyter notebook to PDF or to HTML and then to PDF.\n\n\n\n\n\n\nPDF Export for Gradescope\n\n\n\nYou will need to export every notebook to a PDF for submission to Gradescope. Direct export to PDF requires a LaTeX installation. If you would like to go this route, please look at the LaTeX installation instructions for your operating system.\nOtherwise, exporting to HTML and then using your browser to save the resulting page to a PDF is a perfect solution.\n\n\nFollow the same instructions as above, but search for jupyter and install the Jupyter extension. Restart VS Code.\n\n\n\nSet Up GitHub\n\nCreate GitHub Account\nIf you already have a GitHub account, you can use that for this course and do not need to create a new account.\nOtherwise, create an account. It doesn’t have to be linked to your Cornell email or use your Cornell NetID.\nFor labs and homework assignments (we will work on Lab 1 in class on Friday and Homework 1 is available), you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.\nWhen application exercises require notebook use (which is the case here, but will not always be), you can follow the workflow in these next steps, and will be prompted to do so in the instructions for that exercise.\nYou can do almost everything that you will need to do for this course with GitHub directly through VS Code, or you can use the GitHub UI or the Terminal. We will assume in these instructions that you will just work through VS Code."
+  }
+]
