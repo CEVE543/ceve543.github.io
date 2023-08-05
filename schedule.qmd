@@ -1,62 +1,61 @@
 ---
 title: "{{< var course.number >}}: {{< var course.title >}}"
-tbl-colwidths: [5, 10, 25, 5, 5, 5, 5]
+tbl-colwidths: [5, 10, 25, 5, 5, 5]
 ---
 
 This page contains a schedule of the topics, content, and assignments for the semester.
 This schedule **will be updated as necessary** over the course of the semester to accommodate logistics and to adapt to student needs.
 
 ::: column-screen-inset-right
-| Week | Date        | Topic | Slides | Lab | HW | Project |
-:-----:|:------------|:------|:------:|:--:|:---:|:--:|:-------:|
-|      | **Module 1:** | **Fundamentals** | | | | |
-| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | | |
-|      | Wed., Aug. 23 | Uncertainty matters | [{{< fa sharp presentation-screen >}}](slides/lecture01-2.qmd){target="_blank"}   | | | | 
-|      | Fri., Aug. 25 | Lab: Julia and GitHub setup | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) |  [{{< fa sharp pen-field title="HW1" >}}](hw/hw01/hw01.qmd) | | 
-| 2    | Mon., Aug. 28 | Conditional and marginal probability distributions | | | | |
-|      | Wed., Aug. 30 | Common distributions | | | | |
-|      | Fri., Sep. 1  | Lab: Convergence | | | | |
+| Week | Date        | Topic | Slides | Lab | Project |
+|:----:|:-----------|:------|:------:|:---:|:-------:|
+|      | **Module 1** | **Fundamentals** | | | |
+| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | |
+|      | Wed., Aug. 23 | Why do we care about uncertainty in climate risk assessment? | [{{< fa sharp presentation-screen >}}](slides/lecture01-2.qmd){target="_blank"}   | | |
+|      | Fri., Aug. 25 | Lab: setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) | |
+| 2    | Mon., Aug. 28 | Common distributions and statistics | | | |
+|      | Wed., Aug. 30 | Conditional and marginal distributions | | | |
+|      | Fri., Sep. 1  | Lab: Convergence | | | |
 | 3    | Mon., Sep. 4  | *No class* | | | |
-|      | Wed., Sep. 6  | Maximum likelihood estimation | | | | |
-|      | Fri., Sep. 8  | Lab: optimization | | | | |
-| 4    | Mon., Sep. 11 | Bayesian inference I | | | | |
-|      | Wed., Sep. 13 | Bayesian inference II | | | | |
-|      | Fri., Sep. 15 | Lab: Monte Carlo estimation | | | | |
-|  5   | Mon., Sep. 18 | *Recorded lecture*: linear regression | | | | |
-|      | Wed., Sep. 20 | Decision trees | | | | |
-|      | Fri., Sep. 22 | Lab: regression modeling | | | | |
-|      | **Module 2:** | **Precipitation Frequency Analysis** | | | | |
-|  6   | Mon., Sep. 25 | Motivation (the problem) | | | | |
-|      | Wed., Sep. 27 | Extreme value theory | | | | |
-|      | Fri., Sep. 29 | Lab: tabular data | | | | |
-|  7   | Mon., Oct. 2  | Maximum likelihood GEV model | | | | |
-|      | Wed., Oct. 4  | Bayesian GEV model | | | | |
-|      | Fri., Oct. 6  | Lab: applied MCMC | | | | |
-|  8   | Mon., Oct. 9  | *No class* | | | | |
-|      | Wed., Oct. 11 | Nonstationarity | | | | |
-|      | Fri., Oct. 13 | Work on project for module 2 | | | | |
-|  9   | Mon., Oct. 16 | Checking model convergence | | | | |
-|      | Wed., Oct. 18 | Quantitative model comparison | | | | |
-|      | Fri., Oct. 20 | Lab: qualitative model diagnostics | | | | |
-|      | **Module 3:** | **Flood Prediction** | | | | |
-| 10   | Mon., Oct. 23 | Motivation (the problem) | | | | |
-|      | Wed., Oct. 25 | Random forests | | | | |
-|      | Fri., Oct. 27 | Lab: spatial data | | | | |
-| 11   | Mon., Oct. 30 | Support vector machines | | | | |
-|      | Wed., Nov. 1  | Cross-validation | | | | |
-|      | Fri., Nov. 3  | Lab: ML | | | | |
-| 12   | Mon., Nov. 6  | Hyperparameter selection and optimization | | | | |
-|      | Wed., Nov. 8  | Work on project for module 3 | | | | |
-|      | Fri., Nov. 10 | Lab: K-fold CV with grid search | | | | |
-|      | **Module 4:** | **Weather Typing** | | | | |
-| 13   | Mon., Nov. 13 | Motivation (the problem) | | | | |
-|      | Wed., Nov. 15 | Nearest-neighbor algorithms | | | | |
-|      | Fri., Nov. 17 | Lab: KNN | | | | |
-| 14   | Mon., Nov. 20 | Principal components analysis | | | | |
-|      | Wed., Nov. 22 | *No class* | | | | |
-|      | Fri., Nov. 24 | *No class* | | | | |
-| 15   | Mon., Nov. 27 | Work on project for module 4 | | | | |
-|      | Wed., Nov. 29 | Clustering | | | | |
-|      | Fri., Dec. 1  | Review | | | | |
+|      | Wed., Sep. 6  | Maximum likelihood estimation | | | |
+|      | Fri., Sep. 8  | Lab: optimization | | | |
+| 4    | Mon., Sep. 11 | Bayesian inference I | | | |
+|      | Wed., Sep. 13 | Bayesian inference II | | | |
+|      | Fri., Sep. 15 | Lab: Monte Carlo estimation | | | |
+|  5   | Mon., Sep. 18 | *Recorded lecture*: function approximation | | | |
+|      | Wed., Sep. 20 | Module 1 review | | | |
+|      | Fri., Sep. 22 | Module 1 exam*| | | |
+|      | **Module 2** | **Downscaling** | | | [{{< fa sharp pen-field title="Project 2" >}}](projects/project02/project02.qmd) |
+| 6    | Mon., Sep. 25 | Motivation | | | |
+|      | Wed., Sep. 27 | Generalized Linear Regression | | | |
+|      | Fri., Sep. 29 | Lab: gridded climate data | | | |
+| 7    | Mon., Oct. 2  | Quantile-quantile bias correction | | | |
+|      | Wed., Oct. 4  | Support vector machines | | | |
+|      | Fri., Oct. 6  | Hyperparameter selection and optimization | | | |
+| 8    | Mon., Oct. 9  | Lab: cross-validation | | | |
+|      | Wed., Oct. 11 | Module 2 review | | | |
+|      | Fri., Oct. 13 | Module 2 exam | | | |
+|      | **Module 3** | **Frequency Analysis** | | | [{{< fa sharp pen-field title="Project 3" >}}](projects/project03/project03.qmd) |
+| 9    | Mon., Oct. 16 | Motivation | | | |
+|      | Wed., Oct. 18 | Extreme value theory | | | |
+|      | Fri., Oct. 20 | Lab: tabular data | | | |
+| 10   | Mon., Oct. 23 | Maximum likelihood and Bayesian GEV models | | | |
+|      | Wed., Oct. 25 | Nonstationary GEV model | | | |
+|      | Fri., Oct. 27 | Lab: visualization-based model assessment | | | |
+| 11   | Mon., Oct. 30 | Regionalization | | | |
+|      | Wed., Nov. 1  | Hierarchical models for regionalization | | | |
+|      | Fri., Nov. 3  | Quantitative methods for model comparison | | | |
+| 12   | Mon., Nov. 6  | Module 3 review | | | |
+|      | Wed., Nov. 8  | Module 3 exam | | | |
+|      | **Module 4** | **Weather Typing** | | | [{{< fa sharp pen-field title="Project 4" >}}](projects/project04/project04.qmd) |
+| 13   | Mon., Nov. 13 | Motivation | | | |
+|      | Wed., Nov. 15 | Principal components analysis | | | |
+|      | Fri., Nov. 17 | Lab: $K$-means clustering | | | |
+| 14   | Mon., Nov. 20 | Hidden Markov Models I | | | |
+|      | Wed., Nov. 22 | *No class* | | | |
+|      | Fri., Nov. 24 | *No class* | | | |
+| 15   | Mon., Nov. 27 | Hidden Markov Models II | | | |
+|      | Wed., Nov. 29 | Review module 4 | | | |
+|      | Fri., Dec. 1  | Module 4 Exam | | | |
 
 :::

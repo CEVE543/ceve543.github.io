@@ -15,11 +15,10 @@ website:
   page-footer:
     right: |
       Made with [Julia](https://julialang.org) and [Quarto](https://quarto.org/)<br>
-      [View the source at {{< fa brands github >}} GitHub]({{< var course.github >}})
+      [View the source on {{< fa brands github >}} GitHub]({{< var course.github >}})
 
     left: |
       Content {{< fa copyright >}} {{< var course.copyright_year >}}  by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).
-      See the [About page](/about.html) for credit information.<br>
       All content licensed under a {{< fa brands creative-commons >}}
       {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
       [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -37,29 +36,14 @@ website:
       - icon: journal-check
         href: https://canvas.rice.edu
         text: "Canvas"
-      - icon: bar-chart-fill
-        text: "Gradescope"
-        url: https://gradescope.com
     collapse-level: 1
     contents:
-      - section: "Course Information"
-        contents:
-          - href: index.qmd
-            text: Overview
-          - href: schedule.qmd
-            text: Schedule
-          - href: syllabus.qmd
-            text: Syllabus
-      - section: hw.qmd
-        contents:
-          - href: hw/hw01/hw01.qmd
-            text: Homework 1
-      - section: labs.qmd
-        contents:
-          - href: labs/lab01/lab01.qmd
-            text: Lab 1
-      - text: "Final Project"
-        href: project.qmd
+      - href: index.qmd
+        text: Overview
+      - href: schedule.qmd
+        text: Schedule
+      - href: syllabus.qmd
+        text: Syllabus
       - text: "Tools Setup"
         href: setup.qmd
       - text: "FAQ"
