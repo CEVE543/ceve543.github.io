@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CEVE 543 - Fall 2023 - CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment</title>
+<title>CEVE 543 - Fall 2023 - CEVE 543: Data Science for Climate Risk Assessment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,8 +72,10 @@ window.MathJax = {
   };
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="CEVE 543 - Fall 2023 - CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - CEVE 543: Data Science for Climate Risk Assessment">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
@@ -87,7 +89,7 @@ window.MathJax = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course Information</a></li><li class="breadcrumb-item"><a href="./schedule.html">Schedule</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./schedule.html">Schedule</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -106,10 +108,9 @@ window.MathJax = {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">CEVE 543</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="./{{var course.github}}" rel="" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
     <a href="https://canvas.rice.edu" rel="" title="Canvas" class="quarto-navigation-tool px-1" aria-label="Canvas"><i class="bi bi-journal-check"></i></a>
-    <a href="https://gradescope.com" rel="" title="Gradescope" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
 </div>
     </div>
       </div>
@@ -120,73 +121,22 @@ window.MathJax = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Course Information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schedule.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./hw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hw/hw01/hw01.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./labs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labs/lab01/lab01.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final Project</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -203,13 +153,13 @@ window.MathJax = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
@@ -232,13 +182,13 @@ window.MathJax = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./resources/julia.html" class="sidebar-item-text sidebar-link">
@@ -272,7 +222,7 @@ window.MathJax = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CEVE 543: WEBSITE IN PROGRESS: Data Science for Climate Risk Assessment</h1>
+<h1 class="title">CEVE 543: Data Science for Climate Risk Assessment</h1>
 </div>
 
 
@@ -297,8 +247,6 @@ window.MathJax = {
 <col style="width: 5%">
 <col style="width: 5%">
 <col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -307,18 +255,14 @@ window.MathJax = {
 <th style="text-align: left;">Topic</th>
 <th style="text-align: center;">Slides</th>
 <th style="text-align: center;">Lab</th>
-<th style="text-align: center;">HW</th>
 <th style="text-align: center;">Project</th>
-<th style="text-align: center;"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: left;"><strong>Module 1:</strong></td>
+<td style="text-align: left;"><strong>Module 1</strong></td>
 <td style="text-align: left;"><strong>Fundamentals</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -330,35 +274,27 @@ window.MathJax = {
 <td style="text-align: center;"><a href="./slides/lecture01-1.html" target="_blank"><i class="fa-sharp fa-presentation-screen" aria-label="presentation-screen"></i></a></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Aug.&nbsp;23</td>
-<td style="text-align: left;">Uncertainty matters</td>
+<td style="text-align: left;">Why do we care about uncertainty in climate risk assessment?</td>
 <td style="text-align: center;"><a href="./slides/lecture01-2.html" target="_blank"><i class="fa-sharp fa-presentation-screen" aria-label="presentation-screen"></i></a></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Aug.&nbsp;25</td>
-<td style="text-align: left;">Lab: Julia and GitHub setup</td>
+<td style="text-align: left;">Lab: setting up Julia, GitHub, and Quarto</td>
 <td style="text-align: center;"><a href="./slides/lecture01-3.html" target="_blank"><i class="fa-sharp fa-presentation-screen" aria-label="presentation-screen"></i></a></td>
-<td style="text-align: center;"><a href="labs/lab01/lab01.qmd"><i class="fa-sharp fa-laptop-code" aria-label="laptop-code"></i></a></td>
-<td style="text-align: center;"><a href="hw/hw01/hw01.qmd"><i class="fa-sharp fa-pen-field" title="HW1" aria-label="pen-field"></i></a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="./labs/lab01/lab01.html"><i class="fa-sharp fa-laptop-code" aria-label="laptop-code"></i></a></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">2</td>
 <td style="text-align: left;">Mon., Aug.&nbsp;28</td>
-<td style="text-align: left;">Conditional and marginal probability distributions</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Common distributions and statistics</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -366,9 +302,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Aug.&nbsp;30</td>
-<td style="text-align: left;">Common distributions</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Conditional and marginal distributions</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -380,15 +314,11 @@ window.MathJax = {
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
 <td style="text-align: left;">Mon., Sep.&nbsp;4</td>
 <td style="text-align: left;"><em>No class</em></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -400,15 +330,11 @@ window.MathJax = {
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Sep.&nbsp;8</td>
 <td style="text-align: left;">Lab: optimization</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -420,15 +346,11 @@ window.MathJax = {
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Sep.&nbsp;13</td>
 <td style="text-align: left;">Bayesian inference II</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -440,15 +362,11 @@ window.MathJax = {
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
 <td style="text-align: left;">Mon., Sep.&nbsp;18</td>
-<td style="text-align: left;"><em>Recorded lecture</em>: linear regression</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;"><em>Recorded lecture</em>: function approximation</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -456,9 +374,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Sep.&nbsp;20</td>
-<td style="text-align: left;">Decision trees</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 1 review</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -466,29 +382,23 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Sep.&nbsp;22</td>
-<td style="text-align: left;">Lab: regression modeling</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 1 exam*</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: left;"><strong>Module 2:</strong></td>
-<td style="text-align: left;"><strong>Precipitation Frequency Analysis</strong></td>
+<td style="text-align: left;"><strong>Module 2</strong></td>
+<td style="text-align: left;"><strong>Downscaling</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="./projects/project02/project02.html"><i class="fa-sharp fa-pen-field" title="Project 2" aria-label="pen-field"></i></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
 <td style="text-align: left;">Mon., Sep.&nbsp;25</td>
-<td style="text-align: left;">Motivation (the problem)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Motivation</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -496,9 +406,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Sep.&nbsp;27</td>
-<td style="text-align: left;">Extreme value theory</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Generalized Linear Regression</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -506,9 +414,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Sep.&nbsp;29</td>
-<td style="text-align: left;">Lab: tabular data</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Lab: gridded climate data</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -516,9 +422,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;">7</td>
 <td style="text-align: left;">Mon., Oct.&nbsp;2</td>
-<td style="text-align: left;">Maximum likelihood GEV model</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Quantile-quantile bias correction</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -526,9 +430,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Oct.&nbsp;4</td>
-<td style="text-align: left;">Bayesian GEV model</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Support vector machines</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -536,9 +438,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Oct.&nbsp;6</td>
-<td style="text-align: left;">Lab: applied MCMC</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Hyperparameter selection and optimization</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -546,9 +446,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;">8</td>
 <td style="text-align: left;">Mon., Oct.&nbsp;9</td>
-<td style="text-align: left;"><em>No class</em></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Lab: cross-validation</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -556,9 +454,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Oct.&nbsp;11</td>
-<td style="text-align: left;">Nonstationarity</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 2 review</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -566,49 +462,39 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Oct.&nbsp;13</td>
-<td style="text-align: left;">Work on project for module 2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 2 exam</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: left;"><strong>Module 3</strong></td>
+<td style="text-align: left;"><strong>Frequency Analysis</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="./projects/project03/project03.html"><i class="fa-sharp fa-pen-field" title="Project 3" aria-label="pen-field"></i></a></td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">9</td>
 <td style="text-align: left;">Mon., Oct.&nbsp;16</td>
-<td style="text-align: left;">Checking model convergence</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: left;">Wed., Oct.&nbsp;18</td>
-<td style="text-align: left;">Quantitative model comparison</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Motivation</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: left;">Fri., Oct.&nbsp;20</td>
-<td style="text-align: left;">Lab: qualitative model diagnostics</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Wed., Oct.&nbsp;18</td>
+<td style="text-align: left;">Extreme value theory</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td style="text-align: left;"><strong>Module 3:</strong></td>
-<td style="text-align: left;"><strong>Flood Prediction</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Fri., Oct.&nbsp;20</td>
+<td style="text-align: left;">Lab: tabular data</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -616,9 +502,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;">10</td>
 <td style="text-align: left;">Mon., Oct.&nbsp;23</td>
-<td style="text-align: left;">Motivation (the problem)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Maximum likelihood and Bayesian GEV models</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -626,9 +510,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Oct.&nbsp;25</td>
-<td style="text-align: left;">Random forests</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Nonstationary GEV model</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -636,9 +518,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Oct.&nbsp;27</td>
-<td style="text-align: left;">Lab: spatial data</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Lab: visualization-based model assessment</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -646,9 +526,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;">11</td>
 <td style="text-align: left;">Mon., Oct.&nbsp;30</td>
-<td style="text-align: left;">Support vector machines</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Regionalization</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -656,9 +534,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Nov.&nbsp;1</td>
-<td style="text-align: left;">Cross-validation</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Hierarchical models for regionalization</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -666,9 +542,7 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Nov.&nbsp;3</td>
-<td style="text-align: left;">Lab: ML</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Quantitative methods for model comparison</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -676,9 +550,7 @@ window.MathJax = {
 <tr class="odd">
 <td style="text-align: center;">12</td>
 <td style="text-align: left;">Mon., Nov.&nbsp;6</td>
-<td style="text-align: left;">Hyperparameter selection and optimization</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 3 review</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -686,119 +558,87 @@ window.MathJax = {
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Nov.&nbsp;8</td>
-<td style="text-align: left;">Work on project for module 3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 3 exam</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: left;">Fri., Nov.&nbsp;10</td>
-<td style="text-align: left;">Lab: K-fold CV with grid search</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: left;"><strong>Module 4:</strong></td>
+<td style="text-align: left;"><strong>Module 4</strong></td>
 <td style="text-align: left;"><strong>Weather Typing</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="./projects/project04/project04.html"><i class="fa-sharp fa-pen-field" title="Project 4" aria-label="pen-field"></i></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;">13</td>
 <td style="text-align: left;">Mon., Nov.&nbsp;13</td>
-<td style="text-align: left;">Motivation (the problem)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: left;">Wed., Nov.&nbsp;15</td>
-<td style="text-align: left;">Nearest-neighbor algorithms</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Motivation</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: left;">Fri., Nov.&nbsp;17</td>
-<td style="text-align: left;">Lab: KNN</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">14</td>
-<td style="text-align: left;">Mon., Nov.&nbsp;20</td>
+<td style="text-align: left;">Wed., Nov.&nbsp;15</td>
 <td style="text-align: left;">Principal components analysis</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Fri., Nov.&nbsp;17</td>
+<td style="text-align: left;">Lab: <span class="math inline">\(K\)</span>-means clustering</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">14</td>
+<td style="text-align: left;">Mon., Nov.&nbsp;20</td>
+<td style="text-align: left;">Hidden Markov Models I</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Wed., Nov.&nbsp;22</td>
 <td style="text-align: left;"><em>No class</em></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Nov.&nbsp;24</td>
 <td style="text-align: left;"><em>No class</em></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">15</td>
+<td style="text-align: left;">Mon., Nov.&nbsp;27</td>
+<td style="text-align: left;">Hidden Markov Models II</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">15</td>
-<td style="text-align: left;">Mon., Nov.&nbsp;27</td>
-<td style="text-align: left;">Work on project for module 4</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Wed., Nov.&nbsp;29</td>
+<td style="text-align: left;">Review module 4</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td style="text-align: left;">Wed., Nov.&nbsp;29</td>
-<td style="text-align: left;">Clustering</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
 <td style="text-align: left;">Fri., Dec.&nbsp;1</td>
-<td style="text-align: left;">Review</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Module 4 Exam</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1125,11 +965,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. See the <a href="./about.html">About page</a> for credit information.<br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
+    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jdossgollin/ceve543-f23/edit/main/schedule.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jdossgollin/ceve543-f23/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
-    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
+    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source on <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
 

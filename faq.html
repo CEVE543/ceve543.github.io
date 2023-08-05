@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -108,6 +74,7 @@ window.MathJax = {
 
 
 <meta property="og:title" content="CEVE 543 - Fall 2023 - FAQ">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
 
@@ -139,10 +106,9 @@ window.MathJax = {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">CEVE 543</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="./{{var course.github}}" rel="" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
     <a href="https://canvas.rice.edu" rel="" title="Canvas" class="quarto-navigation-tool px-1" aria-label="Canvas"><i class="bi bi-journal-check"></i></a>
-    <a href="https://gradescope.com" rel="" title="Gradescope" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
 </div>
     </div>
       </div>
@@ -153,73 +119,22 @@ window.MathJax = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Course Information</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./hw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hw/hw01/hw01.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./labs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labs/lab01/lab01.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Final Project</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -236,13 +151,13 @@ window.MathJax = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
@@ -265,13 +180,13 @@ window.MathJax = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./resources/julia.html" class="sidebar-item-text sidebar-link">
@@ -298,30 +213,7 @@ window.MathJax = {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#julia" id="toc-julia" class="nav-link active" data-scroll-target="#julia">Julia</a>
-  <ul class="collapse">
-  <li><a href="#why-are-we-using-julia" id="toc-why-are-we-using-julia" class="nav-link" data-scroll-target="#why-are-we-using-julia">Why are we using Julia?</a></li>
-  <li><a href="#are-there-any-resources-i-can-use-to-learn-julia-basics" id="toc-are-there-any-resources-i-can-use-to-learn-julia-basics" class="nav-link" data-scroll-target="#are-there-any-resources-i-can-use-to-learn-julia-basics">Are there any resources I can use to learn Julia basics?</a></li>
-  </ul></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a>
-  <ul class="collapse">
-  <li><a href="#why-are-we-using-github" id="toc-why-are-we-using-github" class="nav-link" data-scroll-target="#why-are-we-using-github">Why are we using GitHub?</a></li>
-  <li><a href="#what-level-of-github-familiarity-will-i-need" id="toc-what-level-of-github-familiarity-will-i-need" class="nav-link" data-scroll-target="#what-level-of-github-familiarity-will-i-need">What level of GitHub familiarity will I need?</a></li>
-  </ul></li>
-  <li><a href="#assignments-homework-labs-and-aes" id="toc-assignments-homework-labs-and-aes" class="nav-link" data-scroll-target="#assignments-homework-labs-and-aes">Assignments (Homework, Labs, and AEs)</a>
-  <ul class="collapse">
-  <li><a href="#how-do-i-access-assignments" id="toc-how-do-i-access-assignments" class="nav-link" data-scroll-target="#how-do-i-access-assignments">How do I access assignments?</a></li>
-  <li><a href="#what-if-theres-an-error-in-the-assignment-repository" id="toc-what-if-theres-an-error-in-the-assignment-repository" class="nav-link" data-scroll-target="#what-if-theres-an-error-in-the-assignment-repository">What if there’s an error in the assignment repository?</a></li>
-  <li><a href="#help-my-code-isnt-working." id="toc-help-my-code-isnt-working." class="nav-link" data-scroll-target="#help-my-code-isnt-working.">Help! My code isn’t working.</a></li>
-  <li><a href="#how-do-i-get-a-pdf-of-my-notebook-for-submission" id="toc-how-do-i-get-a-pdf-of-my-notebook-for-submission" class="nav-link" data-scroll-target="#how-do-i-get-a-pdf-of-my-notebook-for-submission">How do I get a PDF of my notebook for submission?</a></li>
-  <li><a href="#how-do-i-submit-my-pdf-to-gradescope" id="toc-how-do-i-submit-my-pdf-to-gradescope" class="nav-link" data-scroll-target="#how-do-i-submit-my-pdf-to-gradescope">How do I submit my PDF to Gradescope?</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jdossgollin/ceve543-f23/edit/main/faq.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jdossgollin/ceve543-f23/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -343,136 +235,9 @@ window.MathJax = {
 
 </header>
 
-<section id="julia" class="level2">
-<h2 class="anchored" data-anchor-id="julia">Julia</h2>
-<section id="why-are-we-using-julia" class="level3">
-<h3 class="anchored" data-anchor-id="why-are-we-using-julia">Why are we using Julia?</h3>
-<p>Julia is open source. It has a great balance between intuitive syntax and speed. It was originally designed to share MATLAB’s mathematically-oriented syntax and Python’s readability. It can be used interactively, as more of a “scripting” language, but can be optimized to run code almost as quickly as C/C++. And it has a committed development base which is actively extending its capabilities: <code>JuMP.jl</code> lets us program optimization problems in a syntax that’s very close to the mathematical expressions, and the <code>Turing.jl</code> ecosystem has added some fantastic statistical and machine-learning libraries, among others. It’s becoming a common language among power systems modelers and environmental economists, among other applied communities.</p>
-<p>Why not some common alternatives?</p>
-<ul>
-<li>R is fantastic for statistics, but it has a very unique syntax, and can be slow and struggles to scale to large-scale problems; while we won’t approach those limits in this class, there’s no need to go there for our purposes.</li>
-<li>Python is extremely readable, but also can be very slow unless you’re using libraries which are written in C++, and the syntax for these can be jarringly different than native Python.</li>
-<li>C/C++ are overkill for this class, and focusing on them would distract from our core engineering learning objectives.</li>
-<li>MATLAB is not free or open source. It also has some features which do not align with good broader coding and code maintainance practices (for example, having a single long function per file).</li>
-</ul>
-<p>Ultimately, there are trade-offs with any language, and in this case, some specifics of Julia syntax and coding style may take an adjustment, but the pros outweigh the cons given the variety of programming tasks that we will be doing in this course.</p>
-</section>
-<section id="are-there-any-resources-i-can-use-to-learn-julia-basics" class="level3">
-<h3 class="anchored" data-anchor-id="are-there-any-resources-i-can-use-to-learn-julia-basics">Are there any resources I can use to learn Julia basics?</h3>
-<p>There are a few on the <a href="resources/julia.html">Julia Resources page</a>; please suggest additional resources!</p>
-</section>
-</section>
-<section id="github" class="level2">
-<h2 class="anchored" data-anchor-id="github">GitHub</h2>
-<section id="why-are-we-using-github" class="level3">
-<h3 class="anchored" data-anchor-id="why-are-we-using-github">Why are we using GitHub?</h3>
-<p>GitHub is an industry-standard version control platform. Anecdotally, adding GitHub to your skillset is a great resume booster for engineers who work in computing-heavy environments. For the purposes of our class, GitHub facilitates:</p>
-<ul>
-<li>Assignment management through GitHub Classroom;</li>
-<li>Sharing of code/notebooks for debugging and asking for help (otherwise, I end up with many files with the same name, and might not open the right one…);</li>
-<li>Using your repository as your submission in case something goes wrong and you can’t submit your completed assignment on time.</li>
-</ul>
-</section>
-<section id="what-level-of-github-familiarity-will-i-need" class="level3">
-<h3 class="anchored" data-anchor-id="what-level-of-github-familiarity-will-i-need">What level of GitHub familiarity will I need?</h3>
-<p>None from the start! And the following commands are all you will need for this course (you can also use <a href="https://desktop.github.com/">GitHub Desktop</a> or use the <a href="https://code.visualstudio.com/docs/sourcecontrol/overview">GitHub functionality in VS Code</a>, which we will discuss in class):</p>
-<ul>
-<li><code>git clone &lt;github-repository-url&gt;</code>: This is needed to “clone” your assignment repository (initialize your local repository).</li>
-<li><code>git commit -m &lt;message&gt;</code>: This is used to “lock in” changes that you’ve made to your files. You should make commits frequently as you make changes so you can revert to prior versions if something goes wrong (and make your messages meaningful so you know what changes you’ve made!)</li>
-<li><code>git push</code>: This syncs any committed changes to the remote GitHub repository. <strong>You must do this prior to using your repository to ask for help</strong>.</li>
-</ul>
-</section>
-</section>
-<section id="assignments-homework-labs-and-aes" class="level2">
-<h2 class="anchored" data-anchor-id="assignments-homework-labs-and-aes">Assignments (Homework, Labs, and AEs)</h2>
-<section id="how-do-i-access-assignments" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-i-access-assignments">How do I access assignments?</h3>
-<p>Canvas</p>
-</section>
-<section id="what-if-theres-an-error-in-the-assignment-repository" class="level3">
-<h3 class="anchored" data-anchor-id="what-if-theres-an-error-in-the-assignment-repository">What if there’s an error in the assignment repository?</h3>
-<p>That’s certainly possible! Email me.</p>
-</section>
-<section id="help-my-code-isnt-working." class="level3">
-<h3 class="anchored" data-anchor-id="help-my-code-isnt-working.">Help! My code isn’t working.</h3>
-<p>Here are some steps I would follow:</p>
-<ol type="1">
-<li><p>Search for the error message you’re seeing. Often, you can find posts in the <a href="https://www.reddit.com/r/Julia/">r/Julia subreddit</a>, the <a href="https://discourse.julialang.org">official Julia forum</a>, or <a href="https://stackoverflow.com">Stack Overflow</a> for the same or similar issues. <strong><em>You should do this first</em></strong>: if you can find the answer this way, it will be faster than other options, and if you can rule out some approaches that you’ve already tried, it will make the following steps go more smoothly.</p></li>
-<li><p>Post on <a href="https://us.edstem.org">Ed Discussion</a>. For the most effective help, follow the following guidelines (adapted from Stack Overflow’s <a href="https://stackoverflow.com/help/how-to-ask">“How Do I Ask A Good Question?”</a>):</p>
-<ul>
-<li><p><strong><em>Make your post subject specific and descriptive</em></strong>. “Problem with HW 1 Problem 3” makes it hard for other members of the class community to know if they’re having a similar issue or if they can help. Since the TA and I may not be checking Ed religiously, you’ll get faster responses if other students feel prepared to help.</p></li>
-<li><p><strong><em>Introduce the problem</em></strong>. What have you tried? What error message are you getting? Have you been able to identify a specific line of code or section of code that’s causing the problem?</p></li>
-<li><p><strong><em>Provide code</em></strong>. It’s very difficult to get a sense of what might be going wrong if you just say that you have a problem, even if you share the error message. If you have a small question (you can demonstrate the error with a brief snippet of code), you can directly put this into your Ed post, but otherwise, please provide a link to your GitHub repository and where to find the relevant codes.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>## Update Your Repository!</p>
-<p>You must commit and push your current files to GitHub prior to asking for help, or we won’t be able to see the code that you’re having trouble with.</p>
-</div>
-</div>
-</div></li>
-</ul></li>
-<li><p><strong><em>Come to office hours</em></strong>. If you can identify the problem, but we’re having trouble solving it via Ed or more urgency is required, please come to office hours and we can try to work through the issue. This is most helpful if you’ve already done some problem-solving on your own.</p>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>## Give Yourself Time To Problem-Solve</p>
-<pre><code>Waiting until the last day or two to start an assignment can cause problems if you don't have time to work through the following steps. If office hours are busy and you haven't gone through the prior steps, you may be prioritized below than students who are have, and we may not have time to solve your problem. **Running into coding challenges is not a valid reason to get an extension on an assignment!**</code></pre>
-</div>
-</div>
-</div></li>
-</ol>
-</section>
-<section id="how-do-i-get-a-pdf-of-my-notebook-for-submission" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-i-get-a-pdf-of-my-notebook-for-submission">How do I get a PDF of my notebook for submission?</h3>
-<p>There are two main options, depending on what you’ve already got set up on your computer.</p>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Run Notebook Cells Before Submission
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Remember to “Run All” cells prior to conversion and submission, or else we won’t see your results!</p>
-</div>
-</div>
-<ol type="1">
-<li><p>If you have a Python installation, you can use a tool called <a href="https://nbconvert.readthedocs.io/en/latest/"><code>nbconvert</code></a> to convert to a PDF (if you also have LaTeX installed) or HTML (and then you can use your browser to print to a PDF).</p></li>
-<li><p>If you don’t have a Python installation, within VS Code, you can use <code>IJulia.jl</code> (which will be included in the environments provided with assignments in this class) as follows (enter these commands into the REPL) to open your notebook in your browser:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">IJulia</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">notebook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This should open a Jupyter notebook interface in your browser. Navigate to and open the notebook, and once it has completed running, go to <code>File -&gt; Print Preview</code> in the browser menu and Print to PDF.</p></li>
-</ol>
-</section>
-<section id="how-do-i-submit-my-pdf-to-gradescope" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-i-submit-my-pdf-to-gradescope">How do I submit my PDF to Gradescope?</h3>
-<p>The instructions for submitting your assignment to Gradescope can be found <a href="https://help.gradescope.com/article/ccbpppziu9-student-submit-work#submitting_a_pdf">here</a>.</p>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tag Pages
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Make sure that you mark/tag the pages corresponding to each question! Otherwise, we will deduct 10%. If a problem spans multiple pages, tag them all; if a page includes multiple problems, tag it several times.</p>
-</div>
-</div>
+<p><em>This page is currently empty, because there are not yet any frequently asked questions!</em></p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -790,11 +555,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. See the <a href="./about.html">About page</a> for credit information.<br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
+    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jdossgollin/ceve543-f23/edit/main/faq.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jdossgollin/ceve543-f23/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source on <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
 
