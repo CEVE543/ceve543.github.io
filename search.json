@@ -98,102 +98,25 @@
     "text": "This page is currently empty, because there are not yet any frequently asked questions!"
   },
   {
-    "objectID": "slides/lecture01-2.html#what-is-a-system",
-    "href": "slides/lecture01-2.html#what-is-a-system",
-    "title": "Introduction to Systems Analysis!",
-    "section": "What Is A System?",
-    "text": "What Is A System?\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+    "objectID": "slides/lecture01-2.html#how-to-use-quotes",
+    "href": "slides/lecture01-2.html#how-to-use-quotes",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "section": "How to use quotes",
+    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/lecture01-2.html#examples-of-systems",
-    "href": "slides/lecture01-2.html#examples-of-systems",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Examples of Systems",
-    "text": "Examples of Systems\nCan we think of any examples of systems?\n\nWhat about things that are not systems?"
+    "objectID": "slides/lecture01-2.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-2.html#how-to-show-things-incrementally",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "section": "How to show things incrementally",
+    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-2.html#why-are-systems-interesting",
-    "href": "slides/lecture01-2.html#why-are-systems-interesting",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Why Are Systems Interesting?",
-    "text": "Why Are Systems Interesting?\nIn other words, a system involves an interconnected set of components.\nThose interconnections can lead to very different dynamics and outcomes than if the component processes were studied in isolation.\nThis is called emergence."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#system-state",
-    "href": "slides/lecture01-2.html#system-state",
-    "title": "Introduction to Systems Analysis!",
-    "section": "System State",
-    "text": "System State\nSystem State: quantities or variables which evolve over time based on external inputs and system dynamics.\nThe state gives you a “snapshot” of the system at a given point in time."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#stocks-and-flows",
-    "href": "slides/lecture01-2.html#stocks-and-flows",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Stocks and Flows",
-    "text": "Stocks and Flows\n\nA stock is the amount of a system property: concentrations of a pollutant, numbers of currency units, etc.\nA flow is the way in which a stock changes: decay, diffusion, production, consumption, etc."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#modeling-flows",
-    "href": "slides/lecture01-2.html#modeling-flows",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Modeling Flows",
-    "text": "Modeling Flows\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#feedback-loops",
-    "href": "slides/lecture01-2.html#feedback-loops",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Feedback Loops",
-    "text": "Feedback Loops\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#tipping-points",
-    "href": "slides/lecture01-2.html#tipping-points",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Tipping Points",
-    "text": "Tipping Points\n\n\nAnother important systems concept is a tipping point, where the system changes states abruptly and drastically.\nExamples include lake eutrophication and ice-sheet melting.\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#systems-analysis-overview",
-    "href": "slides/lecture01-2.html#systems-analysis-overview",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Systems Analysis Overview",
-    "text": "Systems Analysis Overview\n\n\nWhat We Study\n\nSystem dynamics;\nResponse to inputs;\nAlternatives for management or design.\n\n\nNeeds\n\n\nDefinition of the system\nSystems model"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
-    "href": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
-    "title": "Introduction to Systems Analysis!",
-    "section": "What Do We Need To Define A System?",
-    "text": "What Do We Need To Define A System?\n\n\nComponents: relevant processes, agents, etc\nInterconnections: relationships between system components\nControl volume: internal vs. external components\nInputs: control policies and/or external forcings\nOutputs: measured quantities of interest"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#key-takeaways-1",
-    "href": "slides/lecture01-2.html#key-takeaways-1",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nA system is an interconnected set of components.\nSystems are interesting because interconnections can result in unexpected outcomes.\nKey terms:\n\nstate\nstocks\nflows"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#key-takeaways-2",
-    "href": "slides/lecture01-2.html#key-takeaways-2",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nTo define a system, need to specify:\n\ncomponents\ninterconnections\ncontrol volume\nexternal inputs\noutputs of interest"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#next-classes",
-    "href": "slides/lecture01-2.html#next-classes",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Next Classes",
-    "text": "Next Classes\nFriday: Work on Lab 1.\n\nPreparation:\n\nFollow the steps in Tools Setup to get GitHub and Julia set up.\nClick the Lab 1 link in Ed Discussion to link your GitHub account to the class roster and create your Lab 1 repository."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#next-classes-1",
-    "href": "slides/lecture01-2.html#next-classes-1",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Next Classes",
-    "text": "Next Classes\nMonday: Modeling Systems\n\n\nBEE 4750, Environmental Systems Analysis"
+    "objectID": "slides/lecture01-2.html#how-to-use-columns",
+    "href": "slides/lecture01-2.html#how-to-use-columns",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "section": "How to use columns",
+    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
     "objectID": "index.html",
@@ -343,200 +266,25 @@
     "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
   },
   {
-    "objectID": "slides/lecture01-1.html#course-overview",
-    "href": "slides/lecture01-1.html#course-overview",
-    "title": "Welcome to BEE 4750!",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n\nTopics\n\nDefine systems\nSimulate system dynamics\nAnalyze and assess risk\nMake decisions with optimization\nExplore trade-offs across objectives\n\n\n\n\nExample Systems\n\nAir pollution\nWastewater management\nElectric power systems\nSolid waste management"
+    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
+    "href": "slides/lecture01-1.html#how-to-use-quotes",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use quotes",
+    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/lecture01-1.html#what-do-you-hope-to-get-out-of-this-course",
-    "href": "slides/lecture01-1.html#what-do-you-hope-to-get-out-of-this-course",
-    "title": "Welcome to BEE 4750!",
-    "section": "What Do You Hope To Get Out Of This Course?",
-    "text": "What Do You Hope To Get Out Of This Course?\n\n\n\n\n\n\n\n\nText: VSRIKRISH to 22333\nURL: https://pollev.com/vsrikrish  See Results"
+    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to show things incrementally",
+    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-1.html#course-organization",
-    "href": "slides/lecture01-1.html#course-organization",
-    "title": "Welcome to BEE 4750!",
-    "section": "Course Organization",
-    "text": "Course Organization\n\nIntroduction to Systems Analysis\nSimulating Systems and Risk\nSystems Management and Optimization\nAnalyzing Assumptions\nDecision-Making Under Uncertainty"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#grades",
-    "href": "slides/lecture01-1.html#grades",
-    "title": "Welcome to BEE 4750!",
-    "section": "Grades",
-    "text": "Grades\n\n\n\nAssessment\n% of Grade\n\n\n\n\nLab Notebooks\n20%\n\n\nHomework Assignments\n40%\n\n\nFinal Project\n40%"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#overall-guidelines",
-    "href": "slides/lecture01-1.html#overall-guidelines",
-    "title": "Welcome to BEE 4750!",
-    "section": "Overall Guidelines",
-    "text": "Overall Guidelines\n\nCollaboration highly encouraged, but all work must reflect your own understanding\nSubmit PDFs on Gradescope\n10% penalty per day late\nRubrics will be made available as relevant\nAlways cite external references\nCurve unlikely (not worth asking about…)"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#labs-20",
-    "href": "slides/lecture01-1.html#labs-20",
-    "title": "Welcome to BEE 4750!",
-    "section": "Labs (20%)",
-    "text": "Labs (20%)\n\nIn-class guided activities, but may need some time after class to complete\nFocus on “how” to apply methods and concepts from class\nIf you can’t bring a laptop to these classes, you can work with someone else\nCan work in groups, but must submit your own notebook\nDue by 9:00 next Thursday (one week) after lab session.\nWill drop one."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#homework-assignments-40",
-    "href": "slides/lecture01-1.html#homework-assignments-40",
-    "title": "Welcome to BEE 4750!",
-    "section": "Homework Assignments (40%)",
-    "text": "Homework Assignments (40%)\n\nRoughly every other week (5-6 in total?)\nFocus on new or extended applications and conceptual questions\nManaged with GitHub Classroom\nDue by 9:00pm on the due date (usually Thursday)\nWill not drop any of these; you have lots of time!"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#final-project-40",
-    "href": "slides/lecture01-1.html#final-project-40",
-    "title": "Welcome to BEE 4750!",
-    "section": "Final Project (40%)",
-    "text": "Final Project (40%)\n\nAnalyze a system of interest\nGo beyond class examples/methods\nWork in groups of 2 – 3 for BEE 4750, individually for BEE 5750"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#final-project-deliverables",
-    "href": "slides/lecture01-1.html#final-project-deliverables",
-    "title": "Welcome to BEE 4750!",
-    "section": "Final Project: Deliverables",
-    "text": "Final Project: Deliverables\n\nProposal: one page overview of system and model plan\nRegulatory Review: 2–3 page report on relevant regulations\nLiterature Review (BEE 5750): 2 page synthesis of relevant literature\nPoster: Overview and results (due end of semester)"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#attendance",
-    "href": "slides/lecture01-1.html#attendance",
-    "title": "Welcome to BEE 4750!",
-    "section": "Attendance",
-    "text": "Attendance\nNot required, but students tend to do better when they’re actively engaged in class."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#office-hours",
-    "href": "slides/lecture01-1.html#office-hours",
-    "title": "Welcome to BEE 4750!",
-    "section": "Office Hours",
-    "text": "Office Hours\n\nTime TBD (will send out poll)\nAlmost impossible to find a time that works for all (or even most); please feel free to make appointments as/if needed."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#accomodations",
-    "href": "slides/lecture01-1.html#accomodations",
-    "title": "Welcome to BEE 4750!",
-    "section": "Accomodations",
-    "text": "Accomodations\nIf you have any access barriers in this class, please seek out any helpful accomodations.\n\nGet an SDS letter.\nIf you need an accomodation before you have an official letter, please reach out to me ASAP!"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity",
-    "href": "slides/lecture01-1.html#academic-integrity",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nHopefully not a concern…\n\nCollaboration is great and is encouraged!\nKnowing how to find and use helpful resources is a skill we want to develop.\n\n\n\nDon’t just copy…learn from others and give credit.\nSubmit your own original work."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-1",
-    "href": "slides/lecture01-1.html#academic-integrity-1",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nObviously, just copying down answers from Chegg or ChatGPT and passing them off as your own is not ok.\nBut often lines aren’t that simple. Let’s quickly consider some scenarios (h/t to Tony Wong for these)."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-1",
-    "href": "slides/lecture01-1.html#academic-integrity-scenario-1",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity: Scenario 1",
-    "text": "Academic Integrity: Scenario 1\nDan searches the internet for relevant code and copy-pastes it into his Jupyter notebook. He cites the source of the codes.\n\n\n\n\n\n\nIs this ok?\n\n\n\nProbably Not\n\nWhat portion of the work is Dan’s?\nHow important were the codes?\nDid Dan understand what he copied?"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-1-1",
-    "href": "slides/lecture01-1.html#academic-integrity-scenario-1-1",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity: Scenario 1",
-    "text": "Academic Integrity: Scenario 1\nDan searches the internet for relevant code and copy-pastes it into his Jupyter notebook. He cites the source of the codes.\n\n\n\n\n\n\nWhat Should Dan Do?\n\n\n\nDan should paraphrase the codes he found to incorporate them with his own code, and then also cite them."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-2",
-    "href": "slides/lecture01-1.html#academic-integrity-scenario-2",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity: Scenario 2",
-    "text": "Academic Integrity: Scenario 2\nMatthew and Rhonda work together to figure out how to implement the codes, but each works on their own computer and develops their own solutions.\n\n\n\n\n\n\nIs this ok?\n\n\n\nDefinitely!\n\nIndependent implementations shows understanding."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-3",
-    "href": "slides/lecture01-1.html#academic-integrity-scenario-3",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity: Scenario 3",
-    "text": "Academic Integrity: Scenario 3\nFelix and Rachel are working together on a problem involving a derivation. Rachel types it up in LaTeX and sends the code to Felix, who pastes it into his Jupyter notebook.\n\n\n\n\n\n\nIs this ok?\n\n\n\nLikely Not\n\nDid Felix contribute enough to the derivation?\nDefinitely not OK if Felix doesn’t give Rachel credit for her contribution."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#academic-integrity-scenario-4",
-    "href": "slides/lecture01-1.html#academic-integrity-scenario-4",
-    "title": "Welcome to BEE 4750!",
-    "section": "Academic Integrity: Scenario 4",
-    "text": "Academic Integrity: Scenario 4\nDarren uses ChatGPT to debug an error in his homework code. He fixes the error and credits ChatGPT in his References section.\n\n\n\n\n\n\nIs this ok?\n\n\n\nWell-meaning, but no!\n\nUsing ChatGPT (or other ML tools) can be ok, but…\nNeed to ask permission and thoroughly document the query and the exact response."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#chatgpt-the-stochastic-parrot",
-    "href": "slides/lecture01-1.html#chatgpt-the-stochastic-parrot",
-    "title": "Welcome to BEE 4750!",
-    "section": "ChatGPT: The Stochastic Parrot",
-    "text": "ChatGPT: The Stochastic Parrot\nWhy is ChatGPT (and other ML/AI tools) singled out?\n\n\nStochasticity: Response to a given prompt is not necessarily the same, so need to track what you received.\nLack of Transparency: Not clear what the training data is, so documentation is essential (ML is not great at extrapolation).\nNot Well-Suited to All Tasks: Can be useful for getting a skeleton, starter code, or debugging. Really (and obviously) bad at interpretation and analysis."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#communications",
-    "href": "slides/lecture01-1.html#communications",
-    "title": "Welcome to BEE 4750!",
-    "section": "Communications",
-    "text": "Communications\nUse Ed Discussion for questions and discussions about class, homework assignments, etc.\n\nTry to use public posts so others can benefit from questions and can weigh in.\nI will make announcements through Ed.\n\nWhen urgency or privacy is required, email is ok."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#course-website",
-    "href": "slides/lecture01-1.html#course-website",
-    "title": "Welcome to BEE 4750!",
-    "section": "Course Website",
-    "text": "Course Website\nhttps://viveks.me/environmental-systems-analysis\n\nCentral hub for information, schedule, and policies\nWill add link and some information to Canvas (assignment due dates, etc)"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#computing-tools",
-    "href": "slides/lecture01-1.html#computing-tools",
-    "title": "Welcome to BEE 4750!",
-    "section": "Computing Tools",
-    "text": "Computing Tools\nSystems analysis requires mathematical modeling, and computing allows that to scale."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#julia",
-    "href": "slides/lecture01-1.html#julia",
-    "title": "Welcome to BEE 4750!",
-    "section": "Julia",
-    "text": "Julia\nIn this course, we will use the Julia programming language.\nAll assignments, labs, and AEs will be provided as Jupyter Notebooks."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#what-is-your-programming-experience",
-    "href": "slides/lecture01-1.html#what-is-your-programming-experience",
-    "title": "Welcome to BEE 4750!",
-    "section": "What Is Your Programming Experience?",
-    "text": "What Is Your Programming Experience?\n\n\n\n\n\n\n\n\nText: VSRIKRISH to 22333\nURL: https://pollev.com/vsrikrish  See Results"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#jupyter-notebooks",
-    "href": "slides/lecture01-1.html#jupyter-notebooks",
-    "title": "Welcome to BEE 4750!",
-    "section": "Jupyter Notebooks",
-    "text": "Jupyter Notebooks\nWe will use Jupyter Notebooks for most computing tasks (including assignments).\n\nAllow for interactive evaluation of code and integration with text (including nicely typeset mathematics)\nCan export to PDF (or HTML -&gt; PDF) for submission to Gradescope.\nBe careful before submitting: Evaluate all cells in order"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#github-classroom",
-    "href": "slides/lecture01-1.html#github-classroom",
-    "title": "Welcome to BEE 4750!",
-    "section": "GitHub Classroom",
-    "text": "GitHub Classroom\nHomework assignments and labs will be distributed using GitHub Classroom.\n\nEvery student will have a unique “repository.”\nWhen assignment is released, I will share the link for repository creation on Ed Discussion.\nMakes it easy to share code for assistance and debugging (share links to repositories, not out-of-context code and screenshots)."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#next-classes",
-    "href": "slides/lecture01-1.html#next-classes",
-    "title": "Welcome to BEE 4750!",
-    "section": "Next Classes",
-    "text": "Next Classes\nWednesday: Introduction to Systems Analysis\nFriday: Work on Lab 1.\n\nPreparation:\n\nLab 1 link is available on Ed. Click it to accept the lab before class.\n\n\n\n\nBEE 4750, Environmental Systems Analysis"
+    "objectID": "slides/lecture01-1.html#how-to-use-columns",
+    "href": "slides/lecture01-1.html#how-to-use-columns",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use columns",
+    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
     "objectID": "slides/notebooks/shallow-lake.html",
