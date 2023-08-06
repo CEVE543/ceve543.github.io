@@ -42,53 +42,235 @@
     "text": "Grading\n\nLab Notebooks: 10%\nSome classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These labs will be announced on the course website ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.\nSome details on lab logistics:\n\nLabs will be designed to be completed in class, but you may occasionally require additional time to complete them.\nRubrics will be provided for lab grading as part of the lab assignments.\n\n\n\nTests: 40%\nIn-class written exams will be given for each of the four modules of the course, on the dates listed on the schedule. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.\n\n\nProjects: 40%\nThe second, third, and fourth modules of the class will culminate with a project. The goal of these project is to apply the tools we learn in class to a real-world problem. You can think of these projects as a “mini-capstone” for each module, and should take the time of a long problem set.\nSpecific instructions and rubrics will be provided for each project. You will turn in your project as a Quarto notebook (.qmd file) and a rendered PDF. Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker. Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.\n\n\nParticipation: 10%\nParticipating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates. Some ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nYou will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well"
   },
   {
-    "objectID": "tutorials/latex-notebook.html",
-    "href": "tutorials/latex-notebook.html",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "objectID": "tutorials/quarto.html",
+    "href": "tutorials/quarto.html",
+    "title": "Quarto",
     "section": "",
-    "text": "This tutorial was inspired and draws from Justin Bois’ tutorial."
+    "text": "In this tutorial, you will learn how to typeset mathematics and equations in Jupyter notebooks using LaTeX."
   },
   {
-    "objectID": "tutorials/latex-notebook.html#overview",
-    "href": "tutorials/latex-notebook.html#overview",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
-    "section": "Overview",
-    "text": "Overview\nIn this tutorial, you will learn how to typeset mathematics and equations in Jupyter notebooks using LaTeX."
+    "objectID": "tutorials/quarto.html#overview",
+    "href": "tutorials/quarto.html#overview",
+    "title": "Quarto",
+    "section": "",
+    "text": "In this tutorial, you will learn how to typeset mathematics and equations in Jupyter notebooks using LaTeX."
   },
   {
-    "objectID": "tutorials/latex-notebook.html#inline-mathematics",
-    "href": "tutorials/latex-notebook.html#inline-mathematics",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "objectID": "tutorials/quarto.html#further-resourcesw",
+    "href": "tutorials/quarto.html#further-resourcesw",
+    "title": "Quarto",
+    "section": "Further Resourcesw",
+    "text": "Further Resourcesw\n\nMarkdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet\n\nThis tutorial was inspired and draws from Justin Bois’ tutorial."
+  },
+  {
+    "objectID": "tutorials/quarto.html#inline-mathematics",
+    "href": "tutorials/quarto.html#inline-mathematics",
+    "title": "Quarto",
     "section": "Inline Mathematics",
     "text": "Inline Mathematics\nTo include mathematical notation within text, enclose the LaTeX within dollar signs $. For example, to obtain the output\n\nthe objective function is \\(4x + 7x\\),\n\nyou would enter\n\nthe objective function is $4x + 7x$.\n\nYou can enter subscripts and superscripts with _ and ^, respectively; to get\n\nthe function is \\(f(x_i) = x_i^2\\),\n\ntype\n\nthe function is $f(x_i) = x_i^2$.\n\nIf you want multiple characters to be enclosed in a subscript or superscript, enclose them in braces {}:\n\n\\(e^{i \\pi} - 1 = 0\\) is produced by\n\n\n$e^{i \\pi} - 1 = 0$.\n\nTo get special characters like \\(\\pi\\) (or other Greek letters), precede their name (or sometimes a code) with a backslash: $\\pi$. There are a number of special characters like this, which you can find in cheatsheets like this one.\nBold characters, which you might use to denote vectors, can be rendered using \\mathbf:\n\n\\(\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\\)\n\n\n$\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i$\n\nFractions can be displayed using \\frac{}{}, where the first bracket encloses the numerator and the second the denominator, as in\n\n\\(\\frac{1}{2}\\)\n\n\n$\\frac{1}{2}$"
   },
   {
-    "objectID": "tutorials/latex-notebook.html#displaying-equations",
-    "href": "tutorials/latex-notebook.html#displaying-equations",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "objectID": "tutorials/quarto.html#displaying-equations",
+    "href": "tutorials/quarto.html#displaying-equations",
+    "title": "Quarto",
     "section": "Displaying Equations",
     "text": "Displaying Equations\nTo place equations or other mathematics on their own line(s), enclose the entire block in two dollar signs $$. For example, the prior dot-product definition could be displayed as \\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\n\\] using\n$$\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i \\times b_i\n$$\nDisplaying equations on their own line(s) can improve the spacing of symbols like sums (as above) or fractions: compare the inline\n\n\\(x &lt; \\frac{1}{2}\\)\n\nto \\[\nx &lt; \\frac{1}{2}.\n\\]\nTo display multiple related lines in a single block, there are two environments of note. The first will center all of the equations, and is obtained by enclosing the equations in \\begin{gather} and \\end{gather}. Each line should be separated with \\\\:\n\\[\n\\begin{gather}\nx_1 + x_2 \\leq 5 \\\\\ny \\leq \\frac{1}{2}.\n\\end{gather}\n\\]\n$$\n\\begin{gather}\nx_1 + x_2 \\leq 5 \\\\\ny \\leq \\frac{1}{2}.\n\\end{gather}\n$$\nThe second environment will let you align the equations as you wish instead of automatically centering them, and is used by enclosing the equations with \\begin{align} and \\end{align}, with an ampersand & in front of the characters which will be used on each line to align the equations:\n\\[\n\\begin{align}\nx_1 + x_2 &\\leq 5 \\\\\ny &\\leq \\frac{1}{2}.\n\\end{align}\n\\]\n$$\n\\begin{align}\nx_1 + x_2 &\\leq 5 \\\\\ny &\\leq \\frac{1}{2}.\n\\end{align}\n$$"
   },
   {
-    "objectID": "tutorials/latex-notebook.html#sizing-parentheses-or-brackets",
-    "href": "tutorials/latex-notebook.html#sizing-parentheses-or-brackets",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "objectID": "tutorials/quarto.html#sizing-parentheses-or-brackets",
+    "href": "tutorials/quarto.html#sizing-parentheses-or-brackets",
+    "title": "Quarto",
     "section": "Sizing Parentheses or Brackets",
     "text": "Sizing Parentheses or Brackets\nBy default, parentheses and brackets are sized for simple characters, but will look bad when used to surround fractions or sums, particularly when they are not used in-line: \\[\nx_n = (\\frac{1}{2})^n.\n\\] To make this look better, use \\left and \\right around the left and right parentheses or brackets: \\[\nx_n = \\left(\\frac{1}{2}\\right)^n\n\\]\n$$\nx_n = \\left(\\frac{1}{2}\\right)^n.\n$$\nThis is totally optional, but helps!"
   },
   {
-    "objectID": "tutorials/latex-notebook.html#using-latex-in-figures",
-    "href": "tutorials/latex-notebook.html#using-latex-in-figures",
-    "title": "Tutorial: Using LaTeX in Jupyter Notebooks",
+    "objectID": "tutorials/quarto.html#using-latex-in-figures",
+    "href": "tutorials/quarto.html#using-latex-in-figures",
+    "title": "Quarto",
     "section": "Using LaTeX in Figures",
-    "text": "Using LaTeX in Figures\nYou may want to use LaTeX in figures, for example if your \\(x\\)-axis should have a title like \\(x\\). To do this, load the LaTeXStrings package and precede the relevant LaTeX-formatted string (within in-line dollar signs $) with L, as in:\n\nusing Plots\nusing LaTeXStrings\n\nx = -2π:0.01:2π  \nplot(x, exp.(sin.(x)), xlabel=L\"$x$\", ylabel=L\"$e^{\\sin(x)}$\", legend=false)"
+    "text": "Using LaTeX in Figures\nYou may want to use LaTeX in figures, for example if your \\(x\\)-axis should have a title like \\(x\\). To do this, load the LaTeXStrings package and precede the relevant LaTeX-formatted string (within in-line dollar signs $) with L, as in:\n\nusing Plots\nusing LaTeXStrings\n\nx = (-2π):0.01:(2π)\nplot(x, exp.(sin.(x)); xlabel=L\"$x$\", ylabel=L\"$e^{\\sin(x)}$\", legend=false)"
   },
   {
-    "objectID": "faq.html",
-    "href": "faq.html",
-    "title": "FAQ",
+    "objectID": "tutorials/github.html",
+    "href": "tutorials/github.html",
+    "title": "GitHub Resources",
     "section": "",
-    "text": "This page is currently empty, because there are not yet any frequently asked questions!"
+    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
+  },
+  {
+    "objectID": "tutorials/github.html#helpful-resources",
+    "href": "tutorials/github.html#helpful-resources",
+    "title": "GitHub Resources",
+    "section": "",
+    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html",
+    "href": "slides/notebooks/shallow-lake.html",
+    "title": "Shallow Lake Problem",
+    "section": "",
+    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#introduction",
+    "href": "slides/notebooks/shallow-lake.html#introduction",
+    "title": "Shallow Lake Problem",
+    "section": "Introduction",
+    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "title": "Shallow Lake Problem",
+    "section": "The Shallow Lake Problem",
+    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "title": "Shallow Lake Problem",
+    "section": "Lake Problem Dynamics",
+    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+  },
+  {
+    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "title": "Shallow Lake Problem",
+    "section": "Simulating The Model Under Constant Inflows",
+    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
+    "href": "slides/lecture01-1.html#how-to-use-quotes",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use quotes",
+    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to show things incrementally",
+    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
+  },
+  {
+    "objectID": "slides/lecture01-1.html#how-to-use-columns",
+    "href": "slides/lecture01-1.html#how-to-use-columns",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use columns",
+    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "website.html",
+    "href": "website.html",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "website.html#quarto",
+    "href": "website.html#quarto",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
+  },
+  {
+    "objectID": "labs/lab01/solution.html",
+    "href": "labs/lab01/solution.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#setup",
+    "href": "labs/lab01/solution.html#setup",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#running-code",
+    "href": "labs/lab01/solution.html#running-code",
+    "title": "Lab 01",
+    "section": "2 Running Code",
+    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#rendering-the-document",
+    "href": "labs/lab01/solution.html#rendering-the-document",
+    "title": "Lab 01",
+    "section": "3 Rendering the Document",
+    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
+  },
+  {
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
   },
   {
     "objectID": "slides/lecture01-3.html#why-is-coding-important-for-data-science",
@@ -168,228 +350,11 @@
     "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
-    "href": "slides/lecture01-1.html#how-to-use-quotes",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use quotes",
-    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
-  },
-  {
-    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to show things incrementally",
-    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#how-to-use-columns",
-    "href": "slides/lecture01-1.html#how-to-use-columns",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use columns",
-    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
-  },
-  {
-    "objectID": "website.html",
-    "href": "website.html",
-    "title": "website",
+    "objectID": "faq.html",
+    "href": "faq.html",
+    "title": "FAQ",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "website.html#quarto",
-    "href": "website.html#quarto",
-    "title": "website",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "resources/markdown.html",
-    "href": "resources/markdown.html",
-    "title": "Markdown Resources",
-    "section": "",
-    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
-  },
-  {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
-  },
-  {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
-  },
-  {
-    "objectID": "labs/lab06/lab06.html",
-    "href": "labs/lab06/lab06.html",
-    "title": "Lab 06",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab08/lab08.html",
-    "href": "labs/lab08/lab08.html",
-    "title": "Lab 08",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab07/lab07.html",
-    "href": "labs/lab07/lab07.html",
-    "title": "Lab 07",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab05/lab05.html",
-    "href": "labs/lab05/lab05.html",
-    "title": "Lab 05",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab03/lab03.html",
-    "href": "labs/lab03/lab03.html",
-    "title": "Lab 03",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab04/lab04.html",
-    "href": "labs/lab04/lab04.html",
-    "title": "Lab 04",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab02/lab02.html",
-    "href": "labs/lab02/lab02.html",
-    "title": "Lab 02",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab09/lab09.html",
-    "href": "labs/lab09/lab09.html",
-    "title": "Lab 09",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab01/lab01.html",
-    "href": "labs/lab01/lab01.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "resources/github.html",
-    "href": "resources/github.html",
-    "title": "GitHub Resources",
-    "section": "",
-    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
-  },
-  {
-    "objectID": "resources/julia.html",
-    "href": "resources/julia.html",
-    "title": "Julia Resources",
-    "section": "",
-    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "",
-    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Course Information",
-    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
-  },
-  {
-    "objectID": "index.html#software-tools",
-    "href": "index.html#software-tools",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#how-to-use-quotes",
-    "href": "slides/lecture01-2.html#how-to-use-quotes",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
-    "section": "How to use quotes",
-    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-2.html#how-to-show-things-incrementally",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
-    "section": "How to show things incrementally",
-    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#how-to-use-columns",
-    "href": "slides/lecture01-2.html#how-to-use-columns",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
-    "section": "How to use columns",
-    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html",
-    "href": "slides/notebooks/shallow-lake.html",
-    "title": "Shallow Lake Problem",
-    "section": "",
-    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#introduction",
-    "href": "slides/notebooks/shallow-lake.html#introduction",
-    "title": "Shallow Lake Problem",
-    "section": "Introduction",
-    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "title": "Shallow Lake Problem",
-    "section": "The Shallow Lake Problem",
-    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "title": "Shallow Lake Problem",
-    "section": "Lake Problem Dynamics",
-    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "title": "Shallow Lake Problem",
-    "section": "Simulating The Model Under Constant Inflows",
-    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
+    "text": "This page is currently empty, because there are not yet any frequently asked questions!"
   },
   {
     "objectID": "tutorials/julia-basics.html",
@@ -411,6 +376,13 @@
     "title": "Tutorial: Julia Basics",
     "section": "Getting Help",
     "text": "Getting Help\n\nCheck out the official documentation for Julia: https://docs.julialang.org/en/v1/.\nStack Overflow is a commonly-used resource for programming assistance.\nAt a code prompt or in the REPL, you can always type ?functionname to get help."
+  },
+  {
+    "objectID": "tutorials/julia-basics.html#further-resources",
+    "href": "tutorials/julia-basics.html#further-resources",
+    "title": "Tutorial: Julia Basics",
+    "section": "Further Resources",
+    "text": "Further Resources\n\nSetting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
   },
   {
     "objectID": "tutorials/julia-basics.html#comments",
@@ -520,15 +492,43 @@
   {
     "objectID": "setup.html",
     "href": "setup.html",
-    "title": "First Time: Tools Setup",
+    "title": "Setting Up Your Computer",
     "section": "",
-    "text": "Getting set up for this course requires the following steps, if you haven’t done them for a previous course, club, or project:"
+    "text": "Getting set up for this course requires the following steps. If you are an experienced programmer, you are free to follow your own workflow to set up these tools. You will absolutely need Quarto, GitHub, and Julia. If you are not an experienced programmer, the following steps are not the only way to get these tools set up, but they are a very good way.\nIf you install course tools using steps other than the ones provided on this page, be aware that your instructors may be able to provide you with only limited support."
   },
   {
-    "objectID": "setup.html#instructions",
-    "href": "setup.html#instructions",
-    "title": "First Time: Tools Setup",
-    "section": "Instructions",
-    "text": "Instructions\n\nInstall Git\nIf you have already installed git, you don’t need to worry about this section. If you haven’t, download the appropriate version for your operating system.\n\n\n\n\n\n\nMac Versions\n\n\n\nIf you have a Mac, be aware if you have an Apple Silicon (M1 or M2) Mac or an Intel Mac. Many of the installations you will go through in this exercise have different versions for each processor type, and the program may not work properly if you still the wrong version. There’s nothing that can’t be undone, but it’s easier to be install the correct version first!\n\n\n\n\nInstall Julia\nI recommend installing Julia using the juliaup tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the JuliaUp GitHub repository, but we will summarize them here.\n\nInstalling Juliaup on Windows\nIf your computer uses Windows, you can install Juliaup from the Windows Store.\n\n\nInstalling Juliaup on MacOS\nIf you have a Mac, open a terminal (such as the Terminal app) and enter:\ncurl -fsSL https://install.julialang.org | sh\n\n\nInstalling Julia 1.8.5\nOnce you install Juliaup, install Julia version 1.8.5 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:\njulia add 1.8.5\njulia default 1.8.5\nThis will install Julia 1.8.5 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can follow the Juliaup instructions.\n\n\n\nInstall and Set Up VS Code\nYou can skip this section if you already have a coding environment you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow this guide for setting up VS Code with Julia.\n\nInstalling VS Code\nYou can download it here; open the downloaded file to install.\n\n\nInstall the Julia Extension\n\nOpen VS Code.\nSelect View and click Extensions to open the Extension View. This view can also be found on the sidebar with the following logo:\n.\nSearch for julia in the search box. Click the green install button.\nRestart VS Code once the installation is complete. It should automatically find your Julia installation; talk to Vivek if not.\n\nThe Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the “Command Palette” (View -&gt; Command Palette, or CTRL/CMD+SHIFT+P) and typing “REPL” to bring up “Julia: Start REPL”. You can also create *.jl files to write Julia code and execute line by line. However, we will primarily use Jupyter notebooks in this class, but this might be useful for testing code or for your project.\n\n\nInstall the Jupyter Notebook Extension\nThe Jupyter Notebook extension allows you to export a Jupyter notebook to PDF or to HTML and then to PDF.\n\n\n\n\n\n\nPDF Export for Gradescope\n\n\n\nYou will need to export every notebook to a PDF for submission to Gradescope. Direct export to PDF requires a LaTeX installation. If you would like to go this route, please look at the LaTeX installation instructions for your operating system.\nOtherwise, exporting to HTML and then using your browser to save the resulting page to a PDF is a perfect solution.\n\n\nFollow the same instructions as above, but search for jupyter and install the Jupyter extension. Restart VS Code.\n\n\n\nSet Up GitHub\n\nCreate GitHub Account\nIf you already have a GitHub account, you can use that for this course and do not need to create a new account.\nOtherwise, create an account. It doesn’t have to be linked to your Cornell email or use your Cornell NetID.\nFor labs and homework assignments (we will work on Lab 1 in class on Friday and Homework 1 is available), you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.\nWhen application exercises require notebook use (which is the case here, but will not always be), you can follow the workflow in these next steps, and will be prompted to do so in the instructions for that exercise.\nYou can do almost everything that you will need to do for this course with GitHub directly through VS Code, or you can use the GitHub UI or the Terminal. We will assume in these instructions that you will just work through VS Code."
+    "objectID": "setup.html#install-git",
+    "href": "setup.html#install-git",
+    "title": "Setting Up Your Computer",
+    "section": "Install Git",
+    "text": "Install Git\nIf you have already installed git, you don’t need to worry about this section. If you haven’t, download the appropriate version for your operating system. git is also available through package managers like homebrew (if you know what this means, you probably have git installed already)."
+  },
+  {
+    "objectID": "setup.html#install-julia",
+    "href": "setup.html#install-julia",
+    "title": "Setting Up Your Computer",
+    "section": "Install Julia",
+    "text": "Install Julia\nI recommend installing Julia using the juliaup tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the JuliaUp GitHub repository, but we will summarize them here.\n\nInstalling Juliaup on Windows\nIf your computer uses Windows, you can install Juliaup from the Windows Store.\n\n\nInstalling Juliaup on MacOS\nIf you have a Mac, open a terminal (such as the Terminal app) and enter:\ncurl -fsSL https://install.julialang.org | sh\n\n\nInstalling Julia 1.9\nOnce you install Juliaup, install Julia version 1.9 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:\njulia add 1.9\njulia default 1.9\nThis will install Julia 1.9 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can follow the Juliaup instructions.\n\n\nMore Resources\nSee this tutorial for more information on using Julia."
+  },
+  {
+    "objectID": "setup.html#install-and-set-up-vs-code",
+    "href": "setup.html#install-and-set-up-vs-code",
+    "title": "Setting Up Your Computer",
+    "section": "Install and Set Up VS Code",
+    "text": "Install and Set Up VS Code\nYou can skip this section if you already have an IDE you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow this guide for setting up VS Code with Julia.\n\nInstalling VS Code\nYou can download it here; open the downloaded file to install. Make sure to select the correct version for your operating system. If you have a recent Apple mac, make sure to check whether you have an Intel or Apple chip.\n\n\nInstall the Julia Extension\n\nOpen VS Code.\nSelect View and click Extensions to open the Extension View.\nSearch for julia in the search box. Click the green install button.\nRestart VS Code once the installation is complete. It should automatically find your Julia installation; reach out if not.\n\nThe Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the “Command Palette” (View -&gt; Command Palette, or CTRL/CMD+SHIFT+P) and typing “REPL” to bring up “Julia: Start REPL”. You can also create .jl and .qmd files to write Julia code and execute line by line.\n\n\nMore Resources\nSee this tutorial for more information on using Julia."
+  },
+  {
+    "objectID": "setup.html#set-up-github",
+    "href": "setup.html#set-up-github",
+    "title": "Setting Up Your Computer",
+    "section": "Set Up GitHub",
+    "text": "Set Up GitHub\n\nCreate GitHub Account\nIf you already have a GitHub account, you can use that for this course and do not need to create a new account.\nOtherwise, create an account. It doesn’t have to be linked to your Cornell email or use your Cornell NetID.\nFor labs and projects, you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.\n\n\nUse GitHub\nYou can do almost everything that you will need to do for this course with GitHub directly through VS Code. The GitHub desktop app is also great, or alternatively you may work directly through the terminal if you have prior experience.\n\n\nMore Resources\nSee this tutorial for more information on using GitHub."
+  },
+  {
+    "objectID": "setup.html#set-up-quarto",
+    "href": "setup.html#set-up-quarto",
+    "title": "Setting Up Your Computer",
+    "section": "Set up Quarto",
+    "text": "Set up Quarto\nQuarto combines the best of Jupyter notebooks and R Markdown to create a document format that is ideal for conducting and communicating data science. We will use Quarto to create and share our work in this course; this website is also built using Quarto.||\n\nInstall Quarto\nFollow the directions at https://quarto.org/docs/get-started/ to install Quarto. Be sure to ensure that you have the right version for your operating system.\n\n\nInstall the Quarto Extension for VS Code\nUnder “Step 2”, click on the VS Code icon.\n\n\nMore Resources\nSee this tutorial for more information on using Quarto."
   }
 ]

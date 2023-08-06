@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CEVE 543 - Fall 2023 - First Time: Tools Setup</title>
+<title>CEVE 543 - Fall 2023 - Setting Up Your Computer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,9 +73,8 @@ window.MathJax = {
 </script>
 
 
-<meta property="og:title" content="CEVE 543 - Fall 2023 - First Time: Tools Setup">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - Setting Up Your Computer">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://ceve543.github.io/figures/vs-code-extensions.png">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
 
@@ -88,7 +87,7 @@ window.MathJax = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setup.html">Tools Setup</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setup.html">Software Installation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -141,7 +140,7 @@ window.MathJax = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Tools Setup</span></a>
+ <span class="menu-text">Software Installation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -173,37 +172,14 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/latex-notebook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math in Notebooks</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./resources/julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Julia</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./resources/github.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Markdown</span></a>
+  <a href="./tutorials/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
   </div>
 </li>
       </ul>
@@ -218,12 +194,31 @@ window.MathJax = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#install-git" id="toc-install-git" class="nav-link active" data-scroll-target="#install-git">Install Git</a></li>
+  <li><a href="#install-julia" id="toc-install-julia" class="nav-link" data-scroll-target="#install-julia">Install Julia</a>
   <ul class="collapse">
-  <li><a href="#install-git" id="toc-install-git" class="nav-link" data-scroll-target="#install-git">Install Git</a></li>
-  <li><a href="#sec-install-julia" id="toc-sec-install-julia" class="nav-link" data-scroll-target="#sec-install-julia">Install Julia</a></li>
-  <li><a href="#sec-install-code" id="toc-sec-install-code" class="nav-link" data-scroll-target="#sec-install-code">Install and Set Up VS Code</a></li>
-  <li><a href="#sec-github" id="toc-sec-github" class="nav-link" data-scroll-target="#sec-github">Set Up GitHub</a></li>
+  <li><a href="#installing-juliaup-on-windows" id="toc-installing-juliaup-on-windows" class="nav-link" data-scroll-target="#installing-juliaup-on-windows">Installing Juliaup on Windows</a></li>
+  <li><a href="#installing-juliaup-on-macos" id="toc-installing-juliaup-on-macos" class="nav-link" data-scroll-target="#installing-juliaup-on-macos">Installing Juliaup on MacOS</a></li>
+  <li><a href="#installing-julia-1.9" id="toc-installing-julia-1.9" class="nav-link" data-scroll-target="#installing-julia-1.9">Installing Julia 1.9</a></li>
+  <li><a href="#more-resources" id="toc-more-resources" class="nav-link" data-scroll-target="#more-resources">More Resources</a></li>
+  </ul></li>
+  <li><a href="#install-and-set-up-vs-code" id="toc-install-and-set-up-vs-code" class="nav-link" data-scroll-target="#install-and-set-up-vs-code">Install and Set Up VS Code</a>
+  <ul class="collapse">
+  <li><a href="#installing-vs-code" id="toc-installing-vs-code" class="nav-link" data-scroll-target="#installing-vs-code">Installing VS Code</a></li>
+  <li><a href="#install-the-julia-extension" id="toc-install-the-julia-extension" class="nav-link" data-scroll-target="#install-the-julia-extension">Install the Julia Extension</a></li>
+  <li><a href="#more-resources-1" id="toc-more-resources-1" class="nav-link" data-scroll-target="#more-resources-1">More Resources</a></li>
+  </ul></li>
+  <li><a href="#set-up-github" id="toc-set-up-github" class="nav-link" data-scroll-target="#set-up-github">Set Up GitHub</a>
+  <ul class="collapse">
+  <li><a href="#create-github-account" id="toc-create-github-account" class="nav-link" data-scroll-target="#create-github-account">Create GitHub Account</a></li>
+  <li><a href="#use-github" id="toc-use-github" class="nav-link" data-scroll-target="#use-github">Use GitHub</a></li>
+  <li><a href="#more-resources-2" id="toc-more-resources-2" class="nav-link" data-scroll-target="#more-resources-2">More Resources</a></li>
+  </ul></li>
+  <li><a href="#set-up-quarto" id="toc-set-up-quarto" class="nav-link" data-scroll-target="#set-up-quarto">Set up Quarto</a>
+  <ul class="collapse">
+  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
+  <li><a href="#install-the-quarto-extension-for-vs-code" id="toc-install-the-quarto-extension-for-vs-code" class="nav-link" data-scroll-target="#install-the-quarto-extension-for-vs-code">Install the Quarto Extension for VS Code</a></li>
+  <li><a href="#more-resources-3" id="toc-more-resources-3" class="nav-link" data-scroll-target="#more-resources-3">More Resources</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -233,7 +228,7 @@ window.MathJax = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">First Time: Tools Setup</h1>
+<h1 class="title">Setting Up Your Computer</h1>
 </div>
 
 
@@ -248,102 +243,91 @@ window.MathJax = {
 
 </header>
 
-<p>Getting set up for this course requires the following steps, if you haven’t done them for a previous course, club, or project:</p>
-<ol type="1">
-<li><a href="https://git-scm.com/downloads">Install <code>git</code></a> on your machine if necessary.</li>
-<li><a href="#sec-install-julia">Install Julia</a> using the <code>juliaup</code> tool.</li>
-<li><a href="#sec-install-code">Install and set up VS Code</a> if you don’t already have an editor you’d like to use. VS Code is an editor of choice for Julia, as it as a rich and well-supported Julia extension. If you have a different coding environment, please find instructions for how to set it up to edit Julia.</li>
-<li><a href="#sec-github">Set up a GitHub account</a>.</li>
-</ol>
-<section id="instructions" class="level2">
-<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
-<section id="install-git" class="level3">
-<h3 class="anchored" data-anchor-id="install-git">Install Git</h3>
-<p>If you have already installed <code>git</code>, you don’t need to worry about this section. If you haven’t, <a href="https://git-scm.com/downloads">download</a> the appropriate version for your operating system.</p>
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Mac Versions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you have a Mac, be aware if you have an Apple Silicon (M1 or M2) Mac or an Intel Mac. Many of the installations you will go through in this exercise have different versions for each processor type, and the program may not work properly if you still the wrong version. There’s nothing that can’t be undone, but it’s easier to be install the correct version first!</p>
-</div>
-</div>
+<p>Getting set up for this course requires the following steps. If you are an experienced programmer, you are free to follow your own workflow to set up these tools. You will absolutely need Quarto, GitHub, and Julia. If you are not an experienced programmer, the following steps are not the <em>only</em> way to get these tools set up, but they are a <em>very good</em> way.</p>
+<p>If you install course tools using steps other than the ones provided on this page, be aware that your instructors may be able to provide you with only limited support.</p>
+<section id="install-git" class="level2">
+<h2 class="anchored" data-anchor-id="install-git">Install Git</h2>
+<p>If you have already installed <code>git</code>, you don’t need to worry about this section. If you haven’t, <a href="https://git-scm.com/downloads">download</a> the appropriate version for your operating system. <code>git</code> is also available through package managers like homebrew (if you know what this means, you probably have <code>git</code> installed already).</p>
 </section>
-<section id="sec-install-julia" class="level3">
-<h3 class="anchored" data-anchor-id="sec-install-julia">Install Julia</h3>
+<section id="install-julia" class="level2">
+<h2 class="anchored" data-anchor-id="install-julia">Install Julia</h2>
 <p>I recommend installing Julia using the <code>juliaup</code> tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the <a href="https://github.com/JuliaLang/juliaup">JuliaUp GitHub repository</a>, but we will summarize them here.</p>
-<section id="installing-juliaup-on-windows" class="level4">
-<h4 class="anchored" data-anchor-id="installing-juliaup-on-windows">Installing Juliaup on Windows</h4>
+<section id="installing-juliaup-on-windows" class="level3">
+<h3 class="anchored" data-anchor-id="installing-juliaup-on-windows">Installing Juliaup on Windows</h3>
 <p>If your computer uses Windows, you can install Juliaup <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">from the Windows Store</a>.</p>
 </section>
-<section id="installing-juliaup-on-macos" class="level4">
-<h4 class="anchored" data-anchor-id="installing-juliaup-on-macos">Installing Juliaup on MacOS</h4>
+<section id="installing-juliaup-on-macos" class="level3">
+<h3 class="anchored" data-anchor-id="installing-juliaup-on-macos">Installing Juliaup on MacOS</h3>
 <p>If you have a Mac, open a terminal (such as the Terminal app) and enter:</p>
 <pre class="shell"><code>curl -fsSL https://install.julialang.org | sh</code></pre>
 </section>
-<section id="installing-julia-1.8.5" class="level4">
-<h4 class="anchored" data-anchor-id="installing-julia-1.8.5">Installing Julia 1.8.5</h4>
-<p>Once you install Juliaup, install Julia version 1.8.5 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:</p>
-<pre class="shell"><code>julia add 1.8.5
-julia default 1.8.5</code></pre>
-<p>This will install Julia 1.8.5 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can <a href="https://github.com/JuliaLang/juliaup#using-juliaup">follow the Juliaup instructions</a>.</p>
+<section id="installing-julia-1.9" class="level3">
+<h3 class="anchored" data-anchor-id="installing-julia-1.9">Installing Julia 1.9</h3>
+<p>Once you install Juliaup, install Julia version 1.9 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:</p>
+<pre class="shell"><code>julia add 1.9
+julia default 1.9</code></pre>
+<p>This will install Julia 1.9 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can <a href="https://github.com/JuliaLang/juliaup#using-juliaup">follow the Juliaup instructions</a>.</p>
+</section>
+<section id="more-resources" class="level3">
+<h3 class="anchored" data-anchor-id="more-resources">More Resources</h3>
+<p>See <a href="./tutorials/julia-basics.html">this tutorial</a> for more information on using Julia.</p>
 </section>
 </section>
-<section id="sec-install-code" class="level3">
-<h3 class="anchored" data-anchor-id="sec-install-code">Install and Set Up VS Code</h3>
-<p>You can skip this section if you already have a coding environment you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow <a href="https://www.julia-vscode.org/docs/dev/gettingstarted/">this guide for setting up VS Code with Julia</a>.</p>
-<section id="installing-vs-code" class="level4">
-<h4 class="anchored" data-anchor-id="installing-vs-code">Installing VS Code</h4>
-<p>You can download it <a href="https://code.visualstudio.com/download">here</a>; open the downloaded file to install.</p>
+<section id="install-and-set-up-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-set-up-vs-code">Install and Set Up VS Code</h2>
+<p>You can skip this section if you already have an IDE you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow <a href="https://www.julia-vscode.org/docs/dev/gettingstarted/">this guide for setting up VS Code with Julia</a>.</p>
+<section id="installing-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="installing-vs-code">Installing VS Code</h3>
+<p>You can download it <a href="https://code.visualstudio.com/download">here</a>; open the downloaded file to install. Make sure to select the correct version for your operating system. If you have a recent Apple mac, make sure to check whether you have an Intel or Apple chip.</p>
 </section>
-<section id="install-the-julia-extension" class="level4">
-<h4 class="anchored" data-anchor-id="install-the-julia-extension">Install the Julia Extension</h4>
+<section id="install-the-julia-extension" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-julia-extension">Install the Julia Extension</h3>
 <ol type="1">
-<li><p>Open VS Code.</p></li>
-<li><p>Select View and click Extensions to open the Extension View. This view can also be found on the sidebar with the following logo:</p>
-<p><img src="figures/vs-code-extensions.png" class="img-fluid" alt="VS Code Extensions View Logo">.</p></li>
-<li><p>Search for <code>julia</code> in the search box. Click the green install button.</p></li>
-<li><p>Restart VS Code once the installation is complete. It should automatically find your Julia installation; talk to Vivek if not.</p></li>
+<li>Open VS Code.</li>
+<li>Select View and click Extensions to open the Extension View.</li>
+<li>Search for <code>julia</code> in the search box. Click the green install button.</li>
+<li>Restart VS Code once the installation is complete. It should automatically find your Julia installation; reach out if not.</li>
 </ol>
-<p>The Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the “Command Palette” (View -&gt; Command Palette, or CTRL/CMD+SHIFT+P) and typing “REPL” to bring up “Julia: Start REPL”. You can also create <code>*.jl</code> files to write Julia code and execute line by line. However, we will primarily use Jupyter notebooks in this class, but this might be useful for testing code or for your project.</p>
+<p>The Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the “Command Palette” (View -&gt; Command Palette, or CTRL/CMD+SHIFT+P) and typing “REPL” to bring up “Julia: Start REPL”. You can also create <code>.jl</code> and <code>.qmd</code> files to write Julia code and execute line by line.</p>
 </section>
-<section id="install-the-jupyter-notebook-extension" class="level4">
-<h4 class="anchored" data-anchor-id="install-the-jupyter-notebook-extension">Install the Jupyter Notebook Extension</h4>
-<p>The Jupyter Notebook extension allows you to export a Jupyter notebook to PDF or to HTML and then to PDF.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-PDF Export for Gradescope
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will need to export every notebook to a PDF for submission to Gradescope. Direct export to PDF requires a LaTeX installation. If you would like to go this route, please look at <a href="https://www.latex-project.org/get/">the LaTeX installation instructions for your operating system</a>.</p>
-<p>Otherwise, exporting to HTML and then using your browser to save the resulting page to a PDF is a perfect solution.</p>
-</div>
-</div>
-<p>Follow the same instructions as above, but search for <code>jupyter</code> and install the Jupyter extension. Restart VS Code.</p>
+<section id="more-resources-1" class="level3">
+<h3 class="anchored" data-anchor-id="more-resources-1">More Resources</h3>
+<p>See <a href="tutorials/julia.qmd">this tutorial</a> for more information on using Julia.</p>
 </section>
 </section>
-<section id="sec-github" class="level3">
-<h3 class="anchored" data-anchor-id="sec-github">Set Up GitHub</h3>
-<section id="create-github-account" class="level4">
-<h4 class="anchored" data-anchor-id="create-github-account">Create GitHub Account</h4>
+<section id="set-up-github" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-github">Set Up GitHub</h2>
+<section id="create-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="create-github-account">Create GitHub Account</h3>
 <p>If you already have a GitHub account, you can use that for this course and do not need to create a new account.</p>
 <p>Otherwise, <a href="https://github.com/join">create an account</a>. It doesn’t have to be linked to your Cornell email or use your Cornell NetID.</p>
-<p>For labs and homework assignments (we will work on Lab 1 in class on Friday and Homework 1 is available), you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.</p>
-<p>When application exercises require notebook use (which is the case here, but will not always be), you can follow the workflow in these next steps, and will be prompted to do so in the instructions for that exercise.</p>
-<p>You can do almost everything that you will need to do for this course with GitHub directly through VS Code, or you can use the GitHub UI or the Terminal. We will assume in these instructions that you will just work through VS Code.</p>
-
-
+<p>For labs and projects, you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.</p>
 </section>
+<section id="use-github" class="level3">
+<h3 class="anchored" data-anchor-id="use-github">Use GitHub</h3>
+<p>You can do almost everything that you will need to do for this course with GitHub directly through VS Code. The GitHub <a href="https://desktop.github.com/">desktop app</a> is also great, or alternatively you may work directly through the terminal if you have prior experience.</p>
+</section>
+<section id="more-resources-2" class="level3">
+<h3 class="anchored" data-anchor-id="more-resources-2">More Resources</h3>
+<p>See <a href="./tutorials/github.html">this tutorial</a> for more information on using GitHub.</p>
+</section>
+</section>
+<section id="set-up-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-quarto">Set up Quarto</h2>
+<p>Quarto combines the best of Jupyter notebooks and R Markdown to create a document format that is ideal for conducting and communicating data science. We will use Quarto to create and share our work in this course; this website is also built using Quarto.||</p>
+<section id="install-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="install-quarto">Install Quarto</h3>
+<p>Follow the directions at https://quarto.org/docs/get-started/ to install Quarto. Be sure to ensure that you have the right version for your operating system.</p>
+</section>
+<section id="install-the-quarto-extension-for-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-quarto-extension-for-vs-code">Install the Quarto Extension for VS Code</h3>
+<p>Under “Step 2”, click on the VS Code icon.</p>
+</section>
+<section id="more-resources-3" class="level3">
+<h3 class="anchored" data-anchor-id="more-resources-3">More Resources</h3>
+<p>See <a href="./tutorials/quarto.html">this tutorial</a> for more information on using Quarto.</p>
+
+
 </section>
 </section>
 
