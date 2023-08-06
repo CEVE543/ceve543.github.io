@@ -15,6 +15,18 @@ This tutorial will give some examples of basic Julia commands and syntax.
 * [Stack Overflow](https://stackoverflow.com) is a commonly-used resource for programming assistance.
 * At a code prompt or in the REPL, you can always type `?functionname` to get help.
 
+## Further Resources
+
+* [Setting up VS Code and Julia (Youtube)](https://www.youtube.com/watch?v=KesuPOlBB_o)
+* [Julia Documentation](https://docs.julialang.org/en/v1/)
+* [JuliaAcademy](https://juliaacademy.com/courses): Check out the "Introduction to Julia (for programmers)" or "Julia Programming for Nervous Beginners" courses
+* [QuantEcon MATLAB-Python-Julia cheatsheet](https://cheatsheets.quantecon.org/)
+* [FastTrack to Julia cheatsheet](https://juliadocs.github.io/Julia-Cheat-Sheet/)
+* [Plotting cheatsheet](https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf)
+* [Introduction to Computational Thinking](https://computationalthinking.mit.edu/Spring21/): a great Julia based course at MIT!
+* [Comprehensive Julia Tutorials](https://www.youtube.com/playlist?list=PLCXbkShHt01seTlnlVg6O7f6jKGTguFi7): YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language.
+
+
 ## Comments
 Comments hide statements from the interpreter or compiler. It's a good idea to liberally comment your code so readers  (including yourself!) know why your code is structured and written the way it is.
 Single-line comments in Julia are preceded with a `#`. Multi-line comments are preceded with `#=` and ended with `=#`

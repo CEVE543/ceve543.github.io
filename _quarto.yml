@@ -47,7 +47,7 @@ website:
         text: Schedule
       - href: syllabus.qmd
         text: Syllabus
-      - text: "Tools Setup"
+      - text: "Software Installation"
         href: setup.qmd
       - text: "FAQ"
         href: faq.qmd
@@ -57,16 +57,10 @@ website:
             text: Julia Basics
           - href: tutorials/julia-plots.qmd
             text: Making Plots
-          - href: tutorials/latex-notebook.qmd
-            text: Math in Notebooks
-      - section: Resources
-        contents:
-          - href: resources/julia.qmd
-            text: Julia
-          - href: resources/github.qmd
+          - href: tutorials/github.qmd
             text: GitHub
-          - href: resources/markdown.qmd
-            text: Markdown
+          - href: tutorials/quarto.qmd
+            text: Quarto
 
 
 format:

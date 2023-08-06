@@ -1,24 +1,27 @@
 ---
-title: "Tutorial: Using LaTeX in Jupyter Notebooks"
-execute:
-    error: true
-    warning: true
+title: "Quarto"
 ---
 
-This tutorial was inspired and draws from [Justin Bois' tutorial](http://chebe163.caltech.edu/2018w/handouts/intro_to_latex.html).
 
 ```{julia}
 #| output: false
 #| echo: false
-import Pkg
+using Pkg: Pkg
 Pkg.activate(@__DIR__)
 Pkg.instantiate()
 ```
 
-
 ## Overview
 
 In this tutorial, you will learn how to typeset mathematics and equations in Jupyter notebooks using LaTeX. 
+
+## Further Resourcesw
+
+* [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+* [GitHub Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax
+* [LaTeX Cheatsheet](https://ctan.math.washington.edu/tex-archive/info/undergradmath/undergradmath.pdf)
+
+This tutorial was inspired and draws from [Justin Bois' tutorial](http://chebe163.caltech.edu/2018w/handouts/intro_to_latex.html).
 
 ## Inline Mathematics
 
@@ -145,6 +148,6 @@ You may want to use LaTeX in figures, for example if your $x$-axis should have a
 using Plots
 using LaTeXStrings
 
-x = -2π:0.01:2π  
-plot(x, exp.(sin.(x)), xlabel=L"$x$", ylabel=L"$e^{\sin(x)}$", legend=false)
+x = (-2π):0.01:(2π)
+plot(x, exp.(sin.(x)); xlabel=L"$x$", ylabel=L"$e^{\sin(x)}$", legend=false)
 ```

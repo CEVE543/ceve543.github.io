@@ -1,96 +1,112 @@
 ---
-title: "First Time: Tools Setup"
+title: "Setting Up Your Computer"
 ---
 
-Getting set up for this course requires the following steps, if you haven't done them for a previous course, club, or project:
+Getting set up for this course requires the following steps.
+If you are an experienced programmer, you are free to follow your own workflow to set up these tools.
+You will absolutely need Quarto, GitHub, and Julia.
+If you are not an experienced programmer, the following steps are not the _only_ way to get these tools set up, but they are a _very good_ way.
 
-1. [Install `git`](https://git-scm.com/downloads) on your machine if necessary. 
-2. [Install Julia](#sec-install-julia) using the `juliaup` tool.
-3. [Install and set up VS Code](#sec-install-code) if you don't already have an editor you'd like to use. VS Code is an editor of choice for Julia, as it as a rich and well-supported Julia extension. If you have a different coding environment, please find instructions for how to set it up to edit Julia.
-4. [Set up a GitHub account](#sec-github).
+If you install course tools using steps other than the ones provided on this page, be aware that your instructors may be able to provide you with only limited support.
 
-## Instructions
+## Install Git
 
-### Install Git
+If you have already installed `git`, you don't need to worry about this section.
+If you haven't, [download](https://git-scm.com/downloads) the appropriate version for your operating system.
+`git` is also available through package managers like homebrew (if you know what this means, you probably have `git` installed already).
 
-If you have already installed `git`, you don't need to worry about this section. If you haven't, [download](https://git-scm.com/downloads) the appropriate version for your operating system.
+## Install Julia
 
-::: {.callout-warning}
-## Mac Versions
+I recommend installing Julia using the `juliaup` tool, which will let you easily manage versions in the future and works seamlessly with VS Code.
+The instructions can be found at the [JuliaUp GitHub repository](https://github.com/JuliaLang/juliaup), but we will summarize them here.
 
-If you have a Mac, be aware if you have an Apple Silicon (M1 or M2) Mac or an Intel Mac. Many of the installations you will go through in this exercise have different versions for each processor type, and the program may not work properly if you still the wrong version. There's nothing that can't be undone, but it's easier to be install the correct version first!
-:::
-
-### Install Julia {#sec-install-julia}
-
-I recommend installing Julia using the `juliaup` tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the [JuliaUp GitHub repository](https://github.com/JuliaLang/juliaup), but we will summarize them here.
-
-#### Installing Juliaup on Windows
+### Installing Juliaup on Windows
 
 If your computer uses Windows, you can install Juliaup [from the Windows Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
 
-#### Installing Juliaup on MacOS
+### Installing Juliaup on MacOS
 
 If you have a Mac, open a terminal (such as the Terminal app) and enter:
 ```shell
 curl -fsSL https://install.julialang.org | sh
 ```
 
-#### Installing Julia 1.8.5
+### Installing Julia 1.9
 
-Once you install Juliaup, install Julia version 1.8.5 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:
+Once you install Juliaup, install Julia version 1.9 by opening a terminal (in MacOS or Linux) or the command line (in Windows) and entering:
 ```shell
-julia add 1.8.5
-julia default 1.8.5
+julia add 1.9
+julia default 1.9
 ```
 
-This will install Julia 1.8.5 and make it the default version, which should maximize package compatibility throughout this course. Going forward, if you want to add new versions or change the default, you can [follow the Juliaup instructions](https://github.com/JuliaLang/juliaup#using-juliaup).
+This will install Julia 1.9 and make it the default version, which should maximize package compatibility throughout this course.
+Going forward, if you want to add new versions or change the default, you can [follow the Juliaup instructions](https://github.com/JuliaLang/juliaup#using-juliaup).
 
+### More Resources
 
-### Install and Set Up VS Code {#sec-install-code}
+See [this tutorial](tutorials/julia-basics.qmd) for more information on using Julia.
 
-You can skip this section if you already have a coding environment you like; just set it up to work with Julia. Otherwise, VS Code is as close to an officially supported editor for Julia as you can get. We will follow [this guide for setting up VS Code with Julia](https://www.julia-vscode.org/docs/dev/gettingstarted/).
+## Install and Set Up VS Code
 
-#### Installing VS Code
+You can skip this section if you already have an IDE you like; just set it up to work with Julia.
+Otherwise, VS Code is as close to an officially supported editor for Julia as you can get.
+We will follow [this guide for setting up VS Code with Julia](https://www.julia-vscode.org/docs/dev/gettingstarted/).
+
+### Installing VS Code
 
 You can download it [here](https://code.visualstudio.com/download); open the downloaded file to install.
+Make sure to select the correct version for your operating system.
+If you have a recent Apple mac, make sure to check whether you have an Intel or Apple chip.
 
-#### Install the Julia Extension
+### Install the Julia Extension
 
 1. Open VS Code. 
-2. Select View and click Extensions to open the Extension View. This view can also be found on the sidebar with the following logo: 
-
-    ![VS Code Extensions View Logo](figures/vs-code-extensions.png).
+2. Select View and click Extensions to open the Extension View. 
 3. Search for `julia` in the search box. Click the green install button.
-4. Restart VS Code once the installation is complete. It should automatically find your Julia installation; talk to Vivek if not.
+4. Restart VS Code once the installation is complete. It should automatically find your Julia installation; reach out if not.
 
-The Julia VS Code extension offers you some nice features. You can start a REPL (an interactive Julia coding environment) by opening the "Command Palette" (View -> Command Palette, or CTRL/CMD+SHIFT+P) and typing "REPL" to bring up "Julia: Start REPL". You can also create `*.jl` files to write Julia code and execute line by line. However, we will primarily use Jupyter notebooks in this class, but this might be useful for testing code or for your project.
+The Julia VS Code extension offers you some nice features.
+You can start a REPL (an interactive Julia coding environment) by opening the "Command Palette" (View -> Command Palette, or CTRL/CMD+SHIFT+P) and typing "REPL" to bring up "Julia: Start REPL". 
+You can also create `.jl` and `.qmd` files to write Julia code and execute line by line.
 
-#### Install the Jupyter Notebook Extension
+### More Resources
 
-The Jupyter Notebook extension allows you to export a Jupyter notebook to PDF or to HTML and then to PDF.
+See [this tutorial](tutorials/julia.qmd) for more information on using Julia.
 
-::: {.callout-tip}
-## PDF Export for Gradescope
+## Set Up GitHub
 
-You will need to export every notebook to a PDF for submission to Gradescope. Direct export to PDF requires a LaTeX installation. If you would like to go this route, please look at [the LaTeX installation instructions for your operating system](https://www.latex-project.org/get/).
-
-Otherwise, exporting to HTML and then using your browser to save the resulting page to a PDF is a perfect solution.
-:::
-
-Follow the same instructions as above, but search for `jupyter` and install the Jupyter extension. Restart VS Code.
-
-
-### Set Up GitHub {#sec-github}
-
-#### Create GitHub Account
+### Create GitHub Account
 
 If you already have a GitHub account, you can use that for this course and do not need to create a new account.
 
 Otherwise, [create an account](https://github.com/join). It doesn't have to be linked to your Cornell email or use your Cornell NetID.
 
-For labs and homework assignments (we will work on Lab 1 in class on Friday and Homework 1 is available), you should use the GitHub Classroom link to "accept" the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.
+For labs and projects, you should use the GitHub Classroom link to "accept" the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment.
+The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.
 
-When application exercises require notebook use (which is the case here, but will not always be), you can follow the workflow in these next steps, and will be prompted to do so in the instructions for that exercise.
+### Use GitHub
 
-You can do almost everything that you will need to do for this course with GitHub directly through VS Code, or you can use the GitHub UI or the Terminal. We will assume in these instructions that you will just work through VS Code.
+You can do almost everything that you will need to do for this course with GitHub directly through VS Code.
+The GitHub [desktop app](https://desktop.github.com/) is also great, or alternatively you may work directly through the terminal if you have prior experience.
+
+### More Resources
+
+See [this tutorial](tutorials/github.qmd) for more information on using GitHub.
+
+## Set up Quarto
+
+Quarto combines the best of Jupyter notebooks and R Markdown to create a document format that is ideal for conducting and communicating data science.
+We will use Quarto to create and share our work in this course; this website is also built using Quarto.||
+
+### Install Quarto
+
+Follow the directions at https://quarto.org/docs/get-started/ to install Quarto.
+Be sure to ensure that you have the right version for your operating system.
+
+### Install the Quarto Extension for VS Code
+
+Under "Step 2", click on the VS Code icon.
+
+### More Resources
+
+See [this tutorial](tutorials/quarto.qmd) for more information on using Quarto.
