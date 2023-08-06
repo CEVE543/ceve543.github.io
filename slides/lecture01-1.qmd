@@ -1,10 +1,11 @@
 ---
-title: "Welcome to BEE 4750!"
+title: "Welcome to {{< var course.number >}}!!"
 subtitle: "Lecture 01"
-author: "Vivek Srikrishnan"
-course: "BEE 4750"
-institution: "Cornell University"
 date: "August 21, 2023"
+
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
 format:
     revealjs:
         slide-number: c/t
@@ -19,7 +20,7 @@ format:
         history: false
         link-external-newwindow: true
         theme: ../sass/slides.scss
-        footer: "[BEE 4750, Environmental Systems Analysis](https://viveks.me/environmental-systems-analysis)"
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
         template-partials:
             - title-slide.html
         menu:
@@ -32,316 +33,47 @@ execute:
     freeze: auto
 ---
 
-# Welcome!
+# This is a section
 
+## How to use quotes
 
-## Course Overview
+A system is:
+
+::: {.quote}
+> "an interconnected set of elements that is coherently organized in a way that achieves something...
+>
+> A system must consist of three kinds of things: *elements*, *interconnections* and *a function or purpose*."
+
+::: {.cite} 
+--- Donella Meadows, *Thinking in Systems: A Primer*, 2008 
+:::
+:::
+
+## How to show things incrementally
+
+For example:
+
+::: {.incremental}
+- Mass balance equations let us track changes in stocks at particular points;
+- Equilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;
+- Fate and transport modeling involves quantifying how stocks change as they move through the system.
+:::
+
+# This is a section
+
+## How to use columns
 
 :::: {.columns}
 
-::: {.column width="50%"}
-### Topics
+::: {.column width=60%}
+One example of an emergent systems dynamic is a **reinforcing (positive) feedback loop**, where a shock to the system state gets worse.
 
-  * Define systems
-  * Simulate system dynamics
-  * Analyze and assess risk
-  * Make decisions with optimization
-  * Explore trade-offs across objectives
+Feedback loops can also be **dampening (negative)**, where a shock is weakened.
 :::
 
-::: {.column width="50%"}
-::: {.fragment .fade-in}
-
-### Example Systems
-
-* Air pollution
-* Wastewater management
-* Electric power systems
-* Solid waste management
-
+::: {.column width=40%}
+![Ice-Albedo Feedback Loop](images/ice-albedo.svg){width=100%}
 :::
-:::
+
 ::::
 
-
-
-## What Do You Hope To Get Out Of This Course?
-
-{{< include _poll-prompt.qmd >}}
-
-
-
-## Course Organization
-
-1. Introduction to Systems Analysis
-2. Simulating Systems and Risk
-3. Systems Management and Optimization
-4. Analyzing Assumptions
-5. Decision-Making Under Uncertainty
-
-# Course Policies
-
-
-
-## Grades
-
-| Assessment | % of Grade |
-|:-----------|-----------:|
-| Lab Notebooks | 20% |
-| Homework Assignments | 40% |
-| Final Project | 40% |
-
-
-
-## Overall Guidelines
-
-- Collaboration *highly* encouraged, but **all work must reflect your own understanding**
-- Submit PDFs on Gradescope
-- 10% penalty per day late
-- Rubrics will be made available as relevant
-- **Always cite external references**
-- Curve unlikely (not worth asking about...)
-
-
-## Labs (20%)
-
-- In-class guided activities, but may need some time after class to complete
-- Focus on "how" to apply methods and concepts from class
-- **If you can't bring a laptop to these classes, you can work with someone else**
-- Can work in groups, but must submit your own notebook
-- Due by **9:00 next Thursday (one week) after lab session**.
-- Will drop one.
-
-
-
-## Homework Assignments (40%)
-
-- Roughly every other week (5-6 in total?)
-- Focus on new or extended applications and conceptual questions
-- Managed with GitHub Classroom
-- Due by **9:00pm** on the due date (usually Thursday)
-- Will not drop any of these; you have lots of time!
-
-
-
-## Final Project (40%)
-
-- Analyze a system of interest
-- Go beyond class examples/methods
-- Work in groups of 2 -- 3 for BEE 4750, individually for BEE 5750
-
-## Final Project: Deliverables
-
-- **Proposal**: one page overview of system and model plan
-- **Regulatory Review**: 2--3 page report on relevant regulations
-- **Literature Review *(BEE 5750)***: 2 page synthesis of relevant literature
-- **Poster**: Overview and results (due end of semester)
-
-
-
-
-## Attendance
-
-Not required, but students tend to do better when they're actively engaged in class.
-
-
-
-## Office Hours
-
-- Time TBD (will send out poll)
-- Almost impossible to find a time that works for all (or even most); please feel free to make appointments as/if needed.
-
-
-
-
-## Accomodations
-
-If you have any access barriers in this class, *please* seek out any helpful accomodations.
-
-- Get an SDS letter.
-- If you need an accomodation before you have an official letter, please reach out to me ASAP!
-
-
-
-
-## Academic Integrity
-
-Hopefully not a concern...
-
-- Collaboration is great and is encouraged! 
-- Knowing how to find and use helpful resources is a skill we want to develop. 
-
-. . .
-
-- Don't just copy...learn from others and give credit.
-- Submit your own original work.
-
-
-
-## Academic Integrity
-
-Obviously, just copying down answers from Chegg or ChatGPT and passing them off as your own is not ok.
-
-But often lines aren't that simple. Let's quickly consider some scenarios (h/t to [Tony Wong](https://tonyewong.github.io/) for these).
-
-
-
-## Academic Integrity: Scenario 1
-
-Dan searches the internet for relevant code and copy-pastes it into his Jupyter notebook.  He cites the source of the codes.
-
-::: {.callout-important}
-### Is this ok?
-
-::: {.fragment .fade-in}
-**Probably Not**
-
-- What portion of the work is Dan's?
-- How important were the codes?
-- Did Dan understand what he copied?
-:::
-:::
-
-## Academic Integrity: Scenario 1
-
-Dan searches the internet for relevant code and copy-pastes it into his Jupyter notebook.  He cites the source of the codes.
-
-::: {.callout-tip}
-### What Should Dan Do?
-
-::: {.fragment .fade-in}
-Dan should *paraphrase* the codes he found to incorporate them with his own code, and then also cite them.
-:::
-:::
-
-## Academic Integrity: Scenario 2
-
-Matthew and Rhonda work together to figure out how to implement the codes, but each works on their own computer and develops their own solutions.
-
-::: {.callout-important}
-### Is this ok?
-
-::: {.fragment .fade-in}
-**Definitely!**
-
-- Independent implementations shows understanding.
-
-:::
-:::
-
-
-
-
-## Academic Integrity: Scenario 3
-
-Felix and Rachel are working together on a problem involving a derivation. Rachel types it up in LaTeX and sends the code to Felix, who pastes it into his Jupyter notebook.
-
-::: {.callout-important}
-### Is this ok?
-
-::: {.fragment .fade-in}
-**Likely Not**
-
-- Did Felix contribute enough to the derivation?
-- ***Definitely not OK if Felix doesn't give Rachel credit for her contribution.***
-
-:::
-:::
-
-
-## Academic Integrity: Scenario 4
-
-Darren uses ChatGPT to debug an error in his homework code. He fixes the error and credits ChatGPT in his References section.
-
-::: {.callout-important}
-### Is this ok?
-
-::: {.fragment .fade-in}
-**Well-meaning, but no!**
-
-- Using ChatGPT (or other ML tools) can be ok, but...
-- **Need to ask permission and thoroughly document the query and the exact response.**
-
-:::
-:::
-
-
-
-## ChatGPT: The Stochastic Parrot
-
-Why is ChatGPT (and other ML/AI tools) singled out?
-
-::: {.fragment .fade-in}
-- **Stochasticity**: Response to a given prompt is not necessarily the same, so need to track what you received.
-- **Lack of Transparency**: Not clear what the training data is, so documentation is essential (ML is not great at extrapolation).
-- **Not Well-Suited to All Tasks**: Can be useful for getting a skeleton, starter code, or debugging. Really (and obviously) bad at interpretation and analysis.
-:::
-
-# Class Tools
-
-
-
-## Communications
-
-Use [Ed Discussion](https://us.edstem.org) for questions and discussions about class, homework assignments, etc.
-
-- Try to use public posts so others can benefit from questions and can weigh in.
-- **I will make announcements through Ed**.
-
-When urgency or privacy is required, email is ok.
-
-
-
-
-## Course Website
-
-<https://viveks.me/environmental-systems-analysis>
-
-- Central hub for information, schedule, and policies
-- Will add link and some information to Canvas (assignment due dates, etc)
-
-
-
-## Computing Tools
-
-Systems analysis requires mathematical modeling, and computing allows that to scale.
-
-
-
-## Julia
-
-In this course, we will use the [Julia programming language](https://julialang.org).
-
-All assignments, labs, and AEs will be provided as Jupyter Notebooks.
-
-## What Is Your Programming Experience?
-
-{{< include _poll-prompt.qmd >}}
-
-## Jupyter Notebooks
-
-We will use Jupyter Notebooks for most computing tasks (including assignments).
-
-- Allow for interactive evaluation of code and integration with text (including nicely typeset mathematics)
-- Can export to PDF (or HTML -> PDF) for submission to Gradescope.
-- **Be careful before submitting**: Evaluate all cells *in order*
-
-## GitHub Classroom
-
-Homework assignments and labs will be distributed using GitHub Classroom.
-
-- Every student will have a unique "repository."
-- When assignment is released, I will share the link for repository creation on Ed Discussion.
-- Makes it easy to share code for assistance and debugging (share links to repositories, not out-of-context code and screenshots).
-
-
-# Upcoming Schedule
-
-## Next Classes
-
-**Wednesday**: Introduction to Systems Analysis
-
-**Friday**: Work on Lab 1. 
-
-- Preparation: 
-    - Lab 1 link is available on Ed. Click it to accept the lab before class.

@@ -1,29 +1,25 @@
 /*-- scss:defaults --*/
 
 // fonts
-@import 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&IBM+Plex+Serif&family=Source+Serif+Pro&family=Source+Code+Pro&IBM+Plex+Mono&display=swap';
-
+@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
 @import 'https://kit.fontawesome.com/d16123e5b5.css';
 
-$font-family-sans-serif: "IBM Plex Sans", sans-serif;
-$font-family-monospace: "Source Code Pro", "IBM Plex Mono", monospace;
-$font-family-serif: "Source Serif Pro", "IBM Plex Serif", serif;
+$font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
 
 $presentation-font-size-root: 45px;
 
 // headings
-$presentation-heading-font: "Source Serif Pro", "IBM Plex Serif", serif !important;
-$presentation-heading-color: #b31b1b !important;
+$presentation-heading-color: #00205B !important;
 
 // colors
-$body-color: #222222;
+$body-color: #44474f;
 
 /*-- scss:rules --*/
 
 details>summary {
     font-size: 0.75em;
 }
- 
+
 h2 {
     border-bottom: 2px solid #b31b1b;
     margin-bottom: 0.5em !important;
@@ -36,10 +32,10 @@ h3 {
 .small {
     font-size: 0.75em;
 }
-  
+
 .author {
     font-size: 0.9em;
-    color: #073949;
+    color: #7C7E7F;
     letter-spacing: 0.025em;
     padding-bottom: 0.02em;
     display: block;
@@ -47,7 +43,7 @@ h3 {
 
 #title-slide .date {
     font-size: 1.5em;
-    color: #222222;
+    color: #ADC7DC;
     display: inline;
     font-variant: small-caps;
     text-align: center;
@@ -59,7 +55,7 @@ h3 {
 
 #title-slide .subtitle {
     font-size: 1.5em;
-    color: #222222;
+    color: #ADC7DC;
     display: inline;
     font-variant: small-caps;
     text-align: center;
@@ -69,7 +65,7 @@ h3 {
     margin-top: 0em;
 }
 
-.footer{
+.footer {
     font-size: 0.5em !important;
 }
 
@@ -125,14 +121,18 @@ a {
     margin-top: 1em;
 }
 
-strong {color: #EF4035;}
+strong {
+    color: #EF4035;
+}
 
 .slide-number {
     font-size: 0.5em !important;
     color: #073949 !important;
 }
 
-.reveal th, td, table {
+.reveal th,
+td,
+table {
     padding: 5px;
     border: 2px solid black !important;
 }
@@ -143,7 +143,7 @@ strong {color: #EF4035;}
     margin-right: auto;
 }
 
-.reveal tr:nth-child(even){
+.reveal tr:nth-child(even) {
     background-color: #f7f7f7;
 }
 
@@ -175,7 +175,7 @@ strong {color: #EF4035;}
     font-size: 0.7em;
     color: #222222;
     font-style: italic;
-    font-family: $font-family-serif;
+    font-family: $font-family-sans-serif;
     padding-top: 1px;
     margin-top: 0;
     display: block;
@@ -189,8 +189,8 @@ strong {color: #EF4035;}
 .small-math .math.display {
     font-size: 90% !important;
 }
-  
-.math.display .MathJax  {
+
+.math.display .MathJax {
     font-size: 100% !important;
 }
 

@@ -7,8 +7,8 @@ website:
   page-navigation: true
   title: "{{< var course.number >}} - {{< var course.semester >}}"
   description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
-  site-url: https://ceve543.github.io/website
-  repo-url: https://www.github.com/ceve543/website
+  site-url: https://ceve543.github.io/
+  repo-url: https://www.github.com/ceve543/ceve543.github.io
   repo-actions: [edit, issue]
   open-graph: true
 

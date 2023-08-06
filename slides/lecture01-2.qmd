@@ -1,10 +1,11 @@
 ---
-title: "Introduction to Systems Analysis!"
+title: "Why do we care about uncertainty in climate risk assessment?"
 subtitle: "Lecture 02"
-author: "Vivek Srikrishnan"
-course: "BEE 4750"
-institution: "Cornell University"
 date: "August 23, 2023"
+
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
 format:
     revealjs:
         slide-number: c/t
@@ -19,7 +20,7 @@ format:
         history: false
         link-external-newwindow: true
         theme: ../sass/slides.scss
-        footer: "[BEE 4750, Environmental Systems Analysis](https://viveks.me/environmental-systems-analysis)"
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
         template-partials:
             - title-slide.html
         menu:
@@ -27,13 +28,14 @@ format:
         html-math-method: mathjax
         include-in-header: mathjax-config.html
         date-format: long
+
 execute:
     freeze: auto
 ---
 
-# Why Study Systems?
+# This is a section
 
-## What Is A System?
+## How to use quotes
 
 A system is:
 
@@ -47,36 +49,7 @@ A system is:
 :::
 :::
 
-## Examples of Systems
-
-Can we think of any examples of systems?
-
-. . .
-
-What about things that are not systems?
-
-## Why Are Systems Interesting?
-
-In other words, **a system involves an interconnected set of components**.
-
-Those interconnections can lead to very different dynamics and outcomes than if the component processes were studied in isolation.
-
-This is called *emergence*.
-
-# Key Definitions
-
-## System State
-
-**System State**: quantities or variables which evolve over time based on external inputs and system dynamics.
-
-The state gives you a "snapshot" of the system at a given point in time.
-
-## Stocks and Flows
-
-- A **stock** is the amount of a system property: concentrations of a pollutant, numbers of currency units, etc.
-- A **flow** is the way in which a stock changes: decay, diffusion, production, consumption, etc.
-
-## Modeling Flows
+## How to show things incrementally
 
 For example:
 
@@ -86,9 +59,9 @@ For example:
 - Fate and transport modeling involves quantifying how stocks change as they move through the system.
 :::
 
-# Examples of Systems Dynamics
+# This is a section
 
-## Feedback Loops
+## How to use columns
 
 :::: {.columns}
 
@@ -104,89 +77,3 @@ Feedback loops can also be **dampening (negative)**, where a shock is weakened.
 
 ::::
 
-## Tipping Points
-
-:::: {.columns}
-
-::: {.column width=50%}
-Another important systems concept is a **tipping point**, where the system changes states abruptly and drastically.
-
-Examples include lake eutrophication and ice-sheet melting.
-:::
-
-::: {.column width=50%}
-{{< embed notebooks/shallow-lake.ipynb#fig-lake-noinput >}}
-:::
-
-::::
-
-
-# Systems Analysis
-
-## Systems Analysis Overview
-
-:::: {.columns}
-
-::: {.column width=50%}
-### What We Study
-
-- System dynamics;
-- Response to inputs;
-- Alternatives for management or design.
-
-:::
-
-::: {.column width=50%}
-### Needs
-
-::: {.fragment  .fade-in}
-- *Definition of the system*
-- Systems model
-
-:::
-:::
-::::
-
-## What Do We Need To Define A System?
-
-::: {.incremental}
-- **Components**: relevant processes, agents, etc
-- **Interconnections**: relationships between system components
-- **Control volume**: internal vs. external components
-- **Inputs**: control policies and/or external forcings
-- **Outputs**: measured quantities of interest
-:::
-
-# Key Takeaways
-
-## Key Takeaways
-
-- A **system** is an interconnected set of components.
-- Systems are interesting because interconnections can result in unexpected outcomes.
-- Key terms:
-    - **state**
-    - **stocks**
-    - **flows**
-
-## Key Takeaways
-
-- To define a system, need to specify:
-    - components
-    - interconnections
-    - control volume
-    - external inputs
-    - outputs of interest
-
-# Upcoming Schedule
-
-## Next Classes
-
-**Friday**: Work on Lab 1. 
-
-- Preparation: 
-    - Follow the steps in [Tools Setup]({{< var course.url >}}/setup.qmd) to get GitHub and Julia set up.
-    - Click the Lab 1 link in Ed Discussion to link your GitHub account to the class roster and create your Lab 1 repository.
-
-## Next Classes
-
-**Monday**: Modeling Systems
