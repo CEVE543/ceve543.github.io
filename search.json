@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhy do we care about uncertainty in climate risk assessment?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam*\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhy do we care about uncertainty in climate risk assessment?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam*\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
   },
   {
     "objectID": "syllabus.html",
@@ -245,62 +245,6 @@
     "text": "This is the project for module 3"
   },
   {
-    "objectID": "labs/lab06/lab06.html",
-    "href": "labs/lab06/lab06.html",
-    "title": "Lab 06",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab08/lab08.html",
-    "href": "labs/lab08/lab08.html",
-    "title": "Lab 08",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab07/lab07.html",
-    "href": "labs/lab07/lab07.html",
-    "title": "Lab 07",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab05/lab05.html",
-    "href": "labs/lab05/lab05.html",
-    "title": "Lab 05",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab03/lab03.html",
-    "href": "labs/lab03/lab03.html",
-    "title": "Lab 03",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab04/lab04.html",
-    "href": "labs/lab04/lab04.html",
-    "title": "Lab 04",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab02/lab02.html",
-    "href": "labs/lab02/lab02.html",
-    "title": "Lab 02",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab09/lab09.html",
-    "href": "labs/lab09/lab09.html",
-    "title": "Lab 09",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
     "objectID": "labs/lab01/lab01.html",
     "href": "labs/lab01/lab01.html",
     "title": "BEE 4750 Lab 1: Julia Basics",
@@ -336,32 +280,60 @@
     "text": "Export the Notebook\nThe last step is to export the notebook for submission to Gradescope (this section won’t be repeated going forward, but the steps are the same).\nYou should see the following menu bar at the top of the VS Code window: \n\nClick “Run All” at the top to execute all of the cells in order. Please do not forget to do this before exporting and submitting or you may lose points because your code has not been executed or may have errors.\nClick the ellipsis (“…”) and select “Export”. If you have LaTeX installed, you can click “PDF”; otherwise, click “HTML.” Save the file, and then when prompted, open the file. This should open the page in your browser; go to the print interface and save as a PDF. ::: {.callout-tip} When printing to PDF, long lines will run off the edge of code cells, which may result in comments or code being hidden. If you see this, go back to the notebook and break up long lines into shorter onces (for example, see the comment in the above code cell) to ensure key parts of your results aren’t missing. :::\n\nGreat! That’s the basic workflow for every assignment in this course.\nNow you have your PDF that you can submit to Gradescope. Make sure that you tag pages corresponding to relevant problems to avoid a 10% penalty."
   },
   {
-    "objectID": "hw/hw01/hw01.html",
-    "href": "hw/hw01/hw01.html",
-    "title": "BEE 4750 Homework 1: Introduction to Using Julia",
+    "objectID": "labs/lab09/lab09.html",
+    "href": "labs/lab09/lab09.html",
+    "title": "Lab 09",
     "section": "",
-    "text": "Due Date\n\n\n\nFriday, 9/8/23, 9:00pm"
+    "text": "This is a placeholder for the lab."
   },
   {
-    "objectID": "hw/hw01/hw01.html#overview",
-    "href": "hw/hw01/hw01.html#overview",
-    "title": "BEE 4750 Homework 1: Introduction to Using Julia",
-    "section": "Overview",
-    "text": "Overview\n\nInstructions\n\nProblems 1-3 consist of a series of code snippets for you to interpret and debug. For Problems 1 and 2, you will be asked to identify relevant error(s) and fix the code. For Problem 3, the code works as intended; your goal is to identify the code’s purpose by following its logic.\nProblem 4 asks you to convert a verbal description of a wastewater treatment system into a Julia function, and then to use that function to explore the impact of different wastewater allocation strategies.\n\n\n\nLoad Environment\nThe following code loads the environment and makes sure all needed packages are installed. This should be at the start of most Julia scripts.\n\nimport Pkg\nPkg.activate(@__DIR__)\nPkg.instantiate()\n\n\nusing Plots\nusing GraphRecipes\nusing LaTeXStrings"
+    "objectID": "labs/lab02/lab02.html",
+    "href": "labs/lab02/lab02.html",
+    "title": "Lab 02",
+    "section": "",
+    "text": "This is a placeholder for the lab."
   },
   {
-    "objectID": "hw/hw01/hw01.html#problems-total-100-points",
-    "href": "hw/hw01/hw01.html#problems-total-100-points",
-    "title": "BEE 4750 Homework 1: Introduction to Using Julia",
-    "section": "Problems (Total: 100 Points)",
-    "text": "Problems (Total: 100 Points)\n\nProblem 1 (20 points)\nYou’ve been tasked with writing code to identify the minimum value in an array. You cannot use a predefined function. Your colleague suggested the function below, but it does not return the minimum value.\n\nfunction minimum(array)\n    min_value = 0\n    for i in 1:length(array)\n        if array[i] &lt; min_value\n            min_value = array[i]\n        end\n    end\n    return min_value\nend\n\narray_values = [89, 90, 95, 100, 100, 78, 99, 98, 100, 95]\n@show minimum(array_values);\n\nminimum(array_values) = 0\n\n\n\nProblem 1.1 (10 points)\nDescribe the logic error.\n\n\nProblem 1.2 (5 points)\nWrite a fixed version of the function.\n\n\nProblem 1.3 (5 points)\nUse your fixed function to find the minimum value of array_values.\n\n\n\nProblem 2 (20 points)\nYour team is trying to compute the average grade for your class, but the following code produces an error.\n\n\nstudent_grades = [89, 90, 95, 100, 100, 78, 99, 98, 100, 95]\nfunction class_average(grades)\n  average_grade = mean(student_grades)\n  return average_grade\nend\n\n@show average_grade;\n\nLoadError: UndefVarError: `average_grade` not defined\n\n\n\nProblem 2.1 (10 points)\nDescribe the logic and/or syntax error.\n\n\nProblem 2.2 (5 points)\nWrite a fixed version of the code.\n\n\nProblem 2.3 (5 points)\nUse your fixed code to compute the average grade for the class.\n\n\nProblem 3 (20 points)\nYou’ve been handed some code to analyze. The original coder was not very considerate of other potential users: the function is called mystery_function and there are no comments explaining the purpose of the code. It appears to take in an array and return some numbers, and you’ve been assured that the code works as intended.\n\n\nfunction mystery_function(values)\n    y = []\n    for v in values\n        if !(v in y)\n            append!(y, v)\n        end\n    end\n    return y\nend\n\nlist_of_values = [1, 2, 3, 4, 3, 4, 2, 1]\n@show mystery_function(list_of_values);\n\nmystery_function(list_of_values) = Any[1, 2, 3, 4]\n\n\n\nProblem 3.1 (10 points)\nExplain the purpose of mystery_function.\n\n\nProblem 3.2 (10 points)\nAdd comments to the code, explaining why and how it works. Refer to “Best Practices for Writing Code Comments”, and remember that bad comments can be just as bad as no comments at all. You do not need to add comments to every line (in fact, this is very bad practice), but you should note the purpose of every “section” of code, and add comments explaining any code sequences that you don’t immediately understand.\n\n\nProblem 4 (40 points)\nCheap Plastic Products, Inc. is operating a plant that produces \\(100 \\text{m}^3\\text{/day}\\) of wastewater that is discharged into Pristine Brook. The wastewater contains \\(1 \\text{kg/m}^3\\) of YUK, a toxic substance. The US Environmental Protection Agency has imposed an effluent standard on the plant prohibiting discharge of more than \\(20 \\text{kg/day}\\) of YUK into Pristine Brook.\nCheap Plastic Products has analyzed two methods for reducing its discharges of YUK. Method 1 is land disposal, which costs \\(X_1^2/20\\) dollars per day, where \\(X_1\\) is the amount of wastewater disposed of on the land (\\(\\text{m}^3\\text{/day}\\)). With this method, 20% of the YUK applied to the land will eventually drain into the stream (i.e., 80% of the YUK is removed by the soil).\nMethod 2 is a chemical treatment procedure which costs $1.50 per \\(\\text{m}^3\\) of wastewater treated. The chemical treatment has an efficiency of \\(e= 1 - 0.005X_2\\), where \\(X_2\\) is the quantity of wastewater (\\(\\text{m}^3\\text{/day}\\)) treated. For example, if \\(X_2 = 50 \\text{m}^3\\text{/day}\\), then \\(e = 1 - 0.005(50) = 0.75\\), so that 75% of the YUK is removed.\nCheap Plastic Products is wondering how to allocate their wastewater between these three disposal and treatment methods (land disposal, and chemical treatment, and land disposal) to meet the effluent standard while keeping costs manageable.\n\n\nProblem 4.1 (10 points)\nThe flow of wastewater through this treatment system is shown in Figure 1. Modify the edge labels (by editing the edge_labels dictionary in the code producing Figure 1) to show how the wastewater allocations result in the final YUK discharge into Pristine Brook. For the edge_label dictionary, the tuple \\((i, j)\\) corresponds to the arrow going from node \\(i\\) to node \\(j\\). The syntax for any entry is (i, j) =&gt; \"label text\", and the label text can include mathematical notation if the string is prefaced with an L, as in L\"x_1\" will produce \\(x_1\\).\n\n\nusing GraphRecipes, Plots\n\nA = [0 1 1 1;\n    0 0 0 1;\n    0 0 0 1;\n    0 0 0 0]\n\nnames = [\"Plant\", \"Land Treatment\", \"Chem Treatment\", \"Pristine Brook\"]\n# modify this dictionary to add labels\nedge_labels = Dict((1, 2) =&gt; \"\", (1,3) =&gt; \"\", (1, 4) =&gt; \"\",(2, 4) =&gt; \"\",(3, 4) =&gt; \"\")\nshapes=[:hexagon, :rect, :rect, :hexagon]\nxpos = [0, -1.5, -0.25, 1]\nypos = [1, 0, 0, -1]\n\ngraphplot(A, names=names,edgelabel=edge_labels, markersize=0.15, markershapes=shapes, markercolor=:white, x=xpos, y=ypos)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: System diagram of the wastewater treatment options in Problem 4.\n\n\n\n\nProblem 4.2 (10 points)\nFormulate a mathematical model for the treatment cost and the amount of YUK that will be discharged into Pristine Brook based on the wastewater allocations. This is best done with some equations and supporting text explaining the derivation. Make sure you include, as additional equations in the model, any needed constraints on relevant values. You can find some basics on writing mathematical equations using the LaTeX typesetting syntax here, and a cheatsheet with LaTeX commands can be found on the course website’s Resources page.\n\n\nProblem 4.3 (10 points)\nImplement this systems model as a Julia function which computes the resulting YUK concentration and cost for a particular treatment plan. You can return multiple values from a function with a tuple, as in:\n\n\nfunction multiple_return_values(x, y)\n    return (x+y, x*y)\nend\n\na, b = multiple_return_values(2, 5)\n@show a;\n@show b;\n\na = 7\nb = 10\n\n\nMake sure you comment your code appropriately to make it clear what is going on and why.\n\nProblem 4.4 (10 points)\nUse your function to experiment with some different combinations of wastewater discharge and treatment. Can you find one that satisfies the YUK effluent standard? What was the cost? You don’t have to find an “optimal” solution to this problem, but what do you think would be needed to find a better solution?"
+    "objectID": "labs/lab04/lab04.html",
+    "href": "labs/lab04/lab04.html",
+    "title": "Lab 04",
+    "section": "",
+    "text": "This is a placeholder for the lab."
   },
   {
-    "objectID": "hw/hw01/hw01.html#references",
-    "href": "hw/hw01/hw01.html#references",
-    "title": "BEE 4750 Homework 1: Introduction to Using Julia",
-    "section": "References",
-    "text": "References\nList any external references consulted, including classmates."
+    "objectID": "labs/lab03/lab03.html",
+    "href": "labs/lab03/lab03.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab05/lab05.html",
+    "href": "labs/lab05/lab05.html",
+    "title": "Lab 05",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab07/lab07.html",
+    "href": "labs/lab07/lab07.html",
+    "title": "Lab 07",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab08/lab08.html",
+    "href": "labs/lab08/lab08.html",
+    "title": "Lab 08",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab06/lab06.html",
+    "href": "labs/lab06/lab06.html",
+    "title": "Lab 06",
+    "section": "",
+    "text": "This is a placeholder for the lab."
   },
   {
     "objectID": "projects/project02/project02.html",
