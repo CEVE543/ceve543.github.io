@@ -25,21 +25,14 @@
     "href": "syllabus.html#course-information",
     "title": "Syllabus",
     "section": "Course Information",
-    "text": "Course Information\n\n\n\nInstructor\n\n James Doss-Gollin\n jdossgollin@rice.edu\n Ryon 215\n\n\n\n\nTA\n\n Yuchen Lu\n yl238@rice.edu\n Ryon B28\n\n\n\n\nMeetings\n\n MWF\n 11-11:50am\n Keck 107\n\n\n\n\n\nLearning Objectives\nAt the end of this class, students will:\n\nConstruct mathematical models of physical climate hazards;\nImplement mathematical models in computer code;\nImplement optimization and sampling approaches to estimate the parameters of mathematical models from data;\nUnderstand and apply extreme value theory to estimate the probability of rare climate hazards;\nApply machine learning, Bayesian, and nonparametric methods to represent climate risks; and\nUnderstand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.\n\n\n\nPrerequisites & Preparation\nThe following courses/material would be ideal preparation:\n\nA course in applied statistics (e.g., STAT 419/519) is strongly encouraged\nExposure to machine learning, Bayesian statistics\nExperience in Python, Julia, Matlab, R, or a similar language\n\nIf you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor! Put [CEVE 543] in the subject line of your email.\n\n\n\n\n\n\nWhat If My Programming or Stats Skills Are Rusty?\n\n\n\nIf your programming or statistics skills are a little rusty, don’t worry! We will review concepts and build skills as needed.\n\n\n\n\nTopics\n\nIntroduction to environmental data science\nData wrangling and visualization\nStatistical inference\nMachine learning\nExtreme value analysis\nModel selection, validation, and comparison\n\nWe will apply these methods to a wide range of case studies, including three project-based assignments that cover:\n\nPrecipitation frequency analysis\nFlood extent estimation\nStochastic streamflow generation"
+    "text": "Course Information\n\n\n\nInstructor\n\n James Doss-Gollin\n jdossgollin@rice.edu\n Ryon 215\n\n\n\n\nTA\n\n Yuchen Lu\n yl238@rice.edu\n Ryon B28\n\n\n\n\nMeetings\n\n MWF\n 11-11:50am\n Keck 107\n\n\n\n\n\nLearning Objectives\nAt the end of this class, students will:\n\nConstruct mathematical models for climate hazards;\nUse reproducible software tools to implement mathematical models;\nUse Bayesian and maximum likelihood methods to conduct statistical inference (“inverse modeling”);\nUse simulation models (“forward modeling”) to assess the logical implications of different mathematical models;\nUnderstand and apply extreme value theory to estimate the probability of rare climate hazards;\nIdentify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;\nCritically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and\nUnderstand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.\n\n\n\nPrerequisites & Preparation\nThe following courses/material would be ideal preparation:\n\nA course in applied statistics (e.g., STAT 419/519) is strongly encouraged\nExperience in Python, Julia, Matlab, R, or a similar language is strongly encouraged\nPrior exposure to machine learning, Bayesian statistics, or similar is helpful but not required\n\nIf you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor! Put [CEVE 543] in the subject line of your email.\n\n\n\n\n\n\nWhat If My Programming or Stats Skills Are Rusty?\n\n\n\nIf your programming or statistics skills are a little rusty, don’t worry! We will review concepts and build skills as needed.\n\n\n\n\nTopics\nThe course will build core skills in:\n\n\n\nStatistical inference\nMachine learning\nData wrangling and visualization\nExtreme value analysis\nModel selection, validation, and comparison\n\n\n\n\nWe will apply these methods to a wide range of case studies, including three project-based assignments that cover:\n\nPrecipitation frequency analysis\nFlood extent estimation\nStochastic streamflow generation\n\n\n\nFor details, see the schedule."
   },
   {
     "objectID": "syllabus.html#a-community-of-learning",
     "href": "syllabus.html#a-community-of-learning",
     "title": "Syllabus",
     "section": "A Community of Learning",
-    "text": "A Community of Learning\nRice’s core values are responsibility, integrity, community, and excellence. Our goal is to create a learning community aligned with these core values.\n\nExpectations\nThe goal of our course is to help you gain competancy and knowledge in the areas of environmental data science and climate risk assessment. This involves a dual responsibility on the part of the instructor and the student.\nAs the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I will commit to:\n\nprovide organized and focused lectures, in-class activities, and assignments;\nencourage students to regularly evaluate and provide feedback on the course;\nmanage the classroom atmosphere to promote learning;\nschedule sufficient out-of-class contact opportunities, such as office hours;\nallow adequate time for assignment completion;\nmake lecture materials, class policies, activities, and assignments accessible to students.\n\nStudents are encouraged to discuss any concerns with me during office hours or through a course communications channel. Students are responsible for their own learning in the course and should commit to:\n\nattending all lectures;\ndoing all required preparatory work before class;\nactively participating in online and in-class discussions;\nbeginning assignments and other work early; and\nattending office hours as needed.\n\n\n\n\n\n\n\nCanvas Discussions\n\n\n\n\nIf you wait until the day an assignment is due (or even late the previous night) to ask a question on Canvas, there is a strong chance that I will not see your post prior to the deadline.\nBut if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.\n\n\n\n\n\nDiversity, Equity, and Inclusion\nRice is committed to building and maintaining an equitable and inclusive campus community. Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information. Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus. We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice. We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.\nEach of us is responsible for creating a safer, more inclusive environment. Unfortunately, incidents of bias or discrimination do occur, whether intentional or unintentional. They contribute to creating an unwelcoming environment for individuals and groups at the university.\n\n\nAccommodation for Students with Disabilities\nIf you have a documented disability or other condition that may affect academic performance you should: 1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / adarice@rice.edu / x5841) to determine the accommodations you need; and 2) talk with me to discuss your accommodation needs.\n\n\nAccommodation for Scheduling Conflicts\nIf any of our class meetings conflict with your religious events, student athletics, or other non-negotiable scheduling conflict, please let me know ASAP so that we can make arrangements for you.\n\n\nMask Policies\nMasks are encouraged but not required in the classroom. However, the University strongly encourages compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition."
-  },
-  {
-    "objectID": "syllabus.html#policies",
-    "href": "syllabus.html#policies",
-    "title": "Syllabus",
-    "section": "Policies",
-    "text": "Policies\n\nAttendance\nAttendance is not required and will not be counted every class, but in general, students who attend class regularly will do better and get more out of the class than students who do not. Your class participation grade will reflect both the quantity and quality of your participation, only some of which can occur asynchronously. I will put as many course materials, such as lecture notes and announcements, as possible online, but viewing materials online is not the same as active participation and engagement. Life happens, of course, and this may lead you to miss class. Let me know if you need any appropriate arrangements ahead of time.\n\n\n\n\n\n\nWhat If I’m Sick?\n\n\n\nPlease stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.\n\n\n\n\nPolicy on Web Posting of Course Materials\nUploading course materials to web sites is not an authorized use of the course material. Both the poster and the user are in violation of the university policy, which is actionable.\n\n\nAcademic Integrity\nThis class is designed to encourage collaboration, and students are encouraged to discuss their work with other students. Engineering as a profession relies upon the honesty and integrity of its practitioners (see e.g. the American Society for Civil Engineers’ Code of Ethics). All work submitted must represent the students’ own work and understanding, whether individually or as a group (depending on the particulars of the assignment). This includes analyses, code, software runs, and reports.\nMore specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution. If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at honor.rice.edu/honor-system-handbook/. This handbook outlines the University’s expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.\nIf you are ever unclear about academic integrity, please ask! Additionally, always err on the side of providing more information.)\n\n\nAI/ML Resource Policy\nAI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure. However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.\nAs noted, all work submitted for a grade in this course must reflect your own understanding. You are welcome to use AI/ML tools to help you learn, but you must describe how you used the tool when you turn in your assignment. Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.\n\n\nLate Work Policy\nLate projects will be subjected to a 10% penalty per day, which can accumulate to 100% of the total grade. Late homework and labs will not be accepted, because we will discuss the solutions in class.\nSometimes things come up in life. Please reach out ahead of time if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived."
+    "text": "A Community of Learning\nRice’s core values are responsibility, integrity, community, and excellence. Our goal is to create a learning community aligned with these core values.\n\nCore Expectations\nCourse success involves a dual responsibility on the part of the instructor and the student.\n\n\nAs the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I commit to:\n\nprovide organized and focused lectures, in-class activities, and assignments;\nencourage students to regularly evaluate and provide feedback on the course;\nmanage the classroom atmosphere to promote learning;\nschedule sufficient out-of-class contact opportunities, such as office hours;\nallow adequate time for assignment completion;\nmake lecture materials, class policies, activities, and assignments accessible to students.\n\n\n\n\nStudents are responsible for their own learning in the course and should commit to:\n\nattending all lectures;\ndoing all required preparatory work before class;\nactively participating in online and in-class discussions;\nbeginning assignments and other work early; and\nattending office hours as needed.\n\n\n\n\n\n\n\n\n\nWhat If I’m Sick?\n\n\n\nPlease stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.\n\n\n\n\n\n\n\n\nCanvas Discussions\n\n\n\n\nIf you wait until the day an assignment is due (or even late the previous night) to ask a question on Canvas, there is a strong chance that I will not see your post prior to the deadline.\nBut if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.\n\n\n\n\n\nDiversity, Equity, and Inclusion\nRice is committed to building and maintaining an equitable and inclusive campus community. Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information. Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus. We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice. We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.\nEach of us is responsible for creating a safer, more inclusive environment.y.\n\n\nAccommodation for Students with Disabilities\nIf you have a documented disability or other condition that may affect academic performance you should: 1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / adarice@rice.edu / x5841) to determine the accommodations you need; and 2) talk with me to discuss your accommodation needs.\n\n\nAccommodation for Scheduling Conflicts\nIf any of our class meetings conflict with your religious events, student athletics, or other non-negotiable scheduling conflict, please let me know ASAP so that we can make arrangements for you.\n\n\nMask Policies\nMasks are welcome but not required in the classroom. However, I strongly encourage compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition. If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.\nThese policies may change over the course of the semester as the situation evolves.\n\n\nPolicy on Web Posting of Course Materials\nUploading course materials to web sites is not an authorized use of the course material. Both the poster and the user are in violation of the university policy, which is actionable.\n\n\nAcademic Integrity\nThis class is designed to encourage collaboration, and students are encouraged to discuss their work with other students. Engineering as a profession relies upon the honesty and integrity of its practitioners (see e.g. the American Society for Civil Engineers’ Code of Ethics). All work submitted must represent the students’ own work and understanding, whether individually or as a group (depending on the particulars of the assignment). This includes analyses, code, software runs, and reports.\nMore specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution. If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at honor.rice.edu/honor-system-handbook/. This handbook outlines the University’s expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.\nIf you are ever unclear about academic integrity, please ask! Additionally, always err on the side of providing more information.)\n\n\nAI/ML Resource Policy\nAI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure. However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.\nAs noted, all work submitted for a grade in this course must reflect your own understanding. You are welcome to use AI/ML tools to help you learn, but you must describe how you used the tool when you turn in your assignment. Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.\n\n\nLate Work Policy\nLate projects will be subjected to a 10% penalty per day, which can accumulate to 100% of the total grade. Late homework and labs will not be accepted, because we will discuss the solutions in class.\nSometimes things come up in life. Please reach out ahead of time if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived."
   },
   {
     "objectID": "syllabus.html#grading",
@@ -98,25 +91,221 @@
     "text": "This page is currently empty, because there are not yet any frequently asked questions!"
   },
   {
-    "objectID": "slides/lecture01-2.html#how-to-use-quotes",
-    "href": "slides/lecture01-2.html#how-to-use-quotes",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "objectID": "slides/lecture01-3.html#why-is-coding-important-for-data-science",
+    "href": "slides/lecture01-3.html#why-is-coding-important-for-data-science",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why is coding important for data science?",
+    "text": "Why is coding important for data science?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here\n\n\n\nOn your own time, watch “Statistics Without the Agonizing Pain”."
+  },
+  {
+    "objectID": "slides/lecture01-3.html#what-is-your-coding-experience",
+    "href": "slides/lecture01-3.html#what-is-your-coding-experience",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What is your coding experience?",
+    "text": "What is your coding experience?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#overview-1",
+    "href": "slides/lecture01-3.html#overview-1",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#tool-overview",
+    "href": "slides/lecture01-3.html#tool-overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Tool overview",
+    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#why-julia",
+    "href": "slides/lecture01-3.html#why-julia",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why Julia?",
+    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#julia-example",
+    "href": "slides/lecture01-3.html#julia-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Julia example",
+    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#github",
+    "href": "slides/lecture01-3.html#github",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#quarto",
+    "href": "slides/lecture01-3.html#quarto",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Quarto",
+    "text": "Quarto"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#vs-code",
+    "href": "slides/lecture01-3.html#vs-code",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "VS Code",
+    "text": "VS Code"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#detailed-instructions",
+    "href": "slides/lecture01-3.html#detailed-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Detailed instructions",
+    "text": "Detailed instructions\nSee Setup"
+  },
+  {
+    "objectID": "slides/lecture01-3.html#lab-01-instructions",
+    "href": "slides/lecture01-3.html#lab-01-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 Instructions",
+    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
+    "href": "slides/lecture01-1.html#how-to-use-quotes",
+    "title": "Welcome to CEVE 543!!",
     "section": "How to use quotes",
     "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/lecture01-2.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-2.html#how-to-show-things-incrementally",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
+    "title": "Welcome to CEVE 543!!",
     "section": "How to show things incrementally",
     "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-2.html#how-to-use-columns",
-    "href": "slides/lecture01-2.html#how-to-use-columns",
-    "title": "Why do we care about uncertainty in climate risk assessment?",
+    "objectID": "slides/lecture01-1.html#how-to-use-columns",
+    "href": "slides/lecture01-1.html#how-to-use-columns",
+    "title": "Welcome to CEVE 543!!",
     "section": "How to use columns",
     "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "website.html",
+    "href": "website.html",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "website.html#quarto",
+    "href": "website.html#quarto",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "resources/markdown.html",
+    "href": "resources/markdown.html",
+    "title": "Markdown Resources",
+    "section": "",
+    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "labs/lab06/lab06.html",
+    "href": "labs/lab06/lab06.html",
+    "title": "Lab 06",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab08/lab08.html",
+    "href": "labs/lab08/lab08.html",
+    "title": "Lab 08",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab07/lab07.html",
+    "href": "labs/lab07/lab07.html",
+    "title": "Lab 07",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab05/lab05.html",
+    "href": "labs/lab05/lab05.html",
+    "title": "Lab 05",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab03/lab03.html",
+    "href": "labs/lab03/lab03.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab04/lab04.html",
+    "href": "labs/lab04/lab04.html",
+    "title": "Lab 04",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab02/lab02.html",
+    "href": "labs/lab02/lab02.html",
+    "title": "Lab 02",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab09/lab09.html",
+    "href": "labs/lab09/lab09.html",
+    "title": "Lab 09",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab01/lab01.html",
+    "href": "labs/lab01/lab01.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "resources/github.html",
+    "href": "resources/github.html",
+    "title": "GitHub Resources",
+    "section": "",
+    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
+  },
+  {
+    "objectID": "resources/julia.html",
+    "href": "resources/julia.html",
+    "title": "Julia Resources",
+    "section": "",
+    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
   },
   {
     "objectID": "index.html",
@@ -147,142 +336,23 @@
     "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
   },
   {
-    "objectID": "resources/julia.html",
-    "href": "resources/julia.html",
-    "title": "Julia Resources",
-    "section": "",
-    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
-  },
-  {
-    "objectID": "resources/github.html",
-    "href": "resources/github.html",
-    "title": "GitHub Resources",
-    "section": "",
-    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "labs/lab01/lab01.html",
-    "href": "labs/lab01/lab01.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab09/lab09.html",
-    "href": "labs/lab09/lab09.html",
-    "title": "Lab 09",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab02/lab02.html",
-    "href": "labs/lab02/lab02.html",
-    "title": "Lab 02",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab04/lab04.html",
-    "href": "labs/lab04/lab04.html",
-    "title": "Lab 04",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab03/lab03.html",
-    "href": "labs/lab03/lab03.html",
-    "title": "Lab 03",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab05/lab05.html",
-    "href": "labs/lab05/lab05.html",
-    "title": "Lab 05",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab07/lab07.html",
-    "href": "labs/lab07/lab07.html",
-    "title": "Lab 07",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab08/lab08.html",
-    "href": "labs/lab08/lab08.html",
-    "title": "Lab 08",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "labs/lab06/lab06.html",
-    "href": "labs/lab06/lab06.html",
-    "title": "Lab 06",
-    "section": "",
-    "text": "This is a placeholder for the lab."
-  },
-  {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
-  },
-  {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
-  },
-  {
-    "objectID": "resources/markdown.html",
-    "href": "resources/markdown.html",
-    "title": "Markdown Resources",
-    "section": "",
-    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
-  },
-  {
-    "objectID": "website.html",
-    "href": "website.html",
-    "title": "website",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "website.html#quarto",
-    "href": "website.html#quarto",
-    "title": "website",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
-    "href": "slides/lecture01-1.html#how-to-use-quotes",
-    "title": "Welcome to CEVE 543!!",
+    "objectID": "slides/lecture01-2.html#how-to-use-quotes",
+    "href": "slides/lecture01-2.html#how-to-use-quotes",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
     "section": "How to use quotes",
     "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "title": "Welcome to CEVE 543!!",
+    "objectID": "slides/lecture01-2.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-2.html#how-to-show-things-incrementally",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
     "section": "How to show things incrementally",
     "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-use-columns",
-    "href": "slides/lecture01-1.html#how-to-use-columns",
-    "title": "Welcome to CEVE 543!!",
+    "objectID": "slides/lecture01-2.html#how-to-use-columns",
+    "href": "slides/lecture01-2.html#how-to-use-columns",
+    "title": "Why do we care about uncertainty in climate risk assessment?",
     "section": "How to use columns",
     "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },

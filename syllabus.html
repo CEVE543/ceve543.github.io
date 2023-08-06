@@ -226,15 +226,11 @@ window.MathJax = {
   </ul></li>
   <li><a href="#a-community-of-learning" id="toc-a-community-of-learning" class="nav-link" data-scroll-target="#a-community-of-learning">A Community of Learning</a>
   <ul class="collapse">
-  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  <li><a href="#core-expectations" id="toc-core-expectations" class="nav-link" data-scroll-target="#core-expectations">Core Expectations</a></li>
   <li><a href="#diversity-equity-and-inclusion" id="toc-diversity-equity-and-inclusion" class="nav-link" data-scroll-target="#diversity-equity-and-inclusion">Diversity, Equity, and Inclusion</a></li>
   <li><a href="#accommodation-for-students-with-disabilities" id="toc-accommodation-for-students-with-disabilities" class="nav-link" data-scroll-target="#accommodation-for-students-with-disabilities">Accommodation for Students with Disabilities</a></li>
   <li><a href="#accommodation-for-scheduling-conflicts" id="toc-accommodation-for-scheduling-conflicts" class="nav-link" data-scroll-target="#accommodation-for-scheduling-conflicts">Accommodation for Scheduling Conflicts</a></li>
   <li><a href="#mask-policies" id="toc-mask-policies" class="nav-link" data-scroll-target="#mask-policies">Mask Policies</a></li>
-  </ul></li>
-  <li><a href="#policies" id="toc-policies" class="nav-link" data-scroll-target="#policies">Policies</a>
-  <ul class="collapse">
-  <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
   <li><a href="#policy-on-web-posting-of-course-materials" id="toc-policy-on-web-posting-of-course-materials" class="nav-link" data-scroll-target="#policy-on-web-posting-of-course-materials">Policy on Web Posting of Course Materials</a></li>
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic Integrity</a></li>
   <li><a href="#aiml-resource-policy" id="toc-aiml-resource-policy" class="nav-link" data-scroll-target="#aiml-resource-policy">AI/ML Resource Policy</a></li>
@@ -310,11 +306,13 @@ window.MathJax = {
 <h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
 <p>At the end of this class, students will:</p>
 <ol type="1">
-<li>Construct mathematical models of physical climate hazards;</li>
-<li>Implement mathematical models in computer code;</li>
-<li>Implement optimization and sampling approaches to estimate the parameters of mathematical models from data;</li>
+<li>Construct mathematical models for climate hazards;</li>
+<li>Use reproducible software tools to implement mathematical models;</li>
+<li>Use Bayesian and maximum likelihood methods to conduct statistical inference (“inverse modeling”);</li>
+<li>Use simulation models (“forward modeling”) to assess the logical implications of different mathematical models;</li>
 <li>Understand and apply extreme value theory to estimate the probability of rare climate hazards;</li>
-<li>Apply machine learning, Bayesian, and nonparametric methods to represent climate risks; and</li>
+<li>Identify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;</li>
+<li>Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and</li>
 <li>Understand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.</li>
 </ol>
 </section>
@@ -323,8 +321,8 @@ window.MathJax = {
 <p>The following courses/material would be ideal preparation:</p>
 <ul>
 <li>A course in applied statistics (e.g., STAT 419/519) is strongly encouraged</li>
-<li>Exposure to machine learning, Bayesian statistics</li>
-<li>Experience in Python, Julia, Matlab, R, or a similar language</li>
+<li>Experience in Python, Julia, Matlab, R, or a similar language is strongly encouraged</li>
+<li>Prior exposure to machine learning, Bayesian statistics, or similar is helpful but not required</li>
 </ul>
 <p>If you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor! <em>Put <code>[CEVE 543]</code> in the subject line of your email.</em></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
@@ -343,29 +341,39 @@ What If My Programming or Stats Skills Are Rusty?
 </section>
 <section id="topics" class="level3">
 <h3 class="anchored" data-anchor-id="topics">Topics</h3>
+<p>The course will build core skills in:</p>
+<div class="columns">
+<div class="column" style="width:48%;">
 <ul>
-<li>Introduction to environmental data science</li>
-<li>Data wrangling and visualization</li>
 <li>Statistical inference</li>
 <li>Machine learning</li>
+<li>Data wrangling and visualization</li>
 <li>Extreme value analysis</li>
 <li>Model selection, validation, and comparison</li>
 </ul>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
 <p>We will apply these methods to a wide range of case studies, including three project-based assignments that cover:</p>
 <ul>
 <li>Precipitation frequency analysis</li>
 <li>Flood extent estimation</li>
 <li>Stochastic streamflow generation</li>
 </ul>
+</div>
+</div>
+<p>For details, see the <a href="./schedule.html">schedule</a>.</p>
 </section>
 </section>
 <section id="a-community-of-learning" class="level2">
 <h2 class="anchored" data-anchor-id="a-community-of-learning">A Community of Learning</h2>
 <p>Rice’s <a href="https://www.rice.edu/mission-values">core values</a> are responsibility, integrity, community, and excellence. Our goal is to create a learning community aligned with these core values.</p>
-<section id="expectations" class="level3">
-<h3 class="anchored" data-anchor-id="expectations">Expectations</h3>
-<p>The goal of our course is to help you gain competancy and knowledge in the areas of environmental data science and climate risk assessment. This involves a dual responsibility on the part of the instructor and the student.</p>
-<p>As the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I will commit to:</p>
+<section id="core-expectations" class="level3">
+<h3 class="anchored" data-anchor-id="core-expectations">Core Expectations</h3>
+<p>Course success involves a dual responsibility on the part of the instructor and the student.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>As the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I commit to:</p>
 <ul>
 <li>provide organized and focused lectures, in-class activities, and assignments;</li>
 <li>encourage students to regularly evaluate and provide feedback on the course;</li>
@@ -374,7 +382,10 @@ What If My Programming or Stats Skills Are Rusty?
 <li>allow adequate time for assignment completion;</li>
 <li>make lecture materials, class policies, activities, and assignments accessible to students.</li>
 </ul>
-<p>Students are encouraged to discuss any concerns with me during office hours or through a course communications channel. Students are responsible for their own learning in the course and should commit to:</p>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<p>Students are responsible for their own learning in the course and should commit to:</p>
 <ul>
 <li>attending all lectures;</li>
 <li>doing all required preparatory work before class;</li>
@@ -382,6 +393,21 @@ What If My Programming or Stats Skills Are Rusty?
 <li>beginning assignments and other work early; and</li>
 <li>attending office hours as needed.</li>
 </ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What If I’m Sick?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -402,7 +428,7 @@ Canvas Discussions
 <section id="diversity-equity-and-inclusion" class="level3">
 <h3 class="anchored" data-anchor-id="diversity-equity-and-inclusion">Diversity, Equity, and Inclusion</h3>
 <p>Rice is committed to building and maintaining an equitable and inclusive campus community. Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information. Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus. We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice. We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.</p>
-<p>Each of us is responsible for creating a safer, more inclusive environment. Unfortunately, incidents of bias or discrimination do occur, whether intentional or unintentional. They contribute to creating an unwelcoming environment for individuals and groups at the university.</p>
+<p>Each of us is responsible for creating a safer, more inclusive environment.y.</p>
 </section>
 <section id="accommodation-for-students-with-disabilities" class="level3">
 <h3 class="anchored" data-anchor-id="accommodation-for-students-with-disabilities">Accommodation for Students with Disabilities</h3>
@@ -414,27 +440,8 @@ Canvas Discussions
 </section>
 <section id="mask-policies" class="level3">
 <h3 class="anchored" data-anchor-id="mask-policies">Mask Policies</h3>
-<p><strong>Masks are encouraged but not required in the classroom</strong>. However, the University <em>strongly encourages</em> compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition.</p>
-</section>
-</section>
-<section id="policies" class="level2">
-<h2 class="anchored" data-anchor-id="policies">Policies</h2>
-<section id="attendance" class="level3">
-<h3 class="anchored" data-anchor-id="attendance">Attendance</h3>
-<p>Attendance is not <em>required</em> and will not be counted every class, but in general, students who attend class regularly will do better and get more out of the class than students who do not. Your class participation grade will reflect both the quantity and quality of your participation, only some of which can occur asynchronously. I will put as many course materials, such as lecture notes and announcements, as possible online, but viewing materials online is not the same as active participation and engagement. Life happens, of course, and this may lead you to miss class. Let me know if you need any appropriate arrangements ahead of time.</p>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What If I’m Sick?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.</p>
-</div>
-</div>
+<p>Masks are welcome but not required in the classroom. However, I <em>strongly encourage</em> compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition. If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.</p>
+<p>These policies may change over the course of the semester as the situation evolves.</p>
 </section>
 <section id="policy-on-web-posting-of-course-materials" class="level3">
 <h3 class="anchored" data-anchor-id="policy-on-web-posting-of-course-materials">Policy on Web Posting of Course Materials</h3>
