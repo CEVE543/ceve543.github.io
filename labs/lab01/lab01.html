@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CEVE 543 - Fall 2023 - BEE 4750 Lab 1: Julia Basics</title>
+<title>CEVE 543 - Fall 2023 - Lab 01</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -104,15 +70,10 @@ window.MathJax = {
   };
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="CEVE 543 - Fall 2023 - BEE 4750 Lab 1: Julia Basics">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://ceve543.github.io/labs/lab01/figures/vs-code-top-bar.png">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - Lab 01">
+<meta property="og:description" content="Setting up Julia, GitHub, and Quarto">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
-<meta property="og:image:height" content="60">
-<meta property="og:image:width" content="1080">
 </head>
 
 <body class="nav-sidebar docked">
@@ -252,35 +213,15 @@ window.MathJax = {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
-  <li><a href="#jupyter-notebooks" id="toc-jupyter-notebooks" class="nav-link" data-scroll-target="#jupyter-notebooks">Jupyter Notebooks</a></li>
-  <li><a href="#julia-basics" id="toc-julia-basics" class="nav-link" data-scroll-target="#julia-basics">Julia Basics</a></li>
-  <li><a href="#formatting-math" id="toc-formatting-math" class="nav-link" data-scroll-target="#formatting-math">Formatting Math</a></li>
-  <li><a href="#looking-for-help" id="toc-looking-for-help" class="nav-link" data-scroll-target="#looking-for-help">Looking For Help</a></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#exercise-3-making-a-plot" id="toc-exercise-3-making-a-plot" class="nav-link" data-scroll-target="#exercise-3-making-a-plot">Exercise 3: Making a Plot</a></li>
-  </ul></li>
-  <li><a href="#export-the-notebook" id="toc-export-the-notebook" class="nav-link" data-scroll-target="#export-the-notebook">Export the Notebook</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/labs/lab01/lab01.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">BEE 4750 Lab 1: Julia Basics</h1>
+<h1 class="title">Lab 01</h1>
+<p class="subtitle lead">Setting up Julia, GitHub, and Quarto</p>
 </div>
 
 
@@ -295,198 +236,9 @@ window.MathJax = {
 
 </header>
 
-<div class="callout callout-style-simple callout-important no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Due Date
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Friday, 9/1/23, 9:00pm</p>
-</div>
-</div>
-<div class="callout callout-style-simple callout-caution">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>If you are enrolled in the course, make sure that you use the GitHub Classroom link provided in Ed Discussion, or you may not be able to get help if you run into problems.</p>
-<p>Otherwise, you can <a href="https://github.com/jdossgollin/lab01">find the Github repository here</a>.</p>
-</div>
-</div>
-</div>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>The following code should go at the top of most Julia scripts; it will load the local package environment and install any needed packages. You will see this often and shouldn’t need to touch it.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pkg</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(<span class="st">"."</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This next cell loads packages which are required for the rest of the code evaluation. In this case, we only need to load the <code>Plots.jl</code> plotting package, but you will see others over the course of the semester (and can add more if desired; just make sure that you’ve <a href="https://viveks.me/environmental-systems-analysis/tutorials/julia-basics.html#package-management">added the new packages to the environment</a>). Standard Julia practice is to load all of the needed packages at the top of the file.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="julia" class="level3">
-<h3 class="anchored" data-anchor-id="julia">Julia</h3>
-<p>Julia is an up-and-coming language, originally developed for scientific programming. While learning a new programming language always has its hiccups, the good news is that if you’ve programmed in a high-level language such as Python or MATLAB, most Julia concepts should look familiar.</p>
-<p>If you have not successfully set up Julia, follow the instructions in <a href="https://viveks.me/environmental-systems-analysis/setup.html">Tools Setup</a> and/or ask for help.</p>
-<p>You can use other editors for this course, but our recommendation is <a href="https://code.visualstudio.com/">Visual Studio Code</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">Julia extension</a>, which will make life a <em>lot</em> simpler! You should have set this up by following the <a href="https://viveks.me/environmental-systems-analysis/setup.html">Tools Setup</a> instructions, but if not, do so now and/or ask for help.</p>
-</section>
-<section id="jupyter-notebooks" class="level3">
-<h3 class="anchored" data-anchor-id="jupyter-notebooks">Jupyter Notebooks</h3>
-<p>Jupyter notebooks integrate text and equations in Markdown with Julia (or Python, or R) code. To do this, Jupyter notebooks consist of two types of “cells”: code cells and Markdown (text) cells.</p>
-<p>Click once on this section of text. A box will appear around this text (and some areas above/below it) - all of that is within this cell.</p>
-<p>Markdown is a text markup framework for formatting language that makes things look pretty when viewed across different platforms: web browsers, notebooks, and so forth. Text written in Markdown can also include hyperlinks, LaTeX equations, section headers, and images, among other features (most of <a href="https://viveks.me/climate-risk-analysis">the course website</a> and the lecture notes were all written in Markdown!). <a href="https://www.markdownguide.org/cheat-sheet/">Here is a basic Markdown cheat sheet</a>.</p>
-<p>What you are looking at right now is the formatted text after the Markdown is processed. To see the raw Markdown, do one of:</p>
-<ul>
-<li>press <code>Enter</code> while that cell is selected, or</li>
-<li>double-click on that cell.</li>
-</ul>
-<hr>
-<p>A couple of the features you will see in this Markdown cell:</p>
-<ul>
-<li>The <code>---</code> command creates a horizontal line. This is also nice for separating sections.</li>
-<li>Backticks (<code>`...`</code>) can be used to format and highlight code, keystrokes, etc.</li>
-<li>The <code>#</code> sign is used to create a new section header; two <code>#</code> signs (<code>##</code>) is used to create a new subsection header; <code>###</code> creates a subsubsection, and so on.</li>
-<li>You can create a bulleted list by using the asterisk <code>*</code> or a dash <code>-</code> and a space.</li>
-<li>You can create regular text by just typing as usual.</li>
-<li>You can create <strong>bold-faced text</strong> by wrapping it with two asterisks on both sides.</li>
-<li>You can create <em>italicized text</em> by wrapping it with a single asterisk on both sides.</li>
-<li>To create a new paragraph, you must include a blank line between the old and new paragraphs.</li>
-</ul>
-<p>At this point you might be wondering how to turn this cell back into the fully formatted Markdown text instead of the raw Markdown you’re probably still looking at. You have a couple of options, depending on your platform, but the most consistent is to type <code>Shift + Enter</code> to <strong>execute</strong> the cell (this is also how to run code, but more on that later).</p>
-<p>Additionally, you will frequently need to create new cells in your Jupyter notebooks. How you do this will depend on how you interact with the notebook, but try to figure this out now.</p>
-<p>One tip is to think carefully about what bits of code should be in the same cell, as you typically only see output from the last command in a cell. For example, compare the following:</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>-0.9589242746631385</code></pre>
-</div>
-</div>
-<p>with</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>5</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>-0.9589242746631385</code></pre>
-</div>
-</div>
-<p>In Julia, you can also suppress the output of a command with a semi-colon:</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(x);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>which can help if you want to split some code out for clarity or to insert some text prior to it, but don’t want to clutter the notebook with its output.</p>
-<p>For code cells, to execute the commands within the cell, we also press <code>Shift+Enter</code>.</p>
-<p>Finally, <strong>make sure that you evaluate all of the code cells in order before submitting</strong>. One bad outcome with notebooks occurs when cells are evaluated out of order, so fixed bugs and edits in previous cells do not get a chance to propagate down. You can do this with the <code>Run All</code> command in whichever interface you’re using to edit your notebook.</p>
-</section>
-<section id="julia-basics" class="level3">
-<h3 class="anchored" data-anchor-id="julia-basics">Julia Basics</h3>
-<p>There are many tutorials and references for Julia, including a <a href="../tutorials/julia-basics.html">basics overview on the class website</a>. Please feel free to reference these as you work through any part of the course.</p>
-</section>
-<section id="formatting-math" class="level3">
-<h3 class="anchored" data-anchor-id="formatting-math">Formatting Math</h3>
-<p>It will often be helpful to include nicely-formatted mathematics in a notebook. Markdown accomodates this using LaTeX syntax. A LaTeX cheatsheet is available on the class website, and many other guides exist online.</p>
-<p>Below is an example of a formatted equation: <span class="math display">\[x = 5.\]</span></p>
-</section>
-<section id="looking-for-help" class="level3">
-<h3 class="anchored" data-anchor-id="looking-for-help">Looking For Help</h3>
-<p>There is no shame in using Google, or other resources, for help when programming. There are many, many times when you can’t quite get the syntax to work, can’t quite figure out the right package or command to use, or are feeling too lazy or overwhelmed (I’m not judging either of those!) to dig through the documentation. Some good resources include:</p>
-<ul>
-<li><a href="https://stackoverflow.com/">Stack Overflow</a> is a treasure trove of answers;</li>
-<li>The <a href="https://discourse.julialang.org/">official Julia forum</a> and the <a href="https://www.reddit.com/r/Julia/">Julia Subreddit</a> are also very useful.</li>
-</ul>
-<p>You are also highly encouraged to post on <a href="https://us.edstem.org">Ed Discussion</a>, though getting a response might be less immediate. Just be mindful that to get good answers, <a href="https://stackoverflow.com/help/how-to-ask">you have to help people help you</a>, and <strong>make sure to give credit to any resources that were helpful</strong>!</p>
-</section>
-</section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Use your understanding of Julia syntax to complete the following (hopefully short) exercises. Convert your completed notebook to a PDF and submit it to the Gradescope Assignment “Lab 1”.</p>
-<p><strong>Remember to</strong>:</p>
-<ul>
-<li>Evaluate all of your code cells, in order (using a <code>Run All</code> command). This will make sure all output is visible and that the code cells were evaluated in the correct order.</li>
-<li>Tag each of the problems when you submit to Gradescope; a 10% penalty will be deducted if this is not done.</li>
-</ul>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
-<p>Given two numeric arrays <code>x</code> and <code>y</code>, write a function to compute their dot product if they have equal length, and return an error if not (this is useful for debugging!). Use the following code as a starting point.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dot_product</span>(x, y)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">...</span> <span class="co"># insert test condition for equal lengths</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute and return dot product</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">DimensionMismatch</span>(<span class="st">"length of x not equal to length of y"</span>))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Here are some tests to make sure your code works as intended. Tests like these are useful to make sure everything works as intended. One reason to split your code up into functions is that it makes it straightforward to write tests to make sure each piece of your code works, which makes it easier to identify where errors are occuring.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dot_product</span>([<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>], [<span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>If you know the value you should get, you can write a more formal test using the <code>@assert</code> macro, which is a good way to “automate” checking (since you get an obvious error if the code doesn’t work as desired):</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@assert</span> <span class="fu">dot_product</span>([<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>], [<span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span>]) <span class="op">==</span> <span class="fl">32</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Let’s also make sure we get an error when the dimensions of the two vectors don’t match:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dot_product</span>([<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>], [<span class="fl">4</span> <span class="fl">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
-<p>This problem involves implementing Newton’s method for computing square roots; it was shamelessly copied from MIT’s <a href="https://computationalthinking.mit.edu/Spring21/hw0/">Introduction to Computational Thinking</a>. You will use a <code>while</code> loop instead of the <code>for</code> loop shown above.</p>
-<p>Implement the following algorithm in a function <code>newton_sqrt</code>:</p>
-<p>Given <span class="math inline">\(x &gt; 0\)</span>:</p>
-<ol type="1">
-<li>Take a guess <span class="math inline">\(a\)</span>.</li>
-<li>Divide <span class="math inline">\(x\)</span> by <span class="math inline">\(a\)</span>.<br>
-</li>
-<li>Update <span class="math inline">\(a\)</span> as the average of <span class="math inline">\(x/a\)</span> and <span class="math inline">\(a\)</span>.</li>
-<li>Repeat until <span class="math inline">\(x/a\)</span> is within a tolerance of <span class="math inline">\(\varepsilon\)</span> from <span class="math inline">\(a\)</span>.</li>
-<li>Return <span class="math inline">\(a \approx \sqrt{x}\)</span>.</li>
-</ol>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insert your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use your <code>newton_sqrt</code> function to compute <span class="math inline">\(\sqrt{2}\)</span> to within a tolerance of <span class="math inline">\(\varepsilon = 0.01\)</span>.</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insert your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-3-making-a-plot" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3-making-a-plot">Exercise 3: Making a Plot</h3>
-<p>Write a function to compute the square of an integer <code>x</code>. Evaluate this function for integers between <span class="math inline">\(x=-5\)</span> and <span class="math inline">\(x=5\)</span> and make a plot of the squared values (you can find a quick guide to making various types of plots <a href="../tutorials/julia-plots.html">here</a>). Make sure to label your axes.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insert your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="export-the-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="export-the-notebook">Export the Notebook</h2>
-<p>The last step is to export the notebook for submission to Gradescope (this section won’t be repeated going forward, but the steps are the same).</p>
-<p>You should see the following menu bar at the top of the VS Code window: <img src="figures/vs-code-top-bar.png" class="img-fluid" alt="Notebook Menu Bar"></p>
-<ol type="1">
-<li>Click “Run All” at the top to execute all of the cells in order. <strong>Please do not forget to do this before exporting and submitting or you may lose points because your code has not been executed or may have errors</strong>.</li>
-<li>Click the ellipsis (“…”) and select “Export”. If you have LaTeX installed, you can click “PDF”; otherwise, click “HTML.” Save the file, and then when prompted, open the file. This should open the page in your browser; go to the print interface and save as a PDF. ::: {.callout-tip} When printing to PDF, long lines will run off the edge of code cells, which may result in comments or code being hidden. If you see this, go back to the notebook and break up long lines into shorter onces (for example, see the comment in the above code cell) to ensure key parts of your results aren’t missing. :::</li>
-</ol>
-<p>Great! That’s the basic workflow for every assignment in this course.</p>
-<p>Now you have your PDF that you can submit to Gradescope. Make sure that you tag pages corresponding to relevant problems to avoid a 10% penalty.</p>
+<p>This is a placeholder for the lab.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -792,8 +544,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
-    <div class="nav-footer-center"><strong>Page still under construction.</strong></div>
+    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jamesdossgollin.me">James Doss-Gollin</a>. All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
+    <div class="nav-footer-center"><strong>Page still under construction.</strong><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/labs/lab01/lab01.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/ceve543/ceve543.github.io">View the source on <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
