@@ -7,8 +7,8 @@ website:
   page-navigation: true
   title: "{{< var course.number >}} - {{< var course.semester >}}"
   description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
-  site-url: https://jdossgollin.github.io/ceve543-f23
-  repo-url: https://github.com/jdossgollin/ceve543-f23
+  site-url: https://ceve543.github.io
+  repo-url: https://www.github.com/ceve543/website
   repo-actions: [edit, issue]
   open-graph: true
 
