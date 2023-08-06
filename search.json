@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhy do we care about uncertainty in climate risk assessment?\n\n\n\n\n\n\nFri., Aug. 25\nLab: setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab: Convergence\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab: optimization\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab: Monte Carlo estimation\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam*\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab: gridded climate data\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab: cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab: tabular data\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab: visualization-based model assessment\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhy do we care about uncertainty in climate risk assessment?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam*\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
   },
   {
     "objectID": "syllabus.html",
@@ -98,144 +98,249 @@
     "text": "This page is currently empty, because there are not yet any frequently asked questions!"
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html",
-    "href": "slides/notebooks/shallow-lake.html",
-    "title": "Shallow Lake Problem",
-    "section": "",
-    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
+    "objectID": "slides/lecture01-2.html#what-is-a-system",
+    "href": "slides/lecture01-2.html#what-is-a-system",
+    "title": "Introduction to Systems Analysis!",
+    "section": "What Is A System?",
+    "text": "What Is A System?\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#introduction",
-    "href": "slides/notebooks/shallow-lake.html#introduction",
-    "title": "Shallow Lake Problem",
-    "section": "Introduction",
-    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
+    "objectID": "slides/lecture01-2.html#examples-of-systems",
+    "href": "slides/lecture01-2.html#examples-of-systems",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Examples of Systems",
+    "text": "Examples of Systems\nCan we think of any examples of systems?\n\nWhat about things that are not systems?"
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "title": "Shallow Lake Problem",
-    "section": "The Shallow Lake Problem",
-    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
+    "objectID": "slides/lecture01-2.html#why-are-systems-interesting",
+    "href": "slides/lecture01-2.html#why-are-systems-interesting",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Why Are Systems Interesting?",
+    "text": "Why Are Systems Interesting?\nIn other words, a system involves an interconnected set of components.\nThose interconnections can lead to very different dynamics and outcomes than if the component processes were studied in isolation.\nThis is called emergence."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "title": "Shallow Lake Problem",
-    "section": "Lake Problem Dynamics",
-    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+    "objectID": "slides/lecture01-2.html#system-state",
+    "href": "slides/lecture01-2.html#system-state",
+    "title": "Introduction to Systems Analysis!",
+    "section": "System State",
+    "text": "System State\nSystem State: quantities or variables which evolve over time based on external inputs and system dynamics.\nThe state gives you a “snapshot” of the system at a given point in time."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "title": "Shallow Lake Problem",
-    "section": "Simulating The Model Under Constant Inflows",
-    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
+    "objectID": "slides/lecture01-2.html#stocks-and-flows",
+    "href": "slides/lecture01-2.html#stocks-and-flows",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Stocks and Flows",
+    "text": "Stocks and Flows\n\nA stock is the amount of a system property: concentrations of a pollutant, numbers of currency units, etc.\nA flow is the way in which a stock changes: decay, diffusion, production, consumption, etc."
   },
   {
-    "objectID": "slides/lecture01-3.html#overview",
-    "href": "slides/lecture01-3.html#overview",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Overview",
-    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link in Ed Discussion.\nWill have your own repository — let’s discuss how to use it.\nDon’t have to finish these in class, but due by the end of next week (Friday, 9/1, 9pm)."
+    "objectID": "slides/lecture01-2.html#modeling-flows",
+    "href": "slides/lecture01-2.html#modeling-flows",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Modeling Flows",
+    "text": "Modeling Flows\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-3.html#github-workflow",
-    "href": "slides/lecture01-3.html#github-workflow",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "GitHub Workflow",
-    "text": "GitHub Workflow\n\n“clone” repositories on GitHub (remote → local).\n“commit” and “push” changes (local → remote)"
+    "objectID": "slides/lecture01-2.html#feedback-loops",
+    "href": "slides/lecture01-2.html#feedback-loops",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Feedback Loops",
+    "text": "Feedback Loops\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop"
   },
   {
-    "objectID": "slides/lecture01-3.html#clone-repositories-github",
-    "href": "slides/lecture01-3.html#clone-repositories-github",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Clone Repositories: GitHub",
-    "text": "Clone Repositories: GitHub\n\n\n\nOnce you have created your account, navigate to the GitHub repository for the assignment.\nClick the green “Code” button, and copy the URL by clicking on the clipboard icon.\n\n\n\n\n\nCode Clone Interface on GitHub"
+    "objectID": "slides/lecture01-2.html#tipping-points",
+    "href": "slides/lecture01-2.html#tipping-points",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Tipping Points",
+    "text": "Tipping Points\n\n\nAnother important systems concept is a tipping point, where the system changes states abruptly and drastically.\nExamples include lake eutrophication and ice-sheet melting.\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
   },
   {
-    "objectID": "slides/lecture01-3.html#clone-repositories-vs-code",
-    "href": "slides/lecture01-3.html#clone-repositories-vs-code",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Clone Repositories: VS Code",
-    "text": "Clone Repositories: VS Code\n\n\n\nOpen a new VS Code window.\nClick “Clone Git Repository”.\nPaste the URL you copied from GitHub into the search bar and select the repository, then pick a location to save.\n\n\n\n\n\nVS Code New Window"
+    "objectID": "slides/lecture01-2.html#systems-analysis-overview",
+    "href": "slides/lecture01-2.html#systems-analysis-overview",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Systems Analysis Overview",
+    "text": "Systems Analysis Overview\n\n\nWhat We Study\n\nSystem dynamics;\nResponse to inputs;\nAlternatives for management or design.\n\n\nNeeds\n\n\nDefinition of the system\nSystems model"
   },
   {
-    "objectID": "slides/lecture01-3.html#using-local-repositories",
-    "href": "slides/lecture01-3.html#using-local-repositories",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Using Local Repositories",
-    "text": "Using Local Repositories\n\nYou will be prompted to open the new folder.\nThe next step you open VS Code, pick “Open Folder” from the initial New Window page.\n\n\n\n\n\n\n\nOpen Folders, Not Files\n\n\nOpening a folder is recommended because it gives you access to a wider set of tools and the version control interface."
+    "objectID": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
+    "href": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
+    "title": "Introduction to Systems Analysis!",
+    "section": "What Do We Need To Define A System?",
+    "text": "What Do We Need To Define A System?\n\n\nComponents: relevant processes, agents, etc\nInterconnections: relationships between system components\nControl volume: internal vs. external components\nInputs: control policies and/or external forcings\nOutputs: measured quantities of interest"
   },
   {
-    "objectID": "slides/lecture01-3.html#notebooks-consist-of-cells",
-    "href": "slides/lecture01-3.html#notebooks-consist-of-cells",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Notebooks Consist of Cells",
-    "text": "Notebooks Consist of Cells\nJupyter notebooks consist of two cell types:\n\n“Text” cells, which use Markdown and LaTeX syntax for text and math.\n“Code” cells, which contain code which can be evaluated (in this case Julia)."
+    "objectID": "slides/lecture01-2.html#key-takeaways-1",
+    "href": "slides/lecture01-2.html#key-takeaways-1",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nA system is an interconnected set of components.\nSystems are interesting because interconnections can result in unexpected outcomes.\nKey terms:\n\nstate\nstocks\nflows"
   },
   {
-    "objectID": "slides/lecture01-3.html#notebook-kernels",
-    "href": "slides/lecture01-3.html#notebook-kernels",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Notebook Kernels",
-    "text": "Notebook Kernels\n\n\nYou need to pick a kernel to tell Jupyter what language and version to use for code evaluation.\nAfter pressing the kernel selection button (right):\n\n\n\n\nKernel Selection Button\n\n\n\n\n\nSelect “Select Another Kernel”.\n“Julia Language Support”\n“Julia 1.9 Channel”"
+    "objectID": "slides/lecture01-2.html#key-takeaways-2",
+    "href": "slides/lecture01-2.html#key-takeaways-2",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nTo define a system, need to specify:\n\ncomponents\ninterconnections\ncontrol volume\nexternal inputs\noutputs of interest"
   },
   {
-    "objectID": "slides/lecture01-3.html#editing-notebook-cells",
-    "href": "slides/lecture01-3.html#editing-notebook-cells",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Editing Notebook Cells",
-    "text": "Editing Notebook Cells\n\nDouble click the text cell at the top of the notebook that includes the “Name:” and “ID:” prompts. Add your name and Cornell NetID.\nCreate a new cell by hovering your cursor over the bottom of a cell. You should see the buttons on the bottom right pop up.\n\n\n\nClick on “+Code” or “+Markdown” and the new cell should appear.\n\n\n\n\nCreate New Cell"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#committing-changes",
-    "href": "slides/lecture01-3.html#committing-changes",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Committing Changes",
-    "text": "Committing Changes\n“Committing” is the git term for locking in a particular repository state.\n\nOnce changes are committed, you can restore that version of the files by reverting later changes.\nCommits are associated with messages which briefly describe the change(s) that were made.\nCommit meaningful changes often and use informative messages!"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#vs-code-and-git",
-    "href": "slides/lecture01-3.html#vs-code-and-git",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "VS Code and Git",
-    "text": "VS Code and Git\n\n\nYou will see the icon on the right on the left-most (vertical) bar. This is the “Source Control” icon.\n\n\n\n\nVS Code Source Control Icon\n\n\n\n\n\n\nClick this and the “Explorer” panel will change to the “Source Control” panel.\nClick the “+” button next to any files you want to commit, add a message, and click “Commit”."
-  },
-  {
-    "objectID": "slides/lecture01-3.html#pushing-changes",
-    "href": "slides/lecture01-3.html#pushing-changes",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Pushing Changes",
-    "text": "Pushing Changes\n“Pushing” syncs committed changes from the local repository to the remote repository on GitHub.\n\nOnce commits are pushed, they can be viewed on the repository by anyone with access.\nYour repositories are all public, so your classmates, the TA, and I can see your code and try to help debug!"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#pushing-and-vs-code",
-    "href": "slides/lecture01-3.html#pushing-and-vs-code",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Pushing and VS Code",
-    "text": "Pushing and VS Code\nOnce you’ve made commits, you will see the following on the bottom of your VS Code window:\n\n\n\nThe number by : # of remote commits which are not present locally.\nThe number by : # of local commits which have not been synchronized.\n\n\n\n\n\nVS Code Sync\n\n\n\nClick the button and VS Code will “pull” remote changes and “push” local changes."
-  },
-  {
-    "objectID": "slides/lecture01-3.html#exporting-your-notebook-to-pdf",
-    "href": "slides/lecture01-3.html#exporting-your-notebook-to-pdf",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Exporting Your Notebook to PDF",
-    "text": "Exporting Your Notebook to PDF\nYou’ll need to export your notebook to a PDF to submit to Gradescope.\nYou should see the following menu bar at the top of the VS Code window:"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#export-steps",
-    "href": "slides/lecture01-3.html#export-steps",
-    "title": "Getting Started with Julia and GitHub",
-    "section": "Export Steps",
-    "text": "Export Steps\n\nClick “Run All” to execute all cells in order.\nClick the ellipsis (“…”) and select “Export”, then click “HTML”.\nSave the file, then when prompted open it (should open in your browser).\nGo to the print interface and save as a PDF."
-  },
-  {
-    "objectID": "slides/lecture01-3.html#next-classes",
-    "href": "slides/lecture01-3.html#next-classes",
-    "title": "Getting Started with Julia and GitHub",
+    "objectID": "slides/lecture01-2.html#next-classes",
+    "href": "slides/lecture01-2.html#next-classes",
+    "title": "Introduction to Systems Analysis!",
     "section": "Next Classes",
-    "text": "Next Classes\nMonday: Modeling Systems\nWednesday/Friday: Examples of Systems Models\n\n\nBEE 4750, Environmental Systems Analysis"
+    "text": "Next Classes\nFriday: Work on Lab 1.\n\nPreparation:\n\nFollow the steps in Tools Setup to get GitHub and Julia set up.\nClick the Lab 1 link in Ed Discussion to link your GitHub account to the class roster and create your Lab 1 repository."
+  },
+  {
+    "objectID": "slides/lecture01-2.html#next-classes-1",
+    "href": "slides/lecture01-2.html#next-classes-1",
+    "title": "Introduction to Systems Analysis!",
+    "section": "Next Classes",
+    "text": "Next Classes\nMonday: Modeling Systems\n\n\nBEE 4750, Environmental Systems Analysis"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
+  },
+  {
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
+  },
+  {
+    "objectID": "resources/julia.html",
+    "href": "resources/julia.html",
+    "title": "Julia Resources",
+    "section": "",
+    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
+  },
+  {
+    "objectID": "resources/github.html",
+    "href": "resources/github.html",
+    "title": "GitHub Resources",
+    "section": "",
+    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "labs/lab06/lab06.html",
+    "href": "labs/lab06/lab06.html",
+    "title": "Lab 06",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab08/lab08.html",
+    "href": "labs/lab08/lab08.html",
+    "title": "Lab 08",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab07/lab07.html",
+    "href": "labs/lab07/lab07.html",
+    "title": "Lab 07",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab05/lab05.html",
+    "href": "labs/lab05/lab05.html",
+    "title": "Lab 05",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab03/lab03.html",
+    "href": "labs/lab03/lab03.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab04/lab04.html",
+    "href": "labs/lab04/lab04.html",
+    "title": "Lab 04",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab02/lab02.html",
+    "href": "labs/lab02/lab02.html",
+    "title": "Lab 02",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab09/lab09.html",
+    "href": "labs/lab09/lab09.html",
+    "title": "Lab 09",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "labs/lab01/lab01.html",
+    "href": "labs/lab01/lab01.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "This is a placeholder for the lab."
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "resources/markdown.html",
+    "href": "resources/markdown.html",
+    "title": "Markdown Resources",
+    "section": "",
+    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
+  },
+  {
+    "objectID": "website.html",
+    "href": "website.html",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "website.html#quarto",
+    "href": "website.html#quarto",
+    "title": "website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
   },
   {
     "objectID": "slides/lecture01-1.html#course-overview",
@@ -434,228 +539,39 @@
     "text": "Next Classes\nWednesday: Introduction to Systems Analysis\nFriday: Work on Lab 1.\n\nPreparation:\n\nLab 1 link is available on Ed. Click it to accept the lab before class.\n\n\n\n\nBEE 4750, Environmental Systems Analysis"
   },
   {
-    "objectID": "website.html",
-    "href": "website.html",
-    "title": "website",
+    "objectID": "slides/notebooks/shallow-lake.html",
+    "href": "slides/notebooks/shallow-lake.html",
+    "title": "Shallow Lake Problem",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
   },
   {
-    "objectID": "website.html#quarto",
-    "href": "website.html#quarto",
-    "title": "website",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "slides/notebooks/shallow-lake.html#introduction",
+    "href": "slides/notebooks/shallow-lake.html#introduction",
+    "title": "Shallow Lake Problem",
+    "section": "Introduction",
+    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
   },
   {
-    "objectID": "resources/markdown.html",
-    "href": "resources/markdown.html",
-    "title": "Markdown Resources",
-    "section": "",
-    "text": "Markdown Cheatsheet\nGitHub Markdown Cheatsheet (note that not all of these commands may work in Jupyter notebooks, as GitHub Markdown is an expanded syntax\nLaTeX Cheatsheet"
+    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "title": "Shallow Lake Problem",
+    "section": "The Shallow Lake Problem",
+    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
   },
   {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
+    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "title": "Shallow Lake Problem",
+    "section": "Lake Problem Dynamics",
+    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
   },
   {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "resources/github.html",
-    "href": "resources/github.html",
-    "title": "GitHub Resources",
-    "section": "",
-    "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
-  },
-  {
-    "objectID": "resources/julia.html",
-    "href": "resources/julia.html",
-    "title": "Julia Resources",
-    "section": "",
-    "text": "Setting up VS Code and Julia (Youtube)\nJulia Documentation\nJuliaAcademy: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses\nQuantEcon MATLAB-Python-Julia cheatsheet\nFastTrack to Julia cheatsheet\nPlotting cheatsheet\nIntroduction to Computational Thinking: a great Julia based course at MIT!\nComprehensive Julia Tutorials: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "",
-    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Course Information",
-    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
-  },
-  {
-    "objectID": "index.html#software-tools",
-    "href": "index.html#software-tools",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#what-is-a-system",
-    "href": "slides/lecture01-2.html#what-is-a-system",
-    "title": "Introduction to Systems Analysis!",
-    "section": "What Is A System?",
-    "text": "What Is A System?\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#examples-of-systems",
-    "href": "slides/lecture01-2.html#examples-of-systems",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Examples of Systems",
-    "text": "Examples of Systems\nCan we think of any examples of systems?\n\nWhat about things that are not systems?"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#why-are-systems-interesting",
-    "href": "slides/lecture01-2.html#why-are-systems-interesting",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Why Are Systems Interesting?",
-    "text": "Why Are Systems Interesting?\nIn other words, a system involves an interconnected set of components.\nThose interconnections can lead to very different dynamics and outcomes than if the component processes were studied in isolation.\nThis is called emergence."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#system-state",
-    "href": "slides/lecture01-2.html#system-state",
-    "title": "Introduction to Systems Analysis!",
-    "section": "System State",
-    "text": "System State\nSystem State: quantities or variables which evolve over time based on external inputs and system dynamics.\nThe state gives you a “snapshot” of the system at a given point in time."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#stocks-and-flows",
-    "href": "slides/lecture01-2.html#stocks-and-flows",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Stocks and Flows",
-    "text": "Stocks and Flows\n\nA stock is the amount of a system property: concentrations of a pollutant, numbers of currency units, etc.\nA flow is the way in which a stock changes: decay, diffusion, production, consumption, etc."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#modeling-flows",
-    "href": "slides/lecture01-2.html#modeling-flows",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Modeling Flows",
-    "text": "Modeling Flows\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#feedback-loops",
-    "href": "slides/lecture01-2.html#feedback-loops",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Feedback Loops",
-    "text": "Feedback Loops\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#tipping-points",
-    "href": "slides/lecture01-2.html#tipping-points",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Tipping Points",
-    "text": "Tipping Points\n\n\nAnother important systems concept is a tipping point, where the system changes states abruptly and drastically.\nExamples include lake eutrophication and ice-sheet melting.\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#systems-analysis-overview",
-    "href": "slides/lecture01-2.html#systems-analysis-overview",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Systems Analysis Overview",
-    "text": "Systems Analysis Overview\n\n\nWhat We Study\n\nSystem dynamics;\nResponse to inputs;\nAlternatives for management or design.\n\n\nNeeds\n\n\nDefinition of the system\nSystems model"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
-    "href": "slides/lecture01-2.html#what-do-we-need-to-define-a-system",
-    "title": "Introduction to Systems Analysis!",
-    "section": "What Do We Need To Define A System?",
-    "text": "What Do We Need To Define A System?\n\n\nComponents: relevant processes, agents, etc\nInterconnections: relationships between system components\nControl volume: internal vs. external components\nInputs: control policies and/or external forcings\nOutputs: measured quantities of interest"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#key-takeaways-1",
-    "href": "slides/lecture01-2.html#key-takeaways-1",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nA system is an interconnected set of components.\nSystems are interesting because interconnections can result in unexpected outcomes.\nKey terms:\n\nstate\nstocks\nflows"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#key-takeaways-2",
-    "href": "slides/lecture01-2.html#key-takeaways-2",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nTo define a system, need to specify:\n\ncomponents\ninterconnections\ncontrol volume\nexternal inputs\noutputs of interest"
-  },
-  {
-    "objectID": "slides/lecture01-2.html#next-classes",
-    "href": "slides/lecture01-2.html#next-classes",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Next Classes",
-    "text": "Next Classes\nFriday: Work on Lab 1.\n\nPreparation:\n\nFollow the steps in Tools Setup to get GitHub and Julia set up.\nClick the Lab 1 link in Ed Discussion to link your GitHub account to the class roster and create your Lab 1 repository."
-  },
-  {
-    "objectID": "slides/lecture01-2.html#next-classes-1",
-    "href": "slides/lecture01-2.html#next-classes-1",
-    "title": "Introduction to Systems Analysis!",
-    "section": "Next Classes",
-    "text": "Next Classes\nMonday: Modeling Systems\n\n\nBEE 4750, Environmental Systems Analysis"
-  },
-  {
-    "objectID": "slides/notebooks/dissolved-oxygen.html",
-    "href": "slides/notebooks/dissolved-oxygen.html",
-    "title": "{{< var course.number >}} - {{< var course.semester >}}",
-    "section": "",
-    "text": "---\ntitle: \"Dissolved Oxygen\"\nauthor: \"Vivek Srikrishnan\"\ndate: \"5/13/2023\"\nformat:\n  html:\n    code-fold: true\n  ipynb: default\njupyter: julia-1.9\n---\n\n\nimport Pkg\nPkg.activate(\"..\")\nPkg.instantiate()\n\n  Activating project at `~/Teaching/environmental-systems-analysis/website/slides`\n\n\n\nusing Plots\nusing Measures\nusing LaTeXStrings\n\nA first-order model for dissolved oxygen (DO) is\n\\[\\begin{align}\nU \\frac{dC}{dx} &= k_a (C_s - C) + P - R - S_B - k_cB_0\\exp\\left(\\frac{-k_cx}{U}\\right) - k_n N_0\\exp\\left(\\frac{-k_nx}{U}\\right)\n\\end{align}\\]\nwhich has solution\n\\[C(x) = C_s(1 - \\alpha_1) + C_0 \\alpha_1 - B_0 \\alpha_2 - N_0 \\alpha_3 + \\left(\\frac{P-R-S_B}{k_a}\\right) (1-\\alpha_1),\\]\nbut we’ll ignore \\(P\\), \\(R\\), and \\(S_B\\) as these just modify \\(C_s\\).\n\n## function to simulate DO given parameters\n\nfunction do_simulate(x, C0, B0, N0, ka, kn, kc, Cs, U)\n    B = B0 .* exp.(-kc .* x ./ U)\n    N = N0 .* exp.(-kn .* x ./ U)\n    alpha1 = exp.(-ka .* x ./ U)\n    alpha2 = (kc/(ka-kc)) .* (exp.(-kc .* x / U) - exp.(-ka .* x / U))\n    alpha3 = (kn/(ka-kn)) .* (exp.(-kn .* x / U) - exp.(-ka .* x / U))\n    C = Cs .* (1 .- alpha1) + (C0 .* alpha1) - (B0 .* alpha2) - (N0 .* alpha3)\n    return (C, B, N)\nend  \n\ndo_simulate (generic function with 1 method)\n\n\n\n\nka = 0.8\nkc = 0.4\nkn = 0.25\n\nx = 0:40\n\nC, B, N = do_simulate(x, 12, 10, 6, ka, kc, kn, 10, 6)\n\n([12.0, 11.00645310548937, 10.175859173274619, 9.485735592776512, 8.916529246889715, 8.451243511008714, 8.075112259659466, 7.7753149851202945, 7.540727870097758, 7.3617063020117754  …  8.192305787065738, 8.267173709636479, 8.339934969497461, 8.410487111173717, 8.47875989610827, 8.544710197112913, 8.608317593145037, 8.669580573208266, 8.72851326979175, 8.785142652415068], [10.0, 9.591894571091382, 9.200444146293233, 8.824969025845954, 8.464817248906142, 8.11936346150635, 7.788007830714049, 7.470175003104326, 7.1653131057378925, 6.872892787909723  …  2.748123805594897, 2.6359713811572676, 2.5283959580474646, 2.425210746356487, 2.326236579172927, 2.231301601484298, 2.140240971774475, 2.052896575799093, 1.9691167520419406, 1.8887560283756186], [6.0, 5.613041910189707, 5.251039914257685, 4.912384518467891, 4.595570030187892, 4.299187863442736, 4.0219202762138355, 3.7625345116383366, 3.5198773170601907, 3.292869816564159  …  0.7596426167345016, 0.7106509740828222, 0.6648189501740032, 0.6219427716691671, 0.5818318071864303, 0.5443077197364751, 0.5092036738201045, 0.47636359366246933, 0.44564146928600323, 0.4169007073368093])\n\n\n\np1 = plot(x, C, grid=false, color=:black, ylabel=\"DO/OD (mg/l)\", xlabel=\"Distance (km)\", label=\"DO\", linewidth=3, left_margin=8mm, top_margin=10mm, guidefontsize=16, legendfontsize=16, tickfontsize=14, xticks=:false, yticks=:false, legend=:right)\nplot!(x, B, color=:green, label=\"CBOD\", linestyle=:dash, linewidth=3)\nplot!(x, N, color=:blue, label=\"NBOD\", linestyle=:dash, linewidth=3)\nplot!(x, 10 * ones(length(x)), color=:purple, label=L\"C_s\", linestyle=:dot, linewidth=3)\n\nannotate!(1.5, 12.75, text(\"Waste Discharge\", pointsize=16, color=:red))\nvline!([0], color=:red, linewidth=2, label=:false)\nplot!(size=(700, 500))\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Sag curve for dissolved oxygen.\n\n\n\n\nC0 = 6.2\nB0 = 9\nN0 = 7\n\nka = 0.8\nkc = 0.5\nkn = 0.4\nCs = 7\nU = 5\n\n5\n\n\n\nfunction dissolved_oxygen(x, Cs, C0, B0, N0, ka, kc, kn, U)\n    α1 = exp(-ka * x / U)\n    α2 = (kc / (ka - kc)) * (exp(-kc * x / U) - α1)\n    α3 = (kn / (ka - kn)) * (exp(-kn * x / U) - α1)\n    C = (Cs * (1 - α1)) + (C0 * α1) - (B0 * α2) - (N0 * α3)\n    return C\nend\n\nx = 0:0.1:20\nC = (y -&gt; dissolved_oxygen(y, Cs, C0, B0, N0, ka, kc, kn, U)).(x)\n\n\n\nCode\nplot(x, C; linewidth=3, \n    label=\"Dissolved Oxygen\", \n    tickfontsize=16, \n    guidefontsize=16, \n    legendfontsize=16)\nxlabel!(L\"$x$ (km)\")\nylabel!(\"DO Concentration (mg/L)\")\nhline!([3], color=:red, \n    linestyle=:dash, \n    label=\"Regulatory Standard\")\nplot!(size=(500, 500))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Single-Release Dissolved Oxygen Example\n\n\n\n\nQ1 = 100000\nQ2 = 20000\nQ3 = 25000\n\nx0 = 0\nx1 = 18\nx2 = 30\nx3 = 45\n\nC01 = 6\nB01 = 5\nN01 = 4.5\n\nC1, B1, N1 = do_simulate(x0:x1, C01, B01, N01, ka, kc, kn, 9, 6)\n\nC02 = (C1[length(C1)] * Q1 + 3 * Q2) / (Q1 + Q2)\nB02 = (B1[length(B1)] * Q1 + 55 * Q2) / (Q1 + Q2)\nN02 = (N1[length(N1)] * Q1 + 50 * Q2) / (Q1 + Q2)\n\nC2, B2, N2 = do_simulate(x0:(x2-x1), C02, B02, N02, ka, kc, kn, 9, 6)\n\nC03 = (C2[length(C2)] * (Q1 + Q2) + 4 * Q3) / (Q1 + Q2 + Q3)\nB03 = (B2[length(B2)] * (Q1 + Q2) + 40 * Q3) / (Q1 + Q2 + Q3)\nN03 = (N2[length(N2)] * (Q1 + Q2) + 30 * Q3) / (Q1 + Q2 + Q3)\n\nC3, B3, N3 = do_simulate(x0:(x3-x2), C03, B03, N03, ka, kc, kn, 9, 6)\n\nplot(x0:x1, C1, grid=false, color=:black, ylabel=\"DO (mg/L)\", xlabel=\"Distance (km)\", label=\"DO\", xticks=:false, yticks=:false, linewidth=3, left_margin=12mm, top_margin=10mm, bottom_margin=20mm, guidefontsize=16, tickfontsize=16, legendfontsize=16)\nplot!(x1:x2, C2, color=:black, label=false, linewidth=3)\nplot!(x2:x3, C3, color=:black, label=false, linewidth=3)\nplot!(size=(1200, 500))\n\nvline!([x0, x1, x2], color=:green, linewidth=3, label=\"Discharge\")\nhline!([3], color=:red, linewidth=3, label=\"Regulation\", linestyle=:dash)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Multi-Release Dissolved Oxygen Example"
-  },
-  {
-    "objectID": "slides/notebooks/economic-dispatch.html",
-    "href": "slides/notebooks/economic-dispatch.html",
-    "title": "Economic Dispatch with JuMP",
-    "section": "",
-    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\n\n\n  Activating project at `~/Teaching/environmental-systems-analysis/website/slides`\nCode\nusing DataFrames\nusing LaTeXStrings\nusing PrettyTables\nusing JuMP\nusing HiGHS\nusing Plots\nusing Measures"
-  },
-  {
-    "objectID": "slides/notebooks/economic-dispatch.html#overview-of-economic-dispatch",
-    "href": "slides/notebooks/economic-dispatch.html#overview-of-economic-dispatch",
-    "title": "Economic Dispatch with JuMP",
-    "section": "Overview of Economic Dispatch",
-    "text": "Overview of Economic Dispatch\nA key goal in power systems operations is how to meet demand by generating electricity from a variety of generators with varying costs and engineering constraints, including: * ramping limits; * minimum/maximum power outputs; * network constraints (we will ignore these here).\nEconomic dispatch refers to solving this problem with an objective of minimizing total costs of production. Economic dispatch is typically formulated as a linear programming problem, and we will use JuMP to formulate and solve it for a simple portfolio of generators over: * a single period * multiple periods with ramping constraints."
-  },
-  {
-    "objectID": "slides/notebooks/economic-dispatch.html#single-period-economic-dispatch",
-    "href": "slides/notebooks/economic-dispatch.html#single-period-economic-dispatch",
-    "title": "Economic Dispatch with JuMP",
-    "section": "Single-Period Economic Dispatch",
-    "text": "Single-Period Economic Dispatch\nLet’s say that we have a fleet of the following generators.\n\n\nCode\nheader = [\"Plant\", \"P&lt;sub&gt;min&lt;/sub&gt; (MW)\", \"P&lt;sub&gt;max&lt;/sub&gt; (MW)\", \"VarCost (\\$/MW)\"]\ngen_names = [\"Hydro\", \"Wind\", \"Nuclear\", \"Coal\", \"Natural Gas\"]\ngen_minpower = [0, 0, 200, 160, 40]\ngen_maxpower = [150, 200, 1000, 700, 500]\ngen_varcost = [0, 0, 2, 21.50, 23]\ngen_data = DataFrame(name=gen_names, Pmin=gen_minpower, Pmax=gen_maxpower, varcost=gen_varcost)\npretty_table(gen_data; backend = Val(:html), header=header, allow_html_in_cells=true)\n\n\n\n\n\nPlant\nPmin (MW)\nPmax (MW)\nVarCost ($/MW)\n\n\n\n\nHydro\n0\n150\n0.0\n\n\nWind\n0\n200\n0.0\n\n\nNuclear\n200\n1000\n2.0\n\n\nCoal\n160\n700\n21.5\n\n\nNatural Gas\n40\n500\n23.0\n\n\n\n\n\nLet’s also assume that demand in this period is 1800 MW."
-  },
-  {
-    "objectID": "slides/notebooks/economic-dispatch.html#jump-formulation",
-    "href": "slides/notebooks/economic-dispatch.html#jump-formulation",
-    "title": "Economic Dispatch with JuMP",
-    "section": "JuMP Formulation",
-    "text": "JuMP Formulation\n\n\nCode\ndemand = 1800\n\nG = 1:nrow(gen_data)\ndispatch = Model(HiGHS.Optimizer)\n@variable(dispatch, gen_minpower[g] &lt;= y[g in G] &lt;= gen_maxpower[g])\n@objective(dispatch, Min, sum(gen_varcost .* y))\n@constraint(dispatch, load, sum(y) == demand)\n\nlatex_formulation(dispatch)\n\n\n\\[ \\begin{aligned}\n\\min\\quad & 2 y_{3} + 21.5 y_{4} + 23 y_{5}\\\\\n\\text{Subject to} \\quad & y_{1} + y_{2} + y_{3} + y_{4} + y_{5} = 1800.0\\\\\n& y_{1} \\geq 0.0\\\\\n& y_{2} \\geq 0.0\\\\\n& y_{3} \\geq 200.0\\\\\n& y_{4} \\geq 160.0\\\\\n& y_{5} \\geq 40.0\\\\\n& y_{1} \\leq 150.0\\\\\n& y_{2} \\leq 200.0\\\\\n& y_{3} \\leq 1000.0\\\\\n& y_{4} \\leq 700.0\\\\\n& y_{5} \\leq 500.0\\\\\n\\end{aligned} \\]\n\n\n\n\nCode\nset_silent(dispatch)\noptimize!(dispatch)\n\n\n\n\nCode\ngen_sol = value.(y).data\nresults = DataFrame(name=gen_names, dispatch=gen_sol\n, pmin=gen_minpower, pmax=gen_maxpower)\nresults_header = [\"Plant\", \"Dispatch (MW)\", \"P&lt;sub&gt;min&lt;/sub&gt; (MW)\", \"P&lt;sub&gt;max&lt;/sub&gt; (MW)\"]\npretty_table(results; backend = Val(:html), header=results_header, allow_html_in_cells=true)\n\n\n\n\n\nPlant\nDispatch (MW)\nPmin (MW)\nPmax (MW)\n\n\n\n\nHydro\n150.0\n0\n150\n\n\nWind\n200.0\n0\n200\n\n\nNuclear\n1000.0\n200\n1000\n\n\nCoal\n410.0\n160\n700\n\n\nNatural Gas\n40.0\n40\n500\n\n\n\n\n\n\nMarginal Generators\nOnce we hit the minimum for each generator, we then “fill up” capacity from lowest-cost generators first, then move on.\nFor this problem, the coal generator is the marginal generator. If we had used all of our coal capacity, the natural gas unit would be the marginal generator. The concept of the marginal generator is important, as the marginal generation unit sets the price of electricity.\n\n\nMerit Order and the Dispatch Stack\nThis procedure of starting with the lowest-cost generation and adding generation sequentially from generators in order of cost is the concept of merit order: plants are scheduled to supply additional electricity based (mostly) on their variable costs. We can visualize the supply curve (or the dispatch stack) to see the order in which electricity is dispatched.\n\n\nCode\nsupply_curve = DataFrame( \n    name = gen_names, \n    pmin = gen_minpower, \n    cap = gen_maxpower .- gen_minpower,\n    varcost = gen_varcost \n)\n\nsort!(supply_curve, [:varcost, order(:cap, rev=true)])\n\n\n5×4 DataFrame\n\n\n\nRow\nname\npmin\ncap\nvarcost\n\n\n\nString\nInt64\nInt64\nFloat64\n\n\n\n\n1\nWind\n0\n200\n0.0\n\n\n2\nHydro\n0\n150\n0.0\n\n\n3\nNuclear\n200\n800\n2.0\n\n\n4\nCoal\n160\n540\n21.5\n\n\n5\nNatural Gas\n40\n460\n23.0\n\n\n\n\n\n\n\n\nCode\nrectangle(w, h, x, y) = Shape(x .+ [0,w,w,0], y .+ [0,0,h,h]) \n\np = plot(grid=:false, color_palette=:tol_muted, legend=:left, legendfontsize=20, tickfontsize=20, guidefontsize=20) \nmarg_gen = 0 \nmarg_price = 0 \nx = 0 \n\nplot!(p, rectangle(sum(supply_curve.pmin), 0.5, x, 0), opacity=.5, label = \"minimum\", color=\"black\") \nx = x + sum(supply_curve.pmin) \nfor i in 1:nrow(supply_curve) \n    if supply_curve[i, :varcost] == 0 \n        plot!(p, rectangle(supply_curve[i, :cap], 0.5,x,0), opacity=.5, label = supply_curve[i, :name]) \n    else \n        plot!(p, rectangle(supply_curve[i, :cap], supply_curve[i, :varcost],x,0), opacity=.5, label = supply_curve[i, :name]) \n    end \n    if (x &lt; demand) && (x + supply_curve[i,:cap] &gt; demand) \n        marg_gen = i \n        marg_price = supply_curve[i,:varcost] \n    end \n    x = x + supply_curve[i,:cap] \nend \nvline!([demand],linecolor=\"black\",linewidth=5, linestyle=:dash, label = \"demand\") \nhline!([marg_price],linecolor=\"blue\", linestyle=:dot, linewidth=5, label = \"Electricity Price\") \nxlabel!(\"Capacity (MW)\") \nylabel!(\"Marginal Cost (\\$/MW)\") \nplot!(size=(800, 600))\nplot!(right_margin=13mm, left_margin=5mm, bottom_margin=5mm)"
-  },
-  {
-    "objectID": "slides/notebooks/economic-dispatch.html#multiple-period-dispatch",
-    "href": "slides/notebooks/economic-dispatch.html#multiple-period-dispatch",
-    "title": "Economic Dispatch with JuMP",
-    "section": "Multiple-Period Dispatch",
-    "text": "Multiple-Period Dispatch\nWhat changes for multiple periods?\n\nNeed to meet demand at every time period\nWe have additional ramping constraints: plants can only increase and decrease their output by so much from time to time, by \\(R_g\\).\n\n\nJuMP Implementation\n\n\nCode\nramp = [150, 200, 100, 250, 300]\ndemand = [1725, 1596, 1476, 1408, 1530, 1714, 1820, 1973, 2081, 2202, 2105, 2065, \n    2045, 2195, 2309, 2390, 2486, 2515, 2075, 2006, 1956, 1902, 1865, 1820]\nh = length(demand)\nT = 1:h\n\ndispatch2 = Model(HiGHS.Optimizer)\n@variable(dispatch2, gen_minpower[g] &lt;= y[g in G, t in T] &lt;= gen_maxpower[g])\n@objective(dispatch2, Min, sum(gen_varcost .* sum([y[:, t] for t in T])))\n@constraint(dispatch2, load[t in T], sum(y[:, t]) == demand[t])\n@constraint(dispatch2, rampup[g in G, t in 1:h-1], y[g, t+1] - y[g, t] &lt;= ramp[g])\n@constraint(dispatch2, rampdown[g in G, t in 1:h-1], y[g, t] - y[g, t+1] &lt;= ramp[g])\n\nlatex_formulation(dispatch2)\n\n\n\\[ \\begin{aligned}\n\\min\\quad & 2 y_{3,1} + 2 y_{3,2} + 2 y_{3,3} + 2 y_{3,4} + 2 y_{3,5} + 2 y_{3,6} + 2 y_{3,7} + 2 y_{3,8} + 2 y_{3,9} + 2 y_{3,10} + 2 y_{3,11} + 2 y_{3,12} + 2 y_{3,13} + 2 y_{3,14} + 2 y_{3,15} + 2 y_{3,16} + 2 y_{3,17} + 2 y_{3,18} + 2 y_{3,19} + 2 y_{3,20} + 2 y_{3,21} + 2 y_{3,22} + 2 y_{3,23} + 2 y_{3,24} + 21.5 y_{4,1} + 21.5 y_{4,2} + 21.5 y_{4,3} + 21.5 y_{4,4} + 21.5 y_{4,5} + 21.5 y_{4,6} + 21.5 y_{4,7} + 21.5 y_{4,8} + 21.5 y_{4,9} + 21.5 y_{4,10} + 21.5 y_{4,11} + 21.5 y_{4,12} + 21.5 y_{4,13} + 21.5 y_{4,14} + 21.5 y_{4,15} + 21.5 y_{4,16} + 21.5 y_{4,17} + 21.5 y_{4,18} + 21.5 y_{4,19} + 21.5 y_{4,20} + 21.5 y_{4,21} + 21.5 y_{4,22} + 21.5 y_{4,23} + 21.5 y_{4,24} + 23 y_{5,1} + 23 y_{5,2} + 23 y_{5,3} + 23 y_{5,4} + 23 y_{5,5} + 23 y_{5,6} + 23 y_{5,7} + 23 y_{5,8} + 23 y_{5,9} + 23 y_{5,10} + 23 y_{5,11} + 23 y_{5,12} + 23 y_{5,13} + 23 y_{5,14} + 23 y_{5,15} + 23 y_{5,16} + 23 y_{5,17} + 23 y_{5,18} + 23 y_{5,19} + 23 y_{5,20} + 23 y_{5,21} + 23 y_{5,22} + 23 y_{5,23} + 23 y_{5,24}\\\\\n\\text{Subject to} \\quad & y_{1,1} + y_{2,1} + y_{3,1} + y_{4,1} + y_{5,1} = 1725.0\\\\\n& y_{1,2} + y_{2,2} + y_{3,2} + y_{4,2} + y_{5,2} = 1596.0\\\\\n& y_{1,3} + y_{2,3} + y_{3,3} + y_{4,3} + y_{5,3} = 1476.0\\\\\n& y_{1,4} + y_{2,4} + y_{3,4} + y_{4,4} + y_{5,4} = 1408.0\\\\\n& y_{1,5} + y_{2,5} + y_{3,5} + y_{4,5} + y_{5,5} = 1530.0\\\\\n& y_{1,6} + y_{2,6} + y_{3,6} + y_{4,6} + y_{5,6} = 1714.0\\\\\n& y_{1,7} + y_{2,7} + y_{3,7} + y_{4,7} + y_{5,7} = 1820.0\\\\\n& y_{1,8} + y_{2,8} + y_{3,8} + y_{4,8} + y_{5,8} = 1973.0\\\\\n& y_{1,9} + y_{2,9} + y_{3,9} + y_{4,9} + y_{5,9} = 2081.0\\\\\n& y_{1,10} + y_{2,10} + y_{3,10} + y_{4,10} + y_{5,10} = 2202.0\\\\\n& y_{1,11} + y_{2,11} + y_{3,11} + y_{4,11} + y_{5,11} = 2105.0\\\\\n& y_{1,12} + y_{2,12} + y_{3,12} + y_{4,12} + y_{5,12} = 2065.0\\\\\n& y_{1,13} + y_{2,13} + y_{3,13} + y_{4,13} + y_{5,13} = 2045.0\\\\\n& y_{1,14} + y_{2,14} + y_{3,14} + y_{4,14} + y_{5,14} = 2195.0\\\\\n& y_{1,15} + y_{2,15} + y_{3,15} + y_{4,15} + y_{5,15} = 2309.0\\\\\n& y_{1,16} + y_{2,16} + y_{3,16} + y_{4,16} + y_{5,16} = 2390.0\\\\\n& y_{1,17} + y_{2,17} + y_{3,17} + y_{4,17} + y_{5,17} = 2486.0\\\\\n& y_{1,18} + y_{2,18} + y_{3,18} + y_{4,18} + y_{5,18} = 2515.0\\\\\n& y_{1,19} + y_{2,19} + y_{3,19} + y_{4,19} + y_{5,19} = 2075.0\\\\\n& y_{1,20} + y_{2,20} + y_{3,20} + y_{4,20} + y_{5,20} = 2006.0\\\\\n& y_{1,21} + y_{2,21} + y_{3,21} + y_{4,21} + y_{5,21} = 1956.0\\\\\n& y_{1,22} + y_{2,22} + y_{3,22} + y_{4,22} + y_{5,22} = 1902.0\\\\\n& y_{1,23} + y_{2,23} + y_{3,23} + y_{4,23} + y_{5,23} = 1865.0\\\\\n& y_{1,24} + y_{2,24} + y_{3,24} + y_{4,24} + y_{5,24} = 1820.0\\\\\n& -y_{1,1} + y_{1,2} \\leq 150.0\\\\\n& -y_{2,1} + y_{2,2} \\leq 200.0\\\\\n& -y_{3,1} + y_{3,2} \\leq 100.0\\\\\n& -y_{4,1} + y_{4,2} \\leq 250.0\\\\\n& -y_{5,1} + y_{5,2} \\leq 300.0\\\\\n& -y_{1,2} + y_{1,3} \\leq 150.0\\\\\n& -y_{2,2} + y_{2,3} \\leq 200.0\\\\\n& -y_{3,2} + y_{3,3} \\leq 100.0\\\\\n& -y_{4,2} + y_{4,3} \\leq 250.0\\\\\n& -y_{5,2} + y_{5,3} \\leq 300.0\\\\\n& -y_{1,3} + y_{1,4} \\leq 150.0\\\\\n& -y_{2,3} + y_{2,4} \\leq 200.0\\\\\n& -y_{3,3} + y_{3,4} \\leq 100.0\\\\\n& -y_{4,3} + y_{4,4} \\leq 250.0\\\\\n& -y_{5,3} + y_{5,4} \\leq 300.0\\\\\n& -y_{1,4} + y_{1,5} \\leq 150.0\\\\\n& -y_{2,4} + y_{2,5} \\leq 200.0\\\\\n& -y_{3,4} + y_{3,5} \\leq 100.0\\\\\n& -y_{4,4} + y_{4,5} \\leq 250.0\\\\\n& -y_{5,4} + y_{5,5} \\leq 300.0\\\\\n& -y_{1,5} + y_{1,6} \\leq 150.0\\\\\n& -y_{2,5} + y_{2,6} \\leq 200.0\\\\\n& -y_{3,5} + y_{3,6} \\leq 100.0\\\\\n& -y_{4,5} + y_{4,6} \\leq 250.0\\\\\n& -y_{5,5} + y_{5,6} \\leq 300.0\\\\\n& -y_{1,6} + y_{1,7} \\leq 150.0\\\\\n& -y_{2,6} + y_{2,7} \\leq 200.0\\\\\n& -y_{3,6} + y_{3,7} \\leq 100.0\\\\\n& -y_{4,6} + y_{4,7} \\leq 250.0\\\\\n& -y_{5,6} + y_{5,7} \\leq 300.0\\\\\n& -y_{1,7} + y_{1,8} \\leq 150.0\\\\\n& -y_{2,7} + y_{2,8} \\leq 200.0\\\\\n& -y_{3,7} + y_{3,8} \\leq 100.0\\\\\n& -y_{4,7} + y_{4,8} \\leq 250.0\\\\\n& -y_{5,7} + y_{5,8} \\leq 300.0\\\\\n& -y_{1,8} + y_{1,9} \\leq 150.0\\\\\n& -y_{2,8} + y_{2,9} \\leq 200.0\\\\\n& -y_{3,8} + y_{3,9} \\leq 100.0\\\\\n& -y_{4,8} + y_{4,9} \\leq 250.0\\\\\n& -y_{5,8} + y_{5,9} \\leq 300.0\\\\\n& -y_{1,9} + y_{1,10} \\leq 150.0\\\\\n& -y_{2,9} + y_{2,10} \\leq 200.0\\\\\n& -y_{3,9} + y_{3,10} \\leq 100.0\\\\\n& -y_{4,9} + y_{4,10} \\leq 250.0\\\\\n& -y_{5,9} + y_{5,10} \\leq 300.0\\\\\n& -y_{1,10} + y_{1,11} \\leq 150.0\\\\\n& -y_{2,10} + y_{2,11} \\leq 200.0\\\\\n& -y_{3,10} + y_{3,11} \\leq 100.0\\\\\n& -y_{4,10} + y_{4,11} \\leq 250.0\\\\\n& -y_{5,10} + y_{5,11} \\leq 300.0\\\\\n& -y_{1,11} + y_{1,12} \\leq 150.0\\\\\n& -y_{2,11} + y_{2,12} \\leq 200.0\\\\\n& -y_{3,11} + y_{3,12} \\leq 100.0\\\\\n& -y_{4,11} + y_{4,12} \\leq 250.0\\\\\n& -y_{5,11} + y_{5,12} \\leq 300.0\\\\\n& -y_{1,12} + y_{1,13} \\leq 150.0\\\\\n& -y_{2,12} + y_{2,13} \\leq 200.0\\\\\n& -y_{3,12} + y_{3,13} \\leq 100.0\\\\\n& -y_{4,12} + y_{4,13} \\leq 250.0\\\\\n& -y_{5,12} + y_{5,13} \\leq 300.0\\\\\n& -y_{1,13} + y_{1,14} \\leq 150.0\\\\\n& -y_{2,13} + y_{2,14} \\leq 200.0\\\\\n& -y_{3,13} + y_{3,14} \\leq 100.0\\\\\n& -y_{4,13} + y_{4,14} \\leq 250.0\\\\\n& -y_{5,13} + y_{5,14} \\leq 300.0\\\\\n& -y_{1,14} + y_{1,15} \\leq 150.0\\\\\n& -y_{2,14} + y_{2,15} \\leq 200.0\\\\\n& -y_{3,14} + y_{3,15} \\leq 100.0\\\\\n& -y_{4,14} + y_{4,15} \\leq 250.0\\\\\n& -y_{5,14} + y_{5,15} \\leq 300.0\\\\\n& -y_{1,15} + y_{1,16} \\leq 150.0\\\\\n& -y_{2,15} + y_{2,16} \\leq 200.0\\\\\n& -y_{3,15} + y_{3,16} \\leq 100.0\\\\\n& -y_{4,15} + y_{4,16} \\leq 250.0\\\\\n& -y_{5,15} + y_{5,16} \\leq 300.0\\\\\n& -y_{1,16} + y_{1,17} \\leq 150.0\\\\\n& -y_{2,16} + y_{2,17} \\leq 200.0\\\\\n& -y_{3,16} + y_{3,17} \\leq 100.0\\\\\n& -y_{4,16} + y_{4,17} \\leq 250.0\\\\\n& -y_{5,16} + y_{5,17} \\leq 300.0\\\\\n& -y_{1,17} + y_{1,18} \\leq 150.0\\\\\n& -y_{2,17} + y_{2,18} \\leq 200.0\\\\\n& -y_{3,17} + y_{3,18} \\leq 100.0\\\\\n& -y_{4,17} + y_{4,18} \\leq 250.0\\\\\n& -y_{5,17} + y_{5,18} \\leq 300.0\\\\\n& -y_{1,18} + y_{1,19} \\leq 150.0\\\\\n& -y_{2,18} + y_{2,19} \\leq 200.0\\\\\n& -y_{3,18} + y_{3,19} \\leq 100.0\\\\\n& -y_{4,18} + y_{4,19} \\leq 250.0\\\\\n& -y_{5,18} + y_{5,19} \\leq 300.0\\\\\n& -y_{1,19} + y_{1,20} \\leq 150.0\\\\\n& -y_{2,19} + y_{2,20} \\leq 200.0\\\\\n& -y_{3,19} + y_{3,20} \\leq 100.0\\\\\n& -y_{4,19} + y_{4,20} \\leq 250.0\\\\\n& -y_{5,19} + y_{5,20} \\leq 300.0\\\\\n& -y_{1,20} + y_{1,21} \\leq 150.0\\\\\n& -y_{2,20} + y_{2,21} \\leq 200.0\\\\\n& -y_{3,20} + y_{3,21} \\leq 100.0\\\\\n& -y_{4,20} + y_{4,21} \\leq 250.0\\\\\n& -y_{5,20} + y_{5,21} \\leq 300.0\\\\\n& -y_{1,21} + y_{1,22} \\leq 150.0\\\\\n& -y_{2,21} + y_{2,22} \\leq 200.0\\\\\n& -y_{3,21} + y_{3,22} \\leq 100.0\\\\\n& -y_{4,21} + y_{4,22} \\leq 250.0\\\\\n& -y_{5,21} + y_{5,22} \\leq 300.0\\\\\n& -y_{1,22} + y_{1,23} \\leq 150.0\\\\\n& -y_{2,22} + y_{2,23} \\leq 200.0\\\\\n& -y_{3,22} + y_{3,23} \\leq 100.0\\\\\n& -y_{4,22} + y_{4,23} \\leq 250.0\\\\\n& -y_{5,22} + y_{5,23} \\leq 300.0\\\\\n& -y_{1,23} + y_{1,24} \\leq 150.0\\\\\n& -y_{2,23} + y_{2,24} \\leq 200.0\\\\\n& -y_{3,23} + y_{3,24} \\leq 100.0\\\\\n& -y_{4,23} + y_{4,24} \\leq 250.0\\\\\n& -y_{5,23} + y_{5,24} \\leq 300.0\\\\\n& y_{1,1} - y_{1,2} \\leq 150.0\\\\\n& y_{2,1} - y_{2,2} \\leq 200.0\\\\\n& y_{3,1} - y_{3,2} \\leq 100.0\\\\\n& y_{4,1} - y_{4,2} \\leq 250.0\\\\\n& y_{5,1} - y_{5,2} \\leq 300.0\\\\\n& y_{1,2} - y_{1,3} \\leq 150.0\\\\\n& y_{2,2} - y_{2,3} \\leq 200.0\\\\\n& y_{3,2} - y_{3,3} \\leq 100.0\\\\\n& y_{4,2} - y_{4,3} \\leq 250.0\\\\\n& y_{5,2} - y_{5,3} \\leq 300.0\\\\\n& y_{1,3} - y_{1,4} \\leq 150.0\\\\\n& y_{2,3} - y_{2,4} \\leq 200.0\\\\\n& y_{3,3} - y_{3,4} \\leq 100.0\\\\\n& y_{4,3} - y_{4,4} \\leq 250.0\\\\\n& y_{5,3} - y_{5,4} \\leq 300.0\\\\\n& y_{1,4} - y_{1,5} \\leq 150.0\\\\\n& y_{2,4} - y_{2,5} \\leq 200.0\\\\\n& y_{3,4} - y_{3,5} \\leq 100.0\\\\\n& y_{4,4} - y_{4,5} \\leq 250.0\\\\\n& y_{5,4} - y_{5,5} \\leq 300.0\\\\\n& y_{1,5} - y_{1,6} \\leq 150.0\\\\\n& y_{2,5} - y_{2,6} \\leq 200.0\\\\\n& y_{3,5} - y_{3,6} \\leq 100.0\\\\\n& y_{4,5} - y_{4,6} \\leq 250.0\\\\\n& y_{5,5} - y_{5,6} \\leq 300.0\\\\\n& y_{1,6} - y_{1,7} \\leq 150.0\\\\\n& y_{2,6} - y_{2,7} \\leq 200.0\\\\\n& y_{3,6} - y_{3,7} \\leq 100.0\\\\\n& y_{4,6} - y_{4,7} \\leq 250.0\\\\\n& y_{5,6} - y_{5,7} \\leq 300.0\\\\\n& y_{1,7} - y_{1,8} \\leq 150.0\\\\\n& y_{2,7} - y_{2,8} \\leq 200.0\\\\\n& y_{3,7} - y_{3,8} \\leq 100.0\\\\\n& y_{4,7} - y_{4,8} \\leq 250.0\\\\\n& y_{5,7} - y_{5,8} \\leq 300.0\\\\\n& y_{1,8} - y_{1,9} \\leq 150.0\\\\\n& y_{2,8} - y_{2,9} \\leq 200.0\\\\\n& y_{3,8} - y_{3,9} \\leq 100.0\\\\\n& y_{4,8} - y_{4,9} \\leq 250.0\\\\\n& y_{5,8} - y_{5,9} \\leq 300.0\\\\\n& y_{1,9} - y_{1,10} \\leq 150.0\\\\\n& y_{2,9} - y_{2,10} \\leq 200.0\\\\\n& y_{3,9} - y_{3,10} \\leq 100.0\\\\\n& y_{4,9} - y_{4,10} \\leq 250.0\\\\\n& y_{5,9} - y_{5,10} \\leq 300.0\\\\\n& y_{1,10} - y_{1,11} \\leq 150.0\\\\\n& y_{2,10} - y_{2,11} \\leq 200.0\\\\\n& y_{3,10} - y_{3,11} \\leq 100.0\\\\\n& y_{4,10} - y_{4,11} \\leq 250.0\\\\\n& y_{5,10} - y_{5,11} \\leq 300.0\\\\\n& y_{1,11} - y_{1,12} \\leq 150.0\\\\\n& y_{2,11} - y_{2,12} \\leq 200.0\\\\\n& y_{3,11} - y_{3,12} \\leq 100.0\\\\\n& y_{4,11} - y_{4,12} \\leq 250.0\\\\\n& y_{5,11} - y_{5,12} \\leq 300.0\\\\\n& y_{1,12} - y_{1,13} \\leq 150.0\\\\\n& y_{2,12} - y_{2,13} \\leq 200.0\\\\\n& y_{3,12} - y_{3,13} \\leq 100.0\\\\\n& y_{4,12} - y_{4,13} \\leq 250.0\\\\\n& y_{5,12} - y_{5,13} \\leq 300.0\\\\\n& y_{1,13} - y_{1,14} \\leq 150.0\\\\\n& y_{2,13} - y_{2,14} \\leq 200.0\\\\\n& y_{3,13} - y_{3,14} \\leq 100.0\\\\\n& y_{4,13} - y_{4,14} \\leq 250.0\\\\\n& y_{5,13} - y_{5,14} \\leq 300.0\\\\\n& y_{1,14} - y_{1,15} \\leq 150.0\\\\\n& y_{2,14} - y_{2,15} \\leq 200.0\\\\\n& y_{3,14} - y_{3,15} \\leq 100.0\\\\\n& y_{4,14} - y_{4,15} \\leq 250.0\\\\\n& y_{5,14} - y_{5,15} \\leq 300.0\\\\\n& y_{1,15} - y_{1,16} \\leq 150.0\\\\\n& y_{2,15} - y_{2,16} \\leq 200.0\\\\\n& y_{3,15} - y_{3,16} \\leq 100.0\\\\\n& y_{4,15} - y_{4,16} \\leq 250.0\\\\\n& y_{5,15} - y_{5,16} \\leq 300.0\\\\\n& y_{1,16} - y_{1,17} \\leq 150.0\\\\\n& y_{2,16} - y_{2,17} \\leq 200.0\\\\\n& y_{3,16} - y_{3,17} \\leq 100.0\\\\\n& y_{4,16} - y_{4,17} \\leq 250.0\\\\\n& y_{5,16} - y_{5,17} \\leq 300.0\\\\\n& y_{1,17} - y_{1,18} \\leq 150.0\\\\\n& y_{2,17} - y_{2,18} \\leq 200.0\\\\\n& y_{3,17} - y_{3,18} \\leq 100.0\\\\\n& y_{4,17} - y_{4,18} \\leq 250.0\\\\\n& y_{5,17} - y_{5,18} \\leq 300.0\\\\\n& y_{1,18} - y_{1,19} \\leq 150.0\\\\\n& y_{2,18} - y_{2,19} \\leq 200.0\\\\\n& y_{3,18} - y_{3,19} \\leq 100.0\\\\\n& y_{4,18} - y_{4,19} \\leq 250.0\\\\\n& y_{5,18} - y_{5,19} \\leq 300.0\\\\\n& y_{1,19} - y_{1,20} \\leq 150.0\\\\\n& y_{2,19} - y_{2,20} \\leq 200.0\\\\\n& y_{3,19} - y_{3,20} \\leq 100.0\\\\\n& y_{4,19} - y_{4,20} \\leq 250.0\\\\\n& y_{5,19} - y_{5,20} \\leq 300.0\\\\\n& y_{1,20} - y_{1,21} \\leq 150.0\\\\\n& y_{2,20} - y_{2,21} \\leq 200.0\\\\\n& y_{3,20} - y_{3,21} \\leq 100.0\\\\\n& y_{4,20} - y_{4,21} \\leq 250.0\\\\\n& y_{5,20} - y_{5,21} \\leq 300.0\\\\\n& y_{1,21} - y_{1,22} \\leq 150.0\\\\\n& y_{2,21} - y_{2,22} \\leq 200.0\\\\\n& y_{3,21} - y_{3,22} \\leq 100.0\\\\\n& y_{4,21} - y_{4,22} \\leq 250.0\\\\\n& y_{5,21} - y_{5,22} \\leq 300.0\\\\\n& y_{1,22} - y_{1,23} \\leq 150.0\\\\\n& y_{2,22} - y_{2,23} \\leq 200.0\\\\\n& y_{3,22} - y_{3,23} \\leq 100.0\\\\\n& y_{4,22} - y_{4,23} \\leq 250.0\\\\\n& y_{5,22} - y_{5,23} \\leq 300.0\\\\\n& y_{1,23} - y_{1,24} \\leq 150.0\\\\\n& y_{2,23} - y_{2,24} \\leq 200.0\\\\\n& y_{3,23} - y_{3,24} \\leq 100.0\\\\\n& y_{4,23} - y_{4,24} \\leq 250.0\\\\\n& y_{5,23} - y_{5,24} \\leq 300.0\\\\\n& y_{1,1} \\geq 0.0\\\\\n& y_{2,1} \\geq 0.0\\\\\n& y_{3,1} \\geq 200.0\\\\\n& y_{4,1} \\geq 160.0\\\\\n& y_{5,1} \\geq 40.0\\\\\n& y_{1,2} \\geq 0.0\\\\\n& y_{2,2} \\geq 0.0\\\\\n& y_{3,2} \\geq 200.0\\\\\n& y_{4,2} \\geq 160.0\\\\\n& y_{5,2} \\geq 40.0\\\\\n& y_{1,3} \\geq 0.0\\\\\n& y_{2,3} \\geq 0.0\\\\\n& y_{3,3} \\geq 200.0\\\\\n& y_{4,3} \\geq 160.0\\\\\n& y_{5,3} \\geq 40.0\\\\\n& y_{1,4} \\geq 0.0\\\\\n& y_{2,4} \\geq 0.0\\\\\n& y_{3,4} \\geq 200.0\\\\\n& y_{4,4} \\geq 160.0\\\\\n& y_{5,4} \\geq 40.0\\\\\n& y_{1,5} \\geq 0.0\\\\\n& y_{2,5} \\geq 0.0\\\\\n& y_{3,5} \\geq 200.0\\\\\n& y_{4,5} \\geq 160.0\\\\\n& y_{5,5} \\geq 40.0\\\\\n& y_{1,6} \\geq 0.0\\\\\n& y_{2,6} \\geq 0.0\\\\\n& y_{3,6} \\geq 200.0\\\\\n& y_{4,6} \\geq 160.0\\\\\n& y_{5,6} \\geq 40.0\\\\\n& y_{1,7} \\geq 0.0\\\\\n& y_{2,7} \\geq 0.0\\\\\n& y_{3,7} \\geq 200.0\\\\\n& y_{4,7} \\geq 160.0\\\\\n& y_{5,7} \\geq 40.0\\\\\n& y_{1,8} \\geq 0.0\\\\\n& y_{2,8} \\geq 0.0\\\\\n& y_{3,8} \\geq 200.0\\\\\n& y_{4,8} \\geq 160.0\\\\\n& y_{5,8} \\geq 40.0\\\\\n& y_{1,9} \\geq 0.0\\\\\n& y_{2,9} \\geq 0.0\\\\\n& y_{3,9} \\geq 200.0\\\\\n& y_{4,9} \\geq 160.0\\\\\n& y_{5,9} \\geq 40.0\\\\\n& y_{1,10} \\geq 0.0\\\\\n& y_{2,10} \\geq 0.0\\\\\n& y_{3,10} \\geq 200.0\\\\\n& y_{4,10} \\geq 160.0\\\\\n& y_{5,10} \\geq 40.0\\\\\n& y_{1,11} \\geq 0.0\\\\\n& y_{2,11} \\geq 0.0\\\\\n& y_{3,11} \\geq 200.0\\\\\n& y_{4,11} \\geq 160.0\\\\\n& y_{5,11} \\geq 40.0\\\\\n& y_{1,12} \\geq 0.0\\\\\n& y_{2,12} \\geq 0.0\\\\\n& y_{3,12} \\geq 200.0\\\\\n& y_{4,12} \\geq 160.0\\\\\n& y_{5,12} \\geq 40.0\\\\\n& y_{1,13} \\geq 0.0\\\\\n& y_{2,13} \\geq 0.0\\\\\n& y_{3,13} \\geq 200.0\\\\\n& y_{4,13} \\geq 160.0\\\\\n& y_{5,13} \\geq 40.0\\\\\n& y_{1,14} \\geq 0.0\\\\\n& y_{2,14} \\geq 0.0\\\\\n& y_{3,14} \\geq 200.0\\\\\n& y_{4,14} \\geq 160.0\\\\\n& y_{5,14} \\geq 40.0\\\\\n& y_{1,15} \\geq 0.0\\\\\n& y_{2,15} \\geq 0.0\\\\\n& y_{3,15} \\geq 200.0\\\\\n& y_{4,15} \\geq 160.0\\\\\n& y_{5,15} \\geq 40.0\\\\\n& y_{1,16} \\geq 0.0\\\\\n& y_{2,16} \\geq 0.0\\\\\n& y_{3,16} \\geq 200.0\\\\\n& y_{4,16} \\geq 160.0\\\\\n& y_{5,16} \\geq 40.0\\\\\n& y_{1,17} \\geq 0.0\\\\\n& y_{2,17} \\geq 0.0\\\\\n& y_{3,17} \\geq 200.0\\\\\n& y_{4,17} \\geq 160.0\\\\\n& y_{5,17} \\geq 40.0\\\\\n& y_{1,18} \\geq 0.0\\\\\n& y_{2,18} \\geq 0.0\\\\\n& y_{3,18} \\geq 200.0\\\\\n& y_{4,18} \\geq 160.0\\\\\n& y_{5,18} \\geq 40.0\\\\\n& y_{1,19} \\geq 0.0\\\\\n& y_{2,19} \\geq 0.0\\\\\n& y_{3,19} \\geq 200.0\\\\\n& y_{4,19} \\geq 160.0\\\\\n& y_{5,19} \\geq 40.0\\\\\n& y_{1,20} \\geq 0.0\\\\\n& y_{2,20} \\geq 0.0\\\\\n& y_{3,20} \\geq 200.0\\\\\n& y_{4,20} \\geq 160.0\\\\\n& y_{5,20} \\geq 40.0\\\\\n& y_{1,21} \\geq 0.0\\\\\n& y_{2,21} \\geq 0.0\\\\\n& y_{3,21} \\geq 200.0\\\\\n& y_{4,21} \\geq 160.0\\\\\n& y_{5,21} \\geq 40.0\\\\\n& y_{1,22} \\geq 0.0\\\\\n& y_{2,22} \\geq 0.0\\\\\n& y_{3,22} \\geq 200.0\\\\\n& y_{4,22} \\geq 160.0\\\\\n& y_{5,22} \\geq 40.0\\\\\n& y_{1,23} \\geq 0.0\\\\\n& y_{2,23} \\geq 0.0\\\\\n& y_{3,23} \\geq 200.0\\\\\n& y_{4,23} \\geq 160.0\\\\\n& y_{5,23} \\geq 40.0\\\\\n& y_{1,24} \\geq 0.0\\\\\n& y_{2,24} \\geq 0.0\\\\\n& y_{3,24} \\geq 200.0\\\\\n& y_{4,24} \\geq 160.0\\\\\n& y_{5,24} \\geq 40.0\\\\\n& y_{1,1} \\leq 150.0\\\\\n& y_{2,1} \\leq 200.0\\\\\n& y_{3,1} \\leq 1000.0\\\\\n& y_{4,1} \\leq 700.0\\\\\n& y_{5,1} \\leq 500.0\\\\\n& y_{1,2} \\leq 150.0\\\\\n& y_{2,2} \\leq 200.0\\\\\n& y_{3,2} \\leq 1000.0\\\\\n& y_{4,2} \\leq 700.0\\\\\n& y_{5,2} \\leq 500.0\\\\\n& y_{1,3} \\leq 150.0\\\\\n& y_{2,3} \\leq 200.0\\\\\n& y_{3,3} \\leq 1000.0\\\\\n& y_{4,3} \\leq 700.0\\\\\n& y_{5,3} \\leq 500.0\\\\\n& y_{1,4} \\leq 150.0\\\\\n& y_{2,4} \\leq 200.0\\\\\n& y_{3,4} \\leq 1000.0\\\\\n& y_{4,4} \\leq 700.0\\\\\n& y_{5,4} \\leq 500.0\\\\\n& y_{1,5} \\leq 150.0\\\\\n& y_{2,5} \\leq 200.0\\\\\n& y_{3,5} \\leq 1000.0\\\\\n& y_{4,5} \\leq 700.0\\\\\n& y_{5,5} \\leq 500.0\\\\\n& y_{1,6} \\leq 150.0\\\\\n& y_{2,6} \\leq 200.0\\\\\n& y_{3,6} \\leq 1000.0\\\\\n& y_{4,6} \\leq 700.0\\\\\n& y_{5,6} \\leq 500.0\\\\\n& y_{1,7} \\leq 150.0\\\\\n& y_{2,7} \\leq 200.0\\\\\n& y_{3,7} \\leq 1000.0\\\\\n& y_{4,7} \\leq 700.0\\\\\n& y_{5,7} \\leq 500.0\\\\\n& y_{1,8} \\leq 150.0\\\\\n& y_{2,8} \\leq 200.0\\\\\n& y_{3,8} \\leq 1000.0\\\\\n& y_{4,8} \\leq 700.0\\\\\n& y_{5,8} \\leq 500.0\\\\\n& y_{1,9} \\leq 150.0\\\\\n& y_{2,9} \\leq 200.0\\\\\n& y_{3,9} \\leq 1000.0\\\\\n& y_{4,9} \\leq 700.0\\\\\n& y_{5,9} \\leq 500.0\\\\\n& y_{1,10} \\leq 150.0\\\\\n& y_{2,10} \\leq 200.0\\\\\n& y_{3,10} \\leq 1000.0\\\\\n& y_{4,10} \\leq 700.0\\\\\n& y_{5,10} \\leq 500.0\\\\\n& y_{1,11} \\leq 150.0\\\\\n& y_{2,11} \\leq 200.0\\\\\n& y_{3,11} \\leq 1000.0\\\\\n& y_{4,11} \\leq 700.0\\\\\n& y_{5,11} \\leq 500.0\\\\\n& y_{1,12} \\leq 150.0\\\\\n& y_{2,12} \\leq 200.0\\\\\n& y_{3,12} \\leq 1000.0\\\\\n& y_{4,12} \\leq 700.0\\\\\n& y_{5,12} \\leq 500.0\\\\\n& y_{1,13} \\leq 150.0\\\\\n& y_{2,13} \\leq 200.0\\\\\n& y_{3,13} \\leq 1000.0\\\\\n& y_{4,13} \\leq 700.0\\\\\n& y_{5,13} \\leq 500.0\\\\\n& y_{1,14} \\leq 150.0\\\\\n& y_{2,14} \\leq 200.0\\\\\n& y_{3,14} \\leq 1000.0\\\\\n& y_{4,14} \\leq 700.0\\\\\n& y_{5,14} \\leq 500.0\\\\\n& y_{1,15} \\leq 150.0\\\\\n& y_{2,15} \\leq 200.0\\\\\n& y_{3,15} \\leq 1000.0\\\\\n& y_{4,15} \\leq 700.0\\\\\n& y_{5,15} \\leq 500.0\\\\\n& y_{1,16} \\leq 150.0\\\\\n& y_{2,16} \\leq 200.0\\\\\n& y_{3,16} \\leq 1000.0\\\\\n& y_{4,16} \\leq 700.0\\\\\n& y_{5,16} \\leq 500.0\\\\\n& y_{1,17} \\leq 150.0\\\\\n& y_{2,17} \\leq 200.0\\\\\n& y_{3,17} \\leq 1000.0\\\\\n& y_{4,17} \\leq 700.0\\\\\n& y_{5,17} \\leq 500.0\\\\\n& y_{1,18} \\leq 150.0\\\\\n& y_{2,18} \\leq 200.0\\\\\n& y_{3,18} \\leq 1000.0\\\\\n& y_{4,18} \\leq 700.0\\\\\n& y_{5,18} \\leq 500.0\\\\\n& y_{1,19} \\leq 150.0\\\\\n& y_{2,19} \\leq 200.0\\\\\n& y_{3,19} \\leq 1000.0\\\\\n& y_{4,19} \\leq 700.0\\\\\n& y_{5,19} \\leq 500.0\\\\\n& y_{1,20} \\leq 150.0\\\\\n& y_{2,20} \\leq 200.0\\\\\n& y_{3,20} \\leq 1000.0\\\\\n& y_{4,20} \\leq 700.0\\\\\n& y_{5,20} \\leq 500.0\\\\\n& y_{1,21} \\leq 150.0\\\\\n& y_{2,21} \\leq 200.0\\\\\n& y_{3,21} \\leq 1000.0\\\\\n& y_{4,21} \\leq 700.0\\\\\n& y_{5,21} \\leq 500.0\\\\\n& y_{1,22} \\leq 150.0\\\\\n& y_{2,22} \\leq 200.0\\\\\n& y_{3,22} \\leq 1000.0\\\\\n& y_{4,22} \\leq 700.0\\\\\n& y_{5,22} \\leq 500.0\\\\\n& y_{1,23} \\leq 150.0\\\\\n& y_{2,23} \\leq 200.0\\\\\n& y_{3,23} \\leq 1000.0\\\\\n& y_{4,23} \\leq 700.0\\\\\n& y_{5,23} \\leq 500.0\\\\\n& y_{1,24} \\leq 150.0\\\\\n& y_{2,24} \\leq 200.0\\\\\n& y_{3,24} \\leq 1000.0\\\\\n& y_{4,24} \\leq 700.0\\\\\n& y_{5,24} \\leq 500.0\\\\\n\\end{aligned} \\]\n\n\n\n\nCode\n\nset_silent(dispatch2)\noptimize!(dispatch2)\n\ngen = value.(y).data\n\n\n5×24 Matrix{Float64}:\n  150.0   150.0  150.0  128.0  150.0  …   150.0   150.0   150.0   150.0\n  200.0   200.0  200.0  200.0  200.0      200.0   200.0   200.0   200.0\n 1000.0  1000.0  926.0  880.0  980.0     1000.0  1000.0  1000.0  1000.0\n  335.0   206.0  160.0  160.0  160.0      566.0   512.0   475.0   430.0\n   40.0    40.0   40.0   40.0   40.0       40.0    40.0    40.0    40.0\n\n\n\n\nCode\nareaplot(gen', \n    label=permutedims(gen_names), \n    xlabel = \"Hour\", \n    ylabel =\"Generated Electricity (MW)\", \n    color_palette=:tol_muted, \n    size=(1200, 600), \n    left_margin=6mm, \n    bottom_margin=6mm,\n    grid=:false,\n    legend = :outerright, ylim=(0, 2800),\n    legendfontsize=20, tickfontsize=20, \n    guidefontsize=20\n)\nplot!(demand, color=:red, \n    label=\"demand\", linestyle=:dash,\n    linewidth=5)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\np = plot(gen', \n    label=permutedims(gen_names), \n    xlabel = \"Hour\", \n    ylabel =\"Generated Electricity (MW)\", \n    color_palette=:tol_muted, \n    linewidth=5,\n    size=(1200, 600), left_margin=6mm, \n    bottom_margin=6mm,\n    legendfontsize=20, tickfontsize=20, \n    guidefontsize=20,\n    legend=:outerright\n)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice that even though hydro is effectively zero-cost, we reduce dispatched hydropower in hour 4 because coal is at its minimum generating capacity and nuclear can’t be ramped down further. These constraints complicate the simple merit order that we previously saw.\nThese constraints also play a major role in systems with high levels of renewable penetration. For example, the so-called California “duck curve” is created by the challenges of ramping generation between the early afternoon, when solar generation is at its maximum, and in the evening, when solar generation is decreasing and demand increases rapidly.\n\n\n\nCalifornia Duck Curve"
+    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "title": "Shallow Lake Problem",
+    "section": "Simulating The Model Under Constant Inflows",
+    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
   },
   {
     "objectID": "tutorials/julia-basics.html",
@@ -704,7 +620,7 @@
     "href": "tutorials/julia-basics.html#data-types",
     "title": "Tutorial: Julia Basics",
     "section": "Data Types",
-    "text": "Data Types\nEach datum (importantly, not the variable which is bound to it) has a data type. Julia types are similar to C types, in that they require not only the type of data (Int, Float, String, etc), but also the precision (which is related to the amount of memory allocated to the variable). Issues with precision won’t be a big deal in this class, though they matter when you’re concerned about performance vs. decimal accuracy of code.\nYou can identify the type of a variable or expression with the typeof() function.\n\ntypeof(\"This is a string.\")\n\nString\n\n\n\ntypeof(x)\n\nInt64\n\n\n\nNumeric types\nA key distinction is between an integer type (or Int) and a floating-point number type (or float). Integers only hold whole numbers, while floating-point numbers correspond to numbers with fractional (or decimal) parts. For example, 9 is an integer, while 9.25 is a floating point number. The difference between the two has to do with the way the number is stored in memory. 9, an integer, is handled differently in memory than 9.0, which is a floating-point number, even though they’re mathematically the same value.\n\ntypeof(9)\n\nInt64\n\n\n\ntypeof(9.25)\n\nFloat64\n\n\nSometimes certain function specifications will require you to use a Float variable instead of an Int. One way to force an Int variable to be a Float is to add a decimal point at the end of the integer.\n\ntypeof(9.)\n\nFloat64\n\n\n\n\nStrings\nStrings hold characters, rather than numeric values. Even if a string contains what seems like a number, it is actually stored as the character representation of the digits. As a result, you cannot use arithmetic operators (for example) on this datum.\n\n\"5\" + 5\n\nLoadError: MethodError: no method matching +(::String, ::Int64)\n\n\u001b[0mClosest candidates are:\n\u001b[0m  +(::Any, ::Any, \u001b[91m::Any\u001b[39m, \u001b[91m::Any...\u001b[39m)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4moperators.jl:578\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::T\u001b[39m, ::T) where T&lt;:Union{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8}\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4mint.jl:87\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::LinearAlgebra.UniformScaling\u001b[39m, ::Number)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[35mLinearAlgebra\u001b[39m \u001b[90m~/.julia/juliaup/julia-1.9.2+0.x64.apple.darwin14/share/julia/stdlib/v1.9/LinearAlgebra/src/\u001b[39m\u001b[90m\u001b[4muniformscaling.jl:144\u001b[24m\u001b[39m\n\u001b[0m  ...\n\n\nHowever, you can try to tell Julia to interpret a string encoding a numeric character as a numeric value using the parse() function. This can also be used to encode a numeric data as a string.\n\nparse(Int64, \"5\") + 5\n\n10\n\n\nTwo strings can be concatenated using *:\n\n\"Hello\" * \" \" * \"there\"\n\n\"Hello there\"\n\n\n\n\nBooleans\nBoolean variables (or Bools) are logical variables, that can have true or false as values.\n\nb = true\n\ntrue\n\n\nNumerical comparisons, such as ==, !=, or &lt;, return a Bool.\n\nc = 9 &gt; 11\n\nfalse\n\n\nBools are important for logical flows, such as if-then-else blocks or certain types of loops."
+    "text": "Data Types\nEach datum (importantly, not the variable which is bound to it) has a data type. Julia types are similar to C types, in that they require not only the type of data (Int, Float, String, etc), but also the precision (which is related to the amount of memory allocated to the variable). Issues with precision won’t be a big deal in this class, though they matter when you’re concerned about performance vs. decimal accuracy of code.\nYou can identify the type of a variable or expression with the typeof() function.\n\ntypeof(\"This is a string.\")\n\nString\n\n\n\ntypeof(x)\n\nInt64\n\n\n\nNumeric types\nA key distinction is between an integer type (or Int) and a floating-point number type (or float). Integers only hold whole numbers, while floating-point numbers correspond to numbers with fractional (or decimal) parts. For example, 9 is an integer, while 9.25 is a floating point number. The difference between the two has to do with the way the number is stored in memory. 9, an integer, is handled differently in memory than 9.0, which is a floating-point number, even though they’re mathematically the same value.\n\ntypeof(9)\n\nInt64\n\n\n\ntypeof(9.25)\n\nFloat64\n\n\nSometimes certain function specifications will require you to use a Float variable instead of an Int. One way to force an Int variable to be a Float is to add a decimal point at the end of the integer.\n\ntypeof(9.)\n\nFloat64\n\n\n\n\nStrings\nStrings hold characters, rather than numeric values. Even if a string contains what seems like a number, it is actually stored as the character representation of the digits. As a result, you cannot use arithmetic operators (for example) on this datum.\n\n\"5\" + 5\n\nLoadError: MethodError: no method matching +(::String, ::Int64)\n\n\u001b[0mClosest candidates are:\n\u001b[0m  +(::Any, ::Any, \u001b[91m::Any\u001b[39m, \u001b[91m::Any...\u001b[39m)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4moperators.jl:578\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::T\u001b[39m, ::T) where T&lt;:Union{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8}\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[90mBase\u001b[39m \u001b[90m\u001b[4mint.jl:87\u001b[24m\u001b[39m\n\u001b[0m  +(\u001b[91m::LinearAlgebra.UniformScaling\u001b[39m, ::Number)\n\u001b[0m\u001b[90m   @\u001b[39m \u001b[35mLinearAlgebra\u001b[39m \u001b[90m~/.julia/juliaup/julia-1.9.2+0.aarch64.apple.darwin14/share/julia/stdlib/v1.9/LinearAlgebra/src/\u001b[39m\u001b[90m\u001b[4muniformscaling.jl:144\u001b[24m\u001b[39m\n\u001b[0m  ...\n\n\nHowever, you can try to tell Julia to interpret a string encoding a numeric character as a numeric value using the parse() function. This can also be used to encode a numeric data as a string.\n\nparse(Int64, \"5\") + 5\n\n10\n\n\nTwo strings can be concatenated using *:\n\n\"Hello\" * \" \" * \"there\"\n\n\"Hello there\"\n\n\n\n\nBooleans\nBoolean variables (or Bools) are logical variables, that can have true or false as values.\n\nb = true\n\ntrue\n\n\nNumerical comparisons, such as ==, !=, or &lt;, return a Bool.\n\nc = 9 &gt; 11\n\nfalse\n\n\nBools are important for logical flows, such as if-then-else blocks or certain types of loops."
   },
   {
     "objectID": "tutorials/julia-basics.html#mathematical-operations",

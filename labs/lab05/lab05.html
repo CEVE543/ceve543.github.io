@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CEVE 543 - Fall 2023 - About This Website</title>
+<title>CEVE 543 - Fall 2023 - Lab 05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,8 +71,8 @@ window.MathJax = {
 </script>
 
 
-<meta property="og:title" content="CEVE 543 - Fall 2023 - About This Website">
-<meta property="og:description" content="">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - Lab 05">
+<meta property="og:description" content="Working with gridded climate data in Julia">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
 
@@ -101,15 +101,14 @@ window.MathJax = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">CEVE 543</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="./{{var course.github}}" rel="" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
+      <a href="../../">CEVE 543</a> 
+        <div class="sidebar-tools-main">
+    <a href="../../{{var course.github}}" rel="" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
     <a href="https://canvas.rice.edu" rel="" title="Canvas" class="quarto-navigation-tool px-1" aria-label="Canvas"><i class="bi bi-journal-check"></i></a>
-    <a href="https://gradescope.com" rel="" title="Gradescope" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
 </div>
     </div>
       </div>
@@ -122,31 +121,31 @@ window.MathJax = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tools Setup</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./faq.html" class="sidebar-item-text sidebar-link">
+  <a href="../../faq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FAQ</span></a>
   </div>
 </li>
@@ -161,19 +160,19 @@ window.MathJax = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Julia Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/julia-plots.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/julia-plots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making Plots</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/latex-notebook.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/latex-notebook.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Math in Notebooks</span></a>
   </div>
 </li>
@@ -190,19 +189,19 @@ window.MathJax = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources/julia.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Julia</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Markdown</span></a>
   </div>
 </li>
@@ -214,21 +213,15 @@ window.MathJax = {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link active" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
-  <li><a href="#tools-and-generation-workflow" id="toc-tools-and-generation-workflow" class="nav-link" data-scroll-target="#tools-and-generation-workflow">Tools and Generation Workflow</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jdossgollin/ceve543-f23/edit/main/about.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jdossgollin/ceve543-f23/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About This Website</h1>
+<h1 class="title">Lab 05</h1>
+<p class="subtitle lead">Working with gridded climate data in Julia</p>
 </div>
 
 
@@ -243,18 +236,9 @@ window.MathJax = {
 
 </header>
 
-<p>This website contains course materials for the Fall 2023 edition of <a href="https://jdossgollin.github.io/ceve543-f23">Data Science for Climate Risk Assessment</a>, taught by <a href="https://jdossgollin.me">James Doss-Gollin</a> at <a href="https://www.rice.edu">Rice University</a>.</p>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>Much of the material for this course has evolved from its prior iterations, taught by <a href="https://cals.cornell.edu/douglas-haith">Doug Haith</a> and <a href="https://andersonenergylab-cornell.github.io/">C. Lindsay Anderson</a>.</p>
-<p>The layout for this site was also inspired by and draws from <a href="https://sta210-s22.github.io/website/">STA 210</a> at Duke University and <a href="https://www.andrewheiss.com/teaching/">Andrew Heiss’s</a> course materials at Georgia State.</p>
-</section>
-<section id="tools-and-generation-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="tools-and-generation-workflow">Tools and Generation Workflow</h2>
-<p>This website was built with <a href="https://quarto.org/">Quarto</a>, which allows me to integrate <a href="https://julialang.org/">Julia</a> code and output with the web content, pdfs, and slides in an amazingly clean fashion, while simplifying the process of generation. All materials can be generated through a simple workflow from the <a href="https://www.github.com/jdossgollin/ceve543-f23">[GitHub Repository]</a>.</p>
+<p>This is a placeholder for the lab.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -560,11 +544,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. See the <a href="./about.html">About page</a> for credit information.<br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
+    <div class="nav-footer-left">Content <i class="fa-solid fa-copyright" aria-label="copyright"></i> 2023 by <a href="https://jdossgollin.me">James Doss-Gollin</a>. All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)</a></div>   
+    <div class="nav-footer-center"><strong>Page still under construction.</strong><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jdossgollin/ceve543-f23/edit/main/labs/lab05/lab05.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jdossgollin/ceve543-f23/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-right">Made with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://www.github.com/jdossgollin/ceve543-f23">View the source on <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
 
