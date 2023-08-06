@@ -12,7 +12,7 @@ This schedule **will be updated as necessary** over the course of the semester t
 |      | **Module 1** | **Fundamentals** | | | |
 | 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | |
 |      | Wed., Aug. 23 | Why do we care about uncertainty in climate risk assessment? | [{{< fa sharp presentation-screen >}}](slides/lecture01-2.qmd){target="_blank"}   | | |
-|      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) | |
+|      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/lab01.qmd) | |
 | 2    | Mon., Aug. 28 | Common distributions and statistics | | | |
 |      | Wed., Aug. 30 | Conditional and marginal distributions | | | |
 |      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | [{{< fa sharp laptop-code >}}](labs/lab02/lab02.qmd) | |

@@ -1,0 +1,138 @@
+---
+title: "Setting up Julia, GitHub, and Quarto"
+subtitle: "Lab 01"
+date: "August 25, 2023"
+
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+
+execute:
+    freeze: auto
+---
+
+# Overview
+
+## Why is coding important for data science?
+
+{{< include _poll-prompt.qmd >}}
+
+On your own time, watch ["Statistics Without the Agonizing Pain"](https://www.youtube.com/watch?v=5Dnw46eC-0o).
+
+## What is your coding experience?
+
+{{< include _poll-prompt.qmd >}}
+
+# How to lab
+
+## Overview
+
+Labs are in-class exercises intended to get practice with coding or analysis workflows.
+
+- Instructions available on website
+- Download ahead of time by using link from Canvas
+- You will have your own repository (more in a minute)
+- Try to finish in class, but due in 1 week
+
+## Tool overview
+
+In this class, we will use
+
+::: {.incremental}
+1. Julia
+1. GitHub
+1. Quarto
+1. VS Code (suggested)
+:::
+
+## Why Julia?
+
+::::: {.incremental}
+:::: {.columns}
+
+::: {.column width=45%}
+- Syntax
+    - Readable to computers and humans
+    - Closely parallels math notation
+- Designed for numerical and scientific computing
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+- Fast! 
+    - "Two language problem"
+    - All you need is Julia
+- Open source
+:::
+::::
+:::::
+
+## Julia example
+
+A (naive) implementation of the Fibonacci sequence:
+
+```{julia}
+#| echo: true
+function fib(n)
+    if n < 2
+        return n
+    else
+        return fib(n - 1) + fib(n - 2)
+    end
+end
+fib(10)
+```
+
+## GitHub
+
+::: {.incremental}
+1. You need a GitHub account
+1. Code is stored in "repositories"
+1. `clone` a repository to your computer
+1. Make changes and `commit` them
+1. `push` your changes to GitHub
+1. Using GitHub classroom, instructors can view your code
+:::
+
+## Quarto
+
+
+
+## VS Code
+
+# Getting set up
+
+## Detailed instructions
+
+See [Setup](/setup.html){target="_blank"}
+
+## Lab 01 Instructions
+
+1. Install software up following [instructions](/setup.html){target="_blank"} on course website
+1. `clone` the repository for lab 01 (use the Github Classroom link from Canvas)
+1. Edit the `solutions.qmd` file to add your name and netID
+1. `commit` and `push` your changes

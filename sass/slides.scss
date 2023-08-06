@@ -90,6 +90,10 @@ a {
     text-decoration: none;
 }
 
+code {
+    font-size: 0.8em;
+}
+
 .reveal p {
     margin-top: 1em;
 }
@@ -192,8 +196,4 @@ table {
 
 .math.display .MathJax {
     font-size: 100% !important;
-}
-
-code.sourceCode {
-    font-size: 1.3em;
 }

@@ -5,6 +5,7 @@ format:
     title: Syllabus
   pdf:
     documentclass: article
+    fontsize: 11pt
     geometry:
       - margin=1in  
     include-in-header:
@@ -50,9 +51,7 @@ This course covers the use of tools from data science (statistics, machine learn
 * {{< fa sharp calendar title="Class Days" >}} {{< var course.days >}}
 * {{< fa sharp clock title="Class Time" >}} {{< var course.time >}}
 * {{< fa sharp university title="Class Location" >}} {{< var course.location >}}
-
 :::
-
 
 ::::
 
@@ -60,11 +59,13 @@ This course covers the use of tools from data science (statistics, machine learn
 
 At the end of this class, students will:
 
-1. Construct mathematical models of physical climate hazards;
-1. Implement mathematical models in computer code;
-1. Implement optimization and sampling approaches to estimate the parameters of mathematical models from data;
+1. Construct mathematical models for climate hazards;
+1. Use reproducible software tools to implement mathematical models;
+1. Use Bayesian and maximum likelihood methods to conduct statistical inference ("inverse modeling");
+1. Use simulation models ("forward modeling") to assess the logical implications of different mathematical models;
 1. Understand and apply extreme value theory to estimate the probability of rare climate hazards;
-1. Apply machine learning, Bayesian, and nonparametric methods to represent climate risks; and
+5. Identify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;
+6. Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and
 1. Understand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.
 
 ### Prerequisites & Preparation
@@ -72,8 +73,8 @@ At the end of this class, students will:
 The following courses/material would be ideal preparation:
 
 * A course in applied statistics (e.g., STAT 419/519) is strongly encouraged
-* Exposure to machine learning, Bayesian statistics
-* Experience in Python, Julia, Matlab, R, or a similar language
+* Experience in Python, Julia, Matlab, R, or a similar language is strongly encouraged
+* Prior exposure to machine learning, Bayesian statistics, or similar is helpful but not required
 
 If you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor!
 *Put `[CEVE 543]` in the subject line of your email.*
@@ -86,31 +87,45 @@ If your programming or statistics skills are a little rusty, don't worry! We wil
 
 ### Topics
 
-* Introduction to environmental data science
-* Data wrangling and visualization
+The course will build core skills in:
+
+:::: {.columns}
+::: {.column width="48%"}
 * Statistical inference
 * Machine learning
+* Data wrangling and visualization
 * Extreme value analysis
 * Model selection, validation, and comparison
+:::
 
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
 We will apply these methods to a wide range of case studies, including three project-based assignments that cover:
 
 * Precipitation frequency analysis
 * Flood extent estimation
 * Stochastic streamflow generation
+:::
+::::
+
+For details, see the [schedule](./schedule.qmd).
 
 ## A Community of Learning
 
 Rice's [core values](https://www.rice.edu/mission-values) are responsibility, integrity, community, and excellence.
 Our goal is to create a learning community aligned with these core values.
 
-### Expectations
+### Core Expectations
 
-The goal of our course is to help you gain competancy and knowledge in the areas of environmental data science and climate risk assessment.
-This involves a dual responsibility on the part of the instructor and the student.
+Course success involves a dual responsibility on the part of the instructor and the student.
 
+:::: {.columns}
+
+::: {.column width="48%"}
 As the instructor, my responsibility is to provide you with a structure and opportunity to learn.
-To this end, I will commit to:
+To this end, I commit to:
 
 * provide organized and focused lectures, in-class activities, and assignments;
 * encourage students to regularly evaluate and provide feedback on the course;
@@ -118,8 +133,12 @@ To this end, I will commit to:
 * schedule sufficient out-of-class contact opportunities, such as office hours;
 * allow adequate time for assignment completion;
 * make lecture materials, class policies, activities, and assignments accessible to students. 
+:::
 
-Students are encouraged to discuss any concerns with me during office hours or through a course communications channel.
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
 Students are responsible for their own learning in the course and should commit to:
 
 * attending all lectures;
@@ -127,6 +146,17 @@ Students are responsible for their own learning in the course and should commit 
 * actively participating in online and in-class discussions;
 * beginning assignments and other work early; and
 * attending office hours as needed. 
+:::
+
+::::
+
+::: {.callout-important}
+## What If I'm Sick?
+
+Please stay home if you're feeling sick!
+This is beneficial for both for your own recovery and the health and safety of your classmates.
+We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.
+:::
 
 ::: {.callout-important}
 ## Canvas Discussions
@@ -143,9 +173,7 @@ Each of these diverse identities, along with many others not mentioned here, sha
 We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice.
 We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.
 
-Each of us is responsible for creating a safer, more inclusive environment.
-Unfortunately, incidents of bias or discrimination do occur, whether intentional or unintentional.
-They contribute to creating an unwelcoming environment for individuals and groups at the university.
+Each of us is responsible for creating a safer, more inclusive environment.y.
 
 ### Accommodation for Students with Disabilities
 
@@ -157,25 +185,12 @@ If any of our class meetings conflict with your religious events, student athlet
 
 ### Mask Policies
 
-**Masks are encouraged but not required in the classroom**.
-However, the University *strongly encourages* compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition.
+Masks are welcome but not required in the classroom.
+However, I *strongly encourage* compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection.
+Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition.
+If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.
 
-## Policies
-
-### Attendance 
-
-Attendance is not *required* and will not be counted every class, but in general, students who attend class regularly will do better and get more out of the class than students who do not.
-Your class participation grade will reflect both the quantity and quality of your participation, only some of which can occur asynchronously.
-I will put as many course materials, such as lecture notes and announcements, as possible online, but viewing materials online is not the same as active participation and engagement.
-Life happens, of course, and this may lead you to miss class.
-Let me know if you need any appropriate arrangements ahead of time. 
-
-::: {.callout-important}
-## What If I'm Sick?
-
-Please stay home if you're feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.
-
-:::
+These policies may change over the course of the semester as the situation evolves.
 
 ### Policy on Web Posting of Course Materials
 
@@ -185,9 +200,9 @@ Both the poster and the user are in violation of the university policy, which is
 ### Academic Integrity
 
 This class is designed to encourage collaboration, and students are encouraged to discuss their work with other students.
- Engineering as a profession relies upon the honesty and integrity of its practitioners (see *e.g.* the [American Society for Civil Engineers' Code of Ethics](https://www.asce.org/-/media/asce-images-and-files/career-and-growth/ethics/documents/asce-code-ethics.pdf)).
- **All work submitted must represent the students' own work and understanding**, whether individually or as a group (depending on the particulars of the assignment).
- This includes analyses,  code,  software  runs,  and  reports.
+Engineering as a profession relies upon the honesty and integrity of its practitioners (see *e.g.* the [American Society for Civil Engineers' Code of Ethics](https://www.asce.org/-/media/asce-images-and-files/career-and-growth/ethics/documents/asce-code-ethics.pdf)).
+**All work submitted must represent the students' own work and understanding**, whether individually or as a group (depending on the particulars of the assignment).
+This includes analyses,  code,  software  runs,  and  reports.
 
 More specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution.
 If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at [honor.rice.edu/honor-system-handbook/](https://honor.rice.edu/honor-system-handbook/).
