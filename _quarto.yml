@@ -43,11 +43,11 @@ website:
     contents:
       - href: index.qmd
         text: Overview
-      - href: schedule.qmd
-        text: Schedule
       - href: syllabus.qmd
         text: Syllabus
-      - text: "Software Installation"
+      - href: schedule.qmd
+        text: Schedule
+      - text: "Installation"
         href: setup.qmd
       - text: "FAQ"
         href: faq.qmd
