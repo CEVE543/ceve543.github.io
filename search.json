@@ -39,7 +39,7 @@
     "href": "syllabus.html#grading",
     "title": "Syllabus",
     "section": "Grading",
-    "text": "Grading\n\nLab Notebooks: 10%\nSome classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These labs will be announced on the course website ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.\nSome details on lab logistics:\n\nLabs will be designed to be completed in class, but you may occasionally require additional time to complete them.\nRubrics will be provided for lab grading as part of the lab assignments.\n\n\n\nTests: 40%\nIn-class written exams will be given for each of the four modules of the course, on the dates listed on the schedule. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.\n\n\nProjects: 40%\nThe second, third, and fourth modules of the class will culminate with a project. The goal of these project is to apply the tools we learn in class to a real-world problem. You can think of these projects as a “mini-capstone” for each module, and should take the time of a long problem set.\nSpecific instructions and rubrics will be provided for each project. You will turn in your project as a Quarto notebook (.qmd file) and a rendered PDF. Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker. Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.\n\n\nParticipation: 10%\nParticipating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates. Some ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nYou will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well"
+    "text": "Grading\n\nLab Notebooks: 10%\nSome classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These labs will be announced on the course website ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.\nSome details on lab logistics:\n\nLabs will be designed to be completed in class, but you may occasionally require additional time to complete them.\nLabs will be graded as strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3). Detailed solutions will be provided.\nWe will discuss labs in subsequent classes, and tests will cover material covered in labs.\n\n\n\nTests: 40%\nIn-class written exams will be given for each of the four modules of the course, on the dates listed on the schedule. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.\n\n\nProjects: 40%\nThe second, third, and fourth modules of the class will culminate with a project. The goal of these project is to apply the tools we learn in class to a real-world problem. You can think of these projects as a “mini-capstone” for each module, and should take the time of a long problem set.\nSpecific instructions and rubrics will be provided for each project. You will turn in your project as a Quarto notebook (.qmd file) and a rendered PDF. Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker. Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.\n\n\nParticipation: 10%\nParticipating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates. Some ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nYou will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well"
   },
   {
     "objectID": "tutorials/quarto.html",
@@ -161,46 +161,18 @@
     "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
-    "objectID": "website.html",
-    "href": "website.html",
-    "title": "website",
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "This is the project for module 4"
   },
   {
-    "objectID": "website.html#quarto",
-    "href": "website.html#quarto",
-    "title": "website",
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "labs/lab01/instructions.html",
-    "href": "labs/lab01/instructions.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#overview",
-    "href": "labs/lab01/instructions.html#overview",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#instructions",
-    "href": "labs/lab01/instructions.html#instructions",
-    "title": "Lab 01",
-    "section": "Instructions",
-    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
+    "text": "This is the project for module 2"
   },
   {
     "objectID": "labs/lab01/solution.html",
@@ -231,18 +203,32 @@
     "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
   },
   {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
     "section": "",
-    "text": "This is the project for module 2"
+    "text": "Please see the slides for more details."
   },
   {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
     "section": "",
-    "text": "This is the project for module 4"
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
   },
   {
     "objectID": "index.html",
@@ -259,11 +245,18 @@
     "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
   },
   {
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Instructor",
+    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
+  },
+  {
     "objectID": "index.html#software-tools",
     "href": "index.html#software-tools",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language which is designed for scientific computing. No prior knowledge of Julia is required. My recommendation is to use Visual Studio Code with the official Julia extension for coding.\nAssignments will be distributed using GitHub Classroom. You should create a GitHub account, but we will walk through how to use it."
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
   },
   {
     "objectID": "index.html#acknowledgements",
