@@ -1,0 +1,207 @@
+---
+title: "Setting up Julia, GitHub, and Quarto"
+subtitle: "Lecture"
+date: "August 28, 2023"
+
+# no need to edit things below this line
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+
+execute:
+    freeze: auto
+    echo: true
+---
+
+# Overview
+
+# Mosquitos
+
+## Stats without the agonizing details
+
+> In this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on "agonizing" details.
+
+## Motivating example,
+
+Following Rauser, we will use the following example to motivate the course:
+
+> Does drinking beer reduce the likelihood of being bitten by mosquitos?
+
+## Raw data
+
+Create a *variable* called `beer`.
+
+```{julia}
+beer = [
+    27,
+    20,
+    21,
+    26,
+    27,
+    31,
+    24,
+    21,
+    20,
+    19,
+    23,
+    24,
+    28,
+    19,
+    24,
+    29,
+    18,
+    20,
+    17,
+    31,
+    20,
+    25,
+    28,
+    21,
+    27,
+]
+```
+
+## What is beer?
+
+We can learn a bit more about it:
+
+```{julia}
+typeof(beer)
+```
+
+## More raw data
+
+By putting the `;` at the end of our statement, we keep the notebook from showing the output.
+
+```{julia}
+water = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20];
+```
+
+## A simple analysis
+
+Let's calculate the difference between the average number of bites in each group.
+
+```{julia}
+using StatsBase: mean
+```
+
+This gives us the `mean` function from the `StatsBase` package.
+
+```{julia}
+observed_diff = mean(beer) - mean(water)
+```
+
+## Skeptic
+
+The skeptic asks whether this might be random chance.
+
+- In other classes, you might answer this with a t-test.
+- Simulation approach:
+    - Suppose the skeptic is right and all the data points are equivalent
+    - Shuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)
+    - Calculate the difference between each group.
+
+## Implementation
+
+```{julia}
+using Random: shuffle
+```
+
+```{julia}
+function get_shuffled_difference(y1, y2)
+
+    # concatenate the data into one vector, then shuffle it
+    y_all = vcat(y1, y2)
+    y_shuffled = shuffle(y_all)
+
+    # create groups consistent w/ skeptic's argument
+    N1 = length(y1) # how many obs in the first vector?
+    ynew1 = y_shuffled[1:N1]
+    ynew2 = y_shuffled[(N1+1):end]
+
+    # get the difference
+    difference = mean(ynew1) - mean(ynew2)
+    return difference
+end;
+```
+
+And we can use it
+
+```{julia}
+get_shuffled_difference(beer, water)
+```
+
+## Running
+
+We want to learn about the *sampling distribution*: repeat this experiment many times over and plott the results
+
+```{julia}
+simulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]
+simulated_diffs
+```
+
+## Plotting
+
+```{julia}
+using Plots
+```
+
+```{julia}
+function plot_diffs(diffs, obs)
+    p = histogram(
+        diffs;
+        xlabel="Difference",
+        ylabel="Proportion of samples",
+        label="If Skeptic is Right",
+        bins=-6:0.5:6,
+        legend=:topleft,
+        normalize=true
+    )
+    vline!(p, [obs]; label="Observed", linewidth=2)
+    return p
+end;
+```
+
+## The Plot
+
+```{julia}
+plot_diffs(simulated_diffs, observed_diff)
+```
+
+## Alternative
+
+We could have done this with a parametric test
+
+```{julia}
+using HypothesisTests
+```
+
+```{julia}
+t1 = HypothesisTests.EqualVarianceTTest(beer, water)
+t2 = HypothesisTests.UnequalVarianceTTest(beer, water)
+
+@show t1
+@show t2
+```

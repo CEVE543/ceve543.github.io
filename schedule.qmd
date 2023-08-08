@@ -13,12 +13,12 @@ This schedule **will be updated as necessary** over the course of the semester t
 | 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-welcome.qmd){target="_blank"}  | | |
 |      | Wed., Aug. 23 | What drives uncertain climate hazard? | | | |
 |      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
-| 2    | Mon., Aug. 28 | Common distributions and statistics | | | |
+| 2    | Mon., Aug. 28 | Common distributions and statistics [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | | |
 |      | Wed., Aug. 30 | Conditional and marginal distributions | | | |
 |      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | | |
 | 3    | Mon., Sep. 4  | *No class* | | | |
 |      | Wed., Sep. 6  | Maximum likelihood estimation | | | |
-|      | Fri., Sep. 8  | Lab 03: Optimization for maximum likelihood estimation | | | |
+|      | Fri., Sep. 8  | Optimization and distributions in Julia | | | |
 | 4    | Mon., Sep. 11 | Bayesian inference I | | | |
 |      | Wed., Sep. 13 | Bayesian inference II | | | |
 |      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | | |
