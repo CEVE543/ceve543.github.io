@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhy do we care about uncertainty in climate risk assessment?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nRecorded lecture: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam*\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhat drives uncertain climate hazard?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nFunction approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
   },
   {
     "objectID": "syllabus.html",
@@ -25,21 +25,21 @@
     "href": "syllabus.html#course-information",
     "title": "Syllabus",
     "section": "Course Information",
-    "text": "Course Information\n\n\n\nInstructor\n\n James Doss-Gollin\n jdossgollin@rice.edu\n Ryon 215\n\n\n\n\nTA\n\n Yuchen Lu\n yl238@rice.edu\n Ryon B28\n\n\n\n\nMeetings\n\n MWF\n 11-11:50am\n Keck 107\n\n\n\n\n\nLearning Objectives\nAt the end of this class, students will:\n\nConstruct mathematical models for climate hazards;\nUse reproducible software tools to implement mathematical models;\nUse Bayesian and maximum likelihood methods to conduct statistical inference (“inverse modeling”);\nUse simulation models (“forward modeling”) to assess the logical implications of different mathematical models;\nUnderstand and apply extreme value theory to estimate the probability of rare climate hazards;\nIdentify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;\nCritically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and\nUnderstand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.\n\n\n\nPrerequisites & Preparation\nThe following courses/material would be ideal preparation:\n\nA course in applied statistics (e.g., STAT 419/519) is strongly encouraged\nExperience in Python, Julia, Matlab, R, or a similar language is strongly encouraged\nPrior exposure to machine learning, Bayesian statistics, or similar is helpful but not required\n\nIf you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor! Put [CEVE 543] in the subject line of your email.\n\n\n\n\n\n\nWhat If My Programming or Stats Skills Are Rusty?\n\n\n\nIf your programming or statistics skills are a little rusty, don’t worry! We will review concepts and build skills as needed.\n\n\n\n\nTopics\n\n\nThe course will build core skills in:\n\nStatistical inference\nMachine learning\nData wrangling and visualization\nExtreme value analysis\nModel selection, validation, and comparison\n\n\nWe will apply these methods to a wide range of case studies, including three project-based assignments that cover:\n\nPrecipitation frequency analysis\nFlood extent estimation\nStochastic streamflow generation\n\n\n\nFor details, see the schedule."
+    "text": "Course Information\n\n\n\nInstructor\n\n James Doss-Gollin\n jdossgollin@rice.edu\n Ryon 215\n\n\n\n\nTA\n\n Yuchen Lu\n yl238@rice.edu\n Ryon B28\n\n\n\n\nMeetings\n\n MWF\n 11-11:50am\n Keck 107\n\n\n\n\n\nLearning Objectives\nAt the end of this class, students will:\n\nWrite down generative or statistical models for climate hazards;\nUse Bayesian and maximum likelihood methods to estimate the parameters of simple statistical models (“inverse modeling”);\nUse simulation models (“forward modeling”) to assess the logical implications of statistical models;\nUnderstand and apply extreme value theory to estimate the probability of rare climate hazards;\nCritically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and\nUnderstand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.\n\n\n\nPrerequisites & Preparation\n\nLinear algebra (you should be comfortable with matrix notation and basic operations)\nA course in applied statistics (e.g., STAT 419/519)\nSome exposure to Python, Julia, Matlab, R, or another programming language\n\nIn addition, a course covering machine learning, Bayesian statistics, or applied statistics is encouraged but not required. If you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor!\n\n\n\n\n\n\nWhat If My Skills Are Rusty?\n\n\n\nIf your programming, mathematics, or statistics skills are a little rusty, don’t worry! We will review concepts and build skills over the course of the semester.\n\n\n\n\nTopics\n\n\nThe course will build core skills in:\n\nStatistical inference\nMachine learning\nData exploration and visualization\nExtreme value statistics\nModel selection, validation, and comparison\n\n\nWe will apply these methods to a variety of case studies, including three project-based assignments that cover:\n\nPrecipitation frequency analysis\nFlood extent estimation\nStochastic streamflow generation\n\n\n\nFor a full list of topics to be covered, see the course schedule.\n\n\nRequired Materials\nNo textbook is required for this course. All materials will be posted as open source on the course website or as PDFs on Canvas."
   },
   {
     "objectID": "syllabus.html#a-community-of-learning",
     "href": "syllabus.html#a-community-of-learning",
     "title": "Syllabus",
     "section": "A Community of Learning",
-    "text": "A Community of Learning\nRice’s core values are responsibility, integrity, community, and excellence. Our goal is to create a learning community aligned with these core values.\n\nCore Expectations\nCourse success involves a dual responsibility on the part of the instructor and the student.\n\n\nAs the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I commit to:\n\nprovide organized and focused lectures, in-class activities, and assignments;\nencourage students to regularly evaluate and provide feedback on the course;\nmanage the classroom atmosphere to promote learning;\nschedule sufficient out-of-class contact opportunities, such as office hours;\nallow adequate time for assignment completion;\nmake lecture materials, class policies, activities, and assignments accessible to students.\n\n\nStudents are responsible for their own learning in the course and should commit to:\n\nattending all lectures;\ndoing all required preparatory work before class;\nactively participating in online and in-class discussions;\nbeginning assignments and other work early; and\nattending office hours as needed.\n\n\n\n\n\n\n\n\n\nWhat If I’m Sick?\n\n\n\nPlease stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.\n\n\n\n\n\n\n\n\nCanvas Discussions\n\n\n\n\nIf you wait until the day an assignment is due (or even late the previous night) to ask a question on Canvas, there is a strong chance that I will not see your post prior to the deadline.\nBut if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.\n\n\n\n\n\nDiversity, Equity, and Inclusion\nRice is committed to building and maintaining an equitable and inclusive campus community. Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information. Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus. We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice. We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.\nEach of us is responsible for creating a safer, more inclusive environment.y.\n\n\nAccommodation for Students with Disabilities\nIf you have a documented disability or other condition that may affect academic performance you should: 1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / adarice@rice.edu / x5841) to determine the accommodations you need; and 2) talk with me to discuss your accommodation needs.\n\n\nAccommodation for Scheduling Conflicts\nIf any of our class meetings conflict with your religious events, student athletics, or other non-negotiable scheduling conflict, please let me know ASAP so that we can make arrangements for you.\n\n\nMask Policies\nMasks are welcome but not required in the classroom. However, I strongly encourage compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition. If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.\nThese policies may change over the course of the semester as the situation evolves.\n\n\nPolicy on Web Posting of Course Materials\nUploading course materials to web sites is not an authorized use of the course material. Both the poster and the user are in violation of the university policy, which is actionable.\n\n\nAcademic Integrity\nThis class is designed to encourage collaboration, and students are encouraged to discuss their work with other students. Engineering as a profession relies upon the honesty and integrity of its practitioners (see e.g. the American Society for Civil Engineers’ Code of Ethics). All work submitted must represent the students’ own work and understanding, whether individually or as a group (depending on the particulars of the assignment). This includes analyses, code, software runs, and reports.\nMore specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution. If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at honor.rice.edu/honor-system-handbook/. This handbook outlines the University’s expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.\nIf you are ever unclear about academic integrity, please ask! Additionally, always err on the side of providing more information.)\n\n\nAI/ML Resource Policy\nAI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure. However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.\nAs noted, all work submitted for a grade in this course must reflect your own understanding. You are welcome to use AI/ML tools to help you learn, but you must describe how you used the tool when you turn in your assignment. Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.\n\n\nLate Work Policy\nLate projects will be subjected to a 10% penalty per day, which can accumulate to 100% of the total grade. Late homework and labs will not be accepted, because we will discuss the solutions in class.\nSometimes things come up in life. Please reach out ahead of time if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived."
+    "text": "A Community of Learning\nRice’s core values are responsibility, integrity, community, and excellence. Our goal is to create a learning community aligned with these core values.\n\nCore Expectations\nCourse success involves a dual responsibility on the part of the instructor and the student.\n\n\nAs the instructor, my responsibility is to provide you with a structure and opportunity to learn. To this end, I commit to:\n\nprovide organized and focused lectures, in-class activities, and assignments;\nencourage students to regularly evaluate and provide feedback on the course;\nmanage the classroom atmosphere to promote learning;\nschedule sufficient out-of-class contact opportunities, such as office hours;\nallow adequate time for assignment completion;\nmake lecture materials, class policies, activities, and assignments accessible to students.\n\n\nStudents are responsible for their own learning in the course and should commit to:\n\nattending all lectures;\ndoing all required preparatory work before class;\nactively participating in online and in-class discussions;\nbeginning assignments and other work early; and\nattending office hours as needed.\n\n\n\n\n\n\n\n\n\nWhat If I’m Sick?\n\n\n\nPlease stay home if you’re feeling sick! This is beneficial for both for your own recovery and the health and safety of your classmates. We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.\n\n\n\n\n\n\n\n\nCanvas Discussions\n\n\n\n\nIf you wait until the day an assignment is due (or even late the previous night) to ask a question on Canvas, there is a strong chance that I will not see your post prior to the deadline.\nBut if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.\n\n\n\n\n\nDiversity, Equity, and Inclusion\nRice is committed to building and maintaining an equitable and inclusive campus community. Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information. Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus. We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice. We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.\nEach of us is responsible for creating a safer, more inclusive environment.y.\n\n\nAccommodation for Students with Disabilities\nIf you have a documented disability or other condition that may affect academic performance you should: 1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / adarice@rice.edu / x5841) to determine the accommodations you need; and 2) talk with me to discuss your accommodation needs.\n\n\nAccommodation for Scheduling Conflicts\nIf any of our class meetings conflict with your religious events, student athletics, or other non-negotiable scheduling conflict, please let me know ASAP so that we can make arrangements for you.\n\n\nMask Policies\nMasks are welcome but not required in the classroom. However, I strongly encourage compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection. Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition. If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.\nThese policies may change over the course of the semester as the situation evolves.\n\n\nPolicy on Web Posting of Course Materials\nUploading course materials to web sites is not an authorized use of the course material. Both the poster and the user are in violation of the university policy, which is actionable.\n\n\nAcademic Integrity\nThis class is designed to encourage collaboration, and students are encouraged to discuss their work with other students. Engineering as a profession relies upon the honesty and integrity of its practitioners (see e.g. the American Society for Civil Engineers’ Code of Ethics). All work submitted must represent the students’ own work and understanding, whether individually or as a group (depending on the particulars of the assignment). This includes analyses, code, software runs, and reports.\nMore specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution. If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at honor.rice.edu/honor-system-handbook/. This handbook outlines the University’s expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.\nIf you are ever unclear about academic integrity, please ask! Additionally, always err on the side of providing more information.)\n\n\nAI/ML Resource Policy\nAI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure. However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.\nAs noted, all work submitted for a grade in this course must reflect your own understanding. You are welcome to use AI/ML tools to help you learn, but you must describe how you used the tool when you turn in your assignment. Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit."
   },
   {
     "objectID": "syllabus.html#grading",
     "href": "syllabus.html#grading",
     "title": "Syllabus",
     "section": "Grading",
-    "text": "Grading\n\nLab Notebooks: 10%\nSome classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These labs will be announced on the course website ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.\nSome details on lab logistics:\n\nLabs will be designed to be completed in class, but you may occasionally require additional time to complete them.\nLabs will be graded as strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3). Detailed solutions will be provided.\nWe will discuss labs in subsequent classes, and tests will cover material covered in labs.\n\n\n\nTests: 40%\nIn-class written exams will be given for each of the four modules of the course, on the dates listed on the schedule. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.\n\n\nProjects: 40%\nThe second, third, and fourth modules of the class will culminate with a project. The goal of these project is to apply the tools we learn in class to a real-world problem. You can think of these projects as a “mini-capstone” for each module, and should take the time of a long problem set.\nSpecific instructions and rubrics will be provided for each project. You will turn in your project as a Quarto notebook (.qmd file) and a rendered PDF. Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker. Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.\n\n\nParticipation: 10%\nParticipating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates. Some ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nYou will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well"
+    "text": "Grading\n\nLabs: 10%\nOn most Fridays we will use class time for hands-on programming exercises (“labs”) to give you guided practice applying the concepts and methods from class. These labs will be announced on the course website ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.\nSome details on lab logistics:\n\nLabs will be designed to be completed in class, but you may occasionally require additional time to complete them.\nLabs will be graded on a 3-point scale: strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3).\nDetailed solutions will be provided and you will be responsible for reviewing them on your own. Material covered on labs may be covered in tests.\n\n\n\nTests: 40%\nIn-class written exams will be given for each of the four modules of the course, on the dates listed on the schedule. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.\nBased on past experience, students enter the class with a wide range of backgrounds and experience. The tests are designed so that students who meet the pre-requisites, but do not have extensive additional experience, can do well. Students with backgrounds that exceed the minimum pre-requisites may find the tests relatively straightforward.\n\n\nProjects: 40%\nModules 2-4 will culminate with a project designed to apply the tools we learn in class to a real-world problem. These projects will be introduced at the start of each module, will motivate the material we cover in class, and give you an opportunity to apply the methods we learn to a problem of your choosing. Projects also offer an opportunity for students with more experience to dig deeper.\nSpecific instructions and rubrics will be provided for each project. You will submit your projects as a Quarto notebook (.qmd file) on Canvas using the provided GitHub classroom link.\n\n\nParticipation: 10%\nParticipating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates. Some ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nYou will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well\n\n\nLate Work Policy\n\nLate projects will be subjected to a 10% penalty per day, which can accumulate to 100% of the total grade.\nLate labs will not be accepted, because we will discuss solutions in class.\nSometimes things come up in life. Please reach out ahead of time if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived."
   },
   {
     "objectID": "tutorials/quarto.html",
@@ -140,25 +140,81 @@
     "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-use-quotes",
-    "href": "slides/lecture01-1.html#how-to-use-quotes",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use quotes",
-    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+    "objectID": "slides/lecture01-lab.html#why-is-coding-important-for-data-science",
+    "href": "slides/lecture01-lab.html#why-is-coding-important-for-data-science",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why is coding important for data science?",
+    "text": "Why is coding important for data science?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here\n\n\n\nOn your own time, watch “Statistics Without the Agonizing Pain”."
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-1.html#how-to-show-things-incrementally",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to show things incrementally",
-    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
+    "objectID": "slides/lecture01-lab.html#what-is-your-coding-experience",
+    "href": "slides/lecture01-lab.html#what-is-your-coding-experience",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What is your coding experience?",
+    "text": "What is your coding experience?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here"
   },
   {
-    "objectID": "slides/lecture01-1.html#how-to-use-columns",
-    "href": "slides/lecture01-1.html#how-to-use-columns",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use columns",
-    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "objectID": "slides/lecture01-lab.html#overview-1",
+    "href": "slides/lecture01-lab.html#overview-1",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#tool-overview",
+    "href": "slides/lecture01-lab.html#tool-overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Tool overview",
+    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#why-julia",
+    "href": "slides/lecture01-lab.html#why-julia",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why Julia?",
+    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#julia-example",
+    "href": "slides/lecture01-lab.html#julia-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Julia example",
+    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#github",
+    "href": "slides/lecture01-lab.html#github",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#quarto",
+    "href": "slides/lecture01-lab.html#quarto",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Quarto",
+    "text": "Quarto"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#vs-code",
+    "href": "slides/lecture01-lab.html#vs-code",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "VS Code",
+    "text": "VS Code"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#detailed-instructions",
+    "href": "slides/lecture01-lab.html#detailed-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Detailed instructions",
+    "text": "Detailed instructions\nSee Setup"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
+    "href": "slides/lecture01-lab.html#lab-01-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 Instructions",
+    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
     "objectID": "projects/project04/project04.html",
@@ -266,81 +322,25 @@
     "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
   },
   {
-    "objectID": "slides/lecture01-3.html#why-is-coding-important-for-data-science",
-    "href": "slides/lecture01-3.html#why-is-coding-important-for-data-science",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why is coding important for data science?",
-    "text": "Why is coding important for data science?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here\n\n\n\nOn your own time, watch “Statistics Without the Agonizing Pain”."
+    "objectID": "slides/lecture01-welcome.html#how-to-use-quotes",
+    "href": "slides/lecture01-welcome.html#how-to-use-quotes",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use quotes",
+    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
   },
   {
-    "objectID": "slides/lecture01-3.html#what-is-your-coding-experience",
-    "href": "slides/lecture01-3.html#what-is-your-coding-experience",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "What is your coding experience?",
-    "text": "What is your coding experience?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here"
+    "objectID": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to show things incrementally",
+    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
   },
   {
-    "objectID": "slides/lecture01-3.html#overview-1",
-    "href": "slides/lecture01-3.html#overview-1",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Overview",
-    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#tool-overview",
-    "href": "slides/lecture01-3.html#tool-overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Tool overview",
-    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#why-julia",
-    "href": "slides/lecture01-3.html#why-julia",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why Julia?",
-    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#julia-example",
-    "href": "slides/lecture01-3.html#julia-example",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Julia example",
-    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#github",
-    "href": "slides/lecture01-3.html#github",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "GitHub",
-    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#quarto",
-    "href": "slides/lecture01-3.html#quarto",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Quarto",
-    "text": "Quarto"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#vs-code",
-    "href": "slides/lecture01-3.html#vs-code",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "VS Code",
-    "text": "VS Code"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#detailed-instructions",
-    "href": "slides/lecture01-3.html#detailed-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Detailed instructions",
-    "text": "Detailed instructions\nSee Setup"
-  },
-  {
-    "objectID": "slides/lecture01-3.html#lab-01-instructions",
-    "href": "slides/lecture01-3.html#lab-01-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Lab 01 Instructions",
-    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "objectID": "slides/lecture01-welcome.html#how-to-use-columns",
+    "href": "slides/lecture01-welcome.html#how-to-use-columns",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use columns",
+    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
     "objectID": "faq.html",

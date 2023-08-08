@@ -200,6 +200,7 @@ window.MathJax = {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#prerequisites-preparation" id="toc-prerequisites-preparation" class="nav-link" data-scroll-target="#prerequisites-preparation">Prerequisites &amp; Preparation</a></li>
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#required-materials" id="toc-required-materials" class="nav-link" data-scroll-target="#required-materials">Required Materials</a></li>
   </ul></li>
   <li><a href="#a-community-of-learning" id="toc-a-community-of-learning" class="nav-link" data-scroll-target="#a-community-of-learning">A Community of Learning</a>
   <ul class="collapse">
@@ -211,14 +212,14 @@ window.MathJax = {
   <li><a href="#policy-on-web-posting-of-course-materials" id="toc-policy-on-web-posting-of-course-materials" class="nav-link" data-scroll-target="#policy-on-web-posting-of-course-materials">Policy on Web Posting of Course Materials</a></li>
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic Integrity</a></li>
   <li><a href="#aiml-resource-policy" id="toc-aiml-resource-policy" class="nav-link" data-scroll-target="#aiml-resource-policy">AI/ML Resource Policy</a></li>
-  <li><a href="#late-work-policy" id="toc-late-work-policy" class="nav-link" data-scroll-target="#late-work-policy">Late Work Policy</a></li>
   </ul></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a>
   <ul class="collapse">
-  <li><a href="#lab-notebooks-10" id="toc-lab-notebooks-10" class="nav-link" data-scroll-target="#lab-notebooks-10">Lab Notebooks: 10%</a></li>
+  <li><a href="#labs-10" id="toc-labs-10" class="nav-link" data-scroll-target="#labs-10">Labs: 10%</a></li>
   <li><a href="#tests-40" id="toc-tests-40" class="nav-link" data-scroll-target="#tests-40">Tests: 40%</a></li>
   <li><a href="#projects-40" id="toc-projects-40" class="nav-link" data-scroll-target="#projects-40">Projects: 40%</a></li>
   <li><a href="#participation-10" id="toc-participation-10" class="nav-link" data-scroll-target="#participation-10">Participation: 10%</a></li>
+  <li><a href="#late-work-policy" id="toc-late-work-policy" class="nav-link" data-scroll-target="#late-work-policy">Late Work Policy</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/syllabus.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="syllabus.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
@@ -283,36 +284,33 @@ window.MathJax = {
 <h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
 <p>At the end of this class, students will:</p>
 <ol type="1">
-<li>Construct mathematical models for climate hazards;</li>
-<li>Use reproducible software tools to implement mathematical models;</li>
-<li>Use Bayesian and maximum likelihood methods to conduct statistical inference (“inverse modeling”);</li>
-<li>Use simulation models (“forward modeling”) to assess the logical implications of different mathematical models;</li>
+<li>Write down generative or statistical models for climate hazards;</li>
+<li>Use Bayesian and maximum likelihood methods to estimate the parameters of simple statistical models (“inverse modeling”);</li>
+<li>Use simulation models (“forward modeling”) to assess the logical implications of statistical models;</li>
 <li>Understand and apply extreme value theory to estimate the probability of rare climate hazards;</li>
-<li>Identify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;</li>
 <li>Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and</li>
 <li>Understand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.</li>
 </ol>
 </section>
 <section id="prerequisites-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites-preparation">Prerequisites &amp; Preparation</h3>
-<p>The following courses/material would be ideal preparation:</p>
 <ul>
-<li>A course in applied statistics (e.g., STAT 419/519) is strongly encouraged</li>
-<li>Experience in Python, Julia, Matlab, R, or a similar language is strongly encouraged</li>
-<li>Prior exposure to machine learning, Bayesian statistics, or similar is helpful but not required</li>
+<li>Linear algebra (you should be comfortable with matrix notation and basic operations)</li>
+<li>A course in applied statistics (e.g., STAT 419/519)</li>
+<li>Some exposure to Python, Julia, Matlab, R, or another programming language</li>
 </ul>
-<p>If you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor! <em>Put <code>[CEVE 543]</code> in the subject line of your email.</em></p>
+<p>In addition, a course covering machine learning, Bayesian statistics, or applied statistics is encouraged but not required. If you are unsure whether your background gives you an adequate preparation for this course, <em>please contact the instructor!</em></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What If My Programming or Stats Skills Are Rusty?
+What If My Skills Are Rusty?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If your programming or statistics skills are a little rusty, don’t worry! We will review concepts and build skills as needed.</p>
+<p>If your programming, mathematics, or statistics skills are a little rusty, don’t worry! We will review concepts and build skills over the course of the semester.</p>
 </div>
 </div>
 </section>
@@ -324,12 +322,12 @@ What If My Programming or Stats Skills Are Rusty?
 <ul>
 <li>Statistical inference</li>
 <li>Machine learning</li>
-<li>Data wrangling and visualization</li>
-<li>Extreme value analysis</li>
+<li>Data exploration and visualization</li>
+<li>Extreme value statistics</li>
 <li>Model selection, validation, and comparison</li>
 </ul>
 </div><div class="column" style="width:48%;">
-<p>We will apply these methods to a wide range of case studies, including three project-based assignments that cover:</p>
+<p>We will apply these methods to a variety of case studies, including three project-based assignments that cover:</p>
 <ul>
 <li>Precipitation frequency analysis</li>
 <li>Flood extent estimation</li>
@@ -337,7 +335,11 @@ What If My Programming or Stats Skills Are Rusty?
 </ul>
 </div>
 </div>
-<p>For details, see the <a href="./schedule.html">schedule</a>.</p>
+<p>For a full list of topics to be covered, see <a href="./schedule.html">the course schedule</a>.</p>
+</section>
+<section id="required-materials" class="level3">
+<h3 class="anchored" data-anchor-id="required-materials">Required Materials</h3>
+<p>No textbook is required for this course. All materials will be posted as open source on <a href="{{<var course.url >}}">the course website</a> or as PDFs on <a href="https://canvas.rice.edu/courses/{{<var course.canvas_id >}}">Canvas</a>.</p>
 </section>
 </section>
 <section id="a-community-of-learning" class="level2">
@@ -431,32 +433,28 @@ Canvas Discussions
 <p>AI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure. However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.</p>
 <p>As noted, all work submitted for a grade in this course must reflect your own understanding. You are welcome to use AI/ML tools to help you learn, but you <em>must</em> describe how you used the tool when you turn in your assignment. Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.</p>
 </section>
-<section id="late-work-policy" class="level3">
-<h3 class="anchored" data-anchor-id="late-work-policy">Late Work Policy</h3>
-<p>Late projects will be subjected to a 10% penalty per day, <em>which can accumulate to 100% of the total grade</em>. Late homework and labs will not be accepted, because we will discuss the solutions in class.</p>
-<p>Sometimes things come up in life. Please reach out <em>ahead of time</em> if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived.</p>
-</section>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<section id="lab-notebooks-10" class="level3">
-<h3 class="anchored" data-anchor-id="lab-notebooks-10">Lab Notebooks: 10%</h3>
-<p>Some classes will involve hands-on exercises (which we will call “labs”) which will give you guided practice applying the concepts and methods from class. These labs will be announced on <a href="{{<var course.url >}}">the course website</a> ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.</p>
+<section id="labs-10" class="level3">
+<h3 class="anchored" data-anchor-id="labs-10">Labs: 10%</h3>
+<p>On most Fridays we will use class time for hands-on programming exercises (“labs”) to give you guided practice applying the concepts and methods from class. These labs will be announced on <a href="{{<var course.url >}}">the course website</a> ahead of time so anyone who is able can bring a laptop to class. These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.</p>
 <p>Some details on lab logistics:</p>
 <ul>
 <li>Labs will be designed to be completed in class, but you may occasionally require additional time to complete them.</li>
-<li>Labs will be graded as strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3). Detailed solutions will be provided.</li>
-<li>We will discuss labs in subsequent classes, and tests will cover material covered in labs.</li>
+<li>Labs will be graded on a 3-point scale: strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3).</li>
+<li>Detailed solutions will be provided and you will be responsible for reviewing them on your own. Material covered on labs may be covered in tests.</li>
 </ul>
 </section>
 <section id="tests-40" class="level3">
 <h3 class="anchored" data-anchor-id="tests-40">Tests: 40%</h3>
 <p>In-class written exams will be given for each of the four modules of the course, on the dates listed on the <a href="./schedule.html">schedule</a>. Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.</p>
+<p>Based on past experience, students enter the class with a wide range of backgrounds and experience. The tests are designed so that students who meet the pre-requisites, but do not have extensive additional experience, can do well. Students with backgrounds that exceed the minimum pre-requisites may find the tests relatively straightforward.</p>
 </section>
 <section id="projects-40" class="level3">
 <h3 class="anchored" data-anchor-id="projects-40">Projects: 40%</h3>
-<p>The second, third, and fourth modules of the class will culminate with a project. The goal of these project is to apply the tools we learn in class to a real-world problem. You can think of these projects as a “mini-capstone” for each module, and should take the time of a long problem set.</p>
-<p>Specific instructions and rubrics will be provided for each project. You will turn in your project as a Quarto notebook (<code>.qmd</code> file) and a rendered PDF. Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker. Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.</p>
+<p>Modules 2-4 will culminate with a project designed to apply the tools we learn in class to a real-world problem. These projects will be introduced at the start of each module, will motivate the material we cover in class, and give you an opportunity to apply the methods we learn to a problem of your choosing. Projects also offer an opportunity for students with more experience to dig deeper.</p>
+<p>Specific instructions and rubrics will be provided for each project. You will submit your projects as a Quarto notebook (<code>.qmd</code> file) on Canvas using the provided GitHub classroom link.</p>
 </section>
 <section id="participation-10" class="level3">
 <h3 class="anchored" data-anchor-id="participation-10">Participation: 10%</h3>
@@ -468,6 +466,14 @@ Canvas Discussions
 <li>Coming to office hours</li>
 </ul>
 <p>You will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well</p>
+</section>
+<section id="late-work-policy" class="level3">
+<h3 class="anchored" data-anchor-id="late-work-policy">Late Work Policy</h3>
+<ul>
+<li>Late projects will be subjected to a 10% penalty per day, <em>which can accumulate to 100% of the total grade</em>.</li>
+<li>Late labs will not be accepted, because we will discuss solutions in class.</li>
+<li>Sometimes things come up in life. Please reach out <em>ahead of time</em> if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived.</li>
+</ul>
 
 
 </section>
