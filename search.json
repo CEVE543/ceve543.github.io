@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhat drives uncertain climate hazard?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics\n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization for maximum likelihood estimation\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nFunction approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhat drives uncertain climate hazard?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nCommon distributions and statistics \n\n\n\n\n\n\nWed., Aug. 30\nConditional and marginal distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nOptimization and distributions in Julia\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nFunction approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models II\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
   },
   {
     "objectID": "syllabus.html",
@@ -105,39 +105,214 @@
     "text": "Git Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html",
-    "href": "slides/notebooks/shallow-lake.html",
-    "title": "Shallow Lake Problem",
+    "objectID": "slides/lecture02-distributions.html#stats-without-the-agonizing-details",
+    "href": "slides/lecture02-distributions.html#stats-without-the-agonizing-details",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Stats without the agonizing details",
+    "text": "Stats without the agonizing details\n\nIn this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on “agonizing” details."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#motivating-example",
+    "href": "slides/lecture02-distributions.html#motivating-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Motivating example,",
+    "text": "Motivating example,\nFollowing Rauser, we will use the following example to motivate the course:\n\nDoes drinking beer reduce the likelihood of being bitten by mosquitos?"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#raw-data",
+    "href": "slides/lecture02-distributions.html#raw-data",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Raw data",
+    "text": "Raw data\nCreate a variable called beer.\n\nbeer = [\n    27,\n    20,\n    21,\n    26,\n    27,\n    31,\n    24,\n    21,\n    20,\n    19,\n    23,\n    24,\n    28,\n    19,\n    24,\n    29,\n    18,\n    20,\n    17,\n    31,\n    20,\n    25,\n    28,\n    21,\n    27,\n]\n\n25-element Vector{Int64}:\n 27\n 20\n 21\n 26\n 27\n 31\n 24\n 21\n 20\n 19\n 23\n 24\n 28\n 19\n 24\n 29\n 18\n 20\n 17\n 31\n 20\n 25\n 28\n 21\n 27"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#what-is-beer",
+    "href": "slides/lecture02-distributions.html#what-is-beer",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What is beer?",
+    "text": "What is beer?\nWe can learn a bit more about it:\n\ntypeof(beer)\n\n\nVector{Int64} (alias for Array{Int64, 1})"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#more-raw-data",
+    "href": "slides/lecture02-distributions.html#more-raw-data",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "More raw data",
+    "text": "More raw data\nBy putting the ; at the end of our statement, we keep the notebook from showing the output.\n\nwater = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20];"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#a-simple-analysis",
+    "href": "slides/lecture02-distributions.html#a-simple-analysis",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "A simple analysis",
+    "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\nusing StatsBase: mean\n\nThis gives us the mean function from the StatsBase package.\n\nobserved_diff = mean(beer) - mean(water)\n\n4.37777777777778"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#skeptic",
+    "href": "slides/lecture02-distributions.html#skeptic",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Skeptic",
+    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\nIn other classes, you might answer this with a t-test.\nSimulation approach:\n\nSuppose the skeptic is right and all the data points are equivalent\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#implementation",
+    "href": "slides/lecture02-distributions.html#implementation",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Implementation",
+    "text": "Implementation\n\nusing Random: shuffle\n\n\nfunction get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\nend;\n\nAnd we can use it\n\nget_shuffled_difference(beer, water)\n\n0.5555555555555571"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#running",
+    "href": "slides/lecture02-distributions.html#running",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Running",
+    "text": "Running\nWe want to learn about the sampling distribution: repeat this experiment many times over and plott the results\n\nsimulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]\nsimulated_diffs\n\n50000-element Vector{Float64}:\n  0.8422222222222224\n -2.6933333333333316\n -1.7377777777777794\n -3.0755555555555567\n -1.2600000000000016\n -0.6866666666666674\n -0.3999999999999986\n  0.7466666666666661\n -0.9733333333333327\n  1.0333333333333314\n -0.3999999999999986\n -0.017777777777777004\n  1.5111111111111093\n  ⋮\n  0.5555555555555571\n  0.36444444444444457\n -0.20888888888888957\n -2.788888888888888\n -2.2155555555555573\n  0.173333333333332\n -0.4955555555555584\n -1.1644444444444417\n -2.024444444444441\n -1.4511111111111106\n -1.4511111111111106\n -1.1644444444444417"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#plotting",
+    "href": "slides/lecture02-distributions.html#plotting",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Plotting",
+    "text": "Plotting\n\nusing Plots\n\n\nfunction plot_diffs(diffs, obs)\n    p = histogram(\n        diffs;\n        xlabel=\"Difference\",\n        ylabel=\"Proportion of samples\",\n        label=\"If Skeptic is Right\",\n        bins=-6:0.5:6,\n        legend=:topleft,\n        normalize=true\n    )\n    vline!(p, [obs]; label=\"Observed\", linewidth=2)\n    return p\nend;"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#the-plot",
+    "href": "slides/lecture02-distributions.html#the-plot",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "The Plot",
+    "text": "The Plot\n\nplot_diffs(simulated_diffs, observed_diff)"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#alternative",
+    "href": "slides/lecture02-distributions.html#alternative",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Alternative",
+    "text": "Alternative\nWe could have done this with a parametric test\n\nusing HypothesisTests\n\n\nt1 = HypothesisTests.EqualVarianceTTest(beer, water)\nt2 = HypothesisTests.UnequalVarianceTTest(beer, water)\n\n@show t1\n@show t2\n\nt1 = Two sample t-test (equal variance)\n----------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.913, 6.843)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0009\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.5869843832143413\n    degrees of freedom:       41\n    empirical standard error: 1.220461900604875\n\nt2 = Two sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\nTwo sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#how-to-use-quotes",
+    "href": "slides/lecture01-welcome.html#how-to-use-quotes",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use quotes",
+    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
+    "href": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to show things incrementally",
+    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#how-to-use-columns",
+    "href": "slides/lecture01-welcome.html#how-to-use-columns",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How to use columns",
+    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#introduction",
-    "href": "slides/notebooks/shallow-lake.html#introduction",
-    "title": "Shallow Lake Problem",
-    "section": "Introduction",
-    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "title": "Shallow Lake Problem",
-    "section": "The Shallow Lake Problem",
-    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Instructor",
+    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "title": "Shallow Lake Problem",
-    "section": "Lake Problem Dynamics",
-    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "title": "Shallow Lake Problem",
-    "section": "Simulating The Model Under Constant Inflows",
-    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
+  },
+  {
+    "objectID": "labs/lab01/solution.html",
+    "href": "labs/lab01/solution.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#setup",
+    "href": "labs/lab01/solution.html#setup",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#running-code",
+    "href": "labs/lab01/solution.html#running-code",
+    "title": "Lab 01",
+    "section": "2 Running Code",
+    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#rendering-the-document",
+    "href": "labs/lab01/solution.html#rendering-the-document",
+    "title": "Lab 01",
+    "section": "3 Rendering the Document",
+    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
   },
   {
     "objectID": "slides/lecture01-lab.html#why-is-coding-important-for-data-science",
@@ -217,130 +392,39 @@
     "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
+    "objectID": "slides/notebooks/shallow-lake.html",
+    "href": "slides/notebooks/shallow-lake.html",
+    "title": "Shallow Lake Problem",
     "section": "",
-    "text": "This is the project for module 4"
+    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
   },
   {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
+    "objectID": "slides/notebooks/shallow-lake.html#introduction",
+    "href": "slides/notebooks/shallow-lake.html#introduction",
+    "title": "Shallow Lake Problem",
+    "section": "Introduction",
+    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
   },
   {
-    "objectID": "labs/lab01/solution.html",
-    "href": "labs/lab01/solution.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
+    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
+    "title": "Shallow Lake Problem",
+    "section": "The Shallow Lake Problem",
+    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
   },
   {
-    "objectID": "labs/lab01/solution.html#setup",
-    "href": "labs/lab01/solution.html#setup",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
+    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
+    "title": "Shallow Lake Problem",
+    "section": "Lake Problem Dynamics",
+    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
   },
   {
-    "objectID": "labs/lab01/solution.html#running-code",
-    "href": "labs/lab01/solution.html#running-code",
-    "title": "Lab 01",
-    "section": "2 Running Code",
-    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#rendering-the-document",
-    "href": "labs/lab01/solution.html#rendering-the-document",
-    "title": "Lab 01",
-    "section": "3 Rendering the Document",
-    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
-  },
-  {
-    "objectID": "labs/lab01/instructions.html",
-    "href": "labs/lab01/instructions.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#overview",
-    "href": "labs/lab01/instructions.html#overview",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#instructions",
-    "href": "labs/lab01/instructions.html#instructions",
-    "title": "Lab 01",
-    "section": "Instructions",
-    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "",
-    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Course Information",
-    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
-  },
-  {
-    "objectID": "index.html#instructor",
-    "href": "index.html#instructor",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Instructor",
-    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
-  },
-  {
-    "objectID": "index.html#software-tools",
-    "href": "index.html#software-tools",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
-  },
-  {
-    "objectID": "slides/lecture01-welcome.html#how-to-use-quotes",
-    "href": "slides/lecture01-welcome.html#how-to-use-quotes",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use quotes",
-    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
-  },
-  {
-    "objectID": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to show things incrementally",
-    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
-  },
-  {
-    "objectID": "slides/lecture01-welcome.html#how-to-use-columns",
-    "href": "slides/lecture01-welcome.html#how-to-use-columns",
-    "title": "Welcome to CEVE 543!!",
-    "section": "How to use columns",
-    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
+    "title": "Shallow Lake Problem",
+    "section": "Simulating The Model Under Constant Inflows",
+    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
   },
   {
     "objectID": "faq.html",
