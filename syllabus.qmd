@@ -59,30 +59,27 @@ This course covers the use of tools from data science (statistics, machine learn
 
 At the end of this class, students will:
 
-1. Construct mathematical models for climate hazards;
-1. Use reproducible software tools to implement mathematical models;
-1. Use Bayesian and maximum likelihood methods to conduct statistical inference ("inverse modeling");
-1. Use simulation models ("forward modeling") to assess the logical implications of different mathematical models;
+1. Write down generative or statistical models for climate hazards;
+1. Use Bayesian and maximum likelihood methods to estimate the parameters of simple statistical models ("inverse modeling");
+1. Use simulation models ("forward modeling") to assess the logical implications of statistical models;
 1. Understand and apply extreme value theory to estimate the probability of rare climate hazards;
-5. Identify the assumptions that commonly applied data science methods make, and describe where they are or are not appropriate to particular problems;
-6. Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and
+1. Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and
 1. Understand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.
 
 ### Prerequisites & Preparation
 
-The following courses/material would be ideal preparation:
+* Linear algebra (you should be comfortable with matrix notation and basic operations)
+* A course in applied statistics (e.g., STAT 419/519)
+* Some exposure to Python, Julia, Matlab, R, or another programming language
 
-* A course in applied statistics (e.g., STAT 419/519) is strongly encouraged
-* Experience in Python, Julia, Matlab, R, or a similar language is strongly encouraged
-* Prior exposure to machine learning, Bayesian statistics, or similar is helpful but not required
-
-If you are unsure whether your background gives you an adequate preparation for this course, please contact the instructor!
-*Put `[CEVE 543]` in the subject line of your email.*
+In addition, a course covering machine learning, Bayesian statistics, or applied statistics is encouraged but not required.
+If you are unsure whether your background gives you an adequate preparation for this course, *please contact the instructor!*
 
 ::: {.callout-tip}
-### What If My Programming or Stats Skills Are Rusty?
+### What If My Skills Are Rusty?
 
-If your programming or statistics skills are a little rusty, don't worry! We will review concepts and build skills as needed.
+If your programming, mathematics, or statistics skills are a little rusty, don't worry!
+We will review concepts and build skills over the course of the semester.
 :::
 
 ### Topics
@@ -93,13 +90,13 @@ The course will build core skills in:
 
 * Statistical inference
 * Machine learning
-* Data wrangling and visualization
-* Extreme value analysis
+* Data exploration and visualization
+* Extreme value statistics
 * Model selection, validation, and comparison
 :::
 
 ::: {.column width="48%"}
-We will apply these methods to a wide range of case studies, including three project-based assignments that cover:
+We will apply these methods to a variety of case studies, including three project-based assignments that cover:
 
 * Precipitation frequency analysis
 * Flood extent estimation
@@ -107,7 +104,12 @@ We will apply these methods to a wide range of case studies, including three pro
 :::
 ::::
 
-For details, see the [schedule](./schedule.qmd).
+For a full list of topics to be covered, see [the course schedule](./schedule.qmd).
+
+### Required Materials
+
+No textbook is required for this course.
+All materials will be posted as open source on [the course website]({{<var course.url >}}) or as PDFs on [Canvas](https://canvas.rice.edu/courses/{{<var course.canvas_id >}}).
 
 ## A Community of Learning
 
@@ -214,44 +216,38 @@ As noted, all work submitted for a grade in this course must reflect your own un
 You are welcome to use AI/ML tools to help you learn, but you *must* describe how you used the tool when you turn in your assignment.
 Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.
 
-### Late Work Policy
-
-Late projects will be subjected to a 10% penalty per day, *which can accumulate to 100% of the total grade*.
-Late homework and labs will not be accepted, because we will discuss the solutions in class.
-
-Sometimes things come up in life.
-Please reach out *ahead of time* if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time.
-Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived.
-
 ## Grading
 
-### Lab Notebooks: 10%
 
-Some classes will involve hands-on exercises (which we will call "labs") which will give you guided practice applying the concepts and methods from class.
+### Labs: 10%
+
+On most Fridays we will use class time for hands-on programming exercises ("labs") to give you guided practice applying the concepts and methods from class.
 These labs will be announced on [the course website]({{<var course.url >}}) ahead of time so anyone who is able can bring a laptop to class.
 These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.
 
 Some details on lab logistics:
 
 - Labs will be designed to be completed in class, but you may occasionally require additional time to complete them.
-- Labs will be graded as strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3). Detailed solutions will be provided.
-- We will discuss labs in subsequent classes, and tests will cover material covered in labs.
+- Labs will be graded on a 3-point scale: strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3).
+- Detailed solutions will be provided and you will be responsible for reviewing them on your own. Material covered on labs may be covered in tests.
 
 ### Tests: 40%
 
 In-class written exams will be given for each of the four modules of the course, on the dates listed on the [schedule](./schedule.qmd).
 Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.
 
+Based on past experience, students enter the class with a wide range of backgrounds and experience.
+The tests are designed so that students who meet the pre-requisites, but do not have extensive additional experience, can do well.
+Students with backgrounds that exceed the minimum pre-requisites may find the tests relatively straightforward.
+
 ### Projects: 40%
 
-The second, third, and fourth modules of the class will culminate with a project.
-The goal of these project is to apply the tools we learn in class to a real-world problem.
-You can think of these projects as a "mini-capstone" for each module, and should take the time of a long problem set.
+Modules 2-4 will culminate with a project designed to apply the tools we learn in class to a real-world problem.
+These projects will be introduced at the start of each module, will motivate the material we cover in class, and give you an opportunity to apply the methods we learn to a problem of your choosing.
+Projects also offer an opportunity for students with more experience to dig deeper.
 
 Specific instructions and rubrics will be provided for each project.
-You will turn in your project as a Quarto notebook (`.qmd` file) and a rendered PDF.
-Climate risk analyses are communicated to a wide range of audiences, including a skeptical scientist, a trial lawyer, the manager of a banking risk management team, or an interested policy-maker.
-Each project will require you to communicate your results to a different audience, and you will be graded on how well you communicate your results to that audience.
+You will submit your projects as a Quarto notebook (`.qmd` file) on Canvas using the provided GitHub classroom link.
 
 ### Participation: 10%
 
@@ -264,3 +260,9 @@ Some ways to participate include:
 - Coming to office hours
 
 You will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well
+
+### Late Work Policy
+
+- Late projects will be subjected to a 10% penalty per day, *which can accumulate to 100% of the total grade*.
+- Late labs will not be accepted, because we will discuss solutions in class.
+- Sometimes things come up in life. Please reach out *ahead of time* if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived.

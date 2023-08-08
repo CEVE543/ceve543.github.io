@@ -10,9 +10,9 @@ This schedule **will be updated as necessary** over the course of the semester t
 | Week | Date        | Topic | Slides | Lab | Project |
 |:----:|:-----------|:------|:------:|:---:|:-------:|
 |      | **Module 1** | **Fundamentals** | | | |
-| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-1.qmd){target="_blank"}  | | |
-|      | Wed., Aug. 23 | Why do we care about uncertainty in climate risk assessment? | | | |
-|      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-3.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
+| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-welcome.qmd){target="_blank"}  | | |
+|      | Wed., Aug. 23 | What drives uncertain climate hazard? | | | |
+|      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
 | 2    | Mon., Aug. 28 | Common distributions and statistics | | | |
 |      | Wed., Aug. 30 | Conditional and marginal distributions | | | |
 |      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | | |
@@ -22,9 +22,9 @@ This schedule **will be updated as necessary** over the course of the semester t
 | 4    | Mon., Sep. 11 | Bayesian inference I | | | |
 |      | Wed., Sep. 13 | Bayesian inference II | | | |
 |      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | | |
-|  5   | Mon., Sep. 18 | *Recorded lecture*: function approximation | | | |
+|  5   | Mon., Sep. 18 | Function approximation | | | |
 |      | Wed., Sep. 20 | Module 1 review | | | |
-|      | Fri., Sep. 22 | Module 1 exam*| | | |
+|      | Fri., Sep. 22 | Module 1 exam | | | |
 |      | **Module 2** | **Downscaling** | | | [{{< fa sharp pen-field title="Project 2" >}}](projects/project02/project02.qmd) |
 | 6    | Mon., Sep. 25 | Motivation | | | |
 |      | Wed., Sep. 27 | Generalized Linear Regression | | | |
