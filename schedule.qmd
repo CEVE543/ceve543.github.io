@@ -13,12 +13,12 @@ This schedule **will be updated as necessary** over the course of the semester t
 | 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-welcome.qmd){target="_blank"}  | | |
 |      | Wed., Aug. 23 | What drives uncertain climate hazard? | | | |
 |      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
-| 2    | Mon., Aug. 28 | Common distributions and statistics [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | | |
+| 2    | Mon., Aug. 28 | Common distributions and statistics | [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | |
 |      | Wed., Aug. 30 | Conditional and marginal distributions | | | |
 |      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | | |
 | 3    | Mon., Sep. 4  | *No class* | | | |
 |      | Wed., Sep. 6  | Maximum likelihood estimation | | | |
-|      | Fri., Sep. 8  | Optimization and distributions in Julia | | | |
+|      | Fri., Sep. 8  | Lab 03: Optimization and distributions in Julia | | | |
 | 4    | Mon., Sep. 11 | Bayesian inference I | | | |
 |      | Wed., Sep. 13 | Bayesian inference II | | | |
 |      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | | |
@@ -51,10 +51,10 @@ This schedule **will be updated as necessary** over the course of the semester t
 | 13   | Mon., Nov. 13 | Motivation | | | |
 |      | Wed., Nov. 15 | Principal components analysis | | | |
 |      | Fri., Nov. 17 | Lab 09: $K$-means clustering | | | |
-| 14   | Mon., Nov. 20 | Hidden Markov Models I | | | |
+| 14   | Mon., Nov. 20 | Latent Variables | | | |
 |      | Wed., Nov. 22 | *No class* | | | |
 |      | Fri., Nov. 24 | *No class* | | | |
-| 15   | Mon., Nov. 27 | Hidden Markov Models II | | | |
+| 15   | Mon., Nov. 27 | Hidden Markov Models I | | | |
 |      | Wed., Nov. 29 | Review module 4 | | | |
 |      | Fri., Dec. 1  | Module 4 Exam | | | |
 
