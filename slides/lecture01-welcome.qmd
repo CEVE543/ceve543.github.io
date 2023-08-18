@@ -1,8 +1,9 @@
 ---
 title: "Welcome to {{< var course.number >}}!!"
 subtitle: "Lecture"
-date: "August 21, 2023"
+date: 2023-08-21
 
+date-format: long
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
@@ -20,7 +21,7 @@ format:
         history: false
         link-external-newwindow: true
         theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}}), {{< meta date >}}"
         template-partials:
             - title-slide.html
         menu:
@@ -33,47 +34,142 @@ execute:
     freeze: auto
 ---
 
-# This is a section
+# Introductions
 
-## How to use quotes
+## About me
 
-A system is:
-
-::: {.quote}
-> "an interconnected set of elements that is coherently organized in a way that achieves something...
->
-> A system must consist of three kinds of things: *elements*, *interconnections* and *a function or purpose*."
-
-::: {.cite} 
---- Donella Meadows, *Thinking in Systems: A Primer*, 2008 
-:::
-:::
-
-## How to show things incrementally
-
-For example:
-
+::::: {.columns}
+:::: {.column width=66%}
 ::: {.incremental}
-- Mass balance equations let us track changes in stocks at particular points;
-- Equilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;
-- Fate and transport modeling involves quantifying how stocks change as they move through the system.
+- Dr. James Doss-Gollin 
+- Assistant professor in CEVE
+- Hometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)
+- Interested in bridging Earth science, data science, and decision science to improve climate risk management and long-term infrastructure planning
+- [Doss-Gollin lab](https://dossgollin-lab.github.io/){target=_blank}
 :::
+::::
+:::: {.column width=33%}
+![James Doss-Gollin](https://dossgollin-lab.github.io/assets/img/people/jdossgollin.jpeg){width=100%}
+::::
+:::::
 
-# This is a section
-
-## How to use columns
+## TA
 
 :::: {.columns}
-
-::: {.column width=60%}
-One example of an emergent systems dynamic is a **reinforcing (positive) feedback loop**, where a shock to the system state gets worse.
-
-Feedback loops can also be **dampening (negative)**, where a shock is weakened.
+::: {.column width=33%}
+![Yuchen Lu](https://dossgollin-lab.github.io/assets/img/people/yuchenlu.jpg){width=100%}
 :::
-
-::: {.column width=40%}
-![Ice-Albedo Feedback Loop](images/ice-albedo.svg){width=100%}
+::: {.column width=66%}
+- Yuchen Lu
+- Third year Ph.D. student in CEVE
+- Hometown: Wuhan, China (via Pittsburgh)
+- Currently researching statistical methods to estimate the probability of extreme precipitation
 :::
-
 ::::
+
+## Your turn!
+
+1. Your name
+1. Your field and program of study
+1. Your hometown(s)
+1. One thing you hope to learn this semester
+
+# Climate Risk
+
+## Floods in Paraguay, 2015
+
+## TX Cold Snap, 2021
+
+## How do we manage climate risks?
+
+
+::: {.incremental}
+- Reduce emissions to prevent future climate change (mitigation)
+- Real-time monitoring and forecasting (early warning)
+- Building codes and design standards
+- Insurance
+- ...
+:::
+
+## Decision analysis for climate risk management
+
+Bayesian decision theory: maximize expected reward $R$ *(equivalently utility, loss, etc.)* for taking some decision $a$:
+$$
+\mathbb{E}(R(a)) = \int_{\mathcal{S}} R(a, {\bf{s}}) p({\bf{s}}) d{\bf{s}}
+$$
+Notably: 
+$$
+\mathbb{E}(R(a)) \neq R(a, \mathbb{E}(\bf{s}))
+$$
+
+## Our aim
+
+::: {.incremental}
+- In CEVE 521, we assumed that some imperfect estimates for $p(\bf{s})$ were available and studied principled ways to evaluate decisions
+- In this class, we will estimate $p(\bf{s})$ from data
+- "All models are wrong, some are useful": developing useful models requires understanding the model and how it will be used
+- Communicating limitations / uncertainties is essential
+:::
+
+## Climate Hazard Assessment
+
+- Often, we care about *extremes* (low-probability, high-impact events)
+- 
+
+## Characteristics of Environmental Data
+
+What makes environmental data unique?
+
+::: {.incremental}
+- Spatial and temporal structure
+- Non-stationarity
+- Missing data
+:::
+
+## Chareacteristics of Climate Models
+
+# CEVE 543
+
+## Syllabus
+
+[Syllabus](../syllabus.html){target=_blank}
+
+## Lectures
+
+::: {.incremental}
+- Tests will cover material from lectures and labs
+    - Slides will be posted ahead of time on course website (see [instructions](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf){target=_blank} for printing to PDF)
+    - Lecture will be recorded via Zoom and available on Canvas
+- Occasionally, readings will be assigned ahead of time
+- I am not a mind reader! Ask questions.
+:::
+
+## Labs
+
+::: {.incremental}
+- Most weeks, usually on Fridays (sometimes I will not be here, but Yuchen will be)
+- Build your hands-on computational skills
+- Apply conecpts from lectures to *simple* problems
+- Graded on a 3 point scale
+- Due one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)
+:::
+
+## Tests
+
+::: {.incremental}
+- Cover material from class and lab
+- Always a review session
+- There is a range of backgrounds in this class. Tests should be straightforward for those who meet pre-requisites.
+:::
+
+## Projects
+
+::: {.incremental}
+- Apply concepts from class and lab to a more complex and open-ended problem
+- Each module will be motivated by a problem
+- Each project will solve the problem
+- If you have expertise in particular topics or methods, you can leverage it
+:::
+
+## Questions?
 
