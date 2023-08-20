@@ -158,14 +158,14 @@
     "href": "slides/lecture02-distributions.html#implementation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Implementation",
-    "text": "Implementation\n\nusing Random: shuffle\n\n\nfunction get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\nend;\n\nAnd we can use it\n\nget_shuffled_difference(beer, water)\n\n0.5555555555555571"
+    "text": "Implementation\n\nusing Random: shuffle\n\n\nfunction get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\nend;\n\nAnd we can use it\n\nget_shuffled_difference(beer, water)\n\n-1.068888888888889"
   },
   {
     "objectID": "slides/lecture02-distributions.html#running",
     "href": "slides/lecture02-distributions.html#running",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Running",
-    "text": "Running\nWe want to learn about the sampling distribution: repeat this experiment many times over and plott the results\n\nsimulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]\nsimulated_diffs\n\n50000-element Vector{Float64}:\n  0.8422222222222224\n -2.6933333333333316\n -1.7377777777777794\n -3.0755555555555567\n -1.2600000000000016\n -0.6866666666666674\n -0.3999999999999986\n  0.7466666666666661\n -0.9733333333333327\n  1.0333333333333314\n -0.3999999999999986\n -0.017777777777777004\n  1.5111111111111093\n  ⋮\n  0.5555555555555571\n  0.36444444444444457\n -0.20888888888888957\n -2.788888888888888\n -2.2155555555555573\n  0.173333333333332\n -0.4955555555555584\n -1.1644444444444417\n -2.024444444444441\n -1.4511111111111106\n -1.4511111111111106\n -1.1644444444444417"
+    "text": "Running\nWe want to learn about the sampling distribution: repeat this experiment many times over and plott the results\n\nsimulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]\nsimulated_diffs\n\n50000-element Vector{Float64}:\n -1.3555555555555578\n  0.07777777777777928\n -0.3999999999999986\n  0.9377777777777787\n -0.87777777777778\n -2.788888888888888\n  0.7466666666666661\n -1.3555555555555578\n -1.3555555555555578\n -0.6866666666666674\n -0.20888888888888957\n -0.87777777777778\n  1.1288888888888877\n  ⋮\n -0.3999999999999986\n  0.8422222222222224\n  0.6511111111111099\n -1.5466666666666669\n  2.1799999999999997\n -1.1644444444444417\n  0.46000000000000085\n -0.3999999999999986\n -2.788888888888888\n -0.6866666666666674\n -0.7822222222222202\n -0.3044444444444423"
   },
   {
     "objectID": "slides/lecture02-distributions.html#plotting",
@@ -189,25 +189,144 @@
     "text": "Alternative\nWe could have done this with a parametric test\n\nusing HypothesisTests\n\n\nt1 = HypothesisTests.EqualVarianceTTest(beer, water)\nt2 = HypothesisTests.UnequalVarianceTTest(beer, water)\n\n@show t1\n@show t2\n\nt1 = Two sample t-test (equal variance)\n----------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.913, 6.843)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0009\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.5869843832143413\n    degrees of freedom:       41\n    empirical standard error: 1.220461900604875\n\nt2 = Two sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\nTwo sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
-    "objectID": "slides/lecture01-welcome.html#how-to-use-quotes",
-    "href": "slides/lecture01-welcome.html#how-to-use-quotes",
+    "objectID": "slides/lecture01-welcome.html#about-me",
+    "href": "slides/lecture01-welcome.html#about-me",
     "title": "Welcome to CEVE 543!!",
-    "section": "How to use quotes",
-    "text": "How to use quotes\nA system is:\n\n\n“an interconnected set of elements that is coherently organized in a way that achieves something…\nA system must consist of three kinds of things: elements, interconnections and a function or purpose.”\n\n\n— Donella Meadows, Thinking in Systems: A Primer, 2008"
+    "section": "About me",
+    "text": "About me\n\n\n\n\nDr. James Doss-Gollin\nAssistant professor in CEVE\nInterested in bridging Earth science, data science, and decision science to improve climate risk management and long-term infrastructure planning\nHometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)\nDoss-Gollin lab\n\n\n\n\n\n\nJames Doss-Gollin"
   },
   {
-    "objectID": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
-    "href": "slides/lecture01-welcome.html#how-to-show-things-incrementally",
+    "objectID": "slides/lecture01-welcome.html#ta",
+    "href": "slides/lecture01-welcome.html#ta",
     "title": "Welcome to CEVE 543!!",
-    "section": "How to show things incrementally",
-    "text": "How to show things incrementally\nFor example:\n\n\nMass balance equations let us track changes in stocks at particular points;\nEquilibrium conditions are requirements that there is no net flow, and thus that stocks are preserved;\nFate and transport modeling involves quantifying how stocks change as they move through the system."
+    "section": "TA",
+    "text": "TA\n\n\n\n\n\nYuchen Lu\n\n\n\n\nYuchen Lu\nThird year Ph.D. student in CEVE\nCurrently researching statistical methods to estimate the probability of extreme precipitation\nHometown: Wuhan, China (via Pittsburgh)"
   },
   {
-    "objectID": "slides/lecture01-welcome.html#how-to-use-columns",
-    "href": "slides/lecture01-welcome.html#how-to-use-columns",
+    "objectID": "slides/lecture01-welcome.html#your-turn",
+    "href": "slides/lecture01-welcome.html#your-turn",
     "title": "Welcome to CEVE 543!!",
-    "section": "How to use columns",
-    "text": "How to use columns\n\n\nOne example of an emergent systems dynamic is a reinforcing (positive) feedback loop, where a shock to the system state gets worse.\nFeedback loops can also be dampening (negative), where a shock is weakened.\n\n\n\n\nIce-Albedo Feedback Loop\n\n\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "section": "Your turn!",
+    "text": "Your turn!\n\nYour name\nYour field and program of study\nYour hometown(s)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#what-is-one-thing-you-hope-to-learn-this-semester",
+    "href": "slides/lecture01-welcome.html#what-is-one-thing-you-hope-to-learn-this-semester",
+    "title": "Welcome to CEVE 543!!",
+    "section": "What is one thing you hope to learn this semester?",
+    "text": "What is one thing you hope to learn this semester?\n\nTake a moment to think, write it down, and then we’ll share."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#floods-in-paraguay-2015",
+    "href": "slides/lecture01-welcome.html#floods-in-paraguay-2015",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Floods in Paraguay, 2015",
+    "text": "Floods in Paraguay, 2015\n\nFigure 1: Municipalidad de Asunción"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#tx-cold-snap-2021",
+    "href": "slides/lecture01-welcome.html#tx-cold-snap-2021",
+    "title": "Welcome to CEVE 543!!",
+    "section": "TX Cold Snap, 2021",
+    "text": "TX Cold Snap, 2021\n\n\n\n\n\n\n\n\n\n\nFigure 2: Go Nakamura for Getty Images"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#what-other-climate-hazards-do-you-know-about",
+    "href": "slides/lecture01-welcome.html#what-other-climate-hazards-do-you-know-about",
+    "title": "Welcome to CEVE 543!!",
+    "section": "What other climate hazards do you know about?",
+    "text": "What other climate hazards do you know about?\n\nTake a moment to think, write it down, and then we’ll share."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#how-do-we-manage-climate-risks",
+    "href": "slides/lecture01-welcome.html#how-do-we-manage-climate-risks",
+    "title": "Welcome to CEVE 543!!",
+    "section": "How do we manage climate risks?",
+    "text": "How do we manage climate risks?\n\n\nReduce emissions to prevent future climate change (mitigation)\nReal-time monitoring and forecasting (early warning)\nBuilding codes and design standards\nInsurance\nand much more!"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#bayesian-decision-theory",
+    "href": "slides/lecture01-welcome.html#bayesian-decision-theory",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Bayesian Decision Theory",
+    "text": "Bayesian Decision Theory\nExpected reward \\(R\\) (equivalently utility, loss, etc.) for taking some decision \\(a \\in \\mathcal{A}\\): \\[\n\\mathbb{E}(R(a)) = \\int_{\\mathcal{S}} R(a, {\\bf{s}}) p({\\bf{s}}) d{\\bf{s}}\n\\] Crucial insight: \\[\n\\mathbb{E}(R(a)) \\neq R(a, \\mathbb{E}(\\bf{s}))\n\\]"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#implications",
+    "href": "slides/lecture01-welcome.html#implications",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Implications",
+    "text": "Implications\n\n\nWe often care about extremes\nUncertainty (especially of extremes) matters\nWhat makes a “good” estimates of \\(p(\\bf{s})\\)?\n\nPhysically accurate / realistic\nHigh spatial and temporal resolution to quantify impacts on people and infrastructure\nLarge ensemble sizes to quantify uncertainty\nMultiple scenarios (of “deep” uncertainties)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#what-makes-environmental-data-unique",
+    "href": "slides/lecture01-welcome.html#what-makes-environmental-data-unique",
+    "title": "Welcome to CEVE 543!!",
+    "section": "What makes environmental data unique?",
+    "text": "What makes environmental data unique?\n\n\nVarying on multiple time structures (daily, seasonal, ENSO, multidecadal, secular)\nSpatial structure (“high dimensional”)\nNon-stationarity\nSkewed\nMissing data\nLots of zeroes"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#syllabus",
+    "href": "slides/lecture01-welcome.html#syllabus",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Syllabus",
+    "text": "Syllabus\nSyllabus"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#lectures",
+    "href": "slides/lecture01-welcome.html#lectures",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Lectures",
+    "text": "Lectures\n\n\nTests will cover material from lectures and labs\n\nSlides will be posted ahead of time on course website (see instructions for printing to PDF)\nLecture will be recorded via Zoom and available on Canvas\n\nOccasionally, readings will be assigned ahead of time\nI am not a mind reader! Ask questions."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#labs",
+    "href": "slides/lecture01-welcome.html#labs",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Labs",
+    "text": "Labs\n\n\nMost weeks, usually on Fridays (sometimes I will not be here, but Yuchen will be)\nBuild your hands-on computational skills\nApply conecpts from lectures to simple problems\nGraded on a 3 point scale\nDue one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#tests",
+    "href": "slides/lecture01-welcome.html#tests",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Tests",
+    "text": "Tests\n\n\nCover material from class and lab\nAlways a review session\nThere is a range of backgrounds in this class. Tests should be straightforward for those who meet pre-requisites."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#projects",
+    "href": "slides/lecture01-welcome.html#projects",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Projects",
+    "text": "Projects\n\n\nApply concepts from class and lab to a more complex and open-ended problem\nEach module will be motivated by a problem\nEach project will solve the problem\nIf you have expertise in particular topics or methods, you can leverage it"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#job-opportunities",
+    "href": "slides/lecture01-welcome.html#job-opportunities",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Job opportunities",
+    "text": "Job opportunities\nGrowing climate analytics opportunities in:\n\nInsurance\nFinance\nAgriculture\nEngineering\n\nAnd more! These require an understanding of climate, probability, statistics, coding, and communication."
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#pre-requistes-linear-algebra",
+    "href": "slides/lecture01-welcome.html#pre-requistes-linear-algebra",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Pre-requistes: Linear Algebra",
+    "text": "Pre-requistes: Linear Algebra\nYou need basic matrix notation, but not much more. Let \\[\nA = \\left[ \\begin{matrix} a & b \\\\ c & d \\end{matrix} \\right], \\quad\nB = \\left[ \\begin{matrix} e & f \\\\ g & h \\end{matrix} \\right], \\quad\nx = \\left[ \\begin{matrix} k \\\\ \\ell \\end{matrix} \\right], \\quad\n\\]\nCan you (with note-checking as needed!) figure out:\n\n\n\n\\(A_{2,1}\\)\n\\(A + B\\)\n\\(AB\\)\n\n\n\n\\(A x\\)\n\\(x^T x\\)\n\\(x x^T\\)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#pre-requisites-probability-and-statistics",
+    "href": "slides/lecture01-welcome.html#pre-requisites-probability-and-statistics",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Pre-requisites: Probability and Statistics",
+    "text": "Pre-requisites: Probability and Statistics\nYou should have a course in applied statistics. You should be able to:\n\nCompute summary statistics of a sample\nUnderstand probability density functions, quantiles, and cumulative distribution functions\nDefine joint, marginal, and conditional distributions\nExplain a few probability distributions and where they are appropriate\nPerform and interpret linear regressions"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#pre-requisites-coding",
+    "href": "slides/lecture01-welcome.html#pre-requisites-coding",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Pre-requisites: Coding",
+    "text": "Pre-requisites: Coding\nWe will use the Julia programming language (lab 01). I think you’ll find it easy and fun to learn!\n\nNo experience in Julia is expected\nSome prior experience coding (R, Python, Matlab, C, etc.) is suggested\nIf you have no prior coding experience, you will need to put in extra effort to learn the basics\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023"
   },
   {
     "objectID": "index.html",
