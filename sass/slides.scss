@@ -6,7 +6,7 @@
 
 $font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
 
-$presentation-font-size-root: 45px;
+$presentation-font-size-root: 40px;
 
 // headings
 $presentation-heading-color: #00205B !important;
@@ -164,6 +164,7 @@ table {
 .reveal figcaption {
     text-align: center;
     font-style: italic;
+    font-size: smaller;
 }
 
 .cell-output {
@@ -171,12 +172,8 @@ table {
     margin-right: auto;
 }
 
-.reveal p.caption {
-    display: none;
-}
-
 .reveal .caption p {
-    font-size: 0.7em;
+    font-size: 0.5em;
     color: #222222;
     font-style: italic;
     font-family: $font-family-sans-serif;
@@ -184,10 +181,6 @@ table {
     margin-top: 0;
     display: block;
     text-align: center;
-}
-
-.reveal figcaption {
-    display: none;
 }
 
 .small-math .math.display {

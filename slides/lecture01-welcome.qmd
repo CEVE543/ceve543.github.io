@@ -29,6 +29,7 @@ format:
         html-math-method: mathjax
         include-in-header: mathjax-config.html
         date-format: long
+        cap-location: bottom
 
 execute:
     freeze: auto
@@ -43,8 +44,8 @@ execute:
 ::: {.incremental}
 - Dr. James Doss-Gollin 
 - Assistant professor in CEVE
-- Hometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)
 - Interested in bridging Earth science, data science, and decision science to improve climate risk management and long-term infrastructure planning
+- Hometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)
 - [Doss-Gollin lab](https://dossgollin-lab.github.io/){target=_blank}
 :::
 ::::
@@ -62,8 +63,8 @@ execute:
 ::: {.column width=66%}
 - Yuchen Lu
 - Third year Ph.D. student in CEVE
-- Hometown: Wuhan, China (via Pittsburgh)
 - Currently researching statistical methods to estimate the probability of extreme precipitation
+- Hometown: Wuhan, China (via Pittsburgh)
 :::
 ::::
 
@@ -72,63 +73,80 @@ execute:
 1. Your name
 1. Your field and program of study
 1. Your hometown(s)
-1. One thing you hope to learn this semester
 
-# Climate Risk
+## What is one thing you hope to learn this semester?
+
+> Take a moment to think, write it down, and then we'll share.
+
+# Climate Hazards
 
 ## Floods in Paraguay, 2015
 
+::: {#fig-pyfloods}
+![](../_assets/img/drone-asuncion.jpg){width=90%}
+
+[_Municipalidad de Asunción_](https://www.asuncion.gov.py/intendencia/nueva-crecida-del-rio-paraguay-y-situacion-de-emergencias/attachment/drone-ban%CC%83ado-inundacion-rio-paraguay){target=_blank}
+:::
+
 ## TX Cold Snap, 2021
 
-## How do we manage climate risks?
+::: {#fig-txtreme layout-ncol=2}
+![](../_assets/img/uri_nakamura_getty.jpg)
 
+![](../_assets/img/uri_nakamura_getty_2.jpg)
+
+_Go Nakamura for Getty Images_
+:::
+
+## What other climate hazards do you know about?
+
+> Take a moment to think, write it down, and then we'll share.
+
+## How do we manage climate risks?
 
 ::: {.incremental}
 - Reduce emissions to prevent future climate change (mitigation)
 - Real-time monitoring and forecasting (early warning)
 - Building codes and design standards
 - Insurance
-- ...
+- and much more!
 :::
 
-## Decision analysis for climate risk management
+## Bayesian Decision Theory
 
-Bayesian decision theory: maximize expected reward $R$ *(equivalently utility, loss, etc.)* for taking some decision $a$:
+Expected reward $R$ *(equivalently utility, loss, etc.)* for taking some decision $a \in \mathcal{A}$:
 $$
 \mathbb{E}(R(a)) = \int_{\mathcal{S}} R(a, {\bf{s}}) p({\bf{s}}) d{\bf{s}}
 $$
-Notably: 
+**Crucial insight:**
 $$
 \mathbb{E}(R(a)) \neq R(a, \mathbb{E}(\bf{s}))
 $$
 
-## Our aim
+## Implications
 
 ::: {.incremental}
-- In CEVE 521, we assumed that some imperfect estimates for $p(\bf{s})$ were available and studied principled ways to evaluate decisions
-- In this class, we will estimate $p(\bf{s})$ from data
-- "All models are wrong, some are useful": developing useful models requires understanding the model and how it will be used
-- Communicating limitations / uncertainties is essential
+- We often care about **extremes**
+- Uncertainty (especially of extremes) matters
+- What makes a "good" estimates of $p(\bf{s})$?
+    - Physically accurate / realistic
+    - High spatial and temporal resolution to quantify impacts on people and infrastructure
+    - Large ensemble sizes to quantify uncertainty
+    - Multiple scenarios (of "deep" uncertainties)
 :::
 
-## Climate Hazard Assessment
-
-- Often, we care about *extremes* (low-probability, high-impact events)
-- 
-
-## Characteristics of Environmental Data
-
-What makes environmental data unique?
+## What makes environmental data unique?
 
 ::: {.incremental}
-- Spatial and temporal structure
+- Varying on multiple time structures (daily, seasonal, ENSO, multidecadal, secular)
+- Spatial structure ("high dimensional")
 - Non-stationarity
+- Skewed
 - Missing data
+- Lots of zeroes
 :::
 
-## Chareacteristics of Climate Models
-
-# CEVE 543
+# Course Organziaton
 
 ## Syllabus
 
@@ -171,5 +189,62 @@ What makes environmental data unique?
 - If you have expertise in particular topics or methods, you can leverage it
 :::
 
-## Questions?
+# Should you take this class?
 
+## Job opportunities
+
+Growing climate analytics opportunities in:
+
+- Insurance
+- Finance
+- Agriculture
+- Engineering
+
+And more!
+These require an understanding of climate, probability, statistics, coding, and communication.
+
+## Pre-requistes: Linear Algebra
+
+You need basic matrix notation, but not much more.
+Let 
+$$
+A = \left[ \begin{matrix} a & b \\ c & d \end{matrix} \right], \quad 
+B = \left[ \begin{matrix} e & f \\ g & h \end{matrix} \right], \quad 
+x = \left[ \begin{matrix} k \\ \ell \end{matrix} \right], \quad 
+$$
+
+Can you (with note-checking as needed!) figure out:
+
+:::: {.columns}
+::: {.column width=50%}
+- $A_{2,1}$
+- $A + B$
+- $AB$
+:::
+::: {.column width=50%}
+- $A x$
+- $x^T x$
+- $x x^T$
+:::
+::::
+
+
+## Pre-requisites: Probability and Statistics
+
+You should have a course in applied statistics.
+You should be able to:
+
+- Compute summary statistics of a sample
+- Understand probability density functions, quantiles, and cumulative distribution functions
+- Define joint, marginal, and conditional distributions
+- Explain a few probability distributions and where they are appropriate
+- Perform and interpret linear regressions
+
+## Pre-requisites: Coding
+
+We will use the Julia programming language (lab 01).
+I think you'll find it easy and fun to learn!
+
+- No experience in Julia is expected
+- Some prior experience coding (R, Python, Matlab, C, etc.) is suggested
+- If you have no prior coding experience, you will need to put in extra effort to learn the basics
