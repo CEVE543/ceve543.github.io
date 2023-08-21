@@ -54,6 +54,10 @@ execute:
 ::::
 :::::
 
+::: {.notes}
+Office hours MWF TBD
+:::
+
 ## TA
 
 :::: {.columns}
@@ -68,6 +72,10 @@ execute:
 :::
 ::::
 
+::: {.notes}
+Yuchen will mainly help me with grading, but you can also reach out to her with questions
+:::
+
 ## Your turn!
 
 1. Your name
@@ -77,6 +85,11 @@ execute:
 ## What is one thing you hope to learn this semester?
 
 > Take a moment to think, write it down, and then we'll share.
+
+::: {.notes}
+- Good to get a sense of background and goals
+- Invite students to share -- this will help me get a sense of how forthcoming they are
+:::
 
 # Climate Hazards
 
@@ -105,8 +118,8 @@ _Go Nakamura for Getty Images_
 ## How do we manage climate risks?
 
 ::: {.incremental}
-- Reduce emissions to prevent future climate change (mitigation)
-- Real-time monitoring and forecasting (early warning)
+- Reduce emissions to prevent future climate change ("mitigation")
+- Real-time monitoring and forecasting
 - Building codes and design standards
 - Insurance
 - and much more!
@@ -137,14 +150,29 @@ $$
 
 ## What makes environmental data unique?
 
-::: {.incremental}
-- Varying on multiple time structures (daily, seasonal, ENSO, multidecadal, secular)
-- Spatial structure ("high dimensional")
-- Non-stationarity
-- Skewed
-- Missing data
-- Lots of zeroes
-:::
+## Fat tails
+
+![[@bonnafous_waterrisk:2017]](../_assets/img/bonnafous-2017-hess-fig-4.png){width=100%}
+
+## Structured temporal variability
+
+![[@doss-gollin_robustadaptation:2019]](../_assets/img/observed-lfv.png){width=100%}
+
+## Vary on multiple temporal scales
+
+![[@doss-gollin_robustadaptation:2019]](../_assets/img/conceptual-sketch.png){width=100%}
+
+## Spatial structure
+
+![[@farnham_credibly:2018]](../_assets/img/farnham-2018-fig4.png){width=100%}
+
+## Emphasis on extremes
+
+![[@doss-gollin_subjective:2022]](../_assets/img/surge-obs-return.png){width=100%}
+
+## Deep Uncertainty
+
+![[@walker_deep:2013]](../_assets/img/walker-2013-fig1.png){width=100%}
 
 # Course Organziaton
 
@@ -154,40 +182,45 @@ $$
 
 ## Lectures
 
-::: {.incremental}
 - Tests will cover material from lectures and labs
     - Slides will be posted ahead of time on course website (see [instructions](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf){target=_blank} for printing to PDF)
-    - Lecture will be recorded via Zoom and available on Canvas
-- Occasionally, readings will be assigned ahead of time
+- Occasional readings (assigned ahead of time on Canvas)
 - I am not a mind reader! Ask questions.
-:::
 
-## Labs
+## Labs (10%)
 
-::: {.incremental}
-- Most weeks, usually on Fridays (sometimes I will not be here, but Yuchen will be)
 - Build your hands-on computational skills
+- Most weeks, generally Friday
 - Apply conecpts from lectures to *simple* problems
 - Graded on a 3 point scale
-- Due one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)
-:::
+- Due one week after the in-class lab; solutions will be posted and discussed so *no late submissions* (turn in what you have)
 
-## Tests
+## Tests (40$)
 
-::: {.incremental}
-- Cover material from class and lab
+- Material from lecture, assigned readings, and labs
 - Always a review session
-- There is a range of backgrounds in this class. Tests should be straightforward for those who meet pre-requisites.
-:::
 
-## Projects
+## Projects (40%)
 
-::: {.incremental}
 - Apply concepts from class and lab to a more complex and open-ended problem
-- Each module will be motivated by a problem
-- Each project will solve the problem
-- If you have expertise in particular topics or methods, you can leverage it
-:::
+- Each module (except intro) centers on a project
+
+Three rainfall-focused projects planned:
+
+1. Downscaling
+1. Frequency analysis
+1. Weather typing
+
+## Participation (10%)
+
+Some ways to participate include:
+
+- Attending every class
+- Asking questions in class
+- Answering questions on Canvas
+- Coming to office hours
+
+We will co-grade your participation for every module
 
 # Should you take this class?
 
@@ -205,7 +238,7 @@ These require an understanding of climate, probability, statistics, coding, and 
 
 ## Pre-requistes: Linear Algebra
 
-You need basic matrix notation, but not much more.
+You need basic matrix notation and multiplication, but not much more.
 Let 
 $$
 A = \left[ \begin{matrix} a & b \\ c & d \end{matrix} \right], \quad 
@@ -213,7 +246,7 @@ B = \left[ \begin{matrix} e & f \\ g & h \end{matrix} \right], \quad
 x = \left[ \begin{matrix} k \\ \ell \end{matrix} \right], \quad 
 $$
 
-Can you (with note-checking as needed!) figure out:
+You should be able to (with note-checking as needed!) figure out:
 
 :::: {.columns}
 ::: {.column width=50%}
@@ -228,23 +261,29 @@ Can you (with note-checking as needed!) figure out:
 :::
 ::::
 
-
 ## Pre-requisites: Probability and Statistics
 
 You should have a course in applied statistics.
 You should be able to:
 
 - Compute summary statistics of a sample
-- Understand probability density functions, quantiles, and cumulative distribution functions
 - Define joint, marginal, and conditional distributions
+- Understand probability density functions, quantiles, and cumulative distribution functions
 - Explain a few probability distributions and where they are appropriate
 - Perform and interpret linear regressions
 
 ## Pre-requisites: Coding
 
-We will use the Julia programming language (lab 01).
+We will use the Julia programming language.
 I think you'll find it easy and fun to learn!
 
 - No experience in Julia is expected
 - Some prior experience coding (R, Python, Matlab, C, etc.) is suggested
 - If you have no prior coding experience, you will need to put in extra effort to learn the basics
+
+## Questions?
+
+## See you soon!
+
+- Wednesday: "What drives uncertain climate hazard?"
+- Friday: "Lab 01: Setting up Julia, GitHub, and Quarto"
