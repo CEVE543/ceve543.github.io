@@ -148,31 +148,35 @@ $$
     - Multiple scenarios (of "deep" uncertainties)
 :::
 
-## What makes environmental data unique?
+# What makes environmental data unique?
 
 ## Fat tails
 
-![[@bonnafous_waterrisk:2017]](../_assets/img/bonnafous-2017-hess-fig-4.png){width=100%}
+![@bonnafous_waterrisk:2017](../_assets/img/bonnafous-2017-hess-fig-4.png){width=100%}
 
-## Structured temporal variability
+## Quasi-periodic oscillations
 
-![[@doss-gollin_robustadaptation:2019]](../_assets/img/observed-lfv.png){width=100%}
+![@doss-gollin_robustadaptation:2019](../_assets/img/observed-lfv.png){width=100%}
+
+## Nonstationarity
+
+![@fagnant_spatiotemporal:2020](../_assets/img/fagnant-2020-fig4.png){width=100%}
 
 ## Vary on multiple temporal scales
 
-![[@doss-gollin_robustadaptation:2019]](../_assets/img/conceptual-sketch.png){width=100%}
+![@doss-gollin_robustadaptation:2019](../_assets/img/conceptual-sketch.png){width=100%}
 
 ## Spatial structure
 
-![[@farnham_credibly:2018]](../_assets/img/farnham-2018-fig4.png){width=100%}
+![@farnham_credibly:2018](../_assets/img/farnham-2018-fig4.png){width=100%}
 
 ## Emphasis on extremes
 
-![[@doss-gollin_subjective:2022]](../_assets/img/surge-obs-return.png){width=100%}
+![@doss-gollin_subjective:2022](../_assets/img/surge-obs-return.png){width=100%}
 
 ## Deep Uncertainty
 
-![[@walker_deep:2013]](../_assets/img/walker-2013-fig1.png){width=100%}
+![@walker_deep:2013](../_assets/img/walker-2013-fig1.png){width=100%}
 
 # Course Organziaton
 
@@ -195,7 +199,7 @@ $$
 - Graded on a 3 point scale
 - Due one week after the in-class lab; solutions will be posted and discussed so *no late submissions* (turn in what you have)
 
-## Tests (40$)
+## Tests (40%)
 
 - Material from lecture, assigned readings, and labs
 - Always a review session
@@ -283,7 +287,7 @@ I think you'll find it easy and fun to learn!
 
 ## Questions?
 
-## See you soon!
-
 - Wednesday: "What drives uncertain climate hazard?"
 - Friday: "Lab 01: Setting up Julia, GitHub, and Quarto"
+
+## References 
