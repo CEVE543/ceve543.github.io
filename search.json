@@ -193,14 +193,14 @@
     "href": "slides/lecture01-welcome.html#about-me",
     "title": "Welcome to CEVE 543!!",
     "section": "About me",
-    "text": "About me\n\n\n\n\nDr. James Doss-Gollin\nAssistant professor in CEVE\nInterested in bridging Earth science, data science, and decision science to improve climate risk management and long-term infrastructure planning\nHometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)\nDoss-Gollin lab\n\n\n\n\n\n\nJames Doss-Gollin"
+    "text": "About me\n\n\n\n\nDr. James Doss-Gollin\nAssistant professor in CEVE\nInterested in bridging Earth science, data science, and decision science to improve climate risk management and long-term infrastructure planning\nHometown: New Haven, CT (❤️ for Houston, NYC, and Luque, Paraguay)\nDoss-Gollin lab\n\n\n\n\n\n\nJames Doss-Gollin\n\n\n\n\n\nOffice hours MWF TBD"
   },
   {
     "objectID": "slides/lecture01-welcome.html#ta",
     "href": "slides/lecture01-welcome.html#ta",
     "title": "Welcome to CEVE 543!!",
     "section": "TA",
-    "text": "TA\n\n\n\n\n\nYuchen Lu\n\n\n\n\nYuchen Lu\nThird year Ph.D. student in CEVE\nCurrently researching statistical methods to estimate the probability of extreme precipitation\nHometown: Wuhan, China (via Pittsburgh)"
+    "text": "TA\n\n\n\n\n\nYuchen Lu\n\n\n\n\nYuchen Lu\nThird year Ph.D. student in CEVE\nCurrently researching statistical methods to estimate the probability of extreme precipitation\nHometown: Wuhan, China (via Pittsburgh)\n\n\n\n\nYuchen will mainly help me with grading, but you can also reach out to her with questions"
   },
   {
     "objectID": "slides/lecture01-welcome.html#your-turn",
@@ -214,7 +214,7 @@
     "href": "slides/lecture01-welcome.html#what-is-one-thing-you-hope-to-learn-this-semester",
     "title": "Welcome to CEVE 543!!",
     "section": "What is one thing you hope to learn this semester?",
-    "text": "What is one thing you hope to learn this semester?\n\nTake a moment to think, write it down, and then we’ll share."
+    "text": "What is one thing you hope to learn this semester?\n\nTake a moment to think, write it down, and then we’ll share.\n\n\n\nGood to get a sense of background and goals\nInvite students to share – this will help me get a sense of how forthcoming they are"
   },
   {
     "objectID": "slides/lecture01-welcome.html#floods-in-paraguay-2015",
@@ -242,7 +242,7 @@
     "href": "slides/lecture01-welcome.html#how-do-we-manage-climate-risks",
     "title": "Welcome to CEVE 543!!",
     "section": "How do we manage climate risks?",
-    "text": "How do we manage climate risks?\n\n\nReduce emissions to prevent future climate change (mitigation)\nReal-time monitoring and forecasting (early warning)\nBuilding codes and design standards\nInsurance\nand much more!"
+    "text": "How do we manage climate risks?\n\n\nReduce emissions to prevent future climate change (“mitigation”)\nReal-time monitoring and forecasting\nBuilding codes and design standards\nInsurance\nand much more!"
   },
   {
     "objectID": "slides/lecture01-welcome.html#bayesian-decision-theory",
@@ -263,7 +263,49 @@
     "href": "slides/lecture01-welcome.html#what-makes-environmental-data-unique",
     "title": "Welcome to CEVE 543!!",
     "section": "What makes environmental data unique?",
-    "text": "What makes environmental data unique?\n\n\nVarying on multiple time structures (daily, seasonal, ENSO, multidecadal, secular)\nSpatial structure (“high dimensional”)\nNon-stationarity\nSkewed\nMissing data\nLots of zeroes"
+    "text": "What makes environmental data unique?"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#fat-tails",
+    "href": "slides/lecture01-welcome.html#fat-tails",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Fat tails",
+    "text": "Fat tails\n\n(Bonnafous et al., 2017)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#structured-temporal-variability",
+    "href": "slides/lecture01-welcome.html#structured-temporal-variability",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Structured temporal variability",
+    "text": "Structured temporal variability\n\n(Doss-Gollin et al., 2019)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#vary-on-multiple-temporal-scales",
+    "href": "slides/lecture01-welcome.html#vary-on-multiple-temporal-scales",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Vary on multiple temporal scales",
+    "text": "Vary on multiple temporal scales\n\n(Doss-Gollin et al., 2019)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#spatial-structure",
+    "href": "slides/lecture01-welcome.html#spatial-structure",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Spatial structure",
+    "text": "Spatial structure\n\n(Farnham et al., 2018)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#emphasis-on-extremes",
+    "href": "slides/lecture01-welcome.html#emphasis-on-extremes",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Emphasis on extremes",
+    "text": "Emphasis on extremes\n\n(Doss-Gollin & Keller, 2023)"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#deep-uncertainty",
+    "href": "slides/lecture01-welcome.html#deep-uncertainty",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Deep Uncertainty",
+    "text": "Deep Uncertainty\n\n(Walker et al., 2013)"
   },
   {
     "objectID": "slides/lecture01-welcome.html#syllabus",
@@ -277,28 +319,35 @@
     "href": "slides/lecture01-welcome.html#lectures",
     "title": "Welcome to CEVE 543!!",
     "section": "Lectures",
-    "text": "Lectures\n\n\nTests will cover material from lectures and labs\n\nSlides will be posted ahead of time on course website (see instructions for printing to PDF)\nLecture will be recorded via Zoom and available on Canvas\n\nOccasionally, readings will be assigned ahead of time\nI am not a mind reader! Ask questions."
+    "text": "Lectures\n\nTests will cover material from lectures and labs\n\nSlides will be posted ahead of time on course website (see instructions for printing to PDF)\n\nOccasional readings (assigned ahead of time on Canvas)\nI am not a mind reader! Ask questions."
   },
   {
-    "objectID": "slides/lecture01-welcome.html#labs",
-    "href": "slides/lecture01-welcome.html#labs",
+    "objectID": "slides/lecture01-welcome.html#labs-10",
+    "href": "slides/lecture01-welcome.html#labs-10",
     "title": "Welcome to CEVE 543!!",
-    "section": "Labs",
-    "text": "Labs\n\n\nMost weeks, usually on Fridays (sometimes I will not be here, but Yuchen will be)\nBuild your hands-on computational skills\nApply conecpts from lectures to simple problems\nGraded on a 3 point scale\nDue one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)"
+    "section": "Labs (10%)",
+    "text": "Labs (10%)\n\nBuild your hands-on computational skills\nMost weeks, generally Friday\nApply conecpts from lectures to simple problems\nGraded on a 3 point scale\nDue one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)"
   },
   {
-    "objectID": "slides/lecture01-welcome.html#tests",
-    "href": "slides/lecture01-welcome.html#tests",
+    "objectID": "slides/lecture01-welcome.html#tests-40",
+    "href": "slides/lecture01-welcome.html#tests-40",
     "title": "Welcome to CEVE 543!!",
-    "section": "Tests",
-    "text": "Tests\n\n\nCover material from class and lab\nAlways a review session\nThere is a range of backgrounds in this class. Tests should be straightforward for those who meet pre-requisites."
+    "section": "Tests (40$)",
+    "text": "Tests (40$)\n\nMaterial from lecture, assigned readings, and labs\nAlways a review session"
   },
   {
-    "objectID": "slides/lecture01-welcome.html#projects",
-    "href": "slides/lecture01-welcome.html#projects",
+    "objectID": "slides/lecture01-welcome.html#projects-40",
+    "href": "slides/lecture01-welcome.html#projects-40",
     "title": "Welcome to CEVE 543!!",
-    "section": "Projects",
-    "text": "Projects\n\n\nApply concepts from class and lab to a more complex and open-ended problem\nEach module will be motivated by a problem\nEach project will solve the problem\nIf you have expertise in particular topics or methods, you can leverage it"
+    "section": "Projects (40%)",
+    "text": "Projects (40%)\n\nApply concepts from class and lab to a more complex and open-ended problem\nEach module (except intro) centers on a project\n\nThree rainfall-focused projects planned:\n\nDownscaling\nFrequency analysis\nWeather typing"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#participation-10",
+    "href": "slides/lecture01-welcome.html#participation-10",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Participation (10%)",
+    "text": "Participation (10%)\nSome ways to participate include:\n\nAttending every class\nAsking questions in class\nAnswering questions on Canvas\nComing to office hours\n\nWe will co-grade your participation for every module"
   },
   {
     "objectID": "slides/lecture01-welcome.html#job-opportunities",
@@ -312,21 +361,35 @@
     "href": "slides/lecture01-welcome.html#pre-requistes-linear-algebra",
     "title": "Welcome to CEVE 543!!",
     "section": "Pre-requistes: Linear Algebra",
-    "text": "Pre-requistes: Linear Algebra\nYou need basic matrix notation, but not much more. Let \\[\nA = \\left[ \\begin{matrix} a & b \\\\ c & d \\end{matrix} \\right], \\quad\nB = \\left[ \\begin{matrix} e & f \\\\ g & h \\end{matrix} \\right], \\quad\nx = \\left[ \\begin{matrix} k \\\\ \\ell \\end{matrix} \\right], \\quad\n\\]\nCan you (with note-checking as needed!) figure out:\n\n\n\n\\(A_{2,1}\\)\n\\(A + B\\)\n\\(AB\\)\n\n\n\n\\(A x\\)\n\\(x^T x\\)\n\\(x x^T\\)"
+    "text": "Pre-requistes: Linear Algebra\nYou need basic matrix notation and multiplication, but not much more. Let \\[\nA = \\left[ \\begin{matrix} a & b \\\\ c & d \\end{matrix} \\right], \\quad\nB = \\left[ \\begin{matrix} e & f \\\\ g & h \\end{matrix} \\right], \\quad\nx = \\left[ \\begin{matrix} k \\\\ \\ell \\end{matrix} \\right], \\quad\n\\]\nYou should be able to (with note-checking as needed!) figure out:\n\n\n\n\\(A_{2,1}\\)\n\\(A + B\\)\n\\(AB\\)\n\n\n\n\\(A x\\)\n\\(x^T x\\)\n\\(x x^T\\)"
   },
   {
     "objectID": "slides/lecture01-welcome.html#pre-requisites-probability-and-statistics",
     "href": "slides/lecture01-welcome.html#pre-requisites-probability-and-statistics",
     "title": "Welcome to CEVE 543!!",
     "section": "Pre-requisites: Probability and Statistics",
-    "text": "Pre-requisites: Probability and Statistics\nYou should have a course in applied statistics. You should be able to:\n\nCompute summary statistics of a sample\nUnderstand probability density functions, quantiles, and cumulative distribution functions\nDefine joint, marginal, and conditional distributions\nExplain a few probability distributions and where they are appropriate\nPerform and interpret linear regressions"
+    "text": "Pre-requisites: Probability and Statistics\nYou should have a course in applied statistics. You should be able to:\n\nCompute summary statistics of a sample\nDefine joint, marginal, and conditional distributions\nUnderstand probability density functions, quantiles, and cumulative distribution functions\nExplain a few probability distributions and where they are appropriate\nPerform and interpret linear regressions"
   },
   {
     "objectID": "slides/lecture01-welcome.html#pre-requisites-coding",
     "href": "slides/lecture01-welcome.html#pre-requisites-coding",
     "title": "Welcome to CEVE 543!!",
     "section": "Pre-requisites: Coding",
-    "text": "Pre-requisites: Coding\nWe will use the Julia programming language (lab 01). I think you’ll find it easy and fun to learn!\n\nNo experience in Julia is expected\nSome prior experience coding (R, Python, Matlab, C, etc.) is suggested\nIf you have no prior coding experience, you will need to put in extra effort to learn the basics\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023"
+    "text": "Pre-requisites: Coding\nWe will use the Julia programming language. I think you’ll find it easy and fun to learn!\n\nNo experience in Julia is expected\nSome prior experience coding (R, Python, Matlab, C, etc.) is suggested\nIf you have no prior coding experience, you will need to put in extra effort to learn the basics"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#questions",
+    "href": "slides/lecture01-welcome.html#questions",
+    "title": "Welcome to CEVE 543!!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/lecture01-welcome.html#see-you-soon",
+    "href": "slides/lecture01-welcome.html#see-you-soon",
+    "title": "Welcome to CEVE 543!!",
+    "section": "See you soon!",
+    "text": "See you soon!\n\nWednesday: “What drives uncertain climate hazard?”\nFriday: “Lab 01: Setting up Julia, GitHub, and Quarto”\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023\n\n\n\nBonnafous, L., Lall, U., & Siegel, J. (2017). A water risk index for portfolio exposure to climatic extremes: Conceptualization and an application to the mining industry. Hydrology and Earth System Sciences, 21(4), 2075–2106. https://doi.org/f96k67\n\n\nDoss-Gollin, J., & Keller, K. (2023). A subjective Bayesian framework for synthesizing deep uncertainties in climate risk management. Earth’s Future, 11(1). https://doi.org/10.1029/2022EF003044\n\n\nDoss-Gollin, J., Farnham, D. J., Steinschneider, S., & Lall, U. (2019). Robust adaptation to multiscale climate variability. Earth’s Future, 7(7), 734–747. https://doi.org/10.1029/2019ef001154\n\n\nFarnham, D. J., Doss-Gollin, J., & Lall, U. (2018). Regional extreme precipitation events: Robust inference from credibly simulated GCM variables. Water Resources Research, 54(6). https://doi.org/10.1002/2017wr021318\n\n\nWalker, W. E., Lempert, R. J., & Kwakkel, J. H. (2013). Deep Uncertainty. In S. I. Gass & M. C. Fu (Eds.), Encyclopedia of Operations Research and Management Science (pp. 395–402). Boston, MA: Springer US. https://doi.org/10.1007/978-1-4419-1153-7_1140"
   },
   {
     "objectID": "index.html",
@@ -522,7 +585,7 @@
     "href": "slides/notebooks/shallow-lake.html#introduction",
     "title": "Shallow Lake Problem",
     "section": "Introduction",
-    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by Carpenter et al. (1999).\n\nCarpenter, S. R., Ludwig, D., & Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. Ecol. Appl., 9(3), 751–771. https://doi.org/10.2307/2641327"
+    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by (Carpenter1999-wx?)."
   },
   {
     "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
@@ -536,7 +599,7 @@
     "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
     "title": "Shallow Lake Problem",
     "section": "Lake Problem Dynamics",
-    "text": "Lake Problem Dynamics\nThis analysis is adapted from Quinn et al. (2017).\n\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
+    "text": "Lake Problem Dynamics\nThis analysis is adapted from (Quinn2017-vn?).\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
   },
   {
     "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",

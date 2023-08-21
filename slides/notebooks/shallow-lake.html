@@ -56,26 +56,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -139,7 +120,7 @@ window.MathJax = {
 <meta property="og:image:width" content="750">
 </head>
 
-<body class="nav-sidebar docked slimcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -269,7 +250,7 @@ window.MathJax = {
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.dev/ceve543/ceve543.github.io/blob/main/slides/notebooks/shallow-lake.ipynb" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="shallow-lake.out.ipynb" download="shallow-lake.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -317,7 +298,7 @@ window.MathJax = {
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="introduction" class="level2 page-columns page-full">
+<section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Systems can exhibit complex, nonlinear dynamics, including (but not limited to):</p>
 <ul>
@@ -325,10 +306,8 @@ window.MathJax = {
 <li>reinforcing and dampening feedbacks; and</li>
 <li>tipping points.</li>
 </ul>
-<p>In this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by <span class="citation" data-cites="Carpenter1999-wx">Carpenter et al. (<a href="#ref-Carpenter1999-wx" role="doc-biblioref">1999</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Carpenter1999-wx" class="csl-entry" role="listitem">
-Carpenter, S. R., Ludwig, D., &amp; Brock, W. A. (1999). Management of eutrophication for lakes subject to potentially irreversible change. <em>Ecol. Appl.</em>, <em>9</em>(3), 751–771. <a href="https://doi.org/10.2307/2641327">https://doi.org/10.2307/2641327</a>
-</div></div></section>
+<p>In this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by <span class="citation" data-cites="Carpenter1999-wx">(<a href="#ref-Carpenter1999-wx" role="doc-biblioref"><strong>Carpenter1999-wx?</strong></a>)</span>.</p>
+</section>
 <section id="the-shallow-lake-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-shallow-lake-problem">The Shallow Lake Problem</h2>
 <section id="overview" class="level3">
@@ -396,12 +375,10 @@ Carpenter, S. R., Ludwig, D., &amp; Brock, W. A. (1999). Management of eutrophic
 </table>
 </section>
 </section>
-<section id="lake-problem-dynamics" class="level2 page-columns page-full">
+<section id="lake-problem-dynamics" class="level2">
 <h2 class="anchored" data-anchor-id="lake-problem-dynamics">Lake Problem Dynamics</h2>
-<p>This analysis is adapted from <span class="citation" data-cites="Quinn2017-vn">Quinn et al. (<a href="#ref-Quinn2017-vn" role="doc-biblioref">2017</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Quinn2017-vn" class="csl-entry" role="listitem">
-Quinn, J. D., Reed, P. M., &amp; Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. <em>Environmental Modelling &amp; Software</em>, <em>92</em>, 125–141. <a href="https://doi.org/10.1016/j.envsoft.2017.02.017">https://doi.org/10.1016/j.envsoft.2017.02.017</a>
-</div></div><p>First, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (<span class="math inline">\(a=y=0\)</span>).</p>
+<p>This analysis is adapted from <span class="citation" data-cites="Quinn2017-vn">(<a href="#ref-Quinn2017-vn" role="doc-biblioref"><strong>Quinn2017-vn?</strong></a>)</span>.</p>
+<p>First, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (<span class="math inline">\(a=y=0\)</span>).</p>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
@@ -1006,7 +983,6 @@ Quinn, J. D., Reed, P. M., &amp; Keller, K. (2017). Direct policy search for rob
 </figure>
 </div>
 </div>
-
 
 
 </section>

@@ -30,7 +30,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -390,6 +409,19 @@
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Office hours MWF TBD</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="ta" class="slide level2">
 <h2>TA</h2>
@@ -410,6 +442,19 @@
 </ul>
 </div>
 </div>
+<aside class="notes">
+<p>Yuchen will mainly help me with grading, but you can also reach out to her with questions</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="your-turn" class="slide level2">
 <h2>Your turn!</h2>
@@ -424,6 +469,22 @@
 <blockquote>
 <p>Take a moment to think, write it down, and then we’ll share.</p>
 </blockquote>
+<aside class="notes">
+<ul>
+<li>Good to get a sense of background and goals</li>
+<li>Invite students to share – this will help me get a sense of how forthcoming they are</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="climate-hazards" class="title-slide slide level1 center">
@@ -460,8 +521,8 @@
 <h2>How do we manage climate risks?</h2>
 <div>
 <ul>
-<li class="fragment">Reduce emissions to prevent future climate change (mitigation)</li>
-<li class="fragment">Real-time monitoring and forecasting (early warning)</li>
+<li class="fragment">Reduce emissions to prevent future climate change (“mitigation”)</li>
+<li class="fragment">Real-time monitoring and forecasting</li>
 <li class="fragment">Building codes and design standards</li>
 <li class="fragment">Insurance</li>
 <li class="fragment">and much more!</li>
@@ -494,17 +555,31 @@
 </section>
 <section id="what-makes-environmental-data-unique" class="slide level2">
 <h2>What makes environmental data unique?</h2>
-<div>
-<ul>
-<li class="fragment">Varying on multiple time structures (daily, seasonal, ENSO, multidecadal, secular)</li>
-<li class="fragment">Spatial structure (“high dimensional”)</li>
-<li class="fragment">Non-stationarity</li>
-<li class="fragment">Skewed</li>
-<li class="fragment">Missing data</li>
-<li class="fragment">Lots of zeroes</li>
-</ul>
-</div>
-</section></section>
+</section>
+<section id="fat-tails" class="slide level2">
+<h2>Fat tails</h2>
+
+<img data-src="../_assets/img/bonnafous-2017-hess-fig-4.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="bonnafous_waterrisk:2017">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Bonnafous et al., 2017</a>)</span></p></section>
+<section id="structured-temporal-variability" class="slide level2">
+<h2>Structured temporal variability</h2>
+
+<img data-src="../_assets/img/observed-lfv.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="doss-gollin_robustadaptation:2019">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Doss-Gollin et al., 2019</a>)</span></p></section>
+<section id="vary-on-multiple-temporal-scales" class="slide level2">
+<h2>Vary on multiple temporal scales</h2>
+
+<img data-src="../_assets/img/conceptual-sketch.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="doss-gollin_robustadaptation:2019">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Doss-Gollin et al., 2019</a>)</span></p></section>
+<section id="spatial-structure" class="slide level2">
+<h2>Spatial structure</h2>
+
+<img data-src="../_assets/img/farnham-2018-fig4.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="farnham_credibly:2018">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Farnham et al., 2018</a>)</span></p></section>
+<section id="emphasis-on-extremes" class="slide level2">
+<h2>Emphasis on extremes</h2>
+
+<img data-src="../_assets/img/surge-obs-return.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="doss-gollin_subjective:2022">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Doss-Gollin &amp; Keller, 2023</a>)</span></p></section>
+<section id="deep-uncertainty" class="slide level2">
+<h2>Deep Uncertainty</h2>
+
+<img data-src="../_assets/img/walker-2013-fig1.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="walker_deep:2013">(<a href="#/see-you-soon" role="doc-biblioref" onclick="">Walker et al., 2013</a>)</span></p></section></section>
 <section>
 <section id="course-organziaton" class="title-slide slide level1 center">
 <h1>Course Organziaton</h1>
@@ -516,50 +591,55 @@
 </section>
 <section id="lectures" class="slide level2">
 <h2>Lectures</h2>
-<div>
 <ul>
-<li class="fragment">Tests will cover material from lectures and labs
+<li>Tests will cover material from lectures and labs
 <ul>
-<li class="fragment">Slides will be posted ahead of time on course website (see <a href="https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf" target="_blank">instructions</a> for printing to PDF)</li>
-<li class="fragment">Lecture will be recorded via Zoom and available on Canvas</li>
+<li>Slides will be posted ahead of time on course website (see <a href="https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf" target="_blank">instructions</a> for printing to PDF)</li>
 </ul></li>
-<li class="fragment">Occasionally, readings will be assigned ahead of time</li>
-<li class="fragment">I am not a mind reader! Ask questions.</li>
+<li>Occasional readings (assigned ahead of time on Canvas)</li>
+<li>I am not a mind reader! Ask questions.</li>
 </ul>
-</div>
 </section>
-<section id="labs" class="slide level2">
-<h2>Labs</h2>
-<div>
+<section id="labs-10" class="slide level2">
+<h2>Labs (10%)</h2>
 <ul>
-<li class="fragment">Most weeks, usually on Fridays (sometimes I will not be here, but Yuchen will be)</li>
-<li class="fragment">Build your hands-on computational skills</li>
-<li class="fragment">Apply conecpts from lectures to <em>simple</em> problems</li>
-<li class="fragment">Graded on a 3 point scale</li>
-<li class="fragment">Due one week after the in-class lab; solutions will be posted and discussed so no late submissions (turn in what you have)</li>
+<li>Build your hands-on computational skills</li>
+<li>Most weeks, generally Friday</li>
+<li>Apply conecpts from lectures to <em>simple</em> problems</li>
+<li>Graded on a 3 point scale</li>
+<li>Due one week after the in-class lab; solutions will be posted and discussed so <em>no late submissions</em> (turn in what you have)</li>
 </ul>
-</div>
 </section>
-<section id="tests" class="slide level2">
-<h2>Tests</h2>
-<div>
+<section id="tests-40" class="slide level2">
+<h2>Tests (40$)</h2>
 <ul>
-<li class="fragment">Cover material from class and lab</li>
-<li class="fragment">Always a review session</li>
-<li class="fragment">There is a range of backgrounds in this class. Tests should be straightforward for those who meet pre-requisites.</li>
+<li>Material from lecture, assigned readings, and labs</li>
+<li>Always a review session</li>
 </ul>
-</div>
 </section>
-<section id="projects" class="slide level2">
-<h2>Projects</h2>
-<div>
+<section id="projects-40" class="slide level2">
+<h2>Projects (40%)</h2>
 <ul>
-<li class="fragment">Apply concepts from class and lab to a more complex and open-ended problem</li>
-<li class="fragment">Each module will be motivated by a problem</li>
-<li class="fragment">Each project will solve the problem</li>
-<li class="fragment">If you have expertise in particular topics or methods, you can leverage it</li>
+<li>Apply concepts from class and lab to a more complex and open-ended problem</li>
+<li>Each module (except intro) centers on a project</li>
 </ul>
-</div>
+<p>Three rainfall-focused projects planned:</p>
+<ol type="1">
+<li>Downscaling</li>
+<li>Frequency analysis</li>
+<li>Weather typing</li>
+</ol>
+</section>
+<section id="participation-10" class="slide level2">
+<h2>Participation (10%)</h2>
+<p>Some ways to participate include:</p>
+<ul>
+<li>Attending every class</li>
+<li>Asking questions in class</li>
+<li>Answering questions on Canvas</li>
+<li>Coming to office hours</li>
+</ul>
+<p>We will co-grade your participation for every module</p>
 </section></section>
 <section>
 <section id="should-you-take-this-class" class="title-slide slide level1 center">
@@ -579,12 +659,12 @@
 </section>
 <section id="pre-requistes-linear-algebra" class="slide level2">
 <h2>Pre-requistes: Linear Algebra</h2>
-<p>You need basic matrix notation, but not much more. Let <span class="math display">\[
+<p>You need basic matrix notation and multiplication, but not much more. Let <span class="math display">\[
 A = \left[ \begin{matrix} a &amp; b \\ c &amp; d \end{matrix} \right], \quad
 B = \left[ \begin{matrix} e &amp; f \\ g &amp; h \end{matrix} \right], \quad
 x = \left[ \begin{matrix} k \\ \ell \end{matrix} \right], \quad
 \]</span></p>
-<p>Can you (with note-checking as needed!) figure out:</p>
+<p>You should be able to (with note-checking as needed!) figure out:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -606,23 +686,50 @@ x = \left[ \begin{matrix} k \\ \ell \end{matrix} \right], \quad
 <p>You should have a course in applied statistics. You should be able to:</p>
 <ul>
 <li>Compute summary statistics of a sample</li>
-<li>Understand probability density functions, quantiles, and cumulative distribution functions</li>
 <li>Define joint, marginal, and conditional distributions</li>
+<li>Understand probability density functions, quantiles, and cumulative distribution functions</li>
 <li>Explain a few probability distributions and where they are appropriate</li>
 <li>Perform and interpret linear regressions</li>
 </ul>
 </section>
 <section id="pre-requisites-coding" class="slide level2">
 <h2>Pre-requisites: Coding</h2>
-<p>We will use the Julia programming language (lab 01). I think you’ll find it easy and fun to learn!</p>
+<p>We will use the Julia programming language. I think you’ll find it easy and fun to learn!</p>
 <ul>
 <li>No experience in Julia is expected</li>
 <li>Some prior experience coding (R, Python, Matlab, C, etc.) is suggested</li>
 <li>If you have no prior coding experience, you will need to put in extra effort to learn the basics</li>
 </ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
+</section>
+<section id="see-you-soon" class="slide level2 smaller scrollable">
+<h2>See you soon!</h2>
+<ul>
+<li>Wednesday: “What drives uncertain climate hazard?”</li>
+<li>Friday: “Lab 01: Setting up Julia, GitHub, and Quarto”</li>
+</ul>
 
 <div class="footer footer-default">
 <p><a href="https://ceve543.github.io/">CEVE 543, Data Science for Climate Risk Assessment</a>, August 21, 2023</p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-bonnafous_waterrisk:2017" class="csl-entry" role="listitem">
+Bonnafous, L., Lall, U., &amp; Siegel, J. (2017). A water risk index for portfolio exposure to climatic extremes: Conceptualization and an application to the mining industry. <em>Hydrology and Earth System Sciences</em>, <em>21</em>(4), 2075–2106. <a href="https://doi.org/f96k67">https://doi.org/f96k67</a>
+</div>
+<div id="ref-doss-gollin_subjective:2022" class="csl-entry" role="listitem">
+Doss-Gollin, J., &amp; Keller, K. (2023). A subjective <span>Bayesian</span> framework for synthesizing deep uncertainties in climate risk management. <em>Earth’s Future</em>, <em>11</em>(1). <a href="https://doi.org/10.1029/2022EF003044">https://doi.org/10.1029/2022EF003044</a>
+</div>
+<div id="ref-doss-gollin_robustadaptation:2019" class="csl-entry" role="listitem">
+Doss-Gollin, J., Farnham, D. J., Steinschneider, S., &amp; Lall, U. (2019). Robust adaptation to multiscale climate variability. <em>Earth’s Future</em>, <em>7</em>(7), 734–747. <a href="https://doi.org/10.1029/2019ef001154">https://doi.org/10.1029/2019ef001154</a>
+</div>
+<div id="ref-farnham_credibly:2018" class="csl-entry" role="listitem">
+Farnham, D. J., Doss-Gollin, J., &amp; Lall, U. (2018). Regional extreme precipitation events: Robust inference from credibly simulated <span>GCM</span> variables. <em>Water Resources Research</em>, <em>54</em>(6). <a href="https://doi.org/10.1002/2017wr021318">https://doi.org/10.1002/2017wr021318</a>
+</div>
+<div id="ref-walker_deep:2013" class="csl-entry" role="listitem">
+Walker, W. E., Lempert, R. J., &amp; Kwakkel, J. H. (2013). Deep <span>Uncertainty</span>. In S. I. Gass &amp; M. C. Fu (Eds.), <em>Encyclopedia of <span>Operations Research</span> and <span>Management Science</span></em> (pp. 395–402). <span>Boston, MA</span>: <span>Springer US</span>. <a href="https://doi.org/10.1007/978-1-4419-1153-7_1140">https://doi.org/10.1007/978-1-4419-1153-7_1140</a>
+</div>
 </div>
 </section></section>
     </div>
