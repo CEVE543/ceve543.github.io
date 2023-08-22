@@ -312,13 +312,10 @@ window.MathJax = {
 <section id="further-resources" class="level2">
 <h2 class="anchored" data-anchor-id="further-resources">Further Resources</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=KesuPOlBB_o">Setting up VS Code and Julia (Youtube)</a></li>
-<li><a href="https://docs.julialang.org/en/v1/">Julia Documentation</a></li>
-<li><a href="https://juliaacademy.com/courses">JuliaAcademy</a>: Check out the “Introduction to Julia (for programmers)” or “Julia Programming for Nervous Beginners” courses</li>
-<li><a href="https://cheatsheets.quantecon.org/">QuantEcon MATLAB-Python-Julia cheatsheet</a></li>
+<li><a href="https://juliaacademy.com/p/julia-programming-for-nervous-beginners">Julia for Nervous Begineers</a>: A free course on JuliaAcademy for people who are hesitant but curious about learning to write code in Julia.</li>
 <li><a href="https://juliadocs.github.io/Julia-Cheat-Sheet/">FastTrack to Julia cheatsheet</a></li>
 <li><a href="https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf">Plotting cheatsheet</a></li>
-<li><a href="https://computationalthinking.mit.edu/Spring21/">Introduction to Computational Thinking</a>: a great Julia based course at MIT!</li>
+<li><a href="https://computationalthinking.mit.edu/Spring21/">Introduction to Computational Thinking</a>: a great Julia-based course at MIT covering applied mathematics and… computational thinking</li>
 <li><a href="https://www.youtube.com/playlist?list=PLCXbkShHt01seTlnlVg6O7f6jKGTguFi7">Comprehensive Julia Tutorials</a>: YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language.</li>
 </ul>
 </section>
@@ -330,11 +327,11 @@ window.MathJax = {
 <h2 class="anchored" data-anchor-id="suppressing-output">Suppressing Output</h2>
 <p>You can suppress output using a semi-colon (;).</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span><span class="op">+</span><span class="fl">8</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span> <span class="op">+</span> <span class="fl">8</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>That didn’t show anything, as opposed to:</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span><span class="op">+</span><span class="fl">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span> <span class="op">+</span> <span class="fl">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>12</code></pre>
 </div>
@@ -984,7 +981,7 @@ typeof(test_tuple_3)</code></pre>
 <div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">add_some_numbers</span>(x)</span>
 <span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>    total_sum <span class="op">=</span> <span class="fl">0</span> <span class="co"># initialize at zero since we're adding</span></span>
-<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i<span class="op">=</span><span class="fl">1</span><span class="op">:</span>x <span class="co"># the counter i is updated every iteration</span></span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>x <span class="co"># the counter i is updated every iteration</span></span>
 <span id="cb137-4"><a href="#cb137-4" aria-hidden="true" tabindex="-1"></a>        total_sum <span class="op">+=</span> i</span>
 <span id="cb137-5"><a href="#cb137-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb137-6"><a href="#cb137-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_sum</span>
@@ -1024,8 +1021,10 @@ typeof(test_tuple_3)</code></pre>
 </div>
 <p>You can also specify matrices using spaces and newlines.</p>
 <div class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>test_matrix_2 <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span></span>
-<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>test_matrix_2 <span class="op">=</span> [</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span></span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span></span>
+<span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>2×3 Matrix{Int64}:
  1  2  3
