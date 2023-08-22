@@ -17,18 +17,17 @@ This tutorial will give some examples of basic Julia commands and syntax.
 
 ## Further Resources
 
-* [Setting up VS Code and Julia (Youtube)](https://www.youtube.com/watch?v=KesuPOlBB_o)
-* [Julia Documentation](https://docs.julialang.org/en/v1/)
-* [JuliaAcademy](https://juliaacademy.com/courses): Check out the "Introduction to Julia (for programmers)" or "Julia Programming for Nervous Beginners" courses
-* [QuantEcon MATLAB-Python-Julia cheatsheet](https://cheatsheets.quantecon.org/)
+
+* [Julia for Nervous Begineers](https://juliaacademy.com/p/julia-programming-for-nervous-beginners): A free course on JuliaAcademy for people who are hesitant but curious about learning to write code in Julia. 
 * [FastTrack to Julia cheatsheet](https://juliadocs.github.io/Julia-Cheat-Sheet/)
 * [Plotting cheatsheet](https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf)
-* [Introduction to Computational Thinking](https://computationalthinking.mit.edu/Spring21/): a great Julia based course at MIT!
+* [Introduction to Computational Thinking](https://computationalthinking.mit.edu/Spring21/): a great Julia-based course at MIT covering applied mathematics and... computational thinking
 * [Comprehensive Julia Tutorials](https://www.youtube.com/playlist?list=PLCXbkShHt01seTlnlVg6O7f6jKGTguFi7): YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language.
 
 
 ## Comments
-Comments hide statements from the interpreter or compiler. It's a good idea to liberally comment your code so readers  (including yourself!) know why your code is structured and written the way it is.
+Comments hide statements from the interpreter or compiler.
+It's a good idea to liberally comment your code so readers  (including yourself!) know why your code is structured and written the way it is.
 Single-line comments in Julia are preceded with a `#`. Multi-line comments are preceded with `#=` and ended with `=#`
 
 ## Suppressing Output
@@ -36,13 +35,13 @@ Single-line comments in Julia are preceded with a `#`. Multi-line comments are p
 You can suppress output using a semi-colon (;).
 
 ```{julia}
-4+8;
+4 + 8;
 ```
 
 That didn't show anything, as opposed to:
 
 ```{julia}
-4+8
+4 + 8
 ```
 
 ## Variables
@@ -442,8 +441,8 @@ Sometimes you don't want a function to return any values at all. For example, yo
 
 ```{julia}
 function print_some_string(x)
-	println("x: $x")
-	return nothing
+    println("x: $x")
+    return nothing
 end
 print_some_string(42)
 ```
@@ -481,11 +480,11 @@ Conditional blocks allow different pieces of code to be evaluated depending on t
 
 ```{julia}
 function our_abs(x)
-	if x >= 0
-		return x
-	else
-		return -x
-	end
+    if x >= 0
+        return x
+    else
+        return -x
+    end
 end
 ```
 
@@ -501,13 +500,13 @@ To nest conditional statements, use `elseif`.
 
 ```{julia}
 function test_sign(x)
-	if x > 0
-		return Text("x is positive.")
-	elseif x < 0
-		return Text("x is negative.")
-	else
-		return Text("x is zero.")
-	end
+    if x > 0
+        return Text("x is positive.")
+    elseif x < 0
+        return Text("x is negative.")
+    else
+        return Text("x is zero.")
+    end
 end
 ```
 ```{julia}
@@ -527,12 +526,12 @@ Loops allow expressions to be evaluated repeatedly until they are terminated. Th
 
 ```{julia}
 function compute_factorial(x)
-	factorial = 1
-	while (x > 1)
-		factorial *= x
-		x -= 1
-	end
-	return factorial
+    factorial = 1
+    while (x > 1)
+        factorial *= x
+        x -= 1
+    end
+    return factorial
 end
 compute_factorial(5)
 ```
@@ -547,11 +546,11 @@ While loops can easily turn into infinite loops if the condition is never meanin
 
 ```{julia}
 function add_some_numbers(x)
-	total_sum = 0 # initialize at zero since we're adding
-	for i=1:x # the counter i is updated every iteration
-		total_sum += i
-	end
-	return total_sum
+    total_sum = 0 # initialize at zero since we're adding
+    for i in 1:x # the counter i is updated every iteration
+        total_sum += i
+    end
+    return total_sum
 end
 add_some_numbers(4)
 ```
@@ -560,11 +559,11 @@ add_some_numbers(4)
 
 ```{julia}
 function add_passed_numbers(set)
-	total_sum = 0
-	for i in set # this is the syntax we use when we want i to correspond to different container values
-		total_sum += i
-	end
-	return total_sum
+    total_sum = 0
+    for i in set # this is the syntax we use when we want i to correspond to different container values
+        total_sum += i
+    end
+    return total_sum
 end
 add_passed_numbers([1, 3, 5])
 ```
@@ -580,8 +579,10 @@ test_matrix = [1 2 3; 4 5 6]
 You can also specify matrices using spaces and newlines.
 
 ```{julia}
-test_matrix_2 = [1 2 3
-				 4 5 6]
+test_matrix_2 = [
+    1 2 3
+    4 5 6
+]
 ```
 Finally, matrices can be created using comprehensions by separating the inputs by a comma.
 
