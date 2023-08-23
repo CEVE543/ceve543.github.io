@@ -61,6 +61,8 @@ website:
             text: GitHub
           - href: tutorials/quarto.qmd
             text: Quarto
+          - href: tutorials/llm.qmd
+            text: Large Language Models
 
 
 format:
