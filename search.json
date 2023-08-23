@@ -242,14 +242,14 @@
     "href": "slides/lecture01-climate.html#index-insurance-pricing",
     "title": "What drives uncertain climate hazard?",
     "section": "Index insurance pricing",
-    "text": "Index insurance pricing\n\n\nIndex insurance: if some index \\(I\\) is above a threshold \\(I^*\\), pay out \\(X\\)\n\nTotal rainfall in a season, area flooded, etc\n\nNaive pricing: \\(R = p(I &gt; I^*)X\\)\n\n\\(p(I &gt; I^*)\\) is the probability of a payout\nRequires knowing \\(p(I)\\)\n\nRiskier investments require higher returns\n\nRisk premium – depends on \\(p(I &gt; I^*)\\), the uncertainty in \\(p(I &gt; I^*)\\), the risk aversion of the insurer, etc"
+    "text": "Index insurance pricing\n\n\nIndex insurance: if some index \\(I\\) is above a threshold \\(I^*\\), pay out \\(X\\)\n\nTotal rainfall in a season, area flooded, etc\n\nLet \\(p^* = p(I &gt; I^*)\\) is the probability of a payout\nNaive pricing: \\(R = p^* X\\)\nRisk premium: \\(R = X \\left( \\mathbb{E}[p^*] + \\lambda \\mathbb{V}^{1/2}[p^*] \\right)\\)"
   },
   {
     "objectID": "slides/lecture01-climate.html#other-examples",
     "href": "slides/lecture01-climate.html#other-examples",
     "title": "What drives uncertain climate hazard?",
     "section": "Other examples",
-    "text": "Other examples\n\nSeasonal electricity resource adequacy (Doss-Gollin et al., 2021)\nLevee design (Garner & Keller, 2018)\nWater supply planning (Fletcher et al., 2019)\nMultihazard design (Bruneau et al., 2017)\netc…"
+    "text": "Other examples\n\n\nSeasonal electricity resource adequacy (Doss-Gollin et al., 2021)\nLevee design (Garner & Keller, 2018)\nWater supply planning (Fletcher et al., 2019)\nMultihazard design (Bruneau et al., 2017)\netc…"
   },
   {
     "objectID": "slides/lecture01-climate.html#important-note",

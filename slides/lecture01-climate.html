@@ -481,30 +481,26 @@
 <div>
 <ol type="1">
 <li class="fragment">Index insurance: if some index <span class="math inline">\(I\)</span> is above a threshold <span class="math inline">\(I^*\)</span>, pay out <span class="math inline">\(X\)</span>
-<ol type="1">
+<ul>
 <li class="fragment">Total rainfall in a season, area flooded, etc</li>
-</ol></li>
-<li class="fragment">Naive pricing: <span class="math inline">\(R = p(I &gt; I^*)X\)</span>
-<ol type="1">
-<li class="fragment"><span class="math inline">\(p(I &gt; I^*)\)</span> is the probability of a payout</li>
-<li class="fragment">Requires knowing <span class="math inline">\(p(I)\)</span></li>
-</ol></li>
-<li class="fragment">Riskier investments require higher returns
-<ol type="1">
-<li class="fragment">Risk premium – depends on <span class="math inline">\(p(I &gt; I^*)\)</span>, the uncertainty in <span class="math inline">\(p(I &gt; I^*)\)</span>, the risk aversion of the insurer, etc</li>
-</ol></li>
+</ul></li>
+<li class="fragment">Let <span class="math inline">\(p^* = p(I &gt; I^*)\)</span> is the probability of a payout</li>
+<li class="fragment">Naive pricing: <span class="math inline">\(R = p^* X\)</span></li>
+<li class="fragment">Risk premium: <span class="math inline">\(R = X \left( \mathbb{E}[p^*] + \lambda \mathbb{V}^{1/2}[p^*] \right)\)</span></li>
 </ol>
 </div>
 </section>
 <section id="other-examples" class="slide level2">
 <h2>Other examples</h2>
+<div>
 <ol type="1">
-<li>Seasonal electricity resource adequacy <span class="citation" data-cites="doss-gollin_txtreme:2021">(<a href="#/references" role="doc-biblioref" onclick="">Doss-Gollin et al., 2021</a>)</span></li>
-<li>Levee design <span class="citation" data-cites="garner_slrise:2018">(<a href="#/references" role="doc-biblioref" onclick="">Garner &amp; Keller, 2018</a>)</span></li>
-<li>Water supply planning <span class="citation" data-cites="fletcher_mombasa2019">(<a href="#/references" role="doc-biblioref" onclick="">Fletcher et al., 2019</a>)</span></li>
-<li>Multihazard design <span class="citation" data-cites="bruneau_multihazard:2017">(<a href="#/references" role="doc-biblioref" onclick="">Bruneau et al., 2017</a>)</span></li>
-<li>etc…</li>
+<li class="fragment">Seasonal electricity resource adequacy <span class="citation" data-cites="doss-gollin_txtreme:2021">(<a href="#/references" role="doc-biblioref" onclick="">Doss-Gollin et al., 2021</a>)</span></li>
+<li class="fragment">Levee design <span class="citation" data-cites="garner_slrise:2018">(<a href="#/references" role="doc-biblioref" onclick="">Garner &amp; Keller, 2018</a>)</span></li>
+<li class="fragment">Water supply planning <span class="citation" data-cites="fletcher_mombasa2019">(<a href="#/references" role="doc-biblioref" onclick="">Fletcher et al., 2019</a>)</span></li>
+<li class="fragment">Multihazard design <span class="citation" data-cites="bruneau_multihazard:2017">(<a href="#/references" role="doc-biblioref" onclick="">Bruneau et al., 2017</a>)</span></li>
+<li class="fragment">etc…</li>
 </ol>
+</div>
 </section>
 <section id="important-note" class="slide level2">
 <h2>Important note</h2>
