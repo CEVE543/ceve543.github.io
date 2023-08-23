@@ -96,22 +96,24 @@ This is a moderately simplified workflow
 ::: {.incremental}
 
 1. Index insurance: if some index $I$ is above a threshold $I^*$, pay out $X$
-    1. Total rainfall in a season, area flooded, etc
-1. Naive pricing: $R = p(I > I^*)X$
-    1. $p(I > I^*)$ is the probability of a payout
-    1. Requires knowing $p(I)$
-1. Riskier investments require higher returns
-    1. Risk premium -- depends on $p(I > I^*)$, the uncertainty in $p(I > I^*)$, the risk aversion of the insurer, etc
+    - Total rainfall in a season, area flooded, etc
+1. Let $p^* = p(I > I^*)$ is the probability of a payout
+1. Naive pricing: $R = p^* X$
+1. Risk premium: $R = X \left( \mathbb{E}[p^*] + \lambda \mathbb{V}^{1/2}[p^*] \right)$
 
 :::
 
 ## Other examples
+
+::: {.incremental}
 
 1. Seasonal electricity resource adequacy [@doss-gollin_txtreme:2021]
 1. Levee design [@garner_slrise:2018]
 1. Water supply planning [@fletcher_mombasa2019]
 1. Multihazard design [@bruneau_multihazard:2017]
 1. etc...
+
+:::
 
 ## Important note
 
