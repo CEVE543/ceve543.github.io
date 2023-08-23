@@ -1,0 +1,239 @@
+---
+title: "What drives uncertain climate hazard?"
+subtitle: "Lecture"
+date: 2023-08-23
+
+date-format: long
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}}), {{< meta date >}}"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+        cap-location: bottom
+
+execute:
+    freeze: auto
+---
+
+# What questions will we answer?
+
+::: {.notes}
+Most of the exmaples I'll give are related to water or electricity, but they apply to other types of risks as well
+:::
+
+## Sizing a stormwater pipe
+
+::::: {.columns}
+:::: {.column width="60%"}
+::: {.incremental}
+1. Rainfall-runoff model
+    - e.g., peak flow from rational method: $Q = CiA$
+    - $i$ is rainfall intensity, $A$ is area, and $C$ is runoff coefficient
+1. Design rainfall based on *return period* $T$
+    - $p(i > i^*) = 1/T$
+1. Size your culvert to handle $Q^* = Ci^*A$
+1. Requires knowing $p(i)$!
+:::
+::::
+:::: {.column width="40%"}
+![Drainage installation](https://s.hdnux.com/photos/01/33/37/34/23983935/5/1200x0.jpg){width=100%}
+::::
+:::::
+
+## Floodplain mapping in a riverine system
+
+::::: {.columns}
+:::: {.column width="60%"}
+::: {.notes}
+This is a moderately simplified workflow
+:::
+
+::: {.incremental}
+1. Analyze historical streamflow data at a gauge
+1. Take the 99th percentile (100 year *return level*) of *annual maximum* streamflows
+1. Use a hydraulic model to model where the water goes
+:::
+::::
+:::: {.column width="40%"}
+![Floodplain in Selinsgrove, PA](../_assets/img/selinsgrove-floodplain.png){width=100%}
+::::
+:::::
+
+## Reservoir sizing (simplest version)
+
+::: {.incremental}
+
+1. Consider $N$ years of inflows (and releases, evaporation, etc)
+1. Count number of times reservoir is empty ("failure")
+1. Repeat experiment many different times with different inflows
+1. **If** you are sampling this from $p(\text{inflow})$, you can estimate the reliability
+    1. *Monte Carlo* method
+    1. Why not just use observed inflows?
+:::
+
+## Index insurance pricing
+
+::: {.incremental}
+
+1. Index insurance: if some index $I$ is above a threshold $I^*$, pay out $X$
+    1. Total rainfall in a season, area flooded, etc
+1. Naive pricing: $R = p(I > I^*)X$
+    1. $p(I > I^*)$ is the probability of a payout
+    1. Requires knowing $p(I)$
+1. Riskier investments require higher returns
+    1. Risk premium -- depends on $p(I > I^*)$, the uncertainty in $p(I > I^*)$, the risk aversion of the insurer, etc
+
+:::
+
+## Other examples
+
+1. Seasonal electricity resource adequacy [@doss-gollin_txtreme:2021]
+1. Levee design [@garner_slrise:2018]
+1. Water supply planning [@fletcher_mombasa2019]
+1. Multihazard design [@bruneau_multihazard:2017]
+1. etc...
+
+## Important note
+
+All of these workflows are slightly simplified, but communicate the main idea.
+For each of these motivating problems, we need to know the probability distribution of some hazard -- $p(\bf{s})$ to use our notation from last class
+
+# Case study: storm surge
+
+## Storms on the North Sea
+
+:::: {.columns}
+::: {.column width="50%"}
+![Waves](https://www.infoplaza.com/hubfs/waves-ocean-marine-unsettling.jpg){width="100%"}
+:::
+::: {.column width="50%"}
+![Synoptic Forecast](https://www.infoplaza.com/hs-fs/hubfs/Figure1-week1.png?width=3150&height=1746&name=Figure1-week1.png){width="100%"}
+:::
+::::
+
+## Storm surge in Houston
+
+:::: {.columns}
+::: {.column width="50%"}
+![Ike flood depths](https://www.weather.gov/images/lch/tropical/ike/Ike_Inundation.png){width=100%}
+:::
+::: {.column width="50%"}
+![Ike path](https://upload.wikimedia.org/wikipedia/commons/5/5f/Ike_2008_track.png){width=100%}
+:::
+::::
+
+## Problem statement:
+
+> You are designing a storm surge barrier on Galveston Bay.
+What is the probability distribution of storm surge at your location?
+
+This knowledge will help you trade off the cost of the barrier against the residual risk of flooding.
+
+## What do we need to know?
+
+>  Take a moment, write, and then share
+
+## Historical data
+
+:::: {.columns}
+::: {.column width="50%"}
+![Maximum water levels at Galveston](http://www.u-surge.net/uploads/6/4/8/8/64884233/screen-shot-2018-04-04-at-4-42-49-pm_2.png){width=100%}
+:::
+::: {.column width="50%"}
+![Return levels](http://www.u-surge.net/uploads/6/4/8/8/64884233/published/screen-shot-2018-04-04-at-5-33-05-pm_1.png){width=100%}
+:::
+::::
+
+## Tropical cyclone tracks and characteristics
+
+Can we use models to create a longer "synthetic" record?
+
+![@bloemendaal_synthetictc:2020](../_assets/img/Bloemendaa-2020-fig1.png){width=100%}
+
+## Wind and rainfall fields
+
+If we're going to generate *synthetic storms*, we need to model the wind and rainfall fields (and other boundary conditions) in order to model the storm surge (using Adcirc, GeoClaw, SFINCS, etc)
+
+![@kleiber_tcprecip:2023](../_assets/img/kleiber-2023.jpg){width=100%}
+
+## Sea level
+
+:::: {.columns}
+::: {.column width="50%"}
+![Galveston Relative Sea Level and Projections](https://tidesandcurrents.noaa.gov/sltrends/plots/scenario/8771450.png){width=100%}
+:::
+::: {.column width="50%"}
+What separates the scenarios?
+To first order:
+
+1. How much $CO_2$ we emit
+1. How much the climate system warms in response to $CO_2$ (*climate sensitivity*)
+1. Ice sheet response to temperatures
+
+:::
+::::
+
+## Limitations
+
+@sobel_biases:2023:
+
+> Models are incorrectly simulating the equatorial Pacific response to greenhouse gas warming. This implies that projections of regional tropical cyclone activity may be incorrect as well
+
+## Lessons learned?
+
+::: {.incremental}
+
+- Historical data
+    - Measures what we care about
+    - Sampling uncertainty
+    - Doesn't account for future conditions
+- Model simulations
+    - Can account for future conditions
+    - May be biased or inaccurate
+    - Model structure uncertainty
+
+:::
+
+# Wrapping up
+
+## Some terms to know 😉
+
+- Return period
+- Return level
+- Monte Carlo
+- Synthetic record
+- Climate sensitivity
+
+You should also be able to reason about the merits and limitations of different *methodologies* for estimating the probability distribution of a hazard (more practice incoming!)
+
+## Questions?
+
+Friday:
+
+1. Bring your laptop, if you have one. 
+1. Create an account at [https://github.com/](https://github.com/)
+
+I will be absent on Friday (visiting Harris County Flood Control District).
+Yuchen will lead [lab 01](../labs/lab01/instructions.html).
+
+## References 

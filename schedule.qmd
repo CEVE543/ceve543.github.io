@@ -13,7 +13,7 @@ To print lecture slides to PDF, see [these instructions](https://quarto.org/docs
 |:----:|:-----------|:------|:------:|:---:|:-------:|
 |      | **Module 1** | **Fundamentals** | | | |
 | 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-welcome.qmd){target="_blank"}  | | |
-|      | Wed., Aug. 23 | What drives uncertain climate hazard? | | | |
+|      | Wed., Aug. 23 | What drives uncertain climate hazard? | [{{< fa sharp presentation-screen >}}](slides/lecture01-climate.qmd){target="_blank"}  | | |
 |      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
 | 2    | Mon., Aug. 28 | Common distributions and statistics | [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | |
 |      | Wed., Aug. 30 | Conditional and marginal distributions | | | |

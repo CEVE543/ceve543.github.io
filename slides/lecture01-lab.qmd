@@ -33,18 +33,6 @@ execute:
     freeze: auto
 ---
 
-# Overview
-
-## Why is coding important for data science?
-
-{{< include _poll-prompt.qmd >}}
-
-On your own time, watch ["Statistics Without the Agonizing Pain"](https://www.youtube.com/watch?v=5Dnw46eC-0o).
-
-## What is your coding experience?
-
-{{< include _poll-prompt.qmd >}}
-
 # How to lab
 
 ## Overview
@@ -72,17 +60,14 @@ In this class, we will use
 ::::: {.incremental}
 :::: {.columns}
 
-::: {.column width=45%}
+::: {.column width=50%}
 - Syntax
     - Readable to computers and humans
     - Closely parallels math notation
 - Designed for numerical and scientific computing
 :::
 
-::: {.column width=10%}
-:::
-
-::: {.column width=45%}
+::: {.column width=50%}
 - Fast! 
     - "Two language problem"
     - All you need is Julia
@@ -120,9 +105,19 @@ fib(10)
 
 ## Quarto
 
+Quarto is a tool that allows you to combine text and code and create many types of output
 
+- This website is made with Quarto
+- You will use Quarto to create reports for labs
+    - Everything in one place
+    - No running code, save a figure to `Downloads`, copy into Word, then update your code and try to remember where to paste it
+- Reproducible
 
 ## VS Code
+
+1. VS Code is a text editor
+    1. If you are an advanced user of another text editor, you can use that instead, but I recommend VS Code
+1. VS Code can work as a Julia IDE
 
 # Getting set up
 
