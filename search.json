@@ -392,6 +392,139 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023\n\n\n\nBonnafous, L., Lall, U., & Siegel, J. (2017). A water risk index for portfolio exposure to climatic extremes: Conceptualization and an application to the mining industry. Hydrology and Earth System Sciences, 21(4), 2075–2106. https://doi.org/f96k67\n\n\nDoss-Gollin, J., & Keller, K. (2023). A subjective Bayesian framework for synthesizing deep uncertainties in climate risk management. Earth’s Future, 11(1). https://doi.org/10.1029/2022EF003044\n\n\nDoss-Gollin, J., Farnham, D. J., Steinschneider, S., & Lall, U. (2019). Robust adaptation to multiscale climate variability. Earth’s Future, 7(7), 734–747. https://doi.org/10.1029/2019ef001154\n\n\nFagnant, C., Gori, A., Sebastian, A., Bedient, P. B., & Ensor, K. B. (2020). Characterizing spatiotemporal trends in extreme precipitation in Southeast Texas. Natural Hazards, 104(2), 1597–1621. https://doi.org/10.1007/s11069-020-04235-x\n\n\nFarnham, D. J., Doss-Gollin, J., & Lall, U. (2018). Regional extreme precipitation events: Robust inference from credibly simulated GCM variables. Water Resources Research, 54(6). https://doi.org/10.1002/2017wr021318\n\n\nWalker, W. E., Lempert, R. J., & Kwakkel, J. H. (2013). Deep Uncertainty. In S. I. Gass & M. C. Fu (Eds.), Encyclopedia of Operations Research and Management Science (pp. 395–402). Boston, MA: Springer US. https://doi.org/10.1007/978-1-4419-1153-7_1140"
   },
   {
+    "objectID": "slides/lecture01-lab.html#overview",
+    "href": "slides/lecture01-lab.html#overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#tool-overview",
+    "href": "slides/lecture01-lab.html#tool-overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Tool overview",
+    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#why-julia",
+    "href": "slides/lecture01-lab.html#why-julia",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why Julia?",
+    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#julia-example",
+    "href": "slides/lecture01-lab.html#julia-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Julia example",
+    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#github",
+    "href": "slides/lecture01-lab.html#github",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#quarto",
+    "href": "slides/lecture01-lab.html#quarto",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto is a tool that allows you to combine text and code and create many types of output\n\nThis website is made with Quarto\nYou will use Quarto to create reports for labs\n\nEverything in one place\nNo running code, save a figure to Downloads, copy into Word, then update your code and try to remember where to paste it\n\nReproducible"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#vs-code",
+    "href": "slides/lecture01-lab.html#vs-code",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "VS Code",
+    "text": "VS Code\n\nVS Code is a text editor\n\nIf you are an advanced user of another text editor, you can use that instead, but I recommend VS Code\n\nVS Code can work as a Julia IDE"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#detailed-instructions",
+    "href": "slides/lecture01-lab.html#detailed-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Detailed instructions",
+    "text": "Detailed instructions\nSee Setup"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
+    "href": "slides/lecture01-lab.html#lab-01-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 Instructions",
+    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "labs/lab01/solution.html",
+    "href": "labs/lab01/solution.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#setup",
+    "href": "labs/lab01/solution.html#setup",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#running-code",
+    "href": "labs/lab01/solution.html#running-code",
+    "title": "Lab 01",
+    "section": "2 Running Code",
+    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#rendering-the-document",
+    "href": "labs/lab01/solution.html#rendering-the-document",
+    "title": "Lab 01",
+    "section": "3 Rendering the Document",
+    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+  },
+  {
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes"
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
@@ -427,151 +560,137 @@
     "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
   },
   {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
+    "objectID": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
+    "href": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Sizing a stormwater pipe",
+    "text": "Sizing a stormwater pipe\n\n\n\n\nRainfall-runoff model\n\ne.g., peak flow from rational method: \\(Q = CiA\\)\n\\(i\\) is rainfall intensity, \\(A\\) is area, and \\(C\\) is runoff coefficient\n\nDesign rainfall based on return period \\(T\\)\n\n\\(p(i &gt; i^*) = 1/T\\)\n\nSize your culvert to handle \\(Q^* = Ci^*A\\)\nRequires knowing \\(p(i)\\)!\n\n\n\n\n\n\nDrainage installation"
   },
   {
-    "objectID": "labs/lab01/instructions.html",
-    "href": "labs/lab01/instructions.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
+    "objectID": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
+    "href": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Floodplain mapping in a riverine system",
+    "text": "Floodplain mapping in a riverine system\n\n\n\nThis is a moderately simplified workflow\n\n\n\nAnalyze historical streamflow data at a gauge\nTake the 99th percentile (100 year return level) of annual maximum streamflows\nUse a hydraulic model to model where the water goes\n\n\n\n\n\n\nFloodplain in Selinsgrove, PA"
   },
   {
-    "objectID": "labs/lab01/instructions.html#overview",
-    "href": "labs/lab01/instructions.html#overview",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
+    "objectID": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
+    "href": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Reservoir sizing (simplest version)",
+    "text": "Reservoir sizing (simplest version)\n\n\nConsider \\(N\\) years of inflows (and releases, evaporation, etc)\nCount number of times reservoir is empty (“failure”)\nRepeat experiment many different times with different inflows\nIf you are sampling this from \\(p(\\text{inflow})\\), you can estimate the reliability\n\nMonte Carlo method\nWhy not just use observed inflows?"
   },
   {
-    "objectID": "labs/lab01/instructions.html#instructions",
-    "href": "labs/lab01/instructions.html#instructions",
-    "title": "Lab 01",
-    "section": "Instructions",
-    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nClone the repository to your computer and open it in Visual Studio code.\nOpen the solution.qmd file and add your name, netID, and date to the YAML header.\nVerify that you can render the document and check the box to confirm that you have completed the lab."
+    "objectID": "slides/lecture01-climate.html#index-insurance-pricing",
+    "href": "slides/lecture01-climate.html#index-insurance-pricing",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Index insurance pricing",
+    "text": "Index insurance pricing\n\n\nIndex insurance: if some index \\(I\\) is above a threshold \\(I^*\\), pay out \\(X\\)\n\nTotal rainfall in a season, area flooded, etc\n\nNaive pricing: \\(R = p(I &gt; I^*)X\\)\n\n\\(p(I &gt; I^*)\\) is the probability of a payout\nRequires knowing \\(p(I)\\)\n\nRiskier investments require higher returns\n\nRisk premium – depends on \\(p(I &gt; I^*)\\), the uncertainty in \\(p(I &gt; I^*)\\), the risk aversion of the insurer, etc"
   },
   {
-    "objectID": "labs/lab01/solution.html",
-    "href": "labs/lab01/solution.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
+    "objectID": "slides/lecture01-climate.html#other-examples",
+    "href": "slides/lecture01-climate.html#other-examples",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Other examples",
+    "text": "Other examples\n\nSeasonal electricity resource adequacy (Doss-Gollin et al., 2021)\nLevee design (Garner & Keller, 2018)\nWater supply planning (Fletcher et al., 2019)\nMultihazard design (Bruneau et al., 2017)\netc…"
   },
   {
-    "objectID": "labs/lab01/solution.html#setup",
-    "href": "labs/lab01/solution.html#setup",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
+    "objectID": "slides/lecture01-climate.html#important-note",
+    "href": "slides/lecture01-climate.html#important-note",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Important note",
+    "text": "Important note\nAll of these workflows are slightly simplified, but communicate the main idea. For each of these motivating problems, we need to know the probability distribution of some hazard – \\(p(\\bf{s})\\) to use our notation from last class"
   },
   {
-    "objectID": "labs/lab01/solution.html#running-code",
-    "href": "labs/lab01/solution.html#running-code",
-    "title": "Lab 01",
-    "section": "2 Running Code",
-    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+    "objectID": "slides/lecture01-climate.html#storms-on-the-north-sea",
+    "href": "slides/lecture01-climate.html#storms-on-the-north-sea",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Storms on the North Sea",
+    "text": "Storms on the North Sea\n\n\n\n\n\nWaves\n\n\n\n\n\n\nSynoptic Forecast"
   },
   {
-    "objectID": "labs/lab01/solution.html#rendering-the-document",
-    "href": "labs/lab01/solution.html#rendering-the-document",
-    "title": "Lab 01",
-    "section": "3 Rendering the Document",
-    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+    "objectID": "slides/lecture01-climate.html#storm-surge-in-houston",
+    "href": "slides/lecture01-climate.html#storm-surge-in-houston",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Storm surge in Houston",
+    "text": "Storm surge in Houston\n\n\n\n\n\nIke flood depths\n\n\n\n\n\n\nIke path"
   },
   {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
+    "objectID": "slides/lecture01-climate.html#problem-statement",
+    "href": "slides/lecture01-climate.html#problem-statement",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Problem statement:",
+    "text": "Problem statement:\n\nYou are designing a storm surge barrier on Galveston Bay. What is the probability distribution of storm surge at your location?\n\nThis knowledge will help you trade off the cost of the barrier against the residual risk of flooding."
   },
   {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
+    "objectID": "slides/lecture01-climate.html#what-do-we-need-to-know",
+    "href": "slides/lecture01-climate.html#what-do-we-need-to-know",
+    "title": "What drives uncertain climate hazard?",
+    "section": "What do we need to know?",
+    "text": "What do we need to know?\n\nTake a moment, write, and then share"
   },
   {
-    "objectID": "slides/lecture01-lab.html#why-is-coding-important-for-data-science",
-    "href": "slides/lecture01-lab.html#why-is-coding-important-for-data-science",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why is coding important for data science?",
-    "text": "Why is coding important for data science?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here\n\n\n\nOn your own time, watch “Statistics Without the Agonizing Pain”."
+    "objectID": "slides/lecture01-climate.html#historical-data",
+    "href": "slides/lecture01-climate.html#historical-data",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Historical data",
+    "text": "Historical data\n\n\n\n\n\nMaximum water levels at Galveston\n\n\n\n\n\n\nReturn levels"
   },
   {
-    "objectID": "slides/lecture01-lab.html#what-is-your-coding-experience",
-    "href": "slides/lecture01-lab.html#what-is-your-coding-experience",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "What is your coding experience?",
-    "text": "What is your coding experience?\n\n\n\n\n\n\nTo-do\n\n\nAdd a poll here"
+    "objectID": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
+    "href": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Tropical cyclone tracks and characteristics",
+    "text": "Tropical cyclone tracks and characteristics\nCan we use models to create a longer “synthetic” record?\n\nBloemendaal et al. (2020)"
   },
   {
-    "objectID": "slides/lecture01-lab.html#overview-1",
-    "href": "slides/lecture01-lab.html#overview-1",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Overview",
-    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+    "objectID": "slides/lecture01-climate.html#wind-and-rainfall-fields",
+    "href": "slides/lecture01-climate.html#wind-and-rainfall-fields",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Wind and rainfall fields",
+    "text": "Wind and rainfall fields\nIf we’re going to generate synthetic storms, we need to model the wind and rainfall fields (and other boundary conditions) in order to model the storm surge (using Adcirc, GeoClaw, SFINCS, etc)\n\nKleiber et al. (2023)"
   },
   {
-    "objectID": "slides/lecture01-lab.html#tool-overview",
-    "href": "slides/lecture01-lab.html#tool-overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Tool overview",
-    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+    "objectID": "slides/lecture01-climate.html#sea-level",
+    "href": "slides/lecture01-climate.html#sea-level",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Sea level",
+    "text": "Sea level\n\n\n\n\n\nGalveston Relative Sea Level and Projections\n\n\n\nWhat separates the scenarios? To first order:\n\nHow much \\(CO_2\\) we emit\nHow much the climate system warms in response to \\(CO_2\\) (climate sensitivity)\nIce sheet response to temperatures"
   },
   {
-    "objectID": "slides/lecture01-lab.html#why-julia",
-    "href": "slides/lecture01-lab.html#why-julia",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why Julia?",
-    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+    "objectID": "slides/lecture01-climate.html#limitations",
+    "href": "slides/lecture01-climate.html#limitations",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Limitations",
+    "text": "Limitations\nSobel et al. (2023):\n\nModels are incorrectly simulating the equatorial Pacific response to greenhouse gas warming. This implies that projections of regional tropical cyclone activity may be incorrect as well"
   },
   {
-    "objectID": "slides/lecture01-lab.html#julia-example",
-    "href": "slides/lecture01-lab.html#julia-example",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Julia example",
-    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+    "objectID": "slides/lecture01-climate.html#lessons-learned",
+    "href": "slides/lecture01-climate.html#lessons-learned",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Lessons learned?",
+    "text": "Lessons learned?\n\n\nHistorical data\n\nMeasures what we care about\nSampling uncertainty\nDoesn’t account for future conditions\n\nModel simulations\n\nCan account for future conditions\nMay be biased or inaccurate\nModel structure uncertainty"
   },
   {
-    "objectID": "slides/lecture01-lab.html#github",
-    "href": "slides/lecture01-lab.html#github",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "GitHub",
-    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+    "objectID": "slides/lecture01-climate.html#some-terms-to-know",
+    "href": "slides/lecture01-climate.html#some-terms-to-know",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Some terms to know 😉",
+    "text": "Some terms to know 😉\n\nReturn period\nReturn level\nMonte Carlo\nSynthetic record\nClimate sensitivity\n\nYou should also be able to reason about the merits and limitations of different methodologies for estimating the probability distribution of a hazard (more practice incoming!)"
   },
   {
-    "objectID": "slides/lecture01-lab.html#quarto",
-    "href": "slides/lecture01-lab.html#quarto",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Quarto",
-    "text": "Quarto"
+    "objectID": "slides/lecture01-climate.html#questions",
+    "href": "slides/lecture01-climate.html#questions",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Questions?",
+    "text": "Questions?\nFriday:\n\nBring your laptop, if you have one.\nCreate an account at https://github.com/\n\nI will be absent on Friday (visiting Harris County Flood Control District). Yuchen will lead lab 01."
   },
   {
-    "objectID": "slides/lecture01-lab.html#vs-code",
-    "href": "slides/lecture01-lab.html#vs-code",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "VS Code",
-    "text": "VS Code"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#detailed-instructions",
-    "href": "slides/lecture01-lab.html#detailed-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Detailed instructions",
-    "text": "Detailed instructions\nSee Setup"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
-    "href": "slides/lecture01-lab.html#lab-01-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Lab 01 Instructions",
-    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "objectID": "slides/lecture01-climate.html#references",
+    "href": "slides/lecture01-climate.html#references",
+    "title": "What drives uncertain climate hazard?",
+    "section": "References",
+    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 23, 2023\n\n\n\nBloemendaal, N., Haigh, I. D., de Moel, H., Muis, S., Haarsma, R. J., & Aerts, J. C. J. H. (2020). Generation of a global synthetic tropical cyclone hazard dataset using STORM. Scientific Data, 7(1), 40. https://doi.org/10.1038/s41597-020-0381-2\n\n\nBruneau, M., Barbato, M., Padgett, J. E., Zaghi, A. E., Mitrani-Reiser, J., & Li, Y. (2017). State of the art of multihazard design. Journal of Structural Engineering, 143(10), 03117002. https://doi.org/10.1061/(ASCE)ST.1943-541X.0001893\n\n\nDoss-Gollin, J., Farnham, D. J., Lall, U., & Modi, V. (2021). How unprecedented was the February 2021 Texas cold snap? Environmental Research Letters. https://doi.org/10.1088/1748-9326/ac0278\n\n\nFletcher, S., Lickley, M., & Strzepek, K. (2019). Learning about climate change uncertainty enables flexible water infrastructure planning. Nature Communications, 10(1), 1782. https://doi.org/10.1038/s41467-019-09677-x\n\n\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\n\n\nKleiber, W., Sain, S., Madaus, L., & Harr, P. (2023). Stochastic tropical cyclone precipitation field generation. Environmetrics, 34(1), e2766. https://doi.org/10.1002/env.2766\n\n\nSobel, A. H., Lee, C.-Y., Bowen, S. G., Camargo, S. J., Cane, M. A., Clement, A., et al. (2023). Near-term tropical cyclone risk and coupled Earth system model biases. Proceedings of the National Academy of Sciences, 120(33), e2209631120. https://doi.org/10.1073/pnas.2209631120"
   },
   {
     "objectID": "slides/notebooks/shallow-lake.html",
@@ -781,7 +900,7 @@
     "href": "setup.html#set-up-github",
     "title": "Setting Up Your Computer",
     "section": "Set Up GitHub",
-    "text": "Set Up GitHub\n\nCreate GitHub Account\nIf you already have a GitHub account, you can use that for this course and do not need to create a new account.\nOtherwise, create an account. It doesn’t have to be linked to your Cornell email or use your Cornell NetID.\nFor labs and projects, you should use the GitHub Classroom link to “accept” the assignment provided on Ed Discussion, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.\n\n\nUse GitHub\nYou can do almost everything that you will need to do for this course with GitHub directly through VS Code. The GitHub desktop app is also great, or alternatively you may work directly through the terminal if you have prior experience.\n\n\nMore Resources\nSee this tutorial for more information on using GitHub."
+    "text": "Set Up GitHub\n\nCreate GitHub Account\nIf you already have a GitHub account, you can use that for this course and do not need to create a new account. Otherwise, create an account. It doesn’t have to be linked to your Rice email or your NetID.\nFor labs and projects, you should use the GitHub Classroom link posted on Canvas to “accept” the assignment, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.\n\n\nUse GitHub\nYou can do almost everything that you will need to do for this course with GitHub directly through VS Code. The GitHub desktop app is also great, or alternatively you may work directly through the terminal if you have prior experience.\n\n\nMore Resources\nSee this tutorial for more information on using GitHub."
   },
   {
     "objectID": "setup.html#set-up-quarto",

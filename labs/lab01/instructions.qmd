@@ -1,0 +1,20 @@
+---
+title: "Lab 01"
+subtitle: "Setting up Julia, GitHub, and Quarto"
+jupyter: julia-1.9
+date: 2023-08-25
+published-title: Due Date
+---
+
+## Overview
+
+Please see [the slides](/slides/lecture01-lab.qmd) for more details.
+
+## Instructions
+
+1. Read and go through the [Software Installation Guide](/setup.qmd) for instructions on setting up your computer for this course.
+1. Follow the link to lab 1 assignment from Canvas (it should start with `classroom.github.com`). It may take a few minutes for the site to configure your repository.
+1. You will get a message saying " Your assignment repository has been created: ...". Click on the link to go to your repository.
+1. Clone the repository to your computer and open it in Visual Studio code.
+1. Open the `solution.qmd` file and add your name, netID, and date to the YAML header.
+1. Verify that you can render the document and check the box to confirm that you have completed the lab.
