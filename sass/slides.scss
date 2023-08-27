@@ -4,6 +4,12 @@
 @import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
 @import 'https://kit.fontawesome.com/d16123e5b5.css';
 
+// Julia Mono: https://juliamono.netlify.app/faq/
+@font-face {
+    font-family: JuliaMono-Light;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono/webfonts/JuliaMono-Light.woff2");
+}
+
 $font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
 
 $presentation-font-size-root: 40px;
@@ -88,10 +94,6 @@ ul ul {
 a {
     font-color: #006699;
     text-decoration: none;
-}
-
-code {
-    font-size: 0.8em;
 }
 
 .reveal p {
@@ -189,4 +191,24 @@ table {
 
 .math.display .MathJax {
     font-size: 100% !important;
+}
+
+// Julia Mono: https://juliamono.netlify.app/faq/
+pre {
+    font-family: JuliaMono-Light;
+    font-size: 1em;
+}
+
+code {
+    font-family: JuliaMono-Light;
+    font-size: 1em;
+}
+
+// code annotations
+dd {
+    font-size: 0.5em;
+}
+
+dt {
+    font-size: 0.5em;
 }

@@ -29,30 +29,129 @@ format:
         html-math-method: mathjax
         include-in-header: mathjax-config.html
         date-format: long
+        code-annotations: below
+        scrollable: true
 
 execute:
     freeze: auto
     echo: true
 ---
 
-# Overview
+## A quick note on pacing
+
+We will move through this module ("fundamentals") at a fairly brisk [pace](../schedule.qmd)
+
+- Review course slides
+- Ask questions on Canvas or in office hours
+- To help you learn to code, I am exposing you to code early and often
+    - I don't expect that you are able to replicate all the code in this notebook
+    - The labs will give you practice
+    - You will not need to write code from scratch for the exams
+
+::: {.notes}
+This is a long slide deck. We will probably finish on Wednesday
+:::
+
+# Packages in Julia
+
+## What is a package?
+
+- Code that is bundled for easy use
+- Provides functionality that is not part of the base language  
+    - Most stuff in Julia requires packages, as we will see
+- Need to be installed
+- Developed by the community
+
+## Where do I get packages?
+
+> Julia has a built-in package manager for installing add-on functionality written in Julia. It can also install external libraries using your operating system's standard system for doing so, or by compiling from source.
+
+## Where are packages stored?
+
+Each *project* has an *environment, which is defined by the following files (do not edit them manually):
+
+- `Project.toml`: lists the *specified dependencies* of the project
+- `Manifest.toml`: lists the *exact versions* of the packages that are used in the project
+
+The actual packages are stored on your computer and you don't need to worry
+
+## Workflow: activate
+
+We `activate` a project to tell Julia that we want to use the packages in that project.
+These steps are equivalent:
+
+:::: {.columns}
+::: {.column width="50%"}
+
+ 1. Open the REPL
+ 2. `using Pkg`
+ 3. `Pkg.activate(".")`
+
+:::
+::: {.column width="50%"}
+
+ 1. Open the REPL
+ 2. Press `]` to enter the package manager
+ 3. `activate .`
+
+:::
+::::
+
+## Workflow: install
+
+We `add` a package to install it in the current project
+
+:::: {.columns}
+::: {.column width="50%"}
+
+ 1. Open the REPL
+ 2. `using Pkg`
+ 3. `Pkg.add("DataFrames")`
+
+:::
+::: {.column width="50%"}
+
+ 1. Open the REPL
+ 2. Press `]` to enter the package manager
+ 3. `add DataFrames`
+
+:::
+::::
+
+## Workflow: instantiate
+
+When working with someone else's project, we need to install the packages that they use.
+
+- `activate` does not install anything, just tells Julia which packages to use
+- `instantiate` is your friend to make sure an environment is ready to use. If there's nothing to do, instantiate does nothing.
+
+## Learn more
+
+1. [`Pkg.jl` docs](https://pkgdocs.julialang.org/v1/getting-started/)
+    1. See ["Using someone else's projecg"](https://pkgdocs.julialang.org/v1/environments/#Using-someone-else%27s-project) for more on `instantiate`
+1. [Well-worked blog post](https://jkrumbiegel.com/pages/2022-08-26-pkg-introduction/index.html) by [Julies Krumbiegel](https://jkrumbiegel.com/)
+
+## Lab 01 fix
+
+- In order to run codes using Quarto, you need the `IJulia` package    
+    - It's in the lab01 `Manifest.toml`
+    - To install, you need to `instantiate`
+- If you're still running into issues:
+    - Run `Pkg.build("IJulia")` in the REPL (after you `activate` and `instantiate`)
+- This should have been in the lab01 instructions
+- I've updated the [instructions](../labs/lab01/instructions.qmd)
 
 # Mosquitos
 
 ## Stats without the agonizing details
 
-> In this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on "agonizing" details.
+In this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on "agonizing" details.
 
-## Motivating example,
-
-Following Rauser, we will use the following example to motivate the course:
-
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/5Dnw46eC-0o?si=3Y3JKwkwD9i6lrVV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+## Motivating question
 > Does drinking beer reduce the likelihood of being bitten by mosquitos?
-
 ## Raw data
-
-Create a *variable* called `beer`.
-
+Create a *variable* called `beer` to hold the number of mosquito bites for beer drinkers:
 ```{julia}
 beer = [
     27,
@@ -82,32 +181,37 @@ beer = [
     27,
 ]
 ```
-
-## What is beer?
-
+## What is `beer`?
 We can learn a bit more about it:
-
 ```{julia}
 typeof(beer)
 ```
+```{julia}
+length(beer)
+```
+```{julia}
+size(beer)
+```
+```{julia}
+sum(beer) / length(beer) # the sample average
+```
 
 ## More raw data
-
-By putting the `;` at the end of our statement, we keep the notebook from showing the output.
+We can do the same for water drinkers:
 
 ```{julia}
-water = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20];
+water = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20]; # <1>
 ```
+1. By putting the `;` at the end of our statement, we keep the notebook from showing the output
 
 ## A simple analysis
 
 Let's calculate the difference between the average number of bites in each group.
 
 ```{julia}
-using StatsBase: mean
+using StatsBase: mean # <1>
 ```
-
-This gives us the `mean` function from the `StatsBase` package.
+1. This gives us the `mean` function from the `StatsBase` package
 
 ```{julia}
 observed_diff = mean(beer) - mean(water)
@@ -117,20 +221,21 @@ observed_diff = mean(beer) - mean(water)
 
 The skeptic asks whether this might be random chance.
 
+::: {.incremental}
 - In other classes, you might answer this with a t-test.
 - Simulation approach:
-    - Suppose the skeptic is right and all the data points are equivalent
+    - Suppose the skeptic is right -- the two groups are samped from the same distribution
     - Shuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)
-    - Calculate the difference between each group.
+    -  Calculate the difference between each group
+    - Repeat many times and examine the distribution of differences
+:::
 
 ## Implementation
 
 ```{julia}
-using Random: shuffle
-```
+using Random: shuffle # <1>
 
-```{julia}
-function get_shuffled_difference(y1, y2)
+function get_shuffled_difference(y1, y2) # <2>
 
     # concatenate the data into one vector, then shuffle it
     y_all = vcat(y1, y2)
@@ -144,64 +249,373 @@ function get_shuffled_difference(y1, y2)
     # get the difference
     difference = mean(ynew1) - mean(ynew2)
     return difference
-end;
-```
+end # <3>
 
-And we can use it
-
-```{julia}
-get_shuffled_difference(beer, water)
+get_shuffled_difference(beer, water) # <4>
 ```
+1. Use the `shuffle` function from the `Random` package
+2. Define a function. Its arguments are `y1` and `y2`
+3. `end` closes the function definition
+4. Call the function with our data
 
 ## Running
 
-We want to learn about the *sampling distribution*: repeat this experiment many times over and plott the results
+We want to learn about the *sampling distribution* of the group differences: repeat this experiment many times over and plott the results
 
 ```{julia}
-simulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]
-simulated_diffs
+simulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000] # <1>
+length(simulated_diffs) # <2>
 ```
+
+1. This is a *list comprehension*. It's a way to create a list by looping over something. Here, we loop over the numbers 1 to 50,000 and call `get_shuffled_difference` each time.
+2. `length` tells us the size of a vector
 
 ## Plotting
 
 ```{julia}
-using Plots
-```
+using Plots # <1>
 
-```{julia}
-function plot_diffs(diffs, obs)
+function plot_diffs(diffs, obs) # <2>
     p = histogram(
-        diffs;
-        xlabel="Difference",
-        ylabel="Proportion of samples",
-        label="If Skeptic is Right",
-        bins=-6:0.5:6,
-        legend=:topleft,
+        diffs; # <4>
+        xlabel="Difference", # <5>
+        ylabel="Proportion of samples", # <6>
+        label="If Skeptic is Right", # <7>
+        bins=-6:0.5:6, # <8>
+        legend=:topleft, # <9>
         normalize=true
     )
-    vline!(p, [obs]; label="Observed", linewidth=2)
-    return p
-end;
-```
-
-## The Plot
-
-```{julia}
+    vline!(p, [obs]; label="Observed", linewidth=2) # <11>
+    return p # <12>
+end
 plot_diffs(simulated_diffs, observed_diff)
 ```
+
+1. We need the `Plots` package to make plots
+2. Define a function. Its arguments are `diffs` and `obs`
+3. `histogram` is a function from the `Plots` package
+4. Create a histogram using the `diffs` object. `;` separates the positional arguments from the keyword arguments
+5. `xlabel` is a "keyword argument" specifying the text for the x-axis label
+6. the y-axis label
+7. the label to use in the legend
+8. specify the bins to use in the histogram
+9. specify the location of the legend
+10. normalize the histogram so that the area under the curve is 1
+11. add a vertical line (`vline!`) at the observed difference
+12. many functions *return* their output -- in this case the plot we created from the inputs
 
 ## Alternative
 
 We could have done this with a parametric test
 
 ```{julia}
-using HypothesisTests
+using HypothesisTests # <1>
+
+t1 = HypothesisTests.EqualVarianceTTest(beer, water) # <2>
+t2 = HypothesisTests.UnequalVarianceTTest(beer, water); # <3>
 ```
+
+1. We need the `HypothesisTests` package
+2. We don't need to include the `HypothesisTests.`, but it adds clarity
+3. Recall: `;` suppresses output
+
+:::: {.columns}
+::: {.column width="50%"}
 
 ```{julia}
-t1 = HypothesisTests.EqualVarianceTTest(beer, water)
-t2 = HypothesisTests.UnequalVarianceTTest(beer, water)
-
-@show t1
-@show t2
+t1
 ```
+
+:::
+::: {.column width="50%"}
+
+```{julia}
+t2
+```
+
+:::
+::::
+
+## Discussion
+
+::: {.incremental}
+
+- This is called a *bootstrap* and is a very powerful tool in many situations
+- What would we expect to see if the skeptic was correct?
+- P-value:
+    - the *likelihood* of the data if the *null hypothesis* is correct
+    - skeptic's (null) hypothesis: no difference between groups
+:::
+
+. . .
+
+```{julia}
+mean(simulated_diffs .>= observed_diff) # <1>
+```
+1. `.` is the *dot operator*. It applies the function to each element of the vector individually.
+
+# Probability distributions
+
+## The Normal distribution
+
+The Normal (Gaussian) distribution has *probability distribution function*:
+
+$$
+p(y | \mu, \theta) = \frac{1}{\sigma\sqrt{2\pi}} \exp
+\left(
+-\frac{1}{2}\left(
+\frac{x-\mu}{\sigma}
+\right)^{\!2}
+\,
+\right)
+$$
+
+- Mean $\mu$
+    - Median equal to mean
+- Variance $\sigma^2$
+- Symmetric
+
+## Central limit theorem
+
+The *central limit theorem* says that the sum of many independent random variables is approximately normally distributed.
+
+We can see this with an example:
+
+1. For each sample $i = 1, \ldots, N$:
+    1. Draw `J` draws from a non-Gaussian distribution $\mathcal{D}$
+    2. Take the mean and save it as $\bar{y}_i$
+2. Plot the distribution of $\bar{y}_i$
+
+```{julia}
+using Distributions
+
+dist = Gamma(2, 1) # a non-Gaussian distribution
+N = 10_000 # number of samples
+J = 500 # draws per sample
+ȳ = [ # <1>
+    mean(rand(dist, J))
+    for _ ∈ 1:N # <2>
+] # <3>
+histogram(
+    ȳ;
+    xlabel="Sample mean",
+    ylabel="Proportion of samples",
+    normalize=true,
+    label=false,
+)
+```
+1. To type `ȳ`, type `y` then type `\bar` and hit `tab`. Julia allows unicode (or emojis) in variable names
+2. To type `∈` , type `\in` and hit `tab`. The `_` isn't doing anything special and we could name it `i` or 😶 or whatever we want but `_` suggests it's a throwaway
+3. This is another *list comprehension*
+
+## Notation
+
+We will get tired of writing
+
+$$
+p(y | \mu, \theta) = \frac{1}{\sigma\sqrt{2\pi}} \exp
+\left(
+-\frac{1}{2}\left(
+\frac{x-\mu}{\sigma}
+\right)^{\!2}
+\,
+\right)
+$$
+
+Instead, we will often use shorthand:
+
+$$
+y \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+```{julia}
+using StatsPlots
+using LaTeXStrings
+
+plot(
+    Normal(0, 1);
+    label="Normal Distribution",
+    xlabel=L"$x$", # <1>
+    ylabel=L"$p(x | \mu=0, \sigma=1)$"
+)
+```
+1. `L"<string>"` allows us to use LaTeX in strings
+2. This notation specifies the values of $mu$ and $\sigma$
+
+## Bernoulli distribution
+
+A Bernoulli distribution models a coin flip.
+
+```{julia}
+p = 0.5 # probability of heads
+rand(Bernoulli(p), 5)
+```
+
+## Binomial distribution
+
+A Binomial distribution models the distribution of `n` consecutive flips of the same coin
+
+```{julia}
+p = 0.5
+N = 5
+rand(Binomial(N, p), 5)
+```
+
+## Multinomial distribution
+
+The Multinomial extends the Binomial to multiple categories.
+Note that `p` is a *vector*.
+If there are 2 categories ($K=2$), it's just the binomial with $p_\text{multinomial} = [p, 1-p]$."
+
+```{julia}
+p = [0.5, 0.3, 0.2]
+N = 5
+rand(Multinomial(N, p), 5)
+```
+
+## Poisson distribution
+
+The Poisson distribution is used to model count data.
+It is the limit of a Binomial distribution with $p=\lambda/N$, as $N \rightarrow \infty$.
+
+## Negative binomial distribution
+
+A Poisson distribution has mean and variance equal to $\lambda$.
+To relax this assumption, the `Negative Binomial` distribution is often used.
+This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures (denoted `r`) occurs.
+For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (r = 3).
+
+The Negative Binomial distribution can also be interpreted as a Gamma-Poisson *mixture*:
+
+$$
+\begin{align}
+y &\sim \textrm{Poisson}(\lambda) \\
+\lambda &\sim \textrm{Gamma}\left(r, \frac{p}{1-p} \right)
+\end{align}
+$$
+
+We can see this with simulation:
+
+```{julia}
+function gamma_poisson(r, p)
+    λ = rand(Gamma(r, (1 - p) / p))
+    return rand(Poisson(λ))
+end
+
+r = 3 # number of failures
+p = 1 / 6 # probability of failure
+dist = NegativeBinomial(r, p)
+
+# simulate 50,000 rolls
+rolls = [gamma_poisson(r, p) for _ in 1:50_000]
+
+# plot the samples
+xticks = 0:1:60 # specify the bin values
+histogram(
+    rolls;
+    bins=-0.5:1:(maximum(xticks)+0.5),
+    xlabel="Number of rolls",
+    ylabel="PMF",
+    marker=:o,
+    label="Gamma-Poisson",
+    normalize=true
+)
+
+# add the PDF of the negative binomial distribution
+plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
+```
+
+## What others do you know?
+
+. . .
+
+- Uniform
+- Exponential
+- Gamma (see above)
+- Beta
+- Dirichlet
+- GEV
+- Pareto
+- Student's t
+- Boltzmann
+- Many more!
+
+## PDF and CDF
+
+If $F_X$ is the *cumulative distribution function* (CDF) of $X$ and $f_X$ is the *probability density function* (PDF) of $X$, then:
+$$
+F_X ( x ) = \int_{-\infty}^x f_X(u) \, du,
+$$
+and (if $f_X$ is continuous at $x$ which it typically will be)
+$$
+f_{X}(x)={\frac {d}{dx}}F_{X}(x).
+$$
+A useful property is
+$$
+\Pr[a\leq X\leq b]=\int _{a}^{b}f_{X}(x)\,dx
+$$
+
+::: {.callout-important}
+We can only talk about the probability that $y$ is in some interval $[a, b]$, which is given by the integral of the PDF over that interval.
+The probability that $y$ takes on the value $y^*$, written $p(y=y^*)$, is zero.
+:::
+
+## PDF example
+
+```{julia}
+#| show: false
+# https://www.matecdev.com/posts/julia-numerical-integration.html
+function quad_trap(f, a, b, N)
+    h = (b - a) / N
+    int = h * (f(a) + f(b)) / 2
+    for k in 1:(N-1)
+        xk = (b - a) * k / N + a
+        int = int + h * f(xk)
+    end
+    return int
+end;
+```
+
+Simple example to illustrate that
+$$
+F_X(2) = \int_{-\infty}^2 f_X(u) \, du
+$$
+
+We will use a standard Normal distribution as an example
+
+```{julia}
+dist = Normal() # <1>
+f(x) = pdf(dist, x) # <2>
+approx = quad_trap(f, -100, 2, 1000) # <3>
+exact = cdf(dist, 2)
+
+approx, exact
+```
+
+1. Mean 0 and standard deviation 1 by default
+2. `pdf(d, x)` tells us the probability density function of distribution `d` evaluated at `x`
+3. `quad_trap` is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points
+
+## PMFs
+
+- Discrete distributions (like the Poisson) have a *probability mass function* (PMF) instead of a PDF
+- For PMFs, $p(y=y^*)$ is the probability that $y$ takes on the value $y^*$, and is defined
+
+```{julia}
+f(x) = pdf(Poisson(5), x) # the Poisson PMF
+plot(f, 0:1:20; label="PMF", marker=:o, xlabel=L"$x^*$", ylabel=L"$p(x=x^*)$") # <1>
+```
+1. In the `Distributions` package, both PDFs and PMFs are called `pdf`
+
+# Wrapup
+
+## Coming up
+
+- Wednesday: Conditional and marginal distributions
+- Friday:    
+    - Lab 02: Working with tabular data in Julia
+    - Lab 01 due *at start of class*
+
+## Office hours
+
+If you haven't filled out the Doodle, please do so ASAP
