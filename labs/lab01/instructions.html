@@ -240,12 +240,35 @@ window.MathJax = {
 <section id="instructions" class="level2">
 <h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
 <ol type="1">
-<li>Read and go through the <a href="../../setup.html">Software Installation Guide</a> for instructions on setting up your computer for this course.</li>
-<li>Follow the link to lab 1 assignment from Canvas (it should start with <code>classroom.github.com</code>). It may take a few minutes for the site to configure your repository.</li>
-<li>You will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.</li>
-<li><code>clone</code> the repository for lab 01 (use the Github Classroom link from Canvas)</li>
-<li>Edit the <code>solutions.qmd</code> file to add your name and netID</li>
-<li><code>commit</code> and <code>push</code> your changes</li>
+<li><p>Read and go through the <a href="../../setup.html">Software Installation Guide</a> for instructions on setting up your computer for this course.</p></li>
+<li><p>Follow the link to lab 1 assignment from Canvas (it should start with <code>classroom.github.com</code>). It may take a few minutes for the site to configure your repository.</p></li>
+<li><p>You will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.</p></li>
+<li><p><code>clone</code> the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.</p></li>
+<li><p>Open the directory containing the repository in VS Code doing one of the following:</p>
+<ol type="1">
+<li>From GitHub desktop: <code>Repository &gt; Open in Visual Studio Code</code></li>
+<li>In VS Code: <code>File &gt; Open Folder...</code></li>
+</ol></li>
+<li><p><code>Instantiate</code> the project environment as follows:</p>
+<ol type="1">
+<li>Open the <em>command palette</em> (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)</li>
+<li>Start typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.</li>
+<li>In the Julia REPL, type <code>]</code> to enter the package manager. It should now show something like <code>(lab01) pkg&gt;</code>.</li>
+<li>Type <code>instantiate</code> and run it (<code>Enter</code>). This will install all the packages needed for this lab.</li>
+<li>Type the backspace key to exit the package manager.</li>
+</ol></li>
+<li><p>Edit the <code>solutions.qmd</code> file to add your name and netID</p></li>
+<li><p>Render the document</p>
+<ol type="1">
+<li>Open the <code>solutions.qmd</code> file</li>
+<li>Open the <em>command palette</em> and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like <code>Browse at http://localhost:4200/labs/lab01/solution.html</code> you can open that link in your web browser to see the rendered document.</li>
+<li>Check the box on line 46 or 47 of the <code>solutions.qmd</code> file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview</li>
+</ol></li>
+<li><p>If you’re still having trouble:</p>
+<ol type="1">
+<li>Try running <code>Pkg.build("IJulia")</code> in the Julia REPL</li>
+</ol></li>
+<li><p><code>commit</code> and <code>push</code> your changes</p></li>
 </ol>
 
 

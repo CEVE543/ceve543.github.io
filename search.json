@@ -182,342 +182,6 @@
     "text": "This page is currently empty, because there are not yet any frequently asked questions!"
   },
   {
-    "objectID": "slides/notebooks/shallow-lake.html",
-    "href": "slides/notebooks/shallow-lake.html",
-    "title": "Shallow Lake Problem",
-    "section": "",
-    "text": "Code\nusing Pkg\nPkg.activate(dirname(@__DIR__))\nPkg.instantiate()\nCode\nusing Plots\nusing LaTeXStrings\nusing Distributions\nusing Random"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#introduction",
-    "href": "slides/notebooks/shallow-lake.html#introduction",
-    "title": "Shallow Lake Problem",
-    "section": "Introduction",
-    "text": "Introduction\nSystems can exhibit complex, nonlinear dynamics, including (but not limited to):\n\nbifurcations;\nreinforcing and dampening feedbacks; and\ntipping points.\n\nIn this notebook, we’ll look at a simple model which has very complex dynamics: the shallow lake problem introduced by (Carpenter1999-wx?)."
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "href": "slides/notebooks/shallow-lake.html#the-shallow-lake-problem",
-    "title": "Shallow Lake Problem",
-    "section": "The Shallow Lake Problem",
-    "text": "The Shallow Lake Problem\n\nOverview\nEutrophication is a common environmental problem in which plants and algae feed on excess nutrients and become overabundant. The large mass of plants and algae have several noxious effects on the ecosystem, including:\n\nhypoxia (reduction in oxygen from the decomposition of organic matter), leading to “dead zones”;\nacidification (from the CO2 produced by decomposition);\nreduced sunlight (from an accumulation of surface algae);\nclogged water intakes; and\nreduction in recreational value and drinking water quality.\n\nIn lakes, eutrophication is often caused by excess input of nutrients (particularly phosphorous, P), which can come from point sources (such as industrial processes) and/or non-point sources (such as agricultural runoff). As the P releases are related to economic activity, we can view this (simplified) lake management problem from the perspective of a tradeoff between economic benefits and the health of the lake: while there are benefits to the activities which lead to P releases, there are recreational, aesthetic, and ecological benefits to maintaining the lake in a non-eutrophic (or oligotrophic) state.\n\n\nModel Formulation\nSuppose we have a town which emits phosphorous into a lake as a by-product of economic activity. The level of P in the lake at a given time \\(t\\) is given by \\(X_t\\) (for the purposes of this problem, we will just treat all values as dimensionless).\nThe level of controllable P release in year \\(t\\) is \\(a_t\\). The lake also receives random levels of phosphorous from non-point source runoff, which we denote by \\(y_t\\). We model these random runoffs using a lognormal distribution \\(LogNormal(\\mu, \\sigma^2)\\), which ensures that the runoffs cannot be negative.\nThere is also some nutrient cycling in the lake which naturally reduces phosphorous concentrations. This cycling is the result of accumulation in the sediment and turnover (water motion disturbing the sediment and carrying the nutrients upwards) and consumers, such as mussels. This cycling is dependent on the state \\(X_t\\), \\(\\frac{X_t^q}{1 + X_t^q}\\). The lake also loses some of its P each time period of its due to outflows and consumption, which we assume is linearly proportional to the state, \\(bX_t\\).\n\n\n\nShallow Lake Problem Diagram\n\n\nAs a result, the lake dynamics are given by:\n\\[X_{t+1} = X_t + a_t + y_t + \\frac{X_t^q}{1 + X_t^q} - bX_t, \\quad y_t \\sim LogNormal(\\mu, \\sigma^2),\\]\nwhere parameter interpretation is given in the table below.\n\nLake problem parameters\n\n\nParameter\nDefinition\nUnits\n\n\n\n\n\\(X_t\\)\nP concentration in lake\ndimensionless\n\n\n\\(a_t\\)\npoint source P input\ndimensionless\n\n\n\\(y_t\\)\nnon-point source P input\ndimensionless\n\n\n\\(q\\)\nP recycling rate\ndimensionless\n\n\n\\(b\\)\nrate at which P is lost\ndimensionless"
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "href": "slides/notebooks/shallow-lake.html#lake-problem-dynamics",
-    "title": "Shallow Lake Problem",
-    "section": "Lake Problem Dynamics",
-    "text": "Lake Problem Dynamics\nThis analysis is adapted from (Quinn2017-vn?).\nFirst, let’s look at how the balance of P recycling and outflows affects the accumulation of P in the lake absent additional inputs (\\(a=y=0\\)).\n\n\nCode\n# define functions for lake recycling and outflows\nlake_P_cycling(x, q) = x.^q ./ (1 .+ x.^q);\nlake_P_out(x, b) = b .* x;\n\n# define range of lake states X\nx = 0:0.05:2.5;\n\n\n\n\nCode\n# plot recycling and outflows for selected values of b and q\np1 = plot(x, lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nquiver!([1], [0.35], quiver=([1], [0.4]), color=:red, linewidth=2)\nquiver!([0.4], [0.19], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nquiver!([2.5], [0.97], quiver=([-0.125], [-0.05]), color=:red, linewidth=2)\nplot!(ylims=(-0.02, 1))\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\nBased on Figure 1, we can see that there are typically three equilibria: a stable equilibrium at \\(X=0\\), an unstable, oligotrophic equilibrium \\(X_o\\), and a stable, eutrophic equilibrium \\(X_e\\). When \\(X_t &lt; X_o\\), the lake tends towards a zero P level without external inputs, while when \\(X_t &gt; X_o\\), the lake will inevitably undergo eutrophication, as the P level will tend towards \\(X_e\\). This means that \\(X_t=X_o\\) corresponds to a tipping point: beyond that level, the lake will abruptly switch to a eutrophic state from which it cannot recover.\nThis lake is subject to a bifurcation depending on the values of \\(b\\) and \\(q\\). To see this, let’s fix \\(q=2.5\\), as in Figure 1. For \\(b=0.4\\), there are the two equilibria mentioned previously. However, when \\(b=0.2\\), there is only the unstable equilibrium \\(X=X_o\\) in addition to \\(X=0\\). For \\(b=0.6\\), the only equilibrium is \\(X=0\\), so any positive P input would result in eutrophication. This highlights the delicacy of systems which exhibit bifurcations: whether an equilibrium is stable or unstable, or even exists, can depend on a characteristic of the system which is often highly uncertain.\n\n\nCode\neq = [0, 0.67, 2.2]\nscatter!(p1, eq, (y -&gt; lake_P_cycling(y, 2.5)).(eq), label=\"Equilibria\", markersize=10, markercolor=:red)\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Lake eutrophication dynamics based on the shallow lake modelwithout additional inputs. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux.\n\n\n\n\n\nCode\np2 = plot(x, 0.05 .+ lake_P_cycling(x, 2.5), color=:black, linewidth=5,legend=:topleft, label=:false, ylabel=\"P Flux\", xlabel=L\"$X_t$\", tickfontsize=14, guidefontsize=16, legendfontsize=14, palette=:tol_muted, framestyle=:zerolines, grid=:false)\nplot!(x, lake_P_out(x, 0.6), linewidth=3, linestyle=:dash, label=L\"$b=0.6$\")\nplot!(x, lake_P_out(x, 0.4), linewidth=3, linestyle=:dash, label=L\"$b=0.4$\")\nplot!(x, lake_P_out(x, 0.2), linewidth=3, linestyle=:dash, label=L\"$b=0.2$\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Lake eutrophication dynamics based on the shallow lake model with. The black line is the P recycling level (for $q=2.5), which adds P back into the lake, and the dashed lines correspond to differerent rates of P outflow (based on the linear parameter \\(b\\)). The lake P level is in equilibrium when the recycling rate equals the outflows. When the outflow is greater than the recycling flux, the lake’s P level decreases, and when the recycling flux is greater than the outflow, the P level naturally increases. The red lines show the direction of this net flux."
-  },
-  {
-    "objectID": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "href": "slides/notebooks/shallow-lake.html#simulating-the-model-under-constant-inflows",
-    "title": "Shallow Lake Problem",
-    "section": "Simulating The Model Under Constant Inflows",
-    "text": "Simulating The Model Under Constant Inflows\nLet’s simulate the model when we fix \\(a\\) as a constant. Other parameters:\n\n\n\nVariable\nValue\nUnits\n\n\n\n\n\\(X_0\\)\n\\(0\\)\ndimensionless\n\n\n\\(\\mu\\)\n\\(\\log(0.03)\\)\ndimensionless\n\n\n\\(\\sigma^2\\)\n\\(0.1\\)\ndimensionless\n\n\n\\(q\\)\n\\(2.5\\)\ndimensionless\n\n\n\\(b\\)\n\\(0.4\\)\ndimensionless\n\n\n\n\n\nCode\nRandom.seed!(1)\n\n# set parameters\n\nX₀ = 0\nμ = log(0.03)\nσ² = 0.1\nq = 2.5\nb = 0.4\nT = 50\n\n\n50\n\n\n\n\nCode\ny = rand(LogNormal(μ, σ²), T)\nplot(y; label=\"Non-Point Source Inflows\", color=:black, marker=(:x, 5), guidefontsize=18, tickfontsize=16, legendfontsize=14, linewidth=3, legend=:topright)\nxlabel!(L\"t\")\nylabel!(L\"y_t\")\nplot!(size=(600, 600))\nylims!((0.025, 0.042))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Inflows \\(y_t\\) for this lake problem simulation.\n\n\n\n\n\nCode\nX₁ = zeros(T+1)\nX₂ = zeros(T+1)\n\nfor t = 1:T\n    X₁[t+1] = X₁[t] + y[t] + 0.025 + lake_P_cycling(X₁[t], q) - lake_P_out(X₁[t], b)\n    X₂[t+1] = X₂[t] + y[t] + 0.05 + lake_P_cycling(X₂[t], q) - lake_P_out(X₂[t], b)\nend\n\nplot((1:T+1) .- 1, X₁, color=:blue, label=L\"$a_t = 0.025$\", guidefontsize=18, tickfontsize=16, legendfontsize=16, linewidth=3)\nplot!((1:T+1) .- 1, X₂, color=:purple, label=L\"$a_t = 0.05$\", linewidth=3)\nxlabel!(L\"t\")\nylabel!(L\"X_t\")\nplot!(size=(600, 600))\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: State of the lake under two different constant release scenarios."
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
-    "href": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Sizing a stormwater pipe",
-    "text": "Sizing a stormwater pipe\n\n\n\n\nRainfall-runoff model\n\ne.g., peak flow from rational method: \\(Q = CiA\\)\n\\(i\\) is rainfall intensity, \\(A\\) is area, and \\(C\\) is runoff coefficient\n\nDesign rainfall based on return period \\(T\\)\n\n\\(p(i &gt; i^*) = 1/T\\)\n\nSize your culvert to handle \\(Q^* = Ci^*A\\)\nRequires knowing \\(p(i)\\)!\n\n\n\n\n\n\nDrainage installation"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
-    "href": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Floodplain mapping in a riverine system",
-    "text": "Floodplain mapping in a riverine system\n\n\n\nThis is a moderately simplified workflow\n\n\n\nAnalyze historical streamflow data at a gauge\nTake the 99th percentile (100 year return level) of annual maximum streamflows\nUse a hydraulic model to model where the water goes\n\n\n\n\n\n\nFloodplain in Selinsgrove, PA"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
-    "href": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Reservoir sizing (simplest version)",
-    "text": "Reservoir sizing (simplest version)\n\n\nConsider \\(N\\) years of inflows (and releases, evaporation, etc)\nCount number of times reservoir is empty (“failure”)\nRepeat experiment many different times with different inflows\nIf you are sampling this from \\(p(\\text{inflow})\\), you can estimate the reliability\n\nMonte Carlo method\nWhy not just use observed inflows?"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#index-insurance-pricing",
-    "href": "slides/lecture01-climate.html#index-insurance-pricing",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Index insurance pricing",
-    "text": "Index insurance pricing\n\n\nIndex insurance: if some index \\(I\\) is above a threshold \\(I^*\\), pay out \\(X\\)\n\nTotal rainfall in a season, area flooded, etc\n\nLet \\(p^* = p(I &gt; I^*)\\) is the probability of a payout\nNaive pricing: \\(R = p^* X\\)\nRisk premium: \\(R = X \\left( \\mathbb{E}[p^*] + \\lambda \\mathbb{V}^{1/2}[p^*] \\right)\\)"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#other-examples",
-    "href": "slides/lecture01-climate.html#other-examples",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Other examples",
-    "text": "Other examples\n\n\nSeasonal electricity resource adequacy (Doss-Gollin et al., 2021)\nLevee design (Garner & Keller, 2018)\nWater supply planning (Fletcher et al., 2019)\nMultihazard design (Bruneau et al., 2017)\netc…"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#important-note",
-    "href": "slides/lecture01-climate.html#important-note",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Important note",
-    "text": "Important note\nAll of these workflows are slightly simplified, but communicate the main idea. For each of these motivating problems, we need to know the probability distribution of some hazard – \\(p(\\bf{s})\\) to use our notation from last class"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#storms-on-the-north-sea",
-    "href": "slides/lecture01-climate.html#storms-on-the-north-sea",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Storms on the North Sea",
-    "text": "Storms on the North Sea\n\n\n\n\n\nWaves\n\n\n\n\n\n\nSynoptic Forecast"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#storm-surge-in-houston",
-    "href": "slides/lecture01-climate.html#storm-surge-in-houston",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Storm surge in Houston",
-    "text": "Storm surge in Houston\n\n\n\n\n\nIke flood depths\n\n\n\n\n\n\nIke path"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#problem-statement",
-    "href": "slides/lecture01-climate.html#problem-statement",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Problem statement:",
-    "text": "Problem statement:\n\nYou are designing a storm surge barrier on Galveston Bay. What is the probability distribution of storm surge at your location?\n\nThis knowledge will help you trade off the cost of the barrier against the residual risk of flooding."
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#what-do-we-need-to-know",
-    "href": "slides/lecture01-climate.html#what-do-we-need-to-know",
-    "title": "What drives uncertain climate hazard?",
-    "section": "What do we need to know?",
-    "text": "What do we need to know?\n\nTake a moment, write, and then share"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#historical-data",
-    "href": "slides/lecture01-climate.html#historical-data",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Historical data",
-    "text": "Historical data\n\n\n\n\n\nMaximum water levels at Galveston\n\n\n\n\n\n\nReturn levels"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
-    "href": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Tropical cyclone tracks and characteristics",
-    "text": "Tropical cyclone tracks and characteristics\nCan we use models to create a longer “synthetic” record?\n\nBloemendaal et al. (2020)"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#wind-and-rainfall-fields",
-    "href": "slides/lecture01-climate.html#wind-and-rainfall-fields",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Wind and rainfall fields",
-    "text": "Wind and rainfall fields\nIf we’re going to generate synthetic storms, we need to model the wind and rainfall fields (and other boundary conditions) in order to model the storm surge (using Adcirc, GeoClaw, SFINCS, etc)\n\nKleiber et al. (2023)"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#sea-level",
-    "href": "slides/lecture01-climate.html#sea-level",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Sea level",
-    "text": "Sea level\n\n\n\n\n\nGalveston Relative Sea Level and Projections\n\n\n\nWhat separates the scenarios? To first order:\n\nHow much \\(CO_2\\) we emit\nHow much the climate system warms in response to \\(CO_2\\) (climate sensitivity)\nIce sheet response to temperatures"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#limitations",
-    "href": "slides/lecture01-climate.html#limitations",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Limitations",
-    "text": "Limitations\nSobel et al. (2023):\n\nModels are incorrectly simulating the equatorial Pacific response to greenhouse gas warming. This implies that projections of regional tropical cyclone activity may be incorrect as well"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#lessons-learned",
-    "href": "slides/lecture01-climate.html#lessons-learned",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Lessons learned?",
-    "text": "Lessons learned?\n\n\nHistorical data\n\nMeasures what we care about\nSampling uncertainty\nDoesn’t account for future conditions\n\nModel simulations\n\nCan account for future conditions\nMay be biased or inaccurate\nModel structure uncertainty"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#some-terms-to-know",
-    "href": "slides/lecture01-climate.html#some-terms-to-know",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Some terms to know 😉",
-    "text": "Some terms to know 😉\n\nReturn period\nReturn level\nMonte Carlo\nSynthetic record\nClimate sensitivity\n\nYou should also be able to reason about the merits and limitations of different methodologies for estimating the probability distribution of a hazard (more practice incoming!)"
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#questions",
-    "href": "slides/lecture01-climate.html#questions",
-    "title": "What drives uncertain climate hazard?",
-    "section": "Questions?",
-    "text": "Questions?\nFriday:\n\nBring your laptop, if you have one.\nCreate an account at https://github.com/\n\nI will be absent on Friday (visiting Harris County Flood Control District). Yuchen will lead lab 01."
-  },
-  {
-    "objectID": "slides/lecture01-climate.html#references",
-    "href": "slides/lecture01-climate.html#references",
-    "title": "What drives uncertain climate hazard?",
-    "section": "References",
-    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 23, 2023\n\n\n\nBloemendaal, N., Haigh, I. D., de Moel, H., Muis, S., Haarsma, R. J., & Aerts, J. C. J. H. (2020). Generation of a global synthetic tropical cyclone hazard dataset using STORM. Scientific Data, 7(1), 40. https://doi.org/10.1038/s41597-020-0381-2\n\n\nBruneau, M., Barbato, M., Padgett, J. E., Zaghi, A. E., Mitrani-Reiser, J., & Li, Y. (2017). State of the art of multihazard design. Journal of Structural Engineering, 143(10), 03117002. https://doi.org/10.1061/(ASCE)ST.1943-541X.0001893\n\n\nDoss-Gollin, J., Farnham, D. J., Lall, U., & Modi, V. (2021). How unprecedented was the February 2021 Texas cold snap? Environmental Research Letters. https://doi.org/10.1088/1748-9326/ac0278\n\n\nFletcher, S., Lickley, M., & Strzepek, K. (2019). Learning about climate change uncertainty enables flexible water infrastructure planning. Nature Communications, 10(1), 1782. https://doi.org/10.1038/s41467-019-09677-x\n\n\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\n\n\nKleiber, W., Sain, S., Madaus, L., & Harr, P. (2023). Stochastic tropical cyclone precipitation field generation. Environmetrics, 34(1), e2766. https://doi.org/10.1002/env.2766\n\n\nSobel, A. H., Lee, C.-Y., Bowen, S. G., Camargo, S. J., Cane, M. A., Clement, A., et al. (2023). Near-term tropical cyclone risk and coupled Earth system model biases. Proceedings of the National Academy of Sciences, 120(33), e2209631120. https://doi.org/10.1073/pnas.2209631120"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "",
-    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Course Information",
-    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
-  },
-  {
-    "objectID": "index.html#instructor",
-    "href": "index.html#instructor",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Instructor",
-    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
-  },
-  {
-    "objectID": "index.html#software-tools",
-    "href": "index.html#software-tools",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
-  },
-  {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
-  },
-  {
-    "objectID": "labs/lab01/instructions.html",
-    "href": "labs/lab01/instructions.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#overview",
-    "href": "labs/lab01/instructions.html#overview",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
-  },
-  {
-    "objectID": "labs/lab01/instructions.html#instructions",
-    "href": "labs/lab01/instructions.html#instructions",
-    "title": "Lab 01",
-    "section": "Instructions",
-    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes"
-  },
-  {
-    "objectID": "labs/lab01/solution.html",
-    "href": "labs/lab01/solution.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#setup",
-    "href": "labs/lab01/solution.html#setup",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#running-code",
-    "href": "labs/lab01/solution.html#running-code",
-    "title": "Lab 01",
-    "section": "2 Running Code",
-    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#rendering-the-document",
-    "href": "labs/lab01/solution.html#rendering-the-document",
-    "title": "Lab 01",
-    "section": "3 Rendering the Document",
-    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
-  },
-  {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
-  },
-  {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#overview",
-    "href": "slides/lecture01-lab.html#overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Overview",
-    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#tool-overview",
-    "href": "slides/lecture01-lab.html#tool-overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Tool overview",
-    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#why-julia",
-    "href": "slides/lecture01-lab.html#why-julia",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why Julia?",
-    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#julia-example",
-    "href": "slides/lecture01-lab.html#julia-example",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Julia example",
-    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#github",
-    "href": "slides/lecture01-lab.html#github",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "GitHub",
-    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#quarto",
-    "href": "slides/lecture01-lab.html#quarto",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto is a tool that allows you to combine text and code and create many types of output\n\nThis website is made with Quarto\nYou will use Quarto to create reports for labs\n\nEverything in one place\nNo running code, save a figure to Downloads, copy into Word, then update your code and try to remember where to paste it\n\nReproducible"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#vs-code",
-    "href": "slides/lecture01-lab.html#vs-code",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "VS Code",
-    "text": "VS Code\n\nVS Code is a text editor\n\nIf you are an advanced user of another text editor, you can use that instead, but I recommend VS Code\n\nVS Code can work as a Julia IDE"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#detailed-instructions",
-    "href": "slides/lecture01-lab.html#detailed-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Detailed instructions",
-    "text": "Detailed instructions\nSee Setup"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
-    "href": "slides/lecture01-lab.html#lab-01-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Lab 01 Instructions",
-    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
-  },
-  {
     "objectID": "slides/lecture01-welcome.html#about-me",
     "href": "slides/lecture01-welcome.html#about-me",
     "title": "Welcome to CEVE 543!!",
@@ -721,88 +385,543 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023\n\n\n\nBonnafous, L., Lall, U., & Siegel, J. (2017). A water risk index for portfolio exposure to climatic extremes: Conceptualization and an application to the mining industry. Hydrology and Earth System Sciences, 21(4), 2075–2106. https://doi.org/f96k67\n\n\nDoss-Gollin, J., & Keller, K. (2023). A subjective Bayesian framework for synthesizing deep uncertainties in climate risk management. Earth’s Future, 11(1). https://doi.org/10.1029/2022EF003044\n\n\nDoss-Gollin, J., Farnham, D. J., Steinschneider, S., & Lall, U. (2019). Robust adaptation to multiscale climate variability. Earth’s Future, 7(7), 734–747. https://doi.org/10.1029/2019ef001154\n\n\nFagnant, C., Gori, A., Sebastian, A., Bedient, P. B., & Ensor, K. B. (2020). Characterizing spatiotemporal trends in extreme precipitation in Southeast Texas. Natural Hazards, 104(2), 1597–1621. https://doi.org/10.1007/s11069-020-04235-x\n\n\nFarnham, D. J., Doss-Gollin, J., & Lall, U. (2018). Regional extreme precipitation events: Robust inference from credibly simulated GCM variables. Water Resources Research, 54(6). https://doi.org/10.1002/2017wr021318\n\n\nWalker, W. E., Lempert, R. J., & Kwakkel, J. H. (2013). Deep Uncertainty. In S. I. Gass & M. C. Fu (Eds.), Encyclopedia of Operations Research and Management Science (pp. 395–402). Boston, MA: Springer US. https://doi.org/10.1007/978-1-4419-1153-7_1140"
   },
   {
+    "objectID": "slides/lecture01-lab.html#overview",
+    "href": "slides/lecture01-lab.html#overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#tool-overview",
+    "href": "slides/lecture01-lab.html#tool-overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Tool overview",
+    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#why-julia",
+    "href": "slides/lecture01-lab.html#why-julia",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why Julia?",
+    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#julia-example",
+    "href": "slides/lecture01-lab.html#julia-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Julia example",
+    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#github",
+    "href": "slides/lecture01-lab.html#github",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#quarto",
+    "href": "slides/lecture01-lab.html#quarto",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto is a tool that allows you to combine text and code and create many types of output\n\nThis website is made with Quarto\nYou will use Quarto to create reports for labs\n\nEverything in one place\nNo running code, save a figure to Downloads, copy into Word, then update your code and try to remember where to paste it\n\nReproducible"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#vs-code",
+    "href": "slides/lecture01-lab.html#vs-code",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "VS Code",
+    "text": "VS Code\n\nVS Code is a text editor\n\nIf you are an advanced user of another text editor, you can use that instead, but I recommend VS Code\n\nVS Code can work as a Julia IDE"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#detailed-instructions",
+    "href": "slides/lecture01-lab.html#detailed-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Detailed instructions",
+    "text": "Detailed instructions\nSee Setup"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
+    "href": "slides/lecture01-lab.html#lab-01-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 Instructions",
+    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "labs/lab01/solution.html",
+    "href": "labs/lab01/solution.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#setup",
+    "href": "labs/lab01/solution.html#setup",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#running-code",
+    "href": "labs/lab01/solution.html#running-code",
+    "title": "Lab 01",
+    "section": "2 Running Code",
+    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#rendering-the-document",
+    "href": "labs/lab01/solution.html#rendering-the-document",
+    "title": "Lab 01",
+    "section": "3 Rendering the Document",
+    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+  },
+  {
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
+  },
+  {
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Instructor",
+    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
+  },
+  {
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
+    "href": "slides/lecture01-climate.html#sizing-a-stormwater-pipe",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Sizing a stormwater pipe",
+    "text": "Sizing a stormwater pipe\n\n\n\n\nRainfall-runoff model\n\ne.g., peak flow from rational method: \\(Q = CiA\\)\n\\(i\\) is rainfall intensity, \\(A\\) is area, and \\(C\\) is runoff coefficient\n\nDesign rainfall based on return period \\(T\\)\n\n\\(p(i &gt; i^*) = 1/T\\)\n\nSize your culvert to handle \\(Q^* = Ci^*A\\)\nRequires knowing \\(p(i)\\)!\n\n\n\n\n\n\nDrainage installation"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
+    "href": "slides/lecture01-climate.html#floodplain-mapping-in-a-riverine-system",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Floodplain mapping in a riverine system",
+    "text": "Floodplain mapping in a riverine system\n\n\n\nThis is a moderately simplified workflow\n\n\n\nAnalyze historical streamflow data at a gauge\nTake the 99th percentile (100 year return level) of annual maximum streamflows\nUse a hydraulic model to model where the water goes\n\n\n\n\n\n\nFloodplain in Selinsgrove, PA"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
+    "href": "slides/lecture01-climate.html#reservoir-sizing-simplest-version",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Reservoir sizing (simplest version)",
+    "text": "Reservoir sizing (simplest version)\n\n\nConsider \\(N\\) years of inflows (and releases, evaporation, etc)\nCount number of times reservoir is empty (“failure”)\nRepeat experiment many different times with different inflows\nIf you are sampling this from \\(p(\\text{inflow})\\), you can estimate the reliability\n\nMonte Carlo method\nWhy not just use observed inflows?"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#index-insurance-pricing",
+    "href": "slides/lecture01-climate.html#index-insurance-pricing",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Index insurance pricing",
+    "text": "Index insurance pricing\n\n\nIndex insurance: if some index \\(I\\) is above a threshold \\(I^*\\), pay out \\(X\\)\n\nTotal rainfall in a season, area flooded, etc\n\nLet \\(p^* = p(I &gt; I^*)\\) is the probability of a payout\nNaive pricing: \\(R = p^* X\\)\nRisk premium: \\(R = X \\left( \\mathbb{E}[p^*] + \\lambda \\mathbb{V}^{1/2}[p^*] \\right)\\)"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#other-examples",
+    "href": "slides/lecture01-climate.html#other-examples",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Other examples",
+    "text": "Other examples\n\n\nSeasonal electricity resource adequacy (Doss-Gollin et al., 2021)\nLevee design (Garner & Keller, 2018)\nWater supply planning (Fletcher et al., 2019)\nMultihazard design (Bruneau et al., 2017)\netc…"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#important-note",
+    "href": "slides/lecture01-climate.html#important-note",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Important note",
+    "text": "Important note\nAll of these workflows are slightly simplified, but communicate the main idea. For each of these motivating problems, we need to know the probability distribution of some hazard – \\(p(\\bf{s})\\) to use our notation from last class"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#storms-on-the-north-sea",
+    "href": "slides/lecture01-climate.html#storms-on-the-north-sea",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Storms on the North Sea",
+    "text": "Storms on the North Sea\n\n\n\n\n\nWaves\n\n\n\n\n\n\nSynoptic Forecast"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#storm-surge-in-houston",
+    "href": "slides/lecture01-climate.html#storm-surge-in-houston",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Storm surge in Houston",
+    "text": "Storm surge in Houston\n\n\n\n\n\nIke flood depths\n\n\n\n\n\n\nIke path"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#problem-statement",
+    "href": "slides/lecture01-climate.html#problem-statement",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Problem statement:",
+    "text": "Problem statement:\n\nYou are designing a storm surge barrier on Galveston Bay. What is the probability distribution of storm surge at your location?\n\nThis knowledge will help you trade off the cost of the barrier against the residual risk of flooding."
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#what-do-we-need-to-know",
+    "href": "slides/lecture01-climate.html#what-do-we-need-to-know",
+    "title": "What drives uncertain climate hazard?",
+    "section": "What do we need to know?",
+    "text": "What do we need to know?\n\nTake a moment, write, and then share"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#historical-data",
+    "href": "slides/lecture01-climate.html#historical-data",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Historical data",
+    "text": "Historical data\n\n\n\n\n\nMaximum water levels at Galveston\n\n\n\n\n\n\nReturn levels"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
+    "href": "slides/lecture01-climate.html#tropical-cyclone-tracks-and-characteristics",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Tropical cyclone tracks and characteristics",
+    "text": "Tropical cyclone tracks and characteristics\nCan we use models to create a longer “synthetic” record?\n\nBloemendaal et al. (2020)"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#wind-and-rainfall-fields",
+    "href": "slides/lecture01-climate.html#wind-and-rainfall-fields",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Wind and rainfall fields",
+    "text": "Wind and rainfall fields\nIf we’re going to generate synthetic storms, we need to model the wind and rainfall fields (and other boundary conditions) in order to model the storm surge (using Adcirc, GeoClaw, SFINCS, etc)\n\nKleiber et al. (2023)"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#sea-level",
+    "href": "slides/lecture01-climate.html#sea-level",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Sea level",
+    "text": "Sea level\n\n\n\n\n\nGalveston Relative Sea Level and Projections\n\n\n\nWhat separates the scenarios? To first order:\n\nHow much \\(CO_2\\) we emit\nHow much the climate system warms in response to \\(CO_2\\) (climate sensitivity)\nIce sheet response to temperatures"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#limitations",
+    "href": "slides/lecture01-climate.html#limitations",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Limitations",
+    "text": "Limitations\nSobel et al. (2023):\n\nModels are incorrectly simulating the equatorial Pacific response to greenhouse gas warming. This implies that projections of regional tropical cyclone activity may be incorrect as well"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#lessons-learned",
+    "href": "slides/lecture01-climate.html#lessons-learned",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Lessons learned?",
+    "text": "Lessons learned?\n\n\nHistorical data\n\nMeasures what we care about\nSampling uncertainty\nDoesn’t account for future conditions\n\nModel simulations\n\nCan account for future conditions\nMay be biased or inaccurate\nModel structure uncertainty"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#some-terms-to-know",
+    "href": "slides/lecture01-climate.html#some-terms-to-know",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Some terms to know 😉",
+    "text": "Some terms to know 😉\n\nReturn period\nReturn level\nMonte Carlo\nSynthetic record\nClimate sensitivity\n\nYou should also be able to reason about the merits and limitations of different methodologies for estimating the probability distribution of a hazard (more practice incoming!)"
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#questions",
+    "href": "slides/lecture01-climate.html#questions",
+    "title": "What drives uncertain climate hazard?",
+    "section": "Questions?",
+    "text": "Questions?\nFriday:\n\nBring your laptop, if you have one.\nCreate an account at https://github.com/\n\nI will be absent on Friday (visiting Harris County Flood Control District). Yuchen will lead lab 01."
+  },
+  {
+    "objectID": "slides/lecture01-climate.html#references",
+    "href": "slides/lecture01-climate.html#references",
+    "title": "What drives uncertain climate hazard?",
+    "section": "References",
+    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 23, 2023\n\n\n\nBloemendaal, N., Haigh, I. D., de Moel, H., Muis, S., Haarsma, R. J., & Aerts, J. C. J. H. (2020). Generation of a global synthetic tropical cyclone hazard dataset using STORM. Scientific Data, 7(1), 40. https://doi.org/10.1038/s41597-020-0381-2\n\n\nBruneau, M., Barbato, M., Padgett, J. E., Zaghi, A. E., Mitrani-Reiser, J., & Li, Y. (2017). State of the art of multihazard design. Journal of Structural Engineering, 143(10), 03117002. https://doi.org/10.1061/(ASCE)ST.1943-541X.0001893\n\n\nDoss-Gollin, J., Farnham, D. J., Lall, U., & Modi, V. (2021). How unprecedented was the February 2021 Texas cold snap? Environmental Research Letters. https://doi.org/10.1088/1748-9326/ac0278\n\n\nFletcher, S., Lickley, M., & Strzepek, K. (2019). Learning about climate change uncertainty enables flexible water infrastructure planning. Nature Communications, 10(1), 1782. https://doi.org/10.1038/s41467-019-09677-x\n\n\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\n\n\nKleiber, W., Sain, S., Madaus, L., & Harr, P. (2023). Stochastic tropical cyclone precipitation field generation. Environmetrics, 34(1), e2766. https://doi.org/10.1002/env.2766\n\n\nSobel, A. H., Lee, C.-Y., Bowen, S. G., Camargo, S. J., Cane, M. A., Clement, A., et al. (2023). Near-term tropical cyclone risk and coupled Earth system model biases. Proceedings of the National Academy of Sciences, 120(33), e2209631120. https://doi.org/10.1073/pnas.2209631120"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#a-quick-note-on-pacing",
+    "href": "slides/lecture02-distributions.html#a-quick-note-on-pacing",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "A quick note on pacing",
+    "text": "A quick note on pacing\nWe will move through this module (“fundamentals”) at a fairly brisk pace\n\nReview course slides\nAsk questions on Canvas or in office hours\nTo help you learn to code, I am exposing you to code early and often\n\nI don’t expect that you are able to replicate all the code in this notebook\nThe labs will give you practice\nYou will not need to write code from scratch for the exams\n\n\n\nThis is a long slide deck. We will probably finish on Wednesday"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#what-is-a-package",
+    "href": "slides/lecture02-distributions.html#what-is-a-package",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What is a package?",
+    "text": "What is a package?\n\nCode that is bundled for easy use\nProvides functionality that is not part of the base language\n\nMost stuff in Julia requires packages, as we will see\n\nNeed to be installed\nDeveloped by the community"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#where-do-i-get-packages",
+    "href": "slides/lecture02-distributions.html#where-do-i-get-packages",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Where do I get packages?",
+    "text": "Where do I get packages?\n\nJulia has a built-in package manager for installing add-on functionality written in Julia. It can also install external libraries using your operating system’s standard system for doing so, or by compiling from source."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#where-are-packages-stored",
+    "href": "slides/lecture02-distributions.html#where-are-packages-stored",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Where are packages stored?",
+    "text": "Where are packages stored?\nEach project has an *environment, which is defined by the following files (do not edit them manually):\n\nProject.toml: lists the specified dependencies of the project\nManifest.toml: lists the exact versions of the packages that are used in the project\n\nThe actual packages are stored on your computer and you don’t need to worry"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#workflow-activate",
+    "href": "slides/lecture02-distributions.html#workflow-activate",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Workflow: activate",
+    "text": "Workflow: activate\nWe activate a project to tell Julia that we want to use the packages in that project. These steps are equivalent:\n\n\n\nOpen the REPL\nusing Pkg\nPkg.activate(\".\")\n\n\n\nOpen the REPL\nPress ] to enter the package manager\nactivate ."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#workflow-install",
+    "href": "slides/lecture02-distributions.html#workflow-install",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Workflow: install",
+    "text": "Workflow: install\nWe add a package to install it in the current project\n\n\n\nOpen the REPL\nusing Pkg\nPkg.add(\"DataFrames\")\n\n\n\nOpen the REPL\nPress ] to enter the package manager\nadd DataFrames"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#workflow-instantiate",
+    "href": "slides/lecture02-distributions.html#workflow-instantiate",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Workflow: instantiate",
+    "text": "Workflow: instantiate\nWhen working with someone else’s project, we need to install the packages that they use.\n\nactivate does not install anything, just tells Julia which packages to use\ninstantiate is your friend to make sure an environment is ready to use. If there’s nothing to do, instantiate does nothing."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#learn-more",
+    "href": "slides/lecture02-distributions.html#learn-more",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Learn more",
+    "text": "Learn more\n\nPkg.jl docs\n\nSee “Using someone else’s projecg” for more on instantiate\n\nWell-worked blog post by Julies Krumbiegel"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#lab-01-fix",
+    "href": "slides/lecture02-distributions.html#lab-01-fix",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 fix",
+    "text": "Lab 01 fix\n\nIn order to run codes using Quarto, you need the IJulia package\n\nIt’s in the lab01 Manifest.toml\nTo install, you need to instantiate\n\nIf you’re still running into issues:\n\nRun Pkg.build(\"IJulia\") in the REPL (after you activate and instantiate)\n\nThis should have been in the lab01 instructions\nI’ve updated the instructions"
+  },
+  {
     "objectID": "slides/lecture02-distributions.html#stats-without-the-agonizing-details",
     "href": "slides/lecture02-distributions.html#stats-without-the-agonizing-details",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Stats without the agonizing details",
-    "text": "Stats without the agonizing details\n\nIn this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on “agonizing” details."
+    "text": "Stats without the agonizing details\nIn this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on “agonizing” details."
   },
   {
-    "objectID": "slides/lecture02-distributions.html#motivating-example",
-    "href": "slides/lecture02-distributions.html#motivating-example",
+    "objectID": "slides/lecture02-distributions.html#motivating-question",
+    "href": "slides/lecture02-distributions.html#motivating-question",
     "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Motivating example,",
-    "text": "Motivating example,\nFollowing Rauser, we will use the following example to motivate the course:\n\nDoes drinking beer reduce the likelihood of being bitten by mosquitos?"
-  },
-  {
-    "objectID": "slides/lecture02-distributions.html#raw-data",
-    "href": "slides/lecture02-distributions.html#raw-data",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Raw data",
-    "text": "Raw data\nCreate a variable called beer.\n\nbeer = [\n    27,\n    20,\n    21,\n    26,\n    27,\n    31,\n    24,\n    21,\n    20,\n    19,\n    23,\n    24,\n    28,\n    19,\n    24,\n    29,\n    18,\n    20,\n    17,\n    31,\n    20,\n    25,\n    28,\n    21,\n    27,\n]\n\n25-element Vector{Int64}:\n 27\n 20\n 21\n 26\n 27\n 31\n 24\n 21\n 20\n 19\n 23\n 24\n 28\n 19\n 24\n 29\n 18\n 20\n 17\n 31\n 20\n 25\n 28\n 21\n 27"
+    "section": "Motivating question",
+    "text": "Motivating question\n\nDoes drinking beer reduce the likelihood of being bitten by mosquitos? ## Raw data Create a variable called beer to hold the number of mosquito bites for beer drinkers:\n\n\nbeer = [\n    27,\n    20,\n    21,\n    26,\n    27,\n    31,\n    24,\n    21,\n    20,\n    19,\n    23,\n    24,\n    28,\n    19,\n    24,\n    29,\n    18,\n    20,\n    17,\n    31,\n    20,\n    25,\n    28,\n    21,\n    27,\n]\n\n25-element Vector{Int64}:\n 27\n 20\n 21\n 26\n 27\n 31\n 24\n 21\n 20\n 19\n 23\n 24\n 28\n 19\n 24\n 29\n 18\n 20\n 17\n 31\n 20\n 25\n 28\n 21\n 27"
   },
   {
     "objectID": "slides/lecture02-distributions.html#what-is-beer",
     "href": "slides/lecture02-distributions.html#what-is-beer",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "What is beer?",
-    "text": "What is beer?\nWe can learn a bit more about it:\n\ntypeof(beer)\n\n\nVector{Int64} (alias for Array{Int64, 1})"
+    "text": "What is beer?\nWe can learn a bit more about it:\n\ntypeof(beer)\n\n\nVector{Int64} (alias for Array{Int64, 1})\n\n\n\n\nlength(beer)\n\n25\n\n\n\nsize(beer)\n\n(25,)\n\n\n\nsum(beer) / length(beer) # the sample average\n\n23.6"
   },
   {
     "objectID": "slides/lecture02-distributions.html#more-raw-data",
     "href": "slides/lecture02-distributions.html#more-raw-data",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "More raw data",
-    "text": "More raw data\nBy putting the ; at the end of our statement, we keep the notebook from showing the output.\n\nwater = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20];"
+    "text": "More raw data\nWe can do the same for water drinkers:\n\n1water = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20];\n\n\n1\n\nBy putting the ; at the end of our statement, we keep the notebook from showing the output"
   },
   {
     "objectID": "slides/lecture02-distributions.html#a-simple-analysis",
     "href": "slides/lecture02-distributions.html#a-simple-analysis",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "A simple analysis",
-    "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\nusing StatsBase: mean\n\nThis gives us the mean function from the StatsBase package.\n\nobserved_diff = mean(beer) - mean(water)\n\n4.37777777777778"
+    "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\n1using StatsBase: mean\n\n\n1\n\nThis gives us the mean function from the StatsBase package\n\n\n\n\n\nobserved_diff = mean(beer) - mean(water)\n\n4.37777777777778"
   },
   {
     "objectID": "slides/lecture02-distributions.html#skeptic",
     "href": "slides/lecture02-distributions.html#skeptic",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Skeptic",
-    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\nIn other classes, you might answer this with a t-test.\nSimulation approach:\n\nSuppose the skeptic is right and all the data points are equivalent\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group."
+    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\n\nIn other classes, you might answer this with a t-test.\nSimulation approach:\n\nSuppose the skeptic is right – the two groups are samped from the same distribution\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group\nRepeat many times and examine the distribution of differences"
   },
   {
     "objectID": "slides/lecture02-distributions.html#implementation",
     "href": "slides/lecture02-distributions.html#implementation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Implementation",
-    "text": "Implementation\n\nusing Random: shuffle\n\n\nfunction get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\nend;\n\nAnd we can use it\n\nget_shuffled_difference(beer, water)\n\n-1.068888888888889"
+    "text": "Implementation\n\n1using Random: shuffle\n\n2function get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\n3end\n\n4get_shuffled_difference(beer, water)\n\n\n1\n\nUse the shuffle function from the Random package\n\n2\n\nDefine a function. Its arguments are y1 and y2\n\n3\n\nend closes the function definition\n\n4\n\nCall the function with our data\n\n\n\n\n-0.3044444444444423"
   },
   {
     "objectID": "slides/lecture02-distributions.html#running",
     "href": "slides/lecture02-distributions.html#running",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Running",
-    "text": "Running\nWe want to learn about the sampling distribution: repeat this experiment many times over and plott the results\n\nsimulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]\nsimulated_diffs\n\n50000-element Vector{Float64}:\n -1.3555555555555578\n  0.07777777777777928\n -0.3999999999999986\n  0.9377777777777787\n -0.87777777777778\n -2.788888888888888\n  0.7466666666666661\n -1.3555555555555578\n -1.3555555555555578\n -0.6866666666666674\n -0.20888888888888957\n -0.87777777777778\n  1.1288888888888877\n  ⋮\n -0.3999999999999986\n  0.8422222222222224\n  0.6511111111111099\n -1.5466666666666669\n  2.1799999999999997\n -1.1644444444444417\n  0.46000000000000085\n -0.3999999999999986\n -2.788888888888888\n -0.6866666666666674\n -0.7822222222222202\n -0.3044444444444423"
+    "text": "Running\nWe want to learn about the sampling distribution of the group differences: repeat this experiment many times over and plott the results\n\n1simulated_diffs = [get_shuffled_difference(beer, water) for i in 1:50_000]\n2length(simulated_diffs)\n\n\n1\n\nThis is a list comprehension. It’s a way to create a list by looping over something. Here, we loop over the numbers 1 to 50,000 and call get_shuffled_difference each time.\n\n2\n\nlength tells us the size of a vector\n\n\n\n\n50000"
   },
   {
     "objectID": "slides/lecture02-distributions.html#plotting",
     "href": "slides/lecture02-distributions.html#plotting",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Plotting",
-    "text": "Plotting\n\nusing Plots\n\n\nfunction plot_diffs(diffs, obs)\n    p = histogram(\n        diffs;\n        xlabel=\"Difference\",\n        ylabel=\"Proportion of samples\",\n        label=\"If Skeptic is Right\",\n        bins=-6:0.5:6,\n        legend=:topleft,\n        normalize=true\n    )\n    vline!(p, [obs]; label=\"Observed\", linewidth=2)\n    return p\nend;"
-  },
-  {
-    "objectID": "slides/lecture02-distributions.html#the-plot",
-    "href": "slides/lecture02-distributions.html#the-plot",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "The Plot",
-    "text": "The Plot\n\nplot_diffs(simulated_diffs, observed_diff)"
+    "text": "Plotting\n\n1using Plots\n\n2function plot_diffs(diffs, obs)\n    p = histogram(\n4        diffs;\n5        xlabel=\"Difference\",\n6        ylabel=\"Proportion of samples\",\n7        label=\"If Skeptic is Right\",\n8        bins=-6:0.5:6,\n9        legend=:topleft,\n        normalize=true\n    )\n11    vline!(p, [obs]; label=\"Observed\", linewidth=2)\n12    return p\nend\nplot_diffs(simulated_diffs, observed_diff)\n\n\n1\n\nWe need the Plots package to make plots\n\n2\n\nDefine a function. Its arguments are diffs and obs\n\n4\n\nCreate a histogram using the diffs object. ; separates the positional arguments from the keyword arguments\n\n5\n\nxlabel is a “keyword argument” specifying the text for the x-axis label\n\n6\n\nthe y-axis label\n\n7\n\nthe label to use in the legend\n\n8\n\nspecify the bins to use in the histogram\n\n9\n\nspecify the location of the legend\n\n11\n\nadd a vertical line (vline!) at the observed difference\n\n12\n\nmany functions return their output – in this case the plot we created from the inputs"
   },
   {
     "objectID": "slides/lecture02-distributions.html#alternative",
     "href": "slides/lecture02-distributions.html#alternative",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Alternative",
-    "text": "Alternative\nWe could have done this with a parametric test\n\nusing HypothesisTests\n\n\nt1 = HypothesisTests.EqualVarianceTTest(beer, water)\nt2 = HypothesisTests.UnequalVarianceTTest(beer, water)\n\n@show t1\n@show t2\n\nt1 = Two sample t-test (equal variance)\n----------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.913, 6.843)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0009\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.5869843832143413\n    degrees of freedom:       41\n    empirical standard error: 1.220461900604875\n\nt2 = Two sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\nTwo sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407\n\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "text": "Alternative\nWe could have done this with a parametric test\n\n1using HypothesisTests\n\n2t1 = HypothesisTests.EqualVarianceTTest(beer, water)\n3t2 = HypothesisTests.UnequalVarianceTTest(beer, water);\n\n\n1\n\nWe need the HypothesisTests package\n\n2\n\nWe don’t need to include the HypothesisTests., but it adds clarity\n\n3\n\nRecall: ; suppresses output\n\n\n\n\n\n\n\nt1\n\nTwo sample t-test (equal variance)\n----------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.913, 6.843)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0009\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.5869843832143413\n    degrees of freedom:       41\n    empirical standard error: 1.220461900604875\n\n\n\n\nt2\n\nTwo sample t-test (unequal variance)\n------------------------------------\nPopulation details:\n    parameter of interest:   Mean difference\n    value under h_0:         0\n    point estimate:          4.37778\n    95% confidence interval: (1.957, 6.798)\n\nTest summary:\n    outcome with 95% confidence: reject h_0\n    two-sided p-value:           0.0007\n\nDetails:\n    number of observations:   [25,18]\n    t-statistic:              3.658244539721401\n    degrees of freedom:       39.11341478045414\n    empirical standard error: 1.196688119190407"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#discussion",
+    "href": "slides/lecture02-distributions.html#discussion",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Discussion",
+    "text": "Discussion\n\n\nThis is called a bootstrap and is a very powerful tool in many situations\nWhat would we expect to see if the skeptic was correct?\nP-value:\n\nthe likelihood of the data if the null hypothesis is correct\nskeptic’s (null) hypothesis: no difference between groups\n\n\n\n\n\n1mean(simulated_diffs .&gt;= observed_diff)\n\n\n1\n\n. is the dot operator. It applies the function to each element of the vector individually.\n\n\n\n\n0.00048"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#the-normal-distribution",
+    "href": "slides/lecture02-distributions.html#the-normal-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "The Normal distribution",
+    "text": "The Normal distribution\nThe Normal (Gaussian) distribution has probability distribution function:\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\n\nMean \\(\\mu\\)\n\nMedian equal to mean\n\nVariance \\(\\sigma^2\\)\nSymmetric"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#central-limit-theorem",
+    "href": "slides/lecture02-distributions.html#central-limit-theorem",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Central limit theorem",
+    "text": "Central limit theorem\nThe central limit theorem says that the sum of many independent random variables is approximately normally distributed.\nWe can see this with an example:\n\nFor each sample \\(i = 1, \\ldots, N\\):\n\nDraw J draws from a non-Gaussian distribution \\(\\mathcal{D}\\)\nTake the mean and save it as \\(\\bar{y}_i\\)\n\nPlot the distribution of \\(\\bar{y}_i\\)\n\n\nusing Distributions\n\ndist = Gamma(2, 1) # a non-Gaussian distribution\nN = 10_000 # number of samples\nJ = 500 # draws per sample\n1ȳ = [\n    mean(rand(dist, J))\n2    for _ ∈ 1:N\n3]\nhistogram(\n    ȳ;\n    xlabel=\"Sample mean\",\n    ylabel=\"Proportion of samples\",\n    normalize=true,\n    label=false,\n)\n\n\n1\n\nTo type ȳ, type y then type \\bar and hit tab. Julia allows unicode (or emojis) in variable names\n\n2\n\nTo type ∈ , type \\in and hit tab. The _ isn’t doing anything special and we could name it i or 😶 or whatever we want but _ suggests it’s a throwaway\n\n3\n\nThis is another list comprehension"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#notation",
+    "href": "slides/lecture02-distributions.html#notation",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Notation",
+    "text": "Notation\nWe will get tired of writing\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\nInstead, we will often use shorthand:\n\\[\ny \\sim \\mathcal{N}(\\mu, \\sigma^2)\n\\]\n\nusing StatsPlots\nusing LaTeXStrings\n\nplot(\n    Normal(0, 1);\n    label=\"Normal Distribution\",\n1    xlabel=L\"$x$\",\n    ylabel=L\"$p(x | \\mu=0, \\sigma=1)$\"\n)\n\n\n1\n\nL\"&lt;string&gt;\" allows us to use LaTeX in strings"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#bernoulli-distribution",
+    "href": "slides/lecture02-distributions.html#bernoulli-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Bernoulli distribution",
+    "text": "Bernoulli distribution\nA Bernoulli distribution models a coin flip.\n\np = 0.5 # probability of heads\nrand(Bernoulli(p), 5)\n\n5-element Vector{Bool}:\n 1\n 1\n 1\n 0\n 1"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#binomial-distribution",
+    "href": "slides/lecture02-distributions.html#binomial-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Binomial distribution",
+    "text": "Binomial distribution\nA Binomial distribution models the distribution of n consecutive flips of the same coin\n\np = 0.5\nN = 5\nrand(Binomial(N, p), 5)\n\n5-element Vector{Int64}:\n 4\n 2\n 3\n 3\n 1"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#multinomial-distribution",
+    "href": "slides/lecture02-distributions.html#multinomial-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Multinomial distribution",
+    "text": "Multinomial distribution\nThe Multinomial extends the Binomial to multiple categories. Note that p is a vector. If there are 2 categories (\\(K=2\\)), it’s just the binomial with \\(p_\\text{multinomial} = [p, 1-p]\\).”\n\np = [0.5, 0.3, 0.2]\nN = 5\nrand(Multinomial(N, p), 5)\n\n3×5 Matrix{Int64}:\n 2  1  3  3  2\n 2  2  1  2  1\n 1  2  1  0  2"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#poisson-distribution",
+    "href": "slides/lecture02-distributions.html#poisson-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Poisson distribution",
+    "text": "Poisson distribution\nThe Poisson distribution is used to model count data. It is the limit of a Binomial distribution with \\(p=\\lambda/N\\), as \\(N \\rightarrow \\infty\\)."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#negative-binomial-distribution",
+    "href": "slides/lecture02-distributions.html#negative-binomial-distribution",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Negative binomial distribution",
+    "text": "Negative binomial distribution\nA Poisson distribution has mean and variance equal to \\(\\lambda\\). To relax this assumption, the Negative Binomial distribution is often used. This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures (denoted r) occurs. For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (r = 3).\nThe Negative Binomial distribution can also be interpreted as a Gamma-Poisson mixture:\n\\[\n\\begin{align}\ny &\\sim \\textrm{Poisson}(\\lambda) \\\\\n\\lambda &\\sim \\textrm{Gamma}\\left(r, \\frac{p}{1-p} \\right)\n\\end{align}\n\\]\nWe can see this with simulation:\n\nfunction gamma_poisson(r, p)\n    λ = rand(Gamma(r, (1 - p) / p))\n    return rand(Poisson(λ))\nend\n\nr = 3 # number of failures\np = 1 / 6 # probability of failure\ndist = NegativeBinomial(r, p)\n\n# simulate 50,000 rolls\nrolls = [gamma_poisson(r, p) for _ in 1:50_000]\n\n# plot the samples\nxticks = 0:1:60 # specify the bin values\nhistogram(\n    rolls;\n    bins=-0.5:1:(maximum(xticks)+0.5),\n    xlabel=\"Number of rolls\",\n    ylabel=\"PMF\",\n    marker=:o,\n    label=\"Gamma-Poisson\",\n    normalize=true\n)\n\n# add the PDF of the negative binomial distribution\nplot!(xticks, pdf.(dist, xticks); linewidth=2, label=\"Neg. Binom.\")"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#what-others-do-you-know",
+    "href": "slides/lecture02-distributions.html#what-others-do-you-know",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What others do you know?",
+    "text": "What others do you know?\n\n\nUniform\nExponential\nGamma (see above)\nBeta\nDirichlet\nGEV\nPareto\nStudent’s t\nBoltzmann\nMany more!"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#pdf-and-cdf",
+    "href": "slides/lecture02-distributions.html#pdf-and-cdf",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "PDF and CDF",
+    "text": "PDF and CDF\nIf \\(F_X\\) is the cumulative distribution function (CDF) of \\(X\\) and \\(f_X\\) is the probability density function (PDF) of \\(X\\), then: \\[\nF_X ( x ) = \\int_{-\\infty}^x f_X(u) \\, du,\n\\] and (if \\(f_X\\) is continuous at \\(x\\) which it typically will be) \\[\nf_{X}(x)={\\frac {d}{dx}}F_{X}(x).\n\\] A useful property is \\[\n\\Pr[a\\leq X\\leq b]=\\int _{a}^{b}f_{X}(x)\\,dx\n\\]\n\n\n\n\n\n\nImportant\n\n\nWe can only talk about the probability that \\(y\\) is in some interval \\([a, b]\\), which is given by the integral of the PDF over that interval. The probability that \\(y\\) takes on the value \\(y^*\\), written \\(p(y=y^*)\\), is zero."
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#pdf-example",
+    "href": "slides/lecture02-distributions.html#pdf-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "PDF example",
+    "text": "PDF example\n\n# https://www.matecdev.com/posts/julia-numerical-integration.html\nfunction quad_trap(f, a, b, N)\n    h = (b - a) / N\n    int = h * (f(a) + f(b)) / 2\n    for k in 1:(N-1)\n        xk = (b - a) * k / N + a\n        int = int + h * f(xk)\n    end\n    return int\nend;\n\nSimple example to illustrate that \\[\nF_X(2) = \\int_{-\\infty}^2 f_X(u) \\, du\n\\]\nWe will use a standard Normal distribution as an example\n\n1dist = Normal()\n2f(x) = pdf(dist, x)\n3approx = quad_trap(f, -100, 2, 1000)\nexact = cdf(dist, 2)\n\napprox, exact\n\n\n1\n\nMean 0 and standard deviation 1 by default\n\n2\n\npdf(d, x) tells us the probability density function of distribution d evaluated at x\n\n3\n\nquad_trap is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points\n\n\n\n\n(0.9771562639858903, 0.9772498680518208)"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#pmfs",
+    "href": "slides/lecture02-distributions.html#pmfs",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "PMFs",
+    "text": "PMFs\n\nDiscrete distributions (like the Poisson) have a probability mass function (PMF) instead of a PDF\nFor PMFs, \\(p(y=y^*)\\) is the probability that \\(y\\) takes on the value \\(y^*\\), and is defined\n\n\nf(x) = pdf(Poisson(5), x) # the Poisson PMF\n1plot(f, 0:1:20; label=\"PMF\", marker=:o, xlabel=L\"$x^*$\", ylabel=L\"$p(x=x^*)$\")\n\n\n1\n\nIn the Distributions package, both PDFs and PMFs are called pdf"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#coming-up",
+    "href": "slides/lecture02-distributions.html#coming-up",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Coming up",
+    "text": "Coming up\n\nWednesday: Conditional and marginal distributions\nFriday:\n\nLab 02: Working with tabular data in Julia\nLab 01 due at start of class"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#office-hours",
+    "href": "slides/lecture02-distributions.html#office-hours",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Office hours",
+    "text": "Office hours\nIf you haven’t filled out the Doodle, please do so ASAP\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
     "objectID": "tutorials/github.html",

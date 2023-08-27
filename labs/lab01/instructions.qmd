@@ -1,0 +1,36 @@
+---
+title: "Lab 01"
+subtitle: "Setting up Julia, GitHub, and Quarto"
+jupyter: julia-1.9
+date: 2023-08-25
+published-title: Due Date
+---
+
+## Overview
+
+Please see [the slides](/slides/lecture01-lab.qmd) for more details.
+
+## Instructions
+
+1. Read and go through the [Software Installation Guide](/setup.qmd) for instructions on setting up your computer for this course.
+
+2. Follow the link to lab 1 assignment from Canvas (it should start with `classroom.github.com`). It may take a few minutes for the site to configure your repository.
+3. You will get a message saying " Your assignment repository has been created: ...". Click on the link to go to your repository.
+4. `clone` the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.
+5. Open the directory containing the repository in VS Code doing one of the following:
+    1. From GitHub desktop: `Repository > Open in Visual Studio Code`
+    2. In VS Code: `File > Open Folder...`
+6. `Instantiate` the project environment as follows:
+    1. Open the *command palette* (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)
+    2. Start typing "Julia: Start REPL". It will auto-complete; select the command as it appears.
+    3. In the Julia REPL, type `]` to enter the package manager. It should now show something like `(lab01) pkg>`.
+    4. Type `instantiate` and run it (`Enter`). This will install all the packages needed for this lab.
+    5. Type the backspace key to exit the package manager.
+7. Edit the `solutions.qmd` file to add your name and netID
+8. Render the document
+    1. Open the `solutions.qmd` file
+    2. Open the *command palette* and run "Quarto: Render". After some activity, a preview of the rendered document should open in VS Code. If you see something like `Browse at http://localhost:4200/labs/lab01/solution.html` you can open that link in your web browser to see the rendered document.
+    3. Check the box on line 46 or 47 of the `solutions.qmd` file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview
+9. If you're still having trouble:
+    1. Try running `Pkg.build("IJulia")` in the Julia REPL
+10. `commit` and `push` your changes
