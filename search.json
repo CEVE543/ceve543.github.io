@@ -742,11 +742,18 @@
     "text": "Learn more\n\nPkg.jl docs\n\nSee “Using someone else’s projecg” for more on instantiate\n\nWell-worked blog post by Julies Krumbiegel"
   },
   {
+    "objectID": "slides/lecture02-distributions.html#lab-01-issues",
+    "href": "slides/lecture02-distributions.html#lab-01-issues",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 issues",
+    "text": "Lab 01 issues\n\n\nBe sure to submit your assignment\nCanvas discussion: “Lab 01 Discussion”\nERROR: Jupyter kernel 'julia-1.9' not found. x4"
+  },
+  {
     "objectID": "slides/lecture02-distributions.html#lab-01-fix",
     "href": "slides/lecture02-distributions.html#lab-01-fix",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Lab 01 fix",
-    "text": "Lab 01 fix\n\nIn order to run codes using Quarto, you need the IJulia package\n\nIt’s in the lab01 Manifest.toml\nTo install, you need to instantiate\n\nIf you’re still running into issues:\n\nRun Pkg.build(\"IJulia\") in the REPL (after you activate and instantiate)\n\nThis should have been in the lab01 instructions\nI’ve updated the instructions"
+    "text": "Lab 01 fix\n\nIn order to run codes using Quarto, you need the IJulia package\n\nListed in Manifest.toml but you need to instantiate\n\nIf that doesn’t work:\n\nRun Pkg.build(\"IJulia\") in the REPL (after you activate and instantiate)\n\nI’ve updated the instructions"
   },
   {
     "objectID": "slides/lecture02-distributions.html#stats-without-the-agonizing-details",
@@ -791,18 +798,18 @@
     "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\n1using StatsBase: mean\n\nobserved_diff = mean(beer) - mean(water)\nobserved_diff\n\n\n1\n\nThis gives us the mean function from the StatsBase package\n\n\n\n\n4.37777777777778"
   },
   {
-    "objectID": "slides/lecture02-distributions.html#skeptic",
-    "href": "slides/lecture02-distributions.html#skeptic",
+    "objectID": "slides/lecture02-distributions.html#the-skeptics-argument",
+    "href": "slides/lecture02-distributions.html#the-skeptics-argument",
     "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Skeptic",
-    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\n\nWe could answer this with a T test\n\nDetermine if there is a significant difference between the means of two groups\nAssumes (approximate) normality\nComplicated formulae (degrees of freedom, etc.)\n\nSimulation approach:\n\nSuppose the skeptic is right – the two groups are samped from the same distribution\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group\nRepeat many times and examine the distribution of differences\n\n\n\n\nMake clear that we want to relax our assumptions and to simplify the analysis. Some of the things T tests make you think about, like whether data is paired or not, whether the variances are equal, whether you want one or two direction, etc are important and figure into the design of your simulation approach."
+    "section": "The skeptic’s argument",
+    "text": "The skeptic’s argument\nThe skeptic asks whether this might be random chance.\n\n\nWe could answer this with a T test\n\nDetermine if there is a significant difference between the means of two groups\nAssumes (approximate) normality\nAssumptions hidden behind a software package\n\nSimulation approach:\n\nSuppose the skeptic is right – the two groups are samped from the same distribution\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group\nRepeat many times and examine the distribution of differences\n\n\n\n\nMake clear that we want to relax our assumptions and to simplify the analysis. Some of the things T tests make you think about, like whether data is paired or not, whether the variances are equal, whether you want one or two direction, etc are important and figure into the design of your simulation approach."
   },
   {
     "objectID": "slides/lecture02-distributions.html#implementation",
     "href": "slides/lecture02-distributions.html#implementation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Implementation",
-    "text": "Implementation\n\n1using Random: shuffle\n\n2function get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\n3end\n\n4get_shuffled_difference(beer, water)\n\n\n1\n\nUse the shuffle function from the Random package\n\n2\n\nDefine a function. Its arguments are y1 and y2\n\n3\n\nend closes the function definition\n\n4\n\nCall the function with our data\n\n\n\n\n0.173333333333332"
+    "text": "Implementation\n\n1using Random: shuffle\n\n2function get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\n3end\n\n4get_shuffled_difference(beer, water)\n\n\n1\n\nUse the shuffle function from the Random package\n\n2\n\nDefine a function. Its arguments are y1 and y2\n\n3\n\nend closes the function definition\n\n4\n\nCall the function with our data\n\n\n\n\n1.0333333333333314"
   },
   {
     "objectID": "slides/lecture02-distributions.html#running",
@@ -830,7 +837,7 @@
     "href": "slides/lecture02-distributions.html#discussion",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Discussion",
-    "text": "Discussion\n\n\nThis is called a bootstrap and is a very powerful tool in many situations\nWhat would we expect to see if the skeptic was correct?\nP-value:\n\nthe likelihood of the data if the null hypothesis is correct\nskeptic’s (null) hypothesis: no difference between groups\n\n\n\n\n\n1mean(simulated_diffs .&gt;= observed_diff)\n\n\n1\n\n. is the dot operator. It applies the function to each element of the vector individually.\n\n\n\n\n0.00062"
+    "text": "Discussion\n\n\nThis is called a bootstrap and is a very powerful tool in many situations\nWhat would we expect to see if the skeptic was correct?\nP-value:\n\nthe likelihood of the data if the null hypothesis is correct\nskeptic’s (null) hypothesis: no difference between groups\n\n\n\n\n\n1mean(simulated_diffs .&gt;= observed_diff)\n\n\n1\n\n. is the dot operator. It applies the function to each element of the vector individually.\n\n\n\n\n0.00046"
   },
   {
     "objectID": "slides/lecture02-distributions.html#the-normal-distribution",
@@ -851,49 +858,63 @@
     "href": "slides/lecture02-distributions.html#notation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Notation",
-    "text": "Notation\nWe will get tired of writing\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\nInstead, we will often use shorthand:\n\\[\ny \\sim \\mathcal{N}(\\mu, \\sigma^2)\n\\]\n\nusing StatsPlots\nusing LaTeXStrings\n\nplot(\n    Normal(0, 1);\n    label=\"Normal Distribution\",\n1    xlabel=L\"$x$\",\n2    ylabel=L\"$p(x | \\mu=0, \\sigma=1)$\",\n)\n\n\n1\n\nL\"&lt;string&gt;\" allows us to use LaTeX in strings\n\n2\n\nThis notation specifies the values of \\(mu\\) and \\(\\sigma\\)"
+    "text": "Notation\nWe will get tired of writing\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\nInstead, we will often use shorthand:\n\\[\ny \\sim \\mathcal{N}(\\mu, \\sigma^2)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#normal-pdf",
+    "href": "slides/lecture02-distributions.html#normal-pdf",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Normal PDF",
+    "text": "Normal PDF\n\nusing StatsPlots\nusing LaTeXStrings\n\nplot(\n    Normal(0, 1);\n    label=\"Normal Distribution\",\n1    xlabel=L\"$x$\",\n2    ylabel=L\"$p(x | \\mu=0, \\sigma=1)$\",\n)\n\n\n1\n\nL\"&lt;string&gt;\" allows us to use LaTeX in strings\n\n2\n\nThis notation specifies the values of \\(mu\\) and \\(\\sigma\\)"
   },
   {
     "objectID": "slides/lecture02-distributions.html#bernoulli-distribution",
     "href": "slides/lecture02-distributions.html#bernoulli-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Bernoulli distribution",
-    "text": "Bernoulli distribution\nA Bernoulli distribution models a coin flip.\n\np = 0.5 # probability of heads\nrand(Bernoulli(p), 5)\n\n5-element Vector{Bool}:\n 0\n 1\n 0\n 1\n 1"
+    "text": "Bernoulli distribution\nA Bernoulli distribution models a coin flip.\n\np = 0.5 # probability of heads\n1rand(Bernoulli(p), 5)\n\n\n1\n\nDraw 5 samples from the Bernoulli distribution with parameter p\n\n\n\n\n5-element Vector{Bool}:\n 0\n 1\n 1\n 1\n 1"
   },
   {
     "objectID": "slides/lecture02-distributions.html#binomial-distribution",
     "href": "slides/lecture02-distributions.html#binomial-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Binomial distribution",
-    "text": "Binomial distribution\nA Binomial distribution models the distribution of n consecutive flips of the same coin\n\np = 0.5\nN = 5\nrand(Binomial(N, p), 5)\n\n5-element Vector{Int64}:\n 3\n 2\n 2\n 3\n 3"
+    "text": "Binomial distribution\nA Binomial distribution models the distribution of n consecutive flips of the same coin\n\np = 0.5\nN = 5\nrand(Binomial(N, p), 5)\n\n5-element Vector{Int64}:\n 4\n 3\n 2\n 1\n 3"
   },
   {
     "objectID": "slides/lecture02-distributions.html#multinomial-distribution",
     "href": "slides/lecture02-distributions.html#multinomial-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Multinomial distribution",
-    "text": "Multinomial distribution\nThe Multinomial extends the Binomial to multiple categories. Note that p is a vector. If there are 2 categories (\\(K=2\\)), it’s just the binomial with \\(p_\\text{multinomial} = [p, 1-p]\\).”\n\np = [0.5, 0.3, 0.2]\nN = 5\nrand(Multinomial(N, p), 5)\n\n3×5 Matrix{Int64}:\n 3  3  3  3  2\n 1  2  1  2  3\n 1  0  1  0  0"
+    "text": "Multinomial distribution\nThe Multinomial extends the Binomial to multiple categories. Note that p is a vector. If there are 2 categories (\\(K=2\\)), it’s just the binomial with \\(p_\\text{multinomial} = [p, 1-p]\\).”\n\np = [0.5, 0.3, 0.2]\nN = 5\ndist = Multinomial(N, p)\n1rand(dist, 5)\n\n\n1\n\nTo be more concise, we could write rand(Multinimial([0.5, 0.3, 0.2], 5), 5). Which is more readable?\n\n\n\n\n3×5 Matrix{Int64}:\n 3  1  2  4  4\n 1  3  2  0  0\n 1  1  1  1  1"
   },
   {
     "objectID": "slides/lecture02-distributions.html#poisson-distribution",
     "href": "slides/lecture02-distributions.html#poisson-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Poisson distribution",
-    "text": "Poisson distribution\nThe Poisson distribution is used to model count data. It is the limit of a Binomial distribution with \\(p=\\lambda/N\\), as \\(N \\rightarrow \\infty\\)."
+    "text": "Poisson distribution\nThe Poisson distribution is used to model count data. It is the limit of a Binomial distribution with \\(p=\\lambda/N\\), as \\(N \\rightarrow \\infty\\).\nA Poisson distribution has mean and variance equal to \\(\\lambda\\).\n\n1dist = Poisson(2.5)\n2rand(dist, 10)\n\n\n1\n\nThe Poisson distribution has one parameter, \\(\\lambda\\)\n\n2\n\nDraw 10 samples from the Poisson distribution\n\n\n\n\n10-element Vector{Int64}:\n 4\n 4\n 3\n 4\n 1\n 0\n 1\n 2\n 1\n 1"
   },
   {
     "objectID": "slides/lecture02-distributions.html#negative-binomial-distribution",
     "href": "slides/lecture02-distributions.html#negative-binomial-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Negative binomial distribution",
-    "text": "Negative binomial distribution\nA Poisson distribution has mean and variance equal to \\(\\lambda\\). To relax this assumption, the Negative Binomial distribution is often used. This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures (denoted r) occurs. For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (r = 3).\nThe Negative Binomial distribution can also be interpreted as a Gamma-Poisson mixture:\n\\[\n\\begin{align}\ny &\\sim \\textrm{Poisson}(\\lambda) \\\\\n\\lambda &\\sim \\textrm{Gamma}\\left(r, \\frac{p}{1-p} \\right)\n\\end{align}\n\\]\nWe can see this with simulation:\n\nfunction gamma_poisson(r, p)\n    λ = rand(Gamma(r, (1 - p) / p))\n    return rand(Poisson(λ))\nend\n\nr = 3 # number of failures\np = 1 / 6 # probability of failure\ndist = NegativeBinomial(r, p)\n\n# simulate 50,000 rolls\nrolls = [gamma_poisson(r, p) for _ in 1:50_000]\n\n# plot the samples\nxticks = 0:1:60 # specify the bin values\nhistogram(\n    rolls;\n    bins=-0.5:1:(maximum(xticks)+0.5),\n    xlabel=\"Number of rolls\",\n    ylabel=\"PMF\",\n    marker=:o,\n    label=\"Gamma-Poisson\",\n    normalize=true\n)\n\n# add the PDF of the negative binomial distribution\nplot!(xticks, pdf.(dist, xticks); linewidth=2, label=\"Neg. Binom.\")"
+    "text": "Negative binomial distribution\nThe NegativeBinomaial distribution relaxes the Poisson’s assumotion that \\(\\text{mean} = \\text{variance}\\).\nThis distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials with probability p before a specified (non-random) number of failures (r) occurs. For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (p = 1/6 and r = 3)."
   },
   {
-    "objectID": "slides/lecture02-distributions.html#what-others-do-you-know",
-    "href": "slides/lecture02-distributions.html#what-others-do-you-know",
+    "objectID": "slides/lecture02-distributions.html#negative-binomial-as-a-mixture",
+    "href": "slides/lecture02-distributions.html#negative-binomial-as-a-mixture",
     "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "What others do you know?",
-    "text": "What others do you know?\n\n\nUniform\nExponential\nGamma (see above)\nBeta\nDirichlet\nGEV\nPareto\nStudent’s t\nBoltzmann\nMany more!"
+    "section": "Negative binomial as a mixture",
+    "text": "Negative binomial as a mixture\nThe Negative Binomial distribution can also be interpreted as a Gamma-Poisson mixture:\n\\[\n\\begin{align}\ny &\\sim \\textrm{Poisson}(\\lambda) \\\\\n\\lambda &\\sim \\textrm{Gamma}\\left(r, \\frac{p}{1-p} \\right)\n\\end{align}\n\\]\nWe can see this with simulation:\n\nfunction gamma_poisson(r, p)\n    λ = rand(Gamma(r, (1 - p) / p))\n    return rand(Poisson(λ))\nend\n\nr = 3 # number of failures\np = 1 / 6 # probability of failure\ndist = NegativeBinomial(r, p)\n\n# simulate 50,000 rolls\nrolls = [gamma_poisson(r, p) for _ in 1:50_000]\n\n# plot the samples\nxticks = 0:1:60 # specify the bin values\nhistogram(\n    rolls;\n    bins=-0.5:1:(maximum(xticks)+0.5),\n    xlabel=\"Number of rolls\",\n    ylabel=\"PMF\",\n    marker=:o,\n    label=\"Gamma-Poisson\",\n    normalize=true\n)\n\n# add the PDF of the negative binomial distribution\nplot!(xticks, pdf.(dist, xticks); linewidth=2, label=\"Neg. Binom.\")"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#what-other-distributions-do-you-know",
+    "href": "slides/lecture02-distributions.html#what-other-distributions-do-you-know",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "What other distributions do you know?",
+    "text": "What other distributions do you know?\n\n\nUniform\nExponential\nGamma (see above)\nBeta\nPareto\nStudent t\nBoltzmann\nMany more!"
   },
   {
     "objectID": "slides/lecture02-distributions.html#pdf-and-cdf",
