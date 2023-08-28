@@ -3,7 +3,7 @@ title: "Setting up Julia, GitHub, and Quarto"
 subtitle: "Lecture"
 date: "August 28, 2023"
 
-# no need to edit things below this line
+# don't adjust the below options, they should be the same for all slides
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
@@ -30,7 +30,6 @@ format:
         include-in-header: mathjax-config.html
         date-format: long
         code-annotations: below
-        scrollable: true
 
 execute:
     freeze: auto
@@ -132,17 +131,23 @@ When working with someone else's project, we need to install the packages that t
     1. See ["Using someone else's projecg"](https://pkgdocs.julialang.org/v1/environments/#Using-someone-else%27s-project) for more on `instantiate`
 1. [Well-worked blog post](https://jkrumbiegel.com/pages/2022-08-26-pkg-introduction/index.html) by [Julies Krumbiegel](https://jkrumbiegel.com/)
 
+## Lab 01 issues
+
+::: {.incremental}
+- Be sure to submit your assignment
+- Canvas discussion: "Lab 01 Discussion"
+- `ERROR: Jupyter kernel 'julia-1.9' not found.` x4
+:::
+
 ## Lab 01 fix
 
 - In order to run codes using Quarto, you need the `IJulia` package    
-    - It's in the lab01 `Manifest.toml`
-    - To install, you need to `instantiate`
-- If you're still running into issues:
+    - Listed in `Manifest.toml` but you need to `instantiate`
+- If that doesn't work:
     - Run `Pkg.build("IJulia")` in the REPL (after you `activate` and `instantiate`)
-- This should have been in the lab01 instructions
 - I've updated the [instructions](../labs/lab01/instructions.qmd)
 
-# Mosquitos
+# Effect of beer drinking on attractiveness to mosquitos
 
 ## Stats without the agonizing details
 
@@ -203,7 +208,7 @@ observed_diff
 ```
 1. This gives us the `mean` function from the `StatsBase` package
 
-## Skeptic
+## The skeptic's argument {.scrollable}
 
 The skeptic asks whether this might be random chance.
 
@@ -211,7 +216,7 @@ The skeptic asks whether this might be random chance.
 1. We could answer this with a T test
     1. Determine if there is a significant difference between the means of two groups
     1. Assumes (approximate) normality
-    1. Complicated formulae (degrees of freedom, etc.)
+    1. Assumptions hidden behind a software package
 1. Simulation approach:
     1. Suppose the skeptic is right -- the two groups are samped from the same distribution
     1. Shuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)
@@ -224,7 +229,7 @@ Make clear that we want to relax our assumptions and to simplify the analysis.
 Some of the things T tests make you think about, like whether data is paired or not, whether the variances are equal, whether you want one or two direction, etc are important and figure into the design of your simulation approach.
 :::
 
-## Implementation
+## Implementation {.smaller}
 
 ```{julia}
 using Random: shuffle # <1>
@@ -264,7 +269,7 @@ length(simulated_diffs) # <2>
 1. This is a *list comprehension*. It's a way to create a list by looping over something. Here, we loop over the numbers 1 to 50,000 and call `get_shuffled_difference` each time.
 2. `length` tells us the size of a vector
 
-## Plotting
+## Plotting {.scrollable}
 
 ```{julia}
 using Plots # <1>
@@ -369,7 +374,7 @@ $$
 - Variance $\sigma^2$
 - Symmetric
 
-## Central limit theorem
+## Central limit theorem {.scrollable}
 
 The *central limit theorem* says that the sum of many independent random variables is approximately normally distributed.
 
@@ -422,6 +427,8 @@ $$
 y \sim \mathcal{N}(\mu, \sigma^2)
 $$
 
+## Normal PDF {.scrollable}
+
 ```{julia}
 using StatsPlots
 using LaTeXStrings
@@ -442,8 +449,9 @@ A Bernoulli distribution models a coin flip.
 
 ```{julia}
 p = 0.5 # probability of heads
-rand(Bernoulli(p), 5)
+rand(Bernoulli(p), 5) # <1>
 ```
+1. Draw 5 samples from the Bernoulli distribution with parameter `p`
 
 ## Binomial distribution
 
@@ -464,20 +472,33 @@ If there are 2 categories ($K=2$), it's just the binomial with $p_\text{multinom
 ```{julia}
 p = [0.5, 0.3, 0.2]
 N = 5
-rand(Multinomial(N, p), 5)
+dist = Multinomial(N, p)
+rand(dist, 5) # <1>
 ```
+1. To be more concise, we could write `rand(Multinimial([0.5, 0.3, 0.2], 5), 5)`. Which is more readable?
 
-## Poisson distribution
+## Poisson distribution {.scrollable}
 
 The Poisson distribution is used to model count data.
 It is the limit of a Binomial distribution with $p=\lambda/N$, as $N \rightarrow \infty$.
 
+A Poisson distribution has mean and variance equal to $\lambda$.
+
+```{julia}
+dist = Poisson(2.5) # <1>
+rand(dist, 10) # <2>
+```
+1. The Poisson distribution has one parameter, $\lambda$
+2. Draw 10 samples from the Poisson distribution
+
 ## Negative binomial distribution
 
-A Poisson distribution has mean and variance equal to $\lambda$.
-To relax this assumption, the `Negative Binomial` distribution is often used.
-This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials before a specified (non-random) number of failures (denoted `r`) occurs.
-For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (r = 3).
+The `NegativeBinomaial` distribution relaxes the Poisson's assumotion that $\text{mean} = \text{variance}$.
+
+This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials with probability `p` before a specified (non-random) number of failures (`r`) occurs.
+For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (`p = 1/6` and `r = 3`).
+
+## Negative binomial as a mixture {.scrollable}
 
 The Negative Binomial distribution can also be interpreted as a Gamma-Poisson *mixture*:
 
@@ -519,7 +540,7 @@ histogram(
 plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
 ```
 
-## What others do you know?
+## What other distributions do you know?
 
 . . .
 
@@ -527,14 +548,12 @@ plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
 - Exponential
 - Gamma (see above)
 - Beta
-- Dirichlet
-- GEV
 - Pareto
-- Student's t
+- Student t
 - Boltzmann
 - Many more!
 
-## PDF and CDF
+## PDF and CDF {.smaller .scrollable}
 
 If $F_X$ is the *cumulative distribution function* (CDF) of $X$ and $f_X$ is the *probability density function* (PDF) of $X$, then:
 $$
@@ -554,7 +573,7 @@ We can only talk about the probability that $y$ is in some interval $[a, b]$, wh
 The probability that $y$ takes on the value $y^*$, written $p(y=y^*)$, is zero.
 :::
 
-## PDF example
+## PDF example {.scrollable}
 
 ```{julia}
 #| show: false
@@ -590,7 +609,7 @@ approx, exact
 2. `pdf(d, x)` tells us the probability density function of distribution `d` evaluated at `x`
 3. `quad_trap` is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points
 
-## PMFs
+## PMFs {.scrollable}
 
 - Discrete distributions (like the Poisson) have a *probability mass function* (PMF) instead of a PDF
 - For PMFs, $p(y=y^*)$ is the probability that $y$ takes on the value $y^*$, and is defined
