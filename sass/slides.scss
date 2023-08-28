@@ -196,19 +196,19 @@ table {
 // Julia Mono: https://juliamono.netlify.app/faq/
 pre {
     font-family: JuliaMono-Light;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 code {
     font-family: JuliaMono-Light;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
-// code annotations
-dd {
-    font-size: 0.5em;
+// https://stackoverflow.com/questions/76990335/how-to-set-the-code-annotation-size-in-quarto-html-revealjs-documents/76990684#76990684
+.reveal dl.code-annotation-container-grid {
+    font-size: 20px;
 }
 
-dt {
-    font-size: 0.5em;
+.reveal dl.code-annotation-container-grid dt {
+    margin-top: 0.4rem;
 }

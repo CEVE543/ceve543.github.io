@@ -270,14 +270,14 @@ length(simulated_diffs) # <2>
 using Plots # <1>
 
 function plot_diffs(diffs, obs) # <2>
-    p = histogram(
+    p = histogram( # <3>
         diffs; # <4>
         xlabel="Difference", # <5>
         ylabel="Proportion of samples", # <6>
         label="If Skeptic is Right", # <7>
         bins=-6:0.5:6, # <8>
         legend=:topleft, # <9>
-        normalize=true
+        normalize=true, # <10>
     )
     vline!(p, [obs]; label="Observed", linewidth=2) # <11>
     return p # <12>
@@ -430,7 +430,7 @@ plot(
     Normal(0, 1);
     label="Normal Distribution",
     xlabel=L"$x$", # <1>
-    ylabel=L"$p(x | \mu=0, \sigma=1)$"
+    ylabel=L"$p(x | \mu=0, \sigma=1)$", # <2>
 )
 ```
 1. `L"<string>"` allows us to use LaTeX in strings
