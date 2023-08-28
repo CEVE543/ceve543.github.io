@@ -45,6 +45,7 @@ We will move through this module ("fundamentals") at a fairly brisk [pace](../sc
 - Ask questions on Canvas or in office hours
 - To help you learn to code, I am exposing you to code early and often
     - I don't expect that you are able to replicate all the code in this notebook
+    - I have added annotations where appropriate
     - The labs will give you practice
     - You will not need to write code from scratch for the exams
 
@@ -148,55 +149,41 @@ When working with someone else's project, we need to install the packages that t
 In this class we will use computation and simulation to build fundamental insight into statistical processes without dwelling on "agonizing" details.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/5Dnw46eC-0o?si=3Y3JKwkwD9i6lrVV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Motivating question
+
 > Does drinking beer reduce the likelihood of being bitten by mosquitos?
+
 ## Raw data
+
 Create a *variable* called `beer` to hold the number of mosquito bites for beer drinkers:
+
 ```{julia}
-beer = [
-    27,
-    20,
-    21,
-    26,
-    27,
-    31,
-    24,
-    21,
-    20,
-    19,
-    23,
-    24,
-    28,
-    19,
-    24,
-    29,
-    18,
-    20,
-    17,
-    31,
-    20,
-    25,
-    28,
-    21,
-    27,
-]
+beer = [27, 20, 21, 26, 27, 31, 24, 21, 20, 19, 23, 24, 28, 19, 24, 29, 18, 20, 17, 31, 20, 25, 28, 21, 27]
 ```
+
 ## What is `beer`?
+
 We can learn a bit more about it:
+
 ```{julia}
 typeof(beer)
 ```
+
 ```{julia}
 length(beer)
 ```
+
 ```{julia}
 size(beer)
 ```
+
 ```{julia}
 sum(beer) / length(beer) # the sample average
 ```
 
 ## More raw data
+
 We can do the same for water drinkers:
 
 ```{julia}
@@ -210,24 +197,31 @@ Let's calculate the difference between the average number of bites in each group
 
 ```{julia}
 using StatsBase: mean # <1>
+
+observed_diff = mean(beer) - mean(water)
+observed_diff
 ```
 1. This gives us the `mean` function from the `StatsBase` package
-
-```{julia}
-observed_diff = mean(beer) - mean(water)
-```
 
 ## Skeptic
 
 The skeptic asks whether this might be random chance.
 
 ::: {.incremental}
-- In other classes, you might answer this with a t-test.
-- Simulation approach:
-    - Suppose the skeptic is right -- the two groups are samped from the same distribution
-    - Shuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)
-    -  Calculate the difference between each group
-    - Repeat many times and examine the distribution of differences
+1. We could answer this with a T test
+    1. Determine if there is a significant difference between the means of two groups
+    1. Assumes (approximate) normality
+    1. Complicated formulae (degrees of freedom, etc.)
+1. Simulation approach:
+    1. Suppose the skeptic is right -- the two groups are samped from the same distribution
+    1. Shuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)
+    1. Calculate the difference between each group
+    1. Repeat many times and examine the distribution of differences
+:::
+
+::: {.notes}
+Make clear that we want to relax our assumptions and to simplify the analysis.
+Some of the things T tests make you think about, like whether data is paired or not, whether the variances are equal, whether you want one or two direction, etc are important and figure into the design of your simulation approach.
 :::
 
 ## Implementation
