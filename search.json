@@ -690,7 +690,7 @@
     "href": "slides/lecture02-distributions.html#a-quick-note-on-pacing",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "A quick note on pacing",
-    "text": "A quick note on pacing\nWe will move through this module (“fundamentals”) at a fairly brisk pace\n\nReview course slides\nAsk questions on Canvas or in office hours\nTo help you learn to code, I am exposing you to code early and often\n\nI don’t expect that you are able to replicate all the code in this notebook\nThe labs will give you practice\nYou will not need to write code from scratch for the exams\n\n\n\nThis is a long slide deck. We will probably finish on Wednesday"
+    "text": "A quick note on pacing\nWe will move through this module (“fundamentals”) at a fairly brisk pace\n\nReview course slides\nAsk questions on Canvas or in office hours\nTo help you learn to code, I am exposing you to code early and often\n\nI don’t expect that you are able to replicate all the code in this notebook\nI have added annotations where appropriate\nThe labs will give you practice\nYou will not need to write code from scratch for the exams\n\n\n\nThis is a long slide deck. We will probably finish on Wednesday"
   },
   {
     "objectID": "slides/lecture02-distributions.html#what-is-a-package",
@@ -760,7 +760,14 @@
     "href": "slides/lecture02-distributions.html#motivating-question",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Motivating question",
-    "text": "Motivating question\n\nDoes drinking beer reduce the likelihood of being bitten by mosquitos? ## Raw data Create a variable called beer to hold the number of mosquito bites for beer drinkers:\n\n\nbeer = [\n    27,\n    20,\n    21,\n    26,\n    27,\n    31,\n    24,\n    21,\n    20,\n    19,\n    23,\n    24,\n    28,\n    19,\n    24,\n    29,\n    18,\n    20,\n    17,\n    31,\n    20,\n    25,\n    28,\n    21,\n    27,\n]\n\n25-element Vector{Int64}:\n 27\n 20\n 21\n 26\n 27\n 31\n 24\n 21\n 20\n 19\n 23\n 24\n 28\n 19\n 24\n 29\n 18\n 20\n 17\n 31\n 20\n 25\n 28\n 21\n 27"
+    "text": "Motivating question\n\nDoes drinking beer reduce the likelihood of being bitten by mosquitos?"
+  },
+  {
+    "objectID": "slides/lecture02-distributions.html#raw-data",
+    "href": "slides/lecture02-distributions.html#raw-data",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Raw data",
+    "text": "Raw data\nCreate a variable called beer to hold the number of mosquito bites for beer drinkers:\n\nbeer = [27, 20, 21, 26, 27, 31, 24, 21, 20, 19, 23, 24, 28, 19, 24, 29, 18, 20, 17, 31, 20, 25, 28, 21, 27]\n\n25-element Vector{Int64}:\n 27\n 20\n 21\n 26\n 27\n 31\n 24\n 21\n 20\n 19\n 23\n 24\n 28\n 19\n 24\n 29\n 18\n 20\n 17\n 31\n 20\n 25\n 28\n 21\n 27"
   },
   {
     "objectID": "slides/lecture02-distributions.html#what-is-beer",
@@ -781,21 +788,21 @@
     "href": "slides/lecture02-distributions.html#a-simple-analysis",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "A simple analysis",
-    "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\n1using StatsBase: mean\n\n\n1\n\nThis gives us the mean function from the StatsBase package\n\n\n\n\n\nobserved_diff = mean(beer) - mean(water)\n\n4.37777777777778"
+    "text": "A simple analysis\nLet’s calculate the difference between the average number of bites in each group.\n\n1using StatsBase: mean\n\nobserved_diff = mean(beer) - mean(water)\nobserved_diff\n\n\n1\n\nThis gives us the mean function from the StatsBase package\n\n\n\n\n4.37777777777778"
   },
   {
     "objectID": "slides/lecture02-distributions.html#skeptic",
     "href": "slides/lecture02-distributions.html#skeptic",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Skeptic",
-    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\n\nIn other classes, you might answer this with a t-test.\nSimulation approach:\n\nSuppose the skeptic is right – the two groups are samped from the same distribution\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group\nRepeat many times and examine the distribution of differences"
+    "text": "Skeptic\nThe skeptic asks whether this might be random chance.\n\n\nWe could answer this with a T test\n\nDetermine if there is a significant difference between the means of two groups\nAssumes (approximate) normality\nComplicated formulae (degrees of freedom, etc.)\n\nSimulation approach:\n\nSuppose the skeptic is right – the two groups are samped from the same distribution\nShuffle the data (randomly divide into two groups by assuming that there is no difference between the two groups)\nCalculate the difference between each group\nRepeat many times and examine the distribution of differences\n\n\n\n\nMake clear that we want to relax our assumptions and to simplify the analysis. Some of the things T tests make you think about, like whether data is paired or not, whether the variances are equal, whether you want one or two direction, etc are important and figure into the design of your simulation approach."
   },
   {
     "objectID": "slides/lecture02-distributions.html#implementation",
     "href": "slides/lecture02-distributions.html#implementation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Implementation",
-    "text": "Implementation\n\n1using Random: shuffle\n\n2function get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\n3end\n\n4get_shuffled_difference(beer, water)\n\n\n1\n\nUse the shuffle function from the Random package\n\n2\n\nDefine a function. Its arguments are y1 and y2\n\n3\n\nend closes the function definition\n\n4\n\nCall the function with our data\n\n\n\n\n-0.3044444444444423"
+    "text": "Implementation\n\n1using Random: shuffle\n\n2function get_shuffled_difference(y1, y2)\n\n    # concatenate the data into one vector, then shuffle it\n    y_all = vcat(y1, y2)\n    y_shuffled = shuffle(y_all)\n\n    # create groups consistent w/ skeptic's argument\n    N1 = length(y1) # how many obs in the first vector?\n    ynew1 = y_shuffled[1:N1]\n    ynew2 = y_shuffled[(N1+1):end]\n\n    # get the difference\n    difference = mean(ynew1) - mean(ynew2)\n    return difference\n3end\n\n4get_shuffled_difference(beer, water)\n\n\n1\n\nUse the shuffle function from the Random package\n\n2\n\nDefine a function. Its arguments are y1 and y2\n\n3\n\nend closes the function definition\n\n4\n\nCall the function with our data\n\n\n\n\n0.173333333333332"
   },
   {
     "objectID": "slides/lecture02-distributions.html#running",
@@ -809,7 +816,7 @@
     "href": "slides/lecture02-distributions.html#plotting",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Plotting",
-    "text": "Plotting\n\n1using Plots\n\n2function plot_diffs(diffs, obs)\n    p = histogram(\n4        diffs;\n5        xlabel=\"Difference\",\n6        ylabel=\"Proportion of samples\",\n7        label=\"If Skeptic is Right\",\n8        bins=-6:0.5:6,\n9        legend=:topleft,\n        normalize=true\n    )\n11    vline!(p, [obs]; label=\"Observed\", linewidth=2)\n12    return p\nend\nplot_diffs(simulated_diffs, observed_diff)\n\n\n1\n\nWe need the Plots package to make plots\n\n2\n\nDefine a function. Its arguments are diffs and obs\n\n4\n\nCreate a histogram using the diffs object. ; separates the positional arguments from the keyword arguments\n\n5\n\nxlabel is a “keyword argument” specifying the text for the x-axis label\n\n6\n\nthe y-axis label\n\n7\n\nthe label to use in the legend\n\n8\n\nspecify the bins to use in the histogram\n\n9\n\nspecify the location of the legend\n\n11\n\nadd a vertical line (vline!) at the observed difference\n\n12\n\nmany functions return their output – in this case the plot we created from the inputs"
+    "text": "Plotting\n\n1using Plots\n\n2function plot_diffs(diffs, obs)\n3    p = histogram(\n4        diffs;\n5        xlabel=\"Difference\",\n6        ylabel=\"Proportion of samples\",\n7        label=\"If Skeptic is Right\",\n8        bins=-6:0.5:6,\n9        legend=:topleft,\n10        normalize=true,\n    )\n11    vline!(p, [obs]; label=\"Observed\", linewidth=2)\n12    return p\nend\nplot_diffs(simulated_diffs, observed_diff)\n\n\n1\n\nWe need the Plots package to make plots\n\n2\n\nDefine a function. Its arguments are diffs and obs\n\n3\n\nhistogram is a function from the Plots package\n\n4\n\nCreate a histogram using the diffs object. ; separates the positional arguments from the keyword arguments\n\n5\n\nxlabel is a “keyword argument” specifying the text for the x-axis label\n\n6\n\nthe y-axis label\n\n7\n\nthe label to use in the legend\n\n8\n\nspecify the bins to use in the histogram\n\n9\n\nspecify the location of the legend\n\n10\n\nnormalize the histogram so that the area under the curve is 1\n\n11\n\nadd a vertical line (vline!) at the observed difference\n\n12\n\nmany functions return their output – in this case the plot we created from the inputs"
   },
   {
     "objectID": "slides/lecture02-distributions.html#alternative",
@@ -823,7 +830,7 @@
     "href": "slides/lecture02-distributions.html#discussion",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Discussion",
-    "text": "Discussion\n\n\nThis is called a bootstrap and is a very powerful tool in many situations\nWhat would we expect to see if the skeptic was correct?\nP-value:\n\nthe likelihood of the data if the null hypothesis is correct\nskeptic’s (null) hypothesis: no difference between groups\n\n\n\n\n\n1mean(simulated_diffs .&gt;= observed_diff)\n\n\n1\n\n. is the dot operator. It applies the function to each element of the vector individually.\n\n\n\n\n0.00048"
+    "text": "Discussion\n\n\nThis is called a bootstrap and is a very powerful tool in many situations\nWhat would we expect to see if the skeptic was correct?\nP-value:\n\nthe likelihood of the data if the null hypothesis is correct\nskeptic’s (null) hypothesis: no difference between groups\n\n\n\n\n\n1mean(simulated_diffs .&gt;= observed_diff)\n\n\n1\n\n. is the dot operator. It applies the function to each element of the vector individually.\n\n\n\n\n0.00062"
   },
   {
     "objectID": "slides/lecture02-distributions.html#the-normal-distribution",
@@ -844,28 +851,28 @@
     "href": "slides/lecture02-distributions.html#notation",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Notation",
-    "text": "Notation\nWe will get tired of writing\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\nInstead, we will often use shorthand:\n\\[\ny \\sim \\mathcal{N}(\\mu, \\sigma^2)\n\\]\n\nusing StatsPlots\nusing LaTeXStrings\n\nplot(\n    Normal(0, 1);\n    label=\"Normal Distribution\",\n1    xlabel=L\"$x$\",\n    ylabel=L\"$p(x | \\mu=0, \\sigma=1)$\"\n)\n\n\n1\n\nL\"&lt;string&gt;\" allows us to use LaTeX in strings"
+    "text": "Notation\nWe will get tired of writing\n\\[\np(y | \\mu, \\theta) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\n\\left(\n-\\frac{1}{2}\\left(\n\\frac{x-\\mu}{\\sigma}\n\\right)^{\\!2}\n\\,\n\\right)\n\\]\nInstead, we will often use shorthand:\n\\[\ny \\sim \\mathcal{N}(\\mu, \\sigma^2)\n\\]\n\nusing StatsPlots\nusing LaTeXStrings\n\nplot(\n    Normal(0, 1);\n    label=\"Normal Distribution\",\n1    xlabel=L\"$x$\",\n2    ylabel=L\"$p(x | \\mu=0, \\sigma=1)$\",\n)\n\n\n1\n\nL\"&lt;string&gt;\" allows us to use LaTeX in strings\n\n2\n\nThis notation specifies the values of \\(mu\\) and \\(\\sigma\\)"
   },
   {
     "objectID": "slides/lecture02-distributions.html#bernoulli-distribution",
     "href": "slides/lecture02-distributions.html#bernoulli-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Bernoulli distribution",
-    "text": "Bernoulli distribution\nA Bernoulli distribution models a coin flip.\n\np = 0.5 # probability of heads\nrand(Bernoulli(p), 5)\n\n5-element Vector{Bool}:\n 1\n 1\n 1\n 0\n 1"
+    "text": "Bernoulli distribution\nA Bernoulli distribution models a coin flip.\n\np = 0.5 # probability of heads\nrand(Bernoulli(p), 5)\n\n5-element Vector{Bool}:\n 0\n 1\n 0\n 1\n 1"
   },
   {
     "objectID": "slides/lecture02-distributions.html#binomial-distribution",
     "href": "slides/lecture02-distributions.html#binomial-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Binomial distribution",
-    "text": "Binomial distribution\nA Binomial distribution models the distribution of n consecutive flips of the same coin\n\np = 0.5\nN = 5\nrand(Binomial(N, p), 5)\n\n5-element Vector{Int64}:\n 4\n 2\n 3\n 3\n 1"
+    "text": "Binomial distribution\nA Binomial distribution models the distribution of n consecutive flips of the same coin\n\np = 0.5\nN = 5\nrand(Binomial(N, p), 5)\n\n5-element Vector{Int64}:\n 3\n 2\n 2\n 3\n 3"
   },
   {
     "objectID": "slides/lecture02-distributions.html#multinomial-distribution",
     "href": "slides/lecture02-distributions.html#multinomial-distribution",
     "title": "Setting up Julia, GitHub, and Quarto",
     "section": "Multinomial distribution",
-    "text": "Multinomial distribution\nThe Multinomial extends the Binomial to multiple categories. Note that p is a vector. If there are 2 categories (\\(K=2\\)), it’s just the binomial with \\(p_\\text{multinomial} = [p, 1-p]\\).”\n\np = [0.5, 0.3, 0.2]\nN = 5\nrand(Multinomial(N, p), 5)\n\n3×5 Matrix{Int64}:\n 2  1  3  3  2\n 2  2  1  2  1\n 1  2  1  0  2"
+    "text": "Multinomial distribution\nThe Multinomial extends the Binomial to multiple categories. Note that p is a vector. If there are 2 categories (\\(K=2\\)), it’s just the binomial with \\(p_\\text{multinomial} = [p, 1-p]\\).”\n\np = [0.5, 0.3, 0.2]\nN = 5\nrand(Multinomial(N, p), 5)\n\n3×5 Matrix{Int64}:\n 3  3  3  3  2\n 1  2  1  2  3\n 1  0  1  0  0"
   },
   {
     "objectID": "slides/lecture02-distributions.html#poisson-distribution",
