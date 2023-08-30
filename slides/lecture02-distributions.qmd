@@ -1,5 +1,5 @@
 ---
-title: "Setting up Julia, GitHub, and Quarto"
+title: "Introduction to statistics and probability distributions"
 subtitle: "Lecture"
 date: "August 28, 2023"
 
@@ -432,6 +432,7 @@ $$
 ```{julia}
 using StatsPlots
 using LaTeXStrings
+using Distributions
 
 plot(
     Normal(0, 1);
@@ -441,7 +442,7 @@ plot(
 )
 ```
 1. `L"<string>"` allows us to use LaTeX in strings
-2. This notation specifies the values of $mu$ and $\sigma$
+2. This notation specifies the values of $\mu$ and $\sigma$
 
 ## Bernoulli distribution
 
@@ -488,6 +489,7 @@ A Poisson distribution has mean and variance equal to $\lambda$.
 dist = Poisson(2.5) # <1>
 rand(dist, 10) # <2>
 ```
+
 1. The Poisson distribution has one parameter, $\lambda$
 2. Draw 10 samples from the Poisson distribution
 
@@ -497,48 +499,6 @@ The `NegativeBinomaial` distribution relaxes the Poisson's assumotion that $\tex
 
 This distribution models the number of successes in a sequence of independent and identically distributed Bernoulli trials with probability `p` before a specified (non-random) number of failures (`r`) occurs.
 For example, we can define rolling a 6 on a dice as a failure, and rolling any other number as a success, and ask how many successful rolls will occur before we see the third failure (`p = 1/6` and `r = 3`).
-
-## Negative binomial as a mixture {.scrollable}
-
-The Negative Binomial distribution can also be interpreted as a Gamma-Poisson *mixture*:
-
-$$
-\begin{align}
-y &\sim \textrm{Poisson}(\lambda) \\
-\lambda &\sim \textrm{Gamma}\left(r, \frac{p}{1-p} \right)
-\end{align}
-$$
-
-We can see this with simulation:
-
-```{julia}
-function gamma_poisson(r, p)
-    λ = rand(Gamma(r, (1 - p) / p))
-    return rand(Poisson(λ))
-end
-
-r = 3 # number of failures
-p = 1 / 6 # probability of failure
-dist = NegativeBinomial(r, p)
-
-# simulate 50,000 rolls
-rolls = [gamma_poisson(r, p) for _ in 1:50_000]
-
-# plot the samples
-xticks = 0:1:60 # specify the bin values
-histogram(
-    rolls;
-    bins=-0.5:1:(maximum(xticks)+0.5),
-    xlabel="Number of rolls",
-    ylabel="PMF",
-    marker=:o,
-    label="Gamma-Poisson",
-    normalize=true
-)
-
-# add the PDF of the negative binomial distribution
-plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
-```
 
 ## What other distributions do you know?
 
@@ -553,78 +513,49 @@ plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
 - Boltzmann
 - Many more!
 
-## PDF and CDF {.smaller .scrollable}
+# Statistics
 
-If $F_X$ is the *cumulative distribution function* (CDF) of $X$ and $f_X$ is the *probability density function* (PDF) of $X$, then:
+## Mean
+
+The mean of a sample is just the sample average:
 $$
-F_X ( x ) = \int_{-\infty}^x f_X(u) \, du,
-$$
-and (if $f_X$ is continuous at $x$ which it typically will be)
-$$
-f_{X}(x)={\frac {d}{dx}}F_{X}(x).
-$$
-A useful property is
-$$
-\Pr[a\leq X\leq b]=\int _{a}^{b}f_{X}(x)\,dx
+\bar{y} = \frac{1}{N} \sum_{i=1}^N y_i
 $$
 
-::: {.callout-important}
-We can only talk about the probability that $y$ is in some interval $[a, b]$, which is given by the integral of the PDF over that interval.
-The probability that $y$ takes on the value $y^*$, written $p(y=y^*)$, is zero.
-:::
+. . .
 
-## PDF example {.scrollable}
-
-```{julia}
-#| show: false
-# https://www.matecdev.com/posts/julia-numerical-integration.html
-function quad_trap(f, a, b, N)
-    h = (b - a) / N
-    int = h * (f(a) + f(b)) / 2
-    for k in 1:(N-1)
-        xk = (b - a) * k / N + a
-        int = int + h * f(xk)
-    end
-    return int
-end;
-```
-
-Simple example to illustrate that
+The mean of a distribution is the expected value of the distribution:
 $$
-F_X(2) = \int_{-\infty}^2 f_X(u) \, du
+\mathbb{E}(u) = \int u p(u) \, du
 $$
 
-We will use a standard Normal distribution as an example
+## Variance {.smaller}
 
-```{julia}
-dist = Normal() # <1>
-f(x) = pdf(dist, x) # <2>
-approx = quad_trap(f, -100, 2, 1000) # <3>
-exact = cdf(dist, 2)
+Variance measures how points differ from the mean
 
-approx, exact
-```
+. . .
 
-1. Mean 0 and standard deviation 1 by default
-2. `pdf(d, x)` tells us the probability density function of distribution `d` evaluated at `x`
-3. `quad_trap` is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points
+You may be familiar with sample variance:
+$$
+S^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+$$
 
-## PMFs {.scrollable}
+. . .
 
-- Discrete distributions (like the Poisson) have a *probability mass function* (PMF) instead of a PDF
-- For PMFs, $p(y=y^*)$ is the probability that $y$ takes on the value $y^*$, and is defined
-
-```{julia}
-f(x) = pdf(Poisson(5), x) # the Poisson PMF
-plot(f, 0:1:20; label="PMF", marker=:o, xlabel=L"$x^*$", ylabel=L"$p(x=x^*)$") # <1>
-```
-1. In the `Distributions` package, both PDFs and PMFs are called `pdf`
+For a distribution:
+$$
+\mathbb{V}(u) = \int (u - \mathbb{E}(u))^2 p(u) \, du
+$$
+or, for a vector
+$$
+\mathbb{V}(u) = \int (u - \mathbb{E}(u)) (u - \mathbb{E}(u))^T p(u) \, du
+$$
 
 # Wrapup
 
 ## Coming up
 
-- Wednesday: Conditional and marginal distributions
+- Wednesday: working with probability distributions
 - Friday:    
     - Lab 02: Working with tabular data in Julia
     - Lab 01 due *at start of class*

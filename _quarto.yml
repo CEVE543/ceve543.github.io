@@ -55,6 +55,8 @@ website:
         contents:
           - href: tutorials/julia-basics.qmd
             text: Julia Basics
+          - href: tutorials/statistics.qmd
+            text: Statistics References
           - href: tutorials/julia-plots.qmd
             text: Making Plots
           - href: tutorials/github.qmd

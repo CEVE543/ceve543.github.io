@@ -1,0 +1,348 @@
+---
+title: "Working with probability distributions"
+subtitle: "Lecture"
+date: "August 30, 2023"
+
+# don't adjust the below options, they should be the same for all slides
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+        code-annotations: below
+
+execute:
+    freeze: auto
+    echo: true
+---
+
+# PDFs and CDFs
+
+## PDF and CDF {.smaller .scrollable}
+
+If $F_X$ is the *cumulative distribution function* (CDF) of $X$ and $f_X$ is the *probability density function* (PDF) of $X$, then:
+$$
+F_X ( x ) = \int_{-\infty}^x f_X(u) \, du,
+$$
+and (if $f_X$ is continuous at $x$ which it typically will be)
+$$
+f_{X}(x)={\frac {d}{dx}}F_{X}(x).
+$$
+A useful property is
+$$
+\Pr[a\leq X\leq b]=\int _{a}^{b}f_{X}(x)\,dx
+$$
+
+::: {.callout-important}
+We can only talk about the probability that $y$ is in some interval $[a, b]$, which is given by the integral of the PDF over that interval.
+The probability that $y$ takes on the value $y^*$, written $p(y=y^*)$, is zero.
+:::
+
+## PDF example {.scrollable}
+
+```{julia}
+#| show: false
+# https://www.matecdev.com/posts/julia-numerical-integration.html
+function quad_trap(f, a, b, N)
+    h = (b - a) / N
+    int = h * (f(a) + f(b)) / 2
+    for k in 1:(N-1)
+        xk = (b - a) * k / N + a
+        int = int + h * f(xk)
+    end
+    return int
+end;
+```
+
+Simple example to illustrate that
+$$
+F_X(2) = \int_{-\infty}^2 f_X(u) \, du
+$$
+
+We will use a standard Normal distribution as an example
+
+```{julia}
+using Distributions
+
+dist = Normal() # <1>
+f(x) = pdf(dist, x) # <2>
+approx = quad_trap(f, -100, 2, 1000) # <3>
+exact = cdf(dist, 2)
+
+approx, exact
+```
+
+1. Mean 0 and standard deviation 1 by default
+2. `pdf(d, x)` tells us the probability density function of distribution `d` evaluated at `x`
+3. `quad_trap` is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points
+
+## PMFs {.scrollable}
+
+- Discrete distributions (like the Poisson) have a *probability mass function* (PMF) instead of a PDF
+- For PMFs, $p(y=y^*)$ is the probability that $y$ takes on the value $y^*$, and is defined
+
+```{julia}
+using LaTeXStrings
+using Plots
+
+f(x) = pdf(Poisson(5), x) # the Poisson PMF
+plot(f, 0:1:20; label="PMF", marker=:o, xlabel=L"$x^*$", ylabel=L"$p(x=x^*)$") # <1>
+```
+
+1. In the `Distributions` package, both PDFs and PMFs are called `pdf`
+
+# Joint, marginal, and conditional distributions
+
+## Bayes' Rule
+
+$$
+p(\theta, y) = p(\theta) p(y | \theta)
+$$
+and thus
+$$
+p(\theta | y) = \frac{p(\theta, y)}{p(y)} = \frac{p(\theta) p(y | \theta)}{p(y)}
+$$
+generally:
+$$
+p(\theta | y) \propto p(\theta) p(y | \theta)
+$$
+
+## Marginal probability
+
+Probability of event $A$: $\Pr(A)$
+
+. . .
+
+We will write the marginal probability density function as
+$$
+p(\theta) \quad \text{or} \quad p(y)
+$$
+
+## Joint probability
+
+Probability of events $A$ and $B$: $\Pr(A  \& B)$
+
+. . .
+
+$$
+p(\theta, y)
+$$
+
+## Conditional probability
+
+Probability of event $A$ given event $B$: $\Pr(A | B)$
+
+. . .
+
+$$
+p(\theta | y) \quad \text{or} \quad p(y | \theta)
+$$
+
+## Example: two-dice wager
+
+> A gambler presents you with an even-money wager.
+You will roll two dice, and if the highest number showing is one, two, three or four, then you win.
+If the highest number on either die is five or six, then she wins.
+Should you take the bet?
+
+# Example: linear regression
+
+## Overview
+
+Standard linear regression model, let's assume $x \in \mathbb{R}$ for simplicity (1 predictor):
+$$
+y_i = ax_i + b + \epsilon_i
+$$
+where $\epsilon_i \sim N(0, \sigma^2)$.
+
+## Conditional distribution of $y_i$
+
+The conditional probability density of $y_i$ given $x_i$ is
+$$
+p(y_i | x_i, a, b, \sigma) = N(ax_i + b, \sigma^2)
+$$
+which is a shorthand for writing out the full equation for the Normal PDF.
+We can (and often will) write this as
+$$
+y_i \sim \mathcal{N}(ax_i + b, \sigma^2)
+$$
+Finally, we will sometimes write $p(y_i | x_i)$ as a shorthand for $p(y_i | x_i, a, b, \sigma)$.
+While fine in many circumstances, we should take care to make sure we are extremely clear about what parameters we are conditioning on.
+
+## Marginal distribution of $y_i$
+
+The marginal probability density of $y_i$ is
+$$
+p(y_i | a, b, \sigma) = \int p(y_i | x_i, a, b, \sigma) p(x_i) \, dx_i
+$$
+where $p(x_i)$ is the probability density of $x_i$.
+
+## Joint distribution of $y_i$ and $x_i$
+
+The joint probability density of $y_i$ and $x_i$ is
+$$
+p(y_i, x_i | a, b, \sigma) = p(y_i | x_i, a, b, \sigma) p(x_i)
+$$
+where $p(x_i)$ is the probability density of $x_i$.
+
+## Simulation {.scrollable .smaller}
+
+```{julia}
+#| output: false
+m = 2
+b = 1
+σ = 1.5
+```
+
+. . .
+
+If $x=2$, we can simulate from the conditional distribution of $y$:
+
+```{julia}
+N_sim = 10_000
+
+x = 2
+y = rand(Normal(m * x + b, σ), N_sim)
+histogram(y, title=L"$p(y | x=2)$", label="Sampled", normalize=true, xlabel=L"$y$", ylabel="Density")
+```
+
+. . .
+
+If $x \sim N(0, 1)$, then we can simulate from the joint distribution of $x$ and $y$:
+
+```{julia}
+x = rand(Normal(0, 1), 10_000)
+y = [rand(Normal(m * xᵢ + b, σ)) for xᵢ in x] # <1>
+scatter(x, y, label=L"$p(x, y)$", xlabel=L"$x$", ylabel=L"$y$")
+```
+
+1. A list comprehension here is less elegant than writing `rand.(Normal.(m .* x .+ b, σ))` but it is easy to read. The results are the same.
+
+. . .
+
+Finally, assuming the same distribution, we can simulate from the marginal distribution of $y$:
+
+```{julia}
+histogram(y, label=L"$p(y)$", normalize=true, xlabel=L"$y$", ylabel="Density")
+```
+
+
+
+
+
+
+
+
+# Example: negative binomial as a mixture
+
+## Overview
+
+The Negative Binomial distribution (see last lecture) can be interpreted as a Gamma-Poisson *mixture*:
+
+$$
+\begin{align}
+y &\sim \textrm{Poisson}(\lambda) \\
+\lambda &\sim \textrm{Gamma}\left(r, \frac{p}{1-p} \right)
+\end{align}
+$$
+
+## Mathematical derivation
+
+We can show mathematically that if $y ~ \textrm{Negative Binomial}(r, p)$, that is equivalent to the mixture model $y ~ \textrm{Poisson}(\lambda)$ and $\lambda ~ \textrm{Gamma}(r, p / (1 - p))$.
+$$
+\begin{align}
+& \int_0^{\infty} f_{\text {Poisson }(\lambda)}(y) \times f_{\operatorname{Gamma}\left(r, \frac{p}{1-p}\right)}(\lambda) \mathrm{d} \lambda \\
+& = \int_0^{\infty} \frac{\lambda^y}{y !} e^{-\lambda} \times \frac{1}{\Gamma(r)}\left(\frac{p}{1-p} \lambda\right)^{r-1} e^{-\frac{p}{1-p} \lambda}\left(\frac{p}{1-p} \mathrm{~d} \lambda\right) \\
+\ldots \\
+&= f_{\text {Negative Binomial }(r, p)}(y)
+\end{align}
+$$
+For all the steps see [Wikipedia](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Gamma%E2%80%93Poisson_mixture){target=_blank}.
+
+## Simulation example {.scrollable}
+
+We can see this with simulation.
+First we define a function to simulate from the Gamma-Poisson mixture:
+
+```{julia}
+function gamma_poisson(r, p)
+    g_dist = Gamma(r, (1 - p) / p)
+    λ = rand(g_dist)
+    p_dist = Poisson(λ)
+    return rand(p_dist)
+end
+```
+
+. . .
+
+Then we can simulate from the mixture and compare to the Negative Binomial distribution:
+
+```{julia}
+r = 3 # number of failures
+p = 1 / 6 # probability of failure
+dist = NegativeBinomial(r, p)
+
+# simulate 50,000 rolls
+rolls = [gamma_poisson(r, p) for _ in 1:50_000]
+
+# plot the samples
+xticks = 0:1:60 # specify the bin values
+histogram(
+    rolls;
+    bins=-0.5:1:(maximum(xticks)+0.5),
+    xlabel="Number of rolls",
+    ylabel="PMF",
+    marker=:o,
+    label="Gamma-Poisson",
+    normalize=true
+)
+
+# add the PDF of the negative binomial distribution
+plot!(xticks, pdf.(dist, xticks); linewidth=2, label="Neg. Binom.")
+```
+
+## So what? {.smaller .scrollable}
+
+I don't need you to know all the details of this particular mixture model.
+What I *do* want you to understand is:
+
+::: {.incremental}
+
+1. We can model data using combinations of simpler distributions
+1. We can use simple simulation approaches to approximate more complex relationships
+    1. For example, if we wanted to know $\Pr(y > 10)$ when $y \sim \text{Negative Binomial}(r, p)$ but we didn't have a Negative Binomial distribution in our software package we could estimate our quantity of interest
+    1. This isn't very interesting for this model (there is an analytic solution!) but lots of models we might want to write down don't have analytic solutions
+
+:::
+
+# Wrapup
+
+## Key ideas
+
+- Conditional probability
+- Joint probability
+- Marginal probability
+- Bayes' Rule
+- Likelihood
+- Posterior
+- Simulation methods
