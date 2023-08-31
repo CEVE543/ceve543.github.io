@@ -206,8 +206,7 @@ window.MathJax = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install-git" id="toc-install-git" class="nav-link active" data-scroll-target="#install-git">Install Git</a></li>
-  <li><a href="#install-julia" id="toc-install-julia" class="nav-link" data-scroll-target="#install-julia">Install Julia</a>
+  <li><a href="#install-julia" id="toc-install-julia" class="nav-link active" data-scroll-target="#install-julia">Install Julia</a>
   <ul class="collapse">
   <li><a href="#installing-juliaup-on-windows" id="toc-installing-juliaup-on-windows" class="nav-link" data-scroll-target="#installing-juliaup-on-windows">Installing Juliaup on Windows</a></li>
   <li><a href="#installing-juliaup-on-macos" id="toc-installing-juliaup-on-macos" class="nav-link" data-scroll-target="#installing-juliaup-on-macos">Installing Juliaup on MacOS</a></li>
@@ -223,15 +222,18 @@ window.MathJax = {
   <li><a href="#set-up-github" id="toc-set-up-github" class="nav-link" data-scroll-target="#set-up-github">Set Up GitHub</a>
   <ul class="collapse">
   <li><a href="#create-github-account" id="toc-create-github-account" class="nav-link" data-scroll-target="#create-github-account">Create GitHub Account</a></li>
-  <li><a href="#use-github" id="toc-use-github" class="nav-link" data-scroll-target="#use-github">Use GitHub</a></li>
+  <li><a href="#github-desktop-optional" id="toc-github-desktop-optional" class="nav-link" data-scroll-target="#github-desktop-optional">GitHub Desktop (Optional)</a></li>
+  <li><a href="#install-git" id="toc-install-git" class="nav-link" data-scroll-target="#install-git">Install Git</a></li>
   <li><a href="#more-resources-2" id="toc-more-resources-2" class="nav-link" data-scroll-target="#more-resources-2">More Resources</a></li>
   </ul></li>
   <li><a href="#set-up-quarto" id="toc-set-up-quarto" class="nav-link" data-scroll-target="#set-up-quarto">Set up Quarto</a>
   <ul class="collapse">
   <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
   <li><a href="#install-the-quarto-extension-for-vs-code" id="toc-install-the-quarto-extension-for-vs-code" class="nav-link" data-scroll-target="#install-the-quarto-extension-for-vs-code">Install the Quarto Extension for VS Code</a></li>
+  <li><a href="#install-jupyter" id="toc-install-jupyter" class="nav-link" data-scroll-target="#install-jupyter">Install Jupyter</a></li>
   <li><a href="#more-resources-3" id="toc-more-resources-3" class="nav-link" data-scroll-target="#more-resources-3">More Resources</a></li>
   </ul></li>
+  <li><a href="#verify" id="toc-verify" class="nav-link" data-scroll-target="#verify">Verify</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -257,10 +259,6 @@ window.MathJax = {
 
 <p>Getting set up for this course requires the following steps. If you are an experienced programmer, you are free to follow your own workflow to set up these tools. You will absolutely need Quarto, GitHub, and Julia. If you are not an experienced programmer, the following steps are not the <em>only</em> way to get these tools set up, but they are a <em>very good</em> way.</p>
 <p>If you install course tools using steps other than the ones provided on this page, be aware that your instructors may be able to provide you with only limited support.</p>
-<section id="install-git" class="level2">
-<h2 class="anchored" data-anchor-id="install-git">Install Git</h2>
-<p>If you have already installed <code>git</code>, you don’t need to worry about this section. If you haven’t, <a href="https://git-scm.com/downloads">download</a> the appropriate version for your operating system. <code>git</code> is also available through package managers like homebrew (if you know what this means, you probably have <code>git</code> installed already).</p>
-</section>
 <section id="install-julia" class="level2">
 <h2 class="anchored" data-anchor-id="install-julia">Install Julia</h2>
 <p>I recommend installing Julia using the <code>juliaup</code> tool, which will let you easily manage versions in the future and works seamlessly with VS Code. The instructions can be found at the <a href="https://github.com/JuliaLang/juliaup">JuliaUp GitHub repository</a>, but we will summarize them here.</p>
@@ -314,13 +312,17 @@ julia default 1.9</code></pre>
 <p>If you already have a GitHub account, you can use that for this course and do not need to create a new account. Otherwise, <a href="https://github.com/join">create an account</a>. It doesn’t have to be linked to your Rice email or your NetID.</p>
 <p>For labs and projects, you should use the GitHub Classroom link posted on Canvas to “accept” the assignment, which will give you your own GitHub repository for that assignment. The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.</p>
 </section>
-<section id="use-github" class="level3">
-<h3 class="anchored" data-anchor-id="use-github">Use GitHub</h3>
+<section id="github-desktop-optional" class="level3">
+<h3 class="anchored" data-anchor-id="github-desktop-optional">GitHub Desktop (Optional)</h3>
 <p>You can do almost everything that you will need to do for this course with GitHub directly through VS Code. The GitHub <a href="https://desktop.github.com/">desktop app</a> is also great, or alternatively you may work directly through the terminal if you have prior experience.</p>
+</section>
+<section id="install-git" class="level3">
+<h3 class="anchored" data-anchor-id="install-git">Install Git</h3>
+<p><code>git</code> is a version control software that powers GitHub under the hood (<code>git</code> is the version control software, GitHub is an online platform). Based on past experience with the course, you probably already have <code>git</code> installed. If you’re not sure if it’s installed, see instructions <a href="https://github.com/git-guides/install-git">here</a>.</p>
 </section>
 <section id="more-resources-2" class="level3">
 <h3 class="anchored" data-anchor-id="more-resources-2">More Resources</h3>
-<p>See <a href="./tutorials/github.html">this tutorial</a> for more information on using GitHub.</p>
+<p>See <a href="./tutorials/github.html">GitHub official tutorials</a> for more helpful resources and tutorials.</p>
 </section>
 </section>
 <section id="set-up-quarto" class="level2">
@@ -334,12 +336,45 @@ julia default 1.9</code></pre>
 <h3 class="anchored" data-anchor-id="install-the-quarto-extension-for-vs-code">Install the Quarto Extension for VS Code</h3>
 <p>Under “Step 2”, click on the VS Code icon.</p>
 </section>
+<section id="install-jupyter" class="level3">
+<h3 class="anchored" data-anchor-id="install-jupyter">Install Jupyter</h3>
+<p>Under the hood, Quarto uses Jupyter to run code. You don’t need to know how Jupyter works or worry about it, because it runs under the hood, but we will need to install it.</p>
+<section id="if-you-have-python-installed" class="level4">
+<h4 class="anchored" data-anchor-id="if-you-have-python-installed">If you have Python installed</h4>
+<p>In your <a href="https://code.visualstudio.com/docs/terminal/basics">Terminal</a> (open VS Code then open the terminal), run</p>
+<pre class="shell"><code>python3 -m pip install jupyter</code></pre>
+<p>If this throws an error, copy and paste the error onto Canvas</p>
+</section>
+<section id="if-you-dont-have-python-installed" class="level4">
+<h4 class="anchored" data-anchor-id="if-you-dont-have-python-installed">If you don’t have Python installed</h4>
+<ol type="1">
+<li>Install Python
+<ol type="1">
+<li>Windows: see <a href="https://learn.microsoft.com/en-us/windows/python/beginners">Microsoft instructions</a> or <a href="https://docs.conda.io/en/latest/miniconda.html">Conda</a> documentation</li>
+<li>Mac/Linux: see <a href="https://docs.conda.io/en/latest/miniconda.html">Conda</a> documentation</li>
+</ol></li>
+<li>Follow the instructions above</li>
+</ol>
+</section>
+</section>
 <section id="more-resources-3" class="level3">
 <h3 class="anchored" data-anchor-id="more-resources-3">More Resources</h3>
 <p>See <a href="./tutorials/quarto.html">this tutorial</a> for more information on using Quarto.</p>
-
-
 </section>
+</section>
+<section id="verify" class="level2">
+<h2 class="anchored" data-anchor-id="verify">Verify</h2>
+<ol type="1">
+<li><a href="labs/lab01.qmd">Lab 01</a> has a section that will help you verify that your setup is working.</li>
+<li>If you have any trouble:
+<ol type="1">
+<li>Open VS Code</li>
+<li>In the <a href="https://code.visualstudio.com/docs/terminal/basics">Terminal</a>, run <code>quarto check</code></li>
+<li>Try to troubleshoot on your own; if you can’t, post the results of <code>quarto check</code> to Canvas</li>
+</ol></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->
