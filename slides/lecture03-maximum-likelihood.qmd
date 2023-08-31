@@ -58,6 +58,10 @@ $$
 . . .
 
 ```{julia}
+using Distributions
+using Plots
+using LaTeXStrings
+
 function lik(μ::Real, σ::Real, y::Real) # <1>
     dist = Normal(μ, σ)
     return pdf(dist, y) # <2>

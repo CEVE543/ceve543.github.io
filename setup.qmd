@@ -9,12 +9,6 @@ If you are not an experienced programmer, the following steps are not the _only_
 
 If you install course tools using steps other than the ones provided on this page, be aware that your instructors may be able to provide you with only limited support.
 
-## Install Git
-
-If you have already installed `git`, you don't need to worry about this section.
-If you haven't, [download](https://git-scm.com/downloads) the appropriate version for your operating system.
-`git` is also available through package managers like homebrew (if you know what this means, you probably have `git` installed already).
-
 ## Install Julia
 
 I recommend installing Julia using the `juliaup` tool, which will let you easily manage versions in the future and works seamlessly with VS Code.
@@ -83,14 +77,20 @@ Otherwise, [create an account](https://github.com/join). It doesn't have to be l
 For labs and projects, you should use the GitHub Classroom link posted on Canvas to "accept" the assignment, which will give you your own GitHub repository for that assignment.
 The first time you click one of these links, you will need to link your place on the course roster with your GitHub account.
 
-### Use GitHub
+### GitHub Desktop (Optional)
 
 You can do almost everything that you will need to do for this course with GitHub directly through VS Code.
 The GitHub [desktop app](https://desktop.github.com/) is also great, or alternatively you may work directly through the terminal if you have prior experience.
 
+### Install Git
+
+`git` is a version control software that powers GitHub under the hood (`git` is the version control software, GitHub is an online platform).
+Based on past experience with the course, you probably already have `git` installed.
+If you're not sure if it's installed, see instructions [here](https://github.com/git-guides/install-git).
+
 ### More Resources
 
-See [this tutorial](tutorials/github.qmd) for more information on using GitHub.
+See [GitHub official tutorials](tutorials/github.qmd) for more helpful resources and tutorials.
 
 ## Set up Quarto
 
@@ -106,6 +106,36 @@ Be sure to ensure that you have the right version for your operating system.
 
 Under "Step 2", click on the VS Code icon.
 
+### Install Jupyter
+
+Under the hood, Quarto uses Jupyter to run code.
+You don't need to know how Jupyter works or worry about it, because it runs under the hood, but we will need to install it.
+
+#### If you have Python installed
+
+In your [Terminal](https://code.visualstudio.com/docs/terminal/basics) (open VS Code then open the terminal), run
+
+```shell
+python3 -m pip install jupyter
+```
+
+If this throws an error, copy and paste the error onto Canvas
+
+#### If you don't have Python installed
+
+1. Install Python
+    1. Windows: see [Microsoft instructions](https://learn.microsoft.com/en-us/windows/python/beginners) or [Conda](https://docs.conda.io/en/latest/miniconda.html) documentation
+    1. Mac/Linux: see [Conda](https://docs.conda.io/en/latest/miniconda.html) documentation
+1. Follow the instructions above
+
 ### More Resources
 
 See [this tutorial](tutorials/quarto.qmd) for more information on using Quarto.
+
+## Verify
+
+1. [Lab 01](labs/lab01.qmd) has a section that will help you verify that your setup is working.
+1. If you have any trouble:
+    1. Open VS Code
+    1. In the [Terminal](https://code.visualstudio.com/docs/terminal/basics), run `quarto check`
+    1. Try to troubleshoot on your own; if you can't, post the results of `quarto check` to Canvas
