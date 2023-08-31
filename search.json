@@ -616,6 +616,132 @@
     "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
   },
   {
+    "objectID": "labs/lab02/template.html",
+    "href": "labs/lab02/template.html",
+    "title": "Lab 02",
+    "section": "",
+    "text": "In this lab we will learn how to work with tabular data in Julia. Specifically, you will get some experience using:\n\nDataFrames.jl to store tabular data as a DataFrame\nCSV.jl to read CSV files and convert them to DataFrames\nDataFramesMeta.jl to manipulate DataFrames\nPlots.jl and StatsPlots.jl to create visualizations\n\n\n\nTechnically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however.\n\n\n\nI have provided you with a lot of template code.\n\nAny code block that starts with ```{julia} is live code and will run.\n\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with ```julia (without the brackets) is not live code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make them live code, change the first line to ```{julia} (with the brackets).\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\n\nThis is an instruction.\n\n\n\n\n\n\nAsk questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
+  },
+  {
+    "objectID": "labs/lab02/template.html#exploratory-modeling",
+    "href": "labs/lab02/template.html#exploratory-modeling",
+    "title": "Lab 02",
+    "section": "",
+    "text": "Technically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however."
+  },
+  {
+    "objectID": "labs/lab02/template.html#instructions",
+    "href": "labs/lab02/template.html#instructions",
+    "title": "Lab 02",
+    "section": "",
+    "text": "I have provided you with a lot of template code.\n\nAny code block that starts with ```{julia} is live code and will run.\n\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with ```julia (without the brackets) is not live code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make them live code, change the first line to ```{julia} (with the brackets).\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\n\nThis is an instruction."
+  },
+  {
+    "objectID": "labs/lab02/template.html#getting-help",
+    "href": "labs/lab02/template.html#getting-help",
+    "title": "Lab 02",
+    "section": "",
+    "text": "Ask questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
+  },
+  {
+    "objectID": "labs/lab02/template.html#clone-the-respository",
+    "href": "labs/lab02/template.html#clone-the-respository",
+    "title": "Lab 02",
+    "section": "2.1 Clone the respository",
+    "text": "2.1 Clone the respository\nFirst, you’ll need to clone this repository to your computer. As with Lab 01, I recommend to use GitHub Desktop or the built-in Git support in VS Code."
+  },
+  {
+    "objectID": "labs/lab02/template.html#install-required-packages",
+    "href": "labs/lab02/template.html#install-required-packages",
+    "title": "Lab 02",
+    "section": "2.2 Install required packages",
+    "text": "2.2 Install required packages\n\nIn VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and select Julia: Start REPL.\nIn the Julia REPL, type ] to enter the package manager.\nType activate . to activate the project environment.\nType instantiate to install the required packages. This may take a moment.1\n\n\n\n1 Julia precompiles packages when they are installed, and (to a lesser extent) when they are first used. The first time you use a package it may take a moment to load. This is normal, nothing to worry about, and rapidly improving."
+  },
+  {
+    "objectID": "labs/lab02/template.html#using-statement",
+    "href": "labs/lab02/template.html#using-statement",
+    "title": "Lab 02",
+    "section": "2.3 Using statement",
+    "text": "2.3 Using statement\nIn Julia we say using to import a package. Typically we want to do this as early as possible in a script or notebook.\n\n1using CSV\nusing DataFrames\nusing DataFramesMeta\nusing Dates\nusing Plots\nusing StatsBase: mean\nusing StatsPlots\n\n\n1\n\nNote that this is live code and will run. If you have not yet installed the packages, you will see an error message. Don’t change this block – see instructions"
+  },
+  {
+    "objectID": "labs/lab02/template.html#dates",
+    "href": "labs/lab02/template.html#dates",
+    "title": "Lab 02",
+    "section": "3.1 Dates",
+    "text": "3.1 Dates\nWe can see that our DataFrame has five columns, the first of which is “Date Time”. However, the “Date Time” column is being parsed as a string. We want it to be a DateTime object from the Dates package. To do that, we need to tell Julia how the dates are formatted. We could then manually convert, but CSV.read has a kewyord argument that we can use\n\n1date_format = \"yyyy-mm-dd HH:MM\"\ndf = CSV.read(fname, DataFrame; dateformat=date_format)\nfirst(df, 3)\n\n\n1\n\nThis is a string that tells Julia how the dates are formatted. For example, 1928-01-01 00:00. See the documentation for more information.\n\n\n\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nFloat64\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73\n0.0\n0\n0"
+  },
+  {
+    "objectID": "labs/lab02/template.html#water-levels",
+    "href": "labs/lab02/template.html#water-levels",
+    "title": "Lab 02",
+    "section": "3.2 Water levels",
+    "text": "3.2 Water levels\nThe next column is “Water Level”, which is the height of the water above the reference point (NAVD) in meters. We can see that this is being parsed as a float, which is what we want 👍. However, you have to know that the data is in meters rather than inches or feet or something else. To explicitly add information about the units, we can use the Unitful package.\n\nusing Unitful\n\ndf[!, \" Water Level\"] .*= 1u\"m\"\nfirst(df, 3)\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nQuantity…\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547 m\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699 m\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73 m\n0.0\n0\n0\n\n\n\n\n\n\n\n\n\n\n\n\nCode explanation\n\n\n\n\nWe select the column with water levels using its name. The ! means “all rows”. Thus, df[!, \" Water Level\"] is a vector of all the water levels stored.\n*= means to multiply in place. For example, if x=2 then x *= 2 is equivalent to x = x * 2. .*= is a vector syntax, meaning do the multiplication to each element of the vector individually.\n1u\"m\" is a Unitful object that represents 1 meter. We multiply the water levels by this to convert them to meters."
+  },
+  {
+    "objectID": "labs/lab02/template.html#subsetting-and-renaming",
+    "href": "labs/lab02/template.html#subsetting-and-renaming",
+    "title": "Lab 02",
+    "section": "3.3 Subsetting and renaming",
+    "text": "3.3 Subsetting and renaming\nWe want to only keep the first two (for more on the other three, see here). We can also rename the columns to make them easier to work with (spaces in variable names are annoying). To do this, we use the @rename function:\n\n1df = @rename(df, :datetime = $\"Date Time\", :lsl = $\" Water Level\");\n\n\n1\n\nThe $ is needed here because the right hand side is a string, not a symbol.\n\n\n\n\nThen, we can use the @select function to do select the columns we want. Notice how the first argument to select is the DataFrame and the subsequent arguments are column names. Notice also that our column names were strings (\"Date Time\"), but we can also use symbols (:datetime).\n\ndf = @select(df, :datetime, :lsl);\n\nFor more on what DataFramesMeta can do, see this Tweet."
+  },
+  {
+    "objectID": "labs/lab02/template.html#writing-a-function",
+    "href": "labs/lab02/template.html#writing-a-function",
+    "title": "Lab 02",
+    "section": "3.4 Writing a function",
+    "text": "3.4 Writing a function\nWe have just done a lot of work to read in our data. However, this just gives us data for the year 1928. In fact, we have a CSV file for each year 1928-2021. To make sure we can read them each in excatly the same way, we want to write a function.\nfunction read_tides(year::Int)\n    fname = \"data/tidesandcurrents-8638610-$(year)-NAVD-GMT-metric.csv\" # don't change this\n    date_format = \"yyyy-mm-dd HH:MM\" # don't change this\n    # your code here\n    # 1. read in the CSV file and save as a dataframe\n    # 2. convert the \"Date Time\" column to a DateTime object\n    # 3. convert the \" Water Level\" column to meters\n    # 4. rename the columns to \"datetime\" and \"lsl\"\n    # 5. select the \"datetime\" and \"lsl\" columns\n    # 6. return the dataframe\nend\n\n# print out the first 10 rows of the 1928 data\nfirst(read_tides(1928), 10) \n\n\n\n\n\n\nInstructions\n\n\n\nFill out this function. Your function should implement the six steps indicated in the instructions. When it’s done, convert it to a live code block with: ```{julia}. When you run this code, it should print out the first 10 rows of the 1928 data. Make sure they look right!"
+  },
+  {
+    "objectID": "labs/lab02/template.html#combining-files",
+    "href": "labs/lab02/template.html#combining-files",
+    "title": "Lab 02",
+    "section": "3.5 Combining files",
+    "text": "3.5 Combining files\nNow that we have the ability to read in the data corresponding to any year, we can read them all in and combine into a single DataFrame. First, let’s read in all the data.\nyears = 1928:2021 # all the years of data\nannual_data = # 1. call the read_tides function on each year\nNext, we’ll use the vcat function to combine all the data into a single DataFrame.\ndf = vcat(annual_data...) # don't change this\nfirst(df, 5)\nlast(df, 5) # check the last 5 years\n\n\n\n\n\n\nInstructions\n\n\n\n\nCall the read_tides function on each year\nTurn the two code blocks in this section into live code blocks\nRun the code and make sure the first 5 rows and last five rows look right"
+  },
+  {
+    "objectID": "labs/lab02/template.html#time-series-plot",
+    "href": "labs/lab02/template.html#time-series-plot",
+    "title": "Lab 02",
+    "section": "4.1 Time series plot",
+    "text": "4.1 Time series plot\nLet’s start with a simple time series plot of the water levels. Our data is collected hourly, so we have a lot of data points! Still, we can plot them all.\n\nplot(\n    df.datetime,\n    df.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n1    ylabel=\"Water level\",\n2    label=false,\n)\n\n\n1\n\nBecause we are using the Unitful pacakge, the y-axis label will automatically include the units!!!\n\n2\n\nWe are only plotting one “series” (data set), so we don’t need a legend."
+  },
+  {
+    "objectID": "labs/lab02/template.html#zooming-in",
+    "href": "labs/lab02/template.html#zooming-in",
+    "title": "Lab 02",
+    "section": "4.2 Zooming in",
+    "text": "4.2 Zooming in\nFocusing on the entire time series means we can’t dig into the details. Let’s zoom in on a single month (October 1928) using the @subset function.\n\nt_start = Dates.DateTime(1928, 10, 1, 0)\nt_end = Dates.DateTime(1928, 10, 31, 23)\ndf_month = @subset(df, t_start .&lt;= :datetime .&lt;= t_end)\nfirst(df_month, 3)\n\n3×2 DataFrame\n\n\n\nRow\ndatetime\nlsl\n\n\n\nDateTime\nQuantity…\n\n\n\n\n1\n1928-10-01T00:00:00\n0.215 m\n\n\n2\n1928-10-01T01:00:00\n0.429 m\n\n\n3\n1928-10-01T02:00:00\n0.581 m\n\n\n\n\n\n\nNow we can plot it as above.\n\nplot(\n    df_month.datetime,\n    df_month.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n    ylabel=\"Water level\",\n    label=false,\n)"
+  },
+  {
+    "objectID": "labs/lab02/template.html#instructions-3",
+    "href": "labs/lab02/template.html#instructions-3",
+    "title": "Lab 02",
+    "section": "4.3 Instructions",
+    "text": "4.3 Instructions\nChange the start and end dates to plot March 2020. What do you notice? :::"
+  },
+  {
+    "objectID": "labs/lab02/template.html#groupby",
+    "href": "labs/lab02/template.html#groupby",
+    "title": "Lab 02",
+    "section": "4.4 Groupby",
+    "text": "4.4 Groupby\nAn essential idea in working with tabular data (and other data formats) is “split-apply-combine”. Essentially: split the data into groups, apply some function to each group, and then combine the results.\nWe can use this workflow to answer an interesting question: what is the average water level for each month?22 To do a better job, we should separate out the long-term trend from the seasonal cycle. This is called de-trending and is a common technique in climate science. We can worry more about this later.\n\n1df[!, :month] = Dates.month.(df.datetime)\n2df_bymonth = groupby(df, :month)\n3df_climatology = combine(df_bymonth, :lsl =&gt; mean =&gt; :lsl_avg);\n\n\n1\n\nThis creates a new column called :month that is the month of each observation.\n\n2\n\nThis creates a GroupedDataFrame object that contains all the data grouped by month.\n\n3\n\nThis takes the grouped data and calculates the mean of the :lsl column for each month. The general syntax is combine(grouped_df, :column =&gt; function).\n\n\n\n\nWe can now plot the climatology.\n\nplot(\n1    df_climatology.month,\n    df_climatology.lsl_avg;\n    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Average Water level\",\n    linewidth=2,\n    label=false,\n)\n\n\n1\n\nWe can use df.colname instead of df[!, :colname]. The latter is more robust but the former is easier to type.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\n\nUse the full dataset to plot the climatology using data from all years\nNext, create a new Markdown header (## Groupby Day of Year) plot the average water level for each day of the year (Dates.dayofyear from 1 to 366).\nWhat do you notice?"
+  },
+  {
+    "objectID": "labs/lab02/template.html#boxplot",
+    "href": "labs/lab02/template.html#boxplot",
+    "title": "Lab 02",
+    "section": "4.5 Boxplot",
+    "text": "4.5 Boxplot\nBoxplots are ways to visualize the distribution of data. They show the median (the line in the middle of the box), the interquartile range (the box), and the range of the data (the whiskers). Outliers are shown as dots. We can use the boxplot function from the StatsPlots.jl package:\n\nboxplot(\n    df[!, :month],\n    df[!, :lsl];\n    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Water level\",\n    label=false,\n    title=\"Climatology\",\n)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\nRepeat this analysis grouping by year rather than month. What do you notice from the boxplots?"
+  },
+  {
+    "objectID": "labs/lab02/template.html#submission",
+    "href": "labs/lab02/template.html#submission",
+    "title": "Lab 02",
+    "section": "4.6 Submission",
+    "text": "4.6 Submission\n\nRemove all of the instructions blocks (from the first ::: {.callout-important} to the following :::)\nRemove all of the text I have written (including this block) so that all the text is your own. This makes it much easier to grade and to follow what is yours.\n\nDo not delete any of the headers\n\nThus, the beginning of the document should have the headers for the overview, exploratory modeling, instructions, and getting help, but these should not have any text\nThis will ensure all documents have the same numbering to make it easier to troubleshoot any issues\n\nDo not delete any of the code\n\nMake sure your code runs (click the “Run All” button in the command palette)\nRender your notebook:\n\nOpen comand palette\nSelect Quarto: Render. Do not select “render project” or “render DOCX” or similar.\nThis will create a website that you can view in your browser. The address will be in your terminal like\n\nWatching files for changes\nBrowse at http://localhost:4200/labs/lab02/instructions.html\n\nMake sure your notebook looks right in the browser.\nAt the top of the page near the table of contents (Right hand side) there is a tab that says “Other Formats” and then “MS Word”. Click on that to download a DOCX file\n\nSubmit the .docx file to Canvas.\n\nProofread before you submit"
+  },
+  {
     "objectID": "labs/lab01/solution.html",
     "href": "labs/lab01/solution.html",
     "title": "Lab 01",
