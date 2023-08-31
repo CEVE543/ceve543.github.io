@@ -476,15 +476,15 @@ p(y | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="5" data-code-annotation="1" data-code-cell="annotated-cell-1">These are called “type annotations” and specify the type of variable that each argument can take. In this case, any <code>Real</code> (float or integer) will work.</span>
+<span data-code-annotation="1" data-code-lines="5" data-code-cell="annotated-cell-1">These are called “type annotations” and specify the type of variable that each argument can take. In this case, any <code>Real</code> (float or integer) will work.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="7" data-code-annotation="2" data-code-cell="annotated-cell-1">This specifies the likelihood using the <code>pdf</code> function</span>
+<span data-code-annotation="2" data-code-lines="7" data-code-cell="annotated-cell-1">This specifies the likelihood using the <code>pdf</code> function</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="13" data-code-annotation="3" data-code-cell="annotated-cell-1">The vector notation <code>lik.</code> means to apply it to each element of <code>x</code>. <code>[lik(xi, 1, 2) for xi in x]</code> would do the same thing.</span>
+<span data-code-annotation="3" data-code-lines="13" data-code-cell="annotated-cell-1">The vector notation <code>lik.</code> means to apply it to each element of <code>x</code>. <code>[lik(xi, 1, 2) for xi in x]</code> would do the same thing.</span>
 </dd>
 </dl>
 </div>
@@ -589,19 +589,19 @@ p(y | \theta) = \prod_{i=1}^n p(y_i | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-2"><code>Vector{&lt;:Real}</code> means a vector of any subtype of <code>Real</code>. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-2"><code>Vector{&lt;:Real}</code> means a vector of any subtype of <code>Real</code>. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-2"><code>Distributions.logpdf</code> is the log of the pdf. Here <code>log_liks</code> will be a vector with the same length as <code>y</code>.</span>
+<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-2"><code>Distributions.logpdf</code> is the log of the pdf. Here <code>log_liks</code> will be a vector with the same length as <code>y</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="4" data-code-annotation="3" data-code-cell="annotated-cell-2">Add up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.</span>
+<span data-code-annotation="3" data-code-lines="4" data-code-cell="annotated-cell-2">Add up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="10" data-code-annotation="4" data-code-cell="annotated-cell-2">In this case both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are vectors, with different lengths, so using the dot notation <code>lik.</code> won’t work – it doesn’t know which variable to vectorize over.</span>
+<span data-code-annotation="4" data-code-lines="10" data-code-cell="annotated-cell-2">In this case both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are vectors, with different lengths, so using the dot notation <code>lik.</code> won’t work – it doesn’t know which variable to vectorize over.</span>
 </dd>
 </dl>
 </div>
