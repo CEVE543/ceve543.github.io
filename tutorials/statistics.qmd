@@ -10,8 +10,11 @@ Here are some especially good ones.
 - @james_statlearn:2013 is a classic introduction to machine learning, which complements the Bayesian perspective nicely.
 - @nazarathy_julia:2021 offers some tutorials on using Julia for statistics and machine learning; reading good code is a great way to improve your coding.
 - For a fairly detailed exploration of hierarchical space-time models, see @cressie_spatiotemporal:2011. There have been some computational advances since then that are worth keeping in mind before you apply these models directly, but it's a clearly written overview.
-- The United States Geological Survey (USGS) uses @bulletin17c:2019 for flood frequency analysis. As you can see, there is a tremendous gap between modern statistical theory and methodology, and what federal agencies require analysis to look like.
+- The United States Geological Survey (USGS) uses @bulletin17c:2019 for flood frequency analysis. 
 - @helsel_waterresources:2020 is a textbook also produced by the USGS covering some general statistical methods with a water resources focus.
 - The documentation for the [Turing](https://turing.ml/dev/tutorials/), [PyMC](https://www.pymc.io/projects/docs/en/v3/nb_examples/index.html), and (especially) [stan](https://mc-stan.org/users/documentation/) probabilistic programming languages offer outstanding tutorials on statistical modeling
 
 ## References
+
+::: {#refs}
+:::

@@ -134,7 +134,7 @@ See [this tutorial](tutorials/quarto.qmd) for more information on using Quarto.
 
 ## Verify
 
-1. [Lab 01](labs/lab01.qmd) has a section that will help you verify that your setup is working.
+1. [Lab 01](labs/lab01/instructions.qmd) has a section that will help you verify that your setup is working.
 1. If you have any trouble:
     1. Open VS Code
     1. In the [Terminal](https://code.visualstudio.com/docs/terminal/basics), run `quarto check`

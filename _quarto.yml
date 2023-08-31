@@ -77,9 +77,9 @@ format:
     toc: true
     anchor-sections: true
     callout-appearance: simple
-    reference-location: margin
-    citation-location: margin
-    code-annotations: select
+    reference-location: document
+    citations-hover: true
+    code-annotations: hover
     html-math-method: mathjax
     include-in-header: mathjax-config.html
 
