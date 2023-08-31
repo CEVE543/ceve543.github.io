@@ -354,7 +354,7 @@ window.MathJax = {
 <h2 data-number="2.1" class="anchored" data-anchor-id="clone-the-respository"><span class="header-section-number">2.1</span> Clone the respository</h2>
 <p>First, you’ll need to clone this repository to your computer. As with Lab 01, I recommend to use GitHub Desktop or the built-in Git support in VS Code.</p>
 </section>
-<section id="install-required-packages" class="level2 page-columns page-full" data-number="2.2">
+<section id="install-required-packages" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="install-required-packages"><span class="header-section-number">2.2</span> Install required packages</h2>
 <ol type="1">
 <li>In VS Code, open the command palette (Windows: <code>Ctrl+Shift+P</code>, Mac: <code>Cmd+Shift+P</code>) and select <code>Julia: Start REPL</code>.</li>
@@ -364,7 +364,7 @@ window.MathJax = {
 </ol>
 <!--- This is a Markdown comment. It will not be rendered in the HTML output. --->
 <!--- [^precompilation]: is Markdown syntax for a footnote. In this document footnotes are rendered in the sidebar. --->
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Julia precompiles packages when they are installed, and (to a lesser extent) when they are first used. The first time you use a package it may take a moment to load. This is normal, nothing to worry about, and rapidly improving.</p></li></div></section>
+</section>
 <section id="using-statement" class="level2 page-columns page-full" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="using-statement"><span class="header-section-number">2.3</span> <code>Using</code> statement</h2>
 <p>In Julia we say <code>using</code> to import a package. Typically we want to do this as early as possible in a script or notebook.</p>
@@ -392,7 +392,7 @@ window.MathJax = {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-cell="annotated-cell-2" data-code-annotation="1">Recall the semi-colon at the end of the line suppresses output. This is a good habit to get into when defining variables.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Recall the semi-colon at the end of the line suppresses output. This is a good habit to get into when defining variables.</span>
 </dd>
 </dl>
 </div>
@@ -405,11 +405,11 @@ window.MathJax = {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-cell="annotated-cell-3" data-code-annotation="1"><code>CSV.read</code> is a function that takes two arguments: the file name and the type of object to read the data into. In this case, we want a <code>DataFrame</code>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1"><code>CSV.read</code> is a function that takes two arguments: the file name and the type of object to read the data into. In this case, we want a <code>DataFrame</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-cell="annotated-cell-3" data-code-annotation="2"><code>first</code> is a function that takes two arguments: the object to look at and the number of items to display. In this case, we want to look at the first 5 rows of the <code>DataFrame</code>.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2"><code>first</code> is a function that takes two arguments: the object to look at and the number of items to display. In this case, we want to look at the first 5 rows of the <code>DataFrame</code>.</span>
 </dd>
 </dl>
 </div>
@@ -492,11 +492,11 @@ window.MathJax = {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-cell="annotated-cell-4" data-code-annotation="1">This is a string that tells Julia how the dates are formatted. For example, <code>1928-01-01 00:00</code>. See the <a href="https://docs.julialang.org/en/v1/stdlib/Dates/#Base.Dates.DateFormat">documentation</a> for more information.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">This is a string that tells Julia how the dates are formatted. For example, <code>1928-01-01 00:00</code>. See the <a href="https://docs.julialang.org/en/v1/stdlib/Dates/#Base.Dates.DateFormat">documentation</a> for more information.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-cell="annotated-cell-4" data-code-annotation="2"><code>dateformat</code> is a <em>keyword argument</em> while <code>date_format</code> is a variable whose value is <code>"yyyy-mm-dd HH:MM"</code>. We could equivalently write <code>dateformat="yyyy-mm-dd HH:MM"</code>.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="2"><code>dateformat</code> is a <em>keyword argument</em> while <code>date_format</code> is a variable whose value is <code>"yyyy-mm-dd HH:MM"</code>. We could equivalently write <code>dateformat="yyyy-mm-dd HH:MM"</code>.</span>
 </dd>
 </dl>
 </div>
@@ -636,7 +636,7 @@ Code explanation
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-cell="annotated-cell-6" data-code-annotation="1">The <code>$</code> is needed here because the right hand side is a string, not a symbol.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">The <code>$</code> is needed here because the right hand side is a string, not a symbol.</span>
 </dd>
 </dl>
 </div>
@@ -743,7 +743,7 @@ Instructions
 </div>
 </section>
 </section>
-<section id="plots" class="level1 page-columns page-full" data-number="4">
+<section id="plots" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Plots</h1>
 <p>Now we’ll create some plots of our data.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -774,11 +774,11 @@ Note
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="5" data-code-cell="annotated-cell-12" data-code-annotation="1">Because we are using the <code>Unitful</code> pacakge, the y-axis label will automatically include the units!!!</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="5" data-code-annotation="1">Because we are using the <code>Unitful</code> pacakge, the y-axis label will automatically include the units!!!</span>
 </dd>
 <dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="6" data-code-cell="annotated-cell-12" data-code-annotation="2">We are only plotting one “series” (data set), so we don’t need a legend.</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="6" data-code-annotation="2">We are only plotting one “series” (data set), so we don’t need a legend.</span>
 </dd>
 </dl>
 </div>
@@ -931,10 +931,10 @@ Note
 <h2 data-number="4.3" class="anchored" data-anchor-id="instructions-3"><span class="header-section-number">4.3</span> Instructions</h2>
 <p>Change the start and end dates to plot March 2020. What do you notice? :::</p>
 </section>
-<section id="groupby" class="level2 page-columns page-full" data-number="4.4">
+<section id="groupby" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="groupby"><span class="header-section-number">4.4</span> Groupby</h2>
 <p>An essential idea in working with tabular data (and other data formats) is “split-apply-combine”. Essentially: split the data into groups, apply some function to each group, and then combine the results.</p>
-<div class="page-columns page-full"><p>We can use this workflow to answer an interesting question: what is the average water level for each month?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;To do a better job, we should separate out the long-term trend from the seasonal cycle. This is called de-trending and is a common technique in climate science. We can worry more about this later.</p></li></div></div>
+<p>We can use this workflow to answer an interesting question: what is the average water level for each month?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode julia code-annotation-code code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1">1</button><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>df[!, <span class="op">:</span>month] <span class="op">=</span> <span class="bu">Dates</span>.<span class="fu">month</span>.(df.datetime)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2">2</button><span id="annotated-cell-15-2" class="code-annotation-target"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dropmissing!</span>(df, <span class="op">:</span>lsl)</span>
@@ -944,19 +944,19 @@ Note
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-cell="annotated-cell-15" data-code-annotation="1">This creates a new column called <code>:month</code> that is the month of each observation.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">This creates a new column called <code>:month</code> that is the month of each observation.</span>
 </dd>
 <dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-cell="annotated-cell-15" data-code-annotation="2">This will discard any rows in <code>df</code> that have a missing value of <code>:lsl</code>. This is necessary because the <code>mean</code> function will return <code>missing</code> if any of the values are missing.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="2" data-code-annotation="2">This will discard any rows in <code>df</code> that have a missing value of <code>:lsl</code>. This is necessary because the <code>mean</code> function will return <code>missing</code> if any of the values are missing.</span>
 </dd>
 <dt data-target-cell="annotated-cell-15" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="3" data-code-cell="annotated-cell-15" data-code-annotation="3">This creates a <code>GroupedDataFrame</code> object that contains all the data grouped by month.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="3">This creates a <code>GroupedDataFrame</code> object that contains all the data grouped by month.</span>
 </dd>
 <dt data-target-cell="annotated-cell-15" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="4" data-code-cell="annotated-cell-15" data-code-annotation="4">This takes the grouped data and calculates the mean of the <code>:lsl</code> column for each month. The general syntax is <code>combine(grouped_df, :column =&gt; function)</code>.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="4" data-code-annotation="4">This takes the grouped data and calculates the mean of the <code>:lsl</code> column for each month. The general syntax is <code>combine(grouped_df, :column =&gt; function)</code>.</span>
 </dd>
 </dl>
 </div>
@@ -976,15 +976,15 @@ Note
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-cell="annotated-cell-16" data-code-annotation="1">We can use <code>df.colname</code> instead of <code>df[!, :colname]</code>. The latter is more robust but the former is easier to type.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="2" data-code-annotation="1">We can use <code>df.colname</code> instead of <code>df[!, :colname]</code>. The latter is more robust but the former is easier to type.</span>
 </dd>
 <dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="4" data-code-cell="annotated-cell-16" data-code-annotation="2">Setting <code>xticks</code> will set the x-axis ticks to the values in the vector. We can use this to make sure the x-axis ticks are labeled with the months.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="4" data-code-annotation="2">Setting <code>xticks</code> will set the x-axis ticks to the values in the vector. We can use this to make sure the x-axis ticks are labeled with the months.</span>
 </dd>
 <dt data-target-cell="annotated-cell-16" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="7" data-code-cell="annotated-cell-16" data-code-annotation="3">We can set the line width to make the plot easier to read.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="7" data-code-annotation="3">We can set the line width to make the plot easier to read.</span>
 </dd>
 </dl>
 </div>
@@ -1083,11 +1083,11 @@ Instructions
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-cell="annotated-cell-17" data-code-annotation="1">We are back to <code>df[!, :colname]</code> syntax. Both work!</span>
+<span data-code-cell="annotated-cell-17" data-code-lines="2" data-code-annotation="1">We are back to <code>df[!, :colname]</code> syntax. Both work!</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="8" data-code-cell="annotated-cell-17" data-code-annotation="2">We can set the title using the <code>title</code> keyword argument.</span>
+<span data-code-cell="annotated-cell-17" data-code-lines="8" data-code-annotation="2">We can set the title using the <code>title</code> keyword argument.</span>
 </dd>
 </dl>
 </div>
@@ -1360,7 +1360,13 @@ Browse at http://localhost:4200/labs/lab02/instructions.html</code></pre>
 </section>
 
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Julia precompiles packages when they are installed, and (to a lesser extent) when they are first used. The first time you use a package it may take a moment to load. This is normal, nothing to worry about, and rapidly improving.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>To do a better job, we should separate out the long-term trend from the seasonal cycle. This is called de-trending and is a common technique in climate science. We can worry more about this later.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
