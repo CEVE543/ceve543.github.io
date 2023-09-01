@@ -17,14 +17,14 @@ To print lecture slides to PDF, see [these instructions](https://quarto.org/docs
 |      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
 | 2    | Mon., Aug. 28 | Introduction to statistics and probability distributions | [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | |
 |      | Wed., Aug. 30 | Working with probability distributions | [{{< fa sharp presentation-screen >}}](slides/lecture02-marginal-joint-conditional.qmd){target="_blank"} | | |
-|      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | | | 
+|      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | [{{< fa sharp laptop-code >}}](labs/lab02/template.qmd) | |
 | 3    | Mon., Sep. 4  | *No class* | | | |
-|      | Wed., Sep. 6  | Maximum likelihood estimation | [{{< fa sharp presentation-screen >}}](slides/lecture03-maximum-likelihood.qmd) | | |
+|      | Wed., Sep. 6  | Maximum likelihood estimation | | | |
 |      | Fri., Sep. 8  | Lab 03: Optimization and distributions in Julia | | | |
 | 4    | Mon., Sep. 11 | Bayesian inference I | | | |
 |      | Wed., Sep. 13 | Bayesian inference II | | | |
 |      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | | |
-|  5   | Mon., Sep. 18 | Function approximation | | | |
+|  5   | Mon., Sep. 18 | Complementary view: function approximation | | | |
 |      | Wed., Sep. 20 | Module 1 review | | | |
 |      | Fri., Sep. 22 | Module 1 exam | | | |
 |      | **Module 2** | **Downscaling** | | | [{{< fa sharp pen-field title="Project 2" >}}](projects/project02/project02.qmd) |
