@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "CEVE 543: Data Science for Climate Risk Assessment",
     "section": "",
-    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\nTo print lecture slides to PDF, see these instructions.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhat drives uncertain climate hazard?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nIntroduction to statistics and probability distributions\n\n\n\n\n\n\nWed., Aug. 30\nWorking with probability distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization and distributions in Julia\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nComplementary view: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nLatent Variables\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
+    "text": "This page contains a schedule of the topics, content, and assignments for the semester. This schedule will be updated as necessary over the course of the semester to accommodate logistics and to adapt to student needs.\nTo print lecture slides to PDF, see these instructions.\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nLab\nProject\n\n\n\n\n\nModule 1\nFundamentals\n\n\n\n\n\n1\nMon., Aug. 21\nWelcome to CEVE 543!\n\n\n\n\n\n\nWed., Aug. 23\nWhat drives uncertain climate hazard?\n\n\n\n\n\n\nFri., Aug. 25\nLab 01: Setting up Julia, GitHub, and Quarto\n\n\n\n\n\n2\nMon., Aug. 28\nIntroduction to statistics and probability distributions\n\n\n\n\n\n\nWed., Aug. 30\nWorking with probability distributions\n\n\n\n\n\n\nFri., Sep. 1\nLab 02: Working with tabular data in Julia\n\n\n\n\n\n3\nMon., Sep. 4\nNo class\n\n\n\n\n\n\nWed., Sep. 6\nMaximum likelihood estimation\n\n\n\n\n\n\nFri., Sep. 8\nLab 03: Optimization and maximum likelihood\n\n\n\n\n\n4\nMon., Sep. 11\nBayesian inference I\n\n\n\n\n\n\nWed., Sep. 13\nBayesian inference II\n\n\n\n\n\n\nFri., Sep. 15\nLab 04: Markov Chain Monte Carlo\n\n\n\n\n\n5\nMon., Sep. 18\nComplementary view: function approximation\n\n\n\n\n\n\nWed., Sep. 20\nModule 1 review\n\n\n\n\n\n\nFri., Sep. 22\nModule 1 exam\n\n\n\n\n\n\nModule 2\nDownscaling\n\n\n\n\n\n6\nMon., Sep. 25\nMotivation\n\n\n\n\n\n\nWed., Sep. 27\nGeneralized Linear Regression\n\n\n\n\n\n\nFri., Sep. 29\nLab 05: Working with gridded climate data in Julia\n\n\n\n\n\n7\nMon., Oct. 2\nQuantile-quantile bias correction\n\n\n\n\n\n\nWed., Oct. 4\nSupport vector machines\n\n\n\n\n\n\nFri., Oct. 6\nHyperparameter selection and optimization\n\n\n\n\n\n8\nMon., Oct. 9\nLab 06: \\(K\\)-fold cross-validation\n\n\n\n\n\n\nWed., Oct. 11\nModule 2 review\n\n\n\n\n\n\nFri., Oct. 13\nModule 2 exam\n\n\n\n\n\n\nModule 3\nFrequency Analysis\n\n\n\n\n\n9\nMon., Oct. 16\nMotivation (guest: Dr. Philip Bedient)\n\n\n\n\n\n\nWed., Oct. 18\nExtreme value theory\n\n\n\n\n\n\nFri., Oct. 20\nLab 07: Convergence, central limits, and fat tails\n\n\n\n\n\n10\nMon., Oct. 23\nMaximum likelihood and Bayesian GEV models\n\n\n\n\n\n\nWed., Oct. 25\nNonstationary GEV model\n\n\n\n\n\n\nFri., Oct. 27\nLab 08: Graphical model diagnostics\n\n\n\n\n\n11\nMon., Oct. 30\nRegionalization\n\n\n\n\n\n\nWed., Nov. 1\nHierarchical models for regionalization\n\n\n\n\n\n\nFri., Nov. 3\nQuantitative methods for model comparison\n\n\n\n\n\n12\nMon., Nov. 6\nModule 3 review\n\n\n\n\n\n\nWed., Nov. 8\nModule 3 exam\n\n\n\n\n\n\nModule 4\nWeather Typing\n\n\n\n\n\n13\nMon., Nov. 13\nMotivation\n\n\n\n\n\n\nWed., Nov. 15\nPrincipal components analysis\n\n\n\n\n\n\nFri., Nov. 17\nLab 09: \\(K\\)-means clustering\n\n\n\n\n\n14\nMon., Nov. 20\nLatent Variables\n\n\n\n\n\n\nWed., Nov. 22\nNo class\n\n\n\n\n\n\nFri., Nov. 24\nNo class\n\n\n\n\n\n15\nMon., Nov. 27\nHidden Markov Models I\n\n\n\n\n\n\nWed., Nov. 29\nReview module 4\n\n\n\n\n\n\nFri., Dec. 1\nModule 4 Exam"
   },
   {
     "objectID": "syllabus.html",
@@ -504,46 +504,144 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 23, 2023\n\n\n\nBloemendaal, N., Haigh, I. D., de Moel, H., Muis, S., Haarsma, R. J., & Aerts, J. C. J. H. (2020). Generation of a global synthetic tropical cyclone hazard dataset using STORM. Scientific Data, 7(1), 40. https://doi.org/10.1038/s41597-020-0381-2\n\n\nBruneau, M., Barbato, M., Padgett, J. E., Zaghi, A. E., Mitrani-Reiser, J., & Li, Y. (2017). State of the art of multihazard design. Journal of Structural Engineering, 143(10), 03117002. https://doi.org/10.1061/(ASCE)ST.1943-541X.0001893\n\n\nDoss-Gollin, J., Farnham, D. J., Lall, U., & Modi, V. (2021). How unprecedented was the February 2021 Texas cold snap? Environmental Research Letters. https://doi.org/10.1088/1748-9326/ac0278\n\n\nFletcher, S., Lickley, M., & Strzepek, K. (2019). Learning about climate change uncertainty enables flexible water infrastructure planning. Nature Communications, 10(1), 1782. https://doi.org/10.1038/s41467-019-09677-x\n\n\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\n\n\nKleiber, W., Sain, S., Madaus, L., & Harr, P. (2023). Stochastic tropical cyclone precipitation field generation. Environmetrics, 34(1), e2766. https://doi.org/10.1002/env.2766\n\n\nSobel, A. H., Lee, C.-Y., Bowen, S. G., Camargo, S. J., Cane, M. A., Clement, A., et al. (2023). Near-term tropical cyclone risk and coupled Earth system model biases. Proceedings of the National Academy of Sciences, 120(33), e2209631120. https://doi.org/10.1073/pnas.2209631120"
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-of-one-data-point",
-    "href": "slides/lecture03-maximum-likelihood.html#likelihood-of-one-data-point",
+    "objectID": "slides/lecture03-maximum-likelihood.html#motivation",
+    "href": "slides/lecture03-maximum-likelihood.html#motivation",
     "title": "Maximum likelihood",
-    "section": "Likelihood of one data point",
-    "text": "Likelihood of one data point\nIn Bayes’ rule the data \\(y\\) affect the posterior \\(p(\\theta | y)\\) only through \\(p(y | \\theta)\\), called the “likelihood” \\[\np(y | \\theta)\n\\]"
+    "section": "Motivation",
+    "text": "Motivation\nWe have some parametric statistical model with unknown parameters. We want to evaluate how consistent the data are with different values of the parameters, and to find the values of the parameters that are most consistent with the data."
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-example",
-    "href": "slides/lecture03-maximum-likelihood.html#likelihood-example",
+    "objectID": "slides/lecture03-maximum-likelihood.html#bayes-rule",
+    "href": "slides/lecture03-maximum-likelihood.html#bayes-rule",
     "title": "Maximum likelihood",
-    "section": "Likelihood example",
-    "text": "Likelihood example\n\n\nOne data point: \\(y=2\\).\nNormal distribution with \\(\\sigma = 1\\) and unknown \\(\\mu\\)\nWe can plot \\(p(\\theta | y = 2, \\sigma = 1)\\) as a function of \\(\\theta\\)\n\n\n\n\nusing Distributions\nusing Plots\nusing LaTeXStrings\n\n1function lik(μ::Real, σ::Real, y::Real)\n    dist = Normal(μ, σ)\n2    return pdf(dist, y)\nend\n\nμ = -5:0.02:7\ny = 2\nσ = 1\n3μ_lik = lik.(μ, σ, y)\n\nplot(\n    μ,\n    μ_lik;\n    label=L\"$p(\\theta | y=2,  \\sigma=1)$\",\n    xlabel=L\"$\\theta$\",\n    ylabel=\"Likelihood\",\n    linewidth=2\n)\n\n\n1\n\nThese are called “type annotations” and specify the type of variable that each argument can take. In this case, any Real (float or integer) will work.\n\n2\n\nThis specifies the likelihood using the pdf function\n\n3\n\nThe vector notation lik. means to apply it to each element of x. [lik(xi, 1, 2) for xi in x] would do the same thing."
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\nIn general: \\[\np(\\theta | y) = \\frac{p(\\theta, y)}{p(y)} = \\frac{p(\\theta) p(y | \\theta)}{p(y)}\n\\] The term \\[\np(y | \\theta)\n\\] is termed the likelihood."
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-of-multiple-data-points",
-    "href": "slides/lecture03-maximum-likelihood.html#likelihood-of-multiple-data-points",
+    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-pdf",
+    "href": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-pdf",
     "title": "Maximum likelihood",
-    "section": "Likelihood of multiple data points",
-    "text": "Likelihood of multiple data points\nIndependent and identically distributed (i.i.d.) assumption: \\[\n\\begin{align}\np(y_1, y_2, \\ldots, y_n) &= p(y_1) p(y_2) \\times \\ldots \\times p(y_n)\\\\\n&= \\prod_{i=1}^n p(y_i)\n\\end{align}\n\\]\n\nImagine we measure \\(y = y_1, y_2, \\ldots, y_n\\): \\[\np(y | \\theta) = \\prod_{i=1}^n p(y_i | \\theta)\n\\]"
+    "section": "Likelihood as a PDF",
+    "text": "Likelihood as a PDF\nLet’s say we have one data point: \\(y=2\\)\nNormal distribution with \\(\\sigma = 1\\) and unknown \\(\\mu\\) (1 unknown parameter) has the probability density function: \\[\np(y_i | \\mu, \\sigma) = \\frac{1}{\\sqrt{2 \\pi \\sigma^2}} \\exp \\left( - \\frac{(y_i - \\mu)^2}{2 \\sigma^2} \\right)\n\\]\nThis is the likelihood of \\(y\\) given \\(\\mu\\) and \\(\\sigma\\)."
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-function-of-parameters",
+    "href": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-function-of-parameters",
+    "title": "Maximum likelihood",
+    "section": "Likelihood as a function of parameters",
+    "text": "Likelihood as a function of parameters\nThe likelihood notation \\(p(y | \\theta)\\) is a function of \\(y\\) for fixed \\(\\theta\\). However it is often helpful to view it as a function of \\(\\theta\\) for fixed \\(y\\).\n\nWe will plot \\(p(y | \\theta)\\) for different values of \\(\\theta\\). To do that, we need a function for \\(p(y | \\theta)\\). Here, \\(\\theta = \\left\\{ \\mu, \\sigma \\right\\}\\).\n\n1function lik(y::T, μ::T, σ::T) where {T&lt;:Real}\n    dist = Normal(μ, σ)\n2    return pdf(dist, y)\nend;\n\n\n1\n\nThese are called “type annotations” and specify the type of variable that each argument can take. In this case, any Real (float or integer) will work.\n\n2\n\nThis specifies the likelihood using the pdf function\n\n\n\n\n\n\nNext we plug in some values for \\(\\mu\\) and plot the likelihood for each. This is essentially plotting the likelihood as a function of \\(\\theta\\) for fixed \\(y\\).\n\nμ_try = range(-6, 8, length=500)\ny = 2.0\nσ = 1.0\n1μ_lik = lik.(y, μ_try, σ)\n\nplot(\n    μ_try,\n    μ_lik;\n    ylabel=L\"$p(y=2 | \\mu,  \\sigma=1)$\",\n    xlabel=L\"$\\mu  $\",\n    label=\"Likelihood\",\n    linewidth=2\n)\n2vline!([y], label=\"y\", linewidth=2)\n\n\n1\n\nThe vector notation lik. means to apply the function lik to each element of μ_try. [lik(xi, 1, 2) for xi in x] would do the same thing.\n\n2\n\nNotice the likelihood function is maximized at \\(\\mu = y\\)."
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#iid-assumption",
+    "href": "slides/lecture03-maximum-likelihood.html#iid-assumption",
+    "title": "Maximum likelihood",
+    "section": "IID assumption",
+    "text": "IID assumption\nIndependent and identically distributed (i.i.d.) assumption: \\[\n\\begin{align}\np(y_1, y_2, \\ldots, y_n) &= p(y_1) p(y_2) \\times \\ldots \\times p(y_n)\\\\\n&= \\prod_{i=1}^n p(y_i)\n\\end{align}\n\\]\n\nUsually we have more than one data point. Say we measure \\(y = y_1, y_2, \\ldots, y_n\\): \\[\np(y | \\theta) = \\prod_{i=1}^n p(y_i | \\theta)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#beyond-iid",
+    "href": "slides/lecture03-maximum-likelihood.html#beyond-iid",
+    "title": "Maximum likelihood",
+    "section": "Beyond IID",
+    "text": "Beyond IID\nThe IID assumption an fundamental assumption of most statistical models.\nWhen it is violated (e.g., because of autocorrelation) we try to add relevant conditional information (\\(X\\)) so that \\[\np(y | \\theta, X) = \\prod_{i=1}^n p(y_i | X_i, \\theta)\n\\] approximately holds true. (This is the idea behind everything from sophisticated hierarchical models to \\(y=ax + b + \\epsilon\\).)"
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#log-trick",
     "href": "slides/lecture03-maximum-likelihood.html#log-trick",
     "title": "Maximum likelihood",
     "section": "Log trick",
-    "text": "Log trick\nRecall: \\(\\log(AB) = \\log(A) + \\log(B)\\) or, more generally, \\[\n\\log \\left( \\prod_{i=1}^n f_i \\right) = \\sum_{i=1}^n \\log(f_i)\n\\]\n\nIt’s often convenient to work with the “log likelihood”: \\[\n\\log p(y | \\theta) =  \\log \\left( \\prod_{i=1}^n p(y_i | \\theta) \\right) = \\sum_{i=1}^n \\log \\left( p(y_i | \\theta) \\right)\n\\] for numerical reasons (multiplying tiny numbers ➡️ underflow)"
+    "text": "Log trick\nRecall: \\(\\log(AB) = \\log(A) + \\log(B)\\) or, more generally, \\[\n\\log \\left( \\prod_{i=1}^n f_i \\right) = \\sum_{i=1}^n \\log(f_i)\n\\]\n\nThus, we can work with the “log likelihood”: \\[\n\\log p(y | \\theta) =  \\log \\left( \\prod_{i=1}^n p(y_i | \\theta) \\right) = \\sum_{i=1}^n \\log \\left( p(y_i | \\theta) \\right)\n\\]\nThis is helpful because adding small numbers is easier and more numerically stable than multiplying them."
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-example-multiple-data-points",
-    "href": "slides/lecture03-maximum-likelihood.html#likelihood-example-multiple-data-points",
+    "objectID": "slides/lecture03-maximum-likelihood.html#numerical-example-multiple-data-points",
+    "href": "slides/lecture03-maximum-likelihood.html#numerical-example-multiple-data-points",
     "title": "Maximum likelihood",
-    "section": "Likelihood example: multiple data points",
-    "text": "Likelihood example: multiple data points\n\n1function lik(μ::Real, σ::Real, y::Vector{&lt;:Real})\n    dist = Normal(μ, σ)\n2    log_liks = Distributions.logpdf.(dist, y)\n3    return exp(sum(log_liks))\nend\n\nμ = -5:0.02:7\ny = [2.1, 1.9, 2.2, 2.0, 2.1]\nσ = 1\n4μ_lik = [lik(μi, σ, y) for μi in μ]\nplot(\n    μ,\n    μ_lik;\n    label=L\"$p(\\theta | y=y,  \\sigma=1)$\",\n    xlabel=L\"$\\theta$\",\n    ylabel=\"Likelihood\",\n    linewidth=2\n)\n\n\n1\n\nVector{&lt;:Real} means a vector of any subtype of Real. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.\n\n2\n\nDistributions.logpdf is the log of the pdf. Here log_liks will be a vector with the same length as y.\n\n3\n\nAdd up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.\n\n4\n\nIn this case both \\(\\mu\\) and \\(y\\) are vectors, with different lengths, so using the dot notation lik. won’t work – it doesn’t know which variable to vectorize over."
+    "section": "Numerical example: multiple data points",
+    "text": "Numerical example: multiple data points\nWe can extend our previous example to multiple data points. As before, we need a likelihood function.\n\n1function lik(y::Vector{T}, μ::T, σ::T) where {T&lt;:Real}\n    dist = Normal(μ, σ)\n2    log_liks = Distributions.logpdf.(dist, y)\n3    return exp(sum(log_liks))\nend;\n\n\n1\n\nVector{&lt;:Real} means a vector of any subtype of Real. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.\n\n2\n\nDistributions.logpdf is the log of the pdf. Here log_liks will be a vector with the same length as y.\n\n3\n\nAdd up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.\n\n\n\n\n\nAs before, we can plot the likelihood as a function of \\(\\mu\\) for fixed \\(y\\) and \\(\\sigma\\).\n\ny_multi = [2.7, 0.6, 2.7, 3.2, 1.7, 1.0, 2.1, 1.8, 1.6, 2.3]\n1μ_lik_multi = [lik(y_multi, μi, σ) for μi in μ_try]\nplot(\n    μ_try,\n    μ_lik_multi;\n    label=L\"$p(\\theta | y=y,  \\sigma=1)$\",\n    xlabel=L\"$\\theta$\",\n    ylabel=\"Likelihood\",\n    linewidth=2\n)\nvline!(y_multi, label=\"y\", linewidth=0.5)\n\n\n1\n\nIn this case both \\(\\mu\\) and \\(y\\) are vectors, with different lengths, so using the dot notation lik. won’t work – it doesn’t know which variable to vectorize over."
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#setup",
+    "href": "slides/lecture03-maximum-likelihood.html#setup",
+    "title": "Maximum likelihood",
+    "section": "Setup",
+    "text": "Setup\nWe collect \\(y_1, \\ldots, y_n\\) which are the number of tropical cyclones that make landfall in the continental United States in a given year. We decide to model them as a Poisson distribution with unknown rate \\(\\lambda\\): \\[\np(y_i | \\lambda) = \\frac{\\lambda^{y_i} e^{-\\lambda}}{y_i!}\n\\]"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#total-log-likelihood",
+    "href": "slides/lecture03-maximum-likelihood.html#total-log-likelihood",
+    "title": "Maximum likelihood",
+    "section": "Total log likelihood",
+    "text": "Total log likelihood\nFirst, we can take the log \\[\n\\log p(y_i | \\lambda) = y_i \\log(\\lambda) - \\lambda - \\log(y_i!)\n\\] then for multiple data points \\[\n\\log p(y | \\lambda) = \\sum_{i=1}^n y_i \\log(\\lambda) - n \\lambda - \\sum_{i=1}^n \\log(y_i!)\n\\] which we can implement as\n\nfunction poiss_lik(y::Vector{Int}, λ::T) where {T&lt;:Real}\n    return exp(sum([logpdf(Poisson(λ), yi) for yi in y]))\nend;"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#plot",
+    "href": "slides/lecture03-maximum-likelihood.html#plot",
+    "title": "Maximum likelihood",
+    "section": "Plot",
+    "text": "Plot\n\ny_poiss = [6, 7, 8, 6, 4, 7, 5, 4, 7, 5]\nλ_try = range(1, 13, length=500)\nλ_lik = [poiss_lik(y_poiss, λi) for λi in λ_try]\nplot(\n    λ_try,\n    λ_lik;\n    label=L\"$p(y=y | \\lambda)$\",\n    xlabel=L\"$\\lambda$\",\n    ylabel=\"Likelihood\",\n    linewidth=2\n)"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#setup-1",
+    "href": "slides/lecture03-maximum-likelihood.html#setup-1",
+    "title": "Maximum likelihood",
+    "section": "Setup",
+    "text": "Setup\nLet’s say we don’t know for sure that \\(\\sigma = 1\\). In that case our mathmatical model for \\(p(y | \\mu, \\sigma)\\) is unchanged from the single-variable case.\nLet’s write a function for the log likelihood\n\nfunction normal_log_lik(y::Vector{T}, μ::T, σ::T) where {T&lt;:Real}\n    dist = Normal(μ, σ)\n    return sum(logpdf.(dist, y))\nend;"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#plotting",
+    "href": "slides/lecture03-maximum-likelihood.html#plotting",
+    "title": "Maximum likelihood",
+    "section": "Plotting",
+    "text": "Plotting\nWith two parameters, we need to plot a surface\n\nμ_plot = range(-6, 8, length=500)\nσ_plot = exp.(range(-3, 2, length=500))\n1log_lik = [normal_log_lik(y_multi, μ, σ) for μ in μ_plot, σ in σ_plot]\nlik_plot = exp.(log_lik)\nplot(\n    μ_plot,\n    σ_plot,\n    lik_plot;\n2    st=:heatmap,\n    xlabel=L\"$\\mu$\",\n    ylabel=L\"$\\sigma$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\mu, \\sigma)$\"\n)\n\n\n1\n\nThis syntax: [f(x, y) for xi in x, yi in y] will produce a matrix with f(xi, yi) in the ith row and jth column.\n\n2\n\nst=:heatmap tells Plots to plot a heatmap. We could also try :surface or :contourf.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice that there is a very small region for which the likelihood is [relatively] high."
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#logic",
+    "href": "slides/lecture03-maximum-likelihood.html#logic",
+    "title": "Maximum likelihood",
+    "section": "Logic",
+    "text": "Logic\nCan we find the parameters \\(\\theta^*\\) that maximize the likelihood \\(p(y | \\theta)\\)?"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#log-likelihood",
+    "href": "slides/lecture03-maximum-likelihood.html#log-likelihood",
+    "title": "Maximum likelihood",
+    "section": "Log likelihood",
+    "text": "Log likelihood\nWe can use the log likelihood \\(\\log p(y | \\theta)\\) instead of the likelihood \\(p(y | \\theta)\\).\nThe log likelihood is monotonic with the likelihood, so \\[\n\\arg \\max \\log p(y | \\theta) = \\arg \\max p(y | \\theta)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#implementation-i",
+    "href": "slides/lecture03-maximum-likelihood.html#implementation-i",
+    "title": "Maximum likelihood",
+    "section": "Implementation I",
+    "text": "Implementation I\nWe can use the optimize function from the Optim.jl package to find the maximum likelihood estimate. First, we need to define the function to be optimized. optimize will minimize the function, so we need to define the negative log likelihood. We’ll call this the “loss” function.\n\nloss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]);"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#implementation-ii",
+    "href": "slides/lecture03-maximum-likelihood.html#implementation-ii",
+    "title": "Maximum likelihood",
+    "section": "Implementation II",
+    "text": "Implementation II\nNow we can run the optimization. Since \\(\\sigma &gt; 0\\) always, we will pass along bounds. We could alternatively do something clever like work with \\(\\log \\sigma\\) instead of \\(\\sigma\\).\n\n1lower = [0.0001, 0.0001]\n2upper = [Inf, Inf]\n3guess = [1.0, 1.0]\n\n4res = optimize(loss, lower, upper, guess)\n5θ_MLE = Optim.minimizer(res)\n\n\n1\n\nThe lower bound is actually zero, but we just set it to a “pretty small” number.\n\n2\n\nThe upper bound is infinity, we can pass in Inf\n\n3\n\nWe need to pass in a guess for the parameters. We’ll just use \\(\\mu = \\sigma = 1\\).\n\n4\n\nThis will actually run the optimization\n\n5\n\nThis will extract the parameters that minimize the loss function.\n\n\n\n\n2-element Vector{Float64}:\n 1.97000000014951\n 0.7590125165166877\n\n\nWe could convert this to a Distributions object as\n\ndist_MLE = Normal(θ_MLE[1], θ_MLE[2])\n\nNormal{Float64}(μ=1.97000000014951, σ=0.7590125165166877)"
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#analytic-example",
+    "href": "slides/lecture03-maximum-likelihood.html#analytic-example",
+    "title": "Maximum likelihood",
+    "section": "Analytic example",
+    "text": "Analytic example\nAlthough it’s usually easy to solve things numerically, sometimes we can solve things analytically. This takes time up-front, but can be much faster to run because you can avoid the optimization step.\nConsider the (potentially multivariate) Gaussian example with known covariance matrix \\(\\Sigma\\). We want to maximize the likelihood \\[\n\\sum_{i=1}^n p(y_i | \\mu, \\Sigma)\n\\]\n\nTo maximize, we set its derivative with respect to \\(\\mu\\), which we’ll denote with \\(\\nabla_\\mu\\), to zero: \\[\n\\sum_{i=1}^n \\nabla_\\mu \\log p(y_i | \\mu, \\Sigma) = 0\n\\]\n\n\nSubstituting in the multivariate Gaussian likelihood we get: \\[\n\\begin{aligned}\n0 & =\\sum_{i=1}^n \\nabla_\\mu \\log \\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}} \\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(\\log \\left(\\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}}\\right)\\right)+\\log \\left(\\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\\\\n&=\\sum_{i=1}^n \\Sigma^{-1}\\left(x_i-\\mu\\right) \\\\\n0 &= \\sum_{i=1}^n (x_i - \\mu) \\\\\n\\mu &= \\frac{1}{n} \\sum_{i=1}^n x_i\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\nNote\n\n\nYou are not expected to remember the above equations and I won’t ask you to do this derivation in a time-constrained exam. You should understand the general procedure:\n\nwrite down likelihood for one data point\nwrite down log likelihood for one data point\nwrite down log likelihood for all data points\ntake \\(\\frac{d}{d\\theta}\\) and set equal to zero to maximize\nsolve for \\(\\theta^*\\)."
+  },
+  {
+    "objectID": "slides/lecture03-maximum-likelihood.html#caveats",
+    "href": "slides/lecture03-maximum-likelihood.html#caveats",
+    "title": "Maximum likelihood",
+    "section": "Caveats",
+    "text": "Caveats\nThe likelihood is not the posterior!\n\n\nEveryone is tested for CEVE543acitis, a rare and deadly disease\nIt is known that 1 in 100,000 people have CEVE543acitis\nThe test is 99% accurate\nYour test comes back positive\nMaximum likelihood principle: a positive test is more consistent with having the disease than not!\nUsing Bayes’ rule, you probably don’t have the disease (but always talk to your doctor)"
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#dont-get-it-twisted",
     "href": "slides/lecture03-maximum-likelihood.html#dont-get-it-twisted",
     "title": "Maximum likelihood",
     "section": "Don’t get it twisted",
-    "text": "Don’t get it twisted\n\nMany people get this backwards!\n\n\n\nThe likelihood is the probability of the data given the parameters: \\(p(y | \\theta)\\).\nWe often plot the likelihood for many different \\(\\theta\\)\n\n\\(p(y | \\theta)\\) for many different \\(\\theta\\)\nDon’t confuse this with the posterior, which is the probability of the parameters given the data: \\(p(\\theta | y)\\)\n\nAgain: likelihood is probability of data given parameters"
+    "text": "Don’t get it twisted\n\nMany people get this backwards!\n\n\n\nThe likelihood is the probability of the data given the parameters: \\(p(y | \\theta)\\).\nWe often plot the likelihood for many different \\(\\theta\\)\n\n\\(p(y | \\theta)\\) for many different \\(\\theta\\)\n\nDon’t confuse this with the posterior, which is the probability of the parameters given the data: \\(p(\\theta | y)\\)"
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#references",
@@ -614,6 +712,83 @@
     "title": "Lab 01",
     "section": "Instructions",
     "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
+  },
+  {
+    "objectID": "labs/lab03/template.html",
+    "href": "labs/lab03/template.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "In the wake of a severe flood, an insurance company has comissioned you to study flood damage in one of the most-affected neighborhoods. This neighborhood is perfectly flat, so we can assume that all houses experienced the same flood depth. However, they are elevated to different heights, use different materials, and are built to different standards, and as a result they experienced different amounts of damage. Specifically, the insurance company has provided you with a dataset of the fraction of the value of each house that was lost in the flood and asked you to model the distribution of losses.\n\n\nOur model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula..\n\n\n\nAs for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person.\n\n\n\nAs usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions\n\n\n\n\nWe can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, …)will add more elements to the plotp` that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#mathematical-model",
+    "href": "labs/lab03/template.html#mathematical-model",
+    "title": "Lab 03",
+    "section": "",
+    "text": "Our model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula.."
+  },
+  {
+    "objectID": "labs/lab03/template.html#setup",
+    "href": "labs/lab03/template.html#setup",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person."
+  },
+  {
+    "objectID": "labs/lab03/template.html#package-imports",
+    "href": "labs/lab03/template.html#package-imports",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions"
+  },
+  {
+    "objectID": "labs/lab03/template.html#about-the-beta-distribution",
+    "href": "labs/lab03/template.html#about-the-beta-distribution",
+    "title": "Lab 03",
+    "section": "",
+    "text": "We can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, …)will add more elements to the plotp` that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#likelihood-model",
+    "href": "labs/lab03/template.html#likelihood-model",
+    "title": "Lab 03",
+    "section": "2.1 Likelihood model",
+    "text": "2.1 Likelihood model\nfunction log_lik(y::Vector{T}, α::T, β::T) where {T&lt;:Real}\n    # fill in here\n    # refer to lecture slides if you're feeling stuck\n    # don't forget your `return` statement\nend\n\nFill in the log_lik function where y is a vector of data, and α and β are the parameters of the Beta distribution. Then, convert it to live code by adding curly brackets, like you did in lab 02. Hint: define a function function log_lik(y::T, α::T, β::T) where {T&lt;:Real}... that takes in a single point. Then this function that takes in a vector y can calculate the log-likelihood for each data point individually and combine them. This is not the only way to solve this problem"
+  },
+  {
+    "objectID": "labs/lab03/template.html#check-if-its-right",
+    "href": "labs/lab03/template.html#check-if-its-right",
+    "title": "Lab 03",
+    "section": "2.2 Check if it’s right",
+    "text": "2.2 Check if it’s right\nWe can check your log_lik function by comparing what you calculate using it to a known, correct value.\nyour_val = log_lik([0.2, 0.4, 0.6, 0.8], 5., 5.) # calls your implementation\ntrue_value = -0.2947032775653282 # I calculated this\n@assert isapprox(your_val, true_value) # checks if they're close\nprintln(\"😁\")\n\nConvert this to a live code block by adding curly brackets, like you did in lab 02, and run. You should see a 😄."
+  },
+  {
+    "objectID": "labs/lab03/template.html#plot",
+    "href": "labs/lab03/template.html#plot",
+    "title": "Lab 03",
+    "section": "2.3 Plot",
+    "text": "2.3 Plot\nNow that we have the log_likelihood, we’re going to plot it for many values of \\(\\alpha\\) and \\(\\beta\\).\nFirst, let’s define a grid of values for \\(\\alpha\\) and \\(\\beta\\) to plot:\n\nα_plot = exp.(-4:0.05:4.05)\nβ_plot = exp.(-4:0.05:4);\n\nNext, we can calculate the log likelihood at each point on the grid as:\nlog_lik_fax = [log_lik(fax, αi, βi) for αi in α_plot, βi in β_plot]\nNow, we’re ready to plot. You can use the following code, which provides some helpful keyword arguments to make your plot look nice. Feel free to play around with them.\np1 = plot(\n    α_plot,\n    β_plot,\n    plt_fax;\n    st=:heatmap,\n    xlabel=L\"$\\alpha$\",\n    ylabel=L\"$\\beta$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\alpha, \\beta)$\",\n    clims=(-50.0, 5.0),\n    aspect_ratio=:equal,\n)\np1\n\n\nNote that we have assigned our plot a variable name, p1. This will let us add elements to it later.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working."
+  },
+  {
+    "objectID": "labs/lab03/template.html#best-estimates",
+    "href": "labs/lab03/template.html#best-estimates",
+    "title": "Lab 03",
+    "section": "2.4 Best estimates",
+    "text": "2.4 Best estimates\nWhat values of α_plot and β_plot that maximize the log likelihood? We can find out in several different ways.\n\n2.4.1 Optimization on a grid\nThe easiest thing to do is to find the maximum value of the log likelihood on our grid. We can do that as follows:\nidx_fax = argmax(log_lik_fax) # the index that maximizes the log likelihood\nα_fax_best = α_plot[idx_fax[1]]\nβ_fax_best = β_plot[idx_fax[2]];\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working.\n\n\n\n\n\n2.4.2 Optim.jl\nWe can also use the optimize function from Optim.jl to find the maximum value of the log likelihood.\n# define the function to be optimized\nf_fax(θ) = # define the negative log-likelihood here, using your `log_lik` function and passing in `fax` as the `y` argument.\n    lower = [0.001, 0.001] # lower bound -- don't need to change\nupper = [Inf, Inf] # upper bound -- don't need to edit\nguess = [1.0, 1.0] # initial guess -- leave as-is\n\nres = optimize(f_fax, lower, upper, guess) # run the optimization\nθ_fax = Optim.minimizer(res) # get the best parameters\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything. Follow the commented instructions.\n\n\n\n\n\n2.4.3 Distributions.jl\nWhile it’s valuable to In Distributions, we can fit a Beta distribution to our data using the fit_mle function.\nDistributions.fit_mle(Beta, fax)\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above. Compare the fit_mle result to your result using optimize."
+  },
+  {
+    "objectID": "labs/lab03/template.html#update-the-plot",
+    "href": "labs/lab03/template.html#update-the-plot",
+    "title": "Lab 03",
+    "section": "2.5 Update the plot",
+    "text": "2.5 Update the plot\nThese best estimates should show up as points on our plot. We can add them as follows:\nscatter!(p1, [α_fax_best], [β_fax_best]; label=\"Grid Search\")\nscatter!(p1, [θ_fax[1]], [θ_fax[2]]; label=\"MLE\")\n\n\nWhen we add a single point, we have to wrap it in brackets [] to make it a vector. The x and y inputs to plot (or scatter!) need to be vectors.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above."
+  },
+  {
+    "objectID": "labs/lab03/template.html#all-data",
+    "href": "labs/lab03/template.html#all-data",
+    "title": "Lab 03",
+    "section": "3.1 All data",
+    "text": "3.1 All data\nEventually, the insurance company sends us all the data they have collected. This includes 1000 observations with no rounding, which we can read in as:\n\ndatabase = DelimitedFiles.readdlm(joinpath(\"data\", \"database.txt\"))[:, 1]\ndisplay(length(database))\n1first(database, 3)\n\n\n1\n\nWe can call first on a vector, not just a DataFrame.\n\n\n\n\n1000\n\n\n3-element Vector{Float64}:\n 0.5114586443855297\n 0.35804353645348974\n 0.5538518630958222\n\n\n\n\n\n\n\n\nUsing the function defined above, run the analysis on the full dataset. Store your results as plt_database, θ_MLE_database, and θ_gridsearch_database."
   },
   {
     "objectID": "labs/lab02/template.html",
