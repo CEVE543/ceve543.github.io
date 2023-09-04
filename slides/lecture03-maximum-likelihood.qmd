@@ -36,57 +36,94 @@ execute:
     echo: true
 ---
 
+```{julia}
+#| echo: false
+#| output: false
+using Distributions
+using LaTeXStrings
+using Plots
+using Optim
+```
+
+## Motivation
+
+We have some *parametric statistical model* with unknown parameters.
+We want to evaluate how consistent the data are with different values of the parameters, and to find the values of the parameters that are most consistent with the data.
+
 # Likelihood
 
-## Likelihood of one data point
+## Bayes Rule
 
-In Bayes' rule the data $y$ affect the posterior $p(\theta | y)$ only through $p(y | \theta)$, called the "likelihood"
+In general:
+$$
+p(\theta | y) = \frac{p(\theta, y)}{p(y)} = \frac{p(\theta) p(y | \theta)}{p(y)}
+$$
+The term
 $$
 p(y | \theta)
 $$
+is termed the **likelihood**.
 
-## Likelihood example {.scrollable .smaller}
+## Likelihood as a PDF
 
-::: {.incremental}
+Let's say we have one data point: $y=2$
 
-- One data point: $y=2$.
-- Normal distribution with $\sigma = 1$ and unknown $\mu$
-- We can *plot* $p(\theta | y = 2, \sigma = 1)$ as a function of $\theta$
+Normal distribution with $\sigma = 1$ and unknown $\mu$ (1 unknown parameter) has the probability density function:
+$$
+p(y_i | \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( - \frac{(y_i - \mu)^2}{2 \sigma^2} \right)
+$$
 
-:::
+This is the **likelihood** of $y$ given $\mu$ and $\sigma$.
+
+## Likelihood as a function of parameters {.scrollable .smaller}
+
+The likelihood notation $p(y | \theta)$ is a function of $y$ for fixed $\theta$.
+However it is often helpful to view it as a function of $\theta$ for fixed $y$.
 
 . . .
 
-```{julia}
-using Distributions
-using Plots
-using LaTeXStrings
+We will plot $p(y | \theta)$ for different values of $\theta$.
+To do that, we need a function for $p(y | \theta)$.
+Here, $\theta = \left\{ \mu, \sigma \right\}$.
 
-function lik(μ::Real, σ::Real, y::Real) # <1>
+```{julia}
+function lik(y::T, μ::T, σ::T) where {T<:Real} # <1>
     dist = Normal(μ, σ)
     return pdf(dist, y) # <2>
-end
-
-μ = -5:0.02:7
-y = 2
-σ = 1
-μ_lik = lik.(μ, σ, y) # <3>
-
-plot(
-    μ,
-    μ_lik;
-    label=L"$p(\theta | y=2,  \sigma=1)$",
-    xlabel=L"$\theta$",
-    ylabel="Likelihood",
-    linewidth=2
-)
+end;
 ```
 
 1. These are called "type annotations" and specify the type of variable that each argument can take. In this case, any `Real` (float or integer) will work.
 2. This specifies the likelihood using the `pdf` function
-3. The vector notation `lik.` means to apply it to each element of `x`. `[lik(xi, 1, 2) for xi in x]` would do the same thing.
 
-## Likelihood of multiple data points
+. . .
+
+Next we plug in some values for $\mu$ and plot the likelihood for each.
+This is essentially plotting the likelihood as a function of $\theta$ for fixed $y$.
+
+```{julia}
+μ_try = range(-6, 8, length=500)
+y = 2.0
+σ = 1.0
+μ_lik = lik.(y, μ_try, σ) # <1>
+
+plot(
+    μ_try,
+    μ_lik;
+    ylabel=L"$p(y=2 | \mu,  \sigma=1)$",
+    xlabel=L"$\mu  $",
+    label="Likelihood",
+    linewidth=2
+)
+vline!([y], label="y", linewidth=2) # <2>
+```
+
+1. The vector notation `lik.` means to apply the function `lik` to each element of `μ_try`. `[lik(xi, 1, 2) for xi in x]` would do the same thing.
+2. Notice the likelihood function is maximized at $\mu = y$.
+
+# Likelihood of multiple data points
+
+## IID assumption
 
 Independent and identically distributed (i.i.d.) assumption:
 $$
@@ -98,10 +135,22 @@ $$
 
 . . .
 
-Imagine we measure $y = y_1, y_2, \ldots, y_n$:
+Usually we have more than one data point.
+Say we measure $y = y_1, y_2, \ldots, y_n$:
 $$
 p(y | \theta) = \prod_{i=1}^n p(y_i | \theta)
 $$
+
+## Beyond IID
+
+The IID assumption an fundamental assumption of most statistical models.
+
+When it is violated (e.g., because of autocorrelation) we try to add relevant *conditional* information ($X$) so that
+$$
+p(y | \theta, X) = \prod_{i=1}^n p(y_i | X_i, \theta)
+$$
+approximately holds true.
+(This is the idea behind everything from sophisticated hierarchical models to $y=ax + b + \epsilon$.)
 
 ## Log trick
 
@@ -112,39 +161,250 @@ $$
 
 . . .
 
-It's often convenient to work with the "log likelihood":
+Thus, we can work with the "log likelihood":
 $$
 \log p(y | \theta) =  \log \left( \prod_{i=1}^n p(y_i | \theta) \right) = \sum_{i=1}^n \log \left( p(y_i | \theta) \right)
 $$
-for numerical reasons (multiplying tiny numbers ➡️ underflow)
 
-## Likelihood example: multiple data points {.scrollable .smaller}
+This is helpful because adding small numbers is easier and more numerically stable than multiplying them.
+
+## Numerical example: multiple data points {.scrollable .smaller}
+
+We can extend our previous example to multiple data points.
+As before, we need a likelihood function.
 
 ```{julia}
-function lik(μ::Real, σ::Real, y::Vector{<:Real}) # <1>
+function lik(y::Vector{T}, μ::T, σ::T) where {T<:Real} # <1>
     dist = Normal(μ, σ)
     log_liks = Distributions.logpdf.(dist, y) # <2>
     return exp(sum(log_liks)) # <3>
-end
-
-μ = -5:0.02:7
-y = [2.1, 1.9, 2.2, 2.0, 2.1]
-σ = 1
-μ_lik = [lik(μi, σ, y) for μi in μ] # <4>
-plot(
-    μ,
-    μ_lik;
-    label=L"$p(\theta | y=y,  \sigma=1)$",
-    xlabel=L"$\theta$",
-    ylabel="Likelihood",
-    linewidth=2
-)
+end;
 ```
 
 1. `Vector{<:Real}` means a vector of any subtype of `Real`. Julia uses "multiple dispatch" which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.
 2. `Distributions.logpdf` is the log of the pdf. Here `log_liks` will be a vector with the same length as `y`.
 3. Add up all the log likelihoods then take the exponent -- equvalent to the product of the likelihoods.
-4. In this case both $\mu$ and $y$ are vectors, with different lengths, so using the dot notation `lik.` won't work -- it doesn't know which variable to vectorize over.
+
+. . .
+
+As before, we can plot the likelihood as a function of $\mu$ for fixed $y$ and $\sigma$.
+
+```{julia}
+y_multi = [2.7, 0.6, 2.7, 3.2, 1.7, 1.0, 2.1, 1.8, 1.6, 2.3]
+μ_lik_multi = [lik(y_multi, μi, σ) for μi in μ_try] # <1>
+plot(
+    μ_try,
+    μ_lik_multi;
+    label=L"$p(\theta | y=y,  \sigma=1)$",
+    xlabel=L"$\theta$",
+    ylabel="Likelihood",
+    linewidth=2
+)
+vline!(y_multi, label="y", linewidth=0.5)
+```
+
+1. In this case both $\mu$ and $y$ are vectors, with different lengths, so using the dot notation `lik.` won't work -- it doesn't know which variable to vectorize over.
+
+# Poisson example
+
+## Setup
+
+We collect $y_1, \ldots, y_n$ which are the number of tropical cyclones that make landfall in the continental United States in a given year.
+We decide to model them as a Poisson distribution with unknown rate $\lambda$:
+$$
+p(y_i | \lambda) = \frac{\lambda^{y_i} e^{-\lambda}}{y_i!}
+$$
+
+
+## Total log likelihood
+
+First, we can take the log
+$$
+\log p(y_i | \lambda) = y_i \log(\lambda) - \lambda - \log(y_i!)
+$$
+then for multiple data points
+$$
+\log p(y | \lambda) = \sum_{i=1}^n y_i \log(\lambda) - n \lambda - \sum_{i=1}^n \log(y_i!)
+$$
+which we can implement as
+
+```{julia}
+function poiss_lik(y::Vector{Int}, λ::T) where {T<:Real}
+    return exp(sum([logpdf(Poisson(λ), yi) for yi in y]))
+end;
+```
+
+## Plot {.scrollable .smaller}
+
+```{julia}
+y_poiss = [6, 7, 8, 6, 4, 7, 5, 4, 7, 5]
+λ_try = range(1, 13, length=500)
+λ_lik = [poiss_lik(y_poiss, λi) for λi in λ_try]
+plot(
+    λ_try,
+    λ_lik;
+    label=L"$p(y=y | \lambda)$",
+    xlabel=L"$\lambda$",
+    ylabel="Likelihood",
+    linewidth=2
+)
+```
+
+# Multivariate example
+
+## Setup
+
+Let's say we don't know for sure that $\sigma = 1$.
+In that case our mathmatical model for $p(y | \mu, \sigma)$ is unchanged from the single-variable case.
+
+Let's write a function for the *log* likelihood
+
+```{julia}
+function normal_log_lik(y::Vector{T}, μ::T, σ::T) where {T<:Real}
+    dist = Normal(μ, σ)
+    return sum(logpdf.(dist, y))
+end;
+```
+
+## Plotting
+
+With two parameters, we need to plot a surface
+
+```{julia}
+μ_plot = range(-6, 8, length=500)
+σ_plot = exp.(range(-3, 2, length=500))
+log_lik = [normal_log_lik(y_multi, μ, σ) for μ in μ_plot, σ in σ_plot] # <1>
+lik_plot = exp.(log_lik)
+plot(
+    μ_plot,
+    σ_plot,
+    lik_plot;
+    st=:heatmap, # <2>
+    xlabel=L"$\mu$",
+    ylabel=L"$\sigma$",
+    legend=:topright,
+    colorbar_title=L"$\log p(y | \mu, \sigma)$"
+)
+```
+
+1. This syntax: `[f(x, y) for xi in x, yi in y]` will produce a matrix with `f(xi, yi)` in the `i`th row and `j`th column.
+2. `st=:heatmap` tells Plots to plot a heatmap. We could also try :surface or :contourf.
+
+Notice that there is a very small region for which the likelihood is [relatively] high.
+
+# Maximum likelihood estimation
+
+## Logic
+
+Can we find the parameters $\theta^*$ that maximize the likelihood $p(y | \theta)$?
+
+## Log likelihood
+
+We can use the log likelihood $\log p(y | \theta)$ instead of the likelihood $p(y | \theta)$.
+
+The log likelihood is monotonic with the likelihood, so 
+$$
+\arg \max \log p(y | \theta) = \arg \max p(y | \theta)
+$$
+
+## Implementation I
+
+We can use the `optimize` function from the `Optim.jl` package to find the maximum likelihood estimate.
+First, we need to define the function to be optimized.
+`optimize` will minimize the function, so we need to define the *negative* log likelihood.
+We'll call this the "loss" function.
+
+```{julia}
+loss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]);
+```
+
+## Implementation II {.scrollable .smaller}
+
+Now we can run the optimization.
+Since $\sigma > 0$ always, we will pass along bounds.
+We could alternatively do something clever like work with $\log \sigma$ instead of $\sigma$.
+
+```{julia}
+lower = [0.0001, 0.0001] # <1>
+upper = [Inf, Inf] # <2>
+guess = [1.0, 1.0] # <3>
+
+res = optimize(loss, lower, upper, guess) # <4>
+θ_MLE = Optim.minimizer(res) # <5>
+```
+
+1. The lower bound is actually zero, but we just set it to a "pretty small" number.
+2. The upper bound is infinity, we can pass in `Inf`
+3. We need to pass in a guess for the parameters. We'll just use $\mu = \sigma = 1$.
+4. This will actually run the optimization
+5. This will extract the parameters that minimize the loss function.
+
+We could convert this to a `Distributions` object as
+
+```{julia}
+dist_MLE = Normal(θ_MLE[1], θ_MLE[2])
+```
+
+## Analytic example {.scrollable .smaller}
+
+Although it's usually easy to solve things numerically, sometimes we can solve things analytically.
+This takes time up-front, but can be much faster to run because you can avoid the optimization step.
+
+Consider the (potentially multivariate) Gaussian example with known covariance matrix $\Sigma$.
+We want to *maximize* the likelihood
+$$
+\sum_{i=1}^n p(y_i | \mu, \Sigma)
+$$
+
+. . .
+
+To maximize, we set its derivative with respect to $\mu$, which we'll denote with $\nabla_\mu$, to zero:
+$$
+\sum_{i=1}^n \nabla_\mu \log p(y_i | \mu, \Sigma) = 0
+$$
+
+. . .
+
+Substituting in the multivariate Gaussian likelihood we get:
+$$
+\begin{aligned}
+0 & =\sum_{i=1}^n \nabla_\mu \log \frac{1}{\sqrt{(2 \pi)^d|\Sigma|}} \exp \left(-\frac{1}{2}\left(x_i-\mu\right)^{\top} \Sigma^{-1}\left(x_i-\mu\right)\right) \\
+& =\sum_{i=1}^n \nabla_\mu\left(\log \left(\frac{1}{\sqrt{(2 \pi)^d|\Sigma|}}\right)\right)+\log \left(\exp \left(-\frac{1}{2}\left(x_i-\mu\right)^{\top} \Sigma^{-1}\left(x_i-\mu\right)\right)\right) \\
+& =\sum_{i=1}^n \nabla_\mu\left(-\frac{1}{2}\left(x_i-\mu\right)^{\top} \Sigma^{-1}\left(x_i-\mu\right)\right)\\
+&=\sum_{i=1}^n \Sigma^{-1}\left(x_i-\mu\right) \\
+0 &= \sum_{i=1}^n (x_i - \mu) \\
+\mu &= \frac{1}{n} \sum_{i=1}^n x_i
+\end{aligned}
+$$
+
+. . .
+
+::: {.callout-note}
+You are not expected to remember the above equations and I won't ask you to do this derivation in a time-constrained exam.
+You should understand the general procedure:
+
+1. write down likelihood for one data point
+1. write down log likelihood for one data point
+1. write down log likelihood for all data points
+1. take $\frac{d}{d\theta}$ and set equal to zero to maximize
+1. solve for $\theta^*$.
+:::
+
+# Wrapup
+
+## Caveats
+
+The likelihood is not the posterior!
+
+::: {.incremental}
+
+- Everyone is tested for CEVE543acitis, a rare and deadly disease
+- It is known that 1 in 100,000 people have CEVE543acitis
+- The test is 99% accurate
+- Your test comes back positive
+- Maximum likelihood principle: a positive test is more consistent with having the disease than not!
+- Using Bayes' rule, you probably don't have the disease (but always talk to your doctor)
+:::
 
 ## Don't get it twisted
 
@@ -157,8 +417,7 @@ Many people get this backwards!
 - The likelihood is the probability of the data given the parameters: $p(y | \theta)$.
 - We often plot the likelihood for many different $\theta$
     - $p(y | \theta)$ for many different $\theta$
-    - Don't confuse this with the posterior, which is the probability of the parameters given the data: $p(\theta | y)$
-- Again: likelihood is probability of *data* given *parameters*
+- Don't confuse this with the posterior, which is the probability of the parameters given the data: $p(\theta | y)$
 
 :::
 
