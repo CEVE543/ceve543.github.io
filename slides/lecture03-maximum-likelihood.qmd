@@ -266,7 +266,7 @@ function normal_log_lik(y::Vector{T}, μ::T, σ::T) where {T<:Real}
 end;
 ```
 
-## Plotting
+## Plotting {.scrollable}
 
 With two parameters, we need to plot a surface
 
