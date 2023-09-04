@@ -50,44 +50,37 @@ using Optim
 We have some *parametric statistical model* with unknown parameters.
 We want to evaluate how consistent the data are with different values of the parameters, and to find the values of the parameters that are most consistent with the data.
 
+## Today
+
+Today's lecture contains a few key ideas and a lot of slides.
+
+- Lots of examples
+- We will move quickly through examples
+- Review the examples yourself and ask questions on Canvas
+- Lab will build on the examples (use them as a reference!)
+
 # Likelihood
 
-## Bayes Rule
+## Definition
 
-In general:
-$$
-p(\theta | y) = \frac{p(\theta, y)}{p(y)} = \frac{p(\theta) p(y | \theta)}{p(y)}
-$$
-The term
+The likelihood is the probability of the **data** given some **parameters**:
 $$
 p(y | \theta)
 $$
-is termed the **likelihood**.
-
-## Likelihood as a PDF
-
-Let's say we have one data point: $y=2$
-
-Normal distribution with $\sigma = 1$ and unknown $\mu$ (1 unknown parameter) has the probability density function:
-$$
-p(y_i | \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( - \frac{(y_i - \mu)^2}{2 \sigma^2} \right)
-$$
-
-This is the **likelihood** of $y$ given $\mu$ and $\sigma$.
 
 ## Likelihood as a function of parameters {.scrollable .smaller}
 
 The likelihood notation $p(y | \theta)$ is a function of $y$ for fixed $\theta$.
-However it is often helpful to view it as a function of $\theta$ for fixed $y$.
+However, we often want to study how the likelhood changes for different values of $\theta$.
 
 . . .
 
-We will plot $p(y | \theta)$ for different values of $\theta$.
+We can plot $p(y | \theta)$ for different values of $\theta$.
 To do that, we need a function for $p(y | \theta)$.
 Here, $\theta = \left\{ \mu, \sigma \right\}$.
 
 ```{julia}
-function lik(y::T, μ::T, σ::T) where {T<:Real} # <1>
+function normal_lik(y::T, μ::T, σ::T) where {T<:Real} # <1>
     dist = Normal(μ, σ)
     return pdf(dist, y) # <2>
 end;
@@ -105,7 +98,7 @@ This is essentially plotting the likelihood as a function of $\theta$ for fixed 
 μ_try = range(-6, 8, length=500)
 y = 2.0
 σ = 1.0
-μ_lik = lik.(y, μ_try, σ) # <1>
+μ_lik = normal_lik.(y, μ_try, σ) # <1>
 
 plot(
     μ_try,
@@ -174,15 +167,15 @@ We can extend our previous example to multiple data points.
 As before, we need a likelihood function.
 
 ```{julia}
-function lik(y::Vector{T}, μ::T, σ::T) where {T<:Real} # <1>
+function normal_lik(y::Vector{T}, μ::T, σ::T) where {T<:Real} # <1>
     dist = Normal(μ, σ)
-    log_liks = Distributions.logpdf.(dist, y) # <2>
+    log_liks = logpdf.(dist, y) # <2>
     return exp(sum(log_liks)) # <3>
 end;
 ```
 
 1. `Vector{<:Real}` means a vector of any subtype of `Real`. Julia uses "multiple dispatch" which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.
-2. `Distributions.logpdf` is the log of the pdf. Here `log_liks` will be a vector with the same length as `y`.
+2. `logpdf` function (from `Distributions`) is the log of the pdf. Here `log_liks` will be a vector with the same length as `y`.
 3. Add up all the log likelihoods then take the exponent -- equvalent to the product of the likelihoods.
 
 . . .
@@ -191,7 +184,7 @@ As before, we can plot the likelihood as a function of $\mu$ for fixed $y$ and $
 
 ```{julia}
 y_multi = [2.7, 0.6, 2.7, 3.2, 1.7, 1.0, 2.1, 1.8, 1.6, 2.3]
-μ_lik_multi = [lik(y_multi, μi, σ) for μi in μ_try] # <1>
+μ_lik_multi = [normal_lik(y_multi, μi, σ) for μi in μ_try] # <1>
 plot(
     μ_try,
     μ_lik_multi;
@@ -389,22 +382,153 @@ You should understand the general procedure:
 1. take $\frac{d}{d\theta}$ and set equal to zero to maximize
 1. solve for $\theta^*$.
 :::
+# Regression example
+
+## Overview {.scrollable}
+
+Let's consider the generic regression probelem where we have paired observations $\left\{x_i, y_i\right\}_{i=1}^n$.
+In general, we can write this regression as
+$$
+y_i | \alpha, \beta, \epsilon \sim \mathcal{N}(\alpha + x_i \beta, \sigma^2)
+$$
+where $x_i$ and $\beta$ may be vectors.
+
+. . .
+
+We can create some raw data (click to "unfold" the code)
+
+```{julia}
+#| code-fold: true
+X = [
+    9.4,
+    11.2,
+    18.5,
+    5.7,
+    6.4,
+    4.4,
+    10.3,
+    16.0,
+    7.8,
+    12.2,
+    12.3,
+    15.1,
+    10.3,
+    12.4,
+    8.2,
+    11.5,
+    9.0,
+    11.3,
+    9.4,
+    8.5,
+]
+y = [
+    19.4,
+    25.0,
+    41.6,
+    11.9,
+    10.6,
+    8.0,
+    21.8,
+    33.8,
+    15.4,
+    24.9,
+    27.4,
+    31.8,
+    18.6,
+    30.1,
+    18.1,
+    25.8,
+    18.8,
+    24.0,
+    17.4,
+    14.7,
+]
+scatter(X, y; xlabel=L"$X$", ylabel=L"$y$", label="")
+```
+
+## Anlytic approach
+
+We can use the same approach to derive the maximum likelihood estimate for linear regression:
+
+1. Write the likelihood for one data point
+1. Write the log likelihood for one data point
+1. Write the log likelihood for all data points
+1. Take $\frac{d}{d\theta}$ and set equal to zero to maximize
+
+If you want a walkthrough, see [Ryan Adams's lecture notes](https://www.cs.princeton.edu/courses/archive/fall18/cos324/files/mle-regression.pdf) starting at about equation 11.
+
+## Numerical optimization I
+
+As before, we need to write down a (log) likelihood function
+
+```{julia}
+function reg_loglik(xi::T, yi::T, α::T, β::T, σ::T) where {T<:Real}
+    μ = α + xi * β
+    dist = Normal(μ, σ)
+    return logpdf(dist, yi)
+end;
+```
+
+. . .
+
+```{julia}
+function reg_loglik(X::Vector{T}, y::Vector{T}, α::T, β::T, σ::T) where {T<:Real}
+    return sum([reg_loglik(xi, yi, α, β, σ) for (xi, yi) in zip(X, y)])
+end;
+```
+
+## Numerical optimization II
+
+```{julia}
+loss(θ) = -reg_loglik(X, y, θ[1], θ[2], θ[3]); # <1>
+lower = [-Inf, -Inf, 0.0001] # <2>
+upper = [Inf, Inf, Inf]
+guess = [1.0, 1.0, 1.0]
+res = optimize(loss, lower, upper, guess)
+round.(Optim.minimizer(res); digits=3) # <3>
+```
+
+1. This is the loss function, which is the negative log likelihood. The first value of $\theta$ is the intercept, the second is the slope, and the third is the standard deviation.
+2. We need to pass in bounds for the parameters. The standard deviation is always positive, so we set the lower bound to a small number.
+3. This will extract the parameters that minimize the loss function and round to show three decimal places.
+
+## Parallel: least squares {.scrollable .smaller}
+
+If we work through the math, we can show that the log likelihood for the linear regression problem is
+$$
+\log p(y | X, \beta, \sigma) = \frac{N}{2} \log (2 \sigma^2 \pi)  - \frac{1}{2 \sigma^2} \left( X \beta - y \right)^T \left( X \beta - y \right)
+$$
+
+::: {.callout-note}
+## Linear algebra notation
+
+There is no intercept here!
+This is a common notation and assumes that the first column of $X$ is all ones.
+That is equivalent to writing down an intercept, but lets us use linear algebra notation and keep track of fewer variable names
+:::
+
+. . .
+
+From this, we can show that terms drop out and
+$$
+\beta^\text{MLE} = \arg \min_\beta \left( X \beta - y \right)^T \left( X \beta - y \right)
+$$
+which is exactly the least squares problem (minimize squared error):
+$$
+\min_{\theta} \sum_{i=1}^n (y_i - y_i^\text{pred})^2
+$$
+
+. . .
+
+::: {.callout-important}
+## Key point
+
+"Least squares can be interpreted as assuming Gaussian noise, and particular choices of likelihood can be interpreted directly as (usually exponentiated) loss functions" --[Adams](https://www.cs.princeton.edu/courses/archive/fall18/cos324/files/mle-regression.pdf)
+:::
+
+If we then want to estimate $\sigma$, we can estimate the standard deviation of the residuals.
 
 # Wrapup
-
-## Caveats
-
-The likelihood is not the posterior!
-
-::: {.incremental}
-
-- Everyone is tested for CEVE543acitis, a rare and deadly disease
-- It is known that 1 in 100,000 people have CEVE543acitis
-- The test is 99% accurate
-- Your test comes back positive
-- Maximum likelihood principle: a positive test is more consistent with having the disease than not!
-- Using Bayes' rule, you probably don't have the disease (but always talk to your doctor)
-:::
 
 ## Don't get it twisted
 
@@ -420,5 +544,13 @@ Many people get this backwards!
 - Don't confuse this with the posterior, which is the probability of the parameters given the data: $p(\theta | y)$
 
 :::
+
+## Logistics
+
+- Friday:
+    - Lab 03 in class -- look for GH Classroom link on Canvas
+    - Lab 02 due
+- Next week:
+    - Bayesian inference
 
 ## References
