@@ -68,25 +68,32 @@ $$
 p(y | \theta)
 $$
 
-## Likelihood as a function of parameters {.scrollable .smaller}
+. . .
 
-The likelihood notation $p(y | \theta)$ is a function of $y$ for fixed $\theta$.
-However, we often want to study how the likelhood changes for different values of $\theta$.
+Often, we want to study how the likelihood changes for different values of $\theta$, holding $y$ fixed.
+This is just $p(y | \theta)$ for a range of $\theta$.
 
 . . .
 
+::: {.callout-note}
+You will sometimes see this referred to as $\mathcal{L}(\theta)$, which is a  confusing notation...
+:::
+
+## Likelihood example {.scrollable .smaller}
+
 We can plot $p(y | \theta)$ for different values of $\theta$.
 To do that, we need a function for $p(y | \theta)$.
-Here, $\theta = \left\{ \mu, \sigma \right\}$.
+We will consider $y \sim \mathcal{N}(\mu, \sigma)$ so $\theta = \left\{ \mu, \sigma \right\}$.
 
 ```{julia}
+#| output: false
 function normal_lik(y::T, μ::T, σ::T) where {T<:Real} # <1>
     dist = Normal(μ, σ)
     return pdf(dist, y) # <2>
-end;
+end
 ```
 
-1. These are called "type annotations" and specify the type of variable that each argument can take. In this case, any `Real` (float or integer) will work.
+1. The `::T` are called "type annotations" and specify the type of variable that each argument can take. In this case, any `Real` (float or integer) will work. Read more in the [docs](https://docs.julialang.org/en/v1/manual/types/).
 2. This specifies the likelihood using the `pdf` function
 
 . . .
@@ -134,17 +141,6 @@ $$
 p(y | \theta) = \prod_{i=1}^n p(y_i | \theta)
 $$
 
-## Beyond IID
-
-The IID assumption an fundamental assumption of most statistical models.
-
-When it is violated (e.g., because of autocorrelation) we try to add relevant *conditional* information ($X$) so that
-$$
-p(y | \theta, X) = \prod_{i=1}^n p(y_i | X_i, \theta)
-$$
-approximately holds true.
-(This is the idea behind everything from sophisticated hierarchical models to $y=ax + b + \epsilon$.)
-
 ## Log trick
 
 Recall: $\log(AB) = \log(A) + \log(B)$ or, more generally,
@@ -159,7 +155,9 @@ $$
 \log p(y | \theta) =  \log \left( \prod_{i=1}^n p(y_i | \theta) \right) = \sum_{i=1}^n \log \left( p(y_i | \theta) \right)
 $$
 
-This is helpful because adding small numbers is easier and more numerically stable than multiplying them.
+. . .
+
+Adding small numbers is more numerically stable than multiplying them
 
 ## Numerical example: multiple data points {.scrollable .smaller}
 
@@ -211,21 +209,27 @@ $$
 
 ## Total log likelihood
 
-First, we can take the log
+::: {.incremental}
+
+1. Take the log
 $$
 \log p(y_i | \lambda) = y_i \log(\lambda) - \lambda - \log(y_i!)
 $$
-then for multiple data points
+2. For multiple data points
 $$
 \log p(y | \lambda) = \sum_{i=1}^n y_i \log(\lambda) - n \lambda - \sum_{i=1}^n \log(y_i!)
 $$
-which we can implement as
+:::
+
+. . .
 
 ```{julia}
 function poiss_lik(y::Vector{Int}, λ::T) where {T<:Real}
-    return exp(sum([logpdf(Poisson(λ), yi) for yi in y]))
+    return exp(sum([logpdf(Poisson(λ), yi) for yi in y])) # <1>
 end;
 ```
+
+1. I am deliberately showing different ways to implement the same thing in different examples. Here we use a list comprehension. We could instead use, for example, vector notation: `logpdf.(Poisson(λ))`. Performance differences are usually negligible, focus on readability.
 
 ## Plot {.scrollable .smaller}
 
@@ -300,49 +304,9 @@ $$
 \arg \max \log p(y | \theta) = \arg \max p(y | \theta)
 $$
 
-## Implementation I
+## Analytic solution {.scrollable .smaller}
 
-We can use the `optimize` function from the `Optim.jl` package to find the maximum likelihood estimate.
-First, we need to define the function to be optimized.
-`optimize` will minimize the function, so we need to define the *negative* log likelihood.
-We'll call this the "loss" function.
-
-```{julia}
-loss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]);
-```
-
-## Implementation II {.scrollable .smaller}
-
-Now we can run the optimization.
-Since $\sigma > 0$ always, we will pass along bounds.
-We could alternatively do something clever like work with $\log \sigma$ instead of $\sigma$.
-
-```{julia}
-lower = [0.0001, 0.0001] # <1>
-upper = [Inf, Inf] # <2>
-guess = [1.0, 1.0] # <3>
-
-res = optimize(loss, lower, upper, guess) # <4>
-θ_MLE = Optim.minimizer(res) # <5>
-```
-
-1. The lower bound is actually zero, but we just set it to a "pretty small" number.
-2. The upper bound is infinity, we can pass in `Inf`
-3. We need to pass in a guess for the parameters. We'll just use $\mu = \sigma = 1$.
-4. This will actually run the optimization
-5. This will extract the parameters that minimize the loss function.
-
-We could convert this to a `Distributions` object as
-
-```{julia}
-dist_MLE = Normal(θ_MLE[1], θ_MLE[2])
-```
-
-## Analytic example {.scrollable .smaller}
-
-Although it's usually easy to solve things numerically, sometimes we can solve things analytically.
-This takes time up-front, but can be much faster to run because you can avoid the optimization step.
-
+Solving things analytically takes time up-front, but can be much faster to run because you can avoid the optimization step.
 Consider the (potentially multivariate) Gaussian example with known covariance matrix $\Sigma$.
 We want to *maximize* the likelihood
 $$
@@ -376,12 +340,55 @@ $$
 You are not expected to remember the above equations and I won't ask you to do this derivation in a time-constrained exam.
 You should understand the general procedure:
 
-1. write down likelihood for one data point
-1. write down log likelihood for one data point
 1. write down log likelihood for all data points
+    1. write down likelihood for one data point
+    1. write down log likelihood for one data point
+    1. sum over all data points
 1. take $\frac{d}{d\theta}$ and set equal to zero to maximize
 1. solve for $\theta^*$.
+
 :::
+
+## Numerical approach I
+
+We can use the `optimize` function from the `Optim.jl` package to find the maximum likelihood estimate.
+First, we need to define the function to be optimized.
+`optimize` will minimize the function, so we need to define the *negative* log likelihood.
+We'll call this the "loss" function.
+
+```{julia}
+loss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]); # <1>
+```
+
+1. Note that this function takes in **a single argument** which is a vector of parameters. We'll call this vector `θ` but it doesn't matter what we call it.
+
+## Numerical approach II {.scrollable .smaller}
+
+Now we can run the optimization.
+Since $\sigma > 0$ always, we will pass along bounds.
+We could alternatively do something clever like work with $\log \sigma$ instead of $\sigma$.
+
+```{julia}
+lower = [0.0001, 0.0001] # <1>
+upper = [Inf, Inf] # <2>
+guess = [1.0, 1.0] # <3>
+
+res = optimize(loss, lower, upper, guess) # <4>
+θ_MLE = Optim.minimizer(res) # <5>
+```
+
+1. The lower bound is actually zero, but we just set it to a "pretty small" number.
+2. The upper bound is infinity, we can pass in `Inf`
+3. We need to pass in a guess for the parameters. We'll just use $\mu = \sigma = 1$.
+4. This will actually run the optimization
+5. This will extract the parameters that minimize the loss function.
+
+We could convert this to a `Distributions` object as
+
+```{julia}
+dist_MLE = Normal(θ_MLE[1], θ_MLE[2])
+```
+
 # Regression example
 
 ## Overview {.scrollable}
