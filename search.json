@@ -1103,14 +1103,14 @@
     "href": "slides/lecture03-maximum-likelihood.html#definition",
     "title": "Maximum likelihood",
     "section": "Definition",
-    "text": "Definition\nThe likelihood is the probability of the data given some parameters: \\[\np(y | \\theta)\n\\]"
+    "text": "Definition\nThe likelihood is the probability of the data given some parameters: \\[\np(y | \\theta)\n\\]\n\nOften, we want to study how the likelihood changes for different values of \\(\\theta\\), holding \\(y\\) fixed. This is just \\(p(y | \\theta)\\) for a range of \\(\\theta\\).\n\n\n\n\n\n\n\n\nNote\n\n\nYou will sometimes see this referred to as \\(\\mathcal{L}(\\theta)\\), which is a confusing notation…"
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-function-of-parameters",
-    "href": "slides/lecture03-maximum-likelihood.html#likelihood-as-a-function-of-parameters",
+    "objectID": "slides/lecture03-maximum-likelihood.html#likelihood-example",
+    "href": "slides/lecture03-maximum-likelihood.html#likelihood-example",
     "title": "Maximum likelihood",
-    "section": "Likelihood as a function of parameters",
-    "text": "Likelihood as a function of parameters\nThe likelihood notation \\(p(y | \\theta)\\) is a function of \\(y\\) for fixed \\(\\theta\\). However, we often want to study how the likelhood changes for different values of \\(\\theta\\).\n\nWe can plot \\(p(y | \\theta)\\) for different values of \\(\\theta\\). To do that, we need a function for \\(p(y | \\theta)\\). Here, \\(\\theta = \\left\\{ \\mu, \\sigma \\right\\}\\).\n\n1function normal_lik(y::T, μ::T, σ::T) where {T&lt;:Real}\n    dist = Normal(μ, σ)\n2    return pdf(dist, y)\nend;\n\n\n1\n\nThese are called “type annotations” and specify the type of variable that each argument can take. In this case, any Real (float or integer) will work.\n\n2\n\nThis specifies the likelihood using the pdf function\n\n\n\n\n\n\nNext we plug in some values for \\(\\mu\\) and plot the likelihood for each. This is essentially plotting the likelihood as a function of \\(\\theta\\) for fixed \\(y\\).\n\nμ_try = range(-6, 8, length=500)\ny = 2.0\nσ = 1.0\n1μ_lik = normal_lik.(y, μ_try, σ)\n\nplot(\n    μ_try,\n    μ_lik;\n    ylabel=L\"$p(y=2 | \\mu,  \\sigma=1)$\",\n    xlabel=L\"$\\mu  $\",\n    label=\"Likelihood\",\n    linewidth=2\n)\n2vline!([y], label=\"y\", linewidth=2)\n\n\n1\n\nThe vector notation lik. means to apply the function lik to each element of μ_try. [lik(xi, 1, 2) for xi in x] would do the same thing.\n\n2\n\nNotice the likelihood function is maximized at \\(\\mu = y\\)."
+    "section": "Likelihood example",
+    "text": "Likelihood example\nWe can plot \\(p(y | \\theta)\\) for different values of \\(\\theta\\). To do that, we need a function for \\(p(y | \\theta)\\). We will consider \\(y \\sim \\mathcal{N}(\\mu, \\sigma)\\) so \\(\\theta = \\left\\{ \\mu, \\sigma \\right\\}\\).\n\n1function normal_lik(y::T, μ::T, σ::T) where {T&lt;:Real}\n    dist = Normal(μ, σ)\n2    return pdf(dist, y)\nend\n\n\n1\n\nThe ::T are called “type annotations” and specify the type of variable that each argument can take. In this case, any Real (float or integer) will work. Read more in the docs.\n\n2\n\nThis specifies the likelihood using the pdf function\n\n\n\n\n\nNext we plug in some values for \\(\\mu\\) and plot the likelihood for each. This is essentially plotting the likelihood as a function of \\(\\theta\\) for fixed \\(y\\).\n\nμ_try = range(-6, 8, length=500)\ny = 2.0\nσ = 1.0\n1μ_lik = normal_lik.(y, μ_try, σ)\n\nplot(\n    μ_try,\n    μ_lik;\n    ylabel=L\"$p(y=2 | \\mu,  \\sigma=1)$\",\n    xlabel=L\"$\\mu  $\",\n    label=\"Likelihood\",\n    linewidth=2\n)\n2vline!([y], label=\"y\", linewidth=2)\n\n\n1\n\nThe vector notation lik. means to apply the function lik to each element of μ_try. [lik(xi, 1, 2) for xi in x] would do the same thing.\n\n2\n\nNotice the likelihood function is maximized at \\(\\mu = y\\)."
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#iid-assumption",
@@ -1120,18 +1120,11 @@
     "text": "IID assumption\nIndependent and identically distributed (i.i.d.) assumption: \\[\n\\begin{align}\np(y_1, y_2, \\ldots, y_n) &= p(y_1) p(y_2) \\times \\ldots \\times p(y_n)\\\\\n&= \\prod_{i=1}^n p(y_i)\n\\end{align}\n\\]\n\nUsually we have more than one data point. Say we measure \\(y = y_1, y_2, \\ldots, y_n\\): \\[\np(y | \\theta) = \\prod_{i=1}^n p(y_i | \\theta)\n\\]"
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#beyond-iid",
-    "href": "slides/lecture03-maximum-likelihood.html#beyond-iid",
-    "title": "Maximum likelihood",
-    "section": "Beyond IID",
-    "text": "Beyond IID\nThe IID assumption an fundamental assumption of most statistical models.\nWhen it is violated (e.g., because of autocorrelation) we try to add relevant conditional information (\\(X\\)) so that \\[\np(y | \\theta, X) = \\prod_{i=1}^n p(y_i | X_i, \\theta)\n\\] approximately holds true. (This is the idea behind everything from sophisticated hierarchical models to \\(y=ax + b + \\epsilon\\).)"
-  },
-  {
     "objectID": "slides/lecture03-maximum-likelihood.html#log-trick",
     "href": "slides/lecture03-maximum-likelihood.html#log-trick",
     "title": "Maximum likelihood",
     "section": "Log trick",
-    "text": "Log trick\nRecall: \\(\\log(AB) = \\log(A) + \\log(B)\\) or, more generally, \\[\n\\log \\left( \\prod_{i=1}^n f_i \\right) = \\sum_{i=1}^n \\log(f_i)\n\\]\n\nThus, we can work with the “log likelihood”: \\[\n\\log p(y | \\theta) =  \\log \\left( \\prod_{i=1}^n p(y_i | \\theta) \\right) = \\sum_{i=1}^n \\log \\left( p(y_i | \\theta) \\right)\n\\]\nThis is helpful because adding small numbers is easier and more numerically stable than multiplying them."
+    "text": "Log trick\nRecall: \\(\\log(AB) = \\log(A) + \\log(B)\\) or, more generally, \\[\n\\log \\left( \\prod_{i=1}^n f_i \\right) = \\sum_{i=1}^n \\log(f_i)\n\\]\n\nThus, we can work with the “log likelihood”: \\[\n\\log p(y | \\theta) =  \\log \\left( \\prod_{i=1}^n p(y_i | \\theta) \\right) = \\sum_{i=1}^n \\log \\left( p(y_i | \\theta) \\right)\n\\]\n\n\nAdding small numbers is more numerically stable than multiplying them"
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#numerical-example-multiple-data-points",
@@ -1152,7 +1145,7 @@
     "href": "slides/lecture03-maximum-likelihood.html#total-log-likelihood",
     "title": "Maximum likelihood",
     "section": "Total log likelihood",
-    "text": "Total log likelihood\nFirst, we can take the log \\[\n\\log p(y_i | \\lambda) = y_i \\log(\\lambda) - \\lambda - \\log(y_i!)\n\\] then for multiple data points \\[\n\\log p(y | \\lambda) = \\sum_{i=1}^n y_i \\log(\\lambda) - n \\lambda - \\sum_{i=1}^n \\log(y_i!)\n\\] which we can implement as\n\nfunction poiss_lik(y::Vector{Int}, λ::T) where {T&lt;:Real}\n    return exp(sum([logpdf(Poisson(λ), yi) for yi in y]))\nend;"
+    "text": "Total log likelihood\n\n\nTake the log \\[\n\\log p(y_i | \\lambda) = y_i \\log(\\lambda) - \\lambda - \\log(y_i!)\n\\]\nFor multiple data points \\[\n\\log p(y | \\lambda) = \\sum_{i=1}^n y_i \\log(\\lambda) - n \\lambda - \\sum_{i=1}^n \\log(y_i!)\n\\]\n\n\n\n\nfunction poiss_lik(y::Vector{Int}, λ::T) where {T&lt;:Real}\n1    return exp(sum([logpdf(Poisson(λ), yi) for yi in y]))\nend;\n\n\n1\n\nI am deliberately showing different ways to implement the same thing in different examples. Here we use a list comprehension. We could instead use, for example, vector notation: logpdf.(Poisson(λ)). Performance differences are usually negligible, focus on readability."
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#plot",
@@ -1190,25 +1183,25 @@
     "text": "Log likelihood\nWe can use the log likelihood \\(\\log p(y | \\theta)\\) instead of the likelihood \\(p(y | \\theta)\\).\nThe log likelihood is monotonic with the likelihood, so \\[\n\\arg \\max \\log p(y | \\theta) = \\arg \\max p(y | \\theta)\n\\]"
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#implementation-i",
-    "href": "slides/lecture03-maximum-likelihood.html#implementation-i",
+    "objectID": "slides/lecture03-maximum-likelihood.html#analytic-solution",
+    "href": "slides/lecture03-maximum-likelihood.html#analytic-solution",
     "title": "Maximum likelihood",
-    "section": "Implementation I",
-    "text": "Implementation I\nWe can use the optimize function from the Optim.jl package to find the maximum likelihood estimate. First, we need to define the function to be optimized. optimize will minimize the function, so we need to define the negative log likelihood. We’ll call this the “loss” function.\n\nloss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]);"
+    "section": "Analytic solution",
+    "text": "Analytic solution\nSolving things analytically takes time up-front, but can be much faster to run because you can avoid the optimization step. Consider the (potentially multivariate) Gaussian example with known covariance matrix \\(\\Sigma\\). We want to maximize the likelihood \\[\n\\sum_{i=1}^n p(y_i | \\mu, \\Sigma)\n\\]\n\nTo maximize, we set its derivative with respect to \\(\\mu\\), which we’ll denote with \\(\\nabla_\\mu\\), to zero: \\[\n\\sum_{i=1}^n \\nabla_\\mu \\log p(y_i | \\mu, \\Sigma) = 0\n\\]\n\n\nSubstituting in the multivariate Gaussian likelihood we get: \\[\n\\begin{aligned}\n0 & =\\sum_{i=1}^n \\nabla_\\mu \\log \\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}} \\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(\\log \\left(\\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}}\\right)\\right)+\\log \\left(\\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\\\\n&=\\sum_{i=1}^n \\Sigma^{-1}\\left(x_i-\\mu\\right) \\\\\n0 &= \\sum_{i=1}^n (x_i - \\mu) \\\\\n\\mu &= \\frac{1}{n} \\sum_{i=1}^n x_i\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\nNote\n\n\nYou are not expected to remember the above equations and I won’t ask you to do this derivation in a time-constrained exam. You should understand the general procedure:\n\nwrite down log likelihood for all data points\n\nwrite down likelihood for one data point\nwrite down log likelihood for one data point\nsum over all data points\n\ntake \\(\\frac{d}{d\\theta}\\) and set equal to zero to maximize\nsolve for \\(\\theta^*\\)."
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#implementation-ii",
-    "href": "slides/lecture03-maximum-likelihood.html#implementation-ii",
+    "objectID": "slides/lecture03-maximum-likelihood.html#numerical-approach-i",
+    "href": "slides/lecture03-maximum-likelihood.html#numerical-approach-i",
     "title": "Maximum likelihood",
-    "section": "Implementation II",
-    "text": "Implementation II\nNow we can run the optimization. Since \\(\\sigma &gt; 0\\) always, we will pass along bounds. We could alternatively do something clever like work with \\(\\log \\sigma\\) instead of \\(\\sigma\\).\n\n1lower = [0.0001, 0.0001]\n2upper = [Inf, Inf]\n3guess = [1.0, 1.0]\n\n4res = optimize(loss, lower, upper, guess)\n5θ_MLE = Optim.minimizer(res)\n\n\n1\n\nThe lower bound is actually zero, but we just set it to a “pretty small” number.\n\n2\n\nThe upper bound is infinity, we can pass in Inf\n\n3\n\nWe need to pass in a guess for the parameters. We’ll just use \\(\\mu = \\sigma = 1\\).\n\n4\n\nThis will actually run the optimization\n\n5\n\nThis will extract the parameters that minimize the loss function.\n\n\n\n\n2-element Vector{Float64}:\n 1.97000000014951\n 0.7590125165166877\n\n\nWe could convert this to a Distributions object as\n\ndist_MLE = Normal(θ_MLE[1], θ_MLE[2])\n\nNormal{Float64}(μ=1.97000000014951, σ=0.7590125165166877)"
+    "section": "Numerical approach I",
+    "text": "Numerical approach I\nWe can use the optimize function from the Optim.jl package to find the maximum likelihood estimate. First, we need to define the function to be optimized. optimize will minimize the function, so we need to define the negative log likelihood. We’ll call this the “loss” function.\n\n1loss(θ) = -normal_log_lik(y_multi, θ[1], θ[2]);\n\n\n1\n\nNote that this function takes in a single argument which is a vector of parameters. We’ll call this vector θ but it doesn’t matter what we call it."
   },
   {
-    "objectID": "slides/lecture03-maximum-likelihood.html#analytic-example",
-    "href": "slides/lecture03-maximum-likelihood.html#analytic-example",
+    "objectID": "slides/lecture03-maximum-likelihood.html#numerical-approach-ii",
+    "href": "slides/lecture03-maximum-likelihood.html#numerical-approach-ii",
     "title": "Maximum likelihood",
-    "section": "Analytic example",
-    "text": "Analytic example\nAlthough it’s usually easy to solve things numerically, sometimes we can solve things analytically. This takes time up-front, but can be much faster to run because you can avoid the optimization step.\nConsider the (potentially multivariate) Gaussian example with known covariance matrix \\(\\Sigma\\). We want to maximize the likelihood \\[\n\\sum_{i=1}^n p(y_i | \\mu, \\Sigma)\n\\]\n\nTo maximize, we set its derivative with respect to \\(\\mu\\), which we’ll denote with \\(\\nabla_\\mu\\), to zero: \\[\n\\sum_{i=1}^n \\nabla_\\mu \\log p(y_i | \\mu, \\Sigma) = 0\n\\]\n\n\nSubstituting in the multivariate Gaussian likelihood we get: \\[\n\\begin{aligned}\n0 & =\\sum_{i=1}^n \\nabla_\\mu \\log \\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}} \\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(\\log \\left(\\frac{1}{\\sqrt{(2 \\pi)^d|\\Sigma|}}\\right)\\right)+\\log \\left(\\exp \\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\right) \\\\\n& =\\sum_{i=1}^n \\nabla_\\mu\\left(-\\frac{1}{2}\\left(x_i-\\mu\\right)^{\\top} \\Sigma^{-1}\\left(x_i-\\mu\\right)\\right)\\\\\n&=\\sum_{i=1}^n \\Sigma^{-1}\\left(x_i-\\mu\\right) \\\\\n0 &= \\sum_{i=1}^n (x_i - \\mu) \\\\\n\\mu &= \\frac{1}{n} \\sum_{i=1}^n x_i\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\nNote\n\n\nYou are not expected to remember the above equations and I won’t ask you to do this derivation in a time-constrained exam. You should understand the general procedure:\n\nwrite down likelihood for one data point\nwrite down log likelihood for one data point\nwrite down log likelihood for all data points\ntake \\(\\frac{d}{d\\theta}\\) and set equal to zero to maximize\nsolve for \\(\\theta^*\\)."
+    "section": "Numerical approach II",
+    "text": "Numerical approach II\nNow we can run the optimization. Since \\(\\sigma &gt; 0\\) always, we will pass along bounds. We could alternatively do something clever like work with \\(\\log \\sigma\\) instead of \\(\\sigma\\).\n\n1lower = [0.0001, 0.0001]\n2upper = [Inf, Inf]\n3guess = [1.0, 1.0]\n\n4res = optimize(loss, lower, upper, guess)\n5θ_MLE = Optim.minimizer(res)\n\n\n1\n\nThe lower bound is actually zero, but we just set it to a “pretty small” number.\n\n2\n\nThe upper bound is infinity, we can pass in Inf\n\n3\n\nWe need to pass in a guess for the parameters. We’ll just use \\(\\mu = \\sigma = 1\\).\n\n4\n\nThis will actually run the optimization\n\n5\n\nThis will extract the parameters that minimize the loss function.\n\n\n\n\n2-element Vector{Float64}:\n 1.97000000014951\n 0.7590125165166877\n\n\nWe could convert this to a Distributions object as\n\ndist_MLE = Normal(θ_MLE[1], θ_MLE[2])\n\nNormal{Float64}(μ=1.97000000014951, σ=0.7590125165166877)"
   },
   {
     "objectID": "slides/lecture03-maximum-likelihood.html#overview",
