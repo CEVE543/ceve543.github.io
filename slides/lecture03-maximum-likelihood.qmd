@@ -268,24 +268,25 @@ end;
 With two parameters, we need to plot a surface
 
 ```{julia}
-μ_plot = range(-6, 8, length=510)
-σ_plot = exp.(range(-3, 2, length=500))
-log_lik = [normal_log_lik(y_multi, μ, σ) for σ in σ_plot, μ in μ_plot] # <1>
+μ_plot = range(-6, 8; length=510)
+σ_plot = exp.(range(-3, 2; length=500))
+log_lik = [normal_log_lik(y_multi, μ, σ) for μ in μ_plot, σ in σ_plot] # <1>
 lik_plot = exp.(log_lik)
 plot(
     μ_plot,
     σ_plot,
-    lik_plot;
-    st=:heatmap, # <2>
+    lik_plot'; # <2>
+    st=:heatmap, # <3>
     xlabel=L"$\mu$",
     ylabel=L"$\sigma$",
     legend=:topright,
-    colorbar_title=L"$\log p(y | \mu, \sigma)$"
+    colorbar_title=L"$p(y | \mu, \sigma)$",
 )
 ```
 
-1. This syntax: `[f(x, y) for xi in x, yi in y]` will produce a matrix with `f(xi, yi)` in the `i`th row and `j`th column.
-2. `st=:heatmap` tells Plots to plot a heatmap. We could also try :surface or :contourf.
+1. This syntax: `z = [f(x, y) for xi in x, yi in y]` will produce a matrix with `z[i, j] = f(x[i], y[j])`.
+2. Due to a quirk of syntax, we need to transpose the matrix `lik_plot` to get the correct orientation. Here, `lik_plot'` is equivalent to `transpose(lik_plot)`.
+3. `st=:heatmap` tells Plots to plot a heatmap. We could also try :surface or :contourf.
 
 Notice that there is a very small region for which the likelihood is [relatively] high.
 
