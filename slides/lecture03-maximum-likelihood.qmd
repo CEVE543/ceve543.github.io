@@ -268,9 +268,9 @@ end;
 With two parameters, we need to plot a surface
 
 ```{julia}
-μ_plot = range(-6, 8, length=500)
+μ_plot = range(-6, 8, length=510)
 σ_plot = exp.(range(-3, 2, length=500))
-log_lik = [normal_log_lik(y_multi, μ, σ) for μ in μ_plot, σ in σ_plot] # <1>
+log_lik = [normal_log_lik(y_multi, μ, σ) for σ in σ_plot, μ in μ_plot] # <1>
 lik_plot = exp.(log_lik)
 plot(
     μ_plot,
