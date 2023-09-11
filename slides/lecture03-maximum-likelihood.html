@@ -489,11 +489,11 @@ p(y | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-1">The <code>::T</code> are called “type annotations” and specify the type of variable that each argument can take. In this case, any <code>Real</code> (float or integer) will work. Read more in the <a href="https://docs.julialang.org/en/v1/manual/types/">docs</a>.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-1" data-code-annotation="1">The <code>::T</code> are called “type annotations” and specify the type of variable that each argument can take. In this case, any <code>Real</code> (float or integer) will work. Read more in the <a href="https://docs.julialang.org/en/v1/manual/types/">docs</a>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-1">This specifies the likelihood using the <code>pdf</code> function</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="2">This specifies the likelihood using the <code>pdf</code> function</span>
 </dd>
 </dl>
 </div>
@@ -519,11 +519,11 @@ p(y | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="4" data-code-annotation="1" data-code-cell="annotated-cell-2">The vector notation <code>lik.</code> means to apply the function <code>lik</code> to each element of <code>μ_try</code>. <code>[lik(xi, 1, 2) for xi in x]</code> would do the same thing.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-2" data-code-annotation="1">The vector notation <code>lik.</code> means to apply the function <code>lik</code> to each element of <code>μ_try</code>. <code>[lik(xi, 1, 2) for xi in x]</code> would do the same thing.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="14" data-code-annotation="2" data-code-cell="annotated-cell-2">Notice the likelihood function is maximized at <span class="math inline">\(\mu = y\)</span>.</span>
+<span data-code-lines="14" data-code-cell="annotated-cell-2" data-code-annotation="2">Notice the likelihood function is maximized at <span class="math inline">\(\mu = y\)</span>.</span>
 </dd>
 </dl>
 </div>
@@ -628,15 +628,15 @@ p(y | \theta) = \prod_{i=1}^n p(y_i | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-3"><code>Vector{&lt;:Real}</code> means a vector of any subtype of <code>Real</code>. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-3" data-code-annotation="1"><code>Vector{&lt;:Real}</code> means a vector of any subtype of <code>Real</code>. Julia uses “multiple dispatch” which means that we can have multiple functions with the same name but that do different things depending on what the type of the arguments is.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-3"><code>logpdf</code> function (from <code>Distributions</code>) is the log of the pdf. Here <code>log_liks</code> will be a vector with the same length as <code>y</code>.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-3" data-code-annotation="2"><code>logpdf</code> function (from <code>Distributions</code>) is the log of the pdf. Here <code>log_liks</code> will be a vector with the same length as <code>y</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="4" data-code-annotation="3" data-code-cell="annotated-cell-3">Add up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-3" data-code-annotation="3">Add up all the log likelihoods then take the exponent – equvalent to the product of the likelihoods.</span>
 </dd>
 </dl>
 </div>
@@ -659,7 +659,7 @@ p(y | \theta) = \prod_{i=1}^n p(y_i | \theta)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="1" data-code-cell="annotated-cell-4">In this case both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are vectors, with different lengths, so using the dot notation <code>lik.</code> won’t work – it doesn’t know which variable to vectorize over.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-4" data-code-annotation="1">In this case both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are vectors, with different lengths, so using the dot notation <code>lik.</code> won’t work – it doesn’t know which variable to vectorize over.</span>
 </dd>
 </dl>
 </div>
@@ -761,7 +761,7 @@ p(y_i | \lambda) = \frac{\lambda^{y_i} e^{-\lambda}}{y_i!}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="1" data-code-cell="annotated-cell-5">I am deliberately showing different ways to implement the same thing in different examples. Here we use a list comprehension. We could instead use, for example, vector notation: <code>logpdf.(Poisson(λ))</code>. Performance differences are usually negligible, focus on readability.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-5" data-code-annotation="1">I am deliberately showing different ways to implement the same thing in different examples. Here we use a list comprehension. We could instead use, for example, vector notation: <code>logpdf.(Poisson(λ))</code>. Performance differences are usually negligible, focus on readability.</span>
 </dd>
 </dl>
 </div>
@@ -868,15 +868,15 @@ p(y_i | \lambda) = \frac{\lambda^{y_i} e^{-\lambda}}{y_i!}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="1" data-code-cell="annotated-cell-8">This syntax: <code>z = [f(x, y) for xi in x, yi in y]</code> will produce a matrix with <code>z[i, j] = f(x[i], y[j])</code>.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-8" data-code-annotation="1">This syntax: <code>z = [f(x, y) for xi in x, yi in y]</code> will produce a matrix with <code>z[i, j] = f(x[i], y[j])</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="8" data-code-annotation="2" data-code-cell="annotated-cell-8">Due to a quirk of syntax, we need to transpose the matrix <code>lik_plot</code> to get the correct orientation. Here, <code>lik_plot'</code> is equivalent to <code>transpose(lik_plot)</code>.</span>
+<span data-code-lines="8" data-code-cell="annotated-cell-8" data-code-annotation="2">Due to a quirk of syntax, we need to transpose the matrix <code>lik_plot</code> to get the correct orientation. Here, <code>lik_plot'</code> is equivalent to <code>transpose(lik_plot)</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="9" data-code-annotation="3" data-code-cell="annotated-cell-8"><code>st=:heatmap</code> tells Plots to plot a heatmap. We could also try :surface or :contourf.</span>
+<span data-code-lines="9" data-code-cell="annotated-cell-8" data-code-annotation="3"><code>st=:heatmap</code> tells Plots to plot a heatmap. We could also try :surface or :contourf.</span>
 </dd>
 </dl>
 </div>
@@ -1825,7 +1825,7 @@ RK5CYII=
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-9">Note that this function takes in <strong>a single argument</strong> which is a vector of parameters. We’ll call this vector <code>θ</code> but it doesn’t matter what we call it.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-9" data-code-annotation="1">Note that this function takes in <strong>a single argument</strong> which is a vector of parameters. We’ll call this vector <code>θ</code> but it doesn’t matter what we call it.</span>
 </dd>
 </dl>
 </div>
@@ -1845,23 +1845,23 @@ RK5CYII=
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-10">The lower bound is actually zero, but we just set it to a “pretty small” number.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-10" data-code-annotation="1">The lower bound is actually zero, but we just set it to a “pretty small” number.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="2" data-code-cell="annotated-cell-10">The upper bound is infinity, we can pass in <code>Inf</code></span>
+<span data-code-lines="2" data-code-cell="annotated-cell-10" data-code-annotation="2">The upper bound is infinity, we can pass in <code>Inf</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="3" data-code-cell="annotated-cell-10">We need to pass in a guess for the parameters. We’ll just use <span class="math inline">\(\mu = \sigma = 1\)</span>.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-10" data-code-annotation="3">We need to pass in a guess for the parameters. We’ll just use <span class="math inline">\(\mu = \sigma = 1\)</span>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="5" data-code-annotation="4" data-code-cell="annotated-cell-10">This will actually run the optimization</span>
+<span data-code-lines="5" data-code-cell="annotated-cell-10" data-code-annotation="4">This will actually run the optimization</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-lines="6" data-code-annotation="5" data-code-cell="annotated-cell-10">This will extract the parameters that minimize the loss function.</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-10" data-code-annotation="5">This will extract the parameters that minimize the loss function.</span>
 </dd>
 </dl>
 </div>
@@ -2049,15 +2049,15 @@ y_i | \alpha, \beta, \epsilon \sim \mathcal{N}(\alpha + x_i \beta, \sigma^2)
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-15">This is the loss function, which is the negative log likelihood. The first value of <span class="math inline">\(\theta\)</span> is the intercept, the second is the slope, and the third is the standard deviation.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-15" data-code-annotation="1">This is the loss function, which is the negative log likelihood. The first value of <span class="math inline">\(\theta\)</span> is the intercept, the second is the slope, and the third is the standard deviation.</span>
 </dd>
 <dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="2" data-code-cell="annotated-cell-15">We need to pass in bounds for the parameters. The standard deviation is always positive, so we set the lower bound to a small number.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-15" data-code-annotation="2">We need to pass in bounds for the parameters. The standard deviation is always positive, so we set the lower bound to a small number.</span>
 </dd>
 <dt data-target-cell="annotated-cell-15" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="6" data-code-annotation="3" data-code-cell="annotated-cell-15">This will extract the parameters that minimize the loss function and round to show three decimal places.</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-15" data-code-annotation="3">This will extract the parameters that minimize the loss function and round to show three decimal places.</span>
 </dd>
 </dl>
 </div>
