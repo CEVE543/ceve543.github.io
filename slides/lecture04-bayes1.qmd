@@ -1,5 +1,5 @@
 ---
-title: "Bayesian inference I"
+title: "Parametric Uncertainty"
 subtitle: "Lecture"
 date: "September 11, 2023"
 
@@ -36,18 +36,429 @@ execute:
     echo: true
 ---
 
-## Caveats
+```{julia}
+#| include: false
+using CSV
+using DataFrames
+using Distributions
+using LaTeXStrings
+using Optim
+using Plots
+using StatsPlots
+using Unitful
 
-The likelihood is not the posterior!
+Plots.default(margin=4Plots.mm, size=(700, 400))
+```
+
+# Motivation
+
+## Recall: Bayesian Decision Theory
+
+Recall:
+$$
+\mathbb{E}\left[L(a, \theta) \right] = \int_\theta L(a, \theta) p(\theta) d\theta
+$$
+Where $\theta$ is a vector of parameters, $a$ is some action or decision, and $L$ is the loss function.
+
+::: {.callout-note}
+We previously called $\theta$ a "state of the world" and $L$ a "reward function".
+:::
+
+## Problem statement {.smaller .scrollable}
+
+You have been comissioned by a client to assess their exposure to flooding.
+Specifically, they want to know the probability distribution of annual flood damages at their property if they do not elevate or floodproof their building.
+
+::: {.incremental}
+1. $p(h)$: probability distribution of annual maximum flood heights at their property
+1. $d(h)$: flood damages as a deterministic function of flood height
+1. $p(d) = \int_h d(h) p(h) \, dh$
+:::
+
+. . .
+
+With this information, they can compute metrics like the expected annual damage, the 99th percentile annual damage, and the probability of any flood occurring that will help them make a decision.
+
+# Flood depths
+
+## Data {.scrollable}
+
+We fold this long code block to save space.
+
+```{julia}
+#| code-fold: true
+annmax = CSV.read("data/8638610-annmax.csv", DataFrame)
+annmax.lsl .*= u"ft" # <1>
+display(first(annmax, 3))
+
+p1 = plot(
+    annmax.year,
+    annmax.lsl;
+    xlabel="Year",
+    ylabel="Ann. Max. Water Level",
+    label=false,
+    marker=:circle, # <2>
+)
+p2 = histogram(
+    annmax.lsl,
+    normalize=:pdf, # <3>
+    orientation=:horizontal,
+    label=false,
+    xlabel="Probability",
+    ylabel="",
+    yticks=[], # <4>
+    bins=2:0.3:8,
+    xlims=(0, 0.8),
+)
+
+l = @layout [a{0.7w} b{0.3w}] # <5>
+plot(p1, p2; layout=l, link=:y, ylims=(2, 8), suptitle="Sewell's Point, VA") #<6>
+```
+
+1. Recall the `*=` syntax: `x *= 2` is equivalent ot `x = x * 2`. We use `.*=` to work element-wise on the vector.
+2. This adds the points to the plot
+3. `normalize=:pdf` normalizes the histogram so that the area under the curve is 1.
+4. The $y$ axis of the histogram matches that of the line plot, so we remove any y ticks from the histogram.
+5. We can define very flexible layouts for combining multiple plots. See [the docs](https://docs.juliaplots.org/latest/layouts/).
+6. `suptitle` adds a title to the entire figure.
+
+This data comes from the NOAA Tides and Currents database, specifically a gauge at Sewell's Point, VA, with sea level rise removed.
+
+## Flood depths model
+
+We want a probability distribution for flood depths $p(h)$.
+We can work with the log of the flood depths and treat them as normally distributed:
+$$
+\log h_i \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+. . .
+
+We call this a lognormal distribution:
+$$
+h_i \sim \text{LN}(\mu, \sigma)
+$$
+
+## Distribution and histogram {.scrollable}
+
+```{julia}
+histogram(
+    annmax.lsl,
+    xlabel="Ann. Max. Water Level",
+    normalize=:pdf, # <1>
+    bins=2:0.25:8,
+    label="Observed"
+)
+
+annmax[!, :lsl_ft] = ustrip.(u"ft", annmax.lsl) # <2>
+flood_mle_dist = fit_mle(LogNormal, annmax.lsl_ft) # <3>
+plot!(flood_mle_dist, label="MLE LogNormal", linewidth=3, ylabel="Probability Density")
+```
+
+1. normalizes the histogram so that the area under the curve is 1.
+2. The `fit_mle` function requires a vector of numbers, without units. We use `ustrip` to convert the units to a number, using feet (`u"ft"`) as the reference unit.
+3. This accesses the `:lsl_ft` column we created.
+
+. . .
+
+::: {.callout-note}
+We'll spend a whole module on extreme value distributions.
+They should do a better job of modeling annual maxima but require some subtelty.
+:::
+
+## Return periods and levels {.scrollable}
+
+Flood probabilities are often plotted as return periods.
+This is just a visualization the CDF on a log (or log-log) scale.
+
+```{julia}
+#| code-fold: true
+rts = exp.(range(log(1.25), log(500); length=500)) # return periods
+aeps = 1 .- 1 ./ rts # annual exceedance probability
+
+xticks = [2, 5, 10, 25, 50, 100, 250, 500]
+yticks = [3.5, 4, 4.5, 5, 5.5, 6, 6.5]
+
+plt_rt = plot(
+    rts,
+    quantile(flood_mle_dist, aeps);
+    xlabel="Return Period [years]",
+    ylabel="Return Level [ft]",
+    xscale=:log10,
+    yscale=:log10,
+    legend=:bottomright,
+    xticks=(xticks, string.(xticks)), # <1>
+    yticks=(yticks, string.(yticks)),
+    label="MLE Distribution",
+    linewidth=2
+)
+```
+
+1. This is a trick to get the ticks on the axes right when we plot on a log scale.
+
+::: {.callout-note}
+Work through this code and make sure you understand it
+:::
+
+## Plot Position {.scrollable}
+
+It is common to add the data points as dots on the return period curve.
+This begs the question: what return period is assigned to each point?
+This is a subjective choice, but a common one is the Weibull plotting position:
+
+```{julia}
+function weibull_plot_pos(y)
+    N = length(y)
+    ys = sort(y; rev=false) # sorted values of y
+    nxp = xp = [r / (N + 1) for r in 1:N] # exceedance probability
+    xp = 1 .- nxp
+    return xp, ys
+end
+xp, ys = weibull_plot_pos(annmax.lsl_ft) # <1>
+scatter!(plt_rt, 1 ./ xp, ys; label="Observations", color=:gray, alpha=1)
+```
+
+1. We are again using the vector that we converted to a scalar, in feet.
+
+::: {.callout-tip}
+## 🤔
+How well does this fit the data?
+:::
+
+# Functions of random variables
+
+## Depth-damage model
+
+A bounded logistic function provides a plausible *depth-damage model* for now:
+$$
+d(h) = \mathbb{I}\left[x > 0 \right] \frac{L}{1 + \exp(-k(x - x_0))}
+$$
+where $d$ is damage as a percent of total value, $h$ is water depth, $\mathbb{I}$ is the indicator function, $L$ is the maximum loss, $k$ is the slope, and $x_0$ is the inflection point.
+We fix $L=1$ (known upper bound: 100% damage) so
+
+```{julia}
+#| output: false
+blogistic(x, x0, k) = (x > 0) * 1 / (1 + exp(-k * (x - x0)))
+```
+
+
+## Plotting fit {.scrollable}
+
+We will use $x_0 = 4$ and $k = 0.75$.
+
+```{julia}
+#| code-fold: true
+
+x0 = 4.0
+k = 0.75
+
+plot(
+    x -> blogistic(x, x0, k), # <1>
+    -2, # xmin
+    15, # xmax
+    label=false,
+    xlabel="Depth (ft)",
+    ylabel="Damage Fraction",
+    linewidth=2,
+)
+```
+
+1. This is another syntax for defining a function. It is equivalent to `f(x) = blogistic(x, x0, k)`. It's similar to lambda functions in python
+
+## Analytic approach {.smaller}
+
+Plugging in our bounded logistic model for $d(h)$ and our lognormal model for $h$:
+$$
+\begin{align}
+p(d) &= \int_h d(h) p(h) \, dh \\
+&= \int_{-\infty}^\infty \mathbb{I}[h > 0] \text{logistic}(h) \mathcal{N}(h | \mu, \sigma^2) \, dh\\
+&= \int_0^\infty \text{logistic}(h) \mathcal{N}(\mu, \sigma^2) \, dh\\
+&= \int_0^\infty \frac{1}{1 + \exp(-k * (x - x0))} \frac {1}{\sigma {\sqrt {2\pi }}} \exp \left\{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2} \right\} \, dh
+\end{align}
+$$
+
+## Limitations: analytic appraoch
+
+We might be able to solve this analytically (Wolfram Alpha can't...).
+But...
 
 ::: {.incremental}
 
-- Everyone is tested for CEVE543acitis, a rare and deadly disease
-- It is known that 1 in 100,000 people have CEVE543acitis
-- The test is 99% accurate
-- Your test comes back positive
-- Maximum likelihood principle: a positive test is more consistent with having the disease than not!
-- Using Bayes' rule, you probably don't have the disease (but always talk to your doctor)
+1. Numerous simplifying assumptions and approximations.
+1. What if we want to use a different distribution?
+1. A different damage model?
+
 :::
+
+## What is Monte Carlo?
+
+Monte Carlo methods are a set of computational techniques [for](https://www.cs.cmu.edu/~epxing/Class/10701-08s/recitation/mcm.pdf):
+
+1. Generating samples from a target distribution
+1. approximating the expectations of some random quantities under this distribution.
+
+## Monte Carlo: Theory {.smaller}
+
+We want to approximate the quantity
+$$
+\int_0^\infty \text{logistic}(h) \mathcal{N}(\mu, \sigma^2) \, dh
+$$
+
+
+::::: {.incremental}
+:::: {.columns}
+::: {.column width="50%"}
+A deterministic strategy:
+
+1. sample $h^s = 0, \Delta h, 2\Delta h, \ldots, (S-1)\Delta h$
+1. compute $\text{logistic}(h^s) \mathcal{N}(h^s | \mu, \sigma^2)$ at each point and sum
+1. drawbacks: we have to go to $\infty$ and select $\Delta h$.
+
+:::
+::: {.column width="50%"}
+A sampling strategy
+
+1. sample $h^1, h^2, \ldots, h^S \sim p(h)$ -- which we can do because we have a model for $p(h)$
+1. for each value: compute $\mathbb{I}(h^s > 0) \text{logistic}(h^s)$ and take the average
+1. this converges to the correct expectation!
+
+:::
+::::
+:::::
+
+## More formally
+
+If $\theta^s \sim p(\theta)$, then
+$$
+\mathbb{E}\left[ f(\theta) \right] = \int_\theta f(\theta) p(\theta) d\theta \approx \sum_{s=1}^S f(\theta^s)
+$$
+
+. . .
+
+::: {.callout-note}
+## References
+
+See chapter 10 of @gelman_bda3:2014 for more details or section 5 of @betancourt_probability:2018 for a more precise mathematical treatment.
+:::
+
+## Monte Carlo: Implementation {.scrollable}
+
+A deceptively simple idea:
+
+```{julia}
+#| code-line-numbers: "1-2|3-4|5|6-13"
+S = 50_000 # number of samples
+BFE = 5.5 # building elevation relative to our gauge, in feet
+mc_depth_gauge = rand(flood_mle_dist, S) # water depth AT GAUGE
+mc_depth_house = mc_depth_gauge .- BFE # water depth AT HOUSE
+mc_dmgs = blogistic.(mc_depth_house, x0, k) # damage fraction
+histogram(
+    mc_dmgs[findall(mc_dmgs .> 0)],
+    normalize=:pdf,
+    label=false,
+    xlabel="Damage Fraction",
+    ylabel="Probability Density",
+    title=L"Damage Distribution For $d > 0$",
+)
+
+frac_zero = round(mean(mc_dmgs .== 0); digits=2) * 100
+annotate!(0.2, 20, "$frac_zero% of samples\nhave zero damage!")
+```
+
+## Monte Carlo Expectations
+
+Given these samples, we can **compute expectations** of any function of the samples.
+For example, we can compute the mean damage, the 99th percentile of damage, and the probability of any damage occurring
+
+```{julia}
+function metrics(x::AbstractVector)
+    return round.([
+            mean(x),
+            quantile(x, 0.99),
+            mean(x .> 0),
+        ]; digits=5
+    )
+end
+metrics(mc_dmgs)
+```
+
+# Parameter uncertainty
+
+## Overview
+
+We have been working with a single probability distribution for flood depths, which we computed by maximum likelihood.
+
+. . .
+
+These values are not precise.
+What happens if we consider the lognormal distribution with slightly different, but still plausible, parameters?
+
+. . .
+
+What about the depth-damage parameters $x_0$ and $k$?
+
+## Parameter uncertainty: flood distribution
+
+```{julia}
+alt_dist = LogNormal(1.35, 0.275)
+plot!(plt_rt, rts, quantile(alt_dist, aeps), label="Alt Distribution", linewidth=2)
+```
+
+## Flood distribution ➡️ damages {.smaller}
+
+```{julia}
+function monte_carlo_damage(flood_dist, x0::Real, k::Real; S::Int = 50_000, BFE::Real = 5.5)
+    mc_depth_gauge = rand(flood_dist, S)
+    mc_depth_house = mc_depth_gauge .- BFE
+    mc_dmgs = blogistic.(mc_depth_house, x0, k)
+end
+
+mc_dmgs_alt_dist = monte_carlo_damage(alt_dist, x0, k)
+dmg_df = DataFrame(
+    :params => ["Average Annual Loss", "Q99 Annual Loss", "Probability of Loss"],
+    :MLE => metrics(mc_dmgs),
+    :alt_dist => metrics(mc_dmgs_alt_dist),
+)
+```
+
+## Parameter uncertainty: depth-damage curve
+
+```{julia}
+x0_alt = 3.5
+k_alt = 0.65
+
+plot(x -> blogistic(x, x0, k), -2, 15, label="Original Model", xlabel="Depth (ft)", ylabel="Damage Fraction", linewidth=2)
+plot!(x -> blogistic(x, x0_alt, k_alt), linewidth=2, label="Alt Model")
+```
+
+## Depth-damage curve ➡️ damages
+
+```{julia}
+mc_dmgs_alt_curve = monte_carlo_damage(flood_mle_dist, x0_alt, k_alt)
+dmg_df[!, :alt_curve] = metrics(mc_dmgs_alt_curve)
+
+mc_dmgs_alt_both = monte_carlo_damage(alt_dist, x0_alt, k_alt)
+dmg_df[!, :alt_both] = metrics(mc_dmgs_alt_both)
+dmg_df
+```
+
+# Wrapup
+
+## Reflection
+
+::: {.incremental}
+1. Common problem: $\mathbb{E} \left[ f(x) \right]$ where $x \sim p(x)$
+1. Solution: $\mathbb{E} \left[ f(x) \right] = \int_x p(x) f(x) \, dx$
+1. Monte Carlo approach:
+    1. Sample $x^1, x^2, \ldots, x^S \sim p(x)$
+    1. Compute $\frac{1}{S} \sum_{s=1}^S f(x^s)$
+1. **Uncertainties in our model parameters propagate to uncertainties in the things we care about.**
+:::
+
+## Up next
+
+* Tomrorow 9/12 at 10AM: Office hours (Ryon 215 or Zoom?)
+* Wednesday: intro to Bayesian inference
+* Friday: Bayes lab
 
 ## References

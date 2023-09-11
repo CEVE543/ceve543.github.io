@@ -1,0 +1,57 @@
+---
+title: "Parametric Uncertainty"
+subtitle: "Lecture"
+date: "September 11, 2023"
+
+# don't adjust the below options, they should be the same for all slides
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+        code-annotations: below
+
+execute:
+    freeze: auto
+    echo: true
+---
+
+# Bayes Rule and Priors
+
+## Rare Disease
+
+The likelihood is not the posterior!
+
+::: {.incremental}
+
+- Everyone is tested for CEVE543acitis, a rare and deadly disease
+- It is known that 1 in 100,000 people have CEVE543acitis
+- The test is 99% accurate
+- Your test comes back positive
+- Maximum likelihood principle: a positive test is more consistent with having the disease than not!
+- Using Bayes' rule, you probably don't have the disease (but always talk to your doctor)
+:::
+
+# Bayesian Inference
+
+## References
