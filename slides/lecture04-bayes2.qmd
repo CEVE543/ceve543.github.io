@@ -88,7 +88,7 @@ $$
 
 Define $y$ is getting a positive test result and $\theta$ is having the underlying condition.
 *Not that we do not observe $\theta$ directly!*
-Here $\theta=1$ and we want to know $\Pr\left\{\theta = 1 \mid y=1 \right\}$.
+Here $y=1$ and we want to know $\Pr\left\{\theta = 1 \mid y=1 \right\}$.
 
 Likelihood:
 
@@ -110,7 +110,7 @@ We are studying $\Pr\left\{\theta = 1 | y = 1 \right\}$.
 1. Step 1: $\Pr\left\{ y = 1 \right\}$
     1. $\Pr\left\{y=1\right\} = \Pr \left\{ y=1, \theta=0 \right\} + \Pr \left\{ y=1, \theta=1 \right\}$
     1. $\Pr\left\{y=1\right\} = \Pr \left\{ \theta=0 \right\} \Pr \left\{ y = 1 | \theta=0 \right\} + \Pr \left\{ \theta=1 \right\} \Pr \left\{ y=1 | \theta=0 \right\}$
-    1. $\Pr\left\{y=1\right\} = 0.999 \times 0.99 + 0.001 \times 0.01$
+    1. $\underbrace{\Pr\left\{y=1\right\}}_\text{test +} = \underbrace{0.999}_\text{don't have it} \times \overbrace{0.01}^\text{false +} + \underbrace{0.001}_\text{have it} \times \overbrace{0.99}^\text{true +}$
 1. Now plug in to Bayes' rule
     1. $\Pr\left\{ \theta=1 | y=1 \right\} = \frac{\Pr\left\{y=1 | \theta=1 \right\} \Pr\left\{ \theta=1 \right\}}{\Pr\left\{y=1\right\}}$
     1.  $\Pr\left\{\theta=1 | y=1 \right\} = \frac{0.99 \times 0.001}{\Pr\left\{y=1\right\}}$
@@ -489,8 +489,6 @@ ln_ppc = let
     sample(model, sampler, nsamples; drop_warmup=true)
 end
 ```
-
-1. To sample from the prior, we can just pass in `missing` data.
 
 Plot the consequences of these samples
 
