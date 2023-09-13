@@ -1,5 +1,5 @@
 ---
-title: "Parametric Uncertainty"
+title: "Bayesian Analysis"
 subtitle: "Lecture"
 date: "September 11, 2023"
 
@@ -36,22 +36,660 @@ execute:
     echo: true
 ---
 
-# Bayes Rule and Priors
+```{julia}
+#| include: false
+#| output: false
 
-## Rare Disease
+using CSV
+using DataFrames
+using Distributions
+using DynamicHMC
+using LaTeXStrings
+using Optim
+using Plots
+using StatsPlots
+using Turing
+using Unitful
 
-The likelihood is not the posterior!
+Plots.default(margin=4Plots.mm, size=(700, 400))
+```
+
+## Last time
+
+1. Parametric uncertainty matters for decision-making
+1. As we collect more data, fewer combinations of parameters are consistent with observations
+
+## Logistics preview
+
+- No class Monday
+- Today: focus on the methods and ideas
+- Monday, asynchronously, work through the code
+
+# Prior information
+
+## Rare disease
 
 ::: {.incremental}
 
-- Everyone is tested for CEVE543acitis, a rare and deadly disease
-- It is known that 1 in 100,000 people have CEVE543acitis
-- The test is 99% accurate
-- Your test comes back positive
-- Maximum likelihood principle: a positive test is more consistent with having the disease than not!
-- Using Bayes' rule, you probably don't have the disease (but always talk to your doctor)
+1. Everyone is tested for CEVE543acitis, a rare and deadly disease
+1. It is known that 1 in 1,000 people have CEVE543acitis
+1. The test is 99% accurate
+1. Your test comes back positive. What is the probability that you have CEVE543acitis?
 :::
 
+## Bayes' rule: discrete event version
+
+$$
+\Pr \left\{ \theta | y \right\} = \frac{\Pr \left\{ y | \theta \right\} \Pr \left\{ \theta \right\}}{\Pr \left\{ y \right\}}
+$$
+
+
+## Application: rare disease {.smaller .scrollable}
+
+Define $y$ is getting a positive test result and $\theta$ is having the underlying condition.
+*Not that we do not observe $\theta$ directly!*
+Here $\theta=1$ and we want to know $\Pr\left\{\theta = 1 \mid y=1 \right\}$.
+
+Likelihood:
+
+::: {.center}
+|           | $\Pr\left\{y = 1 \ldots\right.$ | $\Pr\left\{y = 0 |\ldots \right.$ |
+|-----------|--------------------|--------------------|
+| $\left. ...\theta=1 \right\}$ | 0.99      | 0.01 |
+| $\left. ...\theta=0\right\}$ | 0.01    | 0.99      |
+:::
+
+. . .
+A naive application of maximum likelihood: $\Pr\left\{y=1 \mid \theta=1 \right\} > \Pr\left\{y=1 \mid \theta=0 \right\}$ so best estimate is $\theta=1$
+
+## Solving {.smaller .scrollable}
+
+We are studying $\Pr\left\{\theta = 1 | y = 1 \right\}$.
+
+::: {.incremental}
+1. Step 1: $\Pr\left\{ y = 1 \right\}$
+    1. $\Pr\left\{y=1\right\} = \Pr \left\{ y=1, \theta=0 \right\} + \Pr \left\{ y=1, \theta=1 \right\}$
+    1. $\Pr\left\{y=1\right\} = \Pr \left\{ \theta=0 \right\} \Pr \left\{ y = 1 | \theta=0 \right\} + \Pr \left\{ \theta=1 \right\} \Pr \left\{ y=1 | \theta=0 \right\}$
+    1. $\Pr\left\{y=1\right\} = 0.999 \times 0.99 + 0.001 \times 0.01$
+1. Now plug in to Bayes' rule
+    1. $\Pr\left\{ \theta=1 | y=1 \right\} = \frac{\Pr\left\{y=1 | \theta=1 \right\} \Pr\left\{ \theta=1 \right\}}{\Pr\left\{y=1\right\}}$
+    1.  $\Pr\left\{\theta=1 | y=1 \right\} = \frac{0.99 \times 0.001}{\Pr\left\{y=1\right\}}$
+:::
+
+## Implementation
+
+```{julia}
+accuracy = 0.99
+pr_disease = 0.001 # p(θ = 1)
+pr_positive_test = accuracy * pr_disease + (1 - accuracy) * (1 - pr_disease) # p(y = 1)
+pr_disease_given_test = accuracy * pr_disease / pr_positive_test # p(θ = 1 | y = 1)
+display(round(pr_positive_test, digits=5))
+display(round(pr_disease_given_test, digits=5))
+```
+
 # Bayesian Inference
+
+## Key idea
+
+::: {.incremental}
+1. Parameters have **probability distributions**, not single point values 
+1. Start with some prior distribution for parameters
+1. Goal: what is the distribution of the parameters given the data?
+:::
+
+## Bayes' rule for distributions
+
+$$
+p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{p(y)}
+$$
+
+. . .
+
+If we are drawing samples from a distribution, we can calculate up to a constant of proportionality and  -- since $p(y)$ doesn't depend on $\theta$ -- we can usually ignore it.
+
+$$
+\overbrace{p(\theta \mid y)}^\rm{posterior} \propto \underbrace{p(y \mid \theta)}_\rm{likelihood} \overbrace{p(\theta)}^\rm{prior}
+$$
+
+
+## Coin flipping
+
+We flip a coin a few times.
+We want to estimate the probability of heads so that we can make well-calibrated bets on future coin tosses.
+
+. . .
+
+```{julia}
+coin_flips = ["H", "H", "H", "T", "H", "H", "H", "H", "H"]
+heads = [flip == "H" for flip in coin_flips]
+N = length(coin_flips)
+n_heads = sum(heads)
+```
+
+## Maximum likelihood {.scrollable}
+
+Maximum likelihood estimate (MLE) is the most likely value of $\theta$ given the data.
+As before, we can use our log-likelihood.
+
+```{julia}
+flip_log_like(θ) = sum(logpdf.(Bernoulli(θ), heads)) # <1>
+loss(θ) = -flip_log_like(θ)
+θ_mle = optimize(loss, 0, 1).minimizer # <2>
+plot(flip_log_like, 0.1, 1, label=L"$p(y | \theta)$")
+vline!([θ_mle], label="MLE", linewidth=3)
+```
+
+1. This builds on what we did last time. A coin flip is represented by a Bernoulli process. In fact, we could use a Binomial distribution to model the number of heads in $N$ flips.
+2. The maximum likelihood estimate can in fact be shown to be exactly `n_heads / length(coin_flips)`
+
+## Prior {.scrollable}
+
+We should be suspicious of our analysis when it concludes that we will continue to see 8 out of 9 flips coming up heads forever.
+
+. . .
+
+To perform a Bayesian analysis, we'll need a prior.
+A Beta distribution is a natural choice for a prior on a probability, although we could use a Uniform distribution or even something silly like a truncated Gamma (don't!)
+
+```{julia}
+prior_dist = Beta(5, 5)
+plot(prior_dist; label=false, xlabel=L"$θ$", ylabel=L"$p(θ)$", linewidth=3)
+```
+
+## Closed-form solution
+
+Cool property: if you have a Beta prior and a Binomial likelihood, the posterior is also Beta distributed.
+Look up Beta-Binomial conjugacy for more!
+We will leverage this property to check our answers.
+
+```{julia}
+#| output: false
+closed_form = Beta(prior_dist.α + n_heads, prior_dist.β + N - n_heads)
+```
+
+# Sampling
+
+## Markov Chain Monte Carlo
+
+1. A class of methods for sampling from a probability distribution
+1. Random walkers:
+    1. Start at some value
+    1. Propose a new value
+    1. Accept or reject the new value based on some criteria
+1. Repeat to get a "chain" of samples
+
+## Metropolis-Hastings {.smaller .scrollable}
+
+See the very good [Wikipedia article](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm)
+
+. . .
+
+```{julia}
+#| code-line-numbers: "1|3-4|5|7|8-9|10|11-14|15-16"
+log_posterior(θ) = logpdf(prior_dist, θ) + flip_log_like(θ)
+
+θ_samples = []
+θ_sample = 0.5 # initial guess
+proposal_dist(θ) = Uniform(0, 1) # propose new values based on the current value
+
+while length(θ_samples) < 10_000
+    proposal = rand(proposal_dist(θ_sample)) # propose a new value
+    p_accept = min(exp(log_posterior(proposal) - log_posterior(θ_sample)), 1)
+    if rand() < p_accept
+        θ_sample = proposal
+    end
+    push!(θ_samples, θ_sample)
+end
+histogram(θ_samples; normalize=:pdf, label="Samples", legend=:topleft, xlabel=L"$θ$", ylabel=L"$p(θ | y)$")
+plot!(closed_form; label="Exact Posterior", linewidth=3)
+```
+
+## Limitations
+
+1. Works great for a very simple problem
+1. Computation blows up in higher dimensions (`p_accept` gets very small)
+1. Have to code a new sampler for each problem
+
+. . .
+
+Modern samplers leverage gradients and clever tricks to draw better samples for harder problems.
+Let's use them!
+
+## Turing model specification
+
+We can write down the full Bayesian model in [Turing](https://turinglang.org), which uses a syntax very close to our notation!
+
+```{julia}
+#| output: false
+@model function coinflip(y)
+
+    # to define θ as a random variable, we use ~
+    # anything that's not an input (data) is treated as a parameter to be estimated!
+    θ ~ prior_dist
+
+    # the data generating process
+    return y .~ Bernoulli(θ)
+end
+```
+
+## Turing sampling {.scrollable}
+
+We can leverage sophisticated machinery for drawing samples from arbitrary posterior distributions.
+For now, we will trust that it is drawing samples from $p(y | \theta)$ and not worry about the details.
+
+```{julia}
+coin_chain = let # variables defined in a let...end block are temporary
+    model = coinflip(heads)
+    sampler = externalsampler(DynamicHMC.NUTS())
+    nsamples = 10_000
+    sample(model, sampler, nsamples; drop_warmup=true)
+end
+summarystats(coin_chain)
+```
+
+## Visualize 
+
+We can visualize our *posterior*
+
+```{julia}
+histogram(coin_chain[:θ]; label="Samples", normalize=:pdf, legend=:topleft, xlabel=L"$θ$", ylabel=L"$p(θ | y)$")
+plot!(closed_form; label="Exact Posterior", linewidth=3)
+plot!(prior_dist; label="Prior", linewidth=3)
+vline!([θ_mle], label="MLE", linewidth=3)
+```
+
+
+## Compromise
+
+The posterior is a compromise between the prior and the likelihood.
+
+::: {.incremental}
+- Bad priors lead to bad inferences
+- The choice of prior is subjective, which some people hate,
+    - We will approach this in a principled manner [@gelman_philosophy:2013;@gelman_workflow:2020]
+    - Lots of other steps are also subjective (choice of likelihood model, which data to use, problem framing, etc)
+    - False sense of objectivity is dangerous anyways!
+:::
+
+# Example: storm surge distribution
+
+## Read data
+
+```{julia}
+#| code-fold: true
+annmax = CSV.read("data/8638610-annmax.csv", DataFrame)
+annmax.lsl .*= u"ft" # <1>
+annmax.lsl_ft = ustrip.(u"ft", annmax.lsl)
+p1 = plot(
+    annmax.year,
+    annmax.lsl;
+    xlabel="Year",
+    ylabel="Ann. Max. Water Level",
+    label=false,
+    marker=:circle, # <2>
+)
+p2 = histogram(
+    annmax.lsl,
+    normalize=:pdf, # <3>
+    orientation=:horizontal,
+    label=false,
+    xlabel=false,
+    ylabel="",
+    yticks=[], # <4>
+    bins=2:0.3:8,
+    xlims=(0, 0.8),
+)
+
+l = @layout [a{0.7w} b{0.3w}] # <5>
+plot(p1, p2; layout=l, link=:y, ylims=(2, 8), suptitle="Sewell's Point, VA") #<6>
+```
+
+## Model {.scrollable}
+
+Define a LogNormal distribution with very diffuse (flat) priors
+
+```{julia}
+#| output: false
+@model function lognormal_flatpriors(y)
+    # define the parameters
+    # and assign prior
+    μ ~ Normal(0, 10) # Extremely diffuse prior
+    σ ~ truncated(Normal(0, 10), 0, Inf) # σ must be positive
+
+    # data generating process
+    y .~ LogNormal(μ, σ)
+end
+```
+
+## Sample
+
+```{julia}
+#| output: false
+ln_flat_chn = let
+    model = lognormal_flatpriors(annmax.lsl_ft)
+    sampler =  externalsampler(DynamicHMC.NUTS())
+    nsamples = 20_000
+    sample(model, sampler, nsamples; drop_warmup=true)
+end
+summarystats(ln_flat_chn)
+```
+
+## Posterior
+
+We leverage the `histogram2d` function to visualize the 2D posterior distribution.
+
+```{julia}
+#| code-fold: true
+post1_scatter = histogram2d(
+    ln_flat_chn[:μ],
+    ln_flat_chn[:σ];
+    label=false,
+    xlabel=L"\mu",
+    ylabel=L"\sigma",
+    title="Diffuse Priors",
+    normalize=:pdf,
+    clims=(0, 1000),
+    bins=100,
+)
+```
+
+## Return period with uncertainty
+
+Each draw from the posterior represents a plausible value of $\mu$ and $\sigma$.
+We can use these to explore the distribution of return periods.
+
+```{julia}
+#| include: false
+#| output: false
+#| code-fold: true
+rts = exp.(range(log(1.25), log(500); length=500)) # return periods
+aeps = 1 .- 1 ./ rts # annual exceedance probability
+
+xticks = [2, 5, 10, 25, 50, 100, 250, 500]
+yticks = [3.5, 4, 4.5, 5, 5.5, 6, 6.5]
+
+plt_rt_base = plot(
+    xlabel="Return Period [years]",
+    ylabel="Return Level [ft]",
+    xscale=:log10,
+    yscale=:log10,
+    legend=:bottomright,
+    xticks=(xticks, string.(xticks)), # <1>
+    yticks=(yticks, string.(yticks)),
+)
+
+function weibull_plot_pos(y)
+    N = length(y)
+    ys = sort(y; rev=false) # sorted values of y
+    nxp = xp = [r / (N + 1) for r in 1:N] # exceedance probability
+    xp = 1 .- nxp
+    return xp, ys
+end
+xp, ys = weibull_plot_pos(annmax.lsl_ft) # <1>
+
+plt_rt = plot(plt_rt_base)
+scatter!(plt_rt, 1 ./ xp, ys; label="Observations", color=:gray, alpha=1)
+```
+
+```{julia}
+#| code-fold: true
+for idx in 1:500
+    μ = ln_flat_chn[:μ][idx]
+    σ = ln_flat_chn[:σ][idx]
+    rt = quantile.(LogNormal(μ, σ), aeps)
+    label = idx == 1 ? "Posterior" : false
+    plot!(plt_rt, rts, rt; color=:black, alpha=0.05, label=label, linewidth=0.5)
+end
+plt_rt
+```
+
+## Trace plot {.scrollable}
+
+Visualize the samples as a *chain*
+
+```{julia}
+plot(ln_flat_chn)
+```
+
+# Alternative priors
+
+## Model {.scrollable}
+
+We can treat the priors as parameters so that we don't have to define a new `@model` each time we want to update our priors
+
+```{julia}
+#| output: false
+@model function lognormal(y, μ_dist, σ_dist) # <1>
+    μ ~ μ_dist
+    σ ~ σ_dist
+    y .~ LogNormal(μ, σ)
+end
+```
+
+1. No reason why we can't pass distributions as functional arguments
+
+## Guess and prior predictive check {.scrollable}
+
+Define priors
+
+```{julia}
+#| output: false
+μ_prior = Normal(3, 3)
+σ_prior = truncated(Normal(0, 3), 0, Inf)
+```
+
+Draw samples from the prior
+
+```{julia}
+#| output: false
+ln_ppc = let
+    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
+    sampler =  Prior()
+    nsamples = 10_000
+    sample(model, sampler, nsamples; drop_warmup=true)
+end
+```
+
+1. To sample from the prior, we can just pass in `missing` data.
+
+Plot the consequences of these samples
+
+```{julia}
+#| code-fold: true
+plt_prior_1 = plot(plt_rt_base; yticks=10 .^ collect(0:12))
+for idx in 1:1_000
+    μ = ln_ppc[:μ][idx]
+    σ = ln_ppc[:σ][idx]
+    rt = quantile.(LogNormal(μ, σ), aeps)
+    label = idx == 1 ? "Prior" : false
+    plot!(plt_prior_1, rts, rt; color=:black, alpha=0.1, label=label)
+end
+plt_prior_1
+```
+
+## Revise
+
+If we are getting return levels of $10^{12}$ ft, we should probably revise our priors
+
+```{julia}
+#| output: false
+μ_prior = Normal(1, 1) # <1>
+σ_prior = truncated(Normal(0, 1), 0, Inf)
+```
+
+1. Yes, I'm overwriting the old value
+
+We can sample
+
+```{julia}
+#| output: false
+#| code-fold: true
+ln_ppc = let
+    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
+    sampler =  Prior()
+    nsamples = 10_000
+    sample(model, sampler, nsamples; drop_warmup=true)
+end
+
+plt_prior_2 = plot(plt_rt_base; yticks=10 .^ collect(0:5))
+for idx in 1:1_000
+    μ = ln_ppc[:μ][idx]
+    σ = ln_ppc[:σ][idx]
+    rt = quantile.(LogNormal(μ, σ), aeps)
+    label = idx == 1 ? "Prior" : false
+    plot!(plt_prior_2, rts, rt; color=:black, alpha=0.1, label=label)
+end
+plt_prior_2
+```
+
+## Getting closer
+
+```{julia}
+#| output: false
+μ_prior = Normal(1, 1) # <1>
+σ_prior = truncated(Normal(0, 0.5), 0, Inf)
+```
+
+```{julia}
+#| code-fold: true
+ln_ppc = let
+    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
+    sampler =  Prior()
+    nsamples = 5000
+    sample(model, sampler, nsamples; drop_warmup=true)
+end
+
+plt_prior_3 = plot(plt_rt_base; yticks=10 .^ collect(0:5))
+for idx in 1:1_000
+    μ = ln_ppc[:μ][idx]
+    σ = ln_ppc[:σ][idx]
+    rt = quantile.(LogNormal(μ, σ), aeps)
+    label = idx == 1 ? "Prior" : false
+    plot!(plt_prior_3, rts, rt; color=:black, alpha=0.1, label=label)
+end
+plt_prior_3
+```
+
+## Now get posterior {.scrollable}
+
+We use the same model to get the posterior.
+Often we want to run multiple chains with different initial values to make sure we are getting good samples.
+
+```{julia}
+#| output: false
+ln_post = let
+    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
+    sampler = externalsampler(DynamicHMC.NUTS())
+    n_per_chain = 5000
+    nchains = 4
+    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)
+end
+```
+
+```{julia}
+summarystats(ln_post)
+```
+
+## Traceplot for multiple chains
+
+```{julia}
+plot(ln_post)
+```
+
+## Visualize {.scrollable}
+
+```{julia}
+#| code-fold: true
+post2_scatter = histogram2d(
+    vec(ln_post[:μ]), # <1>
+    vec(ln_post[:σ]);
+    label=false,
+    xlabel=L"\mu",
+    title="More informed priors",
+    normalize=:pdf,
+    yticks=[],
+    clims=(0, 1000),
+    bins=100,
+)
+plot(plot(post1_scatter), post2_scatter, link=:both)
+```
+
+::: {.callout-note}
+Here our likelihood is very informative, so it doesn't much matter if we use excessively diffuse priors.
+This is nice, though not something we can count on in general.
+:::
+
+## Return period with uncertainty
+
+As before, we can visualize our posterior distribution in terms of return periods
+
+```{julia}
+#| code-fold: true
+plt_rt = plot(plt_rt_base)
+scatter!(plt_rt, 1 ./ xp, ys; label="Observations", color=:gray, alpha=1)
+for idx in 1:500
+    μ = ln_post[:μ][idx]
+    σ = ln_post[:σ][idx]
+    rt = quantile.(LogNormal(μ, σ), aeps)
+    label = idx == 1 ? "Posterior" : false
+    plot!(plt_rt, rts, rt; color=:black, alpha=0.05, label=label)
+end
+plt_rt
+```
+
+# Wrapup
+
+## Key value add of Bayesian inference
+
+::: {.incremental}
+1. Draw samples from tricky posteriors to compute expectations $\mathbb{E}[f(\theta)]$
+1. Quantify parametric uncertainty
+    1. In practice, sometimes this is a big deal and sometimes model structure uncertainties matter more
+1. Force us to specify a data generating process
+1. Computational methods fail loudly
+:::
+
+## Learning Turing
+
+The [official docs](https://turinglang.org/stable/) are great.
+
+::: {.callout-warning}
+Google will often try to link you to the old site, https://turing.ml/.
+This is out of date!
+Use https://turinglang.org/stable/ instead.
+:::
+
+## Another word on generative AI {.smaller}
+
+:::: {.columns}
+::: {.column width=45%}
+
+- [GitHub Copilot](https://github.com/features/copilot)
+    - Free for students: [instructions](https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-setting-up-github-student-and-github-copilot-as-an/ba-p/3736279)
+- GPT and related language models
+
+:::
+::: {.column width=45%}
+**Do not** just plug in the problem and paste the solution!
+
+1. Labs are just 10% of your grade
+1. You will be resonsible for material on projects / tests
+1. You won't learn
+
+**Do** use it to for syntax help and code explanations
+
+:::
+::::
+
+## Logistics
+
+1. Friday:
+    1. Lab 04
+    1. Lab 03 due
+1. Monday 9/18: **no class**. Work on lab 04 and work through these slides.
+1. Tuesday 9/19: **no office hours**.
+1. Wednesday 9/20: test I review
+1. Friday 9/22: test I
+1. You may turn in lab 04 by 9/29 (two weeks)
 
 ## References
