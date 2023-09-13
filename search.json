@@ -1554,18 +1554,277 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 21, 2023\n\n\n\nBonnafous, L., Lall, U., & Siegel, J. (2017). A water risk index for portfolio exposure to climatic extremes: Conceptualization and an application to the mining industry. Hydrology and Earth System Sciences, 21(4), 2075–2106. https://doi.org/f96k67\n\n\nDoss-Gollin, J., & Keller, K. (2023). A subjective Bayesian framework for synthesizing deep uncertainties in climate risk management. Earth’s Future, 11(1). https://doi.org/10.1029/2022EF003044\n\n\nDoss-Gollin, J., Farnham, D. J., Steinschneider, S., & Lall, U. (2019). Robust adaptation to multiscale climate variability. Earth’s Future, 7(7), 734–747. https://doi.org/10.1029/2019ef001154\n\n\nFagnant, C., Gori, A., Sebastian, A., Bedient, P. B., & Ensor, K. B. (2020). Characterizing spatiotemporal trends in extreme precipitation in Southeast Texas. Natural Hazards, 104(2), 1597–1621. https://doi.org/10.1007/s11069-020-04235-x\n\n\nFarnham, D. J., Doss-Gollin, J., & Lall, U. (2018). Regional extreme precipitation events: Robust inference from credibly simulated GCM variables. Water Resources Research, 54(6). https://doi.org/10.1002/2017wr021318\n\n\nWalker, W. E., Lempert, R. J., & Kwakkel, J. H. (2013). Deep Uncertainty. In S. I. Gass & M. C. Fu (Eds.), Encyclopedia of Operations Research and Management Science (pp. 395–402). Boston, MA: Springer US. https://doi.org/10.1007/978-1-4419-1153-7_1140"
   },
   {
+    "objectID": "slides/lecture04-bayes2.html#last-time",
+    "href": "slides/lecture04-bayes2.html#last-time",
+    "title": "Bayesian Analysis",
+    "section": "Last time",
+    "text": "Last time\n\nParametric uncertainty matters for decision-making\nAs we collect more data, fewer combinations of parameters are consistent with observations"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#logistics-preview",
+    "href": "slides/lecture04-bayes2.html#logistics-preview",
+    "title": "Bayesian Analysis",
+    "section": "Logistics preview",
+    "text": "Logistics preview\n\nNo class Monday\nToday: focus on the methods and ideas\nMonday, asynchronously, work through the code"
+  },
+  {
     "objectID": "slides/lecture04-bayes2.html#rare-disease",
     "href": "slides/lecture04-bayes2.html#rare-disease",
-    "title": "Parametric Uncertainty",
-    "section": "Rare Disease",
-    "text": "Rare Disease\nThe likelihood is not the posterior!\n\n\nEveryone is tested for CEVE543acitis, a rare and deadly disease\nIt is known that 1 in 100,000 people have CEVE543acitis\nThe test is 99% accurate\nYour test comes back positive\nMaximum likelihood principle: a positive test is more consistent with having the disease than not!\nUsing Bayes’ rule, you probably don’t have the disease (but always talk to your doctor)"
+    "title": "Bayesian Analysis",
+    "section": "Rare disease",
+    "text": "Rare disease\n\n\nEveryone is tested for CEVE543acitis, a rare and deadly disease\nIt is known that 1 in 1,000 people have CEVE543acitis\nThe test is 99% accurate\nYour test comes back positive. What is the probability that you have CEVE543acitis?"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#bayes-rule-discrete-event-version",
+    "href": "slides/lecture04-bayes2.html#bayes-rule-discrete-event-version",
+    "title": "Bayesian Analysis",
+    "section": "Bayes’ rule: discrete event version",
+    "text": "Bayes’ rule: discrete event version\n\\[\n\\Pr \\left\\{ \\theta | y \\right\\} = \\frac{\\Pr \\left\\{ y | \\theta \\right\\} \\Pr \\left\\{ \\theta \\right\\}}{\\Pr \\left\\{ y \\right\\}}\n\\]"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#application-rare-disease",
+    "href": "slides/lecture04-bayes2.html#application-rare-disease",
+    "title": "Bayesian Analysis",
+    "section": "Application: rare disease",
+    "text": "Application: rare disease\nDefine \\(y\\) is getting a positive test result and \\(\\theta\\) is having the underlying condition. Not that we do not observe \\(\\theta\\) directly! Here \\(\\theta=1\\) and we want to know \\(\\Pr\\left\\{\\theta = 1 \\mid y=1 \\right\\}\\).\nLikelihood:\n\n\n\n\n\n\n\n\n\n\n\\(\\Pr\\left\\{y = 1 \\ldots\\right.\\)\n\\(\\Pr\\left\\{y = 0 |\\ldots \\right.\\)\n\n\n\n\n\\(\\left. ...\\theta=1 \\right\\}\\)\n0.99\n0.01\n\n\n\\(\\left. ...\\theta=0\\right\\}\\)\n0.01\n0.99\n\n\n\n\n. . . A naive application of maximum likelihood: \\(\\Pr\\left\\{y=1 \\mid \\theta=1 \\right\\} &gt; \\Pr\\left\\{y=1 \\mid \\theta=0 \\right\\}\\) so best estimate is \\(\\theta=1\\)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#solving",
+    "href": "slides/lecture04-bayes2.html#solving",
+    "title": "Bayesian Analysis",
+    "section": "Solving",
+    "text": "Solving\nWe are studying \\(\\Pr\\left\\{\\theta = 1 | y = 1 \\right\\}\\).\n\n\nStep 1: \\(\\Pr\\left\\{ y = 1 \\right\\}\\)\n\n\\(\\Pr\\left\\{y=1\\right\\} = \\Pr \\left\\{ y=1, \\theta=0 \\right\\} + \\Pr \\left\\{ y=1, \\theta=1 \\right\\}\\)\n\\(\\Pr\\left\\{y=1\\right\\} = \\Pr \\left\\{ \\theta=0 \\right\\} \\Pr \\left\\{ y = 1 | \\theta=0 \\right\\} + \\Pr \\left\\{ \\theta=1 \\right\\} \\Pr \\left\\{ y=1 | \\theta=0 \\right\\}\\)\n\\(\\Pr\\left\\{y=1\\right\\} = 0.999 \\times 0.99 + 0.001 \\times 0.01\\)\n\nNow plug in to Bayes’ rule\n\n\\(\\Pr\\left\\{ \\theta=1 | y=1 \\right\\} = \\frac{\\Pr\\left\\{y=1 | \\theta=1 \\right\\} \\Pr\\left\\{ \\theta=1 \\right\\}}{\\Pr\\left\\{y=1\\right\\}}\\)\n\\(\\Pr\\left\\{\\theta=1 | y=1 \\right\\} = \\frac{0.99 \\times 0.001}{\\Pr\\left\\{y=1\\right\\}}\\)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#implementation",
+    "href": "slides/lecture04-bayes2.html#implementation",
+    "title": "Bayesian Analysis",
+    "section": "Implementation",
+    "text": "Implementation\n\naccuracy = 0.99\npr_disease = 0.001 # p(θ = 1)\npr_positive_test = accuracy * pr_disease + (1 - accuracy) * (1 - pr_disease) # p(y = 1)\npr_disease_given_test = accuracy * pr_disease / pr_positive_test # p(θ = 1 | y = 1)\ndisplay(round(pr_positive_test, digits=5))\ndisplay(round(pr_disease_given_test, digits=5))\n\n0.01098\n\n\n0.09016"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#key-idea",
+    "href": "slides/lecture04-bayes2.html#key-idea",
+    "title": "Bayesian Analysis",
+    "section": "Key idea",
+    "text": "Key idea\n\n\nParameters have probability distributions, not single point values\nStart with some prior distribution for parameters\nGoal: what is the distribution of the parameters given the data?"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#bayes-rule-for-distributions",
+    "href": "slides/lecture04-bayes2.html#bayes-rule-for-distributions",
+    "title": "Bayesian Analysis",
+    "section": "Bayes’ rule for distributions",
+    "text": "Bayes’ rule for distributions\n\\[\np(\\theta \\mid y) = \\frac{p(y \\mid \\theta) p(\\theta)}{p(y)}\n\\]\n\nIf we are drawing samples from a distribution, we can calculate up to a constant of proportionality and – since \\(p(y)\\) doesn’t depend on \\(\\theta\\) – we can usually ignore it.\n\\[\n\\overbrace{p(\\theta \\mid y)}^\\rm{posterior} \\propto \\underbrace{p(y \\mid \\theta)}_\\rm{likelihood} \\overbrace{p(\\theta)}^\\rm{prior}\n\\]"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#coin-flipping",
+    "href": "slides/lecture04-bayes2.html#coin-flipping",
+    "title": "Bayesian Analysis",
+    "section": "Coin flipping",
+    "text": "Coin flipping\nWe flip a coin a few times. We want to estimate the probability of heads so that we can make well-calibrated bets on future coin tosses.\n\n\ncoin_flips = [\"H\", \"H\", \"H\", \"T\", \"H\", \"H\", \"H\", \"H\", \"H\"]\nheads = [flip == \"H\" for flip in coin_flips]\nN = length(coin_flips)\nn_heads = sum(heads)\n\n8"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#maximum-likelihood",
+    "href": "slides/lecture04-bayes2.html#maximum-likelihood",
+    "title": "Bayesian Analysis",
+    "section": "Maximum likelihood",
+    "text": "Maximum likelihood\nMaximum likelihood estimate (MLE) is the most likely value of \\(\\theta\\) given the data. As before, we can use our log-likelihood.\n\n1flip_log_like(θ) = sum(logpdf.(Bernoulli(θ), heads))\nloss(θ) = -flip_log_like(θ)\n2θ_mle = optimize(loss, 0, 1).minimizer\nplot(flip_log_like, 0.1, 1, label=L\"$p(y | \\theta)$\")\nvline!([θ_mle], label=\"MLE\", linewidth=3)\n\n\n1\n\nThis builds on what we did last time. A coin flip is represented by a Bernoulli process. In fact, we could use a Binomial distribution to model the number of heads in \\(N\\) flips.\n\n2\n\nThe maximum likelihood estimate can in fact be shown to be exactly n_heads / length(coin_flips)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#prior",
+    "href": "slides/lecture04-bayes2.html#prior",
+    "title": "Bayesian Analysis",
+    "section": "Prior",
+    "text": "Prior\nWe should be suspicious of our analysis when it concludes that we will continue to see 8 out of 9 flips coming up heads forever.\n\nTo perform a Bayesian analysis, we’ll need a prior. A Beta distribution is a natural choice for a prior on a probability, although we could use a Uniform distribution or even something silly like a truncated Gamma (don’t!)\n\nprior_dist = Beta(5, 5)\nplot(prior_dist; label=false, xlabel=L\"$θ$\", ylabel=L\"$p(θ)$\", linewidth=3)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#closed-form-solution",
+    "href": "slides/lecture04-bayes2.html#closed-form-solution",
+    "title": "Bayesian Analysis",
+    "section": "Closed-form solution",
+    "text": "Closed-form solution\nCool property: if you have a Beta prior and a Binomial likelihood, the posterior is also Beta distributed. Look up Beta-Binomial conjugacy for more! We will leverage this property to check our answers.\n\nclosed_form = Beta(prior_dist.α + n_heads, prior_dist.β + N - n_heads)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#markov-chain-monte-carlo",
+    "href": "slides/lecture04-bayes2.html#markov-chain-monte-carlo",
+    "title": "Bayesian Analysis",
+    "section": "Markov Chain Monte Carlo",
+    "text": "Markov Chain Monte Carlo\n\nA class of methods for sampling from a probability distribution\nRandom walkers:\n\nStart at some value\nPropose a new value\nAccept or reject the new value based on some criteria\n\nRepeat to get a “chain” of samples"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#metropolis-hastings",
+    "href": "slides/lecture04-bayes2.html#metropolis-hastings",
+    "title": "Bayesian Analysis",
+    "section": "Metropolis-Hastings",
+    "text": "Metropolis-Hastings\nSee the very good Wikipedia article\n\n\nlog_posterior(θ) = logpdf(prior_dist, θ) + flip_log_like(θ)\n\nθ_samples = []\nθ_sample = 0.5 # initial guess\nproposal_dist(θ) = Uniform(0, 1) # propose new values based on the current value\n\nwhile length(θ_samples) &lt; 10_000\n    proposal = rand(proposal_dist(θ_sample)) # propose a new value\n    p_accept = min(exp(log_posterior(proposal) - log_posterior(θ_sample)), 1)\n    if rand() &lt; p_accept\n        θ_sample = proposal\n    end\n    push!(θ_samples, θ_sample)\nend\nhistogram(θ_samples; normalize=:pdf, label=\"Samples\", legend=:topleft, xlabel=L\"$θ$\", ylabel=L\"$p(θ | y)$\")\nplot!(closed_form; label=\"Exact Posterior\", linewidth=3)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#limitations",
+    "href": "slides/lecture04-bayes2.html#limitations",
+    "title": "Bayesian Analysis",
+    "section": "Limitations",
+    "text": "Limitations\n\nWorks great for a very simple problem\nComputation blows up in higher dimensions (p_accept gets very small)\nHave to code a new sampler for each problem\n\n\nModern samplers leverage gradients and clever tricks to draw better samples for harder problems. Let’s use them!"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#turing-model-specification",
+    "href": "slides/lecture04-bayes2.html#turing-model-specification",
+    "title": "Bayesian Analysis",
+    "section": "Turing model specification",
+    "text": "Turing model specification\nWe can write down the full Bayesian model in Turing, which uses a syntax very close to our notation!\n\n@model function coinflip(y)\n\n    # to define θ as a random variable, we use ~\n    # anything that's not an input (data) is treated as a parameter to be estimated!\n    θ ~ prior_dist\n\n    # the data generating process\n    return y .~ Bernoulli(θ)\nend"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#turing-sampling",
+    "href": "slides/lecture04-bayes2.html#turing-sampling",
+    "title": "Bayesian Analysis",
+    "section": "Turing sampling",
+    "text": "Turing sampling\nWe can leverage sophisticated machinery for drawing samples from arbitrary posterior distributions. For now, we will trust that it is drawing samples from \\(p(y | \\theta)\\) and not worry about the details.\n\ncoin_chain = let # variables defined in a let...end block are temporary\n    model = coinflip(heads)\n    sampler = externalsampler(DynamicHMC.NUTS())\n    nsamples = 10_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\nsummarystats(coin_chain)\n\n\nSummary Statistics\n  parameters      mean       std      mcse    ess_bulk    ess_tail      rhat   ⋯\n      Symbol   Float64   Float64   Float64     Float64     Float64   Float64   ⋯\n           θ    0.6816    0.1035    0.0016   4211.2044   4284.3766    1.0002   ⋯\n                                                                1 column omitted"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#visualize",
+    "href": "slides/lecture04-bayes2.html#visualize",
+    "title": "Bayesian Analysis",
+    "section": "Visualize",
+    "text": "Visualize\nWe can visualize our posterior\n\nhistogram(coin_chain[:θ]; label=\"Samples\", normalize=:pdf, legend=:topleft, xlabel=L\"$θ$\", ylabel=L\"$p(θ | y)$\")\nplot!(closed_form; label=\"Exact Posterior\", linewidth=3)\nplot!(prior_dist; label=\"Prior\", linewidth=3)\nvline!([θ_mle], label=\"MLE\", linewidth=3)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#compromise",
+    "href": "slides/lecture04-bayes2.html#compromise",
+    "title": "Bayesian Analysis",
+    "section": "Compromise",
+    "text": "Compromise\nThe posterior is a compromise between the prior and the likelihood.\n\n\nBad priors lead to bad inferences\nThe choice of prior is subjective, which some people hate,\n\nWe will approach this in a principled manner (Gelman et al., 2020; Gelman & Shalizi, 2013)\nLots of other steps are also subjective (choice of likelihood model, which data to use, problem framing, etc)\nFalse sense of objectivity is dangerous anyways!"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#read-data",
+    "href": "slides/lecture04-bayes2.html#read-data",
+    "title": "Bayesian Analysis",
+    "section": "Read data",
+    "text": "Read data\n\n\nCode\nannmax = CSV.read(\"data/8638610-annmax.csv\", DataFrame)\nannmax.lsl .*= u\"ft\"\nannmax.lsl_ft = ustrip.(u\"ft\", annmax.lsl)\np1 = plot(\n    annmax.year,\n    annmax.lsl;\n    xlabel=\"Year\",\n    ylabel=\"Ann. Max. Water Level\",\n    label=false,\n    marker=:circle,\n)\np2 = histogram(\n    annmax.lsl,\n    normalize=:pdf,\n    orientation=:horizontal,\n    label=false,\n    xlabel=false,\n    ylabel=\"\",\n    yticks=[],\n    bins=2:0.3:8,\n    xlims=(0, 0.8),\n)\n\nl = @layout [a{0.7w} b{0.3w}]\nplot(p1, p2; layout=l, link=:y, ylims=(2, 8), suptitle=\"Sewell's Point, VA\")"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#model",
+    "href": "slides/lecture04-bayes2.html#model",
+    "title": "Bayesian Analysis",
+    "section": "Model",
+    "text": "Model\nDefine a LogNormal distribution with very diffuse (flat) priors\n\n@model function lognormal_flatpriors(y)\n    # define the parameters\n    # and assign prior\n    μ ~ Normal(0, 10) # Extremely diffuse prior\n    σ ~ truncated(Normal(0, 10), 0, Inf) # σ must be positive\n\n    # data generating process\n    y .~ LogNormal(μ, σ)\nend"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#sample",
+    "href": "slides/lecture04-bayes2.html#sample",
+    "title": "Bayesian Analysis",
+    "section": "Sample",
+    "text": "Sample\n\nln_flat_chn = let\n    model = lognormal_flatpriors(annmax.lsl_ft)\n    sampler =  externalsampler(DynamicHMC.NUTS())\n    nsamples = 20_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\nsummarystats(ln_flat_chn)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#posterior",
+    "href": "slides/lecture04-bayes2.html#posterior",
+    "title": "Bayesian Analysis",
+    "section": "Posterior",
+    "text": "Posterior\nWe leverage the histogram2d function to visualize the 2D posterior distribution.\n\n\nCode\npost1_scatter = histogram2d(\n    ln_flat_chn[:μ],\n    ln_flat_chn[:σ];\n    label=false,\n    xlabel=L\"\\mu\",\n    ylabel=L\"\\sigma\",\n    title=\"Diffuse Priors\",\n    normalize=:pdf,\n    clims=(0, 1000),\n    bins=100,\n)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#return-period-with-uncertainty",
+    "href": "slides/lecture04-bayes2.html#return-period-with-uncertainty",
+    "title": "Bayesian Analysis",
+    "section": "Return period with uncertainty",
+    "text": "Return period with uncertainty\nEach draw from the posterior represents a plausible value of \\(\\mu\\) and \\(\\sigma\\). We can use these to explore the distribution of return periods.\n\n\nCode\nfor idx in 1:500\n    μ = ln_flat_chn[:μ][idx]\n    σ = ln_flat_chn[:σ][idx]\n    rt = quantile.(LogNormal(μ, σ), aeps)\n    label = idx == 1 ? \"Posterior\" : false\n    plot!(plt_rt, rts, rt; color=:black, alpha=0.05, label=label, linewidth=0.5)\nend\nplt_rt"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#trace-plot",
+    "href": "slides/lecture04-bayes2.html#trace-plot",
+    "title": "Bayesian Analysis",
+    "section": "Trace plot",
+    "text": "Trace plot\nVisualize the samples as a chain\n\nplot(ln_flat_chn)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#model-1",
+    "href": "slides/lecture04-bayes2.html#model-1",
+    "title": "Bayesian Analysis",
+    "section": "Model",
+    "text": "Model\nWe can treat the priors as parameters so that we don’t have to define a new @model each time we want to update our priors\n\n1@model function lognormal(y, μ_dist, σ_dist)\n    μ ~ μ_dist\n    σ ~ σ_dist\n    y .~ LogNormal(μ, σ)\nend\n\n\n1\n\nNo reason why we can’t pass distributions as functional arguments"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#guess-and-prior-predictive-check",
+    "href": "slides/lecture04-bayes2.html#guess-and-prior-predictive-check",
+    "title": "Bayesian Analysis",
+    "section": "Guess and prior predictive check",
+    "text": "Guess and prior predictive check\nDefine priors\n\nμ_prior = Normal(3, 3)\nσ_prior = truncated(Normal(0, 3), 0, Inf)\n\nDraw samples from the prior\n\nln_ppc = let\n    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)\n    sampler =  Prior()\n    nsamples = 10_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\n\n\nTo sample from the prior, we can just pass in missing data.\n\nPlot the consequences of these samples\n\n\nCode\nplt_prior_1 = plot(plt_rt_base; yticks=10 .^ collect(0:12))\nfor idx in 1:1_000\n    μ = ln_ppc[:μ][idx]\n    σ = ln_ppc[:σ][idx]\n    rt = quantile.(LogNormal(μ, σ), aeps)\n    label = idx == 1 ? \"Prior\" : false\n    plot!(plt_prior_1, rts, rt; color=:black, alpha=0.1, label=label)\nend\nplt_prior_1"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#revise",
+    "href": "slides/lecture04-bayes2.html#revise",
+    "title": "Bayesian Analysis",
+    "section": "Revise",
+    "text": "Revise\nIf we are getting return levels of \\(10^{12}\\) ft, we should probably revise our priors\n\n1μ_prior = Normal(1, 1)\nσ_prior = truncated(Normal(0, 1), 0, Inf)\n\n\n1\n\nYes, I’m overwriting the old value\n\n\n\n\nWe can sample\n\n\nCode\nln_ppc = let\n    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)\n    sampler =  Prior()\n    nsamples = 10_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\n\nplt_prior_2 = plot(plt_rt_base; yticks=10 .^ collect(0:5))\nfor idx in 1:1_000\n    μ = ln_ppc[:μ][idx]\n    σ = ln_ppc[:σ][idx]\n    rt = quantile.(LogNormal(μ, σ), aeps)\n    label = idx == 1 ? \"Prior\" : false\n    plot!(plt_prior_2, rts, rt; color=:black, alpha=0.1, label=label)\nend\nplt_prior_2"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#getting-closer",
+    "href": "slides/lecture04-bayes2.html#getting-closer",
+    "title": "Bayesian Analysis",
+    "section": "Getting closer",
+    "text": "Getting closer\n\n\nCode\nln_ppc = let\n    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)\n    sampler =  Prior()\n    nsamples = 5000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\n\nplt_prior_3 = plot(plt_rt_base; yticks=10 .^ collect(0:5))\nfor idx in 1:1_000\n    μ = ln_ppc[:μ][idx]\n    σ = ln_ppc[:σ][idx]\n    rt = quantile.(LogNormal(μ, σ), aeps)\n    label = idx == 1 ? \"Prior\" : false\n    plot!(plt_prior_3, rts, rt; color=:black, alpha=0.1, label=label)\nend\nplt_prior_3\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nμ_prior = Normal(1, 1)\nσ_prior = truncated(Normal(0, 0.5), 0, Inf)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#now-get-posterior",
+    "href": "slides/lecture04-bayes2.html#now-get-posterior",
+    "title": "Bayesian Analysis",
+    "section": "Now get posterior",
+    "text": "Now get posterior\nWe use the same model to get the posterior. Often we want to run multiple chains with different initial values to make sure we are getting good samples.\n\nln_post = let\n    model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)\n    sampler = externalsampler(DynamicHMC.NUTS())\n    n_per_chain = 5000\n    nchains = 4\n    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)\nend\n\n\nsummarystats(ln_post)\n\n\nSummary Statistics\n  parameters      mean       std      mcse     ess_bulk     ess_tail      rhat ⋯\n      Symbol   Float64   Float64   Float64      Float64      Float64   Float64 ⋯\n           μ    1.3694    0.0193    0.0002   15146.5727   12836.0287    1.0004 ⋯\n           σ    0.1863    0.0140    0.0001   16004.9956   12327.5633    1.0000 ⋯\n                                                                1 column omitted"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#traceplot-for-multiple-chains",
+    "href": "slides/lecture04-bayes2.html#traceplot-for-multiple-chains",
+    "title": "Bayesian Analysis",
+    "section": "Traceplot for multiple chains",
+    "text": "Traceplot for multiple chains\n\nplot(ln_post)"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#visualize-1",
+    "href": "slides/lecture04-bayes2.html#visualize-1",
+    "title": "Bayesian Analysis",
+    "section": "Visualize",
+    "text": "Visualize\n\n\nCode\npost2_scatter = histogram2d(\n    vec(ln_post[:μ]),\n    vec(ln_post[:σ]);\n    label=false,\n    xlabel=L\"\\mu\",\n    title=\"More informed priors\",\n    normalize=:pdf,\n    yticks=[],\n    clims=(0, 1000),\n    bins=100,\n)\nplot(plot(post1_scatter), post2_scatter, link=:both)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nHere our likelihood is very informative, so it doesn’t much matter if we use excessively diffuse priors. This is nice, though not something we can count on in general."
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#return-period-with-uncertainty-1",
+    "href": "slides/lecture04-bayes2.html#return-period-with-uncertainty-1",
+    "title": "Bayesian Analysis",
+    "section": "Return period with uncertainty",
+    "text": "Return period with uncertainty\nAs before, we can visualize our posterior distribution in terms of return periods\n\n\nCode\nplt_rt = plot(plt_rt_base)\nscatter!(plt_rt, 1 ./ xp, ys; label=\"Observations\", color=:gray, alpha=1)\nfor idx in 1:500\n    μ = ln_post[:μ][idx]\n    σ = ln_post[:σ][idx]\n    rt = quantile.(LogNormal(μ, σ), aeps)\n    label = idx == 1 ? \"Posterior\" : false\n    plot!(plt_rt, rts, rt; color=:black, alpha=0.05, label=label)\nend\nplt_rt"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#key-value-add-of-bayesian-inference",
+    "href": "slides/lecture04-bayes2.html#key-value-add-of-bayesian-inference",
+    "title": "Bayesian Analysis",
+    "section": "Key value add of Bayesian inference",
+    "text": "Key value add of Bayesian inference\n\n\nDraw samples from tricky posteriors to compute expectations \\(\\mathbb{E}[f(\\theta)]\\)\nQuantify parametric uncertainty\n\nIn practice, sometimes this is a big deal and sometimes model structure uncertainties matter more\n\nForce us to specify a data generating process\nComputational methods fail loudly"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#learning-turing",
+    "href": "slides/lecture04-bayes2.html#learning-turing",
+    "title": "Bayesian Analysis",
+    "section": "Learning Turing",
+    "text": "Learning Turing\nThe official docs are great.\n\n\n\n\n\n\nWarning\n\n\nGoogle will often try to link you to the old site, https://turing.ml/. This is out of date! Use https://turinglang.org/stable/ instead."
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#another-word-on-generative-ai",
+    "href": "slides/lecture04-bayes2.html#another-word-on-generative-ai",
+    "title": "Bayesian Analysis",
+    "section": "Another word on generative AI",
+    "text": "Another word on generative AI\n\n\n\nGitHub Copilot\n\nFree for students: instructions\n\nGPT and related language models\n\n\nDo not just plug in the problem and paste the solution!\n\nLabs are just 10% of your grade\nYou will be resonsible for material on projects / tests\nYou won’t learn\n\nDo use it to for syntax help and code explanations"
+  },
+  {
+    "objectID": "slides/lecture04-bayes2.html#logistics",
+    "href": "slides/lecture04-bayes2.html#logistics",
+    "title": "Bayesian Analysis",
+    "section": "Logistics",
+    "text": "Logistics\n\nFriday:\n\nLab 04\nLab 03 due\n\nMonday 9/18: no class. Work on lab 04 and work through these slides.\nTuesday 9/19: no office hours.\nWednesday 9/20: test I review\nFriday 9/22: test I\nYou may turn in lab 04 by 9/29 (two weeks)"
   },
   {
     "objectID": "slides/lecture04-bayes2.html#references",
     "href": "slides/lecture04-bayes2.html#references",
-    "title": "Parametric Uncertainty",
+    "title": "Bayesian Analysis",
     "section": "References",
-    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment\n\n\n\nGelman, A., & Shalizi, C. R. (2013). Philosophy and the practice of Bayesian statistics. British Journal of Mathematical and Statistical Psychology, 66(1), 8–38. https://doi.org/f4k2h4\n\n\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., et al. (2020). Bayesian workflow. arXiv:2011.01808 [Stat]. https://doi.org/10.48550/arXiv.2011.01808"
   },
   {
     "objectID": "faq.html",
