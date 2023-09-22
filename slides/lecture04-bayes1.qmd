@@ -330,7 +330,7 @@ A sampling strategy
 
 If $\theta^s \sim p(\theta)$, then
 $$
-\mathbb{E}\left[ f(\theta) \right] = \int_\theta f(\theta) p(\theta) d\theta \approx \sum_{s=1}^S f(\theta^s)
+\mathbb{E}\left[ f(\theta) \right] = \int_\theta f(\theta) p(\theta) d\theta \approx \frac{1}{S} \sum_{s=1}^S f(\theta^s)
 $$
 
 . . .
