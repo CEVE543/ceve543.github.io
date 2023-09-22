@@ -362,23 +362,23 @@ p(y_i | \alpha, \beta) =
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="1">This defines a blank plot for us to add to</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">This defines a blank plot for us to add to</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="2">When we loop through our values of <code>α</code>, we <code>zip</code> it with a vector of colors so that we can plot each value of <code>α</code> in a different color.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">When we loop through our values of <code>α</code>, we <code>zip</code> it with a vector of colors so that we can plot each value of <code>α</code> in a different color.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="3">Similarly, we can attach each value of <code>β</code> to a different linestyle.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Similarly, we can attach each value of <code>β</code> to a different linestyle.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="4" data-code-lines="4"><code>plot!(p, ...)</code> will add more elements to the plot <code>p</code> that we defined above.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="4"><code>plot!(p, ...)</code> will add more elements to the plot <code>p</code> that we defined above.</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="5" data-code-lines="6">Using the <code>StatsPlots</code> package, we can plot a distribution by passing it to <code>plot!</code> with no additional arguments.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="5">Using the <code>StatsPlots</code> package, we can plot a distribution by passing it to <code>plot!</code> with no additional arguments.</span>
 </dd>
 </dl>
 </div>
@@ -461,11 +461,11 @@ p(y_i | \alpha, \beta) =
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="1">We use the <code>joinpath</code> function to join together the path to the data directory and the filename. This is a good practice to make sure that your code works on different operating systems.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We use the <code>joinpath</code> function to join together the path to the data directory and the filename. This is a good practice to make sure that your code works on different operating systems.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="2" data-code-lines="2">We use the <code>readdlm</code> function from <code>DelimitedFiles.jl</code> to read the data. It is a <code>Matrix</code> bby default so we use <code>[:, 1]</code> to select all rows (<code>:</code>) and the first column (there is only 1).</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">We use the <code>readdlm</code> function from <code>DelimitedFiles.jl</code> to read the data. It is a <code>Matrix</code> bby default so we use <code>[:, 1]</code> to select all rows (<code>:</code>) and the first column (there is only 1).</span>
 </dd>
 </dl>
 </div>
@@ -675,7 +675,7 @@ Size and plotting
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-15" data-code-annotation="1" data-code-lines="3"><code>display</code> does the same thing as just typing the variable name, but it’s useful when you want to display multiple things at once.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="1"><code>display</code> does the same thing as just typing the variable name, but it’s useful when you want to display multiple things at once.</span>
 </dd>
 </dl>
 </div>
@@ -754,7 +754,7 @@ Size and plotting
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-annotation="1" data-code-lines="3">We can call <code>first</code> on a vector, not just a DataFrame.</span>
+<span data-code-cell="annotated-cell-19" data-code-lines="3" data-code-annotation="1">We can call <code>first</code> on a vector, not just a DataFrame.</span>
 </dd>
 </dl>
 </div>

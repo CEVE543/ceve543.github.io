@@ -466,7 +466,7 @@
     "href": "slides/lecture04-bayes1.html#more-formally",
     "title": "Parametric Uncertainty",
     "section": "More formally",
-    "text": "More formally\nIf \\(\\theta^s \\sim p(\\theta)\\), then \\[\n\\mathbb{E}\\left[ f(\\theta) \\right] = \\int_\\theta f(\\theta) p(\\theta) d\\theta \\approx \\sum_{s=1}^S f(\\theta^s)\n\\]\n\n\n\n\n\n\n\nReferences\n\n\nSee chapter 10 of Gelman et al. (2014) for more details or section 5 of Betancourt (2018) for a more precise mathematical treatment."
+    "text": "More formally\nIf \\(\\theta^s \\sim p(\\theta)\\), then \\[\n\\mathbb{E}\\left[ f(\\theta) \\right] = \\int_\\theta f(\\theta) p(\\theta) d\\theta \\approx \\frac{1}{S} \\sum_{s=1}^S f(\\theta^s)\n\\]\n\n\n\n\n\n\n\nReferences\n\n\nSee chapter 10 of Gelman et al. (2014) for more details or section 5 of Betancourt (2018) for a more precise mathematical treatment."
   },
   {
     "objectID": "slides/lecture04-bayes1.html#monte-carlo-implementation",
@@ -480,7 +480,7 @@
     "href": "slides/lecture04-bayes1.html#monte-carlo-expectations",
     "title": "Parametric Uncertainty",
     "section": "Monte Carlo Expectations",
-    "text": "Monte Carlo Expectations\nGiven these samples, we can compute expectations of any function of the samples. For example, we can compute the mean damage, the 99th percentile of damage, and the probability of any damage occurring\n\nfunction metrics(x::AbstractVector)\n    return round.([\n            mean(x),\n            quantile(x, 0.99),\n            mean(x .&gt; 0),\n        ]; digits=5\n    )\nend\nmetrics(mc_dmgs)\n\n3-element Vector{Float64}:\n 0.00228\n 0.06889\n 0.03424"
+    "text": "Monte Carlo Expectations\nGiven these samples, we can compute expectations of any function of the samples. For example, we can compute the mean damage, the 99th percentile of damage, and the probability of any damage occurring\n\nfunction metrics(x::AbstractVector)\n    return round.([\n            mean(x),\n            quantile(x, 0.99),\n            mean(x .&gt; 0),\n        ]; digits=5\n    )\nend\nmetrics(mc_dmgs)\n\n3-element Vector{Float64}:\n 0.00226\n 0.06853\n 0.03412"
   },
   {
     "objectID": "slides/lecture04-bayes1.html#overview",
@@ -501,7 +501,7 @@
     "href": "slides/lecture04-bayes1.html#flood-distribution-damages",
     "title": "Parametric Uncertainty",
     "section": "Flood distribution ➡️ damages",
-    "text": "Flood distribution ➡️ damages\n\nfunction monte_carlo_damage(flood_dist, x0::Real, k::Real; S::Int = 50_000, BFE::Real = 5.5)\n    mc_depth_gauge = rand(flood_dist, S)\n    mc_depth_house = mc_depth_gauge .- BFE\n    mc_dmgs = blogistic.(mc_depth_house, x0, k)\nend\n\nmc_dmgs_alt_dist = monte_carlo_damage(alt_dist, x0, k)\ndmg_df = DataFrame(\n    :params =&gt; [\"Average Annual Loss\", \"Q99 Annual Loss\", \"Probability of Loss\"],\n    :MLE =&gt; metrics(mc_dmgs),\n    :alt_dist =&gt; metrics(mc_dmgs_alt_dist),\n)\n\n3×3 DataFrame\n\n\n\nRow\nparams\nMLE\nalt_dist\n\n\n\nString\nFloat64\nFloat64\n\n\n\n\n1\nAverage Annual Loss\n0.00228\n0.00961\n\n\n2\nQ99 Annual Loss\n0.06889\n0.16333\n\n\n3\nProbability of Loss\n0.03424\n0.09998"
+    "text": "Flood distribution ➡️ damages\n\nfunction monte_carlo_damage(flood_dist, x0::Real, k::Real; S::Int = 50_000, BFE::Real = 5.5)\n    mc_depth_gauge = rand(flood_dist, S)\n    mc_depth_house = mc_depth_gauge .- BFE\n    mc_dmgs = blogistic.(mc_depth_house, x0, k)\nend\n\nmc_dmgs_alt_dist = monte_carlo_damage(alt_dist, x0, k)\ndmg_df = DataFrame(\n    :params =&gt; [\"Average Annual Loss\", \"Q99 Annual Loss\", \"Probability of Loss\"],\n    :MLE =&gt; metrics(mc_dmgs),\n    :alt_dist =&gt; metrics(mc_dmgs_alt_dist),\n)\n\n3×3 DataFrame\n\n\n\nRow\nparams\nMLE\nalt_dist\n\n\n\nString\nFloat64\nFloat64\n\n\n\n\n1\nAverage Annual Loss\n0.00226\n0.00919\n\n\n2\nQ99 Annual Loss\n0.06853\n0.15925\n\n\n3\nProbability of Loss\n0.03412\n0.09632"
   },
   {
     "objectID": "slides/lecture04-bayes1.html#parameter-uncertainty-depth-damage-curve",
@@ -515,7 +515,7 @@
     "href": "slides/lecture04-bayes1.html#depth-damage-curve-damages",
     "title": "Parametric Uncertainty",
     "section": "Depth-damage curve ➡️ damages",
-    "text": "Depth-damage curve ➡️ damages\n\nmc_dmgs_alt_curve = monte_carlo_damage(flood_mle_dist, x0_alt, k_alt)\ndmg_df[!, :alt_curve] = metrics(mc_dmgs_alt_curve)\n\nmc_dmgs_alt_both = monte_carlo_damage(alt_dist, x0_alt, k_alt)\ndmg_df[!, :alt_both] = metrics(mc_dmgs_alt_both)\ndmg_df\n\n3×5 DataFrame\n\n\n\nRow\nparams\nMLE\nalt_dist\nalt_curve\nalt_both\n\n\n\nString\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAverage Annual Loss\n0.00228\n0.00961\n0.00421\n0.01556\n\n\n2\nQ99 Annual Loss\n0.06889\n0.16333\n0.12667\n0.25053\n\n\n3\nProbability of Loss\n0.03424\n0.09998\n0.03446\n0.09834"
+    "text": "Depth-damage curve ➡️ damages\n\nmc_dmgs_alt_curve = monte_carlo_damage(flood_mle_dist, x0_alt, k_alt)\ndmg_df[!, :alt_curve] = metrics(mc_dmgs_alt_curve)\n\nmc_dmgs_alt_both = monte_carlo_damage(alt_dist, x0_alt, k_alt)\ndmg_df[!, :alt_both] = metrics(mc_dmgs_alt_both)\ndmg_df\n\n3×5 DataFrame\n\n\n\nRow\nparams\nMLE\nalt_dist\nalt_curve\nalt_both\n\n\n\nString\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAverage Annual Loss\n0.00226\n0.00919\n0.00412\n0.01576\n\n\n2\nQ99 Annual Loss\n0.06853\n0.15925\n0.12638\n0.25558\n\n\n3\nProbability of Loss\n0.03412\n0.09632\n0.03376\n0.09806"
   },
   {
     "objectID": "slides/lecture04-bayes1.html#reflection",
