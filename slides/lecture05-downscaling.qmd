@@ -1,0 +1,181 @@
+---
+title: "Downscaling"
+subtitle: "Lecture"
+date: "September 13, 2023"
+
+# don't adjust the below options, they should be the same for all slides
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+        code-annotations: below
+
+execute:
+    freeze: auto
+    echo: true
+---
+
+# Downscaling
+
+## We would like to accurately model precipitation at high spatial and temporal resolution
+
+- Stormwater management (long-term desigm)
+- Water resources management (subseasonal to multi-year planning)
+- Fire propagation (hourly to weekly)
+
+## Objectives
+
+1. enhanced spatial detail
+2. mitigation of systematic ESM[^ESM] biases
+3. generation of variables not explicitly rendered by GCMs
+
+[@lanzante_pitfalls:2018]
+
+[^ESM]: Earth System Model
+
+## Earth System Models
+
+![](https://soccom.princeton.edu/sites/g/files/toruqf5341/files/2023-07/AtmosphericModelSchematic.jpg){width=100%}
+
+## Dreary
+
+![](../_assets/img/stephens-dreary.png){width=100%}
+
+## Drizzling
+
+![](../_assets/img/chen-drizzling.png){width=100%}
+
+## Challenges, summarized
+
+::: {.incremental}
+1. ESMs are tuned to get energy balance and large-scale circulation right, not local extremes
+1. ESMs average over space and time
+1. Local-scale precipitation can be tricky to model well
+:::
+
+# Downscaling: theory
+
+## Supervised downscaling
+
+::: {.incremental}
+- Input: pairs $(X_i, y_i)$
+    - $X_i$: predictors (e.g., gridded rainfall)
+    - $y_i$: predictand (e.g., gauge rainfall)
+- Goal: learn a function $f$ such that $f(X_i) \approx y_i$
+    - Measure quality of approximation through a *loss function* (more later)
+- Key point: the $X_i$ and $y_i$ are observed at the same time
+    - Example: map satellite to radar data
+:::
+
+## Distributional downscaling
+
+::: {.incremental}
+- ESMs simulate from the distribution of weather, given climate boundary conditions. For example:
+    - Run 100 ESM *ensemble members* over 20th century conditions
+    - Study December 1, 1980 in all draws
+    - Some will be rainy, some will be dry; some cool, some warm
+    - Statistically meaningful, but not a forecast!
+- No pairs $(X_i, y_i)$. Instead we have samples $\left\{X_1, \ldots, X_N \right\}$ and $\left\{y_1, \ldots, y_K \right\}$
+:::
+
+## Common datasets {.smaller .scrollable}
+
+::: {.incremental}
+- Gauge data
+- Gridded observational products
+    - For example: radar measurments are processed to produce gridded rainfall estimates
+- Reanalysis products
+    - Use *assimilation* to "digest" observations using a model
+    - Gridded reconstructions of past weather
+    - State of the art is [ERA5](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5)
+- ESM outputs
+    - Historical runs
+    - CMIP: compare multiple models on standardized scenarios (e.g., RCP 2.6, 4.5, 8.5)
+    - Simulate from weather, **conditional on boundary conditions** 
+:::
+
+## Bias correction
+
+Simplest form of downscaling.
+Usually $X$ are samples from a climate model and $y$ are observations.
+$$
+\begin{aligned}
+\text{bias} &= \mathbb{E}[X] - \mathbb{E}[y] \\
+\hat{y} &= X - \text{bias}
+\end{aligned}
+$$
+
+. . .
+
+::: {.callout-note}
+Is this a distributional or supervised method?
+:::
+
+## Quantile-quantile mapping
+
+![](https://www.researchgate.net/profile/Douglas-Maraun/publication/308978024/figure/fig1/AS:415816899153922@1476149882282/Quantile-mapping-A-simulated-value-a-quantile-of-the-simulated-distribution-is_W640.jpg){width=100%}
+
+## CorrectorGAN
+
+:::: {.columns}
+::: {.column width=60%}
+![](../_assets/img/price-correctorgan-2.png){width=100%}
+[@price_correctorgan:2022]
+:::
+::: {.column width=40%}
+![](../_assets/img/price-correctorgan-1.png){width=100%}
+:::
+::::
+
+## Stationarity
+
+Stationarity means the relationship between $X$ and $y$ does not change over time
+
+- Supervised: $p(y | X)$ or $y = f(X)$ does not change over time
+- Distributional: Corrections to the distribution do not change over time
+
+This is never a perfect assumption
+
+# Project 1
+
+## Your task
+
+::: {.incremental}
+- Given:
+    1. Hourly gridded rainfall data (small area)
+    1. Hourly large-scale pressure and temperature fields
+    1. Hourly gauge rainfall data at a single station
+- Develop a model to predict hourly gauge rainfall from the available datasets
+:::
+
+## Expectations
+
+- Try and compare at least two different approaaches
+- Quantitative and qualitative evaluation of the models
+- You can use any methods you like:
+    - Those we cover in class
+    - Those you already know
+
+
+## References
