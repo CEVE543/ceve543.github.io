@@ -672,6 +672,587 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment, August 23, 2023\n\n\n\nBloemendaal, N., Haigh, I. D., de Moel, H., Muis, S., Haarsma, R. J., & Aerts, J. C. J. H. (2020). Generation of a global synthetic tropical cyclone hazard dataset using STORM. Scientific Data, 7(1), 40. https://doi.org/10.1038/s41597-020-0381-2\n\n\nBruneau, M., Barbato, M., Padgett, J. E., Zaghi, A. E., Mitrani-Reiser, J., & Li, Y. (2017). State of the art of multihazard design. Journal of Structural Engineering, 143(10), 03117002. https://doi.org/10.1061/(ASCE)ST.1943-541X.0001893\n\n\nDoss-Gollin, J., Farnham, D. J., Lall, U., & Modi, V. (2021). How unprecedented was the February 2021 Texas cold snap? Environmental Research Letters. https://doi.org/10.1088/1748-9326/ac0278\n\n\nFletcher, S., Lickley, M., & Strzepek, K. (2019). Learning about climate change uncertainty enables flexible water infrastructure planning. Nature Communications, 10(1), 1782. https://doi.org/10.1038/s41467-019-09677-x\n\n\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\n\n\nKleiber, W., Sain, S., Madaus, L., & Harr, P. (2023). Stochastic tropical cyclone precipitation field generation. Environmetrics, 34(1), e2766. https://doi.org/10.1002/env.2766\n\n\nSobel, A. H., Lee, C.-Y., Bowen, S. G., Camargo, S. J., Cane, M. A., Clement, A., et al. (2023). Near-term tropical cyclone risk and coupled Earth system model biases. Proceedings of the National Academy of Sciences, 120(33), e2209631120. https://doi.org/10.1073/pnas.2209631120"
   },
   {
+    "objectID": "slides/lecture01-lab.html#overview",
+    "href": "slides/lecture01-lab.html#overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Overview",
+    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#tool-overview",
+    "href": "slides/lecture01-lab.html#tool-overview",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Tool overview",
+    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#why-julia",
+    "href": "slides/lecture01-lab.html#why-julia",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Why Julia?",
+    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#julia-example",
+    "href": "slides/lecture01-lab.html#julia-example",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Julia example",
+    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#github",
+    "href": "slides/lecture01-lab.html#github",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#quarto",
+    "href": "slides/lecture01-lab.html#quarto",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto is a tool that allows you to combine text and code and create many types of output\n\nThis website is made with Quarto\nYou will use Quarto to create reports for labs\n\nEverything in one place\nNo running code, save a figure to Downloads, copy into Word, then update your code and try to remember where to paste it\n\nReproducible"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#vs-code",
+    "href": "slides/lecture01-lab.html#vs-code",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "VS Code",
+    "text": "VS Code\n\nVS Code is a text editor\n\nIf you are an advanced user of another text editor, you can use that instead, but I recommend VS Code\n\nVS Code can work as a Julia IDE"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#detailed-instructions",
+    "href": "slides/lecture01-lab.html#detailed-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Detailed instructions",
+    "text": "Detailed instructions\nSee Setup"
+  },
+  {
+    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
+    "href": "slides/lecture01-lab.html#lab-01-instructions",
+    "title": "Setting up Julia, GitHub, and Quarto",
+    "section": "Lab 01 Instructions",
+    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#pdf-and-cdf",
+    "href": "slides/lecture02-marginal-joint-conditional.html#pdf-and-cdf",
+    "title": "Working with probability distributions",
+    "section": "PDF and CDF",
+    "text": "PDF and CDF\nIf \\(F_X\\) is the cumulative distribution function (CDF) of \\(X\\) and \\(f_X\\) is the probability density function (PDF) of \\(X\\), then: \\[\nF_X ( x ) = \\int_{-\\infty}^x f_X(u) \\, du,\n\\] and (if \\(f_X\\) is continuous at \\(x\\) which it typically will be) \\[\nf_{X}(x)={\\frac {d}{dx}}F_{X}(x).\n\\] A useful property is \\[\n\\Pr[a\\leq X\\leq b]=\\int _{a}^{b}f_{X}(x)\\,dx\n\\]\n\n\n\n\n\n\nImportant\n\n\nWe can only talk about the probability that \\(y\\) is in some interval \\([a, b]\\), which is given by the integral of the PDF over that interval. The probability that \\(y\\) takes on the value \\(y^*\\), written \\(p(y=y^*)\\), is zero."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#pdf-example",
+    "href": "slides/lecture02-marginal-joint-conditional.html#pdf-example",
+    "title": "Working with probability distributions",
+    "section": "PDF example",
+    "text": "PDF example\n\n# https://www.matecdev.com/posts/julia-numerical-integration.html\nfunction quad_trap(f, a, b, N)\n    h = (b - a) / N\n    int = h * (f(a) + f(b)) / 2\n    for k in 1:(N-1)\n        xk = (b - a) * k / N + a\n        int = int + h * f(xk)\n    end\n    return int\nend;\n\nSimple example to illustrate that \\[\nF_X(2) = \\int_{-\\infty}^2 f_X(u) \\, du\n\\]\nWe will use a standard Normal distribution as an example\n\nusing Distributions\n\n1dist = Normal()\n2f(x) = pdf(dist, x)\n3approx = quad_trap(f, -100, 2, 1000)\nexact = cdf(dist, 2)\n\napprox, exact\n\n\n1\n\nMean 0 and standard deviation 1 by default\n\n2\n\npdf(d, x) tells us the probability density function of distribution d evaluated at x\n\n3\n\nquad_trap is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points\n\n\n\n\n(0.9771562639858903, 0.9772498680518208)"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#pmfs",
+    "href": "slides/lecture02-marginal-joint-conditional.html#pmfs",
+    "title": "Working with probability distributions",
+    "section": "PMFs",
+    "text": "PMFs\n\nDiscrete distributions (like the Poisson) have a probability mass function (PMF) instead of a PDF\nFor PMFs, \\(p(y=y^*)\\) is the probability that \\(y\\) takes on the value \\(y^*\\), and is defined\n\n\nusing LaTeXStrings\nusing Plots\n\nf(x) = pdf(Poisson(5), x) # the Poisson PMF\n1plot(f, 0:1:20; label=\"PMF\", marker=:o, xlabel=L\"$x^*$\", ylabel=L\"$p(x=x^*)$\")\n\n\n1\n\nIn the Distributions package, both PDFs and PMFs are called pdf"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#bayes-rule",
+    "href": "slides/lecture02-marginal-joint-conditional.html#bayes-rule",
+    "title": "Working with probability distributions",
+    "section": "Bayes’ Rule",
+    "text": "Bayes’ Rule\n\\[\np(\\theta, y) = p(\\theta) p(y | \\theta)\n\\] and thus \\[\np(\\theta | y) = \\frac{p(\\theta, y)}{p(y)} = \\frac{p(\\theta) p(y | \\theta)}{p(y)}\n\\] generally: \\[\np(\\theta | y) \\propto p(\\theta) p(y | \\theta)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#marginal-probability",
+    "href": "slides/lecture02-marginal-joint-conditional.html#marginal-probability",
+    "title": "Working with probability distributions",
+    "section": "Marginal probability",
+    "text": "Marginal probability\nProbability of event \\(A\\): \\(\\Pr(A)\\)\n\nWe will write the marginal probability density function as \\[\np(\\theta) \\quad \\text{or} \\quad p(y)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#joint-probability",
+    "href": "slides/lecture02-marginal-joint-conditional.html#joint-probability",
+    "title": "Working with probability distributions",
+    "section": "Joint probability",
+    "text": "Joint probability\nProbability of events \\(A\\) and \\(B\\): \\(\\Pr(A \\& B)\\)\n\n\\[\np(\\theta, y)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#conditional-probability",
+    "href": "slides/lecture02-marginal-joint-conditional.html#conditional-probability",
+    "title": "Working with probability distributions",
+    "section": "Conditional probability",
+    "text": "Conditional probability\nProbability of event \\(A\\) given event \\(B\\): \\(\\Pr(A | B)\\)\n\n\\[\np(\\theta | y) \\quad \\text{or} \\quad p(y | \\theta)\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#example-two-dice-wager",
+    "href": "slides/lecture02-marginal-joint-conditional.html#example-two-dice-wager",
+    "title": "Working with probability distributions",
+    "section": "Example: two-dice wager",
+    "text": "Example: two-dice wager\n\nA gambler presents you with an even-money wager. You will roll two dice, and if the highest number showing is one, two, three or four, then you win. If the highest number on either die is five or six, then she wins. Should you take the bet?"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#overview",
+    "href": "slides/lecture02-marginal-joint-conditional.html#overview",
+    "title": "Working with probability distributions",
+    "section": "Overview",
+    "text": "Overview\nStandard linear regression model, let’s assume \\(x \\in \\mathbb{R}\\) for simplicity (1 predictor): \\[\ny_i = ax_i + b + \\epsilon_i\n\\] where \\(\\epsilon_i \\sim N(0, \\sigma^2)\\)."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#conditional-distribution-of-y_i",
+    "href": "slides/lecture02-marginal-joint-conditional.html#conditional-distribution-of-y_i",
+    "title": "Working with probability distributions",
+    "section": "Conditional distribution of \\(y_i\\)",
+    "text": "Conditional distribution of \\(y_i\\)\nThe conditional probability density of \\(y_i\\) given \\(x_i\\) is \\[\np(y_i | x_i, a, b, \\sigma) = N(ax_i + b, \\sigma^2)\n\\] which is a shorthand for writing out the full equation for the Normal PDF. We can (and often will) write this as \\[\ny_i \\sim \\mathcal{N}(ax_i + b, \\sigma^2)\n\\] Finally, we will sometimes write \\(p(y_i | x_i)\\) as a shorthand for \\(p(y_i | x_i, a, b, \\sigma)\\). While fine in many circumstances, we should take care to make sure we are extremely clear about what parameters we are conditioning on."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#marginal-distribution-of-y_i",
+    "href": "slides/lecture02-marginal-joint-conditional.html#marginal-distribution-of-y_i",
+    "title": "Working with probability distributions",
+    "section": "Marginal distribution of \\(y_i\\)",
+    "text": "Marginal distribution of \\(y_i\\)\nThe marginal probability density of \\(y_i\\) is \\[\np(y_i | a, b, \\sigma) = \\int p(y_i | x_i, a, b, \\sigma) p(x_i) \\, dx_i\n\\] where \\(p(x_i)\\) is the probability density of \\(x_i\\)."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#joint-distribution-of-y_i-and-x_i",
+    "href": "slides/lecture02-marginal-joint-conditional.html#joint-distribution-of-y_i-and-x_i",
+    "title": "Working with probability distributions",
+    "section": "Joint distribution of \\(y_i\\) and \\(x_i\\)",
+    "text": "Joint distribution of \\(y_i\\) and \\(x_i\\)\nThe joint probability density of \\(y_i\\) and \\(x_i\\) is \\[\np(y_i, x_i | a, b, \\sigma) = p(y_i | x_i, a, b, \\sigma) p(x_i)\n\\] where \\(p(x_i)\\) is the probability density of \\(x_i\\)."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#simulation",
+    "href": "slides/lecture02-marginal-joint-conditional.html#simulation",
+    "title": "Working with probability distributions",
+    "section": "Simulation",
+    "text": "Simulation\n\nm = 2\nb = 1\nσ = 1.5\n\n\nIf \\(x=2\\), we can simulate from the conditional distribution of \\(y\\):\n\nN_sim = 10_000\n\nx = 2\ny = rand(Normal(m * x + b, σ), N_sim)\nhistogram(y, title=L\"$p(y | x=2)$\", label=\"Sampled\", normalize=true, xlabel=L\"$y$\", ylabel=\"Density\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf \\(x \\sim N(0, 1)\\), then we can simulate from the joint distribution of \\(x\\) and \\(y\\):\n\nx = rand(Normal(0, 1), 10_000)\n1y = [rand(Normal(m * xᵢ + b, σ)) for xᵢ in x]\nscatter(x, y, label=L\"$p(x, y)$\", xlabel=L\"$x$\", ylabel=L\"$y$\")\n\n\n1\n\nA list comprehension here is less elegant than writing rand.(Normal.(m .* x .+ b, σ)) but it is easy to read. The results are the same.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFinally, assuming the same distribution, we can simulate from the marginal distribution of \\(y\\):\n\nhistogram(y, label=L\"$p(y)$\", normalize=true, xlabel=L\"$y$\", ylabel=\"Density\")"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#overview-1",
+    "href": "slides/lecture02-marginal-joint-conditional.html#overview-1",
+    "title": "Working with probability distributions",
+    "section": "Overview",
+    "text": "Overview\nThe Negative Binomial distribution (see last lecture) can be interpreted as a Gamma-Poisson mixture:\n\\[\n\\begin{align}\ny &\\sim \\textrm{Poisson}(\\lambda) \\\\\n\\lambda &\\sim \\textrm{Gamma}\\left(r, \\frac{p}{1-p} \\right)\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#mathematical-derivation",
+    "href": "slides/lecture02-marginal-joint-conditional.html#mathematical-derivation",
+    "title": "Working with probability distributions",
+    "section": "Mathematical derivation",
+    "text": "Mathematical derivation\nWe can show mathematically that if \\(y ~ \\textrm{Negative Binomial}(r, p)\\), that is equivalent to the mixture model \\(y ~ \\textrm{Poisson}(\\lambda)\\) and \\(\\lambda ~ \\textrm{Gamma}(r, p / (1 - p))\\). \\[\n\\begin{align}\n& \\int_0^{\\infty} f_{\\text {Poisson }(\\lambda)}(y) \\times f_{\\operatorname{Gamma}\\left(r, \\frac{p}{1-p}\\right)}(\\lambda) \\mathrm{d} \\lambda \\\\\n& = \\int_0^{\\infty} \\frac{\\lambda^y}{y !} e^{-\\lambda} \\times \\frac{1}{\\Gamma(r)}\\left(\\frac{p}{1-p} \\lambda\\right)^{r-1} e^{-\\frac{p}{1-p} \\lambda}\\left(\\frac{p}{1-p} \\mathrm{~d} \\lambda\\right) \\\\\n\\ldots \\\\\n&= f_{\\text {Negative Binomial }(r, p)}(y)\n\\end{align}\n\\] For all the steps see Wikipedia."
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#simulation-example",
+    "href": "slides/lecture02-marginal-joint-conditional.html#simulation-example",
+    "title": "Working with probability distributions",
+    "section": "Simulation example",
+    "text": "Simulation example\nWe can see this with simulation. First we define a function to simulate from the Gamma-Poisson mixture:\n\nfunction gamma_poisson(r, p)\n    g_dist = Gamma(r, (1 - p) / p)\n    λ = rand(g_dist)\n    p_dist = Poisson(λ)\n    return rand(p_dist)\nend\n\ngamma_poisson (generic function with 1 method)\n\n\n\nThen we can simulate from the mixture and compare to the Negative Binomial distribution:\n\nr = 3 # number of failures\np = 1 / 6 # probability of failure\ndist = NegativeBinomial(r, p)\n\n# simulate 50,000 rolls\nrolls = [gamma_poisson(r, p) for _ in 1:50_000]\n\n# plot the samples\nxticks = 0:1:60 # specify the bin values\nhistogram(\n    rolls;\n    bins=-0.5:1:(maximum(xticks)+0.5),\n    xlabel=\"Number of rolls\",\n    ylabel=\"PMF\",\n    marker=:o,\n    label=\"Gamma-Poisson\",\n    normalize=true\n)\n\n# add the PDF of the negative binomial distribution\nplot!(xticks, pdf.(dist, xticks); linewidth=2, label=\"Neg. Binom.\")"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#so-what",
+    "href": "slides/lecture02-marginal-joint-conditional.html#so-what",
+    "title": "Working with probability distributions",
+    "section": "So what?",
+    "text": "So what?\nI don’t need you to know all the details of this particular mixture model. What I do want you to understand is:\n\n\nWe can model data using combinations of simpler distributions\nWe can use simple simulation approaches to approximate more complex relationships\n\nFor example, if we wanted to know \\(\\Pr(y &gt; 10)\\) when \\(y \\sim \\text{Negative Binomial}(r, p)\\) but we didn’t have a Negative Binomial distribution in our software package we could estimate our quantity of interest\nThis isn’t very interesting for this model (there is an analytic solution!) but lots of models we might want to write down don’t have analytic solutions"
+  },
+  {
+    "objectID": "slides/lecture02-marginal-joint-conditional.html#key-ideas",
+    "href": "slides/lecture02-marginal-joint-conditional.html#key-ideas",
+    "title": "Working with probability distributions",
+    "section": "Key ideas",
+    "text": "Key ideas\n\nConditional probability\nJoint probability\nMarginal probability\nBayes’ Rule\nLikelihood\nPosterior\nSimulation methods\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+  },
+  {
+    "objectID": "projects/project04/project04.html",
+    "href": "projects/project04/project04.html",
+    "title": "Project 4",
+    "section": "",
+    "text": "This is the project for module 4"
+  },
+  {
+    "objectID": "projects/project02/project02.html",
+    "href": "projects/project02/project02.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "This is the project for module 2"
+  },
+  {
+    "objectID": "labs/lab01/solution.html",
+    "href": "labs/lab01/solution.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#setup",
+    "href": "labs/lab01/solution.html#setup",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Do not modify this section!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#running-code",
+    "href": "labs/lab01/solution.html#running-code",
+    "title": "Lab 01",
+    "section": "2 Running Code",
+    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
+  },
+  {
+    "objectID": "labs/lab01/solution.html#rendering-the-document",
+    "href": "labs/lab01/solution.html#rendering-the-document",
+    "title": "Lab 01",
+    "section": "3 Rendering the Document",
+    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
+  },
+  {
+    "objectID": "labs/lab02/template.html",
+    "href": "labs/lab02/template.html",
+    "title": "Lab 02",
+    "section": "",
+    "text": "In this lab we will learn how to work with tabular data in Julia. Specifically, you will get some experience using:\n\nDataFrames.jl to store tabular data as a DataFrame\nCSV.jl to read CSV files and convert them to DataFrames\nDataFramesMeta.jl to manipulate DataFrames\nPlots.jl and StatsPlots.jl to create visualizations\n\n\n\nTechnically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however.\n\n\n\nI have provided you with a lot of template code.\nAny code block that starts with\n\n\n```{julia}\n\n\nis a “live” code block and will execute (run).\n\nThese blocks will automatically run when you render the document\nYou can click “Run Cell” to run the cell\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with\n\n\n```julia\n\n\nis source code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make it a cell that you can run, add the brackets\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\nThis is an instruction.\n\n\n\n\n\n\nYou may find the following Quarto documentation pages helpful:\n\nUsing Julia\nMarkdown Basic\n\nAsk questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
+  },
+  {
+    "objectID": "labs/lab02/template.html#exploratory-modeling",
+    "href": "labs/lab02/template.html#exploratory-modeling",
+    "title": "Lab 02",
+    "section": "",
+    "text": "Technically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however."
+  },
+  {
+    "objectID": "labs/lab02/template.html#how-to-use-this-template",
+    "href": "labs/lab02/template.html#how-to-use-this-template",
+    "title": "Lab 02",
+    "section": "",
+    "text": "I have provided you with a lot of template code.\nAny code block that starts with\n\n\n```{julia}\n\n\nis a “live” code block and will execute (run).\n\nThese blocks will automatically run when you render the document\nYou can click “Run Cell” to run the cell\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with\n\n\n```julia\n\n\nis source code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make it a cell that you can run, add the brackets\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\nThis is an instruction."
+  },
+  {
+    "objectID": "labs/lab02/template.html#getting-help",
+    "href": "labs/lab02/template.html#getting-help",
+    "title": "Lab 02",
+    "section": "",
+    "text": "You may find the following Quarto documentation pages helpful:\n\nUsing Julia\nMarkdown Basic\n\nAsk questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
+  },
+  {
+    "objectID": "labs/lab02/template.html#clone-the-respository",
+    "href": "labs/lab02/template.html#clone-the-respository",
+    "title": "Lab 02",
+    "section": "2.1 Clone the respository",
+    "text": "2.1 Clone the respository\nFirst, you’ll need to clone this repository to your computer. As with Lab 01, I recommend to use GitHub Desktop or the built-in Git support in VS Code. Remember to use the link from Canvas (classroom.github.com/...)."
+  },
+  {
+    "objectID": "labs/lab02/template.html#install-required-packages",
+    "href": "labs/lab02/template.html#install-required-packages",
+    "title": "Lab 02",
+    "section": "2.2 Install required packages",
+    "text": "2.2 Install required packages\n\nIn VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and select Julia: Start REPL.\nIn the Julia REPL, type ] to enter the package manager.\nType activate . to activate the project environment.\nType instantiate to install the required packages. This may take a moment.1"
+  },
+  {
+    "objectID": "labs/lab02/template.html#using-statement",
+    "href": "labs/lab02/template.html#using-statement",
+    "title": "Lab 02",
+    "section": "2.3 Using statement",
+    "text": "2.3 Using statement\nIn Julia we say using to import a package. Typically we want to do this as early as possible in a script or notebook.\n\nusing CSV\nusing DataFrames\nusing DataFramesMeta\nusing Dates\nusing Plots\nusing StatsBase: mean\nusing StatsPlots\nusing Unitful\n\n\n\nThat this is a code block code and will run. If you have not yet installed the packages, you will see an error message. Don’t change this block – see instructions to install and instantiate."
+  },
+  {
+    "objectID": "labs/lab02/template.html#check",
+    "href": "labs/lab02/template.html#check",
+    "title": "Lab 02",
+    "section": "2.4 Check",
+    "text": "2.4 Check\nTo make sure everything is working, you should open the command palette and select Quarto: Render HTML. This will generate a HTML file from this notebook. This is a good way to check that everything is working before you start editing code."
+  },
+  {
+    "objectID": "labs/lab02/template.html#dates",
+    "href": "labs/lab02/template.html#dates",
+    "title": "Lab 02",
+    "section": "3.1 Dates",
+    "text": "3.1 Dates\nWe can see that our DataFrame has five columns, the first of which is “Date Time”. However, the “Date Time” column is being parsed as a string. We want it to be a DateTime object from the Dates package. To do that, we need to tell Julia how the dates are formatted. We could then manually convert, but CSV.read has a kewyord argument that we can use\n\n1date_format = \"yyyy-mm-dd HH:MM\"\n2df = CSV.read(fname, DataFrame; dateformat=date_format)\nfirst(df, 3)\n\n\n1\n\nThis is a string that tells Julia how the dates are formatted. For example, 1928-01-01 00:00. See the documentation for more information.\n\n2\n\ndateformat is a keyword argument while date_format is a variable whose value is \"yyyy-mm-dd HH:MM\". We could equivalently write dateformat=\"yyyy-mm-dd HH:MM\".\n\n\n\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nFloat64\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73\n0.0\n0\n0"
+  },
+  {
+    "objectID": "labs/lab02/template.html#water-levels",
+    "href": "labs/lab02/template.html#water-levels",
+    "title": "Lab 02",
+    "section": "3.2 Water levels",
+    "text": "3.2 Water levels\nThe next column is “Water Level”, which is the height of the water above the reference point (NAVD) in meters. We can see that this is being parsed as a float, which is what we want 👍. However, you have to know that the data is in meters rather than inches or feet or something else. To explicitly add information about the units, we can use the Unitful package.\n\ndf[!, \" Water Level\"] .*= 1u\"m\"\nfirst(df, 3)\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nQuantity…\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547 m\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699 m\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73 m\n0.0\n0\n0\n\n\n\n\n\n\n\n\n\n\n\n\nCode explanation\n\n\n\n\nWe select the column with water levels using its name. The ! means “all rows”. Thus, df[!, \" Water Level\"] is a vector of all the water levels stored.\n*= means to multiply in place. For example, if x=2 then x *= 2 is equivalent to x = x * 2. .*= is a vector syntax, meaning do the multiplication to each element of the vector individually.\n1u\"m\" is a Unitful object that represents 1 meter. We multiply the water levels by this to convert them to meters."
+  },
+  {
+    "objectID": "labs/lab02/template.html#subsetting-and-renaming",
+    "href": "labs/lab02/template.html#subsetting-and-renaming",
+    "title": "Lab 02",
+    "section": "3.3 Subsetting and renaming",
+    "text": "3.3 Subsetting and renaming\nWe want to only keep the first two (for more on the other three, see here). We can also rename the columns to make them easier to work with (spaces in variable names are annoying). To do this, we use the @rename function:\n\n1df = @rename(df, :datetime = $\"Date Time\", :lsl = $\" Water Level\");\n\n\n1\n\nThe $ is needed here because the right hand side is a string, not a symbol.\n\n\n\n\nThen, we can use the @select function to do select the columns we want. Notice how the first argument to select is the DataFrame and the subsequent arguments are column names. Notice also that our column names were strings (\"Date Time\"), but we can also use symbols (:datetime).\n\ndf = @select(df, :datetime, :lsl)\nfirst(df, 3)\n\n3×2 DataFrame\n\n\n\nRow\ndatetime\nlsl\n\n\n\nDateTime\nQuantity…\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547 m\n\n\n2\n1928-01-01T01:00:00\n-0.699 m\n\n\n3\n1928-01-01T02:00:00\n-0.73 m\n\n\n\n\n\n\nFor more on what DataFramesMeta can do, see this Tweet."
+  },
+  {
+    "objectID": "labs/lab02/template.html#writing-a-function",
+    "href": "labs/lab02/template.html#writing-a-function",
+    "title": "Lab 02",
+    "section": "3.4 Writing a function",
+    "text": "3.4 Writing a function\nWe have just done a lot of work to read in our data. However, this just gives us data for the year 1928. In fact, we have a CSV file for each year 1928-2021. To make sure we can read them each in excatly the same way, we want to write a function.\nfunction read_tides(year::Int)\n    fname = \"data/tidesandcurrents-8638610-$(year)-NAVD-GMT-metric.csv\" # don't change this\n    date_format = \"yyyy-mm-dd HH:MM\" # don't change this\n    # your code here\n    # 1. read in the CSV file and save as a dataframe\n    # 2. convert the \"Date Time\" column to a DateTime object\n    # 3. convert the \" Water Level\" column to meters\n    # 4. rename the columns to \"datetime\" and \"lsl\"\n    # 5. select the \"datetime\" and \"lsl\" columns\n    # 6. return the dataframe\nend\n\n# print out the first 10 rows of the 1928 data\nfirst(read_tides(1928), 10) \n\n\n\n\n\n\nInstructions\n\n\n\nFill out this function. Your function should implement the six steps indicated in the instructions. When it’s done, convert it to a live code block with: ```{julia}. When you run this code, it should print out the first 10 rows of the 1928 data. Make sure they look right!"
+  },
+  {
+    "objectID": "labs/lab02/template.html#combining-files",
+    "href": "labs/lab02/template.html#combining-files",
+    "title": "Lab 02",
+    "section": "3.5 Combining files",
+    "text": "3.5 Combining files\nNow that we have the ability to read in the data corresponding to any year, we can read them all in and combine into a single DataFrame. First, let’s read in all the data.\nyears = 1928:2021 # all the years of data\nannual_data = # 1. call the read_tides function on each year\ntypeof(annual_data) # should be a vector of DataFrames\nNext, we’ll use the vcat function to combine all the data into a single DataFrame.\ndf = vcat(annual_data...) # don't change this\nfirst(df, 5)\nlast(df, 5) # check the last 5 years\n\n\n\n\n\n\nInstructions\n\n\n\n\nCall the read_tides function on each year\nTurn the two code blocks in this section into live code blocks\nRun the code and make sure the first 5 rows and last five rows look right"
+  },
+  {
+    "objectID": "labs/lab02/template.html#time-series-plot",
+    "href": "labs/lab02/template.html#time-series-plot",
+    "title": "Lab 02",
+    "section": "4.1 Time series plot",
+    "text": "4.1 Time series plot\nLet’s start with a simple time series plot of the water levels. Our data is collected hourly, so we have a lot of data points! Still, we can plot them all.\n\nplot(\n    df.datetime,\n    df.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n1    ylabel=\"Water level\",\n2    label=false,\n)\n\n\n1\n\nBecause we are using the Unitful pacakge, the y-axis label will automatically include the units!!!\n\n2\n\nWe are only plotting one “series” (data set), so we don’t need a legend."
+  },
+  {
+    "objectID": "labs/lab02/template.html#zooming-in",
+    "href": "labs/lab02/template.html#zooming-in",
+    "title": "Lab 02",
+    "section": "4.2 Zooming in",
+    "text": "4.2 Zooming in\nFocusing on the entire time series means we can’t dig into the details. Let’s zoom in on a single month (October 1928) using the @subset function.\n\nt_start = Dates.DateTime(1928, 10, 1, 0)\nt_end = Dates.DateTime(1928, 10, 31, 23)\ndf_month = @subset(df, t_start .&lt;= :datetime .&lt;= t_end)\nfirst(df_month, 3)\n\n3×2 DataFrame\n\n\n\nRow\ndatetime\nlsl\n\n\n\nDateTime\nQuantity…\n\n\n\n\n1\n1928-10-01T00:00:00\n0.215 m\n\n\n2\n1928-10-01T01:00:00\n0.429 m\n\n\n3\n1928-10-01T02:00:00\n0.581 m\n\n\n\n\n\n\nNow we can plot it as above.\n\nplot(\n    df_month.datetime,\n    df_month.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n    ylabel=\"Water level\",\n    label=false,\n)"
+  },
+  {
+    "objectID": "labs/lab02/template.html#instructions-2",
+    "href": "labs/lab02/template.html#instructions-2",
+    "title": "Lab 02",
+    "section": "4.3 Instructions",
+    "text": "4.3 Instructions\nChange the start and end dates to plot March 2020. What do you notice? :::"
+  },
+  {
+    "objectID": "labs/lab02/template.html#groupby",
+    "href": "labs/lab02/template.html#groupby",
+    "title": "Lab 02",
+    "section": "4.4 Groupby",
+    "text": "4.4 Groupby\nAn essential idea in working with tabular data (and other data formats) is “split-apply-combine”. Essentially: split the data into groups, apply some function to each group, and then combine the results.\nWe can use this workflow to answer an interesting question: what is the average water level for each month?2\n\n1df[!, :month] = Dates.month.(df.datetime)\n2dropmissing!(df, :lsl)\n3df_bymonth = groupby(df, :month)\n4df_climatology = combine(df_bymonth, :lsl =&gt; mean =&gt; :lsl_avg);\n\n\n1\n\nThis creates a new column called :month that is the month of each observation.\n\n2\n\nThis will discard any rows in df that have a missing value of :lsl. This is necessary because the mean function will return missing if any of the values are missing.\n\n3\n\nThis creates a GroupedDataFrame object that contains all the data grouped by month.\n\n4\n\nThis takes the grouped data and calculates the mean of the :lsl column for each month. The general syntax is combine(grouped_df, :column =&gt; function).\n\n\n\n\nWe can now plot the climatology.\n\nplot(\n1    df_climatology.month,\n    df_climatology.lsl_avg;\n2    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Average Water level\",\n3    linewidth=3,\n    label=false,\n)\n\n\n1\n\nWe can use df.colname instead of df[!, :colname]. The latter is more robust but the former is easier to type.\n\n2\n\nSetting xticks will set the x-axis ticks to the values in the vector. We can use this to make sure the x-axis ticks are labeled with the months.\n\n3\n\nWe can set the line width to make the plot easier to read.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\n\nUse the full dataset to plot the climatology using data from all years\nNext, create a new Markdown header (## Groupby Day of Year) plot the average water level for each day of the year (Dates.dayofyear from 1 to 366).\nWhat do you notice?"
+  },
+  {
+    "objectID": "labs/lab02/template.html#boxplot",
+    "href": "labs/lab02/template.html#boxplot",
+    "title": "Lab 02",
+    "section": "4.5 Boxplot",
+    "text": "4.5 Boxplot\nBoxplots are ways to visualize the distribution of data. They show the median (the line in the middle of the box), the interquartile range (the box), and the range of the data (the whiskers). Outliers are shown as dots. We can use the boxplot function from the StatsPlots.jl package:\n\nboxplot(\n1    df[!, :month],\n    df[!, :lsl];\n    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Water level\",\n    label=false,\n2    title=\"Climatology\",\n)\n\n\n1\n\nWe are back to df[!, :colname] syntax. Both work!\n\n2\n\nWe can set the title using the title keyword argument.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\nRepeat this analysis grouping by year rather than month. What do you notice from the boxplots?"
+  },
+  {
+    "objectID": "labs/lab02/template.html#submission",
+    "href": "labs/lab02/template.html#submission",
+    "title": "Lab 02",
+    "section": "4.6 Submission",
+    "text": "4.6 Submission\n\nRemove all of the instructions blocks (from the first ::: {.callout-important} to the following :::)\nRemove all of the text I have written (including this block) so that all the text is your own. This makes it much easier to grade and to follow what is yours.\n\nDo not delete any of the headers\n\nThus, the beginning of the document should have the headers for the overview, exploratory modeling, instructions, and getting help, but these should not have any text\nThis will ensure all documents have the same numbering to make it easier to troubleshoot any issues\n\nDo not delete any of the code\n\nMake sure your code runs (click the “Run All” button in the command palette)\nRender your notebook as HTML (optional)\n\nOpen comand palette\nSelect Quarto: Render HTML\nThis will create a website that you can view in your browser. The address will be in your terminal like\n\nWatching files for changes\nBrowse at http://localhost:4200/labs/lab02/instructions.html\n\nMake sure your notebook looks right in the browser.\n\nRender your hnotebook as DOCX (required)\n\nOpen comand palette\nSelect Quarto: Render DOCX\nIt may give you a link to click on in order to download the file. Click it and it will be downloaded to your computer (probably in your Downloads folder)\n\nSubmit the .docx file to Canvas.\n\nProofread before you submit!"
+  },
+  {
+    "objectID": "labs/lab02/template.html#footnotes",
+    "href": "labs/lab02/template.html#footnotes",
+    "title": "Lab 02",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nJulia precompiles packages when they are installed, and (to a lesser extent) when they are first used. The first time you use a package it may take a moment to load. This is normal, nothing to worry about, and rapidly improving.↩︎\nTo do a better job, we should separate out the long-term trend from the seasonal cycle. This is called de-trending and is a common technique in climate science. We can worry more about this later.↩︎"
+  },
+  {
+    "objectID": "labs/lab03/template.html",
+    "href": "labs/lab03/template.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "In the wake of a severe flood, an insurance company has comissioned you to study flood damage in one of the most-affected neighborhoods. This neighborhood is perfectly flat, so we can assume that all houses experienced the same flood depth. However, they are elevated to different heights, use different materials, and are built to different standards, and as a result they experienced different amounts of damage. Specifically, the insurance company has provided you with a dataset of the fraction of the value of each house that was lost in the flood and asked you to model the distribution of losses.\n\n\nOur model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula..\n\n\n\nAs for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person.\n\n\n\nAs usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions\n\n\n\n\nWe can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#mathematical-model",
+    "href": "labs/lab03/template.html#mathematical-model",
+    "title": "Lab 03",
+    "section": "",
+    "text": "Our model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula.."
+  },
+  {
+    "objectID": "labs/lab03/template.html#setup",
+    "href": "labs/lab03/template.html#setup",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person."
+  },
+  {
+    "objectID": "labs/lab03/template.html#package-imports",
+    "href": "labs/lab03/template.html#package-imports",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions"
+  },
+  {
+    "objectID": "labs/lab03/template.html#about-the-beta-distribution",
+    "href": "labs/lab03/template.html#about-the-beta-distribution",
+    "title": "Lab 03",
+    "section": "",
+    "text": "We can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#likelihood-model",
+    "href": "labs/lab03/template.html#likelihood-model",
+    "title": "Lab 03",
+    "section": "2.1 Likelihood model",
+    "text": "2.1 Likelihood model\nfunction log_lik(y::Vector{T}, α::T, β::T) where {T&lt;:Real}\n    # fill in here\n    # refer to lecture slides for syntax and function names\n    # don't forget your `return` statement!\nend\n\n\n\n\n\n\nFill in the log_lik function where y is a vector of data, and α and β are the parameters of the Beta distribution. Then, convert it to live code by adding curly brackets, like you did in lab 02. Hint: define a function function log_lik(y::T, α::T, β::T) where {T&lt;:Real}... that takes in a single point. Then this function that takes in a vector y can calculate the log-likelihood for each data point individually and combine them. This is not the only way to solve this problem"
+  },
+  {
+    "objectID": "labs/lab03/template.html#check-if-its-right",
+    "href": "labs/lab03/template.html#check-if-its-right",
+    "title": "Lab 03",
+    "section": "2.2 Check if it’s right",
+    "text": "2.2 Check if it’s right\nWe can check your log_lik function by comparing what you calculate using it to a known, correct value.\nyour_val = log_lik([0.2, 0.4, 0.6, 0.8], 5., 5.) # calls your implementation\ntrue_value = -0.2947032775653282 # I calculated this\n@assert isapprox(your_val, true_value) # checks if they're close\nprintln(\"😁\")\n\nConvert this to a live code block by adding curly brackets, like you did in lab 02, and run. You should see a 😄."
+  },
+  {
+    "objectID": "labs/lab03/template.html#plot",
+    "href": "labs/lab03/template.html#plot",
+    "title": "Lab 03",
+    "section": "2.3 Plot",
+    "text": "2.3 Plot\nNow that we have the log_likelihood, we’re going to plot it for many values of \\(\\alpha\\) and \\(\\beta\\).\nFirst, let’s define a grid of values for \\(\\alpha\\) and \\(\\beta\\) to plot:\n\nα_plot = range(0.01, 50; length=500)\nβ_plot = range(0.01, 50; length=501)\n\n\nDefine them to be different lengths so that if we make an indexing mistake, we should get an error.\n\nNext, we can calculate the log likelihood at each point on the grid of α_plot and β_plot as:\nlog_lik_fax = [log_lik(fax, αi, βi) for αi in α_plot, βi in β_plot]\n\n# ensure that the dimensions are correct\n@assert size(log_lik_fax) == (length(α_plot), length(β_plot))\ndisplay(size(log_lik_fax))\nNow, we’re ready to plot. You can use the following code, which provides some helpful keyword arguments to make your plot look nice. Feel free to play around with them.\np1 = plot(\n    α_plot,\n    β_plot,\n    log_lik_fax';\n    st=:heatmap,\n    xlabel=L\"$\\alpha$\",\n    ylabel=L\"$\\beta$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\alpha, \\beta)$\"\n)\np1\n\n\n\n\n\n\nSize and plotting\n\n\n\nNote that we plot log_lik_fax' instead of log_lik_fax. That is equivalent to transpose(log_lik_fax). This is a quirk of plots.jl syntax (see here). We avoid confusion by checking the size of log_lik_fax above.\n\n\n\n\n\n\n\n\nNote that we have assigned our plot a variable name, p1. This will let us add elements to it later.\n\n\n\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working."
+  },
+  {
+    "objectID": "labs/lab03/template.html#best-estimates",
+    "href": "labs/lab03/template.html#best-estimates",
+    "title": "Lab 03",
+    "section": "2.4 Best estimates",
+    "text": "2.4 Best estimates\nWhat values of α_plot and β_plot that maximize the log likelihood? We can find out in several different ways.\n\n2.4.1 Optimization on a grid\nThe easiest thing to do is to find the maximum value of the log likelihood on our grid. We can do that as follows:\nidx_fax = argmax(log_lik_fax) # the index that maximizes the log likelihood\nα_fax_best = α_plot[idx_fax[1]]\nβ_fax_best = β_plot[idx_fax[2]]\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working.\n\n\n\n\n\n2.4.2 Optim.jl\nWe can also use the optimize function from Optim.jl to find the maximum value of the log likelihood.\n# define the function to be optimized\nloss_fax(θ) = # define the negative log-likelihood here, using your `log_lik` function and passing in `fax` as the `y` argument.\nlower = [0.001, 0.001] # lower bound -- don't need to change\nupper = [Inf, Inf] # upper bound -- don't need to edit\nguess = [1.0, 1.0] # initial guess -- leave as-is\n\nres = optimize(loss_fax, lower, upper, guess) # run the optimization\nθ_fax = Optim.minimizer(res) # get the best parameters\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything. Follow the commented instructions.\n\n\n\n\n\n2.4.3 Distributions.jl\nAs an alternative to Optim.jl, we can use the fit_mle function from Distributions.jl for most distributions. We can use this to check our work:\nDistributions.fit_mle(Beta, fax)\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above. Compare the fit_mle result to your result using optimize."
+  },
+  {
+    "objectID": "labs/lab03/template.html#update-the-plot",
+    "href": "labs/lab03/template.html#update-the-plot",
+    "title": "Lab 03",
+    "section": "2.5 Update the plot",
+    "text": "2.5 Update the plot\nThese best estimates should show up as points on our plot. We can add them as follows:\nscatter!(p1, [α_fax_best], [β_fax_best]; label=\"Grid Search\")\nscatter!(p1, [θ_fax[1]], [θ_fax[2]]; label=\"MLE\")\np1\n\n\nWhen we add a single point, we have to wrap it in brackets [] to make it a vector. The x and y inputs to plot (or scatter!) need to be vectors.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above."
+  },
+  {
+    "objectID": "labs/lab04/template.html",
+    "href": "labs/lab04/template.html",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Use linear regression to relate the mean annual runoff of several streams (runoff) with nine other variables:\n\nthe precipitation falling at the gage (precip),\nthe drainage area of the basin (area),\nthe average slope of the basin (slope)\nthe length of the drainage basin (length)\nthe perimeter of the basin (perim)\nthe diameter of the largest circle which could be inscribed within the drainage basin (diameter)\nthe shape factor of the basin (shape_factor)\nthe stream frequency – the ratio of the number of streams in the basin to the basin area (stream_freq)\nthe relief ratio for the basin (relief_ratio)\n\n\n\n\n\n\n\nCredit\n\n\n\nThis is a light modification of Example 11.3 from\nHelsel, D. R., Hirsch, R. M., Ryberg, K. R., Archfield, S. A., & Gilroy, E. J. (2020). Statistical methods in water resources. Techniques and Methods. U.S. Geological Survey. https://doi.org/10.3133/tm4A3"
+  },
+  {
+    "objectID": "labs/lab04/template.html#data",
+    "href": "labs/lab04/template.html#data",
+    "title": "Lab 04",
+    "section": "2.1 Data",
+    "text": "2.1 Data\nNext, we need to load in the data.\n\nrunoff_df = CSV.read(\"data/runoff.csv\", DataFrame)\ndisplay(size(runoff_df))\nfirst(runoff_df, 3)\n\n(13, 10)\n\n\n3×10 DataFrame\n\n\n\nRow\nrunoff\nprecip\narea\nslope\nlength\nperim\ndiameter\nshape_factor\nstream_freq\nrelief_ratio\n\n\n\nFloat64\nFloat64\nFloat64\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nInt64\n\n\n\n\n1\n17.38\n44.37\n2.21\n50\n2.38\n7.93\n0.91\n0.38\n1.36\n332\n\n\n2\n14.62\n44.09\n2.53\n7\n2.55\n7.65\n1.23\n0.48\n2.37\n55\n\n\n3\n15.48\n41.25\n5.63\n19\n3.11\n11.61\n2.11\n0.57\n2.31\n77"
+  },
+  {
+    "objectID": "labs/lab04/template.html#model-specification",
+    "href": "labs/lab04/template.html#model-specification",
+    "title": "Lab 04",
+    "section": "3.1 Model specification",
+    "text": "3.1 Model specification\nWe are going to fit models of the form \\[\ny_i \\sim \\mathcal{N} \\left( \\beta X_i , \\sigma \\right).\n\\] We only have 13 observations of 10 variables, so we’ll need to be careful with our data. Before diving into the model, let’s look at the data."
+  },
+  {
+    "objectID": "labs/lab04/template.html#pairwise-correlations",
+    "href": "labs/lab04/template.html#pairwise-correlations",
+    "title": "Lab 04",
+    "section": "3.2 Pairwise correlations",
+    "text": "3.2 Pairwise correlations\nOne simple way to look at the data is to look at the pairwise correlations between the variables. The following function plot_correlation will plot a heatmap of the pairwise correlations.\n\n\nCode\nfunction plot_correlation(df::AbstractDataFrame)\n    varnames = names(df)\n1    correlations = cor(Matrix(df))\n    P = size(correlations, 1)\n\n    p = heatmap(\n        varnames, # x labels\n        varnames, # y labels\n        correlations; # variable\n        aspect_ratio=1, # 1:1 aspect ratio\n        xrotation=30, # rotate x ticks\n        size=(600, 600), # specify the size of the plot\n        title=\"Pairwise Correlations\",\n        clims=(-1, 1),\n        cmap=:PuOr # select a diverging color map\n    )\n\n    # add the exact text\n    ann = [\n        (i - 0.5, j - 0.5, text(round(correlations[i, j]; digits=2), 8, :white, :center))\n        for i in 1:P for j in 1:P\n    ]\n    annotate!(p, ann; linecolor=:white)\n    return p\nend\n\n\n\n1\n\ncor expects a Matrix input and will throw an error if we give it a DataFrame. Matrix(df) just extracts numeric values for our DataFrame. This won’t work well if we have non-numeric columns, but we don’t here.\n\n\n\n\n\nplot_correlation(runoff_df)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask\n\n\n\nDescribe what you learn from this plot in the specific context of modeling the relationship between runoff and the other variables. What can you not learn from this plot?"
+  },
+  {
+    "objectID": "labs/lab04/template.html#define-model",
+    "href": "labs/lab04/template.html#define-model",
+    "title": "Lab 04",
+    "section": "4.1 Define model",
+    "text": "4.1 Define model\nWe can implement this in Turing as follows:\n#| output: false\n@model function linear_reg(X::AbstractVector, y::AbstractVector)\n\n    # First, define all parameters\n    # they need priors so we use a ~\n    α # the intercept\n    β # the slope\n    σ # the standard deviation\n\n    # We can calculate intermediate quantities in our function\n    # Turing knows this isn't a parameter because we use = not ~\n    μ = α .+ β .* X\n\n    # likelihood model\n    y ...\nend\n\n\n\n\n\n\nTask\n\n\n\nImplement the model above so that it is consistent with the mathematical model written above. You will iterate between this and the next step a few times. You only need to keep your final model, but briefly describe what you did and why."
+  },
+  {
+    "objectID": "labs/lab04/template.html#prior-predictive-check",
+    "href": "labs/lab04/template.html#prior-predictive-check",
+    "title": "Lab 04",
+    "section": "4.2 Prior predictive check",
+    "text": "4.2 Prior predictive check\nBefore we fit the model, we run a prior predictive check. This lets us check whether the prior assumptions we have encoded into the model are consisten with our beliefs. First we sample from the prior:\ny = vec(runoff_df[!, :runoff])\nX = vec(runoff_df[!, :YOUR_VAR_HERE]) # which variable did you choose?\nppc_linear = let\n    model = linear_reg(X, y) # call the model\n    sampler = Prior() # we want to sample from the prior\n    nsamples = 10_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\nWe can use the lm_predict function to generate predictions from the prior.\n\n\nCode\nfunction lm_predict(chn::Turing.MCMCChains.Chains, X::AbstractVecOrMat, N::Int)\n1    p = get_params(chn)\n2    α = vec(p[:α])\n3    β = if isa(p[:β], Tuple)\n        β_matrix = hcat(vec.(p[:β])...)\n        [β_matrix[i, :] for i in 1:size(β_matrix, 1)]\n    else\n        vec(p[:β])\n    end\n4    idx = rand(1:length(α), N)\n5    ŷ = [\n        α[i] .+ X * β[i] for i in idx\n    ]\n6    if N == 1\n        ŷ = ŷ[1]\n    end\n    return ŷ\nend\n\n\n\n1\n\nThis function extracts the parameters from the chain\n\n2\n\nIf we use multiple chains, then p[:α] is a Matrix. We convert it to a vector so that it’s “flat”.\n\n3\n\nIf we have multiple predictors (multivariate linear regression) then p[:β] is a tuple of vectors. We convert it into a vector of vectors so that β[i] is a vector of coefficients for the \\(i\\)th sample.\n\n4\n\nWe randomly select N samples from the posterior.\n\n5\n\nWe calculate the predictions for each of the N samples.\n\n6\n\nIf N is 1, then we return a vector, not a vector of vectors.\n\n\n\n\nWe leverage this function to generate predictions from the prior and plot them.\nX_pred = ... # specify the range of values for\np1 = plot(xlabel=\"Precip\", ylabel=\"Runoff\", title=\"Prior predictive check\")\nfor i in 1:250\n    y_pred = lm_predict(ppc_linear, X_pred, 1)\n    plot!(p1, X_pred, y_pred; color=:black, alpha=0.1, label=false)\nend\np1\n\n\n\n\n\n\nTask\n\n\n\nFill in the missing lines in the above blocks and run."
+  },
+  {
+    "objectID": "labs/lab04/template.html#inference",
+    "href": "labs/lab04/template.html#inference",
+    "title": "Lab 04",
+    "section": "4.3 Inference",
+    "text": "4.3 Inference\nOnce we have a prior that we’re happy with, we can use our model to generate samples from the posterior distribution. We draw 4 chains of 5000 samples. If you get a weird error here, it may be because of threading. Try the mapreduce based approach here rather than waste time debugging.\nchn_linear = let\n    model = ... # FILL IN\n    sampler = externalsampler(DynamicHMC.NUTS())\n    n_per_chain = 5000\n    nchains = 4\n    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)\nend\nsummarystats(chn_linear)\nBased on \\(\\hat{R}\\) values close to 1, we have some evidence that our chains have converged. We can also check the trace plots:\n... # Fill in to generate the trace plot\n\n\n\n\n\n\nTask\n\n\n\nFill in the missing lines in the above blocks. Describe what you learn from the trace plot."
+  },
+  {
+    "objectID": "labs/lab04/template.html#posterior-predictive-checks",
+    "href": "labs/lab04/template.html#posterior-predictive-checks",
+    "title": "Lab 04",
+    "section": "4.4 Posterior predictive checks",
+    "text": "4.4 Posterior predictive checks\nWe can again plot our predictions, this time using the posterior samples. We add the data to the plot as well.\np2 = plot(xlabel=\"Precip\", ylabel=\"Runoff\", title=\"Posterior\") # blank plot\npred_linear = lm_predict(chn_linear, X_pred, 500) # generate predictions\nfor y_pred in pred_linear\n    plot!(p2, X_pred, y_pred; color=:black, alpha=0.1, label=false) # add each prediction to a plot\nend\n# add the observations with scatter!\np2\n\n\n\n\n\n\nTask\n\n\n\nAdd the observations to the plot above with scatter!"
+  },
+  {
+    "objectID": "labs/lab04/template.html#prior-predictive-check-1",
+    "href": "labs/lab04/template.html#prior-predictive-check-1",
+    "title": "Lab 04",
+    "section": "5.1 Prior predictive check",
+    "text": "5.1 Prior predictive check\nX = Matrix(runoff_df[:, Not(:runoff)]) # all columns except runoff\ny = vec(runoff_df[!, :runoff]) # runoff \n\nppc_multi = let\n    ... # FILL IN\nend\nHow should we visualize the prior predictive check? A simple way is to visualize the implied distribution of \\(y\\) given observed \\(X\\):\nhistogram(\n    vcat(lm_predict(ppc_multi, X, 500)...),\n    xlabel=L\"$y$\",\n    ylabel=L\"Implied $p(y)$\",\n    label=false,\n    normalize=:pdf,\n    yticks=false,\n    title=\"Prior predictive check\",\n)\n\n\n\n\n\n\nTask\n\n\n\nModify the above code to draw samples from the prior and save as ppc_multi."
+  },
+  {
+    "objectID": "labs/lab04/template.html#inference-1",
+    "href": "labs/lab04/template.html#inference-1",
+    "title": "Lab 04",
+    "section": "5.2 Inference",
+    "text": "5.2 Inference\nNow that our priors seem plausible (we could a;ways do better, but that’s not the point of this lab), we can fit the model.\nchn_multi = let\n    ...\nend\n# summary stats\n\n\n\n\n\n\nTask\n\n\n\nDraw the samples from the posterior and save as chn_multi. Display the summary statistics. What do you learn?"
+  },
+  {
+    "objectID": "labs/lab04/template.html#posterior-predictive-check",
+    "href": "labs/lab04/template.html#posterior-predictive-check",
+    "title": "Lab 04",
+    "section": "5.3 Posterior predictive check",
+    "text": "5.3 Posterior predictive check\nHow should we visualize these inferences? It’s hard to plot a single \\(x\\) vs \\(y\\) when we have multiple \\(x\\). There are many possible plots, but a good one is to plot the predicted vs actual values of \\(y\\). To make the plot more readable, we’ll add some jitter to the data. Here’s a function to do that:\n\n\nCode\nfunction jitter(x, y; ϵx=0.1, ϵy=0.1)\n    x_jit = x .+ rand(Normal(0, ϵx), size(x))\n    y_jit = y .+ rand(Normal(0, ϵy), size(y))\n    return x_jit, y_jit\nend\n\n\nNow we can create our scatter plot.\np4 = plot(; xlabel=\"Predicted Runoff\", ylabel=\"Actual Runoff\", aspect_ratio=1) # blank plot\nfor i in 1:500 # loop through\n    pred = lm_predict(chn_multi, X, 1)\n    xplt, yplt = jitter(pred, y; ϵx=0.1, ϵy=0.1)\n    scatter!(xplt, yplt; color=:black, alpha=0.5, label=false, markersize=0.5)\nend\nPlots.abline!(p4, 1, 0; color=:red, label=\"1:1 line\")\np4\n\n\n\n\n\n\nTask\n\n\n\nThe above block shouldn’t need to be modified. Add the curly brackets when you are ready. What do you learn from this plot?"
+  },
+  {
+    "objectID": "labs/lab01/instructions.html",
+    "href": "labs/lab01/instructions.html",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#overview",
+    "href": "labs/lab01/instructions.html#overview",
+    "title": "Lab 01",
+    "section": "",
+    "text": "Please see the slides for more details."
+  },
+  {
+    "objectID": "labs/lab01/instructions.html#instructions",
+    "href": "labs/lab01/instructions.html#instructions",
+    "title": "Lab 01",
+    "section": "Instructions",
+    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
+  },
+  {
+    "objectID": "projects/project03/project03.html",
+    "href": "projects/project03/project03.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "This is the project for module 3"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "",
+    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Course Information",
+    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
+  },
+  {
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Instructor",
+    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
+  },
+  {
+    "objectID": "index.html#software-tools",
+    "href": "index.html#software-tools",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Software Tools",
+    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "CEVE 543: Data Science for Climate Risk Assessment",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
+  },
+  {
     "objectID": "slides/lecture03-maximum-likelihood.html#motivation",
     "href": "slides/lecture03-maximum-likelihood.html#motivation",
     "title": "Maximum likelihood",
@@ -847,585 +1428,116 @@
     "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "",
-    "text": "This is the course website for the Fall 2023 edition of CEVE 543, Data Science for Climate Risk Assessment, taught at Rice University by James Doss-Gollin."
+    "objectID": "slides/lecture05-downscaling.html#we-would-like-to-accurately-model-precipitation-at-high-spatial-and-temporal-resolution",
+    "href": "slides/lecture05-downscaling.html#we-would-like-to-accurately-model-precipitation-at-high-spatial-and-temporal-resolution",
+    "title": "Downscaling",
+    "section": "We would like to accurately model precipitation at high spatial and temporal resolution",
+    "text": "We would like to accurately model precipitation at high spatial and temporal resolution\n\nStormwater management (long-term desigm)\nWater resources management (subseasonal to multi-year planning)\nFire propagation (hourly to weekly)"
   },
   {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Course Information",
-    "text": "Course Information\n\nDetails on the class and course policies are provided in the syllabus.\nTopics, slides, assignments, and other materials can be found in the schedule."
+    "objectID": "slides/lecture05-downscaling.html#objectives",
+    "href": "slides/lecture05-downscaling.html#objectives",
+    "title": "Downscaling",
+    "section": "Objectives",
+    "text": "Objectives\n\nenhanced spatial detail\nmitigation of systematic ESM1 biases\ngeneration of variables not explicitly rendered by GCMs\n\n(Lanzante et al., 2018)\nEarth System Model"
   },
   {
-    "objectID": "index.html#instructor",
-    "href": "index.html#instructor",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Instructor",
-    "text": "Instructor\nDr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University. His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience. He also teaches CEVE 421/521 (Climate Risk Management)."
+    "objectID": "slides/lecture05-downscaling.html#earth-system-models",
+    "href": "slides/lecture05-downscaling.html#earth-system-models",
+    "title": "Downscaling",
+    "section": "Earth System Models",
+    "text": "Earth System Models"
   },
   {
-    "objectID": "index.html#software-tools",
-    "href": "index.html#software-tools",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Software Tools",
-    "text": "Software Tools\n\nThis course will use the Julia programming language. Julia is a modern, free, open source language designed for scientific computing.\nNo prior knowledge of Julia (or other programming languages) is required. We will cover all required material in labs.\nAssignments will be distributed using GitHub Classroom."
+    "objectID": "slides/lecture05-downscaling.html#dreary",
+    "href": "slides/lecture05-downscaling.html#dreary",
+    "title": "Downscaling",
+    "section": "Dreary",
+    "text": "Dreary"
   },
   {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "CEVE 543: Data Science for Climate Risk Assessment",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe layout for this site was inspired by and draws from Vivek Srikrishnan’s Environmental Systems Analysis course at Cornell, STA 210 at Duke University, and Andrew Heiss’s course materials at Georgia State."
+    "objectID": "slides/lecture05-downscaling.html#drizzling",
+    "href": "slides/lecture05-downscaling.html#drizzling",
+    "title": "Downscaling",
+    "section": "Drizzling",
+    "text": "Drizzling"
   },
   {
-    "objectID": "projects/project03/project03.html",
-    "href": "projects/project03/project03.html",
-    "title": "Project 3",
-    "section": "",
-    "text": "This is the project for module 3"
+    "objectID": "slides/lecture05-downscaling.html#challenges-summarized",
+    "href": "slides/lecture05-downscaling.html#challenges-summarized",
+    "title": "Downscaling",
+    "section": "Challenges, summarized",
+    "text": "Challenges, summarized\n\n\nESMs are tuned to get energy balance and large-scale circulation right, not local extremes\nESMs average over space and time\nLocal-scale precipitation can be tricky to model well"
   },
   {
-    "objectID": "labs/lab01/instructions.html",
-    "href": "labs/lab01/instructions.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
+    "objectID": "slides/lecture05-downscaling.html#supervised-downscaling",
+    "href": "slides/lecture05-downscaling.html#supervised-downscaling",
+    "title": "Downscaling",
+    "section": "Supervised downscaling",
+    "text": "Supervised downscaling\n\n\nInput: pairs \\((X_i, y_i)\\)\n\n\\(X_i\\): predictors (e.g., gridded rainfall)\n\\(y_i\\): predictand (e.g., gauge rainfall)\n\nGoal: learn a function \\(f\\) such that \\(f(X_i) \\approx y_i\\)\n\nMeasure quality of approximation through a loss function (more later)\n\nKey point: the \\(X_i\\) and \\(y_i\\) are observed at the same time\n\nExample: map satellite to radar data"
   },
   {
-    "objectID": "labs/lab01/instructions.html#overview",
-    "href": "labs/lab01/instructions.html#overview",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Please see the slides for more details."
+    "objectID": "slides/lecture05-downscaling.html#distributional-downscaling",
+    "href": "slides/lecture05-downscaling.html#distributional-downscaling",
+    "title": "Downscaling",
+    "section": "Distributional downscaling",
+    "text": "Distributional downscaling\n\n\nESMs simulate from the distribution of weather, given climate boundary conditions. For example:\n\nRun 100 ESM ensemble members over 20th century conditions\nStudy December 1, 1980 in all draws\nSome will be rainy, some will be dry; some cool, some warm\nStatistically meaningful, but not a forecast!\n\nNo pairs \\((X_i, y_i)\\). Instead we have samples \\(\\left\\{X_1, \\ldots, X_N \\right\\}\\) and \\(\\left\\{y_1, \\ldots, y_K \\right\\}\\)"
   },
   {
-    "objectID": "labs/lab01/instructions.html#instructions",
-    "href": "labs/lab01/instructions.html#instructions",
-    "title": "Lab 01",
-    "section": "Instructions",
-    "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
+    "objectID": "slides/lecture05-downscaling.html#common-datasets",
+    "href": "slides/lecture05-downscaling.html#common-datasets",
+    "title": "Downscaling",
+    "section": "Common datasets",
+    "text": "Common datasets\n\n\nGauge data\nGridded observational products\n\nFor example: radar measurments are processed to produce gridded rainfall estimates\n\nReanalysis products\n\nUse assimilation to “digest” observations using a model\nGridded reconstructions of past weather\nState of the art is ERA5\n\nESM outputs\n\nHistorical runs\nCMIP: compare multiple models on standardized scenarios (e.g., RCP 2.6, 4.5, 8.5)\nSimulate from weather, conditional on boundary conditions"
   },
   {
-    "objectID": "labs/lab04/template.html",
-    "href": "labs/lab04/template.html",
-    "title": "Lab 04",
-    "section": "",
-    "text": "Use linear regression to relate the mean annual runoff of several streams (runoff) with nine other variables:\n\nthe precipitation falling at the gage (precip),\nthe drainage area of the basin (area),\nthe average slope of the basin (slope)\nthe length of the drainage basin (length)\nthe perimeter of the basin (perim)\nthe diameter of the largest circle which could be inscribed within the drainage basin (diameter)\nthe shape factor of the basin (shape_factor)\nthe stream frequency – the ratio of the number of streams in the basin to the basin area (stream_freq)\nthe relief ratio for the basin (relief_ratio)\n\n\n\n\n\n\n\nCredit\n\n\n\nThis is a light modification of Example 11.3 from\nHelsel, D. R., Hirsch, R. M., Ryberg, K. R., Archfield, S. A., & Gilroy, E. J. (2020). Statistical methods in water resources. Techniques and Methods. U.S. Geological Survey. https://doi.org/10.3133/tm4A3"
+    "objectID": "slides/lecture05-downscaling.html#bias-correction",
+    "href": "slides/lecture05-downscaling.html#bias-correction",
+    "title": "Downscaling",
+    "section": "Bias correction",
+    "text": "Bias correction\nSimplest form of downscaling. Usually \\(X\\) are samples from a climate model and \\(y\\) are observations. \\[\n\\begin{aligned}\n\\text{bias} &= \\mathbb{E}[X] - \\mathbb{E}[y] \\\\\n\\hat{y} &= X - \\text{bias}\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\nNote\n\n\nIs this a distributional or supervised method?"
   },
   {
-    "objectID": "labs/lab04/template.html#data",
-    "href": "labs/lab04/template.html#data",
-    "title": "Lab 04",
-    "section": "2.1 Data",
-    "text": "2.1 Data\nNext, we need to load in the data.\n\nrunoff_df = CSV.read(\"data/runoff.csv\", DataFrame)\ndisplay(size(runoff_df))\nfirst(runoff_df, 3)\n\n(13, 10)\n\n\n3×10 DataFrame\n\n\n\nRow\nrunoff\nprecip\narea\nslope\nlength\nperim\ndiameter\nshape_factor\nstream_freq\nrelief_ratio\n\n\n\nFloat64\nFloat64\nFloat64\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nInt64\n\n\n\n\n1\n17.38\n44.37\n2.21\n50\n2.38\n7.93\n0.91\n0.38\n1.36\n332\n\n\n2\n14.62\n44.09\n2.53\n7\n2.55\n7.65\n1.23\n0.48\n2.37\n55\n\n\n3\n15.48\n41.25\n5.63\n19\n3.11\n11.61\n2.11\n0.57\n2.31\n77"
+    "objectID": "slides/lecture05-downscaling.html#quantile-quantile-mapping",
+    "href": "slides/lecture05-downscaling.html#quantile-quantile-mapping",
+    "title": "Downscaling",
+    "section": "Quantile-quantile mapping",
+    "text": "Quantile-quantile mapping"
   },
   {
-    "objectID": "labs/lab04/template.html#model-specification",
-    "href": "labs/lab04/template.html#model-specification",
-    "title": "Lab 04",
-    "section": "3.1 Model specification",
-    "text": "3.1 Model specification\nWe are going to fit models of the form \\[\ny_i \\sim \\mathcal{N} \\left( \\beta X_i , \\sigma \\right).\n\\] We only have 13 observations of 10 variables, so we’ll need to be careful with our data. Before diving into the model, let’s look at the data."
+    "objectID": "slides/lecture05-downscaling.html#correctorgan",
+    "href": "slides/lecture05-downscaling.html#correctorgan",
+    "title": "Downscaling",
+    "section": "CorrectorGAN",
+    "text": "CorrectorGAN\n\n\n (Price & Rasp, 2022)"
   },
   {
-    "objectID": "labs/lab04/template.html#pairwise-correlations",
-    "href": "labs/lab04/template.html#pairwise-correlations",
-    "title": "Lab 04",
-    "section": "3.2 Pairwise correlations",
-    "text": "3.2 Pairwise correlations\nOne simple way to look at the data is to look at the pairwise correlations between the variables. The following function plot_correlation will plot a heatmap of the pairwise correlations.\n\n\nCode\nfunction plot_correlation(df::AbstractDataFrame)\n    varnames = names(df)\n1    correlations = cor(Matrix(df))\n    P = size(correlations, 1)\n\n    p = heatmap(\n        varnames, # x labels\n        varnames, # y labels\n        correlations; # variable\n        aspect_ratio=1, # 1:1 aspect ratio\n        xrotation=30, # rotate x ticks\n        size=(600, 600), # specify the size of the plot\n        title=\"Pairwise Correlations\",\n        clims=(-1, 1),\n        cmap=:PuOr # select a diverging color map\n    )\n\n    # add the exact text\n    ann = [\n        (i - 0.5, j - 0.5, text(round(correlations[i, j]; digits=2), 8, :white, :center))\n        for i in 1:P for j in 1:P\n    ]\n    annotate!(p, ann; linecolor=:white)\n    return p\nend\n\n\n\n1\n\ncor expects a Matrix input and will throw an error if we give it a DataFrame. Matrix(df) just extracts numeric values for our DataFrame. This won’t work well if we have non-numeric columns, but we don’t here.\n\n\n\n\n\nplot_correlation(runoff_df)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask\n\n\n\nDescribe what you learn from this plot in the specific context of modeling the relationship between runoff and the other variables. What can you not learn from this plot?"
+    "objectID": "slides/lecture05-downscaling.html#stationarity",
+    "href": "slides/lecture05-downscaling.html#stationarity",
+    "title": "Downscaling",
+    "section": "Stationarity",
+    "text": "Stationarity\nStationarity means the relationship between \\(X\\) and \\(y\\) does not change over time\n\nSupervised: \\(p(y | X)\\) or \\(y = f(X)\\) does not change over time\nDistributional: Corrections to the distribution do not change over time\n\nThis is never a perfect assumption"
   },
   {
-    "objectID": "labs/lab04/template.html#define-model",
-    "href": "labs/lab04/template.html#define-model",
-    "title": "Lab 04",
-    "section": "4.1 Define model",
-    "text": "4.1 Define model\nWe can implement this in Turing as follows:\n#| output: false\n@model function linear_reg(X::AbstractVector, y::AbstractVector)\n\n    # First, define all parameters\n    # they need priors so we use a ~\n    α # the intercept\n    β # the slope\n    σ # the standard deviation\n\n    # We can calculate intermediate quantities in our function\n    # Turing knows this isn't a parameter because we use = not ~\n    μ = α .+ β .* X\n\n    # likelihood model\n    y ...\nend\n\n\n\n\n\n\nTask\n\n\n\nImplement the model above so that it is consistent with the mathematical model written above. You will iterate between this and the next step a few times. You only need to keep your final model, but briefly describe what you did and why."
+    "objectID": "slides/lecture05-downscaling.html#your-task",
+    "href": "slides/lecture05-downscaling.html#your-task",
+    "title": "Downscaling",
+    "section": "Your task",
+    "text": "Your task\n\n\nGiven:\n\nHourly gridded rainfall data (small area)\nHourly large-scale pressure and temperature fields\nHourly gauge rainfall data at a single station\n\nDevelop a model to predict hourly gauge rainfall from the available datasets"
   },
   {
-    "objectID": "labs/lab04/template.html#prior-predictive-check",
-    "href": "labs/lab04/template.html#prior-predictive-check",
-    "title": "Lab 04",
-    "section": "4.2 Prior predictive check",
-    "text": "4.2 Prior predictive check\nBefore we fit the model, we run a prior predictive check. This lets us check whether the prior assumptions we have encoded into the model are consisten with our beliefs. First we sample from the prior:\ny = vec(runoff_df[!, :runoff])\nX = vec(runoff_df[!, :YOUR_VAR_HERE]) # which variable did you choose?\nppc_linear = let\n    model = linear_reg(X, y) # call the model\n    sampler = Prior() # we want to sample from the prior\n    nsamples = 10_000\n    sample(model, sampler, nsamples; drop_warmup=true)\nend\nWe can use the lm_predict function to generate predictions from the prior.\n\n\nCode\nfunction lm_predict(chn::Turing.MCMCChains.Chains, X::AbstractVecOrMat, N::Int)\n1    p = get_params(chn)\n2    α = vec(p[:α])\n3    β = if isa(p[:β], Tuple)\n        β_matrix = hcat(vec.(p[:β])...)\n        [β_matrix[i, :] for i in 1:size(β_matrix, 1)]\n    else\n        vec(p[:β])\n    end\n4    idx = rand(1:length(α), N)\n5    ŷ = [\n        α[i] .+ X * β[i] for i in idx\n    ]\n6    if N == 1\n        ŷ = ŷ[1]\n    end\n    return ŷ\nend\n\n\n\n1\n\nThis function extracts the parameters from the chain\n\n2\n\nIf we use multiple chains, then p[:α] is a Matrix. We convert it to a vector so that it’s “flat”.\n\n3\n\nIf we have multiple predictors (multivariate linear regression) then p[:β] is a tuple of vectors. We convert it into a vector of vectors so that β[i] is a vector of coefficients for the \\(i\\)th sample.\n\n4\n\nWe randomly select N samples from the posterior.\n\n5\n\nWe calculate the predictions for each of the N samples.\n\n6\n\nIf N is 1, then we return a vector, not a vector of vectors.\n\n\n\n\nWe leverage this function to generate predictions from the prior and plot them.\nX_pred = ... # specify the range of values for\np1 = plot(xlabel=\"Precip\", ylabel=\"Runoff\", title=\"Prior predictive check\")\nfor i in 1:250\n    y_pred = lm_predict(ppc_linear, X_pred, 1)\n    plot!(p1, X_pred, y_pred; color=:black, alpha=0.1, label=false)\nend\np1\n\n\n\n\n\n\nTask\n\n\n\nFill in the missing lines in the above blocks and run."
-  },
-  {
-    "objectID": "labs/lab04/template.html#inference",
-    "href": "labs/lab04/template.html#inference",
-    "title": "Lab 04",
-    "section": "4.3 Inference",
-    "text": "4.3 Inference\nOnce we have a prior that we’re happy with, we can use our model to generate samples from the posterior distribution. We draw 4 chains of 5000 samples. If you get a weird error here, it may be because of threading. Try the mapreduce based approach here rather than waste time debugging.\nchn_linear = let\n    model = ... # FILL IN\n    sampler = externalsampler(DynamicHMC.NUTS())\n    n_per_chain = 5000\n    nchains = 4\n    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)\nend\nsummarystats(chn_linear)\nBased on \\(\\hat{R}\\) values close to 1, we have some evidence that our chains have converged. We can also check the trace plots:\n... # Fill in to generate the trace plot\n\n\n\n\n\n\nTask\n\n\n\nFill in the missing lines in the above blocks. Describe what you learn from the trace plot."
-  },
-  {
-    "objectID": "labs/lab04/template.html#posterior-predictive-checks",
-    "href": "labs/lab04/template.html#posterior-predictive-checks",
-    "title": "Lab 04",
-    "section": "4.4 Posterior predictive checks",
-    "text": "4.4 Posterior predictive checks\nWe can again plot our predictions, this time using the posterior samples. We add the data to the plot as well.\np2 = plot(xlabel=\"Precip\", ylabel=\"Runoff\", title=\"Posterior\") # blank plot\npred_linear = lm_predict(chn_linear, X_pred, 500) # generate predictions\nfor y_pred in pred_linear\n    plot!(p2, X_pred, y_pred; color=:black, alpha=0.1, label=false) # add each prediction to a plot\nend\n# add the observations with scatter!\np2\n\n\n\n\n\n\nTask\n\n\n\nAdd the observations to the plot above with scatter!"
-  },
-  {
-    "objectID": "labs/lab04/template.html#prior-predictive-check-1",
-    "href": "labs/lab04/template.html#prior-predictive-check-1",
-    "title": "Lab 04",
-    "section": "5.1 Prior predictive check",
-    "text": "5.1 Prior predictive check\nX = Matrix(runoff_df[:, Not(:runoff)]) # all columns except runoff\ny = vec(runoff_df[!, :runoff]) # runoff \n\nppc_multi = let\n    ... # FILL IN\nend\nHow should we visualize the prior predictive check? A simple way is to visualize the implied distribution of \\(y\\) given observed \\(X\\):\nhistogram(\n    vcat(lm_predict(ppc_multi, X, 500)...),\n    xlabel=L\"$y$\",\n    ylabel=L\"Implied $p(y)$\",\n    label=false,\n    normalize=:pdf,\n    yticks=false,\n    title=\"Prior predictive check\",\n)\n\n\n\n\n\n\nTask\n\n\n\nModify the above code to draw samples from the prior and save as ppc_multi."
-  },
-  {
-    "objectID": "labs/lab04/template.html#inference-1",
-    "href": "labs/lab04/template.html#inference-1",
-    "title": "Lab 04",
-    "section": "5.2 Inference",
-    "text": "5.2 Inference\nNow that our priors seem plausible (we could a;ways do better, but that’s not the point of this lab), we can fit the model.\nchn_multi = let\n    ...\nend\n# summary stats\n\n\n\n\n\n\nTask\n\n\n\nDraw the samples from the posterior and save as chn_multi. Display the summary statistics. What do you learn?"
-  },
-  {
-    "objectID": "labs/lab04/template.html#posterior-predictive-check",
-    "href": "labs/lab04/template.html#posterior-predictive-check",
-    "title": "Lab 04",
-    "section": "5.3 Posterior predictive check",
-    "text": "5.3 Posterior predictive check\nHow should we visualize these inferences? It’s hard to plot a single \\(x\\) vs \\(y\\) when we have multiple \\(x\\). There are many possible plots, but a good one is to plot the predicted vs actual values of \\(y\\). To make the plot more readable, we’ll add some jitter to the data. Here’s a function to do that:\n\n\nCode\nfunction jitter(x, y; ϵx=0.1, ϵy=0.1)\n    x_jit = x .+ rand(Normal(0, ϵx), size(x))\n    y_jit = y .+ rand(Normal(0, ϵy), size(y))\n    return x_jit, y_jit\nend\n\n\nNow we can create our scatter plot.\np4 = plot(; xlabel=\"Predicted Runoff\", ylabel=\"Actual Runoff\", aspect_ratio=1) # blank plot\nfor i in 1:500 # loop through\n    pred = lm_predict(chn_multi, X, 1)\n    xplt, yplt = jitter(pred, y; ϵx=0.1, ϵy=0.1)\n    scatter!(xplt, yplt; color=:black, alpha=0.5, label=false, markersize=0.5)\nend\nPlots.abline!(p4, 1, 0; color=:red, label=\"1:1 line\")\np4\n\n\n\n\n\n\nTask\n\n\n\nThe above block shouldn’t need to be modified. Add the curly brackets when you are ready. What do you learn from this plot?"
-  },
-  {
-    "objectID": "labs/lab03/template.html",
-    "href": "labs/lab03/template.html",
-    "title": "Lab 03",
-    "section": "",
-    "text": "In the wake of a severe flood, an insurance company has comissioned you to study flood damage in one of the most-affected neighborhoods. This neighborhood is perfectly flat, so we can assume that all houses experienced the same flood depth. However, they are elevated to different heights, use different materials, and are built to different standards, and as a result they experienced different amounts of damage. Specifically, the insurance company has provided you with a dataset of the fraction of the value of each house that was lost in the flood and asked you to model the distribution of losses.\n\n\nOur model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula..\n\n\n\nAs for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person.\n\n\n\nAs usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions\n\n\n\n\nWe can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
-  },
-  {
-    "objectID": "labs/lab03/template.html#mathematical-model",
-    "href": "labs/lab03/template.html#mathematical-model",
-    "title": "Lab 03",
-    "section": "",
-    "text": "Our model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula.."
-  },
-  {
-    "objectID": "labs/lab03/template.html#setup",
-    "href": "labs/lab03/template.html#setup",
-    "title": "Lab 03",
-    "section": "",
-    "text": "As for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person."
-  },
-  {
-    "objectID": "labs/lab03/template.html#package-imports",
-    "href": "labs/lab03/template.html#package-imports",
-    "title": "Lab 03",
-    "section": "",
-    "text": "As usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions"
-  },
-  {
-    "objectID": "labs/lab03/template.html#about-the-beta-distribution",
-    "href": "labs/lab03/template.html#about-the-beta-distribution",
-    "title": "Lab 03",
-    "section": "",
-    "text": "We can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
-  },
-  {
-    "objectID": "labs/lab03/template.html#likelihood-model",
-    "href": "labs/lab03/template.html#likelihood-model",
-    "title": "Lab 03",
-    "section": "2.1 Likelihood model",
-    "text": "2.1 Likelihood model\nfunction log_lik(y::Vector{T}, α::T, β::T) where {T&lt;:Real}\n    # fill in here\n    # refer to lecture slides for syntax and function names\n    # don't forget your `return` statement!\nend\n\n\n\n\n\n\nFill in the log_lik function where y is a vector of data, and α and β are the parameters of the Beta distribution. Then, convert it to live code by adding curly brackets, like you did in lab 02. Hint: define a function function log_lik(y::T, α::T, β::T) where {T&lt;:Real}... that takes in a single point. Then this function that takes in a vector y can calculate the log-likelihood for each data point individually and combine them. This is not the only way to solve this problem"
-  },
-  {
-    "objectID": "labs/lab03/template.html#check-if-its-right",
-    "href": "labs/lab03/template.html#check-if-its-right",
-    "title": "Lab 03",
-    "section": "2.2 Check if it’s right",
-    "text": "2.2 Check if it’s right\nWe can check your log_lik function by comparing what you calculate using it to a known, correct value.\nyour_val = log_lik([0.2, 0.4, 0.6, 0.8], 5., 5.) # calls your implementation\ntrue_value = -0.2947032775653282 # I calculated this\n@assert isapprox(your_val, true_value) # checks if they're close\nprintln(\"😁\")\n\nConvert this to a live code block by adding curly brackets, like you did in lab 02, and run. You should see a 😄."
-  },
-  {
-    "objectID": "labs/lab03/template.html#plot",
-    "href": "labs/lab03/template.html#plot",
-    "title": "Lab 03",
-    "section": "2.3 Plot",
-    "text": "2.3 Plot\nNow that we have the log_likelihood, we’re going to plot it for many values of \\(\\alpha\\) and \\(\\beta\\).\nFirst, let’s define a grid of values for \\(\\alpha\\) and \\(\\beta\\) to plot:\n\nα_plot = range(0.01, 50; length=500)\nβ_plot = range(0.01, 50; length=501)\n\n\nDefine them to be different lengths so that if we make an indexing mistake, we should get an error.\n\nNext, we can calculate the log likelihood at each point on the grid of α_plot and β_plot as:\nlog_lik_fax = [log_lik(fax, αi, βi) for αi in α_plot, βi in β_plot]\n\n# ensure that the dimensions are correct\n@assert size(log_lik_fax) == (length(α_plot), length(β_plot))\ndisplay(size(log_lik_fax))\nNow, we’re ready to plot. You can use the following code, which provides some helpful keyword arguments to make your plot look nice. Feel free to play around with them.\np1 = plot(\n    α_plot,\n    β_plot,\n    log_lik_fax';\n    st=:heatmap,\n    xlabel=L\"$\\alpha$\",\n    ylabel=L\"$\\beta$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\alpha, \\beta)$\"\n)\np1\n\n\n\n\n\n\nSize and plotting\n\n\n\nNote that we plot log_lik_fax' instead of log_lik_fax. That is equivalent to transpose(log_lik_fax). This is a quirk of plots.jl syntax (see here). We avoid confusion by checking the size of log_lik_fax above.\n\n\n\n\n\n\n\n\nNote that we have assigned our plot a variable name, p1. This will let us add elements to it later.\n\n\n\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working."
-  },
-  {
-    "objectID": "labs/lab03/template.html#best-estimates",
-    "href": "labs/lab03/template.html#best-estimates",
-    "title": "Lab 03",
-    "section": "2.4 Best estimates",
-    "text": "2.4 Best estimates\nWhat values of α_plot and β_plot that maximize the log likelihood? We can find out in several different ways.\n\n2.4.1 Optimization on a grid\nThe easiest thing to do is to find the maximum value of the log likelihood on our grid. We can do that as follows:\nidx_fax = argmax(log_lik_fax) # the index that maximizes the log likelihood\nα_fax_best = α_plot[idx_fax[1]]\nβ_fax_best = β_plot[idx_fax[2]]\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working.\n\n\n\n\n\n2.4.2 Optim.jl\nWe can also use the optimize function from Optim.jl to find the maximum value of the log likelihood.\n# define the function to be optimized\nloss_fax(θ) = # define the negative log-likelihood here, using your `log_lik` function and passing in `fax` as the `y` argument.\nlower = [0.001, 0.001] # lower bound -- don't need to change\nupper = [Inf, Inf] # upper bound -- don't need to edit\nguess = [1.0, 1.0] # initial guess -- leave as-is\n\nres = optimize(loss_fax, lower, upper, guess) # run the optimization\nθ_fax = Optim.minimizer(res) # get the best parameters\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything. Follow the commented instructions.\n\n\n\n\n\n2.4.3 Distributions.jl\nAs an alternative to Optim.jl, we can use the fit_mle function from Distributions.jl for most distributions. We can use this to check our work:\nDistributions.fit_mle(Beta, fax)\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above. Compare the fit_mle result to your result using optimize."
-  },
-  {
-    "objectID": "labs/lab03/template.html#update-the-plot",
-    "href": "labs/lab03/template.html#update-the-plot",
-    "title": "Lab 03",
-    "section": "2.5 Update the plot",
-    "text": "2.5 Update the plot\nThese best estimates should show up as points on our plot. We can add them as follows:\nscatter!(p1, [α_fax_best], [β_fax_best]; label=\"Grid Search\")\nscatter!(p1, [θ_fax[1]], [θ_fax[2]]; label=\"MLE\")\np1\n\n\nWhen we add a single point, we have to wrap it in brackets [] to make it a vector. The x and y inputs to plot (or scatter!) need to be vectors.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above."
-  },
-  {
-    "objectID": "labs/lab02/template.html",
-    "href": "labs/lab02/template.html",
-    "title": "Lab 02",
-    "section": "",
-    "text": "In this lab we will learn how to work with tabular data in Julia. Specifically, you will get some experience using:\n\nDataFrames.jl to store tabular data as a DataFrame\nCSV.jl to read CSV files and convert them to DataFrames\nDataFramesMeta.jl to manipulate DataFrames\nPlots.jl and StatsPlots.jl to create visualizations\n\n\n\nTechnically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however.\n\n\n\nI have provided you with a lot of template code.\nAny code block that starts with\n\n\n```{julia}\n\n\nis a “live” code block and will execute (run).\n\nThese blocks will automatically run when you render the document\nYou can click “Run Cell” to run the cell\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with\n\n\n```julia\n\n\nis source code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make it a cell that you can run, add the brackets\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\nThis is an instruction.\n\n\n\n\n\n\nYou may find the following Quarto documentation pages helpful:\n\nUsing Julia\nMarkdown Basic\n\nAsk questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
-  },
-  {
-    "objectID": "labs/lab02/template.html#exploratory-modeling",
-    "href": "labs/lab02/template.html#exploratory-modeling",
-    "title": "Lab 02",
-    "section": "",
-    "text": "Technically, what we are doing today is called exploratory modeling or exploratory data analysis. The latter is more common, but the former makes clear that all visualizations include some (usually implicit) conceptual model of the data. You will find more resources if you search for “exploratory data analysis”, however."
-  },
-  {
-    "objectID": "labs/lab02/template.html#how-to-use-this-template",
-    "href": "labs/lab02/template.html#how-to-use-this-template",
-    "title": "Lab 02",
-    "section": "",
-    "text": "I have provided you with a lot of template code.\nAny code block that starts with\n\n\n```{julia}\n\n\nis a “live” code block and will execute (run).\n\nThese blocks will automatically run when you render the document\nYou can click “Run Cell” to run the cell\nMake sure you understand what the code does and ask questions (in-person or on Canvas) if you don’t\nDo not change these blocks unless instructed\n\nAny code block that starts with\n\n\n```julia\n\n\nis source code and will not run.\n\nYou should change these blocks to complete the lab, filling in blanks and adding code as needed.\nTo make it a cell that you can run, add the brackets\n\nChanges you are expected to make are marked as follows:\n\n\n\n\n\n\nThis is an instruction."
-  },
-  {
-    "objectID": "labs/lab02/template.html#getting-help",
-    "href": "labs/lab02/template.html#getting-help",
-    "title": "Lab 02",
-    "section": "",
-    "text": "You may find the following Quarto documentation pages helpful:\n\nUsing Julia\nMarkdown Basic\n\nAsk questions in class or post them on the Lab02 discussion on Canvas. The sections of this lab are numbered, so refer to the number when asking questions on Canvas to make it easier for us to help you."
-  },
-  {
-    "objectID": "labs/lab02/template.html#clone-the-respository",
-    "href": "labs/lab02/template.html#clone-the-respository",
-    "title": "Lab 02",
-    "section": "2.1 Clone the respository",
-    "text": "2.1 Clone the respository\nFirst, you’ll need to clone this repository to your computer. As with Lab 01, I recommend to use GitHub Desktop or the built-in Git support in VS Code. Remember to use the link from Canvas (classroom.github.com/...)."
-  },
-  {
-    "objectID": "labs/lab02/template.html#install-required-packages",
-    "href": "labs/lab02/template.html#install-required-packages",
-    "title": "Lab 02",
-    "section": "2.2 Install required packages",
-    "text": "2.2 Install required packages\n\nIn VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and select Julia: Start REPL.\nIn the Julia REPL, type ] to enter the package manager.\nType activate . to activate the project environment.\nType instantiate to install the required packages. This may take a moment.1"
-  },
-  {
-    "objectID": "labs/lab02/template.html#using-statement",
-    "href": "labs/lab02/template.html#using-statement",
-    "title": "Lab 02",
-    "section": "2.3 Using statement",
-    "text": "2.3 Using statement\nIn Julia we say using to import a package. Typically we want to do this as early as possible in a script or notebook.\n\nusing CSV\nusing DataFrames\nusing DataFramesMeta\nusing Dates\nusing Plots\nusing StatsBase: mean\nusing StatsPlots\nusing Unitful\n\n\n\nThat this is a code block code and will run. If you have not yet installed the packages, you will see an error message. Don’t change this block – see instructions to install and instantiate."
-  },
-  {
-    "objectID": "labs/lab02/template.html#check",
-    "href": "labs/lab02/template.html#check",
-    "title": "Lab 02",
-    "section": "2.4 Check",
-    "text": "2.4 Check\nTo make sure everything is working, you should open the command palette and select Quarto: Render HTML. This will generate a HTML file from this notebook. This is a good way to check that everything is working before you start editing code."
-  },
-  {
-    "objectID": "labs/lab02/template.html#dates",
-    "href": "labs/lab02/template.html#dates",
-    "title": "Lab 02",
-    "section": "3.1 Dates",
-    "text": "3.1 Dates\nWe can see that our DataFrame has five columns, the first of which is “Date Time”. However, the “Date Time” column is being parsed as a string. We want it to be a DateTime object from the Dates package. To do that, we need to tell Julia how the dates are formatted. We could then manually convert, but CSV.read has a kewyord argument that we can use\n\n1date_format = \"yyyy-mm-dd HH:MM\"\n2df = CSV.read(fname, DataFrame; dateformat=date_format)\nfirst(df, 3)\n\n\n1\n\nThis is a string that tells Julia how the dates are formatted. For example, 1928-01-01 00:00. See the documentation for more information.\n\n2\n\ndateformat is a keyword argument while date_format is a variable whose value is \"yyyy-mm-dd HH:MM\". We could equivalently write dateformat=\"yyyy-mm-dd HH:MM\".\n\n\n\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nFloat64\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73\n0.0\n0\n0"
-  },
-  {
-    "objectID": "labs/lab02/template.html#water-levels",
-    "href": "labs/lab02/template.html#water-levels",
-    "title": "Lab 02",
-    "section": "3.2 Water levels",
-    "text": "3.2 Water levels\nThe next column is “Water Level”, which is the height of the water above the reference point (NAVD) in meters. We can see that this is being parsed as a float, which is what we want 👍. However, you have to know that the data is in meters rather than inches or feet or something else. To explicitly add information about the units, we can use the Unitful package.\n\ndf[!, \" Water Level\"] .*= 1u\"m\"\nfirst(df, 3)\n\n3×5 DataFrame\n\n\n\nRow\nDate Time\nWater Level\nSigma\nI\nL\n\n\n\nDateTime\nQuantity…\nFloat64\nInt64\nInt64\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547 m\n0.0\n0\n0\n\n\n2\n1928-01-01T01:00:00\n-0.699 m\n0.0\n0\n0\n\n\n3\n1928-01-01T02:00:00\n-0.73 m\n0.0\n0\n0\n\n\n\n\n\n\n\n\n\n\n\n\nCode explanation\n\n\n\n\nWe select the column with water levels using its name. The ! means “all rows”. Thus, df[!, \" Water Level\"] is a vector of all the water levels stored.\n*= means to multiply in place. For example, if x=2 then x *= 2 is equivalent to x = x * 2. .*= is a vector syntax, meaning do the multiplication to each element of the vector individually.\n1u\"m\" is a Unitful object that represents 1 meter. We multiply the water levels by this to convert them to meters."
-  },
-  {
-    "objectID": "labs/lab02/template.html#subsetting-and-renaming",
-    "href": "labs/lab02/template.html#subsetting-and-renaming",
-    "title": "Lab 02",
-    "section": "3.3 Subsetting and renaming",
-    "text": "3.3 Subsetting and renaming\nWe want to only keep the first two (for more on the other three, see here). We can also rename the columns to make them easier to work with (spaces in variable names are annoying). To do this, we use the @rename function:\n\n1df = @rename(df, :datetime = $\"Date Time\", :lsl = $\" Water Level\");\n\n\n1\n\nThe $ is needed here because the right hand side is a string, not a symbol.\n\n\n\n\nThen, we can use the @select function to do select the columns we want. Notice how the first argument to select is the DataFrame and the subsequent arguments are column names. Notice also that our column names were strings (\"Date Time\"), but we can also use symbols (:datetime).\n\ndf = @select(df, :datetime, :lsl)\nfirst(df, 3)\n\n3×2 DataFrame\n\n\n\nRow\ndatetime\nlsl\n\n\n\nDateTime\nQuantity…\n\n\n\n\n1\n1928-01-01T00:00:00\n-0.547 m\n\n\n2\n1928-01-01T01:00:00\n-0.699 m\n\n\n3\n1928-01-01T02:00:00\n-0.73 m\n\n\n\n\n\n\nFor more on what DataFramesMeta can do, see this Tweet."
-  },
-  {
-    "objectID": "labs/lab02/template.html#writing-a-function",
-    "href": "labs/lab02/template.html#writing-a-function",
-    "title": "Lab 02",
-    "section": "3.4 Writing a function",
-    "text": "3.4 Writing a function\nWe have just done a lot of work to read in our data. However, this just gives us data for the year 1928. In fact, we have a CSV file for each year 1928-2021. To make sure we can read them each in excatly the same way, we want to write a function.\nfunction read_tides(year::Int)\n    fname = \"data/tidesandcurrents-8638610-$(year)-NAVD-GMT-metric.csv\" # don't change this\n    date_format = \"yyyy-mm-dd HH:MM\" # don't change this\n    # your code here\n    # 1. read in the CSV file and save as a dataframe\n    # 2. convert the \"Date Time\" column to a DateTime object\n    # 3. convert the \" Water Level\" column to meters\n    # 4. rename the columns to \"datetime\" and \"lsl\"\n    # 5. select the \"datetime\" and \"lsl\" columns\n    # 6. return the dataframe\nend\n\n# print out the first 10 rows of the 1928 data\nfirst(read_tides(1928), 10) \n\n\n\n\n\n\nInstructions\n\n\n\nFill out this function. Your function should implement the six steps indicated in the instructions. When it’s done, convert it to a live code block with: ```{julia}. When you run this code, it should print out the first 10 rows of the 1928 data. Make sure they look right!"
-  },
-  {
-    "objectID": "labs/lab02/template.html#combining-files",
-    "href": "labs/lab02/template.html#combining-files",
-    "title": "Lab 02",
-    "section": "3.5 Combining files",
-    "text": "3.5 Combining files\nNow that we have the ability to read in the data corresponding to any year, we can read them all in and combine into a single DataFrame. First, let’s read in all the data.\nyears = 1928:2021 # all the years of data\nannual_data = # 1. call the read_tides function on each year\ntypeof(annual_data) # should be a vector of DataFrames\nNext, we’ll use the vcat function to combine all the data into a single DataFrame.\ndf = vcat(annual_data...) # don't change this\nfirst(df, 5)\nlast(df, 5) # check the last 5 years\n\n\n\n\n\n\nInstructions\n\n\n\n\nCall the read_tides function on each year\nTurn the two code blocks in this section into live code blocks\nRun the code and make sure the first 5 rows and last five rows look right"
-  },
-  {
-    "objectID": "labs/lab02/template.html#time-series-plot",
-    "href": "labs/lab02/template.html#time-series-plot",
-    "title": "Lab 02",
-    "section": "4.1 Time series plot",
-    "text": "4.1 Time series plot\nLet’s start with a simple time series plot of the water levels. Our data is collected hourly, so we have a lot of data points! Still, we can plot them all.\n\nplot(\n    df.datetime,\n    df.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n1    ylabel=\"Water level\",\n2    label=false,\n)\n\n\n1\n\nBecause we are using the Unitful pacakge, the y-axis label will automatically include the units!!!\n\n2\n\nWe are only plotting one “series” (data set), so we don’t need a legend."
-  },
-  {
-    "objectID": "labs/lab02/template.html#zooming-in",
-    "href": "labs/lab02/template.html#zooming-in",
-    "title": "Lab 02",
-    "section": "4.2 Zooming in",
-    "text": "4.2 Zooming in\nFocusing on the entire time series means we can’t dig into the details. Let’s zoom in on a single month (October 1928) using the @subset function.\n\nt_start = Dates.DateTime(1928, 10, 1, 0)\nt_end = Dates.DateTime(1928, 10, 31, 23)\ndf_month = @subset(df, t_start .&lt;= :datetime .&lt;= t_end)\nfirst(df_month, 3)\n\n3×2 DataFrame\n\n\n\nRow\ndatetime\nlsl\n\n\n\nDateTime\nQuantity…\n\n\n\n\n1\n1928-10-01T00:00:00\n0.215 m\n\n\n2\n1928-10-01T01:00:00\n0.429 m\n\n\n3\n1928-10-01T02:00:00\n0.581 m\n\n\n\n\n\n\nNow we can plot it as above.\n\nplot(\n    df_month.datetime,\n    df_month.lsl;\n    title=\"Water levels at Sewells Point, VA\",\n    ylabel=\"Water level\",\n    label=false,\n)"
-  },
-  {
-    "objectID": "labs/lab02/template.html#instructions-2",
-    "href": "labs/lab02/template.html#instructions-2",
-    "title": "Lab 02",
-    "section": "4.3 Instructions",
-    "text": "4.3 Instructions\nChange the start and end dates to plot March 2020. What do you notice? :::"
-  },
-  {
-    "objectID": "labs/lab02/template.html#groupby",
-    "href": "labs/lab02/template.html#groupby",
-    "title": "Lab 02",
-    "section": "4.4 Groupby",
-    "text": "4.4 Groupby\nAn essential idea in working with tabular data (and other data formats) is “split-apply-combine”. Essentially: split the data into groups, apply some function to each group, and then combine the results.\nWe can use this workflow to answer an interesting question: what is the average water level for each month?2\n\n1df[!, :month] = Dates.month.(df.datetime)\n2dropmissing!(df, :lsl)\n3df_bymonth = groupby(df, :month)\n4df_climatology = combine(df_bymonth, :lsl =&gt; mean =&gt; :lsl_avg);\n\n\n1\n\nThis creates a new column called :month that is the month of each observation.\n\n2\n\nThis will discard any rows in df that have a missing value of :lsl. This is necessary because the mean function will return missing if any of the values are missing.\n\n3\n\nThis creates a GroupedDataFrame object that contains all the data grouped by month.\n\n4\n\nThis takes the grouped data and calculates the mean of the :lsl column for each month. The general syntax is combine(grouped_df, :column =&gt; function).\n\n\n\n\nWe can now plot the climatology.\n\nplot(\n1    df_climatology.month,\n    df_climatology.lsl_avg;\n2    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Average Water level\",\n3    linewidth=3,\n    label=false,\n)\n\n\n1\n\nWe can use df.colname instead of df[!, :colname]. The latter is more robust but the former is easier to type.\n\n2\n\nSetting xticks will set the x-axis ticks to the values in the vector. We can use this to make sure the x-axis ticks are labeled with the months.\n\n3\n\nWe can set the line width to make the plot easier to read.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\n\nUse the full dataset to plot the climatology using data from all years\nNext, create a new Markdown header (## Groupby Day of Year) plot the average water level for each day of the year (Dates.dayofyear from 1 to 366).\nWhat do you notice?"
-  },
-  {
-    "objectID": "labs/lab02/template.html#boxplot",
-    "href": "labs/lab02/template.html#boxplot",
-    "title": "Lab 02",
-    "section": "4.5 Boxplot",
-    "text": "4.5 Boxplot\nBoxplots are ways to visualize the distribution of data. They show the median (the line in the middle of the box), the interquartile range (the box), and the range of the data (the whiskers). Outliers are shown as dots. We can use the boxplot function from the StatsPlots.jl package:\n\nboxplot(\n1    df[!, :month],\n    df[!, :lsl];\n    xticks=1:12,\n    xlabel=\"Month\",\n    ylabel=\"Water level\",\n    label=false,\n2    title=\"Climatology\",\n)\n\n\n1\n\nWe are back to df[!, :colname] syntax. Both work!\n\n2\n\nWe can set the title using the title keyword argument.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\nRepeat this analysis grouping by year rather than month. What do you notice from the boxplots?"
-  },
-  {
-    "objectID": "labs/lab02/template.html#submission",
-    "href": "labs/lab02/template.html#submission",
-    "title": "Lab 02",
-    "section": "4.6 Submission",
-    "text": "4.6 Submission\n\nRemove all of the instructions blocks (from the first ::: {.callout-important} to the following :::)\nRemove all of the text I have written (including this block) so that all the text is your own. This makes it much easier to grade and to follow what is yours.\n\nDo not delete any of the headers\n\nThus, the beginning of the document should have the headers for the overview, exploratory modeling, instructions, and getting help, but these should not have any text\nThis will ensure all documents have the same numbering to make it easier to troubleshoot any issues\n\nDo not delete any of the code\n\nMake sure your code runs (click the “Run All” button in the command palette)\nRender your notebook as HTML (optional)\n\nOpen comand palette\nSelect Quarto: Render HTML\nThis will create a website that you can view in your browser. The address will be in your terminal like\n\nWatching files for changes\nBrowse at http://localhost:4200/labs/lab02/instructions.html\n\nMake sure your notebook looks right in the browser.\n\nRender your hnotebook as DOCX (required)\n\nOpen comand palette\nSelect Quarto: Render DOCX\nIt may give you a link to click on in order to download the file. Click it and it will be downloaded to your computer (probably in your Downloads folder)\n\nSubmit the .docx file to Canvas.\n\nProofread before you submit!"
-  },
-  {
-    "objectID": "labs/lab02/template.html#footnotes",
-    "href": "labs/lab02/template.html#footnotes",
-    "title": "Lab 02",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nJulia precompiles packages when they are installed, and (to a lesser extent) when they are first used. The first time you use a package it may take a moment to load. This is normal, nothing to worry about, and rapidly improving.↩︎\nTo do a better job, we should separate out the long-term trend from the seasonal cycle. This is called de-trending and is a common technique in climate science. We can worry more about this later.↩︎"
-  },
-  {
-    "objectID": "labs/lab01/solution.html",
-    "href": "labs/lab01/solution.html",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#setup",
-    "href": "labs/lab01/solution.html#setup",
-    "title": "Lab 01",
-    "section": "",
-    "text": "Do not modify this section!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#running-code",
-    "href": "labs/lab01/solution.html#running-code",
-    "title": "Lab 01",
-    "section": "2 Running Code",
-    "text": "2 Running Code\nWe can use Quarto to run Julia code in-line\n\nprintln(\"I'm using Julia!\")\n\nI'm using Julia!"
-  },
-  {
-    "objectID": "labs/lab01/solution.html#rendering-the-document",
-    "href": "labs/lab01/solution.html#rendering-the-document",
-    "title": "Lab 01",
-    "section": "3 Rendering the Document",
-    "text": "3 Rendering the Document\nNow, verify that you can render the document in HTML:\n\nOpen the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)\nType “Quarto: Render Document”\nA web browser should open with the rendered document\n\nCheck the box (replace the space with an x) to confirm that this worked\n\nthis worked for me\nthis did not work for me (specify the error below)"
-  },
-  {
-    "objectID": "projects/project02/project02.html",
-    "href": "projects/project02/project02.html",
-    "title": "Project 2",
-    "section": "",
-    "text": "This is the project for module 2"
-  },
-  {
-    "objectID": "projects/project04/project04.html",
-    "href": "projects/project04/project04.html",
-    "title": "Project 4",
-    "section": "",
-    "text": "This is the project for module 4"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#pdf-and-cdf",
-    "href": "slides/lecture02-marginal-joint-conditional.html#pdf-and-cdf",
-    "title": "Working with probability distributions",
-    "section": "PDF and CDF",
-    "text": "PDF and CDF\nIf \\(F_X\\) is the cumulative distribution function (CDF) of \\(X\\) and \\(f_X\\) is the probability density function (PDF) of \\(X\\), then: \\[\nF_X ( x ) = \\int_{-\\infty}^x f_X(u) \\, du,\n\\] and (if \\(f_X\\) is continuous at \\(x\\) which it typically will be) \\[\nf_{X}(x)={\\frac {d}{dx}}F_{X}(x).\n\\] A useful property is \\[\n\\Pr[a\\leq X\\leq b]=\\int _{a}^{b}f_{X}(x)\\,dx\n\\]\n\n\n\n\n\n\nImportant\n\n\nWe can only talk about the probability that \\(y\\) is in some interval \\([a, b]\\), which is given by the integral of the PDF over that interval. The probability that \\(y\\) takes on the value \\(y^*\\), written \\(p(y=y^*)\\), is zero."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#pdf-example",
-    "href": "slides/lecture02-marginal-joint-conditional.html#pdf-example",
-    "title": "Working with probability distributions",
-    "section": "PDF example",
-    "text": "PDF example\n\n# https://www.matecdev.com/posts/julia-numerical-integration.html\nfunction quad_trap(f, a, b, N)\n    h = (b - a) / N\n    int = h * (f(a) + f(b)) / 2\n    for k in 1:(N-1)\n        xk = (b - a) * k / N + a\n        int = int + h * f(xk)\n    end\n    return int\nend;\n\nSimple example to illustrate that \\[\nF_X(2) = \\int_{-\\infty}^2 f_X(u) \\, du\n\\]\nWe will use a standard Normal distribution as an example\n\nusing Distributions\n\n1dist = Normal()\n2f(x) = pdf(dist, x)\n3approx = quad_trap(f, -100, 2, 1000)\nexact = cdf(dist, 2)\n\napprox, exact\n\n\n1\n\nMean 0 and standard deviation 1 by default\n\n2\n\npdf(d, x) tells us the probability density function of distribution d evaluated at x\n\n3\n\nquad_trap is a trapezoidal approximation of the integral with arguments: function, lower bound, upper bound, and number of points\n\n\n\n\n(0.9771562639858903, 0.9772498680518208)"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#pmfs",
-    "href": "slides/lecture02-marginal-joint-conditional.html#pmfs",
-    "title": "Working with probability distributions",
-    "section": "PMFs",
-    "text": "PMFs\n\nDiscrete distributions (like the Poisson) have a probability mass function (PMF) instead of a PDF\nFor PMFs, \\(p(y=y^*)\\) is the probability that \\(y\\) takes on the value \\(y^*\\), and is defined\n\n\nusing LaTeXStrings\nusing Plots\n\nf(x) = pdf(Poisson(5), x) # the Poisson PMF\n1plot(f, 0:1:20; label=\"PMF\", marker=:o, xlabel=L\"$x^*$\", ylabel=L\"$p(x=x^*)$\")\n\n\n1\n\nIn the Distributions package, both PDFs and PMFs are called pdf"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#bayes-rule",
-    "href": "slides/lecture02-marginal-joint-conditional.html#bayes-rule",
-    "title": "Working with probability distributions",
-    "section": "Bayes’ Rule",
-    "text": "Bayes’ Rule\n\\[\np(\\theta, y) = p(\\theta) p(y | \\theta)\n\\] and thus \\[\np(\\theta | y) = \\frac{p(\\theta, y)}{p(y)} = \\frac{p(\\theta) p(y | \\theta)}{p(y)}\n\\] generally: \\[\np(\\theta | y) \\propto p(\\theta) p(y | \\theta)\n\\]"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#marginal-probability",
-    "href": "slides/lecture02-marginal-joint-conditional.html#marginal-probability",
-    "title": "Working with probability distributions",
-    "section": "Marginal probability",
-    "text": "Marginal probability\nProbability of event \\(A\\): \\(\\Pr(A)\\)\n\nWe will write the marginal probability density function as \\[\np(\\theta) \\quad \\text{or} \\quad p(y)\n\\]"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#joint-probability",
-    "href": "slides/lecture02-marginal-joint-conditional.html#joint-probability",
-    "title": "Working with probability distributions",
-    "section": "Joint probability",
-    "text": "Joint probability\nProbability of events \\(A\\) and \\(B\\): \\(\\Pr(A \\& B)\\)\n\n\\[\np(\\theta, y)\n\\]"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#conditional-probability",
-    "href": "slides/lecture02-marginal-joint-conditional.html#conditional-probability",
-    "title": "Working with probability distributions",
-    "section": "Conditional probability",
-    "text": "Conditional probability\nProbability of event \\(A\\) given event \\(B\\): \\(\\Pr(A | B)\\)\n\n\\[\np(\\theta | y) \\quad \\text{or} \\quad p(y | \\theta)\n\\]"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#example-two-dice-wager",
-    "href": "slides/lecture02-marginal-joint-conditional.html#example-two-dice-wager",
-    "title": "Working with probability distributions",
-    "section": "Example: two-dice wager",
-    "text": "Example: two-dice wager\n\nA gambler presents you with an even-money wager. You will roll two dice, and if the highest number showing is one, two, three or four, then you win. If the highest number on either die is five or six, then she wins. Should you take the bet?"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#overview",
-    "href": "slides/lecture02-marginal-joint-conditional.html#overview",
-    "title": "Working with probability distributions",
-    "section": "Overview",
-    "text": "Overview\nStandard linear regression model, let’s assume \\(x \\in \\mathbb{R}\\) for simplicity (1 predictor): \\[\ny_i = ax_i + b + \\epsilon_i\n\\] where \\(\\epsilon_i \\sim N(0, \\sigma^2)\\)."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#conditional-distribution-of-y_i",
-    "href": "slides/lecture02-marginal-joint-conditional.html#conditional-distribution-of-y_i",
-    "title": "Working with probability distributions",
-    "section": "Conditional distribution of \\(y_i\\)",
-    "text": "Conditional distribution of \\(y_i\\)\nThe conditional probability density of \\(y_i\\) given \\(x_i\\) is \\[\np(y_i | x_i, a, b, \\sigma) = N(ax_i + b, \\sigma^2)\n\\] which is a shorthand for writing out the full equation for the Normal PDF. We can (and often will) write this as \\[\ny_i \\sim \\mathcal{N}(ax_i + b, \\sigma^2)\n\\] Finally, we will sometimes write \\(p(y_i | x_i)\\) as a shorthand for \\(p(y_i | x_i, a, b, \\sigma)\\). While fine in many circumstances, we should take care to make sure we are extremely clear about what parameters we are conditioning on."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#marginal-distribution-of-y_i",
-    "href": "slides/lecture02-marginal-joint-conditional.html#marginal-distribution-of-y_i",
-    "title": "Working with probability distributions",
-    "section": "Marginal distribution of \\(y_i\\)",
-    "text": "Marginal distribution of \\(y_i\\)\nThe marginal probability density of \\(y_i\\) is \\[\np(y_i | a, b, \\sigma) = \\int p(y_i | x_i, a, b, \\sigma) p(x_i) \\, dx_i\n\\] where \\(p(x_i)\\) is the probability density of \\(x_i\\)."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#joint-distribution-of-y_i-and-x_i",
-    "href": "slides/lecture02-marginal-joint-conditional.html#joint-distribution-of-y_i-and-x_i",
-    "title": "Working with probability distributions",
-    "section": "Joint distribution of \\(y_i\\) and \\(x_i\\)",
-    "text": "Joint distribution of \\(y_i\\) and \\(x_i\\)\nThe joint probability density of \\(y_i\\) and \\(x_i\\) is \\[\np(y_i, x_i | a, b, \\sigma) = p(y_i | x_i, a, b, \\sigma) p(x_i)\n\\] where \\(p(x_i)\\) is the probability density of \\(x_i\\)."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#simulation",
-    "href": "slides/lecture02-marginal-joint-conditional.html#simulation",
-    "title": "Working with probability distributions",
-    "section": "Simulation",
-    "text": "Simulation\n\nm = 2\nb = 1\nσ = 1.5\n\n\nIf \\(x=2\\), we can simulate from the conditional distribution of \\(y\\):\n\nN_sim = 10_000\n\nx = 2\ny = rand(Normal(m * x + b, σ), N_sim)\nhistogram(y, title=L\"$p(y | x=2)$\", label=\"Sampled\", normalize=true, xlabel=L\"$y$\", ylabel=\"Density\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf \\(x \\sim N(0, 1)\\), then we can simulate from the joint distribution of \\(x\\) and \\(y\\):\n\nx = rand(Normal(0, 1), 10_000)\n1y = [rand(Normal(m * xᵢ + b, σ)) for xᵢ in x]\nscatter(x, y, label=L\"$p(x, y)$\", xlabel=L\"$x$\", ylabel=L\"$y$\")\n\n\n1\n\nA list comprehension here is less elegant than writing rand.(Normal.(m .* x .+ b, σ)) but it is easy to read. The results are the same.\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFinally, assuming the same distribution, we can simulate from the marginal distribution of \\(y\\):\n\nhistogram(y, label=L\"$p(y)$\", normalize=true, xlabel=L\"$y$\", ylabel=\"Density\")"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#overview-1",
-    "href": "slides/lecture02-marginal-joint-conditional.html#overview-1",
-    "title": "Working with probability distributions",
-    "section": "Overview",
-    "text": "Overview\nThe Negative Binomial distribution (see last lecture) can be interpreted as a Gamma-Poisson mixture:\n\\[\n\\begin{align}\ny &\\sim \\textrm{Poisson}(\\lambda) \\\\\n\\lambda &\\sim \\textrm{Gamma}\\left(r, \\frac{p}{1-p} \\right)\n\\end{align}\n\\]"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#mathematical-derivation",
-    "href": "slides/lecture02-marginal-joint-conditional.html#mathematical-derivation",
-    "title": "Working with probability distributions",
-    "section": "Mathematical derivation",
-    "text": "Mathematical derivation\nWe can show mathematically that if \\(y ~ \\textrm{Negative Binomial}(r, p)\\), that is equivalent to the mixture model \\(y ~ \\textrm{Poisson}(\\lambda)\\) and \\(\\lambda ~ \\textrm{Gamma}(r, p / (1 - p))\\). \\[\n\\begin{align}\n& \\int_0^{\\infty} f_{\\text {Poisson }(\\lambda)}(y) \\times f_{\\operatorname{Gamma}\\left(r, \\frac{p}{1-p}\\right)}(\\lambda) \\mathrm{d} \\lambda \\\\\n& = \\int_0^{\\infty} \\frac{\\lambda^y}{y !} e^{-\\lambda} \\times \\frac{1}{\\Gamma(r)}\\left(\\frac{p}{1-p} \\lambda\\right)^{r-1} e^{-\\frac{p}{1-p} \\lambda}\\left(\\frac{p}{1-p} \\mathrm{~d} \\lambda\\right) \\\\\n\\ldots \\\\\n&= f_{\\text {Negative Binomial }(r, p)}(y)\n\\end{align}\n\\] For all the steps see Wikipedia."
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#simulation-example",
-    "href": "slides/lecture02-marginal-joint-conditional.html#simulation-example",
-    "title": "Working with probability distributions",
-    "section": "Simulation example",
-    "text": "Simulation example\nWe can see this with simulation. First we define a function to simulate from the Gamma-Poisson mixture:\n\nfunction gamma_poisson(r, p)\n    g_dist = Gamma(r, (1 - p) / p)\n    λ = rand(g_dist)\n    p_dist = Poisson(λ)\n    return rand(p_dist)\nend\n\ngamma_poisson (generic function with 1 method)\n\n\n\nThen we can simulate from the mixture and compare to the Negative Binomial distribution:\n\nr = 3 # number of failures\np = 1 / 6 # probability of failure\ndist = NegativeBinomial(r, p)\n\n# simulate 50,000 rolls\nrolls = [gamma_poisson(r, p) for _ in 1:50_000]\n\n# plot the samples\nxticks = 0:1:60 # specify the bin values\nhistogram(\n    rolls;\n    bins=-0.5:1:(maximum(xticks)+0.5),\n    xlabel=\"Number of rolls\",\n    ylabel=\"PMF\",\n    marker=:o,\n    label=\"Gamma-Poisson\",\n    normalize=true\n)\n\n# add the PDF of the negative binomial distribution\nplot!(xticks, pdf.(dist, xticks); linewidth=2, label=\"Neg. Binom.\")"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#so-what",
-    "href": "slides/lecture02-marginal-joint-conditional.html#so-what",
-    "title": "Working with probability distributions",
-    "section": "So what?",
-    "text": "So what?\nI don’t need you to know all the details of this particular mixture model. What I do want you to understand is:\n\n\nWe can model data using combinations of simpler distributions\nWe can use simple simulation approaches to approximate more complex relationships\n\nFor example, if we wanted to know \\(\\Pr(y &gt; 10)\\) when \\(y \\sim \\text{Negative Binomial}(r, p)\\) but we didn’t have a Negative Binomial distribution in our software package we could estimate our quantity of interest\nThis isn’t very interesting for this model (there is an analytic solution!) but lots of models we might want to write down don’t have analytic solutions"
-  },
-  {
-    "objectID": "slides/lecture02-marginal-joint-conditional.html#key-ideas",
-    "href": "slides/lecture02-marginal-joint-conditional.html#key-ideas",
-    "title": "Working with probability distributions",
-    "section": "Key ideas",
-    "text": "Key ideas\n\nConditional probability\nJoint probability\nMarginal probability\nBayes’ Rule\nLikelihood\nPosterior\nSimulation methods\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#overview",
-    "href": "slides/lecture01-lab.html#overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Overview",
-    "text": "Overview\nLabs are in-class exercises intended to get practice with coding or analysis workflows.\n\nInstructions available on website\nDownload ahead of time by using link from Canvas\nYou will have your own repository (more in a minute)\nTry to finish in class, but due in 1 week"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#tool-overview",
-    "href": "slides/lecture01-lab.html#tool-overview",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Tool overview",
-    "text": "Tool overview\nIn this class, we will use\n\n\nJulia\nGitHub\nQuarto\nVS Code (suggested)"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#why-julia",
-    "href": "slides/lecture01-lab.html#why-julia",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Why Julia?",
-    "text": "Why Julia?\n\n\n\n\nSyntax\n\nReadable to computers and humans\nClosely parallels math notation\n\nDesigned for numerical and scientific computing\n\n\n\nFast!\n\n“Two language problem”\nAll you need is Julia\n\nOpen source"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#julia-example",
-    "href": "slides/lecture01-lab.html#julia-example",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Julia example",
-    "text": "Julia example\nA (naive) implementation of the Fibonacci sequence:\n\nfunction fib(n)\n    if n &lt; 2\n        return n\n    else\n        return fib(n - 1) + fib(n - 2)\n    end\nend\nfib(10)\n\n55"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#github",
-    "href": "slides/lecture01-lab.html#github",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "GitHub",
-    "text": "GitHub\n\n\nYou need a GitHub account\nCode is stored in “repositories”\nclone a repository to your computer\nMake changes and commit them\npush your changes to GitHub\nUsing GitHub classroom, instructors can view your code"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#quarto",
-    "href": "slides/lecture01-lab.html#quarto",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto is a tool that allows you to combine text and code and create many types of output\n\nThis website is made with Quarto\nYou will use Quarto to create reports for labs\n\nEverything in one place\nNo running code, save a figure to Downloads, copy into Word, then update your code and try to remember where to paste it\n\nReproducible"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#vs-code",
-    "href": "slides/lecture01-lab.html#vs-code",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "VS Code",
-    "text": "VS Code\n\nVS Code is a text editor\n\nIf you are an advanced user of another text editor, you can use that instead, but I recommend VS Code\n\nVS Code can work as a Julia IDE"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#detailed-instructions",
-    "href": "slides/lecture01-lab.html#detailed-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Detailed instructions",
-    "text": "Detailed instructions\nSee Setup"
-  },
-  {
-    "objectID": "slides/lecture01-lab.html#lab-01-instructions",
-    "href": "slides/lecture01-lab.html#lab-01-instructions",
-    "title": "Setting up Julia, GitHub, and Quarto",
-    "section": "Lab 01 Instructions",
-    "text": "Lab 01 Instructions\n\nInstall software up following instructions on course website\nclone the repository for lab 01 (use the Github Classroom link from Canvas)\nEdit the solutions.qmd file to add your name and netID\ncommit and push your changes\n\n\n\nCEVE 543, Data Science for Climate Risk Assessment"
+    "objectID": "slides/lecture05-downscaling.html#expectations",
+    "href": "slides/lecture05-downscaling.html#expectations",
+    "title": "Downscaling",
+    "section": "Expectations",
+    "text": "Expectations\n\nTry and compare at least two different approaaches\nQuantitative and qualitative evaluation of the models\nYou can use any methods you like:\n\nThose we cover in class\nThose you already know"
+  },
+  {
+    "objectID": "slides/lecture05-downscaling.html#references",
+    "href": "slides/lecture05-downscaling.html#references",
+    "title": "Downscaling",
+    "section": "References",
+    "text": "References\n\n\nCEVE 543, Data Science for Climate Risk Assessment\n\n\n\nLanzante, J. R., Dixon, K. W., Nath, M. J., Whitlock, C. E., & Adams-Smith, D. (2018). Some Pitfalls in Statistical Downscaling of Future Climate. Bulletin of the American Meteorological Society, 99(4), 791–803. https://doi.org/10.1175/bams-d-17-0046.1\n\n\nPrice, I., & Rasp, S. (2022, March). Increasing the accuracy and resolution of precipitation forecasts using deep generative models. arXiv. https://doi.org/10.48550/arXiv.2203.12297"
   },
   {
     "objectID": "slides/lecture01-welcome.html#about-me",
