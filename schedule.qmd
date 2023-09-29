@@ -29,35 +29,32 @@ To print lecture slides to PDF, see [these instructions](https://quarto.org/docs
 |      | Fri., Sep. 22 | Module 1 exam | | | |
 |      | **Module 2** | **Downscaling** | | | [{{< fa sharp pen-field title="Project 2" >}}](projects/project02/project02.qmd) |
 | 6    | Mon., Sep. 25 | Motivation | [{{< fa sharp presentation-screen >}}](slides/lecture05-downscaling.qmd){target="_blank"} | | |
-|      | Wed., Sep. 27 | Generalized Linear Regression | | | |
-|      | Fri., Sep. 29 | Lab 05: Working with gridded climate data in Julia | | | |
-| 7    | Mon., Oct. 2  | Quantile-quantile bias correction | | | |
-|      | Wed., Oct. 4  | Support vector machines | | | |
-|      | Fri., Oct. 6  | Hyperparameter selection and optimization | | | |
-| 8    | Mon., Oct. 9  | Lab 06: $K$-fold cross-validation | | | |
-|      | Wed., Oct. 11 | Module 2 review | | | |
-|      | Fri., Oct. 13 | Module 2 exam | | | |
+|      | Wed., Sep. 27 | Course discussion | | | |
+|      | Fri., Sep. 29 | Module I wrapup | [{{< fa sharp presentation-screen >}}](slides/lecture05-module-1-wrapup.qmd){target="_blank"} | | |
+| 7    | Mon., Oct. 2  | Lab 05: Working with gridded climate data in Julia | | | |
+|      | Wed., Oct. 4  | Generalized linear models | | | |
+|      | Fri., Oct. 6  | Loss functions | | | |
+| 8    | Mon., Oct. 9  | *No class* | | | |
+|      | Wed., Oct. 11 | Principal components analysis  | | | |
+|      | Fri., Oct. 13 | Lab 06: Quantile-quantile bias correction | | | |
+| 9    | Mon., Oct. 16 | Random forests | | | |
+|      | Wed., Oct. 18 | Hyperparameter selection and optimization | | | |
+|      | Fri., Oct. 20 | Project workshop | | | |
 |      | **Module 3** | **Frequency Analysis** | | | [{{< fa sharp pen-field title="Project 3" >}}](projects/project03/project03.qmd) |
-| 9    | Mon., Oct. 16 | Motivation (*guest: Dr. Philip Bedient*) | | | |
-|      | Wed., Oct. 18 | Extreme value theory | | | |
-|      | Fri., Oct. 20 | Lab 07: Convergence, central limits, and fat tails | | | |
-| 10   | Mon., Oct. 23 | Maximum likelihood and Bayesian GEV models | | | |
-|      | Wed., Oct. 25 | Nonstationary GEV model | | | |
-|      | Fri., Oct. 27 | Lab 08: Graphical model diagnostics | | | |
-| 11   | Mon., Oct. 30 | Regionalization | | | |
-|      | Wed., Nov. 1  | Hierarchical models for regionalization | | | |
-|      | Fri., Nov. 3  | Quantitative methods for model comparison | | | |
-| 12   | Mon., Nov. 6  | Module 3 review | | | |
-|      | Wed., Nov. 8  | Module 3 exam | | | |
-|      | **Module 4** | **Weather Typing** | | | [{{< fa sharp pen-field title="Project 4" >}}](projects/project04/project04.qmd) |
+| 10   | Mon., Oct. 23 | Motivation (*guest: Dr. Philip Bedient*)  | | | |
+|      | Wed., Oct. 25 | Extreme value theory and the GEV | | | |
+|      | Fri., Oct. 27 | Lab 07: Convergence, central limits, and fat tails | | | |
+| 11   | Mon., Oct. 30 | GEV Estimators | | | |
+|      | Wed., Nov. 1  | Nonstationary GEV | | | |
+|      | Fri., Nov. 3  | Lab 08: Graphical model diagnostics | | | |
+| 12   | Mon., Nov. 6  | Quantitative and qualitative model selection | | | |
+|      | Wed., Nov. 8  | Regionalization | | | |
+|      | Fri., Nov. 10 | Lab: $K$-means clustering | | | |
 | 13   | Mon., Nov. 13 | Motivation | | | |
-|      | Wed., Nov. 15 | Principal components analysis | | | |
-|      | Fri., Nov. 17 | Lab 09: $K$-means clustering | | | |
-| 14   | Mon., Nov. 20 | Latent Variables | | | |
+|      | Wed., Nov. 15 | Quantitative model comparison | | | |
+|      | Fri., Nov. 17 | Project workshop | | | |
 |      | Wed., Nov. 22 | *No class* | | | |
 |      | Fri., Nov. 24 | *No class* | | | |
-| 15   | Mon., Nov. 27 | Hidden Markov Models I | | | |
-|      | Wed., Nov. 29 | Review module 4 | | | |
-|      | Fri., Dec. 1  | Module 4 Exam | | | |
-
+|      | Wed., Nov. 29 | Review module 3 | | | |
+|      | Fri., Dec. 1  | Module 3 Exam | | | |
 :::
