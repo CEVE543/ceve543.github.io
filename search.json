@@ -1001,6 +1001,97 @@
     "text": "Instructions\n\nRead and go through the Software Installation Guide for instructions on setting up your computer for this course.\nFollow the link to lab 1 assignment from Canvas (it should start with classroom.github.com). It may take a few minutes for the site to configure your repository.\nYou will get a message saying ” Your assignment repository has been created: …“. Click on the link to go to your repository.\nclone the repository for lab 01 (use the Github Classroom link from Canvas) to your computer. You can use VS Code functionality, GitHub Desktop, or your terminal.\nOpen the directory containing the repository in VS Code doing one of the following:\n\nFrom GitHub desktop: Repository &gt; Open in Visual Studio Code\nIn VS Code: File &gt; Open Folder...\n\nInstantiate the project environment as follows:\n\nOpen the command palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on Mac)\nStart typing “Julia: Start REPL”. It will auto-complete; select the command as it appears.\nIn the Julia REPL, type ] to enter the package manager. It should now show something like (lab01) pkg&gt;.\nType instantiate and run it (Enter). This will install all the packages needed for this lab.\nType the backspace key to exit the package manager.\n\nEdit the solutions.qmd file to add your name and netID\nRender the document\n\nOpen the solutions.qmd file\nOpen the command palette and run “Quarto: Render”. After some activity, a preview of the rendered document should open in VS Code. If you see something like Browse at http://localhost:4200/labs/lab01/solution.html you can open that link in your web browser to see the rendered document.\nCheck the box on line 46 or 47 of the solutions.qmd file to indicate that you were able to render the document. If you were unable to render the document, check the other box and seek help. Make sure the box check renders correctly in the preview\n\nIf you’re still having trouble:\n\nTry running Pkg.build(\"IJulia\") in the Julia REPL\n\ncommit and push your changes"
   },
   {
+    "objectID": "labs/lab05/template.html",
+    "href": "labs/lab05/template.html",
+    "title": "Lab 05",
+    "section": "",
+    "text": "Remember to git clone to your machine, then activate and instantiate the environment, as we have done in previous labs.\n\nusing CSV\nusing DataFrames\nusing Dates\nusing Plots\nusing NCDatasets\nusing Unitful\n\n\n\n\n\nNCDatasets.jl\nDataFramesMeta.jl"
+  },
+  {
+    "objectID": "labs/lab05/template.html#setup",
+    "href": "labs/lab05/template.html#setup",
+    "title": "Lab 05",
+    "section": "",
+    "text": "Remember to git clone to your machine, then activate and instantiate the environment, as we have done in previous labs.\n\nusing CSV\nusing DataFrames\nusing Dates\nusing Plots\nusing NCDatasets\nusing Unitful"
+  },
+  {
+    "objectID": "labs/lab05/template.html#resources",
+    "href": "labs/lab05/template.html#resources",
+    "title": "Lab 05",
+    "section": "",
+    "text": "NCDatasets.jl\nDataFramesMeta.jl"
+  },
+  {
+    "objectID": "labs/lab03/template.html",
+    "href": "labs/lab03/template.html",
+    "title": "Lab 03",
+    "section": "",
+    "text": "In the wake of a severe flood, an insurance company has comissioned you to study flood damage in one of the most-affected neighborhoods. This neighborhood is perfectly flat, so we can assume that all houses experienced the same flood depth. However, they are elevated to different heights, use different materials, and are built to different standards, and as a result they experienced different amounts of damage. Specifically, the insurance company has provided you with a dataset of the fraction of the value of each house that was lost in the flood and asked you to model the distribution of losses.\n\n\nOur model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula..\n\n\n\nAs for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person.\n\n\n\nAs usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions\n\n\n\n\nWe can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#mathematical-model",
+    "href": "labs/lab03/template.html#mathematical-model",
+    "title": "Lab 03",
+    "section": "",
+    "text": "Our model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula.."
+  },
+  {
+    "objectID": "labs/lab03/template.html#setup",
+    "href": "labs/lab03/template.html#setup",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person."
+  },
+  {
+    "objectID": "labs/lab03/template.html#package-imports",
+    "href": "labs/lab03/template.html#package-imports",
+    "title": "Lab 03",
+    "section": "",
+    "text": "As usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions"
+  },
+  {
+    "objectID": "labs/lab03/template.html#about-the-beta-distribution",
+    "href": "labs/lab03/template.html#about-the-beta-distribution",
+    "title": "Lab 03",
+    "section": "",
+    "text": "We can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
+  },
+  {
+    "objectID": "labs/lab03/template.html#likelihood-model",
+    "href": "labs/lab03/template.html#likelihood-model",
+    "title": "Lab 03",
+    "section": "2.1 Likelihood model",
+    "text": "2.1 Likelihood model\nfunction log_lik(y::Vector{T}, α::T, β::T) where {T&lt;:Real}\n    # fill in here\n    # refer to lecture slides for syntax and function names\n    # don't forget your `return` statement!\nend\n\n\n\n\n\n\nFill in the log_lik function where y is a vector of data, and α and β are the parameters of the Beta distribution. Then, convert it to live code by adding curly brackets, like you did in lab 02. Hint: define a function function log_lik(y::T, α::T, β::T) where {T&lt;:Real}... that takes in a single point. Then this function that takes in a vector y can calculate the log-likelihood for each data point individually and combine them. This is not the only way to solve this problem"
+  },
+  {
+    "objectID": "labs/lab03/template.html#check-if-its-right",
+    "href": "labs/lab03/template.html#check-if-its-right",
+    "title": "Lab 03",
+    "section": "2.2 Check if it’s right",
+    "text": "2.2 Check if it’s right\nWe can check your log_lik function by comparing what you calculate using it to a known, correct value.\nyour_val = log_lik([0.2, 0.4, 0.6, 0.8], 5., 5.) # calls your implementation\ntrue_value = -0.2947032775653282 # I calculated this\n@assert isapprox(your_val, true_value) # checks if they're close\nprintln(\"😁\")\n\nConvert this to a live code block by adding curly brackets, like you did in lab 02, and run. You should see a 😄."
+  },
+  {
+    "objectID": "labs/lab03/template.html#plot",
+    "href": "labs/lab03/template.html#plot",
+    "title": "Lab 03",
+    "section": "2.3 Plot",
+    "text": "2.3 Plot\nNow that we have the log_likelihood, we’re going to plot it for many values of \\(\\alpha\\) and \\(\\beta\\).\nFirst, let’s define a grid of values for \\(\\alpha\\) and \\(\\beta\\) to plot:\n\nα_plot = range(0.01, 50; length=500)\nβ_plot = range(0.01, 50; length=501)\n\n\nDefine them to be different lengths so that if we make an indexing mistake, we should get an error.\n\nNext, we can calculate the log likelihood at each point on the grid of α_plot and β_plot as:\nlog_lik_fax = [log_lik(fax, αi, βi) for αi in α_plot, βi in β_plot]\n\n# ensure that the dimensions are correct\n@assert size(log_lik_fax) == (length(α_plot), length(β_plot))\ndisplay(size(log_lik_fax))\nNow, we’re ready to plot. You can use the following code, which provides some helpful keyword arguments to make your plot look nice. Feel free to play around with them.\np1 = plot(\n    α_plot,\n    β_plot,\n    log_lik_fax';\n    st=:heatmap,\n    xlabel=L\"$\\alpha$\",\n    ylabel=L\"$\\beta$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\alpha, \\beta)$\"\n)\np1\n\n\n\n\n\n\nSize and plotting\n\n\n\nNote that we plot log_lik_fax' instead of log_lik_fax. That is equivalent to transpose(log_lik_fax). This is a quirk of plots.jl syntax (see here). We avoid confusion by checking the size of log_lik_fax above.\n\n\n\n\n\n\n\n\nNote that we have assigned our plot a variable name, p1. This will let us add elements to it later.\n\n\n\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working."
+  },
+  {
+    "objectID": "labs/lab03/template.html#best-estimates",
+    "href": "labs/lab03/template.html#best-estimates",
+    "title": "Lab 03",
+    "section": "2.4 Best estimates",
+    "text": "2.4 Best estimates\nWhat values of α_plot and β_plot that maximize the log likelihood? We can find out in several different ways.\n\n2.4.1 Optimization on a grid\nThe easiest thing to do is to find the maximum value of the log likelihood on our grid. We can do that as follows:\nidx_fax = argmax(log_lik_fax) # the index that maximizes the log likelihood\nα_fax_best = α_plot[idx_fax[1]]\nβ_fax_best = β_plot[idx_fax[2]]\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working.\n\n\n\n\n\n2.4.2 Optim.jl\nWe can also use the optimize function from Optim.jl to find the maximum value of the log likelihood.\n# define the function to be optimized\nloss_fax(θ) = # define the negative log-likelihood here, using your `log_lik` function and passing in `fax` as the `y` argument.\nlower = [0.001, 0.001] # lower bound -- don't need to change\nupper = [Inf, Inf] # upper bound -- don't need to edit\nguess = [1.0, 1.0] # initial guess -- leave as-is\n\nres = optimize(loss_fax, lower, upper, guess) # run the optimization\nθ_fax = Optim.minimizer(res) # get the best parameters\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything. Follow the commented instructions.\n\n\n\n\n\n2.4.3 Distributions.jl\nAs an alternative to Optim.jl, we can use the fit_mle function from Distributions.jl for most distributions. We can use this to check our work:\nDistributions.fit_mle(Beta, fax)\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above. Compare the fit_mle result to your result using optimize."
+  },
+  {
+    "objectID": "labs/lab03/template.html#update-the-plot",
+    "href": "labs/lab03/template.html#update-the-plot",
+    "title": "Lab 03",
+    "section": "2.5 Update the plot",
+    "text": "2.5 Update the plot\nThese best estimates should show up as points on our plot. We can add them as follows:\nscatter!(p1, [α_fax_best], [β_fax_best]; label=\"Grid Search\")\nscatter!(p1, [θ_fax[1]], [θ_fax[2]]; label=\"MLE\")\np1\n\n\nWhen we add a single point, we have to wrap it in brackets [] to make it a vector. The x and y inputs to plot (or scatter!) need to be vectors.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above."
+  },
+  {
     "objectID": "labs/lab04/template.html",
     "href": "labs/lab04/template.html",
     "title": "Lab 04",
@@ -1076,76 +1167,6 @@
     "title": "Lab 04",
     "section": "5.3 Posterior predictive check",
     "text": "5.3 Posterior predictive check\nHow should we visualize these inferences? It’s hard to plot a single \\(x\\) vs \\(y\\) when we have multiple \\(x\\). There are many possible plots, but a good one is to plot the predicted vs actual values of \\(y\\). To make the plot more readable, we’ll add some jitter to the data. Here’s a function to do that:\n\n\nCode\nfunction jitter(x, y; ϵx=0.1, ϵy=0.1)\n    x_jit = x .+ rand(Normal(0, ϵx), size(x))\n    y_jit = y .+ rand(Normal(0, ϵy), size(y))\n    return x_jit, y_jit\nend\n\n\nNow we can create our scatter plot.\np4 = plot(; xlabel=\"Predicted Runoff\", ylabel=\"Actual Runoff\", aspect_ratio=1) # blank plot\nfor i in 1:500 # loop through\n    pred = lm_predict(chn_multi, X, 1)\n    xplt, yplt = jitter(pred, y; ϵx=0.1, ϵy=0.1)\n    scatter!(xplt, yplt; color=:black, alpha=0.5, label=false, markersize=0.5)\nend\nPlots.abline!(p4, 1, 0; color=:red, label=\"1:1 line\")\np4\n\n\n\n\n\n\nTask\n\n\n\nThe above block shouldn’t need to be modified. Add the curly brackets when you are ready. What do you learn from this plot?"
-  },
-  {
-    "objectID": "labs/lab03/template.html",
-    "href": "labs/lab03/template.html",
-    "title": "Lab 03",
-    "section": "",
-    "text": "In the wake of a severe flood, an insurance company has comissioned you to study flood damage in one of the most-affected neighborhoods. This neighborhood is perfectly flat, so we can assume that all houses experienced the same flood depth. However, they are elevated to different heights, use different materials, and are built to different standards, and as a result they experienced different amounts of damage. Specifically, the insurance company has provided you with a dataset of the fraction of the value of each house that was lost in the flood and asked you to model the distribution of losses.\n\n\nOur model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula..\n\n\n\nAs for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person.\n\n\n\nAs usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions\n\n\n\n\nWe can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
-  },
-  {
-    "objectID": "labs/lab03/template.html#mathematical-model",
-    "href": "labs/lab03/template.html#mathematical-model",
-    "title": "Lab 03",
-    "section": "",
-    "text": "Our model for the loss fraction \\(y_i\\) for the \\(i\\)th house is \\[\ny_i | \\alpha, \\beta \\sim \\text{Beta}(\\alpha, \\beta)\n\\] where \\(\\alpha\\) and \\(\\beta\\) are the shape parameters of the Beta Distribution. Because we are not including any explanatory information in our model, we are assuming that the distribution of loss fractions is the same for all houses. This is reasonable for our neighborhood, but would not be applicable to another neighborhood or a different flood event.\nThe above notation is shorthand for \\[\np(y_i | \\alpha, \\beta) =\n\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}} {\\mathrm{B}(\\alpha,\\beta)}\\!\n\\] where \\(\\mathrm {B} (\\alpha ,\\beta )={\\frac {\\Gamma (\\alpha )\\Gamma (\\beta )}{\\Gamma (\\alpha +\\beta )}}\\) and \\(\\Gamma\\) is the Gamma function. We will work directly with the pdf and logpdf functions in the Distributions package, so you don’t need to memorize this formula.."
-  },
-  {
-    "objectID": "labs/lab03/template.html#setup",
-    "href": "labs/lab03/template.html#setup",
-    "title": "Lab 03",
-    "section": "",
-    "text": "As for labs 1 and 2, make sure you follow the three standard initial setup steps:\n\nOpen the lab 3 folder in VS Code. Do NOT open a “parent” directory containing lab 3. If you’re not sure what folder you’re in, open the Juila REPL and type pwd(). It should say something like /.../lab03-username....\nActivate the project environment: ] to enter package mode then activate .. Don’t forget the . at the end, it’s very important.\nInstall all required packages: ] to enter package mode, then instantiate.\n\nAt this point, check to make sure you can render the document. In VS Code, open the command palette (Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P) and type Render: HTML. If this gives you trouble, try the following:\n\n] in the Julia REPL to enter Package mode\nbuild IJulia\n\nIf this still gives you trouble, ask for help on Canvas or in-person."
-  },
-  {
-    "objectID": "labs/lab03/template.html#package-imports",
-    "href": "labs/lab03/template.html#package-imports",
-    "title": "Lab 03",
-    "section": "",
-    "text": "As usual we start by specifying the packages we are using\n\nusing Distributions # probability distributions\nusing DelimitedFiles # read data\nusing LaTeXStrings # LaTeX plot labels\nusing Optim # optimization\nusing Plots # plotting\nusing StatsPlots # plot distributions"
-  },
-  {
-    "objectID": "labs/lab03/template.html#about-the-beta-distribution",
-    "href": "labs/lab03/template.html#about-the-beta-distribution",
-    "title": "Lab 03",
-    "section": "",
-    "text": "We can learn something about the Beta distribution defined above by plotting it for some different values:\n\n1p = plot(; xlabel=L\"y\", ylabel=L\"p(y | \\alpha, \\beta)\", legend=:top)\n2for (α, color) in zip([1.0, 5.0, 25.0], [:orange, :purple, :black])\n3    for (β, linestyle) in zip([1.0, 5.0, 25.0], [:solid, :dash, :dot])\n4        plot!(\n            p,\n5            Beta(α, β);\n            label=\"α = $α, β = $β\",\n            color=color,\n            linestyle=linestyle,\n            linewidth=2\n        )\n    end\nend\np\n\n\n1\n\nThis defines a blank plot for us to add to\n\n2\n\nWhen we loop through our values of α, we zip it with a vector of colors so that we can plot each value of α in a different color.\n\n3\n\nSimilarly, we can attach each value of β to a different linestyle.\n\n4\n\nplot!(p, ...) will add more elements to the plot p that we defined above.\n\n5\n\nUsing the StatsPlots package, we can plot a distribution by passing it to plot! with no additional arguments."
-  },
-  {
-    "objectID": "labs/lab03/template.html#likelihood-model",
-    "href": "labs/lab03/template.html#likelihood-model",
-    "title": "Lab 03",
-    "section": "2.1 Likelihood model",
-    "text": "2.1 Likelihood model\nfunction log_lik(y::Vector{T}, α::T, β::T) where {T&lt;:Real}\n    # fill in here\n    # refer to lecture slides for syntax and function names\n    # don't forget your `return` statement!\nend\n\n\n\n\n\n\nFill in the log_lik function where y is a vector of data, and α and β are the parameters of the Beta distribution. Then, convert it to live code by adding curly brackets, like you did in lab 02. Hint: define a function function log_lik(y::T, α::T, β::T) where {T&lt;:Real}... that takes in a single point. Then this function that takes in a vector y can calculate the log-likelihood for each data point individually and combine them. This is not the only way to solve this problem"
-  },
-  {
-    "objectID": "labs/lab03/template.html#check-if-its-right",
-    "href": "labs/lab03/template.html#check-if-its-right",
-    "title": "Lab 03",
-    "section": "2.2 Check if it’s right",
-    "text": "2.2 Check if it’s right\nWe can check your log_lik function by comparing what you calculate using it to a known, correct value.\nyour_val = log_lik([0.2, 0.4, 0.6, 0.8], 5., 5.) # calls your implementation\ntrue_value = -0.2947032775653282 # I calculated this\n@assert isapprox(your_val, true_value) # checks if they're close\nprintln(\"😁\")\n\nConvert this to a live code block by adding curly brackets, like you did in lab 02, and run. You should see a 😄."
-  },
-  {
-    "objectID": "labs/lab03/template.html#plot",
-    "href": "labs/lab03/template.html#plot",
-    "title": "Lab 03",
-    "section": "2.3 Plot",
-    "text": "2.3 Plot\nNow that we have the log_likelihood, we’re going to plot it for many values of \\(\\alpha\\) and \\(\\beta\\).\nFirst, let’s define a grid of values for \\(\\alpha\\) and \\(\\beta\\) to plot:\n\nα_plot = range(0.01, 50; length=500)\nβ_plot = range(0.01, 50; length=501)\n\n\nDefine them to be different lengths so that if we make an indexing mistake, we should get an error.\n\nNext, we can calculate the log likelihood at each point on the grid of α_plot and β_plot as:\nlog_lik_fax = [log_lik(fax, αi, βi) for αi in α_plot, βi in β_plot]\n\n# ensure that the dimensions are correct\n@assert size(log_lik_fax) == (length(α_plot), length(β_plot))\ndisplay(size(log_lik_fax))\nNow, we’re ready to plot. You can use the following code, which provides some helpful keyword arguments to make your plot look nice. Feel free to play around with them.\np1 = plot(\n    α_plot,\n    β_plot,\n    log_lik_fax';\n    st=:heatmap,\n    xlabel=L\"$\\alpha$\",\n    ylabel=L\"$\\beta$\",\n    legend=:topright,\n    colorbar_title=L\"$\\log p(y | \\alpha, \\beta)$\"\n)\np1\n\n\n\n\n\n\nSize and plotting\n\n\n\nNote that we plot log_lik_fax' instead of log_lik_fax. That is equivalent to transpose(log_lik_fax). This is a quirk of plots.jl syntax (see here). We avoid confusion by checking the size of log_lik_fax above.\n\n\n\n\n\n\n\n\nNote that we have assigned our plot a variable name, p1. This will let us add elements to it later.\n\n\n\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working."
-  },
-  {
-    "objectID": "labs/lab03/template.html#best-estimates",
-    "href": "labs/lab03/template.html#best-estimates",
-    "title": "Lab 03",
-    "section": "2.4 Best estimates",
-    "text": "2.4 Best estimates\nWhat values of α_plot and β_plot that maximize the log likelihood? We can find out in several different ways.\n\n2.4.1 Optimization on a grid\nThe easiest thing to do is to find the maximum value of the log likelihood on our grid. We can do that as follows:\nidx_fax = argmax(log_lik_fax) # the index that maximizes the log likelihood\nα_fax_best = α_plot[idx_fax[1]]\nβ_fax_best = β_plot[idx_fax[2]]\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once your log_lik function is working.\n\n\n\n\n\n2.4.2 Optim.jl\nWe can also use the optimize function from Optim.jl to find the maximum value of the log likelihood.\n# define the function to be optimized\nloss_fax(θ) = # define the negative log-likelihood here, using your `log_lik` function and passing in `fax` as the `y` argument.\nlower = [0.001, 0.001] # lower bound -- don't need to change\nupper = [Inf, Inf] # upper bound -- don't need to edit\nguess = [1.0, 1.0] # initial guess -- leave as-is\n\nres = optimize(loss_fax, lower, upper, guess) # run the optimization\nθ_fax = Optim.minimizer(res) # get the best parameters\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything. Follow the commented instructions.\n\n\n\n\n\n2.4.3 Distributions.jl\nAs an alternative to Optim.jl, we can use the fit_mle function from Distributions.jl for most distributions. We can use this to check our work:\nDistributions.fit_mle(Beta, fax)\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above. Compare the fit_mle result to your result using optimize."
-  },
-  {
-    "objectID": "labs/lab03/template.html#update-the-plot",
-    "href": "labs/lab03/template.html#update-the-plot",
-    "title": "Lab 03",
-    "section": "2.5 Update the plot",
-    "text": "2.5 Update the plot\nThese best estimates should show up as points on our plot. We can add them as follows:\nscatter!(p1, [α_fax_best], [β_fax_best]; label=\"Grid Search\")\nscatter!(p1, [θ_fax[1]], [θ_fax[2]]; label=\"MLE\")\np1\n\n\nWhen we add a single point, we have to wrap it in brackets [] to make it a vector. The x and y inputs to plot (or scatter!) need to be vectors.\n\n\n\n\n\n\nAdd curly brackets to the code blocks in this section once you have implemented everything above."
   },
   {
     "objectID": "labs/lab02/template.html",
