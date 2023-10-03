@@ -1,0 +1,444 @@
+---
+title: "Generalized Linear Models"
+subtitle: "Lecture"
+date: 10/4/2023
+
+# don't adjust the below options, they should be the same for all slides
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+format:
+    revealjs:
+        slide-number: c/t
+        show-slide-number: all
+        center-title-slide: true
+        width: 1280
+        height: 720
+        transition: none
+        toc: true
+        toc-depth: 1
+        toc-title: "Overview"
+        history: false
+        link-external-newwindow: true
+        theme: ../sass/slides.scss
+        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
+        template-partials:
+            - title-slide.html
+        menu:
+            numbers: true
+        html-math-method: mathjax
+        include-in-header: mathjax-config.html
+        date-format: long
+        code-annotations: below
+
+execute:
+    freeze: auto
+    echo: true
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using DataFrames
+using Distributions
+using DynamicHMC
+using LaTeXStrings
+using Plots
+using Random
+using StatsFuns: logistic
+using StatsPlots
+using Turing
+
+Plots.default(; linewidth=2.5)
+```
+
+## Practice problem: regression {.smaller}
+
+You are given pairs of data $(x_i, y_i)$ where $x_i$ is the number of vehicles on the road and $y_i$ is the Air Quality Index (AQI).
+We model their relationship as
+$$
+\begin{align}
+y_i &\sim N(\mu_i, \sigma) \\
+\mu_i &= \alpha_i + \beta x_i
+\end{align}
+$$
+where $\alpha_i$ and $\beta$ are parameters to be estimated.
+
+1. Write down the log likelihood for a single data point $\log p(y_i | x_i)$
+1. Write down the log likelihood for the entire dataset $\log p(\mathbf{y} | \mathbf{x})$
+
+For reference, the Normal PDF is
+$$
+f(x | \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right)
+$$
+
+# Generalized Linear Models
+
+## Linear regression
+
+We have recently seen models that look like
+$$
+\begin{align}
+y_i &\sim N(\mu_i, \sigma) \\
+\mu_i &= \alpha_i + \beta x_i
+\end{align}
+$$
+Or (using another notation)
+$$
+\begin{align}
+y_i &= \alpha_i + \beta x_i + \epsilon_i \\
+\epsilon_i &\sim N(0, \sigma)
+\end{align}
+$$
+
+## Why linear?
+
+:::: {.columns}
+::: {.column width=60%}
+$y = ax + b$ is a strong assumption, not always physically justifiable, though often useful.
+
+Another nice way to think about linear models is that they are Taylor series representations of functions.
+Michael Betancourt has an excellent and thorough [case study](https://betanalpha.github.io/assets/case_studies/taylor_models.html).
+:::
+
+::: {.column width=40%}
+![](../_assets/img/betanalpha-taylor.png){width=100%}
+:::
+::::
+
+## Motivation: depth-damage
+
+In lab 3, we studied the distribution of flood losses in a neighborhood.
+
+::: {.incremental}
+- What if we wanted to **condition** this distribution on variables describing flood characteristics and/or household risk management practices [as in @rozer_lossestimates:2019]?
+- Regression lets us condition estimates on covariates
+- But we can't use linear regression here, because the response variable has support $(0, 1)$
+:::
+
+## Today
+
+Generalized Linear Models extend the concept of regression to other distributions -- specifically when the conditional likelihood is not Normal.
+
+# Binomial regression
+
+## Motivation
+
+Consider a forest patch where we have recorded the occurrence of forest fires over several years.
+For each year, we have also noted the average summertime temperature. We want to investigate if there's a relationship between the average summertime temperature and the likelihood of a forest fire occurring.
+
+## Data
+
+```{julia}
+#| code-fold: true
+avg_temp = [
+    20.5,
+    21.3,
+    22.7,
+    23.4,
+    21.8,
+    24.1,
+    20.9,
+    22.5,
+    23.8,
+    24.6,
+    21.1,
+    22.3,
+    23.5,
+    24.0,
+    22.8,
+    23.9,
+    21.4,
+    20.7,
+    23.2,
+    22.9,
+]
+forest_fire_occurred = [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1]
+scatter(
+    avg_temp,
+    forest_fire_occurred;
+    label=false,
+    xlabel="Average summertime temperature (deg C)",
+    ylabel="Forest fire occurred",
+    legend=:topleft
+)
+```
+
+## Likelihood
+
+For each data point, we can use a Bernoulli distribution to model the occurrence of a forest fire
+$$
+y_i \sim \mathrm{Bernoulli}(p_i)
+$$
+where the Bernoulli PDF is
+$$
+f(x | p) = p^x (1 - p)^{1 - x}
+$$
+
+## Data dependence {.smaller}
+
+We have $y_i \sim \mathrm{Bernoulli}(p_i)$.
+We want to model $p_i$ as some function of the average summertime temperature $x_i$:
+$$
+f(p_i)= \alpha + \beta x_i
+$$
+
+. . .
+
+This looks a lot like the linear regression model from before, except:
+
+::: {.incremental}
+1. The likelihood is Binomial rather than Normal. No big deal -- we've seen that we can use arbitrary probability distributions to model processes we're interested in
+1. We have $f(p_i)$ rather than just $\mu_i$. This is called a *link function*. GLMs need a link function to map the linear space of $\alpha + \beta x_i \in (-\infty, \infty)$ onto the allowed space of the parameter.
+:::
+
+## Link function
+
+::: {.incremental}
+1. For our Binomial model, $p_i \in (0, 1)$
+    - we need something to that maps $(-\infty, \infty) \rightarrow (0, 1)$.
+1. Many possible options
+1. The "[canonical](https://cedar.buffalo.edu/~srihari/CSE574/Chap4/4.3.6-CanonicalLink.pdf)" one is a *logit* link:
+:::
+
+. . .
+
+$$
+\begin{align}
+\textrm{logit}(p_i) &= \alpha + \beta x_i \\
+\log \frac{p_i}{1 - p_i} &= \alpha + \beta x_i \\
+p_i &= \frac{\exp(\alpha + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
+\end{align}
+$$
+
+## Probit link {.scrollable}
+
+This isn't the only possible link function, though.
+For example, economists like to use the [probit link](https://en.wikipedia.org/wiki/Probit_model) -- the Probit is the inverse of a standard Nomal distribution.
+These can be subtly different:
+
+```{julia}
+#| code-fold: true
+inv_probit(x) = cdf(Normal(0, 1), x)
+
+plot(
+    logistic,
+    -5,
+    5;
+    label="Logit",
+    xlabel=L"$\alpha + \beta x_i$",
+    ylabel=L"$p_i = f(\alpha + \beta x_i)$",
+    legend=:topleft
+)
+plot!(inv_probit; label="Probit")
+```
+
+## Inference I 
+
+```{julia}
+#| output: false
+@model function logistic_regression(y::AbstractVector, x::AbstractVector) # <1>
+    α ~ Normal(0, 1)
+    β ~ Normal(0, 1)
+    for i in eachindex(y) # <2>
+        p = logistic(α + β * x[i])
+        y[i] ~ Bernoulli(p) # <3>
+    end
+end
+```
+
+1. Here we are saying that `x` and `y` have to be vectors, but we don't care what kind of vector (e.g. `Vector{Float64}`, `Vector{Int}`, etc.)
+2. This is a more robust way to write `for i in 1:length(y)`
+3. `inv_logit` is defined above.
+
+## Inference II {.scrollable}
+
+```{julia}
+#| code-fold: true
+logistic_chn = let
+    model = logistic_regression(forest_fire_occurred, avg_temp)
+    sampler = externalsampler(DynamicHMC.NUTS())
+    nsamples = 10_000
+    rng = Random.MersenneTwister(1041) # <1>
+    sample(rng, model, sampler, nsamples; drop_warmup=true)
+end
+plot(logistic_chn)
+```
+
+1. This sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don't need to do this in your own code!
+
+# Poisson regression
+
+## Motivation
+
+Imagine a national park where we've recorded the number of wildlife sightings over several months.
+For each month, we also have the average number of visitors.
+We want to investigate if there's a relationship between the average number of visitors and the number of wildlife sightings.
+
+## Data
+
+```{julia}
+#| code-fold: true
+avg_visitors = [
+    50, 55, 52, 58, 60, 53, 57, 59, 54, 56, 51, 61, 62, 63, 64, 65, 66, 67, 68, 69
+]
+wildlife_sightings = [4, 2, 4, 4, 9, 10, 4, 4, 5, 6, 6, 8, 6, 12, 13, 8, 19, 15, 13, 10]
+scatter(
+    avg_visitors,
+    wildlife_sightings;
+    label=false,
+    xlabel="Average number of visitors",
+    ylabel="Wildlife sightings",
+    legend=:topleft
+)
+```
+
+## Likelihood
+
+For each data point, we can use a Poisson distribution to model the number of wildlife sightings:
+$$
+y_i \sim \mathrm{Poisson}(\lambda_i)
+$$
+where the Poisson PMF is
+$$
+f(k | \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}.
+$$
+
+## Data dependence
+
+We have $y_i \sim \mathrm{Poisson}(\lambda_i)$.
+We want to model $\lambda_i$ as some function of the average number of visitors $x_i$:
+$$
+f(\lambda_i) = \alpha + \beta x_i
+$$
+We need $\lambda_i > 0$ for the Poisson distribution.
+The canonical link function is $\log$.​
+
+## Inference I
+
+```{julia}
+#| output: false
+@model function poisson_regression(y::AbstractVector, x::AbstractVector)
+    # priors
+    α ~ Normal(0, 5)
+    β ~ Normal(0, 5)
+
+    # likelihood
+    λ = @. exp(α + β * x) # <1>
+    return y .~ Poisson.(λ)
+end
+```
+
+1. `@.` means all the operations to the right use dot syntax -- this is equivalent to `exp.(α .+ β .* x)`.
+
+## Inference II
+
+```{julia}
+#| code-fold: true
+poiss_chn = let
+    model = poisson_regression(wildlife_sightings, avg_visitors)
+    sampler = externalsampler(DynamicHMC.NUTS())
+    nsamples = 10_000
+    rng = Random.MersenneTwister(1112)
+    sample(rng, model, sampler, nsamples; drop_warmup=true)
+end
+plot(poiss_chn)
+```
+
+## Posterior check {.smaller}
+
+To our scatter plot, we can add the posterior predictive distribution, which we will visualize as percentiles
+
+::: {.incremental}
+- Recall: we want $\mathbb{E}[f(\lambda_i)]$
+- Here: $f$ will be some percentile of the Poisson distribution with parameter $\lambda_i$
+- For each value we want to predict at, we need to compute this percentile for *each posterior sample* and then average
+    - Why can't we average the values of $\lambda$ and then compute the percentile?
+:::
+
+## Posterior check II {.smaller .scrollable}
+
+```{julia}
+#| code-fold: true
+# define the values of "avg number of visitors" we want to predict at
+x_pred = range(40, 75; length=100)
+
+# posterior distributions
+α = poiss_chn[:α]
+β = poiss_chn[:β]
+
+# get a Matrix of Poisson distributions indexed [MCMC sample index, x index]
+λ = hcat([exp.(α .+ β .* xi) for xi in x_pred]...)
+dists = Poisson.(λ)
+
+# select the percentiles to plot
+percentiles = [5, 25, 50, 75, 95]
+
+# create the base plot
+p = plot(;
+    xlabel="Average number of visitors", ylabel="Wildlife sightings", legend=:topleft
+)
+
+# add percentile lines
+for pct in percentiles
+    line = vec(mean(quantile.(dists, pct / 100); dims=1))
+    plot!(p, x_pred, line; label="$pct%", color=:gray, linestyle=:dash)
+end
+
+# add the observations on top
+scatter!(p, avg_visitors, wildlife_sightings; label="Observed", color=:blue)
+```
+
+# Wrapup
+
+## Other common models
+
+- Negative Binomial regression: $y_i \sim \textrm{NegBin}(\mu_i, r)$ with $\log(\mu_i)= \alpha + \beta x_i$
+- "Robust" regression: $y_i = \alpha + \beta x_i + \epsilon_i$ with $\epsilon_i \sim \textrm{T}^\nu(\sigma)$ ($\nu=4$ is common)
+- Lots more
+
+## Simple interfaces {.smaller}
+
+- [TuringGLM](https://turinglang.org/TuringGLM.jl/dev/)
+    - still a work in progress
+    - convert a formula `@formula(y ~ x1 + x2 + x3)` into a Turing model
+- Inspired by
+    - [BRMS](https://github.com/paul-buerkner/brms/) in R, using Stan backend
+    - [bambi](https://github.com/bambinos/bambi) in Python, using PyMC3 backend
+
+These tools can be useful for fast model building, but when you write final versions of your results you should make sure you know what priors, data re-scaling, etc. you have used!
+
+## Summary
+
+Working with non-Gaussian likelihoods is pretty straightforward
+
+::: {.incremental}
+1. Need a "link function"
+1. Can use our same software tools to get MLE or Bayesian estimates
+:::
+
+. . .
+
+@mcelreath_rethinking2:2020 offers useful workflow suggestions:
+
+1. Use sensitivity analysis
+1. Do prior predictive checks (see chapter 11 for an example with Poisson regression)
+
+
+## Logistics
+
+- Lab 5 due next Monday
+- Project 1 to be posted soon (builds on lab 5)
+- Exam 1 revisions due Friday in class
+
+## Read more
+
+Some optional reading:
+
+1. Chapters 10 and 11 of @mcelreath_rethinking2:2020 (in particular section 10.2)
+    - This book spends a lot of time talking about Maximum Entropy likelihoods, which we won't worry about much.
+1. Chapter 16 of @gelman_bda3:2014
+    - Because this comes towards the end of the book, it builds on a fair bit of content we haven't yet seen
+
+
+## References

@@ -23,7 +23,7 @@ To print lecture slides to PDF, see [these instructions](https://quarto.org/docs
 |      | Fri., Sep. 8  | Lab 03: Optimization and maximum likelihood | | [{{< fa sharp laptop-code >}}](labs/lab03/template.qmd) | |
 | 4    | Mon., Sep. 11 | Parametric Uncertainty | [{{< fa sharp presentation-screen >}}](slides/lecture04-bayes1.qmd){target="_blank"} | | |
 |      | Wed., Sep. 13 | Bayesian inference | [{{< fa sharp presentation-screen >}}](slides/lecture04-bayes2.qmd){target="_blank"} | | |
-|      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo  | | [{{< fa sharp laptop-code >}}](labs/lab04/template.qmd) | |
+|      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | [{{< fa sharp laptop-code >}}](labs/lab04/template.qmd) | |
 |  5   | Mon., Sep. 18 | *No class* | | | |
 |      | Wed., Sep. 20 | Module 1 review | | | |
 |      | Fri., Sep. 22 | Module 1 exam | | | |
@@ -31,8 +31,8 @@ To print lecture slides to PDF, see [these instructions](https://quarto.org/docs
 | 6    | Mon., Sep. 25 | Motivation | [{{< fa sharp presentation-screen >}}](slides/lecture05-downscaling.qmd){target="_blank"} | | |
 |      | Wed., Sep. 27 | Course discussion | | | |
 |      | Fri., Sep. 29 | Module I wrapup | [{{< fa sharp presentation-screen >}}](slides/lecture05-module-1-wrapup.qmd){target="_blank"} | | |
-| 7    | Mon., Oct. 2  | Lab 05: Working with gridded climate data in Julia | | | |
-|      | Wed., Oct. 4  | Generalized linear models | | | |
+| 7    | Mon., Oct. 2  | Lab 05: Working with gridded climate data in Julia | | [{{< fa sharp laptop-code >}}](labs/lab05/template.qmd) | |
+|      | Wed., Oct. 4  | Generalized linear models | [{{< fa sharp presentation-screen >}}](slides/lecture06-glm.qmd){target="_blank"} | | |
 |      | Fri., Oct. 6  | Loss functions | | | |
 | 8    | Mon., Oct. 9  | *No class* | | | |
 |      | Wed., Oct. 11 | Principal components analysis  | | | |
