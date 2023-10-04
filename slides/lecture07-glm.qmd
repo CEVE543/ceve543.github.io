@@ -4,12 +4,11 @@ subtitle: "Lecture"
 date: 2023-10-04
 
 # metadata for the schedule page
-module:  "Module 2"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 02"
 categories:
     - "Module 2"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 ```{julia}
@@ -144,7 +143,7 @@ scatter(
     label=false,
     xlabel="Average summertime temperature (deg C)",
     ylabel="Forest fire occurred",
-    legend=:topleft
+    legend=:topleft,
 )
 ```
 
@@ -212,7 +211,7 @@ plot(
     label="Logit",
     xlabel=L"$\alpha + \beta x_i$",
     ylabel=L"$p_i = f(\alpha + \beta x_i)$",
-    legend=:topleft
+    legend=:topleft,
 )
 plot!(inv_probit; label="Probit")
 ```
@@ -273,7 +272,7 @@ scatter(
     label=false,
     xlabel="Average number of visitors",
     ylabel="Wildlife sightings",
-    legend=:topleft
+    legend=:topleft,
 )
 ```
 

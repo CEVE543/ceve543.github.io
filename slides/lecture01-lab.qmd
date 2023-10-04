@@ -4,12 +4,11 @@ subtitle: "Lab"
 date: 2023-08-25
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,9 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
-
-description: This lecture covers why we use Julia in this course and how to install the key project software.
+    - title-slide.html
 ---
 
 # How to lab

@@ -31,8 +31,6 @@ $code-bg: #222222;
 
 // Bootstrap inputs
 $input-bg: #222222;
-
-
 /*-- scss:rules --*/
 
 .cell-output pre {
@@ -43,7 +41,6 @@ $input-bg: #222222;
   background: $gray-700;
 }
 
-
 .course-details ul {
   list-style: none;
   text-indent: -0.7rem;
@@ -53,6 +50,6 @@ $input-bg: #222222;
 .tools-wide {
   padding-top: 0.5em;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   width: 65%;
 }

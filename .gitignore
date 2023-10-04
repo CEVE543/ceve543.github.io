@@ -1,3 +1,4 @@
+site_libs/*
 */.jupyter_cache/*
 schedule.tex
 syllabus/_cache
@@ -49,10 +50,7 @@ _site/
 _freeze/
 .quarto/
 .vscode/
-.luarc.json
-
-
-## Bibliography auxiliary files (bibtex/biblatex/biber):
+.luarc.json## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
 *.blg

@@ -4,12 +4,11 @@ subtitle: "Lecture"
 date: 2023-09-13
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 ```{julia}
@@ -65,10 +64,7 @@ Plots.default(; margin=4Plots.mm, size=(700, 400))
 
 $$
 \Pr \left\{ \theta | y \right\} = \frac{\Pr \left\{ y | \theta \right\} \Pr \left\{ \theta \right\}}{\Pr \left\{ y \right\}}
-$$
-
-
-## Application: rare disease {.smaller .scrollable}
+$$## Application: rare disease {.smaller .scrollable}
 
 Define $y$ is getting a positive test result and $\theta$ is having the underlying condition.
 *Not that we do not observe $\theta$ directly!*
@@ -133,10 +129,7 @@ If we are drawing samples from a distribution, we can calculate up to a constant
 
 $$
 \overbrace{p(\theta \mid y)}^\rm{posterior} \propto \underbrace{p(y \mid \theta)}_\rm{likelihood} \overbrace{p(\theta)}^\rm{prior}
-$$
-
-
-## Coin flipping
+$$## Coin flipping
 
 We flip a coin a few times.
 We want to estimate the probability of heads so that we can make well-calibrated bets on future coin tosses.
@@ -294,10 +287,7 @@ histogram(
 plot!(closed_form; label="Exact Posterior", linewidth=3)
 plot!(prior_dist; label="Prior", linewidth=3)
 vline!([θ_mle]; label="MLE", linewidth=3)
-```
-
-
-## Compromise
+```## Compromise
 
 The posterior is a compromise between the prior and the likelihood.
 

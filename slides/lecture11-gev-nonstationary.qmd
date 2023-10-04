@@ -4,8 +4,8 @@ subtitle: "Lecture"
 date: 2023-11-01
 
 # metadata for the schedule page
-module:  "Module 3"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 03"
 categories:
     - "Module 3"
     - "Lectures"
@@ -16,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 ## TBD

@@ -49,8 +49,6 @@ website:
         text: Schedule
       - text: "Installation"
         href: setup.qmd
-      - text: "FAQ"
-        href: faq.qmd
       - href: recommended_reading.qmd
         text: Textbooks
       - section: "Resources"
@@ -66,9 +64,7 @@ website:
           - href: resources/llm.qmd
             text: Large Language Models
 
-
 format:
-  
   # customization for HTML documents (i.e., the website)
   html:
     theme: 

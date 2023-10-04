@@ -4,12 +4,9 @@ subtitle: "Lecture"
 date: 2023-09-06
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
 categories:
     - "Module 1"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,7 +14,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 ```{julia}
@@ -97,7 +94,7 @@ plot(
     ylabel=L"$p(y=2 | \mu,  \sigma=1)$",
     xlabel=L"$\mu  $",
     label="Likelihood",
-    linewidth=2
+    linewidth=2,
 )
 vline!([y]; label="y", linewidth=2) # <2>
 ```
@@ -173,7 +170,7 @@ plot(
     label=L"$p(\theta | y=y,  \sigma=1)$",
     xlabel=L"$\theta$",
     ylabel="Likelihood",
-    linewidth=2
+    linewidth=2,
 )
 vline!(y_multi; label="y", linewidth=0.5)
 ```
@@ -188,10 +185,7 @@ We collect $y_1, \ldots, y_n$ which are the number of tropical cyclones that mak
 We decide to model them as a Poisson distribution with unknown rate $\lambda$:
 $$
 p(y_i | \lambda) = \frac{\lambda^{y_i} e^{-\lambda}}{y_i!}
-$$
-
-
-## Total log likelihood
+$$## Total log likelihood
 
 ::: {.incremental}
 
@@ -227,7 +221,7 @@ plot(
     label=L"$p(y=y | \lambda)$",
     xlabel=L"$\lambda$",
     ylabel="Likelihood",
-    linewidth=2
+    linewidth=2,
 )
 ```
 
@@ -264,7 +258,7 @@ plot(
     xlabel=L"$\mu$",
     ylabel=L"$\sigma$",
     legend=:topright,
-    colorbar_title=L"$p(y | \mu, \sigma)$"
+    colorbar_title=L"$p(y | \mu, \sigma)$",
 )
 ```
 

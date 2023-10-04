@@ -4,12 +4,11 @@ subtitle: "Lecture"
 date: 2023-09-25
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 02"
 categories:
-    - "Module 1"
+    - "Module 2"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 # Downscaling
@@ -159,7 +158,4 @@ This is never a perfect assumption
 - Quantitative and qualitative evaluation of the models
 - You can use any methods you like:
     - Those we cover in class
-    - Those you already know
-
-
-## References
+    - Those you already know## References

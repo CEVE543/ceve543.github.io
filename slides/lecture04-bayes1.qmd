@@ -4,12 +4,11 @@ subtitle: "Lecture"
 date: 2023-09-11
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 ```{julia}
@@ -225,7 +224,6 @@ We fix $L=1$ (known upper bound: 100% damage) so
 blogistic(x, x0, k) = (x > 0) * 1 / (1 + exp(-k * (x - x0)))
 ```
 
-
 ## Plotting fit {.scrollable}
 
 We will use $x_0 = 4$ and $k = 0.75$.
@@ -286,10 +284,7 @@ Monte Carlo methods are a set of computational techniques [for](https://www.cs.c
 We want to approximate the quantity
 $$
 \int_0^\infty \text{logistic}(h) \mathcal{N}(\mu, \sigma^2) \, dh
-$$
-
-
-::::: {.incremental}
+$$::::: {.incremental}
 :::: {.columns}
 ::: {.column width="50%"}
 A deterministic strategy:

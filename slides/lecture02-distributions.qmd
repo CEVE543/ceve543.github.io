@@ -4,12 +4,11 @@ subtitle: "Lecture"
 date: 2023-08-28
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
-
 
 # do not edit anything below this line
 format: revealjs
@@ -17,9 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
-
-description: Basics of distributions and illustrations of why computers can help us understand statistics
+    - title-slide.html
 ---
 
 ## A quick note on pacing
@@ -255,7 +252,7 @@ function get_shuffled_difference(y1, y2) # <2>
     # create groups consistent w/ skeptic's argument
     N1 = length(y1) # how many obs in the first vector?
     ynew1 = y_shuffled[1:N1]
-    ynew2 = y_shuffled[(N1 + 1):end]
+    ynew2 = y_shuffled[(N1+1):end]
 
     # get the difference
     difference = mean(ynew1) - mean(ynew2)
@@ -446,7 +443,7 @@ plot(
     Normal(0, 1);
     label="Normal Distribution",
     xlabel=L"$x$", # <1>
-    ylabel=L"$p(x | \mu=0, \sigma=1)$", # <2>
+    ylabel=L"$p(x | \mu=0, \sigma=1)$" # <2>
 )
 ```
 

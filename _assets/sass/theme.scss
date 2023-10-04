@@ -8,10 +8,7 @@ $font-family-sans-serif: "IBM Plex Sans", sans-serif;
 $font-family-monospace: "Source Code Pro", "IBM Plex Mono", monospace;
 $font-family-serif: "Source Serif Pro", "IBM Plex Serif", serif;
 
-$headings-font-family: $font-family-serif;
-
-
-// Bootstrap inputs
+$headings-font-family: $font-family-serif; // Bootstrap inputs
 
 $code-block-bg: #e7e7e7;
 $code-bg: #e7e7e7;
@@ -23,20 +20,20 @@ $code-bg: #e7e7e7;
 }
 
 .course-details ul {
-    list-style: none;
-    text-indent: -0.7rem;
-    padding-left: 1.4rem;
-  }
+  list-style: none;
+  text-indent: -0.7rem;
+  padding-left: 1.4rem;
+}
 
-  .tools-wide {
-    padding-top: 0.5em;
-    margin-left: auto;
-    margin-right:auto;
- 
-  }
-  
+.tools-wide {
+  padding-top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
 .sidebar {
- padding-right: 1.5em;
+  padding-right: 1.5em;
 }
 
 figcaption {

@@ -32,10 +32,7 @@ Please follow the instructions provided in [this course](../setup.qmd)
 * [FastTrack to Julia cheatsheet](https://juliadocs.github.io/Julia-Cheat-Sheet/)
 * [Plotting cheatsheet](https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf)
 * [Introduction to Computational Thinking](https://computationalthinking.mit.edu/Spring21/): a great Julia-based course at MIT covering applied mathematics and... computational thinking
-* [Comprehensive Julia Tutorials](https://www.youtube.com/playlist?list=PLCXbkShHt01seTlnlVg6O7f6jKGTguFi7): YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language.
-
-
-## Comments
+* [Comprehensive Julia Tutorials](https://www.youtube.com/playlist?list=PLCXbkShHt01seTlnlVg6O7f6jKGTguFi7): YouTube playlist covering a variety of Julia topics, starting with an introduciton to the language.## Comments
 Comments hide statements from the interpreter or compiler.
 It's a good idea to liberally comment your code so readers  (including yourself!) know why your code is structured and written the way it is.
 Single-line comments in Julia are preceded with a `#`. Multi-line comments are preceded with `#=` and ended with `=#`

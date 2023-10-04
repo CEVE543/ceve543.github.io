@@ -4,8 +4,8 @@ subtitle: "Lecture"
 date: 2023-08-23
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
@@ -16,9 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
-
-description: Climate hazards, such as floods, droughts, and tropical cyclones, are uncertain. In this lecture, we discuss the sources of uncertainty in climate hazards, and how we can quantify them.
+    - title-slide.html
 ---
 
 # What questions will we answer?

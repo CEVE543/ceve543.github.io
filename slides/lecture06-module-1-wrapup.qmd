@@ -4,8 +4,8 @@ subtitle: "Lecture"
 date: 2023-09-29
 
 # metadata for the schedule page
-module:  "Module 1"
-type: "Lecture"
+kind: "Lecture"
+module: "Module 01"
 categories:
     - "Module 1"
     - "Lectures"
@@ -16,7 +16,7 @@ author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
 template-partials:
-    - slides/title-slide.html
+    - title-slide.html
 ---
 
 # Reflections
@@ -148,10 +148,7 @@ We have a prior belief that $\lambda$ is distributed as an Exponential distribut
 $$
 p(\lambda | \theta) = \frac{1}{\theta} e^{-\frac{\lambda}{\theta}}
 $$
-After collecting data $y_1, y_2, \ldots, y_n$, what is the posterior distribution of $\lambda$ given our prior parameter $\theta$?
-
-
-## Next week:
+After collecting data $y_1, y_2, \ldots, y_n$, what is the posterior distribution of $\lambda$ given our prior parameter $\theta$?## Next week:
 
 - Monday: Gridded climate data lab
 - Wednesday: Generalized Linear Models
