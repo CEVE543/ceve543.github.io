@@ -1,0 +1,21 @@
+---
+title: "No Class -- Thanksgiving Week"
+subtitle: "Lecture"
+date: 2023-11-24
+
+# metadata for the schedule page
+kind: ""
+Module: ""
+categories:
+    - ""
+    - ""
+
+# do not edit anything below this line
+format: revealjs
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+

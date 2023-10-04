@@ -80,6 +80,7 @@ format:
     code-annotations: hover
     html-math-method: mathjax
     include-in-header: mathjax-config.html
+    date-format: "ddd., MMM. D"
   
   # customization for RevealJS (i.e., the slides)
   revealjs:
@@ -107,7 +108,7 @@ format:
     # math and code
     html-math-method: mathjax
     include-in-header: slides/mathjax-config.html
-    date-format: long
+    date-format: "ddd., MMM. D"
 
 # references
 bibliography: references.bib

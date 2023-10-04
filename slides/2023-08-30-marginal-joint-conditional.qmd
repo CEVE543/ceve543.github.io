@@ -1,11 +1,11 @@
 ---
-title: "All about probability distributions: PDFs, CDFs, and marginal, conditional, and joint distributions"
+title: "Marginal, conditional, and joint distributions"
 subtitle: Lecture
 date: 2023-08-30
 
 # metadata for the schedule page
 kind: "Lecture"
-module: "Module 01"
+Module: "1"
 categories:
     - "Module 1"
     - "Lectures"
@@ -49,7 +49,7 @@ The probability that $y$ takes on the value $y^*$, written $p(y=y^*)$, is zero.
 function quad_trap(f, a, b, N)
     h = (b - a) / N
     int = h * (f(a) + f(b)) / 2
-    for k in 1:(N-1)
+    for k in 1:(N - 1)
         xk = (b - a) * k / N + a
         int = int + h * f(xk)
     end
@@ -212,7 +212,7 @@ histogram(
     label="Sampled",
     normalize=true,
     xlabel=L"$y$",
-    ylabel="Density"
+    ylabel="Density",
 )
 ```
 
@@ -299,12 +299,12 @@ rolls = [gamma_poisson(r, p) for _ in 1:50_000]
 xticks = 0:1:60 # specify the bin values
 histogram(
     rolls;
-    bins=-0.5:1:(maximum(xticks)+0.5),
+    bins=-0.5:1:(maximum(xticks) + 0.5),
     xlabel="Number of rolls",
     ylabel="PMF",
     marker=:o,
     label="Gamma-Poisson",
-    normalize=true
+    normalize=true,
 )
 
 # add the PDF of the negative binomial distribution
