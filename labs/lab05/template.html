@@ -183,14 +183,14 @@ window.MathJax = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
+  <a href="../../recommended_reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Textbooks</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Resources</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -198,37 +198,31 @@ window.MathJax = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/julia-basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Julia Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics References</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/julia-plots.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/julia-plots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making Plots</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/llm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/llm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Large Language Models</span></a>
   </div>
 </li>
@@ -262,7 +256,11 @@ window.MathJax = {
 <div class="quarto-title">
 <h1 class="title">Lab 05</h1>
 <p class="subtitle lead">Working with Tabular and Gridded Climate Data</p>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Module 2</div>
+    <div class="quarto-category">Labs</div>
+  </div>
+  </div>
 
 
 
@@ -287,7 +285,7 @@ window.MathJax = {
 <section id="setup" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.1</span> Setup</h2>
 <p>Remember to <code>git clone</code> to your machine, then <code>activate</code> and <code>instantiate</code> the environment, as we have done in previous labs.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
@@ -307,7 +305,7 @@ window.MathJax = {
 <section id="tablular-climate-data" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Tablular Climate Data</h1>
 <p>The provided data set contains daily precipitation data from three rain gauges in Houston, TX, from the <a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">GHCN Daily</a> dataset. First, let’s glimpse at the data:</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(CSV.<span class="fu">read</span>(<span class="st">"data/rain_gauge_houston.csv"</span>, DataFrame), <span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div><div style="float: left;"><span>5×7 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
@@ -419,7 +417,7 @@ window.MathJax = {
 <section id="gridded-climate-data" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Gridded Climate Data</h1>
 <p>We will work with the <a href="https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html">CPC Global Unified Gauge-Based Analysis of Daily Precipitation</a>. This is a gridded dataset on 0.5 degrees. We are working with data in the general vicinity of Houston.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="fu">Dataset</span>(<span class="st">"data/cpc.nc"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -495,7 +493,7 @@ Variables
 </div>
 </div>
 <p>The data is stored as a netcdf4 file, which is a common data format for climate data. We can glimpse the preciptation data as follows:</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="op">:</span>precip]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div class="ansi-escaped-output">
@@ -526,7 +524,7 @@ Variables
 <li>What are its dimensions?</li>
 </ol>
 <p>You can access the attributes (i.e., metadtata) of the variable as</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="op">:</span>precip].attrib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div class="ansi-escaped-output">
@@ -562,7 +560,7 @@ missing_value        = <span class="ansi-cyan-fg">-9.96921e36</span>
 <p>Note that we need to transpose the data here. There’s not a good rule of thumb that I have any luck with for remembering when I need to do this, and you need to look at your data. In this case, the blank squares correspond to ocean and I know that the Gulf of Mexico is in the South East of our domain.</p>
 <p>Create some plots for other days in the dataset.</p>
 <p>After we’re done reading the data, we close our link to the file.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>closed Dataset</code></pre>

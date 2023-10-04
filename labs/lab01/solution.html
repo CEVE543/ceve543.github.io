@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your name here (your netID here)">
-<meta name="dcterms.date" content="2023-10-03">
+<meta name="dcterms.date" content="2023-10-04">
 
 <title>CEVE 543 - Fall 2023 - Lab 01</title>
 <style>
@@ -181,14 +181,14 @@ window.MathJax = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
+  <a href="../../recommended_reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Textbooks</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Resources</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -196,37 +196,31 @@ window.MathJax = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/julia-basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/julia-basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Julia Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics References</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/julia-plots.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/julia-plots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making Plots</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/llm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../resources/llm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Large Language Models</span></a>
   </div>
 </li>
@@ -242,9 +236,9 @@ window.MathJax = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">1</span> Setup</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">2</span> Running Code</a></li>
-  <li><a href="#rendering-the-document" id="toc-rendering-the-document" class="nav-link" data-scroll-target="#rendering-the-document"><span class="header-section-number">3</span> Rendering the Document</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#rendering-the-document" id="toc-rendering-the-document" class="nav-link" data-scroll-target="#rendering-the-document">Rendering the Document</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://www.github.com/ceve543/ceve543.github.io/edit/main/labs/lab01/solution.qmd" class="toc-action">Edit this page</a></p><p><a href="https://www.github.com/ceve543/ceve543.github.io/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -271,7 +265,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Date Submitted</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 3, 2023</p>
+      <p class="date">October 4, 2023</p>
     </div>
   </div>
   
@@ -281,22 +275,22 @@ window.MathJax = {
 
 </header>
 
-<section id="setup" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1</span> Setup</h2>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>Do not modify this section!</p>
 </section>
-<section id="running-code" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="running-code"><span class="header-section-number">2</span> Running Code</h2>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
 <p>We can use Quarto to run Julia code in-line</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"I'm using Julia!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>I'm using Julia!</code></pre>
 </div>
 </div>
 </section>
-<section id="rendering-the-document" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="rendering-the-document"><span class="header-section-number">3</span> Rendering the Document</h2>
+<section id="rendering-the-document" class="level2">
+<h2 class="anchored" data-anchor-id="rendering-the-document">Rendering the Document</h2>
 <p>Now, verify that you can render the document in HTML:</p>
 <ol type="1">
 <li>Open the command palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux)</li>
