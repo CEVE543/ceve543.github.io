@@ -1,5 +1,5 @@
 ---
-title: "Parametric Uncertainty"
+title: "Parametric uncertainty: why it matters and Monte Carlo methods"
 subtitle: "Lecture"
 date: 2023-09-11
 
@@ -80,7 +80,7 @@ p1 = plot(
     xlabel="Year",
     ylabel="Ann. Max. Water Level",
     label=false,
-    marker=:circle # <2>
+    marker=:circle, # <2>
 )
 p2 = histogram(
     annmax.lsl;
@@ -91,7 +91,7 @@ p2 = histogram(
     ylabel="",
     yticks=[], # <4>
     bins=2:0.3:8,
-    xlims=(0, 0.8)
+    xlims=(0, 0.8),
 )
 
 l = @layout [a{0.7w} b{0.3w}] # <5>
@@ -130,7 +130,7 @@ histogram(
     xlabel="Ann. Max. Water Level",
     normalize=:pdf, # <1>
     bins=2:0.25:8,
-    label="Observed"
+    label="Observed",
 )
 
 annmax[!, :lsl_ft] = ustrip.(u"ft", annmax.lsl) # <2>
@@ -173,7 +173,7 @@ plt_rt = plot(
     xticks=(xticks, string.(xticks)), # <1>
     yticks=(yticks, string.(yticks)),
     label="MLE Distribution",
-    linewidth=2
+    linewidth=2,
 )
 ```
 
@@ -241,7 +241,7 @@ plot(
     label=false,
     xlabel="Depth (ft)",
     ylabel="Damage Fraction",
-    linewidth=2
+    linewidth=2,
 )
 ```
 
