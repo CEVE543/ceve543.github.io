@@ -12,12 +12,13 @@ listing:
   table-striped: true
   table-hover: true
   categories: numbered
-  fields: [date, title, module, kind]
+  fields: [date, title, Module, kind]
   field-display-names: 
     date: "Date"
     title: "Title"
     module: "Module"
     kind: "Category"
+  page-size: 100
 ---
 
 This page contains a schedule of the topics, content, and assignments for the semester.
