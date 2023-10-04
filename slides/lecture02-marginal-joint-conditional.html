@@ -13,7 +13,7 @@
 
   <meta name="author" content="Dr.&nbsp;James Doss-Gollin!">
   <meta name="dcterms.date" content="2023-08-30">
-  <title>CEVE 543 - Fall 2023 - Working with probability distributions</title>
+  <title>CEVE 543 - Fall 2023 - All about probability distributions: PDFs, CDFs, and marginal, conditional, and joint distributions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -343,7 +343,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<meta property="og:title" content="CEVE 543 - Fall 2023 - Working with probability distributions">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - All about probability distributions: PDFs, CDFs, and marginal, conditional, and joint distributions">
 <meta property="og:description" content="Lecture">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
@@ -352,7 +352,7 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-    <h1 class="title">Working with probability distributions</h1>
+    <h1 class="title">All about probability distributions: PDFs, CDFs, and marginal, conditional, and joint distributions</h1>
   <hr>
 <p class="subtitle">Lecture</p>
 <p class="date">August 30, 2023</p>
@@ -412,7 +412,7 @@ f_{X}(x)={\frac {d}{dx}}F_{X}(x).
 F_X(2) = \int_{-\infty}^2 f_X(u) \, du
 \]</span></p>
 <p>We will use a standard Normal distribution as an example</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(0.9771562639858903, 0.9772498680518208)</code></pre>
 </div>
@@ -429,7 +429,7 @@ F_X(2) = \int_{-\infty}^2 f_X(u) \, du
 <li>Discrete distributions (like the Poisson) have a <em>probability mass function</em> (PMF) instead of a PDF</li>
 <li>For PMFs, <span class="math inline">\(p(y=y^*)\)</span> is the probability that <span class="math inline">\(y\)</span> takes on the value <span class="math inline">\(y^*\)</span>, and is defined</li>
 </ul>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewbox="0 0 3840 1920">
@@ -628,7 +628,7 @@ p(y_i, x_i | a, b, \sigma) = p(y_i | x_i, a, b, \sigma) p(x_i)
 <h2>Simulation</h2>
 <div class="fragment">
 <p>If <span class="math inline">\(x=2\)</span>, we can simulate from the conditional distribution of <span class="math inline">\(y\)</span>:</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewbox="0 0 3840 1920">
@@ -851,7 +851,7 @@ p(y_i, x_i | a, b, \sigma) = p(y_i | x_i, a, b, \sigma) p(x_i)
 </div>
 <div class="fragment">
 <p>If <span class="math inline">\(x \sim N(0, 1)\)</span>, then we can simulate from the joint distribution of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewbox="0 0 3840 1920">
@@ -10902,7 +10902,7 @@ p(y_i, x_i | a, b, \sigma) = p(y_i | x_i, a, b, \sigma) p(x_i)
 </div>
 <div class="fragment">
 <p>Finally, assuming the same distribution, we can simulate from the marginal distribution of <span class="math inline">\(y\)</span>:</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewbox="0 0 3840 1920">
@@ -11122,14 +11122,14 @@ y &amp;\sim \textrm{Poisson}(\lambda) \\
 <section id="simulation-example" class="slide level2 scrollable">
 <h2>Simulation example</h2>
 <p>We can see this with simulation. First we define a function to simulate from the Gamma-Poisson mixture:</p>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>gamma_poisson (generic function with 1 method)</code></pre>
 </div>
 </div>
 <div class="fragment">
 <p>Then we can simulate from the mixture and compare to the Negative Binomial distribution:</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewbox="0 0 3840 1920">
