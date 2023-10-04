@@ -1,5 +1,6 @@
 ---
 title: "Setting Up Your Computer"
+format: html
 ---
 
 Getting set up for this course requires the following steps.
@@ -38,7 +39,7 @@ Going forward, if you want to add new versions or change the default, you can [f
 
 ### More Resources
 
-See [this tutorial](tutorials/julia-basics.qmd) for more information on using Julia.
+See [this tutorial](resources/julia-basics.qmd) for more information on using Julia.
 
 ## Install and Set Up VS Code
 
@@ -65,7 +66,7 @@ You can also create `.jl` and `.qmd` files to write Julia code and execute line 
 
 ### More Resources
 
-See [this tutorial](tutorials/julia-basics.qmd) for more information on using Julia.
+See [this tutorial](resources/julia-basics.qmd) for more information on using Julia.
 
 ## Set Up GitHub
 
@@ -90,7 +91,7 @@ If you're not sure if it's installed, see instructions [here](https://github.com
 
 ### More Resources
 
-See [GitHub official tutorials](tutorials/github.qmd) for more helpful resources and tutorials.
+See [GitHub official tutorials](resources/github.qmd) for more helpful resources and tutorials.
 
 ## Set up Quarto
 
@@ -130,7 +131,7 @@ If this throws an error, copy and paste the error onto Canvas
 
 ### More Resources
 
-See [this tutorial](tutorials/quarto.qmd) for more information on using Quarto.
+See [this tutorial](resources/quarto.qmd) for more information on using Quarto.
 
 ## Verify
 

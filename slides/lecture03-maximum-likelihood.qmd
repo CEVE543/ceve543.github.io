@@ -1,39 +1,23 @@
 ---
 title: "Maximum likelihood"
 subtitle: "Lecture"
-date: "September 6, 2023"
+date: 2023-09-06
 
-# don't adjust the below options, they should be the same for all slides
+# metadata for the schedule page
+module:  "Module 1"
+type: "Lecture"
+categories:
+    - "Module 1"
+    - "Lectures"
+
+
+# do not edit anything below this line
+format: revealjs
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
-format:
-    revealjs:
-        slide-number: c/t
-        show-slide-number: all
-        center-title-slide: true
-        width: 1280
-        height: 720
-        transition: none
-        toc: true
-        toc-depth: 1
-        toc-title: "Overview"
-        history: false
-        link-external-newwindow: true
-        theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
-        template-partials:
-            - title-slide.html
-        menu:
-            numbers: true
-        html-math-method: mathjax
-        include-in-header: mathjax-config.html
-        date-format: long
-        code-annotations: below
-
-execute:
-    freeze: auto
-    echo: true
+template-partials:
+    - slides/title-slide.html
 ---
 
 ```{julia}
@@ -102,7 +86,7 @@ Next we plug in some values for $\mu$ and plot the likelihood for each.
 This is essentially plotting the likelihood as a function of $\theta$ for fixed $y$.
 
 ```{julia}
-μ_try = range(-6, 8, length=500)
+μ_try = range(-6, 8; length=500)
 y = 2.0
 σ = 1.0
 μ_lik = normal_lik.(y, μ_try, σ) # <1>
@@ -115,7 +99,7 @@ plot(
     label="Likelihood",
     linewidth=2
 )
-vline!([y], label="y", linewidth=2) # <2>
+vline!([y]; label="y", linewidth=2) # <2>
 ```
 
 1. The vector notation `lik.` means to apply the function `lik` to each element of `μ_try`. `[lik(xi, 1, 2) for xi in x]` would do the same thing.
@@ -191,7 +175,7 @@ plot(
     ylabel="Likelihood",
     linewidth=2
 )
-vline!(y_multi, label="y", linewidth=0.5)
+vline!(y_multi; label="y", linewidth=0.5)
 ```
 
 1. In this case both $\mu$ and $y$ are vectors, with different lengths, so using the dot notation `lik.` won't work -- it doesn't know which variable to vectorize over.
@@ -235,7 +219,7 @@ end;
 
 ```{julia}
 y_poiss = [6, 7, 8, 6, 4, 7, 5, 4, 7, 5]
-λ_try = range(1, 13, length=500)
+λ_try = range(1, 13; length=500)
 λ_lik = [poiss_lik(y_poiss, λi) for λi in λ_try]
 plot(
     λ_try,
@@ -280,7 +264,7 @@ plot(
     xlabel=L"$\mu$",
     ylabel=L"$\sigma$",
     legend=:topright,
-    colorbar_title=L"$p(y | \mu, \sigma)$",
+    colorbar_title=L"$p(y | \mu, \sigma)$"
 )
 ```
 

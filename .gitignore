@@ -1,3 +1,4 @@
+*/.jupyter_cache/*
 schedule.tex
 syllabus/_cache
 syllabus/*.bib
@@ -25,6 +26,8 @@ syllabus/Manifest.toml
 *.cb
 *.cb2
 .*.lb
+
+schedule-listing.json
 
 labs/*/*.html
 tutorials/*/*.html

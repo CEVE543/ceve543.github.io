@@ -1,39 +1,23 @@
 ---
 title: "Bayesian Analysis"
 subtitle: "Lecture"
-date: "September 13, 2023"
+date: 2023-09-13
 
-# don't adjust the below options, they should be the same for all slides
+# metadata for the schedule page
+module:  "Module 1"
+type: "Lecture"
+categories:
+    - "Module 1"
+    - "Lectures"
+
+
+# do not edit anything below this line
+format: revealjs
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
-format:
-    revealjs:
-        slide-number: c/t
-        show-slide-number: all
-        center-title-slide: true
-        width: 1280
-        height: 720
-        transition: none
-        toc: true
-        toc-depth: 1
-        toc-title: "Overview"
-        history: false
-        link-external-newwindow: true
-        theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
-        template-partials:
-            - title-slide.html
-        menu:
-            numbers: true
-        html-math-method: mathjax
-        include-in-header: mathjax-config.html
-        date-format: long
-        code-annotations: below
-
-execute:
-    freeze: auto
-    echo: true
+template-partials:
+    - slides/title-slide.html
 ---
 
 ```{julia}
@@ -51,7 +35,7 @@ using StatsPlots
 using Turing
 using Unitful
 
-Plots.default(margin=4Plots.mm, size=(700, 400))
+Plots.default(; margin=4Plots.mm, size=(700, 400))
 ```
 
 ## Last time
@@ -123,8 +107,8 @@ accuracy = 0.99
 pr_disease = 0.001 # p(θ = 1)
 pr_positive_test = accuracy * pr_disease + (1 - accuracy) * (1 - pr_disease) # p(y = 1)
 pr_disease_given_test = accuracy * pr_disease / pr_positive_test # p(θ = 1 | y = 1)
-display(round(pr_positive_test, digits=5))
-display(round(pr_disease_given_test, digits=5))
+display(round(pr_positive_test; digits=5))
+display(round(pr_disease_given_test; digits=5))
 ```
 
 # Bayesian Inference
@@ -175,8 +159,8 @@ As before, we can use our log-likelihood.
 flip_log_like(θ) = sum(logpdf.(Bernoulli(θ), heads)) # <1>
 loss(θ) = -flip_log_like(θ)
 θ_mle = optimize(loss, 0, 1).minimizer # <2>
-plot(flip_log_like, 0.1, 1, label=L"$p(y | \theta)$")
-vline!([θ_mle], label="MLE", linewidth=3)
+plot(flip_log_like, 0.1, 1; label=L"$p(y | \theta)$")
+vline!([θ_mle]; label="MLE", linewidth=3)
 ```
 
 1. This builds on what we did last time. A coin flip is represented by a Bernoulli process. In fact, we could use a Binomial distribution to model the number of heads in $N$ flips.
@@ -240,7 +224,14 @@ while length(θ_samples) < 10_000
     end
     push!(θ_samples, θ_sample)
 end
-histogram(θ_samples; normalize=:pdf, label="Samples", legend=:topleft, xlabel=L"$θ$", ylabel=L"$p(θ | y)$")
+histogram(
+    θ_samples;
+    normalize=:pdf,
+    label="Samples",
+    legend=:topleft,
+    xlabel=L"$θ$",
+    ylabel=L"$p(θ | y)$"
+)
 plot!(closed_form; label="Exact Posterior", linewidth=3)
 ```
 
@@ -292,10 +283,17 @@ summarystats(coin_chain)
 We can visualize our *posterior*
 
 ```{julia}
-histogram(coin_chain[:θ]; label="Samples", normalize=:pdf, legend=:topleft, xlabel=L"$θ$", ylabel=L"$p(θ | y)$")
+histogram(
+    coin_chain[:θ];
+    label="Samples",
+    normalize=:pdf,
+    legend=:topleft,
+    xlabel=L"$θ$",
+    ylabel=L"$p(θ | y)$"
+)
 plot!(closed_form; label="Exact Posterior", linewidth=3)
 plot!(prior_dist; label="Prior", linewidth=3)
-vline!([θ_mle], label="MLE", linewidth=3)
+vline!([θ_mle]; label="MLE", linewidth=3)
 ```
 
 
@@ -326,10 +324,10 @@ p1 = plot(
     xlabel="Year",
     ylabel="Ann. Max. Water Level",
     label=false,
-    marker=:circle, # <2>
+    marker=:circle # <2>
 )
 p2 = histogram(
-    annmax.lsl,
+    annmax.lsl;
     normalize=:pdf, # <3>
     orientation=:horizontal,
     label=false,
@@ -337,7 +335,7 @@ p2 = histogram(
     ylabel="",
     yticks=[], # <4>
     bins=2:0.3:8,
-    xlims=(0, 0.8),
+    xlims=(0, 0.8)
 )
 
 l = @layout [a{0.7w} b{0.3w}] # <5>
@@ -357,7 +355,7 @@ Define a LogNormal distribution with very diffuse (flat) priors
     σ ~ truncated(Normal(0, 10), 0, Inf) # σ must be positive
 
     # data generating process
-    y .~ LogNormal(μ, σ)
+    return y .~ LogNormal(μ, σ)
 end
 ```
 
@@ -367,7 +365,7 @@ end
 #| output: false
 ln_flat_chn = let
     model = lognormal_flatpriors(annmax.lsl_ft)
-    sampler =  externalsampler(DynamicHMC.NUTS())
+    sampler = externalsampler(DynamicHMC.NUTS())
     nsamples = 20_000
     sample(model, sampler, nsamples; drop_warmup=true)
 end
@@ -389,7 +387,7 @@ post1_scatter = histogram2d(
     title="Diffuse Priors",
     normalize=:pdf,
     clims=(0, 1000),
-    bins=100,
+    bins=100
 )
 ```
 
@@ -408,14 +406,14 @@ aeps = 1 .- 1 ./ rts # annual exceedance probability
 xticks = [2, 5, 10, 25, 50, 100, 250, 500]
 yticks = [3.5, 4, 4.5, 5, 5.5, 6, 6.5]
 
-plt_rt_base = plot(
+plt_rt_base = plot(;
     xlabel="Return Period [years]",
     ylabel="Return Level [ft]",
     xscale=:log10,
     yscale=:log10,
     legend=:bottomright,
     xticks=(xticks, string.(xticks)), # <1>
-    yticks=(yticks, string.(yticks)),
+    yticks=(yticks, string.(yticks))
 )
 
 function weibull_plot_pos(y)
@@ -462,7 +460,7 @@ We can treat the priors as parameters so that we don't have to define a new `@mo
 @model function lognormal(y, μ_dist, σ_dist) # <1>
     μ ~ μ_dist
     σ ~ σ_dist
-    y .~ LogNormal(μ, σ)
+    return y .~ LogNormal(μ, σ)
 end
 ```
 
@@ -484,7 +482,7 @@ Draw samples from the prior
 #| output: false
 ln_ppc = let
     model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
-    sampler =  Prior()
+    sampler = Prior()
     nsamples = 10_000
     sample(model, sampler, nsamples; drop_warmup=true)
 end
@@ -524,7 +522,7 @@ We can sample
 #| code-fold: true
 ln_ppc = let
     model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
-    sampler =  Prior()
+    sampler = Prior()
     nsamples = 10_000
     sample(model, sampler, nsamples; drop_warmup=true)
 end
@@ -552,7 +550,7 @@ plt_prior_2
 #| code-fold: true
 ln_ppc = let
     model = lognormal(annmax.lsl_ft, μ_prior, σ_prior)
-    sampler =  Prior()
+    sampler = Prior()
     nsamples = 5000
     sample(model, sampler, nsamples; drop_warmup=true)
 end
@@ -607,9 +605,9 @@ post2_scatter = histogram2d(
     normalize=:pdf,
     yticks=[],
     clims=(0, 1000),
-    bins=100,
+    bins=100
 )
-plot(plot(post1_scatter), post2_scatter, link=:both)
+plot(plot(post1_scatter), post2_scatter; link=:both)
 ```
 
 ::: {.callout-note}

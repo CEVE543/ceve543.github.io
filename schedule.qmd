@@ -1,60 +1,20 @@
 ---
 title: "{{< var course.number >}}: {{< var course.title >}}"
-tbl-colwidths: [5, 10, 25, 5, 5, 5]
+format: html
+listing:
+  type: table
+  contents:
+    - "slides/*.qmd"
+    - "labs/*/template.qmd"
+  sort:
+    - "date"
+    - "title desc"
+  table-striped: true
+  table-hover: true
+  categories: numbered
+  fields: [date, title, module, type]
 ---
 
 This page contains a schedule of the topics, content, and assignments for the semester.
 This schedule **will be updated as necessary** over the course of the semester to accommodate logistics and to adapt to student needs.
 
-To print lecture slides to PDF, see [these instructions](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf){target=_blank}.
-
-::: column-screen-inset-right
-| Week | Date        | Topic | Slides | Lab | Project |
-|:----:|:-----------|:------|:------:|:---:|:-------:|
-|      | **Module 1** | **Fundamentals** | | | |
-| 1    | Mon., Aug. 21 | Welcome to {{< var course.number >}}! | [{{< fa sharp presentation-screen >}}](slides/lecture01-welcome.qmd){target="_blank"}  | | |
-|      | Wed., Aug. 23 | What drives uncertain climate hazard? | [{{< fa sharp presentation-screen >}}](slides/lecture01-climate.qmd){target="_blank"}  | | |
-|      | Fri., Aug. 25 | Lab 01: Setting up Julia, GitHub, and Quarto | [{{< fa sharp presentation-screen >}}](slides/lecture01-lab.qmd){target="_blank"} | [{{< fa sharp laptop-code >}}](labs/lab01/instructions.qmd) | |
-| 2    | Mon., Aug. 28 | Introduction to statistics and probability distributions | [{{< fa sharp presentation-screen >}}](slides/lecture02-distributions.qmd){target="_blank"} | | |
-|      | Wed., Aug. 30 | Working with probability distributions | [{{< fa sharp presentation-screen >}}](slides/lecture02-marginal-joint-conditional.qmd){target="_blank"} | | |
-|      | Fri., Sep. 1  | Lab 02: Working with tabular data in Julia | | [{{< fa sharp laptop-code >}}](labs/lab02/template.qmd) | |
-| 3    | Mon., Sep. 4  | *No class* | | | |
-|      | Wed., Sep. 6  | Maximum likelihood estimation | [{{< fa sharp presentation-screen >}}](slides/lecture03-maximum-likelihood.qmd){target="_blank"} | | |
-|      | Fri., Sep. 8  | Lab 03: Optimization and maximum likelihood | | [{{< fa sharp laptop-code >}}](labs/lab03/template.qmd) | |
-| 4    | Mon., Sep. 11 | Parametric Uncertainty | [{{< fa sharp presentation-screen >}}](slides/lecture04-bayes1.qmd){target="_blank"} | | |
-|      | Wed., Sep. 13 | Bayesian inference | [{{< fa sharp presentation-screen >}}](slides/lecture04-bayes2.qmd){target="_blank"} | | |
-|      | Fri., Sep. 15 | Lab 04: Markov Chain Monte Carlo | | [{{< fa sharp laptop-code >}}](labs/lab04/template.qmd) | |
-|  5   | Mon., Sep. 18 | *No class* | | | |
-|      | Wed., Sep. 20 | Module 1 review | | | |
-|      | Fri., Sep. 22 | Module 1 exam | | | |
-|      | **Module 2** | **Downscaling** | | | [{{< fa sharp pen-field title="Project 2" >}}](projects/project02/project02.qmd) |
-| 6    | Mon., Sep. 25 | Motivation | [{{< fa sharp presentation-screen >}}](slides/lecture05-downscaling.qmd){target="_blank"} | | |
-|      | Wed., Sep. 27 | Course discussion | | | |
-|      | Fri., Sep. 29 | Module I wrapup | [{{< fa sharp presentation-screen >}}](slides/lecture05-module-1-wrapup.qmd){target="_blank"} | | |
-| 7    | Mon., Oct. 2  | Lab 05: Working with gridded climate data in Julia | | [{{< fa sharp laptop-code >}}](labs/lab05/template.qmd) | |
-|      | Wed., Oct. 4  | Generalized linear models | [{{< fa sharp presentation-screen >}}](slides/lecture06-glm.qmd){target="_blank"} | | |
-|      | Fri., Oct. 6  | Loss functions | | | |
-| 8    | Mon., Oct. 9  | *No class* | | | |
-|      | Wed., Oct. 11 | Principal components analysis  | | | |
-|      | Fri., Oct. 13 | Lab 06: Quantile-quantile bias correction | | | |
-| 9    | Mon., Oct. 16 | Random forests | | | |
-|      | Wed., Oct. 18 | Hyperparameter selection and optimization | | | |
-|      | Fri., Oct. 20 | Project workshop | | | |
-|      | **Module 3** | **Frequency Analysis** | | | [{{< fa sharp pen-field title="Project 3" >}}](projects/project03/project03.qmd) |
-| 10   | Mon., Oct. 23 | Motivation (*guest: Dr. Philip Bedient*)  | | | |
-|      | Wed., Oct. 25 | Extreme value theory and the GEV | | | |
-|      | Fri., Oct. 27 | Lab 07: Convergence, central limits, and fat tails | | | |
-| 11   | Mon., Oct. 30 | GEV Estimators | | | |
-|      | Wed., Nov. 1  | Nonstationary GEV | | | |
-|      | Fri., Nov. 3  | Lab 08: Graphical model diagnostics | | | |
-| 12   | Mon., Nov. 6  | Quantitative and qualitative model selection | | | |
-|      | Wed., Nov. 8  | Regionalization | | | |
-|      | Fri., Nov. 10 | Lab: $K$-means clustering | | | |
-| 13   | Mon., Nov. 13 | Motivation | | | |
-|      | Wed., Nov. 15 | Quantitative model comparison | | | |
-|      | Fri., Nov. 17 | Project workshop | | | |
-|      | Wed., Nov. 22 | *No class* | | | |
-|      | Fri., Nov. 24 | *No class* | | | |
-|      | Wed., Nov. 29 | Review module 3 | | | |
-|      | Fri., Dec. 1  | Module 3 Exam | | | |
-:::

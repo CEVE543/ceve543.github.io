@@ -16,10 +16,6 @@ format:
       - _assets/filters/columns-to-tables.lua
     title: "{{< var course.number >}} ({{< var course.title >}}) Syllabus"
     subtitle: "{{< var course.semester >}}"
-  docx:
-    toc: true
-    toc-depth: 2
-    number-sections: false
 ---
 
 ## Course Overview

@@ -1,5 +1,6 @@
 ---
 title: "{{< var course.number >}}: {{< var course.title >}}"
+format: html
 ---
 
 This is the course website for the {{< var course.semester >}} edition of {{< var course.number >}}, {{< var course.title >}}, taught at [{{< var university.name >}}]({{< var university.url >}}) by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).

@@ -1,0 +1,25 @@
+---
+title: "Frequency Analysis (Planned)"
+subtitle: "Lecture"
+date: 2023-10-23
+
+# metadata for the schedule page
+module:  "Module 3"
+type: "Lecture"
+categories:
+    - "Module 3"
+    - "Lectures"
+
+# do not edit anything below this line
+format: revealjs
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - slides/title-slide.html
+---
+
+## TBD
+
+This is a placeholder for a planned lecture.
+The schedule will be modified as needed.

@@ -1,39 +1,23 @@
 ---
-title: "Working with probability distributions"
-subtitle: "Lecture"
-date: "August 30, 2023"
+title: Working with probability distributions
+subtitle: Lecture
+date: 2023-08-30
 
-# don't adjust the below options, they should be the same for all slides
+# metadata for the schedule page
+module:  "Module 1"
+type: "Lecture"
+categories:
+    - "Module 1"
+    - "Lectures"
+
+
+# do not edit anything below this line
+format: revealjs
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
-format:
-    revealjs:
-        slide-number: c/t
-        show-slide-number: all
-        center-title-slide: true
-        width: 1280
-        height: 720
-        transition: none
-        toc: true
-        toc-depth: 1
-        toc-title: "Overview"
-        history: false
-        link-external-newwindow: true
-        theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
-        template-partials:
-            - title-slide.html
-        menu:
-            numbers: true
-        html-math-method: mathjax
-        include-in-header: mathjax-config.html
-        date-format: long
-        code-annotations: below
-
-execute:
-    freeze: auto
-    echo: true
+template-partials:
+    - slides/title-slide.html
 ---
 
 # PDFs and CDFs
@@ -223,7 +207,14 @@ N_sim = 10_000
 
 x = 2
 y = rand(Normal(m * x + b, σ), N_sim)
-histogram(y, title=L"$p(y | x=2)$", label="Sampled", normalize=true, xlabel=L"$y$", ylabel="Density")
+histogram(
+    y;
+    title=L"$p(y | x=2)$",
+    label="Sampled",
+    normalize=true,
+    xlabel=L"$y$",
+    ylabel="Density"
+)
 ```
 
 . . .
@@ -233,7 +224,7 @@ If $x \sim N(0, 1)$, then we can simulate from the joint distribution of $x$ and
 ```{julia}
 x = rand(Normal(0, 1), 10_000)
 y = [rand(Normal(m * xᵢ + b, σ)) for xᵢ in x] # <1>
-scatter(x, y, label=L"$p(x, y)$", xlabel=L"$x$", ylabel=L"$y$")
+scatter(x, y; label=L"$p(x, y)$", xlabel=L"$x$", ylabel=L"$y$")
 ```
 
 1. A list comprehension here is less elegant than writing `rand.(Normal.(m .* x .+ b, σ))` but it is easy to read. The results are the same.
@@ -243,7 +234,7 @@ scatter(x, y, label=L"$p(x, y)$", xlabel=L"$x$", ylabel=L"$y$")
 Finally, assuming the same distribution, we can simulate from the marginal distribution of $y$:
 
 ```{julia}
-histogram(y, label=L"$p(y)$", normalize=true, xlabel=L"$y$", ylabel="Density")
+histogram(y; label=L"$p(y)$", normalize=true, xlabel=L"$y$", ylabel="Density")
 ```
 
 

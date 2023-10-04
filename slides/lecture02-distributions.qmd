@@ -1,39 +1,25 @@
 ---
 title: "Introduction to statistics and probability distributions"
 subtitle: "Lecture"
-date: "August 28, 2023"
+date: 2023-08-28
 
-# don't adjust the below options, they should be the same for all slides
+# metadata for the schedule page
+module:  "Module 1"
+type: "Lecture"
+categories:
+    - "Module 1"
+    - "Lectures"
+
+
+# do not edit anything below this line
+format: revealjs
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
-format:
-    revealjs:
-        slide-number: c/t
-        show-slide-number: all
-        center-title-slide: true
-        width: 1280
-        height: 720
-        transition: none
-        toc: true
-        toc-depth: 1
-        toc-title: "Overview"
-        history: false
-        link-external-newwindow: true
-        theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
-        template-partials:
-            - title-slide.html
-        menu:
-            numbers: true
-        html-math-method: mathjax
-        include-in-header: mathjax-config.html
-        date-format: long
-        code-annotations: below
+template-partials:
+    - slides/title-slide.html
 
-execute:
-    freeze: auto
-    echo: true
+description: Basics of distributions and illustrations of why computers can help us understand statistics
 ---
 
 ## A quick note on pacing
@@ -164,7 +150,33 @@ In this class we will use computation and simulation to build fundamental insigh
 Create a *variable* called `beer` to hold the number of mosquito bites for beer drinkers:
 
 ```{julia}
-beer = [27, 20, 21, 26, 27, 31, 24, 21, 20, 19, 23, 24, 28, 19, 24, 29, 18, 20, 17, 31, 20, 25, 28, 21, 27]
+beer = [
+    27,
+    20,
+    21,
+    26,
+    27,
+    31,
+    24,
+    21,
+    20,
+    19,
+    23,
+    24,
+    28,
+    19,
+    24,
+    29,
+    18,
+    20,
+    17,
+    31,
+    20,
+    25,
+    28,
+    21,
+    27,
+]
 ```
 
 ## What is `beer`?
@@ -243,7 +255,7 @@ function get_shuffled_difference(y1, y2) # <2>
     # create groups consistent w/ skeptic's argument
     N1 = length(y1) # how many obs in the first vector?
     ynew1 = y_shuffled[1:N1]
-    ynew2 = y_shuffled[(N1+1):end]
+    ynew2 = y_shuffled[(N1 + 1):end]
 
     # get the difference
     difference = mean(ynew1) - mean(ynew2)
@@ -392,17 +404,13 @@ dist = Gamma(2, 1) # a non-Gaussian distribution
 N = 10_000 # number of samples
 J = 500 # draws per sample
 ȳ = [ # <1>
-    mean(rand(dist, J))
-    for _ ∈ 1:N # <2>
+    mean(rand(dist, J)) for _ in 1:N # <2>
 ] # <3>
 histogram(
-    ȳ;
-    xlabel="Sample mean",
-    ylabel="Proportion of samples",
-    normalize=true,
-    label=false,
+    ȳ; xlabel="Sample mean", ylabel="Proportion of samples", normalize=true, label=false
 )
 ```
+
 1. To type `ȳ`, type `y` then type `\bar` and hit `tab`. Julia allows unicode (or emojis) in variable names
 2. To type `∈` , type `\in` and hit `tab`. The `_` isn't doing anything special and we could name it `i` or 😶 or whatever we want but `_` suggests it's a throwaway
 3. This is another *list comprehension*
@@ -441,6 +449,7 @@ plot(
     ylabel=L"$p(x | \mu=0, \sigma=1)$", # <2>
 )
 ```
+
 1. `L"<string>"` allows us to use LaTeX in strings
 2. This notation specifies the values of $\mu$ and $\sigma$
 
@@ -452,6 +461,7 @@ A Bernoulli distribution models a coin flip.
 p = 0.5 # probability of heads
 rand(Bernoulli(p), 5) # <1>
 ```
+
 1. Draw 5 samples from the Bernoulli distribution with parameter `p`
 
 ## Binomial distribution
@@ -476,6 +486,7 @@ N = 5
 dist = Multinomial(N, p)
 rand(dist, 5) # <1>
 ```
+
 1. To be more concise, we could write `rand(Multinimial([0.5, 0.3, 0.2], 5), 5)`. Which is more readable?
 
 ## Poisson distribution {.scrollable}
@@ -557,7 +568,7 @@ $$
 
 - Wednesday: working with probability distributions
 - Friday:    
-    - Lab 02: Working with tabular data in Julia
+    - Labs" 02: Working with tabular data in Julia
     - Lab 01 due *at start of class*
 
 ## Office hours

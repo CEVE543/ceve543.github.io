@@ -1,39 +1,23 @@
 ---
 title: "Parametric Uncertainty"
 subtitle: "Lecture"
-date: "September 11, 2023"
+date: 2023-09-11
 
-# don't adjust the below options, they should be the same for all slides
+# metadata for the schedule page
+module:  "Module 1"
+type: "Lecture"
+categories:
+    - "Module 1"
+    - "Lectures"
+
+
+# do not edit anything below this line
+format: revealjs
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
-format:
-    revealjs:
-        slide-number: c/t
-        show-slide-number: all
-        center-title-slide: true
-        width: 1280
-        height: 720
-        transition: none
-        toc: true
-        toc-depth: 1
-        toc-title: "Overview"
-        history: false
-        link-external-newwindow: true
-        theme: ../sass/slides.scss
-        footer: "[{{< var course.number >}}, {{< var course.title >}}]({{< var course.url >}})"
-        template-partials:
-            - title-slide.html
-        menu:
-            numbers: true
-        html-math-method: mathjax
-        include-in-header: mathjax-config.html
-        date-format: long
-        code-annotations: below
-
-execute:
-    freeze: auto
-    echo: true
+template-partials:
+    - slides/title-slide.html
 ---
 
 ```{julia}
@@ -47,7 +31,7 @@ using Plots
 using StatsPlots
 using Unitful
 
-Plots.default(margin=4Plots.mm, size=(700, 400))
+Plots.default(; margin=4Plots.mm, size=(700, 400))
 ```
 
 # Motivation
@@ -97,10 +81,10 @@ p1 = plot(
     xlabel="Year",
     ylabel="Ann. Max. Water Level",
     label=false,
-    marker=:circle, # <2>
+    marker=:circle # <2>
 )
 p2 = histogram(
-    annmax.lsl,
+    annmax.lsl;
     normalize=:pdf, # <3>
     orientation=:horizontal,
     label=false,
@@ -108,7 +92,7 @@ p2 = histogram(
     ylabel="",
     yticks=[], # <4>
     bins=2:0.3:8,
-    xlims=(0, 0.8),
+    xlims=(0, 0.8)
 )
 
 l = @layout [a{0.7w} b{0.3w}] # <5>
@@ -143,7 +127,7 @@ $$
 
 ```{julia}
 histogram(
-    annmax.lsl,
+    annmax.lsl;
     xlabel="Ann. Max. Water Level",
     normalize=:pdf, # <1>
     bins=2:0.25:8,
@@ -152,7 +136,7 @@ histogram(
 
 annmax[!, :lsl_ft] = ustrip.(u"ft", annmax.lsl) # <2>
 flood_mle_dist = fit_mle(LogNormal, annmax.lsl_ft) # <3>
-plot!(flood_mle_dist, label="MLE LogNormal", linewidth=3, ylabel="Probability Density")
+plot!(flood_mle_dist; label="MLE LogNormal", linewidth=3, ylabel="Probability Density")
 ```
 
 1. normalizes the histogram so that the area under the curve is 1.
@@ -255,11 +239,11 @@ k = 0.75
 plot(
     x -> blogistic(x, x0, k), # <1>
     -2, # xmin
-    15, # xmax
+    15; # xmax
     label=false,
     xlabel="Depth (ft)",
     ylabel="Damage Fraction",
-    linewidth=2,
+    linewidth=2
 )
 ```
 
@@ -353,12 +337,12 @@ mc_depth_gauge = rand(flood_mle_dist, S) # water depth AT GAUGE
 mc_depth_house = mc_depth_gauge .- BFE # water depth AT HOUSE
 mc_dmgs = blogistic.(mc_depth_house, x0, k) # damage fraction
 histogram(
-    mc_dmgs[findall(mc_dmgs .> 0)],
+    mc_dmgs[findall(mc_dmgs .> 0)];
     normalize=:pdf,
     label=false,
     xlabel="Damage Fraction",
     ylabel="Probability Density",
-    title=L"Damage Distribution For $d > 0$",
+    title=L"Damage Distribution For $d > 0$"
 )
 
 frac_zero = round(mean(mc_dmgs .== 0); digits=2) * 100
@@ -372,12 +356,7 @@ For example, we can compute the mean damage, the 99th percentile of damage, and 
 
 ```{julia}
 function metrics(x::AbstractVector)
-    return round.([
-            mean(x),
-            quantile(x, 0.99),
-            mean(x .> 0),
-        ]; digits=5
-    )
+    return round.([mean(x), quantile(x, 0.99), mean(x .> 0)]; digits=5)
 end
 metrics(mc_dmgs)
 ```
@@ -401,16 +380,16 @@ What about the depth-damage parameters $x_0$ and $k$?
 
 ```{julia}
 alt_dist = LogNormal(1.35, 0.275)
-plot!(plt_rt, rts, quantile(alt_dist, aeps), label="Alt Distribution", linewidth=2)
+plot!(plt_rt, rts, quantile(alt_dist, aeps); label="Alt Distribution", linewidth=2)
 ```
 
 ## Flood distribution ➡️ damages {.smaller}
 
 ```{julia}
-function monte_carlo_damage(flood_dist, x0::Real, k::Real; S::Int = 50_000, BFE::Real = 5.5)
+function monte_carlo_damage(flood_dist, x0::Real, k::Real; S::Int=50_000, BFE::Real=5.5)
     mc_depth_gauge = rand(flood_dist, S)
     mc_depth_house = mc_depth_gauge .- BFE
-    mc_dmgs = blogistic.(mc_depth_house, x0, k)
+    return mc_dmgs = blogistic.(mc_depth_house, x0, k)
 end
 
 mc_dmgs_alt_dist = monte_carlo_damage(alt_dist, x0, k)
@@ -427,8 +406,16 @@ dmg_df = DataFrame(
 x0_alt = 3.5
 k_alt = 0.65
 
-plot(x -> blogistic(x, x0, k), -2, 15, label="Original Model", xlabel="Depth (ft)", ylabel="Damage Fraction", linewidth=2)
-plot!(x -> blogistic(x, x0_alt, k_alt), linewidth=2, label="Alt Model")
+plot(
+    x -> blogistic(x, x0, k),
+    -2,
+    15;
+    label="Original Model",
+    xlabel="Depth (ft)",
+    ylabel="Damage Fraction",
+    linewidth=2
+)
+plot!(x -> blogistic(x, x0_alt, k_alt); linewidth=2, label="Alt Model")
 ```
 
 ## Depth-damage curve ➡️ damages
