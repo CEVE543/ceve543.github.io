@@ -64,6 +64,8 @@ website:
           - href: resources/llm.qmd
             text: Large Language Models
 
+echo: true
+
 format:
   # customization for HTML documents (i.e., the website)
   html:

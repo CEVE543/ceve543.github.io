@@ -20,7 +20,7 @@ Here are some especially good ones.
 
 - @gelman_bda3:2014 is a classical and detailed textbook on Bayesian inference.
 - @gelman_regression:2021 is a less technical textbook with clear and well-worked examples (mostly not environmental).
-- @james_statlearn:2013 is a classic introduction to machine learning, which complements the Bayesian perspective nicely
+- @Friedman:2001wp is a classic introduction to machine learning, which complements the Bayesian perspective nicely
 - @cressie_spatiotemporal:2011  provides a detailed exploration of hierarchical space-time models. There have been some computational advances since then that are worth keeping in mind before you apply these models directly, but it's a clearly written and overview.
 - The documentation for the [Turing](https://turing.ml/dev/tutorials/), [PyMC](https://www.pymc.io/projects/docs/en/v3/nb_examples/index.html), and (especially) [stan](https://mc-stan.org/users/documentation/) probabilistic programming languages offer outstanding tutorials on statistical modeling
 
