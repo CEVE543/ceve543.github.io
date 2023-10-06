@@ -1,0 +1,34 @@
+---
+title: "Recommended Reading"
+format: html
+---
+
+There are lots of great resources beyond this website.
+Here are some especially good ones.
+
+## Programming
+
+- @nazarathy_julia:2021 offers tutorials on using Julia for statistics and machine learning; reading good code is a great way to improve your coding
+- @lauwens_thinkjulia:2019 teaches key concepts in programming, using Julia for all examples. It's a great resource for beginners trying to understand code and for more experienced programmers who want to write better code.
+
+## Fundamentals
+
+- @blitzstein_probability:2019 provides a thorough introduction to key concepts and ideas in probability. The book accompanies a free online course, [Stat 110](https://projects.iq.harvard.edu/stat110/home), which is a great resource for learning probability and statistics. Practice problems and solutions, handouts, and lecture videos are all available online.
+- @downey_thinkbayes:2021 offers an introduction to Bayesian statistics using computational methods. It's not environment focused but provides code and a clear explanation of core concepts.
+
+## Digging deeper
+
+- @gelman_bda3:2014 is a classical and detailed textbook on Bayesian inference.
+- @gelman_regression:2021 is a less technical textbook with clear and well-worked examples (mostly not environmental).
+- @Friedman:2001wp is a classic introduction to machine learning, which complements the Bayesian perspective nicely
+- @cressie_spatiotemporal:2011  provides a detailed exploration of hierarchical space-time models. There have been some computational advances since then that are worth keeping in mind before you apply these models directly, but it's a clearly written and overview.
+- The documentation for the [Turing](https://turing.ml/dev/tutorials/), [PyMC](https://www.pymc.io/projects/docs/en/v3/nb_examples/index.html), and (especially) [stan](https://mc-stan.org/users/documentation/) probabilistic programming languages offer outstanding tutorials on statistical modeling
+
+## Environmental applications
+
+- @helsel_waterresources:2020 is a textbook also produced by the USGS covering some general statistical methods with a water resources focus. This book is very focused on hydrological statistics, hypothesis testing, and frequency estimates, but there are still some valuable insights.
+
+## References
+
+::: {#refs}
+:::
