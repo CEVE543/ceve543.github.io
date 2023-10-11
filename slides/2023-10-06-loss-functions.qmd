@@ -23,12 +23,14 @@ template-partials:
 #| output: false
 #| echo: false
 using Distributions
+using DynamicHMC
 using LaTeXStrings
 using NearestNeighbors
 using Optim
 using Plots
 using Random
 using StatsBase: mean
+using Turing
 
 Plots.default(; margin=4Plots.mm, size=(700, 400), linewidth=2)
 ```
@@ -44,29 +46,28 @@ We recorded the number of accidents and average vehicle speed in a city over sev
 | Mar   | 55                   | 12                  |
 | Apr   | 60                   | 15                  |
 
-1. Identify a suitable distribution for modeling the number of accidents.
-2. Write down the likelihood for the chosen distribution.
-3. Suggest a link function to relate the average speed to the number of accidents.
-4. Briefly explain why the chosen link function is appropriate.
+1.  Identify a suitable distribution for modeling the number of accidents.
+2.  Write down the likelihood for the chosen distribution.
+3.  Suggest a link function to relate the average speed to the number of accidents.
+4.  Briefly explain why the chosen link function is appropriate.
 
 ## Logistics
 
-- Turn in exam revisions now
-- Revised [course schedule](../schedule.qmd)
+-   Turn in exam revisions now
+-   Revised [course schedule](../schedule.qmd)
+-   List of [recommended readings](../recommended_reading.qmd)
 
 # Motivation
 
 ## Example data
 
-We want to make predictions about the value of $y$ given some function $x$.
+We want to make predictions about the value of $y$ given some $x$.
 
 . . .
 
-The true function will be
-$$
+The true function will be $$
 f(x) = 2x + x \sin(2 \pi x)
-$$
-but let's assume we don't know it.
+$$ but let's assume we don't know it.
 
 ## Viz {.scrollable}
 
@@ -76,6 +77,7 @@ f(x) = 2x + x * sin(2pi * x)
 N = 100
 Random.seed!(1017)
 x = rand(Uniform(0, 2), N)
+X = hcat(ones(N), x)
 y = f.(x) .+ rand(Normal(0, 1), N)
 p_base = scatter(x, y; label="Obs", xlabel=L"$x$", ylabel=L"$y$")
 p1 = plot(p_base)
@@ -85,61 +87,104 @@ plot!(p1, f; label=L"$f(x)$")
 ## Linear regression
 
 $$
-y | X \sim \mathcal{N}(X^T \beta, \sigma^2)
+y | X \sim \mathcal{N}(X^T \beta, \sigma^2 I)
 $$
 
-::: {.callout-tip}
+::: callout-tip
 ## Notation
-We will frequently use this linear algebra notation, which is equivalent to writing $y_i | X_i \sim \mathcal{N}(\sum_{j=1}^J X_{ij} \beta+j, \sigma^2)$.
+
+We will frequently use this linear algebra notation, which is equivalent to writing $$
+y_i | X_i \sim \mathcal{N} \left(\sum_{j=1}^J X_{ij} \beta_j, \sigma^2 \right).
+$$
 :::
 
-## Linear regression MLE {.scrollable}
+## Bayesian inference {.smaller .scrollable}
 
-We can calcualte a **point estimate**, ie the maximum likelihood estimate, instead of sampling from the posterior.
+We've seen this before:
+
+```{julia}
+@model function lin_reg(X, y)
+    N, P = size(X)
+    β ~ MvNormal(zeros(P), 10 * ones(P)) # prior: βₚ ~ N(0, 10)
+    σ ~ InverseGamma(1, 5)
+    return y ~ MvNormal(X * β, σ)
+end
+```
 
 ```{julia}
 #| code-fold: true
-p2 = plot(p_base)
-log_lik_regression(α, β, σ, x, y) = sum(logpdf.(Normal.(α .+ β .* x, σ), y))
-loss_regression(θ) = -log_lik_regression(θ[1], θ[2], θ[3], x, y)
-lower = [-Inf, -Inf, 0]
-upper = [Inf, Inf, Inf]
-guess = ones(3)
-
-θ̂_regression = optimize(loss_regression, lower, upper, guess).minimizer
-f̂_regression(x) = θ̂_regression[1] + θ̂_regression[2] * x
-x_plot = range(minimum(x), maximum(x); length=250)
-plot!(p2, x_plot, f̂_regression.(x_plot); label="Linear Regression")
+chn_lin_reg = let
+    model = lin_reg(X, y)
+    sampler = externalsampler(DynamicHMC.NUTS())
+    n_per_chain = 5000
+    nchains = 4
+    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)
+end
 ```
+
+## Point estimate {.scrollable}
+
+We can calcualte a **point estimate** instead of sampling from the posterior. This might make sense if:
+
+::: incremental
+1.  Just need *a plausible value of the parameters*
+2.  Don't need to carefully quantify parametric uncertainty
+3.  (Caveat: for linear regression, analytic approximations of posterior are available)
+:::
+
+## Computation {.scrollable}
+
+We consider two point estimates:
+
+-   Maximum likelihood estimate (MLE): $\arg \max_\theta p(y | \theta)$
+-   Maximum a posteriori estimate (MAP): $\arg \max_\theta p(\theta | y)$
+
+. . .
+
+```{julia}
+#| code-fold: true
+reg_model = lin_reg(X, y)
+θ̂_map = optimize(reg_model, MAP()).values.array # <1>
+θ̂_mle = optimize(reg_model, MLE()).values.array
+
+f̂_mle(x) = θ̂_mle[1] + θ̂_mle[2] * x
+f̂_map(x) = θ̂_map[1] + θ̂_map[2] * x
+
+p2 = plot(p_base)
+x_plot = range(minimum(x), maximum(x); length=250)
+plot!(p2, x_plot, f̂_mle.(x_plot); label="MLE", linewidth=3)
+plot!(p2, x_plot, f̂_map.(x_plot); label="MAP", alpha=0.5, linewidth=2)
+```
+
+1.  Turing provides special methods for `optimize` so we can plug in our model (with data) and `MAP()` or `MLE()` and it will figure out the loss function and upper/lower bounds for us.
 
 ## Critiquing the fit {.scrollable}
 
-One way we can tell that our fit is terrible is by plotting the residuals.
-We have assumed that the residuals are IID.
-However, we can see that the residuals are correlated with our predictor!
+One way we can tell that our fit is terrible is by plotting the residuals. We have assumed that the residuals are IID. However, we can see that the residuals are correlated with our predictor!
 
 ```{julia}
-ϵ_regression = y .- f̂_regression.(x)
+ϵ_regression = y .- f̂_mle.(x)
 p3 = scatter(x, ϵ_regression; label="Residuals", xlabel=L"$x$", ylabel=L"$\epsilon$")
 ```
 
-## Curve fitting {.scrollable}
+## Expanding regression {.scrollable .smaller}
 
-We don't have to fit a straight line.
-Without modifying our generative model, we can write down a parametric function for $f$ and fit it using maximum likelihood (or sample from the posterior):
+Without changing our *data generating process*, we can expand our regression model to include more features. For example: $$
+\mu_i = \beta_0 + \sum_{p=1}^P \beta_p x_{p}^ p
+$$ but we still have $$
+y_i | X_i \sim \mathcal{N}(\mu_i, \sigma^2)
 $$
-\mu_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3
-$$
+
+. . .
 
 ```{julia}
 #| code-fold: true
-p4 = plot(p_base)
 function log_lik_poly(β, σ, x, y)
     μ = [sum([βi * xi^(i - 1) for (i, βi) in enumerate(β)]) for xi in x]
     return sum(logpdf.(Normal.(μ, σ), y))
 end
 order = 7
-loss_poly(θ) = -log_lik_poly(θ[1:(order + 1)], θ[order + 2], x, y)
+loss_poly(θ) = -log_lik_poly(θ[1:(order+1)], θ[order+2], x, y)
 
 lower = -Inf * ones(order + 2)
 lower[end] = 0
@@ -147,32 +192,36 @@ upper = Inf * ones(order + 2)
 guess = 0.5 * ones(order + 2)
 res = optimize(loss_poly, lower, upper, guess)
 θ̂_poly = res.minimizer
-f̂_poly(x) = θ̂_poly[1] + sum(θ̂_poly[1 + k] * x^k for k in 1:order)
+f̂_poly(x) = θ̂_poly[1] + sum(θ̂_poly[1+k] * x^k for k in 1:order)
+
+p4 = plot(p_base)
+plot!(p4, x_plot, f.(x_plot); label="True Function")
 plot!(p4, x_plot, f̂_poly.(x_plot); label="Polynomial Fit K=$order")
 ```
 
 ::: {.fragment style="color: gray;"}
-What are some problems with this polynomial?
+What are some possible problems with this approach?
 :::
 
 # Supervised learning
 
 ## Overview
 
-We are interested generally in estimating some function $f$ that maps inputs $X$ to outputs $y$.
-$$
+We are interested generally in estimating some function $f$ that maps inputs $X$ to outputs $y$. $$
 y = f(X) + \epsilon
 $$
 
-## Nonparametric {.scrollable}
+## Nonparametric methods {.scrollable}
 
 $K$ nearest neighbors (KNN): find the $K$ training examples that are closest to a given input and returns the average output.
 
-::: {.callout-important}
+::: callout-important
 ## Note
-Nonparametric does not mean that there are no parameters.
-For example, $K$ is a parameter!
+
+Nonparametric does not mean that there are no parameters. For example, $K$ is a parameter!
 :::
+
+. . .
 
 ```{julia}
 #| code-fold: true
@@ -199,9 +248,11 @@ plot!(p5, x_plot, ŷ_10; label="K=10")
 What are some problems with this $K$NN model?
 :::
 
-## Parametric function approximation {.scrollable}
+## Parametric methods {.scrollable}
 
-The linear regression model is a parametric function approximation.
+Parametric methods model the function $f$ using some parameters $\theta$. Thus, finding $\hat{f}$ is equivalent to choosing appropriate $\theta$.
+
+The linear regression example we've been working with is a parametric function approximation.
 
 # Loss Functions
 
@@ -209,28 +260,24 @@ The linear regression model is a parametric function approximation.
 
 We need to define what we mean by a "best" approximation.
 
-::: {.incremental}
-- **What?** Measures difference between predicted and actual values.
-- **Why?** Guide optimization towards best model parameters.
-- **Types**: Vary by algorithm and task (e.g., regression vs. classification).
-- **Impact**: Choice can significantly affect model performance.
-- **Key**: Align loss function with task objectives for best results.
+::: incremental
+-   **What?** Measures difference between predicted and actual values.
+-   **Why?** Guide optimization towards best model parameters.
+-   **Types**: Vary by algorithm and task (e.g., regression vs. classification).
+-   **Impact**: Choice can significantly affect model performance.
+-   **Key**: Align loss function with task objectives for best results.
 :::
 
-## Common Loss Functions
+## Common Loss Functions {.smaller}
 
-::: {.incremental}
-1. **MSE (Mean Squared Error)**:  $L(y, \hat{y}) = (y - \hat{y})^2$. 
-Emphasizes larger errors but is sensitive to outliers.
-2. **MAE (Mean Absolute Error)**: $L(y, \hat{y}) = |y - \hat{y}|$. 
-Less sensitive to outliers and non-differentiable at zero.
-3. **Huber Loss**: $L_\delta(y, \hat{y}) = \begin{cases} 
-\frac{1}{2}(y - \hat{y})^2 & \text{for } |y - \hat{y}| \leq \delta \\
-\delta \( |y - \hat{y}| - \frac{1}{2}\delta^2 \) & \text{otherwise}
-\end{cases}$
-Combines MSE and MAE. Requires threshold parameter $\delta$.
-4. **Quantile Loss**: $L_\tau(y, \hat{y}) = \tau(y - \hat{y})$ if $(y - \hat{y}) > 0$ else $(\tau - 1)(y - \hat{y})$. 
-Tailored to specific quantiles ($\tau$). Useful for asymmetric errors.
+::: incremental
+1.  **MSE (Mean Squared Error)**: $L(y, \hat{y}) = (y - \hat{y})^2$. Emphasizes larger errors but is sensitive to outliers.
+2.  **MAE (Mean Absolute Error)**: $L(y, \hat{y}) = |y - \hat{y}|$. Less sensitive to outliers and non-differentiable at zero.
+3.  **Huber Loss**: $$L_\delta(y, \hat{y}) = \begin{cases} 
+    \frac{1}{2}(y - \hat{y})^2 & \text{for } |y - \hat{y}| \leq \delta \\
+    \delta \( |y - \hat{y}| - \frac{1}{2}\delta^2 \) & \text{otherwise}
+    \end{cases}$$ Combines MSE and MAE. Requires threshold parameter $\delta$.
+4.  **Quantile Loss**: $L_\tau(y, \hat{y}) = \tau(y - \hat{y})$ if $(y - \hat{y}) > 0$ else $(\tau - 1)(y - \hat{y})$. Tailored to specific quantiles ($\tau$). Useful for asymmetric errors.
 :::
 
 ## Visualization
@@ -260,14 +307,14 @@ title!("Loss Functions Visualization")
 
 # Bias-Variance Trade-Off
 
-## Motivation
+## Motivation {.smaller}
 
-::: {.incremental}
-1. **Model Performance**: Why does our model make errors? Can we reduce them?
-2. **Overfitting vs Underfitting**: How do we balance fitting our data well and ensuring our model generalizes to new data?
-3. **Model Complexity**: As we add more features or increase model complexity, how does it impact our model's errors?
-4. **Optimal Model**: How do we find the sweet spot where our model has the best predictive performance?
-5. **Interpretability**: Understanding bias and variance can help in making informed decisions about model selection and complexity.
+::: incremental
+1.  **Model Performance**: Why does our model make errors? Can we reduce them?
+2.  **Overfitting vs Underfitting**: How do we balance fitting our data well and ensuring our model generalizes to new data?
+3.  **Model Complexity**: As we add more features or increase model complexity, how does it impact our model's errors?
+4.  **Optimal Model**: How do we find the sweet spot where our model has the best predictive performance?
+5.  **Interpretability**: Understanding bias and variance can help in making informed decisions about model selection and complexity.
 :::
 
 ::: {.fragment .fade-in}
@@ -276,8 +323,7 @@ title!("Loss Functions Visualization")
 
 ## Bias and variance {.smaller .scrollable}
 
-::: {#fig-bias-variance layout-ncol=2}
-
+::: {#fig-bias-variance layout-ncol="2"}
 ![High bias, low variance](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Truen_bad_prec_ok.png/240px-Truen_bad_prec_ok.png)
 
 ![High bias, high variance](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Truen_bad_prec_bad.png/240px-Truen_bad_prec_bad.png)
@@ -297,41 +343,44 @@ $$
 \text{MSE} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
 $$
 
-::: {.incremental}
-1. **Bias**: How much on average are the predicted values different from the actual values? Represents errors due to overly simplistic assumptions in the learning algorithm.
-$$
-\text{Bias}(\hat{f}(x)) = E[\hat{f}(x) - f(x)]
-$$
+::: incremental
+1.  **Bias**: How much on average are the predicted values different from the actual values? Represents errors due to overly simplistic assumptions in the learning algorithm. $$
+    \text{Bias}(\hat{f}(x)) = E[\hat{f}(x) - f(x)]
+    $$
 
-2. **Variance**: How much does the prediction for a given point vary between different realizations of the model? Represents errors due to the model's sensitivity to small fluctuations in the training set.
-$$
-\text{Variance}(\hat{f}(x)) = E[\hat{f}(x)^2] - E[\hat{f}(x)]^2
-$$
+2.  **Variance**: How much does the prediction for a given point vary between different realizations of the model? Represents errors due to the model's sensitivity to small fluctuations in the training set. $$
+    \text{Variance}(\hat{f}(x)) = E[\hat{f}(x)^2] - E[\hat{f}(x)]^2
+    $$
 
-3. **Irreducible Error**: Noise inherent in any real-world data that we cannot remove, no matter how good our model is.
+3.  **Irreducible Error**: Noise inherent in any real-world data that we cannot remove, no matter how good our model is.
 :::
 
-## Bayesian methods and Bias-Variance
+## Bayesian methods {.smaller}
 
-Prior information about the parameters of the model can be used to *reduce the variance of the model* while *adding some bias*.
+We can think about Bayesian methods through the lens of the bias-variance trade-off
+
+::: incremental
+-   Priors add bias
+-   Priors often reduce variance
+:::
 
 ## Ridge Regression
 
-Ridge Regression, modifies linear regression to include a **regularization** term. 
-The regularization term discourages overly complex models which can overfit the training data.
+Ridge Regression, modifies linear regression to include a **regularization** term. The regularization term discourages overly complex models which can overfit the training data.
 
 $$
 L(\beta) = \| Y - X^T \beta \|_2^2 + \lambda \| \beta \|_2^2
-$$
-where $\lambda$ is the regularization parameter.
+$$ where $\lambda$ is the regularization parameter and where $$
+\| x \|_2 = \sqrt{\sum_{i=1}^n x_i^2}
+$$ is the L2 norm.
 
 ## Lasso Regression
 
 Lasso Regression (Least Absolute Shrinkage and Selection Operator) includes an **L1** penalty.
 
-::: {.incremental}
-1. Stronger penalty near zero will set some coefficients to almost exactly zero
-1. Smaller penalty far from zero
+::: incremental
+1.  Stronger penalty near zero will set some coefficients to almost exactly zero
+2.  Smaller penalty far from zero
 :::
 
 . . .
@@ -344,18 +393,18 @@ $$
 
 ## Key ideas
 
-::: {.incremental}
-- Relative to statistical approaches, ML perspectives emphasize fitting complex models over quantifying all uncertainties. There isn't a clear demarcation!
-- Measure quality of predictions using loss functions, which we can optimize
-- Bias-Variance Trade-Off
-- Regularization
+::: incremental
+-   Point estimates rather than quantifying posterior
+    -   Focus on more complex functions
+    -   Appropriate when "a good model" is more important than "the full distribution of the paramameters"
+-   Measure quality of predictions using loss functions, which we can optimize
+-   Bias-Variance Trade-Off
+-   Regularization
 :::
 
-## Read more
+## Suggested reading
 
-Chapter 2 of @Friedman:2001wp elaborates on today's topics in more depth
+Chapter 2 of @Friedman:2001wp
 
-## References
-
-::: {.refs}
+::: refs
 :::

@@ -1,14 +1,14 @@
 ---
-title: "Principal Components Analysis (Planned)"
+title: "Principal Components Analysis (PCA)"
 subtitle: "Lecture"
 date: 2023-10-11
 
 # metadata for the schedule page
-kind: "Planned"
+kind: "Lecture"
 Module: "2"
 categories:
     - "Module 2"
-    - "Planned"
+    - "Lectures"
 
 # do not edit anything below this line
 format: revealjs
@@ -19,7 +19,181 @@ template-partials:
     - title-slide.html
 ---
 
-## TBD
+# Overview
 
-This is a placeholder for a planned lecture.
-The schedule will be modified as needed.
+## Dimension Reduction
+
+::: {.incremental}
+1. High-dimensional data is hard to visualize and interpret
+1. Redundant or irrelevant dimensions in analysis
+1. Computational challenges in high dimensions
+1. Identify meaningful patterns in data
+:::
+
+## Climate Data 
+
+::: {.incremental}
+- Indexed by location, time (and sometimes more)
+- A common matrix representation:
+    - Each location (grid cell / point) is a column
+    - Time is a row
+    - Often very high dimensional
+    - Strong spatial correlation
+:::
+
+## PCA
+
+::: {.incremental}
+- $n$ observations, $p$ features: $X_1, X_2, \ldots, X_p$
+- find a low-dimensional represnetation that represents as much variation as possible
+- the first **principal component** is the **linear combination** of features that maximizes the variance
+    - $Z_1  = \phi_{11}X_1 + \phi_{21}X_2 + \ldots + \phi_{p1}X_p$
+    - normalized: $\sum_{j=1}^p \phi_{j1}^2 = 1$
+- **loading:** $\phi_1 = (\phi_{11}, \phi_{21}, \ldots, \phi_{p1})^T$
+:::
+
+## Geometric interpretation
+
+The loading vector $\phi_1$ defines a direction in feature space along which the data vary the most
+
+::: {layout-ncol="2"}
+Principal components analysis (PCA) scores and vectors for climate, soil, topography, and land cover variables. Sites are colored by estimated baseflow yield, and the percent of variance explained by each axis is indicated in the axis titles.
+
+![DOI: [10.1016/j.ejrh.2015.04.008](http://dx.doi.org/10.1016/j.ejrh.2015.04.008)](https://www.researchgate.net/profile/Matthew-Miller-11/publication/278714476/figure/fig3/AS:267627851415617@1440818861002/Principal-components-analysis-PCA-scores-and-vectors-for-climate-soil-topography-and.png){width=40%}
+:::
+
+## PCA as optimization I
+
+Consider representing the data $X = (X_1, X_2, \ldots, X_p)$ as a linear model
+$$
+f(Z) = \mu + \phi_q Z
+$$
+where:
+
+- $\mu$ is a location vector.
+- $\phi_q$ is a $p \times q$ matrix with $q$ **orthogonal** unit vectors as columns.
+- $Z$ is a $q$-dimensional vector of **loadings** (or coefficients).
+
+---
+
+## PCA as optimization II
+
+Minimize the reconstruction error:
+$$
+\min \sum_{i=1}^n \| X_i - \phi_q Z \|_2^2
+$$
+assuming $\mu = 0$ (centered data -- more later)
+
+## PCA as SVD
+
+We can write the solution as a singular value decomposition (SVD) of the empirical covariance matrix.
+[This reference](http://depts.washington.edu/ocean423/notes/EOF.notes.pdf) explains things quite straightforwardly.
+
+::: {.fragment}
+Since we are using the covariance matrix, we are implicitly assuming that variance is a good way to measure variability
+:::
+::: {.fragment}
+When might this be a poor assumption?
+:::
+
+## Uniqueness
+
+Each principal component loading vector is unique, up to a sign flip.
+
+## Interpretation
+
+Because we often use space-time data in climate science, we can interpret the principal components as **spatial patterns** and **time series**:
+
+::: {.incremental}
+1. $Z$ are the "EOFs" or "principal components"
+    1. Dominant spatial patterns
+1. $\phi$: the loading
+    1. Time series for each EOF
+    1. Reconstruct the data at time $t$ from the EOFs
+:::
+
+# Practical Tips
+
+## Preprocessing
+
+- Variables should have mean zero (more soon)
+- Optional: standardize variables to have unit variance (more later)
+
+## Climate anomalies
+
+It is common in climate science to deconstruct a time series into a mean and anomalies:
+$$
+x(t) = \overline{x}(t) + x'(t)
+$$
+where $\overline{x}(t)$ is the **climatology** and $x'(t)$ is the anomaly.
+Typically, this is defined at each location separately.
+
+## Computing anomalies
+
+How to define the climatology?
+Common approaches include:
+
+::: {.incremental}
+1. The time-mean (over some reference period)
+1. The time-mean, computed separately for each month or season (e.g. DJF, MAM, JJA, SON)
+1. A time-mean with a more complicated seasonal cycle removed (eg, sin and cos terms)
+:::
+
+
+## How Many PCs to Use?
+
+::: {layout-ncol="2"}
+
+::: {.incremental}
+- Ideally: use a scree plot (R) to find a natural break
+- Practical considerations
+- Other heuristics
+:::
+
+![[GraphPad](https://www.graphpad.com/guides/prism/latest/statistics/stat_pca_graphs_tab.htm)](https://www.graphpad.com/guides/prism/latest/statistics/images/hmfile_hash_9ef68835.png){width=100%}
+:::
+
+## PCA with Spatial Data
+
+::: {.incremental}
+- **Centering**: variance is the average squared deviation from the mean. Centered and non-centered data will have identical covariance matrices
+- **Weights**: sometimes we have a reason to give one variable more weight than another
+    - $\sqrt{\cos(\phi)}$, where $\phi$ is latitude. Assigns a _standard deviation_ proportional to the area, which scales with $\cos \phi$.
+    - Sometimes variables are weighted by the inverse of their variances. This is equivalent to standardizing each variable to have unit variance before applying PCA.
+:::
+
+## Packages for PCA in Julia
+
+- [EmpiricalOrthogonalFunctions.jl](https://kmarkert.github.io/EmpiricalOrthogonalFunctions.jl/dev/)
+    - Based on [EOFS](https://ajdawson.github.io/eofs/latest) in python
+- [MultivariateStats.jl](https://juliastats.org/MultivariateStats.jl/dev/pca/)
+
+# More
+
+## Examples
+
+- This [example](https://ajdawson.github.io/eofs/latest/examples/elnino_standard.html) uses the Python EOFs library
+- Here's another [example](https://github.com/royalosyin/Python-Practical-Application-on-Climate-Variability-Studies/blob/master/ex18-EOF%20analysis%20global%20SST.ipynb) of SSTs
+
+## Beyond PCA
+
+- [Probabilistic PCA](https://turing.ml/v0.21/tutorials/11-probabilistic-pca) -- going through this may help you understand PCA better
+- [Robust PCA](https://en.wikipedia.org/wiki/Robust_principal_component_analysis)
+- [Sparse PCA](https://en.wikipedia.org/wiki/Sparse_PCA)
+- [Canonical Correlation Analysis](https://en.wikipedia.org/wiki/Canonical_correlation)
+
+# Wrapup
+
+## Summary
+
+PCA is a versatile tool for dimensionality reduction, data visualization, and compression. By understanding its underlying principles and practical applications, we can effectively analyze and interpret complex datasets.
+
+## Further reading
+
+- MIT Computational Thinking [Lecture](https://computationalthinking.mit.edu/Fall23/data_science/pca/)
+- Chapter 10.2 of @james_statlearn:2013
+- Chapter 14.5 of @Friedman:2001wp
+- NCAR [Quick Tutorial](https://climatedataguide.ucar.edu/climate-tools/empirical-orthogonal-function-eof-analysis-and-rotated-eof-analysis)
+- [GeoStatsGuy Notebook](https://github.com/GeostatsGuy/PythonNumericalDemos/blob/master/PCA_Demo.ipynb)
+
+## References
