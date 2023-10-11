@@ -322,22 +322,10 @@
   </style>
   <!-- Mathjax 3 config -->
   <script>
-  window.MathJax = {
-      {
-        minScale: 0.5
-      }
+    window.MathJax = {
+      loader: { load: ['[tex]/physics'] },
+      tex: { packages: { '[+]': ['physics'] } }
     };
-    MathJax = {
-    options: {
-      menuOptions: {
-        settings: {
-          assistiveMml: false,   // true to enable assitive MathML
-          collapsible: false,   // true to enable collapsible math
-          explorer: false      // true to enable the expression explorer
-        }
-      }
-    }
-  };
   </script>
 <meta property="og:title" content="CEVE 543 - Fall 2023 - Lab: \(K\)-means clustering">
 <meta property="og:description" content="Lecture">

@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Dr.&nbsp;James Doss-Gollin!">
-  <title>CEVE 543 - Fall 2023 - Principal Components Analysis (Planned)</title>
+  <title>CEVE 543 - Fall 2023 - Principal Components Analysis (PCA)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -322,24 +341,12 @@
   </style>
   <!-- Mathjax 3 config -->
   <script>
-  window.MathJax = {
-      {
-        minScale: 0.5
-      }
+    window.MathJax = {
+      loader: { load: ['[tex]/physics'] },
+      tex: { packages: { '[+]': ['physics'] } }
     };
-    MathJax = {
-    options: {
-      menuOptions: {
-        settings: {
-          assistiveMml: false,   // true to enable assitive MathML
-          collapsible: false,   // true to enable collapsible math
-          explorer: false      // true to enable the expression explorer
-        }
-      }
-    }
-  };
   </script>
-<meta property="og:title" content="CEVE 543 - Fall 2023 - Principal Components Analysis (Planned)">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - Principal Components Analysis (PCA)">
 <meta property="og:description" content="Lecture">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
@@ -348,19 +355,325 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-    <h1 class="title">Principal Components Analysis (Planned)</h1>
+    <h1 class="title">Principal Components Analysis (PCA)</h1>
   <hr>
 <p class="subtitle">Lecture</p>
 <p class="date">Wed., Oct.&nbsp;11</p>
 </section>
-<section id="tbd" class="slide level2">
-<h2>TBD</h2>
-<p>This is a placeholder for a planned lecture. The schedule will be modified as needed.</p>
+<section>
+<section id="overview" class="title-slide slide level1 agenda-slide center">
+<h1>Overview</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-active">
+<p>Overview</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Practical Tips</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>More</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Wrapup</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="dimension-reduction" class="slide level2">
+<h2>Dimension Reduction</h2>
+<div>
+<ol type="1">
+<li class="fragment">High-dimensional data is hard to visualize and interpret</li>
+<li class="fragment">Redundant or irrelevant dimensions in analysis</li>
+<li class="fragment">Computational challenges in high dimensions</li>
+<li class="fragment">Identify meaningful patterns in data</li>
+</ol>
+</div>
+</section>
+<section id="climate-data" class="slide level2">
+<h2>Climate Data</h2>
+<div>
+<ul>
+<li class="fragment">Indexed by location, time (and sometimes more)</li>
+<li class="fragment">A common matrix representation:
+<ul>
+<li class="fragment">Each location (grid cell / point) is a column</li>
+<li class="fragment">Time is a row</li>
+<li class="fragment">Often very high dimensional</li>
+<li class="fragment">Strong spatial correlation</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="pca" class="slide level2">
+<h2>PCA</h2>
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(n\)</span> observations, <span class="math inline">\(p\)</span> features: <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span></li>
+<li class="fragment">find a low-dimensional represnetation that represents as much variation as possible</li>
+<li class="fragment">the first <strong>principal component</strong> is the <strong>linear combination</strong> of features that maximizes the variance
+<ul>
+<li class="fragment"><span class="math inline">\(Z_1 = \phi_{11}X_1 + \phi_{21}X_2 + \ldots + \phi_{p1}X_p\)</span></li>
+<li class="fragment">normalized: <span class="math inline">\(\sum_{j=1}^p \phi_{j1}^2 = 1\)</span></li>
+</ul></li>
+<li class="fragment"><strong>loading:</strong> <span class="math inline">\(\phi_1 = (\phi_{11}, \phi_{21}, \ldots, \phi_{p1})^T\)</span></li>
+</ul>
+</div>
+</section>
+<section id="geometric-interpretation" class="slide level2">
+<h2>Geometric interpretation</h2>
+<p>The loading vector <span class="math inline">\(\phi_1\)</span> defines a direction in feature space along which the data vary the most</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>Principal components analysis (PCA) scores and vectors for climate, soil, topography, and land cover variables. Sites are colored by estimated baseflow yield, and the percent of variance explained by each axis is indicated in the axis titles.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.researchgate.net/profile/Matthew-Miller-11/publication/278714476/figure/fig3/AS:267627851415617@1440818861002/Principal-components-analysis-PCA-scores-and-vectors-for-climate-soil-topography-and.png"></p>
+<figcaption>DOI: <a href="http://dx.doi.org/10.1016/j.ejrh.2015.04.008">10.1016/j.ejrh.2015.04.008</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-as-optimization-i" class="slide level2">
+<h2>PCA as optimization I</h2>
+<p>Consider representing the data <span class="math inline">\(X = (X_1, X_2, \ldots, X_p)\)</span> as a linear model <span class="math display">\[
+f(Z) = \mu + \phi_q Z
+\]</span> where:</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> is a location vector.</li>
+<li><span class="math inline">\(\phi_q\)</span> is a <span class="math inline">\(p \times q\)</span> matrix with <span class="math inline">\(q\)</span> <strong>orthogonal</strong> unit vectors as columns.</li>
+<li><span class="math inline">\(Z\)</span> is a <span class="math inline">\(q\)</span>-dimensional vector of <strong>loadings</strong> (or coefficients).</li>
+</ul>
+</section>
+<section id="pca-as-optimization-ii" class="slide level2">
+<h2>PCA as optimization II</h2>
+<p>Minimize the reconstruction error: <span class="math display">\[
+\min \sum_{i=1}^n \| X_i - \phi_q Z \|_2^2
+\]</span> assuming <span class="math inline">\(\mu = 0\)</span> (centered data – more later)</p>
+</section>
+<section id="pca-as-svd" class="slide level2">
+<h2>PCA as SVD</h2>
+<p>We can write the solution as a singular value decomposition (SVD) of the empirical covariance matrix. <a href="http://depts.washington.edu/ocean423/notes/EOF.notes.pdf">This reference</a> explains things quite straightforwardly.</p>
+<div class="fragment">
+<p>Since we are using the covariance matrix, we are implicitly assuming that variance is a good way to measure variability</p>
+</div>
+<div class="fragment">
+<p>When might this be a poor assumption?</p>
+</div>
+</section>
+<section id="uniqueness" class="slide level2">
+<h2>Uniqueness</h2>
+<p>Each principal component loading vector is unique, up to a sign flip.</p>
+</section>
+<section id="interpretation" class="slide level2">
+<h2>Interpretation</h2>
+<p>Because we often use space-time data in climate science, we can interpret the principal components as <strong>spatial patterns</strong> and <strong>time series</strong>:</p>
+<div>
+<ol type="1">
+<li class="fragment"><span class="math inline">\(Z\)</span> are the “EOFs” or “principal components”
+<ol type="1">
+<li class="fragment">Dominant spatial patterns</li>
+</ol></li>
+<li class="fragment"><span class="math inline">\(\phi\)</span>: the loading
+<ol type="1">
+<li class="fragment">Time series for each EOF</li>
+<li class="fragment">Reconstruct the data at time <span class="math inline">\(t\)</span> from the EOFs</li>
+</ol></li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="practical-tips" class="title-slide slide level1 agenda-slide center">
+<h1>Practical Tips</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Overview</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Practical Tips</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>More</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Wrapup</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="preprocessing" class="slide level2">
+<h2>Preprocessing</h2>
+<ul>
+<li>Variables should have mean zero (more soon)</li>
+<li>Optional: standardize variables to have unit variance (more later)</li>
+</ul>
+</section>
+<section id="climate-anomalies" class="slide level2">
+<h2>Climate anomalies</h2>
+<p>It is common in climate science to deconstruct a time series into a mean and anomalies: <span class="math display">\[
+x(t) = \overline{x}(t) + x'(t)
+\]</span> where <span class="math inline">\(\overline{x}(t)\)</span> is the <strong>climatology</strong> and <span class="math inline">\(x'(t)\)</span> is the anomaly. Typically, this is defined at each location separately.</p>
+</section>
+<section id="computing-anomalies" class="slide level2">
+<h2>Computing anomalies</h2>
+<p>How to define the climatology? Common approaches include:</p>
+<div>
+<ol type="1">
+<li class="fragment">The time-mean (over some reference period)</li>
+<li class="fragment">The time-mean, computed separately for each month or season (e.g.&nbsp;DJF, MAM, JJA, SON)</li>
+<li class="fragment">A time-mean with a more complicated seasonal cycle removed (eg, sin and cos terms)</li>
+</ol>
+</div>
+</section>
+<section id="how-many-pcs-to-use" class="slide level2">
+<h2>How Many PCs to Use?</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li class="fragment">Ideally: use a scree plot (R) to find a natural break</li>
+<li class="fragment">Practical considerations</li>
+<li class="fragment">Other heuristics</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.graphpad.com/guides/prism/latest/statistics/images/hmfile_hash_9ef68835.png"></p>
+<figcaption><a href="https://www.graphpad.com/guides/prism/latest/statistics/stat_pca_graphs_tab.htm">GraphPad</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-with-spatial-data" class="slide level2">
+<h2>PCA with Spatial Data</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Centering</strong>: variance is the average squared deviation from the mean. Centered and non-centered data will have identical covariance matrices</li>
+<li class="fragment"><strong>Weights</strong>: sometimes we have a reason to give one variable more weight than another
+<ul>
+<li class="fragment"><span class="math inline">\(\sqrt{\cos(\phi)}\)</span>, where <span class="math inline">\(\phi\)</span> is latitude. Assigns a <em>standard deviation</em> proportional to the area, which scales with <span class="math inline">\(\cos \phi\)</span>.</li>
+<li class="fragment">Sometimes variables are weighted by the inverse of their variances. This is equivalent to standardizing each variable to have unit variance before applying PCA.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="packages-for-pca-in-julia" class="slide level2">
+<h2>Packages for PCA in Julia</h2>
+<ul>
+<li><a href="https://kmarkert.github.io/EmpiricalOrthogonalFunctions.jl/dev/">EmpiricalOrthogonalFunctions.jl</a>
+<ul>
+<li>Based on <a href="https://ajdawson.github.io/eofs/latest">EOFS</a> in python</li>
+</ul></li>
+<li><a href="https://juliastats.org/MultivariateStats.jl/dev/pca/">MultivariateStats.jl</a></li>
+</ul>
+</section></section>
+<section>
+<section id="more" class="title-slide slide level1 agenda-slide center">
+<h1>More</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Overview</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Practical Tips</p>
+</div></li>
+<li><div class="agenda-active">
+<p>More</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Wrapup</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li>This <a href="https://ajdawson.github.io/eofs/latest/examples/elnino_standard.html">example</a> uses the Python EOFs library</li>
+<li>Here’s another <a href="https://github.com/royalosyin/Python-Practical-Application-on-Climate-Variability-Studies/blob/master/ex18-EOF%20analysis%20global%20SST.ipynb">example</a> of SSTs</li>
+</ul>
+</section>
+<section id="beyond-pca" class="slide level2">
+<h2>Beyond PCA</h2>
+<ul>
+<li><a href="https://turing.ml/v0.21/tutorials/11-probabilistic-pca">Probabilistic PCA</a> – going through this may help you understand PCA better</li>
+<li><a href="https://en.wikipedia.org/wiki/Robust_principal_component_analysis">Robust PCA</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Sparse_PCA">Sparse PCA</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Canonical_correlation">Canonical Correlation Analysis</a></li>
+</ul>
+</section></section>
+<section>
+<section id="wrapup" class="title-slide slide level1 agenda-slide center">
+<h1>Wrapup</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Overview</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Practical Tips</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>More</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Wrapup</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p>PCA is a versatile tool for dimensionality reduction, data visualization, and compression. By understanding its underlying principles and practical applications, we can effectively analyze and interpret complex datasets.</p>
+</section>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
+<ul>
+<li>MIT Computational Thinking <a href="https://computationalthinking.mit.edu/Fall23/data_science/pca/">Lecture</a></li>
+<li>Chapter 10.2 of <span class="citation" data-cites="james_statlearn:2013">James et al. (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span></li>
+<li>Chapter 14.5 of <span class="citation" data-cites="Friedman:2001wp">Friedman et al. (<a href="#/references" role="doc-biblioref" onclick="">2001</a>)</span></li>
+<li>NCAR <a href="https://climatedataguide.ucar.edu/climate-tools/empirical-orthogonal-function-eof-analysis-and-rotated-eof-analysis">Quick Tutorial</a></li>
+<li><a href="https://github.com/GeostatsGuy/PythonNumericalDemos/blob/master/PCA_Demo.ipynb">GeoStatsGuy Notebook</a></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-Friedman:2001wp" class="csl-entry" role="listitem">
+Friedman, J., Hastie, T., &amp; Tibshirani, R. (2001). <em>The <span>Elements</span> of <span>Statistical Learning</span></em> (Vol. 1). <span>Springer series in statistics Springer, Berlin</span>.
+</div>
+<div id="ref-james_statlearn:2013" class="csl-entry" role="listitem">
+James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). <em>An <span>Introduction</span> to <span>Statistical Learning</span></em> (Vol. 103). <span>New York, NY</span>: <span>Springer New York</span>.
+</div>
+</div>
+</section></section>
     </div>
   </div>
 
