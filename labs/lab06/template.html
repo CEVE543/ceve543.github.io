@@ -238,19 +238,24 @@ window.MathJax = {
   <ul>
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">1</span> Intro</a>
   <ul class="collapse">
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">1.1</span> Setup</a></li>
+  <li><a href="#why-might-this-be-useful" id="toc-why-might-this-be-useful" class="nav-link" data-scroll-target="#why-might-this-be-useful"><span class="header-section-number">1.1</span> Why might this be useful?</a></li>
+  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm"><span class="header-section-number">1.2</span> Algorithm</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.3</span> Data</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">1.4</span> Setup</a></li>
   </ul></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a>
+  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1"><span class="header-section-number">2</span> Data</a>
   <ul class="collapse">
   <li><a href="#precipitation" id="toc-precipitation" class="nav-link" data-scroll-target="#precipitation"><span class="header-section-number">2.1</span> Precipitation</a></li>
   <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature"><span class="header-section-number">2.2</span> Temperature</a></li>
-  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="header-section-number">2.3</span> Split</a></li>
+  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="header-section-number">2.3</span> Split</a>
+  <ul class="collapse">
+  <li><a href="#preprocess" id="toc-preprocess" class="nav-link" data-scroll-target="#preprocess"><span class="header-section-number">2.3.1</span> Preprocess</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#principal-components" id="toc-principal-components" class="nav-link" data-scroll-target="#principal-components"><span class="header-section-number">3</span> Principal components</a>
   <ul class="collapse">
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing"><span class="header-section-number">3.1</span> Preprocessing</a></li>
-  <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">3.2</span> Fitting</a></li>
-  <li><a href="#visualizing" id="toc-visualizing" class="nav-link" data-scroll-target="#visualizing"><span class="header-section-number">3.3</span> Visualizing</a></li>
+  <li><a href="#fitting" id="toc-fitting" class="nav-link" data-scroll-target="#fitting"><span class="header-section-number">3.1</span> Fitting</a></li>
+  <li><a href="#visualizing" id="toc-visualizing" class="nav-link" data-scroll-target="#visualizing"><span class="header-section-number">3.2</span> Visualizing</a></li>
   </ul></li>
   <li><a href="#k-nn" id="toc-k-nn" class="nav-link" data-scroll-target="#k-nn"><span class="header-section-number">4</span> <span class="math inline">\(K\)</span>-NN</a></li>
   <li><a href="#combining" id="toc-combining" class="nav-link" data-scroll-target="#combining"><span class="header-section-number">5</span> Combining</a></li>
@@ -278,7 +283,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Mon., Oct.&nbsp;2</p>
+      <p class="date">Fri., Oct.&nbsp;13</p>
     </div>
   </div>
   
@@ -290,18 +295,59 @@ window.MathJax = {
 
 <section id="intro" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Intro</h1>
-<p>Today we are going to build a simple model to simulate precipitation, conditional on temperature fields. The model is fairly simple:</p>
+<p>Today we are going to build a simple model to simulate precipitation, conditional on temperature fields.</p>
+<section id="why-might-this-be-useful" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="why-might-this-be-useful"><span class="header-section-number">1.1</span> Why might this be useful?</h2>
+<p>Precipitation is notoriously difficult to forecast at high spatial and temporal resolution. Temperature, by contrast, is much smoother and often easier to forecast. We might imagine seeking to generate high-resolution precipitation fields from climate models that have substantial biases in representing precipitation.</p>
+</section>
+<section id="algorithm" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">1.2</span> Algorithm</h2>
+<p>For your reference, here is the full algorithm we will implement today. We’ll break this into bite-sized pieces for you, and then at the end we’ll implement the whole thing as a function in Julia.</p>
 <ol type="1">
-<li>Input: a temperature field</li>
-<li>Project the (high-dimensional) temperature field onto a low-dimensional space, using PCA</li>
-<li>Find the <span class="math inline">\(K\)</span> nearest neighbors to the projected temperature field, using <span class="math inline">\(K\)</span>-NN</li>
-<li>Sample the precipitation field from the <span class="math inline">\(K\)</span> nearest neighbors</li>
+<li>Inputs
+<ul>
+<li>Past temperature fields <span class="math inline">\(T_{\text{past}}\)</span></li>
+<li>Current temperature field <span class="math inline">\(T_{\text{current}}\)</span> for which we are making predictions</li>
+<li>Number of nearest neighbors <span class="math inline">\(K\)</span></li>
+<li>Number of principal components <span class="math inline">\(n_{\text{PC}}\)</span></li>
+</ul></li>
+<li>Output
+<ul>
+<li>Sampled precipitation field <span class="math inline">\(P\)</span></li>
+</ul></li>
+<li>Steps
+<ol type="1">
+<li>Preprocessing:
+<ul>
+<li>Preprocess the temperature fields <span class="math inline">\(T_{\text{past}}\)</span> and <span class="math inline">\(T_{\text{current}}\)</span> as deemed necessary.</li>
+<li>Document and explain the preprocessing steps and assumptions made.</li>
+</ul></li>
+<li>Dimensionality Reduction using PCA:
+<ul>
+<li>Apply Principal Component Analysis (PCA) to the past temperature fields <span class="math inline">\(T_{\text{past}}\)</span>.</li>
+<li>Retain <span class="math inline">\(n_{\text{PC}}\)</span> principal components. The choice of <span class="math inline">\(n_{\text{PC}}\)</span> should be made and defended by the student.</li>
+</ul></li>
+<li>Find <span class="math inline">\(K\)</span> Nearest Neighbors:
+<ul>
+<li>Using the Euclidean distance metric, find the <span class="math inline">\(K\)</span> nearest neighbors to the projected current temperature field from step 2.</li>
+</ul></li>
+<li>Sample Precipitation Field:
+<ul>
+<li>For each of the <span class="math inline">\(K\)</span> nearest neighbors, compute the inverse distance as <span class="math inline">\(w_i = \frac{1}{\text{distance}_i}\)</span> where <span class="math inline">\(\text{distance}_i\)</span> is the distance to the <span class="math inline">\(i^{th}\)</span> neighbor.</li>
+<li>Normalize the weights such that they sum to 1: <span class="math inline">\(w_i = \frac{w_i}{\sum_{j=1}^{K} w_j}\)</span>.</li>
+<li>Sample a precipitation field <span class="math inline">\(P\)</span> from the <span class="math inline">\(K\)</span> nearest neighbors with probability proportional to the normalized inverse distances <span class="math inline">\(w_i\)</span>.</li>
+</ul></li>
+</ol></li>
 </ol>
-<p>We will use the <a href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5">ERA5</a> reanalysis dataset, which is a global dataset of atmospheric variables, including temperature and precipitation, for temperature. We use the same precipitation dataset as Lab 05.</p>
-<section id="setup" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.1</span> Setup</h2>
-<p>Remember to <code>git clone</code> to your machine, then <code>activate</code> and <code>instantiate</code> the environment, as we have done in previous labs.</p>
-<div class="cell" data-execution_count="1">
+</section>
+<section id="data" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="data"><span class="header-section-number">1.3</span> Data</h2>
+<p>We will use the <a href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era5">ERA5</a> reanalysis dataset, which is a global dataset of atmospheric variables, including temperature and precipitation, for temperature. We use the same precipitation dataset as Lab 05. This data is available to enrolled students on Canvas as <code>precip.nc</code> and <code>temp.nc</code>.</p>
+</section>
+<section id="setup" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.4</span> Setup</h2>
+<p>Remember to <code>git clone</code> to your machine, then <code>activate</code> and <code>instantiate</code> the environment, as we have done in previous labs. <strong>Do not use additional packages for this assignment,</strong> though you are welcome to look at the documentation or implementation of other packages for nearest-neighbors methods.</p>
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MultivariateStats</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -310,7 +356,7 @@ window.MathJax = {
 </div>
 </section>
 </section>
-<section id="data" class="level1" data-number="2">
+<section id="data-1" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data</h1>
 <section id="precipitation" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="precipitation"><span class="header-section-number">2.1</span> Precipitation</h2>
@@ -328,37 +374,44 @@ window.MathJax = {
 <h2 data-number="2.3" class="anchored" data-anchor-id="split"><span class="header-section-number">2.3</span> Split</h2>
 <p>We will split the data into training and testing sets (we will cover this idea in more detail later). The idea is to use the training set to build the model, and the testing set to evaluate the model.</p>
 <p>We will use the last 10 years of data as the testing set, and the rest as the training set. Create variables called <code>precip_train</code>, <code>precip_test</code>, <code>temp_train</code>, and <code>temp_test</code>, <code>time_train</code>, and <code>time_test</code>.</p>
+<section id="preprocess" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="preprocess"><span class="header-section-number">2.3.1</span> Preprocess</h3>
+<p>Review the slides on PCA and decide whether you would like to preprocess the temperature data before applying PCA. Explain what you have done and why.</p>
+<p>Next, we need to convert the temperature data to a matrix. You can use the <code>reshape</code> function to do this.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Call your matrix <code>temp_mat</code>.</p>
+<p>Put all these steps into a function called <code>preprocess</code> that takes the raw field of temperature data (indexed lon, lat, time) and returns the matrix of preprocessed temperature data. You may modify this function so that it also takes in the time, longitutde, and/or latitude if you wish. (<strong>Hint:</strong> you probably want time to compute anomalies…)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preprocess</span>(temp<span class="op">::</span><span class="dt">Array{T, 3}</span>)<span class="op">::</span><span class="dt">AbstractMatrix </span><span class="kw">where</span> T</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 </section>
 <section id="principal-components" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Principal components</h1>
-<p>See the documentation <a href="https://juliastats.org/MultivariateStats.jl/dev/pca/">here</a>.</p>
-<section id="preprocessing" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">3.1</span> Preprocessing</h2>
-<p>First, we need to convert the temperature data to a matrix. You can use the <code>reshape</code> function to do this.</p>
+<p>We will use the implementation in <code>MultivariateStats.jl</code> to perform PCA. See the documentation <a href="https://juliastats.org/MultivariateStats.jl/dev/pca/">here</a>.</p>
+<section id="fitting" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="fitting"><span class="header-section-number">3.1</span> Fitting</h2>
+<p>Following the instructions provided in the documentation, fit the PCA model to the <em>training data.</em> Choose how many dimensions you are using and explain why you chose that number. Create any plots to help inform this choice.</p>
 </section>
-<section id="fitting" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="fitting"><span class="header-section-number">3.2</span> Fitting</h2>
-<p>Following the instructions provided in the documentation, fit the PCA model to the training data. Choose how many dimensions you are using and explain why you chose that number.</p>
-</section>
-<section id="visualizing" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="visualizing"><span class="header-section-number">3.3</span> Visualizing</h2>
+<section id="visualizing" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="visualizing"><span class="header-section-number">3.2</span> Visualizing</h2>
 <ol type="1">
-<li>Plot the spatial patterns associated with the first two principal components. You’ll need to reshape the data back to its original shape.</li>
-<li>Plot the time series of the first two principal components. Use your <code>time</code> variable on the <span class="math inline">\(x\)</span> axis of the plots to match the actual dates.</li>
-<li>Make a scatter plot of the first two principal components, with the points colored by the precipitation value at that time. Define “the precipitation value” however you like – it may be the precipitation at a particular point or a spatial mean.</li>
+<li>Plot the spatial patterns associated with the first two principal components. You’ll need to reshape the data back to its original shape.
+<ul>
+<li>You do not need to add map features. The best package for mapping is <a href="https://github.com/MakieOrg/GeoMakie.jl">GeoMakie</a>, which has a bit of a new plotting syntax and is still a little rough around the edges, though improving rapidly and great in many ways.</li>
+</ul></li>
+<li>Plot the time series of the first two principal components. (We have the actual times – called <code>time</code> – so the <span class="math inline">\(x\)</span> axis should show the actual time)</li>
+<li>Make a scatter plot of the first two principal components, where each day is a day. Color the points by the precipitation value at that time.
+<ul>
+<li>Define “the precipitation value” however you like – it may be the precipitation at a particular point or a spatial mean.</li>
+<li>Use the syntax <code>scatter(x, y, zcolor=z)</code> to plot the points, where <code>x</code> and <code>y</code> are the first two principal components and <code>z</code> is the precipitation value.</li>
+</ul></li>
 </ol>
 </section>
 </section>
 <section id="k-nn" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> <span class="math inline">\(K\)</span>-NN</h1>
-<p><span class="math inline">\(K\)</span> nearest neighbors is a simple prediction algorithm. We will use a resampling-based version of KNN. Here is a general outline of the algorithm with generic notation:</p>
-<ol type="1">
-<li>We want to make predictions about some new value, <span class="math inline">\(X_i\)</span></li>
-<li>Find the <span class="math inline">\(K\)</span> nearest neighbors to <span class="math inline">\(X_i\)</span> in the training data and their distances</li>
-<li>Sample from the <span class="math inline">\(K\)</span> nearest neighbors, with probability proportional to the inverse of the distance</li>
-</ol>
-<p>Here’s an example:</p>
+<p><span class="math inline">\(K\)</span> nearest neighbors is a simple prediction algorithm. We will use a resampling-based version of KNN.</p>
+<p>We have described the algorithm above; Here’s an example:</p>
 <ol type="1">
 <li>Our dataset is <span class="math inline">\(X = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\)</span>.</li>
 <li>Our new value is <span class="math inline">\(X_i = 5.4\)</span>.</li>
@@ -370,24 +423,46 @@ window.MathJax = {
 </ol></li>
 </ol>
 <p>Write a function in Julia to perform generic <span class="math inline">\(K\)</span> nearest neighbor prediction. As the function signature implies, the first argument should be the training dataa, the second should be the new point to predict, and the third should be the number of neighbors to use. The function should return a tuple containing the indices of the neighbors and the associated probabilities.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">knn</span>(X<span class="op">::</span><span class="dt">AbstractMatrix</span>, X_i<span class="op">::</span><span class="dt">AbstractVector</span>, K<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">Tuple{Vector{Int}, Vector{AbstractFloat}}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">knn</span>(X<span class="op">::</span><span class="dt">AbstractMatrix</span>, X_i<span class="op">::</span><span class="dt">AbstractVector</span>, K<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">Tuple{Vector{Int}, Vector{AbstractFloat}}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In our example, <code>X</code> would be the principal component loading matrix for the training data, <code>X_i</code> would be the principal component loading vector for the point we are trying to predict, and <code>K</code> would be the number of neighbors to use.</p>
 </section>
 <section id="combining" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Combining</h1>
-<p>If we put these two pieces together, we have a simple yet powerful simulation tool. If we want to explore the possible precipitation for some new temperature field, we can:</p>
-<ol type="1">
-<li>Project the temperature field onto the low-dimensional space</li>
-<li>Find the <span class="math inline">\(K\)</span> nearest neighbors to the projected temperature field</li>
-<li>Sample the precipitation field from the <span class="math inline">\(K\)</span> nearest neighbors</li>
-</ol>
-<p>Create a function to implement this model, then make predictions for three randomly chosen days in the testing set. Create appropriate visualizations (you’ll need to think about how to visualize probabilistic precipitation!) Once you are happy with your model, compare to the actual precipitation values for those days. What do you learn?</p>
+<p>If we put these two pieces together, we have a simple yet powerful simulation tool. Now we will implement the full algorithm as a function.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">KNN resampling algorithm</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">temp_train: the training temperature data. This should be the raw field, not the prinipal components. Inside the function, convert to principal components using `n_pca` principal components. </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">temp_test: the temperature data to predict. This should be the raw field, not the prinipal components. Inside the function, convert to principal components using `n_pca` principal components.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">precip_train: the training precipitation data.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">predict_knn</span>(temp_train<span class="op">::</span><span class="dt">AbstractMatrix</span>, temp_test<span class="op">::</span><span class="dt">AbstractMatrix</span>, precip_train<span class="op">::</span><span class="dt">Matrix</span>; n_pca<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    temp_train <span class="op">=</span> <span class="fu">preprocess</span>(temp_train) <span class="co"># you have defined this function above</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    temp_test <span class="op">=</span> <span class="fu">preprocess</span>(temp_test) <span class="co"># adjust arguments as needed</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fit the PCA model to the training data</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># project the test data onto the PCA basis</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use the `knn` function for each point in the test data</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return a matrix of predictions</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, you can run this function on several days of data and plot the results. How can you visualize your results?</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Access documentation by typing <code>?reshape</code> in the REPL.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
