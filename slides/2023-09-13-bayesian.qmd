@@ -53,7 +53,6 @@ Plots.default(; margin=4Plots.mm, size=(700, 400))
 ## Rare disease
 
 ::: {.incremental}
-
 1. Everyone is tested for CEVE543acitis, a rare and deadly disease
 1. It is known that 1 in 1,000 people have CEVE543acitis
 1. The test is 99% accurate
@@ -64,7 +63,9 @@ Plots.default(; margin=4Plots.mm, size=(700, 400))
 
 $$
 \Pr \left\{ \theta | y \right\} = \frac{\Pr \left\{ y | \theta \right\} \Pr \left\{ \theta \right\}}{\Pr \left\{ y \right\}}
-$$## Application: rare disease {.smaller .scrollable}
+$$
+
+## Application: rare disease {.smaller .scrollable}
 
 Define $y$ is getting a positive test result and $\theta$ is having the underlying condition.
 *Not that we do not observe $\theta$ directly!*
