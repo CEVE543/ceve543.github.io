@@ -451,8 +451,8 @@ Hint
 <li>Our dataset is <span class="math inline">\(X = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\)</span>.</li>
 <li>Our new value is <span class="math inline">\(X_i = 5.4\)</span>.</li>
 <li>The 3 nearest neighbors to <span class="math inline">\(X_i\)</span> are <span class="math inline">\([5, 6, 4]\)</span>.</li>
-<li>The corresponding distances are <span class="math inline">\([0.4, 0.6, 0.4]\)</span>.</li>
-<li>Thus, we return a sample from <span class="math inline">\([5, 6, 4]\)</span> with associated probabilities <span class="math inline">\([0.4, 0.6, 0.4] / (0.4 + 0.6 + 0.4)\)</span>.
+<li>The corresponding distances are <span class="math inline">\([0.4, 0.6, 1.4]\)</span>.</li>
+<li>Thus, we return a sample from <span class="math inline">\([5, 6, 4]\)</span> with associated probabilities proportional to <span class="math inline">\([\frac{1}{0.4}, \frac{1}{0.6}, \frac{1}{1.4}]\)</span>. This works out to probabilities of approximately <span class="math inline">\([0.51, 0.34, 0.15]\)</span>.
 <ol type="1">
 <li>Instead of returning <span class="math inline">\(5\)</span>, <span class="math inline">\(6\)</span>, or <span class="math inline">\(4\)</span>, it is often advantageous to return the corresponding indices: 7, 8, or 6.</li>
 </ol></li>
