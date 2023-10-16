@@ -333,7 +333,10 @@ window.MathJax = {
 </ul></li>
 <li>Sample Precipitation Field:
 <ul>
-<li>For each of the <span class="math inline">\(K\)</span> nearest neighbors, compute the inverse distance as <span class="math inline">\(w_i = \frac{1}{\text{distance}_i}\)</span> where <span class="math inline">\(\text{distance}_i\)</span> is the distance to the <span class="math inline">\(i^{th}\)</span> neighbor.</li>
+<li>For each of the <span class="math inline">\(K\)</span> nearest neighbors, compute the inverse distance as <span class="math inline">\(w_i = \frac{1}{\text{distance}_i}\)</span> where <span class="math inline">\(\text{distance}_i\)</span> is the distance to the <span class="math inline">\(i^{th}\)</span> neighbor.
+<ul>
+<li>This is sometimes called the “kernel” and there are other valid choices (from simple – like distance squared – to more complex)</li>
+</ul></li>
 <li>Normalize the weights such that they sum to 1: <span class="math inline">\(w_i = \frac{w_i}{\sum_{j=1}^{K} w_j}\)</span>.</li>
 <li>Sample a precipitation field <span class="math inline">\(P\)</span> from the <span class="math inline">\(K\)</span> nearest neighbors with probability proportional to the normalized inverse distances <span class="math inline">\(w_i\)</span>.</li>
 </ul></li>
@@ -347,13 +350,15 @@ window.MathJax = {
 <section id="setup" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.4</span> Setup</h2>
 <p>Remember to <code>git clone</code> to your machine, then <code>activate</code> and <code>instantiate</code> the environment, as we have done in previous labs. <strong>Do not use additional packages for this assignment,</strong> though you are welcome to look at the documentation or implementation of other packages for nearest-neighbors methods.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MultivariateStats</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">NCDatasets</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Plots.<span class="fu">default</span>(; margin<span class="op">=</span><span class="fl">4</span>Plots.mm, size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">400</span>), linewidth<span class="op">=</span><span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -362,6 +367,19 @@ window.MathJax = {
 <section id="precipitation" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="precipitation"><span class="header-section-number">2.1</span> Precipitation</h2>
 <p>We start by loading the precipitation data. Create variables called <code>precip_time</code>, <code>precip_lon</code>, <code>precip_lat</code>, and <code>precip</code>. <code>precip</code> should be a 3D array with appropriate units added. Remember to close the file when you have read the data</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Review the lab 05 solutions posted on Canvas to make sure you have the right syntax. Additionally, if the latitudes are flipped, you need to reverse them (also in lab 5 solutions!)</p>
+</div>
+</div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>precip_ds <span class="op">=</span> <span class="fu">NCDataset</span>(<span class="st">"data/precip.nc"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -369,7 +387,7 @@ window.MathJax = {
 <h2 data-number="2.2" class="anchored" data-anchor-id="temperature"><span class="header-section-number">2.2</span> Temperature</h2>
 <p>Next we load the temperature data</p>
 <p>Create variables called <code>temp_time</code>, <code>temp_lon</code>, <code>temp_lat</code>, and <code>temp</code>. <code>temp</code> should have appropriate units.</p>
-<p>Make sure that <code>temp_time</code> and <code>precip_time</code> are the same! If so, you can rename this variable to <code>time</code>.</p>
+<p>Make sure that <code>temp_time</code> and <code>precip_time</code> are the same! If so, you can create a variable called <code>time</code> that is equal to <code>temp_time</code>.</p>
 </section>
 <section id="split" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="split"><span class="header-section-number">2.3</span> Split</h2>
@@ -379,8 +397,14 @@ window.MathJax = {
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="preprocess"><span class="header-section-number">2.3.1</span> Preprocess</h3>
 <p>Review the slides on PCA and decide whether you would like to preprocess the temperature data before applying PCA. Explain what you have done and why.</p>
 <p>Next, we need to convert the temperature data to a matrix. You can use the <code>reshape</code> function to do this.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Call your matrix <code>temp_mat</code>.</p>
-<p>Put all these steps into a function called <code>preprocess</code> that takes the raw field of temperature data (indexed lon, lat, time) and returns the matrix of preprocessed temperature data. You may modify this function so that it also takes in the time, longitutde, and/or latitude if you wish. (<strong>Hint:</strong> you probably want time to compute anomalies…)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preprocess</span>(temp<span class="op">::</span><span class="dt">Array{T, 3}</span>)<span class="op">::</span><span class="dt">AbstractMatrix </span><span class="kw">where</span> T</span>
+<p>Put all these steps into a function called <code>preprocess</code> that takes in:</p>
+<ul>
+<li>the raw field of temperature data (indexed lon, lat, time)</li>
+<li>the raw field of temperature data (indexed lon, lat, time) corresponding to the “reference period” over which climatology is returned</li>
+<li>any other inputs you would like (e.g., a vector of times for the reference and target periods)</li>
+</ul>
+<p>and returns the matrix of preprocessed temperature data.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preprocess</span>(temp<span class="op">::</span><span class="dt">Array{T, 3}</span>, temp_reference<span class="op">::</span><span class="dt">Array{T, 3}</span>)<span class="op">::</span><span class="dt">AbstractMatrix </span><span class="kw">where</span> T</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -388,7 +412,17 @@ window.MathJax = {
 </section>
 <section id="principal-components" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Principal components</h1>
-<p>We will use the implementation in <code>MultivariateStats.jl</code> to perform PCA. See the documentation <a href="https://juliastats.org/MultivariateStats.jl/dev/pca/">here</a>.</p>
+<p>We will use the implementation in <code>MultivariateStats.jl</code> to perform PCA. The key functions to know are:</p>
+<ol type="1">
+<li><strong><code>fit</code>:</strong> Use the syntax like <code>M = fit(PCA, X_train)</code>. The model will automatically choose how many prinicpal components to use but you can modify it using the <code>principalratio</code> and <code>maxoutdim</code> arguments.
+<ul>
+<li>To make plots of variance explained, the <code>principalvars(M)</code>, <code>var(M)</code>, and <code>cumsum</code> functions may be helpful 😉</li>
+<li>Note: the documentation says: let <code>(d, n) = size(X)</code> be respectively the input dimension and the number of observations: this is the opposite of what we have been doing, so you will need to transpose the data.</li>
+</ul></li>
+<li><strong><code>predict</code>:</strong> use the syntax <code>X_pca = predict(M, X)</code>. This will project the data <code>X</code> onto the PCA basis.</li>
+<li><strong><code>projection</code>:</strong> returns a matrix where each column is a principal component loading vector and each row is a grid cell. . Use the syntax <code>X_pca = projection(M)</code>.</li>
+</ol>
+<p>See the documentation <a href="https://juliastats.org/MultivariateStats.jl/dev/pca/">here</a> for details.</p>
 <section id="fitting" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="fitting"><span class="header-section-number">3.1</span> Fitting</h2>
 <p>Following the instructions provided in the documentation, fit the PCA model to the <em>training data.</em> Choose how many dimensions you are using and explain why you chose that number. Create any plots to help inform this choice.</p>
@@ -424,7 +458,7 @@ window.MathJax = {
 </ol></li>
 </ol>
 <p>Write a function in Julia to perform generic <span class="math inline">\(K\)</span> nearest neighbor prediction. As the function signature implies, the first argument should be the training dataa, the second should be the new point to predict, and the third should be the number of neighbors to use. The function should return a tuple containing the indices of the neighbors and the associated probabilities.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">knn</span>(X<span class="op">::</span><span class="dt">AbstractMatrix</span>, X_i<span class="op">::</span><span class="dt">AbstractVector</span>, K<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">Tuple{Vector{Int}, Vector{AbstractFloat}}</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">knn</span>(X<span class="op">::</span><span class="dt">AbstractMatrix</span>, X_i<span class="op">::</span><span class="dt">AbstractVector</span>, K<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">Tuple{Int,AbstractVector}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In our example, <code>X</code> would be the principal component loading matrix for the training data, <code>X_i</code> would be the principal component loading vector for the point we are trying to predict, and <code>K</code> would be the number of neighbors to use.</p>
@@ -439,7 +473,7 @@ Hint
 </div>
 <div class="callout-body-container callout-body">
 <p>You may find the <code>sample</code> function from <code>StatsBase</code> to be helpful. You can define weights and use it for weighted sampling:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="fu">weights</span>(<span class="fu">rand</span>(<span class="fl">10</span>))</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="fu">Weights</span>(<span class="fu">rand</span>(<span class="fl">10</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -454,7 +488,7 @@ Hint
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">temp_test: the temperature data to predict. This should be the raw field, not the prinipal components. Inside the function, convert to principal components using `n_pca` principal components.</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">precip_train: the training precipitation data.</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">predict_knn</span>(temp_train<span class="op">::</span><span class="dt">AbstractMatrix</span>, temp_test<span class="op">::</span><span class="dt">AbstractMatrix</span>, precip_train<span class="op">::</span><span class="dt">Matrix</span>; n_pca<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">predict_knn</span>(temp_train, temp_test, precip_train; n_pca<span class="op">::</span><span class="dt">Int</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    temp_train <span class="op">=</span> <span class="fu">preprocess</span>(temp_train) <span class="co"># you have defined this function above</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    temp_test <span class="op">=</span> <span class="fu">preprocess</span>(temp_test) <span class="co"># adjust arguments as needed</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
