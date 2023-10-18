@@ -1,0 +1,459 @@
+---
+title: "Random Forest Models"
+subtitle: "Lecture"
+date: 2023-10-18
+
+# metadata for the schedule page
+kind: "Lecture"
+Module: "2"
+categories:
+    - "Module 2"
+    - "Lectures"
+
+# do not edit anything below this line
+format:
+  revealjs:
+    scrollable: true
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+
+```{julia}
+#| output: false
+#| include: false
+using Colors
+using DataFrames
+using DecisionTree
+using Plots
+using Random
+using RDatasets
+using Statistics
+
+Plots.default(; margin=4Plots.mm, linewidth=2)
+```
+
+## Reading
+
+I am drawing heavily from Chapter 8 of @james_statlearn:2013.
+For more, see:
+
+- Chapter 15 of @Friedman:2001wp
+- Towards Data Science post on [Gradient Boosting](https://towardsdatascience.com/all-you-need-to-know-about-gradient-boosting-algorithm-part-1-regression-2520a34a502)
+
+# Motivation
+
+## Situating ourselves
+
+- Given: $\{(X_i, y_i) \mid i = 1, 2, \ldots, n\}$ i.e. paired predictors and targets
+    - Supervised learning
+- Goal: approximate a function $f$
+    - "Regression"
+    - Ideally: good predictions on new data
+
+## Example datasett
+
+Predict a baseball player's `Salary` (thousands of dollars) based on `Years` (the number of years that he has played in the major leagues) and `Hits` (the number of hits that he made in the previous year).
+We first remove observations that are missing Salary values, and log-transform Salary so that its distribution has more of a typical bell-shape.
+
+```{julia}
+hitters = dataset("ISLR", "Hitters")
+first(hitters, 5)
+```
+
+## Nonlinear Relationships
+
+```{julia}
+#| code-fold: true
+
+# Separate the data into two groups: with and without missing Salary values
+complete_data = dropmissing(hitters, :Salary)
+missing_data = hitters[ismissing.(hitters[:, :Salary]), :]
+
+# Plot the points with valid Salary values, colored based on Salary
+p1 = scatter(
+    complete_data[:, :Years],
+    complete_data[:, :Hits];
+    zcolor=log.(complete_data[:, :Salary]),
+    xlabel="Years",
+    ylabel="Hits",
+    label="Log of Salary",
+)
+
+# Overlay the points with missing Salary as open circles
+scatter!(
+    p1,
+    missing_data[:, :Years],
+    missing_data[:, :Hits];
+    markercolor=:white,
+    label="Missing Salary",
+)
+```
+
+# Decision Trees
+
+## Partition
+
+One way we can make predictions is to partition the predictor space into $M$ regions $R_1, R_2, \ldots, R_M$ and then predict a constant value in each region.
+
+```{julia}
+#| code-fold: true
+
+p2 = plot(p1)
+
+# Draw the vertical line for Years < 4.5
+plot!(
+    p2, [4.5, 4.5], [0, maximum(hitters[:, :Hits])]; line=:dash, color=:black, label=false
+)
+
+# Draw the horizontal line for Hits < 117.5 for Years >= 4.5
+plot!(
+    p2,
+    [4.5, maximum(hitters[:, :Years])],
+    [117.5, 117.5];
+    line=:dash,
+    color=:black,
+    label=false,
+)
+
+# Annotate the regions
+annotate!(p2, 2, maximum(hitters[:, :Hits]) - 20, text("R1", 12, :left))
+annotate!(p2, 6, 50, text("R2", 12, :left))
+annotate!(p2, 6, maximum(hitters[:, :Hits]) - 20, text("R3", 12, :left))
+```
+
+## Terminology
+
+- Decision Node
+    - $\text{Years} < 4.5$
+    - $\text{Hits} < 117.5$
+    - Hierarchical structure
+- Leaf Node (aka: terminal node, leaf)
+    - $R_1, R_2, R_3$
+
+## Implementation
+
+```{julia}
+#| output: false
+#| code-fold: true
+
+# Define the Node structure
+abstract type AbstractNode end
+
+struct DecisionNode <: AbstractNode
+    feature::Symbol
+    threshold::Float64
+    left::AbstractNode
+    right::AbstractNode
+end
+
+struct LeafNode <: AbstractNode
+    value::Float64
+end
+
+# Define the Partition structure
+struct Partition
+    feature::Symbol
+    threshold::Float64
+    left::Union{Partition,Nothing}
+    right::Union{Partition,Nothing}
+end
+
+# Define the DecisionTree structure
+struct MyDecisionTree
+    root::AbstractNode
+end
+
+# Constructor for DecisionTree from DataFrame and partition
+function MyDecisionTree(df::DataFrame, partition::Partition, y::Symbol)
+    # Recursive function to build the tree
+    function build_tree(partition, subset)
+        if partition === nothing
+            return LeafNode(mean(skipmissing(subset[:, y])))
+        end
+
+        left_subset = subset[subset[!, partition.feature] .<= partition.threshold, :]
+        right_subset = subset[subset[!, partition.feature] .> partition.threshold, :]
+
+        left = build_tree(partition.left, left_subset)
+        right = build_tree(partition.right, right_subset)
+
+        return DecisionNode(partition.feature, partition.threshold, left, right)
+    end
+
+    root = build_tree(partition, df)
+    return MyDecisionTree(root)
+end
+
+function predict(tree::MyDecisionTree, row::DataFrameRow)
+    node = tree.root
+    while !isa(node, LeafNode)
+        if row[node.feature] <= node.threshold
+            node = node.left
+        else
+            node = node.right
+        end
+    end
+    return node.value
+end
+```
+
+## Our model
+
+```{julia}
+#| output: false
+partition = Partition(:Years, 4.5, nothing, Partition(:Hits, 117.5, nothing, nothing))
+tree = MyDecisionTree(hitters, partition, :Salary)
+predictions = [predict(tree, row) for row in eachrow(hitters)]
+```
+
+```{julia}
+#| code-fold: true
+p3 = scatter(
+    hitters[:, :Years],
+    hitters[:, :Hits];
+    zcolor=log.(predictions),
+    xlabel="Years",
+    ylabel="Hits",
+    label="Predicted",
+    title="Partion Model",
+)
+plot(plot(p1; title="Obs"), p3; layout=(1, 2), size=(1250, 500), link=:both)
+```
+
+## More formally
+
+We are making predictions based on *stratification* of the *feature space*
+
+1. Divide the predictor space $X$ into $J$ distinct regions $R_1, R_2, \ldots, R_J$
+1. For every observation in $R_j$, make the same prediction
+    - $\hat{y}_j = \frac{1}{N_j} \sum_{i \in R_j} y_i$
+
+## Choosing partitions
+
+How do we choose the regions $R_1, R_2, \ldots, R_J$?
+
+- We could choose anything!
+- High-dimensional "boxes" are simple
+- Find boxes $R_1, R_2, \ldots, R_J$ that minimize the residual sum of squares (RSS)
+$$
+\sum_{j=1}^J \sum_{i \in R_j} \left(y_i - \hat{y}_i \right)^2
+$$
+
+## Optimization {.smaller}
+
+::: {layout-ncol="2"}
+::: {.fragment .fade-in}
+Extremely hard problem:
+
+Consider the space of all possible partitions
+
+- How I choose $R_1$ will affect the best $R_63$
+:::
+::: {.fragment .fade-in}
+Feasible problem: *recursive binary splitting*
+
+1. Select a predictor $X_j$ and cutpoint $s$ so that splitting predictor space into $\{X | X_j < s \}$ and $\{X | X_j \geq s \}$ minimizes RSS
+    - Consider $J \times N$ possible splits
+1. Repeat, considering a partition on each of the two resulting regions
+1. ...
+
+Top-down, greedy algorithm
+:::
+:::
+
+## Overfitting
+
+::: {.incremental}
+1. A "deep" (many splits) tree will fit our data well
+    1. But is likely to overfit
+    1. Lower bias, higher variance
+    1. We could have $n$ splits -- each observation in its own region!
+1. A "shallow" (few splits) tree will fit our data poorly
+    1. But is likely to generalize better
+    1. Higher bias, lower variance
+:::
+
+## Cost complexity penalty
+
+A penalty for the number of splits $|T|$:
+$$
+\text{Loss} = \sum_{m=1}^{|T|} \sum_{i: X_i \in R_m} \left(y_i - \hat{y}_{R_m} \right)^2 + \alpha |T|
+$$
+
+## Pruning
+
+Empirically, it works well to grow a large tree, then "prune" it back to a smaller tree.
+
+::: {.incremental}
+1. Use *recursive binary splitting* with MSE loss to grow a large tree
+    1. Example stopping rule: all regions have fewer than $K$ observations
+1. Recursively, find the node with the "weakest link" by removing one split from the tree and seeing which split has the smallest increase in RSS
+1. Choose the tree that minimizes the loss function
+:::
+
+## Classification trees
+
+We've been focusing on regression, but classification is also a common task!
+
+- Given remote sensing images, classify land uses
+- Given information about a house and flood, predict whether it experienced damage
+- Given some parameters describing population growth rates, climate change, etc, predict whether a community will experience water stress
+
+Same idea but different loss function.
+For example, cross-entropy loss:
+$$
+D = - \sum_{k=1}^K p_{mk} \log \hat{p}_{mk}
+$$
+where $\hat{p}_{mk}$ is the proportion of observations in region $m$ that are in class $k$.
+
+# Random Forests
+
+## Ensemble methods
+
+- Combine many "weak" learners into a "strong" learner
+- "Jury"
+- "Wisdom of the crowd"
+
+::: {.callout-important}
+## Key insight
+
+Ensemble methods work better when the weak learners are less correlated
+:::
+
+## Bagging {.smaller}
+
+Bagging is a general approach for ensemble learning that is especially useful for tree methods.
+
+::: {.fragment}
+**Problem:** decision trees have high variance.
+If we split our data in half, then fit a decision tree separately to each half, they might be very different.
+:::
+::: {.fragment}
+**Concept:** averaging a set of observations reduces variance.
+Recall that given $n$ IID observations $Z_i$ with mean $\bar{Z}$ and variance $\sigma^2$, the variance of the mean is $\sigma^2 / n$.
+:::
+::: {.fragment}
+**Approach:** use a **bootstrap** to create $B$ datasets, fit a decision tree to each, and average the predictions.
+$$
+\hat{f}_\text{bag} = \frac{1}{B} \sum_{b=1}^B \hat{f}^{*b}(x)
+$$
+where $\hat{f}^{*b}(x)$ is the prediction of the tree trained on the $b$th bootstrap sample, making a prediction for the full dataset.
+:::
+
+## Random Forests {.smaller}
+
+::: {.fragment}
+**Problem:** the trees in a bagged ensemble are highly correlated.
+Averaging many highly correlated quantities does not lead to as large of a reduction in variance as averaging many uncorrelated quantities.
+:::
+::: {.fragment}
+**Solution:** at each split in the tree, consider only a random subset of the predictors (do not allow the model to split on the rest)
+:::
+::: {.fragment}
+**Rationale:** suppose that there is one very strong predictor in the data set, along with a number of other moderately strong predictors.
+Then in the collection of bagged trees, most or all of the trees will use this strong predictor in the top split, and they will be closely correlated.
+:::
+::: {.fragment}
+**Implementation:** at each split, randomly select $m$ predictors out of the $p$ possible predictors.
+Typically, we choose $m \approx \sqrt{p}$.
+(If $m=p$ then we are back to regular bagging.)
+:::
+
+## Boosting {.smaller}
+
+Like bagging, boosting is a general approach that is commonly used in tree methods.
+
+::: {.fragment}
+**Idea:** instead of training each "tree" in the "forest" on a bootstrapped sample of the data, train each tree on a modified version of the data set.
+Specifically, fit a tree using the current residuals, rather than the outcome, as the response.
+:::
+::: {.fragment}
+**Algorithm:**
+1. Initialize prediction $\hat{f}_i(x)=0$ and residuals $r_i = y_i$ for all $i$
+1. For $b=1, 2, \ldots, B$:
+    1. Fit a tree $\hat{f}^b$ to the training data $(X, r)$ with $d$ splits
+    1. Update the prediction: $\hat{f}(x) = \hat{f}(x) + \lambda \hat{f}^b(x)$
+    1. Update residuals
+1. Output the boosted model: $\hat{f}(x) = \sum_{i=1}^B \lambda \hat{f}^b(x)$.
+:::
+::: {.fragment}
+**Key parameters:** number of trees $B$, shrinkage rate $\lambda$, number of splits per tree $d$
+:::
+
+## Julia example
+
+```{julia}
+# Drop rows with missing Salary values
+hitters_nm = dropmissing(hitters, :Salary)
+
+# Prepare data for training
+numerical_cols = [col for col in names(hitters_nm) if eltype(hitters_nm[!, col]) <: Number]
+hitters_nm = hitters_nm[:, numerical_cols]
+features = Matrix(hitters_nm[:, Not(:Salary)])
+labels = vec(hitters_nm[:, :Salary])
+
+# Train a decision tree regressor
+model = DecisionTreeRegressor()
+fit!(model, features, labels)
+
+# Get predictions
+predictions = DecisionTree.predict(model, features)
+
+# Scatter plot of actual vs predicted values
+scatter(
+    labels,
+    predictions;
+    xlabel="Actual Salary",
+    ylabel="Predicted Salary",
+    label="Data Points",
+    legend=:topleft,
+)
+
+# Plot a diagonal line for perfect predictions
+Plots.abline!(1, 0; color=:black, label="Perfect Predictions")
+```
+
+## Adjustments
+
+```{julia}
+# how many predictors
+m = Int(ceil(sqrt(size(features, 2))))
+
+# Train a decision tree regressor
+model = RandomForestRegressor(; n_subfeatures=m, n_trees=250)
+fit!(model, features, labels)
+
+# Get predictions
+predictions = DecisionTree.predict(model, features)
+
+# Scatter plot of actual vs predicted values
+scatter(
+    labels,
+    predictions;
+    xlabel="Actual Salary",
+    ylabel="Predicted Salary",
+    label="Data Points",
+    legend=:topleft,
+)
+
+# Plot a diagonal line for perfect predictions
+Plots.abline!(1, 0; color=:black, label="Perfect Predictions")
+```
+
+# Wrapup
+
+## Key things to know
+
+1. Decision trees
+    - Why would we fit them?
+    - How do they work?
+    - Key trade-offs
+1. Tree ensemble methods
+    - How do boosting / bagging / RFs work?
+    - Be able to outline the algorithm
+    - Explain the logic underpinning these methods
+
+## References
