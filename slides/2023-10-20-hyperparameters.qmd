@@ -19,7 +19,37 @@ template-partials:
     - title-slide.html
 ---
 
-## TBD
+```{julia}
+#| echo: false
+#| output: false
+using StatsBase: shuffle, mean
+```
 
-This is a placeholder for a planned lecture.
-The schedule will be modified as needed.
+## Means with missing values {.scrollable}
+
+Let's say you have an array with some missing values, and you want to take the mean across a particular dimension.
+How can you do this?
+
+
+```{julia}
+X = convert(Array{Union{Float64,Missing},3}, rand(11, 10, 9))
+
+K = 10
+X[shuffle(1:length(X))[1:K]] .= missing
+```
+
+We'd like to do this, but we'll get msising values
+
+```{julia}
+X_mean = mean(X, dims=3)
+sum(ismissing.(X_mean))
+```
+
+Instead, we can do:
+
+```{julia}
+X_mean = [
+    mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)
+]
+@assert size(X_mean) == (11, 10)
+```
