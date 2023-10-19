@@ -1099,11 +1099,11 @@
     "text": "Analytic posterior\nWe collect some count data and model it using a Poisson likelihood. The Poisson likelihood is given by: \\[\np(y_i | \\lambda) = \\frac{\\lambda^{y_i} e^{-\\lambda}}{y_i!}\n\\] where \\(y_i\\) is the number of counts and \\(\\lambda\\) is the rate parameter of the Poisson distribution. We want to do inference on \\(\\lambda\\). We have a prior belief that \\(\\lambda\\) is distributed as an Exponential distribution with the modified parameterization: \\[\np(\\lambda | \\theta) = \\frac{1}{\\theta} e^{-\\frac{\\lambda}{\\theta}}\n\\] After collecting data \\(y_1, y_2, \\ldots, y_n\\), what is the posterior distribution of \\(\\lambda\\) given our prior parameter \\(\\theta\\)?## Next week:\n\nMonday: Gridded climate data lab\nWednesday: Generalized Linear Models\nFriday: Loss functions"
   },
   {
-    "objectID": "slides/2023-10-20-hyperparameters.html#tbd",
-    "href": "slides/2023-10-20-hyperparameters.html#tbd",
+    "objectID": "slides/2023-10-20-hyperparameters.html#means-with-missing-values",
+    "href": "slides/2023-10-20-hyperparameters.html#means-with-missing-values",
     "title": "Hyperparameter tuning",
-    "section": "TBD",
-    "text": "TBD\nThis is a placeholder for a planned lecture. The schedule will be modified as needed."
+    "section": "Means with missing values",
+    "text": "Means with missing values\nLet’s say you have an array with some missing values, and you want to take the mean across a particular dimension. How can you do this?\n\nX = convert(Array{Union{Float64,Missing},3}, rand(11, 10, 9))\n\nK = 10\nX[shuffle(1:length(X))[1:K]] .= missing\n\n10-element view(reshape(::Array{Union{Missing, Float64}, 3}, 990), [769, 154, 388, 57, 506, 774, 238, 496, 725, 550]) with eltype Union{Missing, Float64}:\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n\n\nWe’d like to do this, but we’ll get msising values\n\nX_mean = mean(X, dims=3)\nsum(ismissing.(X_mean))\n\n10\n\n\nInstead, we can do:\n\nX_mean = [\n    mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)\n]\n@assert size(X_mean) == (11, 10)"
   },
   {
     "objectID": "slides/2023-10-18-random-forest.html#reading",
