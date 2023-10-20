@@ -1099,11 +1099,137 @@
     "text": "Analytic posterior\nWe collect some count data and model it using a Poisson likelihood. The Poisson likelihood is given by: \\[\np(y_i | \\lambda) = \\frac{\\lambda^{y_i} e^{-\\lambda}}{y_i!}\n\\] where \\(y_i\\) is the number of counts and \\(\\lambda\\) is the rate parameter of the Poisson distribution. We want to do inference on \\(\\lambda\\). We have a prior belief that \\(\\lambda\\) is distributed as an Exponential distribution with the modified parameterization: \\[\np(\\lambda | \\theta) = \\frac{1}{\\theta} e^{-\\frac{\\lambda}{\\theta}}\n\\] After collecting data \\(y_1, y_2, \\ldots, y_n\\), what is the posterior distribution of \\(\\lambda\\) given our prior parameter \\(\\theta\\)?## Next week:\n\nMonday: Gridded climate data lab\nWednesday: Generalized Linear Models\nFriday: Loss functions"
   },
   {
+    "objectID": "slides/2023-10-20-hyperparameters.html#parametric-function-approximation",
+    "href": "slides/2023-10-20-hyperparameters.html#parametric-function-approximation",
+    "title": "Hyperparameter tuning",
+    "section": "Parametric function approximation",
+    "text": "Parametric function approximation\n\nToday, we continue our “regression” example which is a supervised learning problem.\nRecall: we model an unknown function \\(f\\) using some parameters \\(\\theta\\). Thus, finding \\(\\hat{f}\\) is equivalent to choosing appropriate \\(\\theta\\).\nIdeally, we want to maximize performance on new data."
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#overfitting",
+    "href": "slides/2023-10-20-hyperparameters.html#overfitting",
+    "title": "Hyperparameter tuning",
+    "section": "Overfitting",
+    "text": "Overfitting\n\nMATLAB/Simulink"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#hyperparameters",
+    "href": "slides/2023-10-20-hyperparameters.html#hyperparameters",
+    "title": "Hyperparameter tuning",
+    "section": "Hyperparameters",
+    "text": "Hyperparameters\nMany ML models (like a Random Forest) have nested parameters, sometimes called “hyperparameters”\n\n\nWhen we “fit” a model, we are finding the best parameters\n\nwhere to partition the region\ni.e., the best tree\n\nBut, we also have to choose the number of trees\n\nthis is a hyperparameter\n\nHyperparameters are not optimized during model training"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#grid-search",
+    "href": "slides/2023-10-20-hyperparameters.html#grid-search",
+    "title": "Hyperparameter tuning",
+    "section": "Grid search",
+    "text": "Grid search\nVery simple idea\n\n\nPredefine a set of \\(S\\) hyperparameter sets\nFor \\(s=1, \\ldots, S\\) fit the model with the \\(k\\)th hyperparameter set\nChoose the best model"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#cross-validation",
+    "href": "slides/2023-10-20-hyperparameters.html#cross-validation",
+    "title": "Hyperparameter tuning",
+    "section": "Cross-validation",
+    "text": "Cross-validation\n\nKey idea: we want to evaluate the model on data that was not used to fit the model (out of sample)\n\n\n\n\nSplit the data into \\(K\\) folds\nFor \\(k=1, \\ldots, K\\)\n\nFit the model on all folds except the \\(k\\)th\nEvaluate the model on the \\(k\\)th fold\n\nAverage the performance across all folds\n\n\n\n\nCross-validation helps to reduce the variance of estimated model performance. However, cross-validated estimates of model performance are still biased – essentially, you can overfit hyperparameters"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#train-test-split",
+    "href": "slides/2023-10-20-hyperparameters.html#train-test-split",
+    "title": "Hyperparameter tuning",
+    "section": "Train-test split",
+    "text": "Train-test split\nWe want to know how well the model performs on new data!\n\n\nSplit the data into a training set and a test set\n\nOften 80-20 or 70-30\nFor spatially or temporally structured data, structured splits essential\n\nFit the model on the training set\n\nIncluding any cross-validation\n\nEvaluate the model on the test set as a final step"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#data",
+    "href": "slides/2023-10-20-hyperparameters.html#data",
+    "title": "Hyperparameter tuning",
+    "section": "Data",
+    "text": "Data\n\ndata = dataset(\"ISLR\", \"Hitters\")\ndropmissing!(data, :Salary)\nnumerical_cols = [col for col in names(data) if eltype(data[!, col]) &lt;: Number]\ndata = data[:, numerical_cols]\ndescribe(data)\n\n17×7 DataFrame\n\n\n\nRow\nvariable\nmean\nmin\nmedian\nmax\nnmissing\neltype\n\n\n\nSymbol\nFloat64\nReal\nFloat64\nReal\nInt64\nDataType\n\n\n\n\n1\nAtBat\n403.643\n19\n413.0\n687\n0\nInt32\n\n\n2\nHits\n107.829\n1\n103.0\n238\n0\nInt32\n\n\n3\nHmRun\n11.6198\n0\n9.0\n40\n0\nInt32\n\n\n4\nRuns\n54.7452\n0\n52.0\n130\n0\nInt32\n\n\n5\nRBI\n51.4867\n0\n47.0\n121\n0\nInt32\n\n\n6\nWalks\n41.1141\n0\n37.0\n105\n0\nInt32\n\n\n7\nYears\n7.31179\n1\n6.0\n24\n0\nInt32\n\n\n8\nCAtBat\n2657.54\n19\n1931.0\n14053\n0\nInt32\n\n\n9\nCHits\n722.186\n4\n516.0\n4256\n0\nInt32\n\n\n10\nCHmRun\n69.2395\n0\n40.0\n548\n0\nInt32\n\n\n11\nCRuns\n361.221\n2\n250.0\n2165\n0\nInt32\n\n\n12\nCRBI\n330.418\n3\n230.0\n1659\n0\nInt32\n\n\n13\nCWalks\n260.266\n1\n174.0\n1566\n0\nInt32\n\n\n14\nPutOuts\n290.711\n0\n224.0\n1377\n0\nInt32\n\n\n15\nAssists\n118.76\n0\n45.0\n492\n0\nInt32\n\n\n16\nErrors\n8.59316\n0\n7.0\n32\n0\nInt32\n\n\n17\nSalary\n535.926\n67.5\n425.0\n2460.0\n0\nFloat64"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#partition-data",
+    "href": "slides/2023-10-20-hyperparameters.html#partition-data",
+    "title": "Hyperparameter tuning",
+    "section": "Partition data",
+    "text": "Partition data\nR is the target, everything else is a feature\n\ny, X = unpack(data, ==(:Salary); rng=123)\n\n\n70% training, 30% testing"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#load-the-model",
+    "href": "slides/2023-10-20-hyperparameters.html#load-the-model",
+    "title": "Hyperparameter tuning",
+    "section": "Load the model",
+    "text": "Load the model\n\nRandomForestRegressor = @load RandomForestRegressor pkg = DecisionTree\nmodel = RandomForestRegressor()\n\nimport MLJDecisionTreeInterface ✔\n\n\nRandomForestRegressor(\n  max_depth = -1, \n  min_samples_leaf = 1, \n  min_samples_split = 2, \n  min_purity_increase = 0.0, \n  n_subfeatures = -1, \n  n_trees = 100, \n  sampling_fraction = 0.7, \n  feature_importance = :impurity, \n  rng = Random._GLOBAL_RNG())"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#train-the-model",
+    "href": "slides/2023-10-20-hyperparameters.html#train-the-model",
+    "title": "Hyperparameter tuning",
+    "section": "Train the model",
+    "text": "Train the model\n\nmach = machine(model, X, y)\ntrain, test = partition(eachindex(y), 0.7; shuffle=true, rng=123)\nfit!(mach; rows=train)\n\ntrained Machine; caches model-specific representations of data\n  model: RandomForestRegressor(max_depth = -1, …)\n  args: \n    1:  Source @043 ⏎ Table{AbstractVector{Count}}\n    2:  Source @581 ⏎ AbstractVector{Continuous}"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#predict-on-the-test-set",
+    "href": "slides/2023-10-20-hyperparameters.html#predict-on-the-test-set",
+    "title": "Hyperparameter tuning",
+    "section": "Predict on the test set",
+    "text": "Predict on the test set\n\ny_pred_test = predict(mach, X[test, :])\nrms_test = root_mean_squared_error(y_pred_test, y[test])\n\ny_pred_train = predict(mach, X[train, :])\nrms_train = root_mean_squared_error(y_pred_train, y[train])\n\nrms_train, rms_test\n\n(162.66471616993454, 185.53433192489436)"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#visualize",
+    "href": "slides/2023-10-20-hyperparameters.html#visualize",
+    "title": "Hyperparameter tuning",
+    "section": "Visualize",
+    "text": "Visualize\n\n\nCode\nps = map(zip([train, test], [\"Train\", \"Test\"])) do (idx, name)\n    scatter(\n        y[idx],\n        predict(mach, X[idx, :]);\n        xlabel=\"Actual\",\n        ylabel=\"Predicted\",\n        label=\"Model\",\n        title=name,\n        legend=:bottomright,\n    )\n    Plots.abline!(1, 0; label=\"1:1 line\")\nend\nplot(ps...; link=:both, size=(1000, 500))"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#tuning",
+    "href": "slides/2023-10-20-hyperparameters.html#tuning",
+    "title": "Hyperparameter tuning",
+    "section": "Tuning",
+    "text": "Tuning\n\nn_trees_range = range(model, :n_trees; lower=10, upper=150, scale=:log10)\nn_subfeatures_range = range(model, :n_subfeatures; lower=1, upper=size(X, 2))\n\ntuning = TunedModel(;\n    model=model,\n    tuning=Grid(; goal=25),  # Using a grid search with 25 points in total\n    resampling=CV(; nfolds=5, rng=123),  # 5-fold cross-validation\n    measure=root_mean_squared_error,  # Evaluation metric\n    ranges=[n_trees_range, n_subfeatures_range],\n)"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#fit-and-id-best-model",
+    "href": "slides/2023-10-20-hyperparameters.html#fit-and-id-best-model",
+    "title": "Hyperparameter tuning",
+    "section": "Fit and ID best model",
+    "text": "Fit and ID best model\n\ntuned_mach = machine(tuning, X, y)\nfit!(tuned_mach; rows=train)\nbest_model = fitted_params(tuned_mach).best_model\n\nprintln(\"Best n_trees: \", best_model.n_trees)\nprintln(\"Best n_subfeatures: \", best_model.n_subfeatures)\n\nBest n_trees: 39\nBest n_subfeatures: 8"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#fit-the-best-model-and-make-predictions",
+    "href": "slides/2023-10-20-hyperparameters.html#fit-the-best-model-and-make-predictions",
+    "title": "Hyperparameter tuning",
+    "section": "Fit the best model and make predictions",
+    "text": "Fit the best model and make predictions\n\nbest_mach = machine(best_model, X, y)\nfit!(best_mach; rows=train)\n\ny_pred_test2 = predict(best_mach, X[test, :])\nrms_test2 = root_mean_squared_error(y_pred_test2, y[test])\n\ny_pred_train2 = predict(best_mach, X[train, :])\nrms_train2 = root_mean_squared_error(y_pred_train2, y[train])\n\nrms_train2, rms_test2\n\n(168.5639463307517, 189.15340510539016)\n\n\n\n\n\n\n\n\nImportant\n\n\nWe have achieved better performance on the training set, but worse performance on the test set!"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#more-resources",
+    "href": "slides/2023-10-20-hyperparameters.html#more-resources",
+    "title": "Hyperparameter tuning",
+    "section": "More resources",
+    "text": "More resources\n\nMLJ Docs – maintained by Julia AI organization / Turing Institute\nScikitLearn Docs – uses Scikit-Learn (Python package) interface and wraps models"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#project",
+    "href": "slides/2023-10-20-hyperparameters.html#project",
+    "title": "Hyperparameter tuning",
+    "section": "Project",
+    "text": "Project\nPosted on Canvas.\nIf you’re not sure what problem to tackle, some ideas are:\n\n“Downscaling”: Map coarse resolution data to fine resolution\n“Forecasting”: Predict future values of a variable\n\nQuestions?"
+  },
+  {
+    "objectID": "slides/2023-10-20-hyperparameters.html#exams",
+    "href": "slides/2023-10-20-hyperparameters.html#exams",
+    "title": "Hyperparameter tuning",
+    "section": "Exams",
+    "text": "Exams\nExam 1: I’m working through your corrections\nExam 2: next Friday!"
+  },
+  {
     "objectID": "slides/2023-10-20-hyperparameters.html#means-with-missing-values",
     "href": "slides/2023-10-20-hyperparameters.html#means-with-missing-values",
     "title": "Hyperparameter tuning",
     "section": "Means with missing values",
-    "text": "Means with missing values\nLet’s say you have an array with some missing values, and you want to take the mean across a particular dimension. How can you do this?\n\nX = convert(Array{Union{Float64,Missing},3}, rand(11, 10, 9))\n\nK = 10\nX[shuffle(1:length(X))[1:K]] .= missing\n\n10-element view(reshape(::Array{Union{Missing, Float64}, 3}, 990), [769, 154, 388, 57, 506, 774, 238, 496, 725, 550]) with eltype Union{Missing, Float64}:\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n\n\nWe’d like to do this, but we’ll get msising values\n\nX_mean = mean(X, dims=3)\nsum(ismissing.(X_mean))\n\n10\n\n\nInstead, we can do:\n\nX_mean = [\n    mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)\n]\n@assert size(X_mean) == (11, 10)"
+    "text": "Means with missing values\nLet’s say you have an array with some missing values, and you want to take the mean across a particular dimension. How can you do this?\n\nX = convert(Array{Union{Float64,Missing},3}, rand(11, 10, 9))\n\nK = 10\nX[shuffle(1:length(X))[1:K]] .= missing\n\n10-element view(reshape(::Array{Union{Missing, Float64}, 3}, 990), [138, 56, 507, 104, 827, 17, 468, 575, 186, 477]) with eltype Union{Missing, Float64}:\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n missing\n\n\nWe’d like to do this, but we’ll get msising values\n\nX_mean = mean(X; dims=3)\nsum(ismissing.(X_mean))\n\n9\n\n\nInstead, we can do:\n\nX_mean = [mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)]\n@assert size(X_mean) == (11, 10)"
   },
   {
     "objectID": "slides/2023-10-18-random-forest.html#reading",
