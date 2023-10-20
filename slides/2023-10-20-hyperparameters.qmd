@@ -4,11 +4,11 @@ subtitle: "Lecture"
 date: 2023-10-20
 
 # metadata for the schedule page
-kind: "Planned"
+kind: "Lecture"
 Module: "2"
 categories:
     - "Module 2"
-    - "Planned"
+    - "Lectures"
 
 # do not edit anything below this line
 format: 
@@ -166,7 +166,7 @@ ps = map(zip([train, test], ["Train", "Test"])) do (idx, name)
         ylabel="Predicted",
         label="Model",
         title=name,
-        legend=:bottomright,
+        legend=:bottomright
     )
     Plots.abline!(1, 0; label="1:1 line")
 end
@@ -185,7 +185,7 @@ tuning = TunedModel(;
     tuning=Grid(; goal=25),  # Using a grid search with 25 points in total
     resampling=CV(; nfolds=5, rng=123),  # 5-fold cross-validation
     measure=root_mean_squared_error,  # Evaluation metric
-    ranges=[n_trees_range, n_subfeatures_range],
+    ranges=[n_trees_range, n_subfeatures_range]
 )
 ```
 
