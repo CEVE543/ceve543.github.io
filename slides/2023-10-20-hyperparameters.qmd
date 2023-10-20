@@ -11,7 +11,10 @@ categories:
     - "Planned"
 
 # do not edit anything below this line
-format: revealjs
+format: 
+    revealjs:
+        scrollable: true
+
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
@@ -22,8 +25,225 @@ template-partials:
 ```{julia}
 #| echo: false
 #| output: false
+
+using DataFrames
+using MLJ
+using Plots
+using RDatasets
 using StatsBase: shuffle, mean
+
+Plots.default(; margin=4Plots.mm, linewidth=2)
 ```
+
+# Theory
+
+## Parametric function approximation
+
+1. Today, we continue our "regression" example which is a supervised learning problem.
+1. Recall: we model an unknown function $f$ using some parameters $\theta$. Thus, finding $\hat{f}$ is equivalent to choosing appropriate $\theta$.
+1. Ideally, we want to maximize performance **on new data**.
+
+## Overfitting
+
+![MATLAB/Simulink](https://www.mathworks.com/discovery/overfitting/_jcr_content/mainParsys/image.adapt.full.medium.svg/1686825007300.svg){width=100%}
+
+## Hyperparameters
+
+Many ML models (like a Random Forest) have nested parameters, sometimes called "hyperparameters"
+
+::: {.incremental}
+- When we "fit" a model, we are finding the best parameters
+    - where to partition the region
+    - i.e., the best tree
+- But, we also have to choose the number of trees
+    - this is a hyperparameter
+- Hyperparameters are not optimized during model training
+:::
+
+## Grid search
+
+Very simple idea
+
+::: {.incremental}
+1. Predefine a set of $S$ hyperparameter sets
+1. For $s=1, \ldots, S$ fit the model with the $k$th hyperparameter set
+1. Choose the best model
+:::
+
+## Cross-validation {.smaller}
+
+::: {.fragment}
+**Key idea:** we want to evaluate the model on data that was not used to fit the model (*out of sample*)
+:::
+
+::: {.fragment}
+::: {.incremental}
+1. Split the data into $K$ *folds*
+1. For $k=1, \ldots, K$
+    1. Fit the model on all folds except the $k$th
+    1. Evaluate the model on the $k$th fold
+1. Average the performance across all folds
+:::
+:::
+
+::: {.fragment}
+Cross-validation helps to reduce the variance of estimated model performance.
+However, cross-validated estimates of model performance are still biased -- essentially, you can overfit hyperparameters
+:::
+
+## Train-test split
+
+We want to know how well the model performs on new data!
+
+::: {.incremental}
+1. Split the data into a training set and a test set
+    1. Often 80-20 or 70-30
+    1. For spatially or temporally structured data, structured splits essential
+1. Fit the model on the training set 
+    1. Including any cross-validation
+1. Evaluate the model on the test set as a final step
+:::
+
+# Practice
+
+## Data {.smaller}
+
+```{julia}
+data = dataset("ISLR", "Hitters")
+dropmissing!(data, :Salary)
+numerical_cols = [col for col in names(data) if eltype(data[!, col]) <: Number]
+data = data[:, numerical_cols]
+describe(data)
+```
+
+## Partition data
+
+`R` is the target, everything else is a feature
+
+```{julia}
+#| output: false
+y, X = unpack(data, ==(:Salary); rng=123)
+```
+
+1. 70% training, 30% testing
+
+## Load the model
+
+```{julia}
+RandomForestRegressor = @load RandomForestRegressor pkg = DecisionTree
+model = RandomForestRegressor()
+```
+
+## Train the model
+
+```{julia}
+mach = machine(model, X, y)
+train, test = partition(eachindex(y), 0.7; shuffle=true, rng=123)
+fit!(mach; rows=train)
+```
+
+## Predict on the test set
+
+```{julia}
+y_pred_test = predict(mach, X[test, :])
+rms_test = root_mean_squared_error(y_pred_test, y[test])
+
+y_pred_train = predict(mach, X[train, :])
+rms_train = root_mean_squared_error(y_pred_train, y[train])
+
+rms_train, rms_test
+```
+
+## Visualize
+
+```{julia}
+#| code-fold: true
+ps = map(zip([train, test], ["Train", "Test"])) do (idx, name)
+    scatter(
+        y[idx],
+        predict(mach, X[idx, :]);
+        xlabel="Actual",
+        ylabel="Predicted",
+        label="Model",
+        title=name,
+        legend=:bottomright,
+    )
+    Plots.abline!(1, 0; label="1:1 line")
+end
+plot(ps...; link=:both, size=(1000, 500))
+```
+
+## Tuning
+
+```{julia}
+#| output: false
+n_trees_range = range(model, :n_trees; lower=10, upper=150, scale=:log10)
+n_subfeatures_range = range(model, :n_subfeatures; lower=1, upper=size(X, 2))
+
+tuning = TunedModel(;
+    model=model,
+    tuning=Grid(; goal=25),  # Using a grid search with 25 points in total
+    resampling=CV(; nfolds=5, rng=123),  # 5-fold cross-validation
+    measure=root_mean_squared_error,  # Evaluation metric
+    ranges=[n_trees_range, n_subfeatures_range],
+)
+```
+
+## Fit and ID best model
+
+```{julia}
+tuned_mach = machine(tuning, X, y)
+fit!(tuned_mach; rows=train)
+best_model = fitted_params(tuned_mach).best_model
+
+println("Best n_trees: ", best_model.n_trees)
+println("Best n_subfeatures: ", best_model.n_subfeatures)
+```
+
+## Fit the best model and make predictions
+
+```{julia}
+best_mach = machine(best_model, X, y)
+fit!(best_mach; rows=train)
+
+y_pred_test2 = predict(best_mach, X[test, :])
+rms_test2 = root_mean_squared_error(y_pred_test2, y[test])
+
+y_pred_train2 = predict(best_mach, X[train, :])
+rms_train2 = root_mean_squared_error(y_pred_train2, y[train])
+
+rms_train2, rms_test2
+```
+
+::: {.callout-important}
+## Important
+
+We have achieved better performance on the training set, but worse performance on the test set!
+:::
+
+## More resources
+
+- [MLJ Docs](https://alan-turing-institute.github.io/MLJ.jl/dev/getting_started/) -- maintained by Julia AI organization / Turing Institute
+- [ScikitLearn Docs](https://github.com/cstjean/ScikitLearn.jl) -- uses Scikit-Learn (Python package) interface and wraps models
+
+# Wrapup
+
+## Project
+
+Posted on Canvas.
+
+If you're not sure what problem to tackle, some ideas are:
+
+- "Downscaling": Map coarse resolution data to fine resolution 
+- "Forecasting": Predict future values of a variable
+
+**Questions?**
+
+## Exams
+
+Exam 1: I'm working through your corrections
+
+Exam 2: next Friday!
 
 ## Means with missing values {.scrollable}
 
@@ -41,15 +261,13 @@ X[shuffle(1:length(X))[1:K]] .= missing
 We'd like to do this, but we'll get msising values
 
 ```{julia}
-X_mean = mean(X, dims=3)
+X_mean = mean(X; dims=3)
 sum(ismissing.(X_mean))
 ```
 
 Instead, we can do:
 
 ```{julia}
-X_mean = [
-    mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)
-]
+X_mean = [mean(skipmissing(X[i, j, :])) for i in axes(X, 1), j in axes(X, 2)]
 @assert size(X_mean) == (11, 10)
 ```
