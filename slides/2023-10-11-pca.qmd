@@ -188,11 +188,11 @@ Common approaches include:
 
 PCA is a versatile tool for dimensionality reduction, data visualization, and compression. By understanding its underlying principles and practical applications, we can effectively analyze and interpret complex datasets.
 
-## Further reading
+## Further reading {.scrollable}
 
+- [SVD Mathematical Overview](https://youtube.com/watch?v=nbBvuuNVfco&feature=shared) is a YouTube video by [Steven Brunton](https://twitter.com/eigensteve) that provides a conceptual overview of SVD, which is a linear algebra path to PCA. Note that he defines $X$ as a matrix of column vectors, whereas we have defined it as a matrix of row vectors (ie, it's transposed). You'll want [Video 2](https://www.youtube.com/watch?v=xy3QyyhiuY4).
 - MIT Computational Thinking [Lecture](https://computationalthinking.mit.edu/Fall23/data_science/pca/)
 - Chapter 10.2 of @james_statlearn:2013
-- Chapter 14.5 of @Friedman:2001wp
 - NCAR [Quick Tutorial](https://climatedataguide.ucar.edu/climate-tools/empirical-orthogonal-function-eof-analysis-and-rotated-eof-analysis)
 - [GeoStatsGuy Notebook](https://github.com/GeostatsGuy/PythonNumericalDemos/blob/master/PCA_Demo.ipynb)
 
