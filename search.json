@@ -2412,14 +2412,14 @@
     "href": "slides/2023-10-11-pca.html#further-reading",
     "title": "Principal Components Analysis (PCA)",
     "section": "Further reading",
-    "text": "Further reading\n\nMIT Computational Thinking Lecture\nChapter 10.2 of James et al. (2013)\nChapter 14.5 of Friedman et al. (2001)\nNCAR Quick Tutorial\nGeoStatsGuy Notebook"
+    "text": "Further reading\n\nSVD Mathematical Overview is a YouTube video by Steven Brunton that provides a conceptual overview of SVD, which is a linear algebra path to PCA. Note that he defines \\(X\\) as a matrix of column vectors, whereas we have defined it as a matrix of row vectors (ie, it’s transposed). You’ll want Video 2.\nMIT Computational Thinking Lecture\nChapter 10.2 of James et al. (2013)\nNCAR Quick Tutorial\nGeoStatsGuy Notebook"
   },
   {
     "objectID": "slides/2023-10-11-pca.html#references",
     "href": "slides/2023-10-11-pca.html#references",
     "title": "Principal Components Analysis (PCA)",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\nFriedman, J., Hastie, T., & Tibshirani, R. (2001). The Elements of Statistical Learning (Vol. 1). Springer series in statistics Springer, Berlin.\n\n\nJames, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning (Vol. 103). New York, NY: Springer New York."
+    "text": "References\n\n\n\n\n\n\nJames, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning (Vol. 103). New York, NY: Springer New York."
   },
   {
     "objectID": "slides/2023-09-11-uncertainty.html#recall-bayesian-decision-theory",
