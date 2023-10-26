@@ -11,7 +11,9 @@ categories:
     - "Lectures"
 
 # do not edit anything below this line
-format: revealjs
+format:
+  revealjs:
+    scrollable: true
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
@@ -114,6 +116,7 @@ For each year, we have also noted the average summertime temperature. We want to
 
 ```{julia}
 #| code-fold: true
+
 avg_temp = [
     20.5,
     21.3,
@@ -143,7 +146,7 @@ scatter(
     label=false,
     xlabel="Average summertime temperature (deg C)",
     ylabel="Forest fire occurred",
-    legend=:topleft,
+    legend=:topleft
 )
 ```
 
@@ -202,6 +205,7 @@ These can be subtly different:
 
 ```{julia}
 #| code-fold: true
+
 inv_probit(x) = cdf(Normal(0, 1), x)
 
 plot(
@@ -211,7 +215,7 @@ plot(
     label="Logit",
     xlabel=L"$\alpha + \beta x_i$",
     ylabel=L"$p_i = f(\alpha + \beta x_i)$",
-    legend=:topleft,
+    legend=:topleft
 )
 plot!(inv_probit; label="Probit")
 ```
@@ -238,6 +242,7 @@ end
 
 ```{julia}
 #| code-fold: true
+
 logistic_chn = let
     model = logistic_regression(forest_fire_occurred, avg_temp)
     sampler = externalsampler(DynamicHMC.NUTS())
@@ -262,6 +267,7 @@ We want to investigate if there's a relationship between the average number of v
 
 ```{julia}
 #| code-fold: true
+
 avg_visitors = [
     50, 55, 52, 58, 60, 53, 57, 59, 54, 56, 51, 61, 62, 63, 64, 65, 66, 67, 68, 69
 ]
@@ -272,7 +278,7 @@ scatter(
     label=false,
     xlabel="Average number of visitors",
     ylabel="Wildlife sightings",
-    legend=:topleft,
+    legend=:topleft
 )
 ```
 
@@ -318,6 +324,7 @@ end
 
 ```{julia}
 #| code-fold: true
+
 poiss_chn = let
     model = poisson_regression(wildlife_sightings, avg_visitors)
     sampler = externalsampler(DynamicHMC.NUTS())
@@ -343,6 +350,7 @@ To our scatter plot, we can add the posterior predictive distribution, which we 
 
 ```{julia}
 #| code-fold: true
+
 # define the values of "avg number of visitors" we want to predict at
 x_pred = range(40, 75; length=100)
 
