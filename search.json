@@ -641,7 +641,7 @@
     "href": "slides/2023-10-04-glm.html#data",
     "title": "Generalized Linear Models",
     "section": "Data",
-    "text": "Data"
+    "text": "Data\n\n\nCode\navg_temp = [\n    20.5,\n    21.3,\n    22.7,\n    23.4,\n    21.8,\n    24.1,\n    20.9,\n    22.5,\n    23.8,\n    24.6,\n    21.1,\n    22.3,\n    23.5,\n    24.0,\n    22.8,\n    23.9,\n    21.4,\n    20.7,\n    23.2,\n    22.9,\n]\nforest_fire_occurred = [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1]\nscatter(\n    avg_temp,\n    forest_fire_occurred;\n    label=false,\n    xlabel=\"Average summertime temperature (deg C)\",\n    ylabel=\"Forest fire occurred\",\n    legend=:topleft\n)"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#likelihood",
@@ -669,21 +669,21 @@
     "href": "slides/2023-10-04-glm.html#probit-link",
     "title": "Generalized Linear Models",
     "section": "Probit link",
-    "text": "Probit link\nThis isn’t the only possible link function, though. For example, economists like to use the probit link – the Probit is the inverse of a standard Nomal distribution. These can be subtly different:"
+    "text": "Probit link\nThis isn’t the only possible link function, though. For example, economists like to use the probit link – the Probit is the inverse of a standard Nomal distribution. These can be subtly different:\n\n\nCode\ninv_probit(x) = cdf(Normal(0, 1), x)\n\nplot(\n    logistic,\n    -5,\n    5;\n    label=\"Logit\",\n    xlabel=L\"$\\alpha + \\beta x_i$\",\n    ylabel=L\"$p_i = f(\\alpha + \\beta x_i)$\",\n    legend=:topleft\n)\nplot!(inv_probit; label=\"Probit\")"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#inference-i",
     "href": "slides/2023-10-04-glm.html#inference-i",
     "title": "Generalized Linear Models",
     "section": "Inference I",
-    "text": "Inference I\n\nHere we are saying that x and y have to be vectors, but we don’t care what kind of vector (e.g. Vector{Float64}, Vector{Int}, etc.)\nThis is a more robust way to write for i in 1:length(y)\ninv_logit is defined above."
+    "text": "Inference I\n\n1@model function logistic_regression(y::AbstractVector, x::AbstractVector)\n    α ~ Normal(0, 1)\n    β ~ Normal(0, 1)\n2    for i in eachindex(y)\n        p = logistic(α + β * x[i])\n3        y[i] ~ Bernoulli(p)\n    end\nend\n\n\n1\n\nHere we are saying that x and y have to be vectors, but we don’t care what kind of vector (e.g. Vector{Float64}, Vector{Int}, etc.)\n\n2\n\nThis is a more robust way to write for i in 1:length(y)\n\n3\n\ninv_logit is defined above."
   },
   {
     "objectID": "slides/2023-10-04-glm.html#inference-ii",
     "href": "slides/2023-10-04-glm.html#inference-ii",
     "title": "Generalized Linear Models",
     "section": "Inference II",
-    "text": "Inference II\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!"
+    "text": "Inference II\n\n\nCode\nlogistic_chn = let\n    model = logistic_regression(forest_fire_occurred, avg_temp)\n    sampler = externalsampler(DynamicHMC.NUTS())\n    nsamples = 10_000\n1    rng = Random.MersenneTwister(1041)\n    sample(rng, model, sampler, nsamples; drop_warmup=true)\nend\nplot(logistic_chn)\n\n\n\n1\n\nThis sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#motivation-1",
@@ -697,7 +697,7 @@
     "href": "slides/2023-10-04-glm.html#data-1",
     "title": "Generalized Linear Models",
     "section": "Data",
-    "text": "Data"
+    "text": "Data\n\n\nCode\navg_visitors = [\n    50, 55, 52, 58, 60, 53, 57, 59, 54, 56, 51, 61, 62, 63, 64, 65, 66, 67, 68, 69\n]\nwildlife_sightings = [4, 2, 4, 4, 9, 10, 4, 4, 5, 6, 6, 8, 6, 12, 13, 8, 19, 15, 13, 10]\nscatter(\n    avg_visitors,\n    wildlife_sightings;\n    label=false,\n    xlabel=\"Average number of visitors\",\n    ylabel=\"Wildlife sightings\",\n    legend=:topleft\n)"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#likelihood-1",
@@ -718,14 +718,14 @@
     "href": "slides/2023-10-04-glm.html#inference-i-1",
     "title": "Generalized Linear Models",
     "section": "Inference I",
-    "text": "Inference I\n\n@. means all the operations to the right use dot syntax – this is equivalent to exp.(α .+ β .* x)."
+    "text": "Inference I\n\n@model function poisson_regression(y::AbstractVector, x::AbstractVector)\n    # priors\n    α ~ Normal(0, 5)\n    β ~ Normal(0, 5)\n\n    # likelihood\n1    λ = @. exp(α + β * x)\n    return y .~ Poisson.(λ)\nend\n\n\n1\n\n@. means all the operations to the right use dot syntax – this is equivalent to exp.(α .+ β .* x)."
   },
   {
     "objectID": "slides/2023-10-04-glm.html#inference-ii-1",
     "href": "slides/2023-10-04-glm.html#inference-ii-1",
     "title": "Generalized Linear Models",
     "section": "Inference II",
-    "text": "Inference II"
+    "text": "Inference II\n\n\nCode\npoiss_chn = let\n    model = poisson_regression(wildlife_sightings, avg_visitors)\n    sampler = externalsampler(DynamicHMC.NUTS())\n    nsamples = 10_000\n    rng = Random.MersenneTwister(1112)\n    sample(rng, model, sampler, nsamples; drop_warmup=true)\nend\nplot(poiss_chn)"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#posterior-check",
@@ -739,7 +739,7 @@
     "href": "slides/2023-10-04-glm.html#posterior-check-ii",
     "title": "Generalized Linear Models",
     "section": "Posterior check II",
-    "text": "Posterior check II"
+    "text": "Posterior check II\n\n\nCode\n# define the values of \"avg number of visitors\" we want to predict at\nx_pred = range(40, 75; length=100)\n\n# posterior distributions\nα = poiss_chn[:α]\nβ = poiss_chn[:β]\n\n# get a Matrix of Poisson distributions indexed [MCMC sample index, x index]\nλ = hcat([exp.(α .+ β .* xi) for xi in x_pred]...)\ndists = Poisson.(λ)\n\n# select the percentiles to plot\npercentiles = [5, 25, 50, 75, 95]\n\n# create the base plot\np = plot(;\n    xlabel=\"Average number of visitors\", ylabel=\"Wildlife sightings\", legend=:topleft\n)\n\n# add percentile lines\nfor pct in percentiles\n    line = vec(mean(quantile.(dists, pct / 100); dims=1))\n    plot!(p, x_pred, line; label=\"$pct%\", color=:gray, linestyle=:dash)\nend\n\n# add the observations on top\nscatter!(p, avg_visitors, wildlife_sightings; label=\"Observed\", color=:blue)"
   },
   {
     "objectID": "slides/2023-10-04-glm.html#other-common-models",
