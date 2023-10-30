@@ -19,7 +19,86 @@ template-partials:
     - title-slide.html
 ---
 
-## TBD
+# Extreme values
 
-This is a placeholder for a planned lecture.
-The schedule will be modified as needed.
+## Objectives
+
+- Likelihood of extreme events
+- Extrapolate
+- Univariate (for now)
+
+## Applications
+
+Engineering design
+
+- Streamflow
+- Precipitation rates or totals
+- Wind speed
+
+## Extremes are rare
+
+# Definitions
+
+## Threshold models
+
+## Block maxima
+
+# Classical approaches
+
+## Plotting position
+
+## Plotting paper
+
+## Log Pearson Type III distribution
+
+## Method of moments
+
+## $L$ Moments
+
+# Modern methods
+
+## GEV
+
+## GPD
+
+## MLE
+
+## MAP
+
+## Sampling
+
+# Challenges
+
+## Parametric Uncertainty
+
+## Model Uncertainty
+
+## Sampling Uncertainty
+
+## Nonstationarity
+
+# Wrapup
+
+## Harvey and Addicks / Barker
+
+I was asked to calculate what would happen under some specific assumptions (no suggestion of unbiasedness!)
+
+::: {.callout-information}
+- These were plausible assumptions, not necessarily the "right" or "best" assumptions (other side had many reasonable objections!)
+- Large differences between estimates made under different assumptions underscore the challenge of "objective" esimates
+- A hard problem (interacting drivers of nonstationarity, short records, etc)
+:::
+
+## References
+
+- @coles_extremes:2001: canonical extreme value textbook
+- @
+
+## Logistics
+
+1. Exams
+    1. Working on grading exams 1 and 2
+1. Class
+    1. Friday 11/3: lab
+    1. Monday 11/6: POT and Block Maxima Models
+    1. Wednesday 11/8: GEV models and estimators
