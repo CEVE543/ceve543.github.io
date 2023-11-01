@@ -29,55 +29,29 @@ template-partials:
 
 ## Applications
 
-Engineering design
+- Engineering design
+- Emergency management
+- Regulation
+- Insurance
+- Managing financial assets
+
+## What variables?
 
 - Streamflow
 - Precipitation rates or totals
 - Wind speed
+- Temperatures
 
 ## Extremes are rare
 
-# Definitions
+- There are simple and clever methods for estimating the likelihood of rare events
+- Fundamentally, extrapolating is hard
+- Key sources of uncertainty:
+    - Estimation uncertainty
+    - Model structure uncertainty
+    - Sampling uncertainty
 
-## Threshold models
-
-## Block maxima
-
-# Classical approaches
-
-## Plotting position
-
-## Plotting paper
-
-## Log Pearson Type III distribution
-
-## Method of moments
-
-## $L$ Moments
-
-# Modern methods
-
-## GEV
-
-## GPD
-
-## MLE
-
-## MAP
-
-## Sampling
-
-# Challenges
-
-## Parametric Uncertainty
-
-## Model Uncertainty
-
-## Sampling Uncertainty
-
-## Nonstationarity
-
-# Wrapup
+# Case studies
 
 ## Harvey and Addicks / Barker
 
@@ -89,10 +63,102 @@ I was asked to calculate what would happen under some specific assumptions (no s
 - A hard problem (interacting drivers of nonstationarity, short records, etc)
 :::
 
-## References
+## Precipitation frequencies in TX
+
+- TWDB project
+- Atlas 14 [@atlas14_texas:2018] does not account for climate change
+- Use more stations and account for climate change
+- Joint TWDB/TAMU/Rice project
+- Variable studied: precipitation at multiple durations across the entire state
+
+## How likely was Winter Storm Uri?
+
+- What should we plan for?
+- Was it an "unprecedented" event?
+- Variable studied:
+    - temperature at grid cells
+    - aggregated "population-weighted" index
+
+# Theoretical Frameworks
+
+## Peak over threashold (POT)
+
+- Define a threshold
+- Model the distribution of events above the threshold
+- Model the probability of seeing an event over the threshold
+- Advantage: focus on meaningful events, even if they're rare
+- Disadvantage: threshold is arbitrary, modeling arrival turns out to be tricky
+
+## Block maxima
+
+- Define a block size (e.g., 1 year -- how you define "a year" matters)
+- Model the distribution of the extreme in each block
+- Advantage: easier to communicate and implementations are more flexible
+- Disadvantages: timing of extremes; two extremes in one year; sometimes your min/max is not special
+
+# Terminology
+
+## Key terms
+
+- Exceedance probability (often AEP): $p$
+- Return period or recurrence interval ($T$): $\frac{1}{p}$
+- Return level: the value that will be exceeded with probability $\frac{1}{T}$, ie the quantile
+
+## Plotting position
+
+Two ideas:
+
+- Ranks: if you have $N$ events, the largest is rank 1, the second largest rank 2, etc.
+- Use the points that you have as _return levels_ and estimate the associated _return periods_
+- Common estimator is Weibull plotting position $p = \frac{m}{N+1}$ where $m$ is the rank
+- Lots of bickering in the literature about right choice
+- When you see return period plots, if the observations are shown they are using a plotting position of some sort
+
+## Log Pearson Type III distribution
+
+- Different variables have different properties
+- USGS likes this distribution for streamflow
+
+## GEV
+
+- Model block extremes
+- As we will see, has strong theoretical justification
+- Three parameters: location, scale, shape
+- Shape can be tricky to estimate $\rightarrow$ large parameter uncertainty
+
+## GPD
+
+- Similar: location, scale, and shape parameter
+- Requires a separate model for "arrivals"
+
+# Challenges
+
+## Parametric Uncertainty
+
+- Many parameter values can be consistent with the data
+- But lead to very different conclusions about the likelihood of extreme events
+- Hard to pin down
+- Relatively easier to resolve through clever approaches we will see
+
+## Model Uncertainty
+
+- Different assumptions lead to different inferences
+- GEV / GPD are theoretically justified
+- As we add clever approaches, we add model structure uncertainty
+
+## Sampling Uncertainty
+
+- We have a finite sample of data and are trying to estimate parameters that tell us about rare events
+- If Harvey had never occurred, we would likely have a very different estimate of the 100-year rainfall!
+
+## Nonstationarity
+
+- These models don't explicitly account for climate change
+- Interannual variability / correlations
+
+## Reading
 
 - @coles_extremes:2001: canonical extreme value textbook
-- @
 
 ## Logistics
 
@@ -102,3 +168,5 @@ I was asked to calculate what would happen under some specific assumptions (no s
     1. Friday 11/3: lab
     1. Monday 11/6: POT and Block Maxima Models
     1. Wednesday 11/8: GEV models and estimators
+
+## References
