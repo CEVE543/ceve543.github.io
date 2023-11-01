@@ -30,7 +30,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -341,14 +360,337 @@
 <p class="subtitle">Lecture</p>
 <p class="date">Wed., Nov.&nbsp;1</p>
 </section>
-<section id="tbd" class="slide level2">
-<h2>TBD</h2>
-<p>This is a placeholder for a planned lecture. The schedule will be modified as needed.</p>
+<section>
+<section id="extreme-values" class="title-slide slide level1 agenda-slide center">
+<h1>Extreme values</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-active">
+<p>Extreme values</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Case studies</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Theoretical Frameworks</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Terminology</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Challenges</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="objectives" class="slide level2">
+<h2>Objectives</h2>
+<ul>
+<li>Likelihood of extreme events</li>
+<li>Extrapolate</li>
+<li>Univariate (for now)</li>
+</ul>
+</section>
+<section id="applications" class="slide level2">
+<h2>Applications</h2>
+<ul>
+<li>Engineering design</li>
+<li>Emergency management</li>
+<li>Regulation</li>
+<li>Insurance</li>
+<li>Managing financial assets</li>
+</ul>
+</section>
+<section id="what-variables" class="slide level2">
+<h2>What variables?</h2>
+<ul>
+<li>Streamflow</li>
+<li>Precipitation rates or totals</li>
+<li>Wind speed</li>
+<li>Temperatures</li>
+</ul>
+</section>
+<section id="extremes-are-rare" class="slide level2">
+<h2>Extremes are rare</h2>
+<ul>
+<li>There are simple and clever methods for estimating the likelihood of rare events</li>
+<li>Fundamentally, extrapolating is hard</li>
+<li>Key sources of uncertainty:
+<ul>
+<li>Estimation uncertainty</li>
+<li>Model structure uncertainty</li>
+<li>Sampling uncertainty</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="case-studies" class="title-slide slide level1 agenda-slide center">
+<h1>Case studies</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Extreme values</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Case studies</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Theoretical Frameworks</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Terminology</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Challenges</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="harvey-and-addicks-barker" class="slide level2">
+<h2>Harvey and Addicks / Barker</h2>
+<p>I was asked to calculate what would happen under some specific assumptions (no suggestion of unbiasedness!)</p>
+<div class="callout-information">
+<ul>
+<li>These were plausible assumptions, not necessarily the “right” or “best” assumptions (other side had many reasonable objections!)</li>
+<li>Large differences between estimates made under different assumptions underscore the challenge of “objective” esimates</li>
+<li>A hard problem (interacting drivers of nonstationarity, short records, etc)</li>
+</ul>
+</div>
+</section>
+<section id="precipitation-frequencies-in-tx" class="slide level2">
+<h2>Precipitation frequencies in TX</h2>
+<ul>
+<li>TWDB project</li>
+<li>Atlas 14 <span class="citation" data-cites="atlas14_texas:2018">(<a href="#/references" role="doc-biblioref" onclick="">Perica et al., 2018</a>)</span> does not account for climate change</li>
+<li>Use more stations and account for climate change</li>
+<li>Joint TWDB/TAMU/Rice project</li>
+<li>Variable studied: precipitation at multiple durations across the entire state</li>
+</ul>
+</section>
+<section id="how-likely-was-winter-storm-uri" class="slide level2">
+<h2>How likely was Winter Storm Uri?</h2>
+<ul>
+<li>What should we plan for?</li>
+<li>Was it an “unprecedented” event?</li>
+<li>Variable studied:
+<ul>
+<li>temperature at grid cells</li>
+<li>aggregated “population-weighted” index</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="theoretical-frameworks" class="title-slide slide level1 agenda-slide center">
+<h1>Theoretical Frameworks</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Extreme values</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case studies</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Theoretical Frameworks</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Terminology</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Challenges</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="peak-over-threashold-pot" class="slide level2">
+<h2>Peak over threashold (POT)</h2>
+<ul>
+<li>Define a threshold</li>
+<li>Model the distribution of events above the threshold</li>
+<li>Model the probability of seeing an event over the threshold</li>
+<li>Advantage: focus on meaningful events, even if they’re rare</li>
+<li>Disadvantage: threshold is arbitrary, modeling arrival turns out to be tricky</li>
+</ul>
+</section>
+<section id="block-maxima" class="slide level2">
+<h2>Block maxima</h2>
+<ul>
+<li>Define a block size (e.g., 1 year – how you define “a year” matters)</li>
+<li>Model the distribution of the extreme in each block</li>
+<li>Advantage: easier to communicate and implementations are more flexible</li>
+<li>Disadvantages: timing of extremes; two extremes in one year; sometimes your min/max is not special</li>
+</ul>
+</section></section>
+<section>
+<section id="terminology" class="title-slide slide level1 agenda-slide center">
+<h1>Terminology</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Extreme values</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case studies</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Theoretical Frameworks</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Terminology</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Challenges</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="key-terms" class="slide level2">
+<h2>Key terms</h2>
+<ul>
+<li>Exceedance probability (often AEP): <span class="math inline">\(p\)</span></li>
+<li>Return period or recurrence interval (<span class="math inline">\(T\)</span>): <span class="math inline">\(\frac{1}{p}\)</span></li>
+<li>Return level: the value that will be exceeded with probability <span class="math inline">\(\frac{1}{T}\)</span>, ie the quantile</li>
+</ul>
+</section>
+<section id="plotting-position" class="slide level2">
+<h2>Plotting position</h2>
+<p>Two ideas:</p>
+<ul>
+<li>Ranks: if you have <span class="math inline">\(N\)</span> events, the largest is rank 1, the second largest rank 2, etc.</li>
+<li>Use the points that you have as <em>return levels</em> and estimate the associated <em>return periods</em></li>
+<li>Common estimator is Weibull plotting position <span class="math inline">\(p = \frac{m}{N+1}\)</span> where <span class="math inline">\(m\)</span> is the rank</li>
+<li>Lots of bickering in the literature about right choice</li>
+<li>When you see return period plots, if the observations are shown they are using a plotting position of some sort</li>
+</ul>
+</section>
+<section id="log-pearson-type-iii-distribution" class="slide level2">
+<h2>Log Pearson Type III distribution</h2>
+<ul>
+<li>Different variables have different properties</li>
+<li>USGS likes this distribution for streamflow</li>
+</ul>
+</section>
+<section id="gev" class="slide level2">
+<h2>GEV</h2>
+<ul>
+<li>Model block extremes</li>
+<li>As we will see, has strong theoretical justification</li>
+<li>Three parameters: location, scale, shape</li>
+<li>Shape can be tricky to estimate <span class="math inline">\(\rightarrow\)</span> large parameter uncertainty</li>
+</ul>
+</section>
+<section id="gpd" class="slide level2">
+<h2>GPD</h2>
+<ul>
+<li>Similar: location, scale, and shape parameter</li>
+<li>Requires a separate model for “arrivals”</li>
+</ul>
+</section></section>
+<section>
+<section id="challenges" class="title-slide slide level1 agenda-slide center">
+<h1>Challenges</h1>
+<div class="agenda-heading">
+<p>Today</p>
+</div>
+<div class="agenda">
+<ol>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Extreme values</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case studies</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Theoretical Frameworks</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Terminology</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Challenges</p>
+</div></li>
+</ol>
+</div>
+</section>
+<section id="parametric-uncertainty" class="slide level2">
+<h2>Parametric Uncertainty</h2>
+<ul>
+<li>Many parameter values can be consistent with the data</li>
+<li>But lead to very different conclusions about the likelihood of extreme events</li>
+<li>Hard to pin down</li>
+<li>Relatively easier to resolve through clever approaches we will see</li>
+</ul>
+</section>
+<section id="model-uncertainty" class="slide level2">
+<h2>Model Uncertainty</h2>
+<ul>
+<li>Different assumptions lead to different inferences</li>
+<li>GEV / GPD are theoretically justified</li>
+<li>As we add clever approaches, we add model structure uncertainty</li>
+</ul>
+</section>
+<section id="sampling-uncertainty" class="slide level2">
+<h2>Sampling Uncertainty</h2>
+<ul>
+<li>We have a finite sample of data and are trying to estimate parameters that tell us about rare events</li>
+<li>If Harvey had never occurred, we would likely have a very different estimate of the 100-year rainfall!</li>
+</ul>
+</section>
+<section id="nonstationarity" class="slide level2">
+<h2>Nonstationarity</h2>
+<ul>
+<li>These models don’t explicitly account for climate change</li>
+<li>Interannual variability / correlations</li>
+</ul>
+</section>
+<section id="reading" class="slide level2">
+<h2>Reading</h2>
+<ul>
+<li><span class="citation" data-cites="coles_extremes:2001">Coles (<a href="#/references" role="doc-biblioref" onclick="">2001</a>)</span>: canonical extreme value textbook</li>
+</ul>
+</section>
+<section id="logistics" class="slide level2">
+<h2>Logistics</h2>
+<ol type="1">
+<li>Exams
+<ol type="1">
+<li>Working on grading exams 1 and 2</li>
+</ol></li>
+<li>Class
+<ol type="1">
+<li>Friday 11/3: lab</li>
+<li>Monday 11/6: POT and Block Maxima Models</li>
+<li>Wednesday 11/8: GEV models and estimators</li>
+</ol></li>
+</ol>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-coles_extremes:2001" class="csl-entry" role="listitem">
+Coles, S. (2001). <em>An introduction to statistical modeling of extreme values</em>. <span>London ;</span> <span>Springer</span>.
+</div>
+<div id="ref-atlas14_texas:2018" class="csl-entry" role="listitem">
+Perica, S., Pavlovic, S., St. Laurent, M., Trypaluk, C., Unruh, D., &amp; Wilhite, O. (2018). <em><span>NOAA Atlas</span> 14</em> (No. Volume 11 Version 2.0: Texas) (p. 283). <span>Silver Spring, MD</span>: <span>National Weather Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce</span>. Retrieved from <a href="https://www.weather.gov/media/owp/oh/hdsc/docs/Atlas14_Volume11.pdf">https://www.weather.gov/media/owp/oh/hdsc/docs/Atlas14_Volume11.pdf</a>
+</div>
+</div>
+</section></section>
     </div>
   </div>
 
