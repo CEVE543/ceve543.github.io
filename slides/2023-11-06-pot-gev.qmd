@@ -1,5 +1,5 @@
 ---
-title: "POT and Block Maxima Models"
+title: "Classical Extreme Value Theory and Models"
 subtitle: "Lecture"
 date: 2023-11-08
 
@@ -11,7 +11,10 @@ categories:
     - "Planned"
 
 # do not edit anything below this line
-format: revealjs
+format:
+    revealjs:
+        scrolalble: true
+
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
 institution: "{{< var course.institution >}}}"
@@ -19,7 +22,265 @@ template-partials:
     - title-slide.html
 ---
 
-## TBD
+```{julia}
+#| echo: false
+#| output: false
+using Distributions
+using Extremes
+using LaTeXStrings
+using Plots
+using StatsPlots
 
-This is a placeholder for a planned lecture.
-The schedule will be modified as needed.
+Plots.default(; margin=4Plots.mm, linewidth=2)
+```
+
+## Reading
+
+This lecture follows Chapter 3 of @coles_extremes:2001 fairly closely
+
+# Introduction
+
+## Gumbel, Fréchet, and Weibull distributions {.scrollable}
+
+```{julia}
+#| code-fold: true
+dists = [GeneralizedExtremeValue(0, 2.5, ξ) for ξ in [-0.5, 0, 0.5]]
+names = ["Weibull", "Gumbel", "Fréchet"]
+colors = [:blue, :red, :green]
+
+p = plot()
+for (dist, name, c) in zip(dists, names, colors)
+    plot!(p, dist; label=name, color=c, xlims=(-10, 25))
+    if dist.ξ > 0
+        lb = dist.μ − dist.σ / dist.ξ
+        scatter!(p, [lb], [0]; label=nothing, color=c)
+    elseif dist.ξ < 0
+        ub = dist.μ − dist.σ / dist.ξ
+        scatter!(p, [ub], [0]; label=nothing, color=c)
+    end
+end
+p
+```
+
+## Generalized Extreme Value distribution
+
+- Instead of heuristically picking which of the 3 distributions to use, we can use the Generalized Extreme Value distribution (GEV)
+- Account for uncertainty in choice of extreme value distribution
+
+## Quantiles 
+
+Also known as return levels.
+Following @coles_extremes:2001 notation, the level $z_p$ is exceeded with probability $p$
+
+$$
+z_p = \begin{cases} 
+    \mu - \frac{\sigma}{\xi} \left[ 1 - y_p^{-\xi} \right], & \quad \text{for} \quad \xi \neq 0 \\
+    \mu - \sigma \log y_p, & \quad \text{for} \quad \xi = 0 \\
+ \end{cases}
+$$
+where $y_p = -\log(1-p)$ for concise notation
+
+```{julia}
+#| code-fold: true
+y_plot = 0:0.1:7
+p = plot(; xlabel=L"$y_p$", ylabel=L"$z_p$", legend=:topleft)
+for (dist, name) in zip(dists, names)
+    plot!(p, y_plot, quantile(dist, 1 .- exp.(-y_plot)); label=name)
+end
+p
+```
+
+## Extremal Types Theorem
+
+- See @coles_extremes:2001 section 3.1.4 for a proof
+- Justifies use of GEV for modeling the distribution of maxima of long sequences
+- Numerical examples here are based on analytic examples in 3.1.5
+
+## Minima
+
+**Statistical consultants hate this one simple trick:**
+
+> Define $Y_i = -X_i$ and use the GEV distribution to model the maxima of $Y_i$
+
+# Inference
+
+## Bias-variance trade-off
+
+::: {.incremental}
+- Block size is a choice!
+- Small blocks: the limit model, leading to bias in estimation and extrapolation
+- Large blocks: few block maxima, leading to large estimation variance
+- Default choice in environmental applications is typically 1 year
+    - Key assumption: each block from the same distribution (IID)
+    - If you choose 3 months, need to account for differing distirbutions of, eg, temperature in summer and winter
+:::
+
+## Overview of inference methods
+
+1. Graphical techniques
+1. Moment techniques
+1. Order statistics based methods
+1. Likelihood approaches
+
+## Example data
+
+```{julia}
+data = Extremes.dataset("portpirie")
+plot(
+    data[!, :Year], data[!, :SeaLevel]; xlabel="Year", ylabel="Sea level (m)", legend=false
+)
+```
+
+## Maximum likelihood estimation I
+
+Conceptually straightforward:
+$$
+\begin{aligned}
+\ell(\mu, \sigma, \xi) = -m \log \sigma - (1 + 1/\xi) &\sum_{i=1}^{m} \log \left[ 1 + \xi \left( \frac{z_i - \mu}{\sigma} \right) \right]\\
+&- \sum_{i=1}^{m} \left[ 1 + \xi \left( \frac{z_i - \mu}{\sigma} \right) \right]^{-1/\xi},
+\end{aligned}
+$$
+provided that
+$$
+ 1 + \xi \left( \frac{z_i - \mu}{\sigma} \right) > 0
+ $$
+when $\xi=0$ the equation is a bit different
+$$
+\ell(\mu, \sigma) = -m \log \sigma - \sum_{i=1}^{m} \left( \frac{z_i - \mu}{\sigma} \right) - \sum_{i=1}^{m} \exp \left\{ - \left( \frac{z_i - \mu}{\sigma} \right) \right\}.
+$$
+
+::: {.callout-tip}
+I don't need you to know these equations
+:::
+
+## Maximum likelihood estimation II
+
+Numerical implementations need to consider
+
+- Use the right function around $\xi=0$
+- Return a value of $-\inf$ if bounds constraint is violated 
+- Possible to derive approximations of uncertainty
+    - Can approximate uncertainty in return levels
+
+
+## Maximum likelihood estimation III
+
+```{julia}
+gev_mle = gevfit(data.SeaLevel)
+```
+
+
+## Bayesian inference
+
+```{julia}
+gev_bayes = gevfitbayes(data.SeaLevel; niter=10_000, warmup=2_000)
+```
+
+## Profile likelihood
+
+1. For a range of values of the shape parameter $\xi$:
+    1. Maximize the likelihood with respect to $\mu$ and $\sigma$
+    1. Compute the likelihood
+1. Plot the (log) likelihood as a function of $\xi$
+
+## Moment matching
+
+::: {.incremental}
+- Moment: mean, variance, skewness, kurtosis, etc
+- Moment matching: estimate the moments of the *samples* then match them to the theoretical moments of the *distribution*
+- Probability-weighted moments [@hosking_pwmoments:1985]: weight data points by their cumulative probability (i.e., more weight for biggest values)
+- $L$ moments [@hosking_lmoments:1990]: Linear combinations of order statistics, less sensitive to outliers
+:::
+
+## Probability-weighted moments II
+
+```{julia}
+gev_pwm = gevfitpwm(data.SeaLevel)
+```
+
+## Uncertainty
+
+```{julia}
+cint(gev_mle)
+```
+
+```{julia}
+cint(gev_bayes)
+```
+
+```{julia}
+cint(gev_pwm)
+```
+
+## Return levels
+
+```{julia}
+#| output: false
+function weibull_plot_pos(y)
+    N = length(y)
+    ys = sort(y; rev=false) # sorted values of y
+    nxp = xp = [r / (N + 1) for r in 1:N] # exceedance probability
+    xp = 1 .- nxp
+    return xp, ys
+end
+
+function plot_rl_extremes(fit, obs)
+    minval = 1 + 1 / (length(obs) + 1)
+    return_period = 10 .^ range(log10(minval), log10(250); length=50)
+    x_ticks = [2, 5, 10, 20, 50, 100, 250]
+
+    p = plot(;
+        xscale=:log10,
+        xticks=(x_ticks, string.(x_ticks)),
+        xlabel="Return Period",
+        ylabel="Return Level",
+        legend=false
+    )
+
+    rl = zero(return_period)
+    ub = zero(return_period)
+    lb = zero(return_period)
+
+    for (i, rt) in enumerate(return_period)
+        r = returnlevel(fit, rt) # special object
+        rl[i] = mean(r.value)
+        lb[i], ub[i] = cint(r)[1]
+    end
+
+    plot!(p, return_period, rl)
+    plot!(p, return_period, lb; fillrange=ub, fillalpha=0.35, linewidth=0)
+
+    xp, ys = weibull_plot_pos(obs)
+    scatter!(p, 1 ./ xp, ys)
+
+    return p
+end
+```
+
+## Comparison
+
+```{julia}
+#| code-fold: true
+p1 = plot_rl_extremes(gev_mle, data.SeaLevel)
+title!(p1, "MLE")
+
+p2 = plot_rl_extremes(gev_bayes, data.SeaLevel)
+title!(p2, "Bayesian Inference")
+
+p3 = plot_rl_extremes(gev_pwm, data.SeaLevel)
+title!(p3, "Probability-weighted moments")
+
+plot(p1, p2, p3; link=:all)
+```
+
+# Wrapup
+
+## Limitations
+
+- Nonstationarity
+- Spatial dependence and multivariate extremes
+- Small samples
+- UQ
+- Model checking / validation
+
+## References
