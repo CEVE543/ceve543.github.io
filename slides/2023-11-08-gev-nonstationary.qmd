@@ -1,0 +1,341 @@
+---
+title: "Nonstationary GEV"
+subtitle: "Lecture"
+date: 2023-11-08
+
+# metadata for the schedule page
+kind: "Lecture"
+Module: "3"
+categories:
+    - "Module 3"
+    - "Lecture"
+
+# do not edit anything below this line
+format:
+    revealjs:
+        scrollable: true
+
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+
+```{julia}
+#| echo: false
+#| output: false
+
+using CSV
+using DataFrames
+using Dates
+using Distributions
+using DynamicHMC
+using Extremes
+using Plots
+using StatsBase
+using StatsPlots
+using Turing
+using Unitful
+
+Plots.default(; margin=4Plots.mm, linewidth=2)
+
+function weibull_plot_pos(y)
+    N = length(y)
+    ys = sort(y; rev=false) # sorted values of y
+    nxp = xp = [r / (N + 1) for r in 1:N] # exceedance probability
+    xp = 1 .- nxp
+    return xp, ys
+end
+
+function plot_rl_extremes(fit, obs; is_stationary=true)
+    minval = 1 + 1 / (length(obs) + 1)
+    return_period = 10 .^ range(log10(minval), log10(250); length=50)
+    x_ticks = [2, 5, 10, 20, 50, 100, 250]
+
+    p = plot(;
+        xscale=:log10,
+        xticks=(x_ticks, string.(x_ticks)),
+        xlabel="Return Period",
+        ylabel="Return Level",
+        legend=false
+    )
+
+    rl = zero(return_period)
+    ub = zero(return_period)
+    lb = zero(return_period)
+
+    for (i, rt) in enumerate(return_period)
+        r = returnlevel(fit, rt) # special object
+        if is_stationary
+            rl[i] = mean(r.value)
+            lb[i], ub[i] = cint(r)[1]
+        else
+            if length(size(r.value)) == 1
+                rl[i] = r.value[end, :]
+            else
+                rl[i] = mean(r.value[end, :])
+            end
+
+            lb[i], ub[i] = cint(r)[end]
+        end
+    end
+
+    plot!(p, return_period, rl)
+    plot!(p, return_period, lb; fillrange=ub, fillalpha=0.35, linewidth=0)
+
+    xp, ys = weibull_plot_pos(obs)
+    scatter!(p, 1 ./ xp, ys)
+
+    return p
+end
+```
+
+# Nonstationarity
+
+## Independent and identically distributed
+
+::: {.incremental}
+1. Extreme value theory is based on the assumption that the data are independent and identically distributed (iid).
+    1. Each draw comes from the same distribution
+1. This is violated by
+    1. Climate change
+    1. Low-frequency variability
+    1. Memory processes
+:::
+
+## Stationarity
+
+::: {.incremental}
+1. A stationary process is a stochastic process whose unconditional joint probability distribution does not change when shifted in time
+    1. A stochastic process is a model for a *sequence* of random variables (e.g.: random walk, MCMC)
+1. "Stationarity is dead" [@milly_stationarity:2008]
+:::
+
+## Climate change impacts overview
+
+::: {.incremental}
+1. Thermodynamic effects
+    1. Clausius-Clapeyron relation: $e_s(T) = e_0 \exp\left(\frac{L_v}{R_v T}\right)$
+        1. About 7% per degree K
+1. Dynamic effects
+    1. Longer, hotter summers
+    1. "Tropics" expand poleward
+    1. Storm structure and intensity
+:::
+
+The rest of this section draws from @seneviratne_wg1ch11:2021 executive summary
+
+## Climate change impacts on precipitation {.smaller}
+
+
+- The frequency and intensity of heavy precipitation events have likely increased at the global scale over a  majority of land regions with good observational coverage. Heavy precipitation has likely increased on the continental scale over three continents: North America, Europe, and Asia.
+- Heavy precipitation will generally become more frequent and more intense with additional global warming. At a global warming level of 4°C relative to the pre-industrial level, very rare (e.g., one in 10 or more years) heavy precipitation events would become more frequent and more intense than in the recent past, on the global scale (virtually certain) and in all continents and AR6 regions. The increase in frequency and intensity is extremely likely for most continents and very likely for most AR6 regions.
+- The projected increase in the intensity of extreme precipitation translates to an increase in the frequency and magnitude of pluvial floods  – surface water and flash floods  – (high confidence), as pluvial flooding results from precipitation intensity exceeding the capacity of natural and artificial drainage systems.
+
+
+## Climate change impacts on river floods
+
+- Significant trends in peak streamflow have been observed in some regions over the past decades (high confidence).
+    - The  seasonality of river floods has changed in cold regions where snow-melt is involved, with an earlier occurrence of peak streamflow (high confidence).
+- Global hydrological models project a  larger fraction of land areas to be affected by an increase in river floods than by a  decrease in river floods (medium confidence).
+
+## Climate change impacts on extreme temperatures {.smaller}
+
+- The frequency and intensity of hot extremes (including heatwaves) have increased, and those of cold extremes have decreased on the global scale since 1950 (virtually certain). This also applies at regional scale, with more than 80% of AR6 regions1 showing similar changes assessed to be at least likely.
+- Human-induced greenhouse gas forcing is the main driver of the observed changes in hot and cold extremes on the global scale (virtually certain) and on most continents (very likely).
+- The frequency and intensity of hot extremes will continue to increase and those of cold extremes will continue to decrease, at global and continental scales and in nearly all inhabited regions1 with increasing global warming levels.
+
+## Climate change impacts on tropical cyclones {.smaller}
+
+- The average and maximum rain rates associated with tropical cyclones (TCs), extratropical cyclones and atmospheric rivers across the globe, and severe convective storms in some regions, increase  in a  warming world (high confidence).
+- It is likely that the global proportion of Category 3–5 tropical cyclone instances2 has increased over the past four decades.
+- The proportion of intense TCs, average peak TC wind speeds, and peak wind speeds of the most intense TCs will increase on the global scale with increasing global warming (high confidence).
+- There is low confidence in past changes of maximum wind speeds and other measures of dynamical intensity of extratropical cyclones. Future wind speed changes are expected to be small, although poleward shifts in the storm tracks could lead to substantial changes in extreme wind speeds in some regions (medium confidence).
+
+## El Niño-Southern Oscillation
+
+![](https://scied.ucar.edu/sites/default/files/styles/extra_large/public/2021-11/ElNino.png.webp?itok=aX3wkNVO){width=100%}
+
+# Houston Hobby Airport rainfall
+
+## Motivation
+
+::: {#fig-fagnant}
+![@fagnant_spatiotemporal:2020](../_assets/img/fagnant-2020-fig4.png)
+:::
+
+## Get data {.smaller}
+
+Data is from [NOAA GHCND](https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USW00012918/detail)
+
+```{julia}
+annmax_prcp = CSV.read("data/hobby-annmax.csv", DataFrame)
+annmax_prcp[!, :date] = Dates.Date.(annmax_prcp[!, :date], "mm/dd/yyyy")
+annmax_prcp[!, :year] = Dates.year.(annmax_prcp[!, :date])
+first(annmax_prcp, 5)
+```
+
+1. Keep only years where there are at least 350 days of data
+
+## Exploratory visualization
+
+```{julia}
+#| code-fold: true
+plot(
+    annmax_prcp.year,
+    annmax_prcp.prcp_in;
+    marker=:circ,
+    label=false,
+    xlabel="Year",
+    ylabel="Ann. Max. Daily Precipitation [in]",
+    title="Houston Hobby Airport"
+)
+```
+
+## Stationary analysis
+
+```{julia}
+hobby_mle = gevfit(annmax_prcp.prcp_in)
+p0 = plot_rl_extremes(hobby_mle, annmax_prcp.prcp_in)
+title!(p0, "Stationary Model")
+```
+
+## Rank Trend
+
+::: {.callout-tip}
+The [Mann-Kendall test](https://vsp.pnnl.gov/help/vsample/design_trend_mann_kendall.htm) is commonly used to assess the presence of a trend in time series data.
+:::
+
+```{julia}
+prcp_rank = invperm(sortperm(annmax_prcp.prcp_in))
+rank_cor = round(cor(prcp_rank, annmax_prcp.year); digits=2)
+scatter(
+    annmax_prcp.year,
+    prcp_rank;
+    label=false,
+    xlabel="Year",
+    ylabel="Rank",
+    title="Rank Correlation: $rank_cor"
+)
+```
+
+# Potential models
+
+## Rolling window
+
+- As in @fagnant_spatiotemporal:2020
+- **Pro:**
+    - Simple
+    - Interpretable
+- **Con:**
+    - Noisy
+    - You lose extremes
+
+::: {.fragment}
+Less bias, more variance
+:::
+
+## Regression models
+
+::: {.fragment}
+In linear regression and GLMs, every data point is drawn from its own distribution.
+This distribution depends on some parameters and some covariates.
+:::
+::: {.fragment}
+Each data point's likelihood can be expressed relative to that particular distribution.
+:::
+::: {.fragment}
+We can apply this idea to extreme value models (e.g., the GEV)
+:::
+
+## Types of regression models
+
+We have limitless flexibility!
+
+::: {.columns}
+::: {.column width="50%"}
+What varies?
+::: {.incremental}
+1. Location parameter: $\mu(t) = f(X(t))$
+1. Scale parameter: $\sigma(t) = f(X(t))$
+1. Both location and scale
+1. Scale and coefficient of variation: $\mu(t) = \phi \sigma(t)$
+1. Varying shape is impractical but allowed
+:::
+::: {.column width="50%"}
+How does it vary?
+::: {.incremental}
+1. Linear: $\theta(t) = \alpha + \beta_1 X_1(t) + \beta_2 X_2(t) + \cdots$
+1. Occasionally more (splines, GAMS, etc)
+    1. Anything is allowed, not everything is practical
+:::
+:::
+:::
+
+## Choosing covariates
+
+Some general guidance:
+
+::: {.incremental}
+1. Theory / domain knowledge is helpful
+1. For precip, log of CO2 is a good variable
+    - isolates global warming from ENSO
+:::
+
+## Read in covariates
+
+```{julia}
+co2 = CSV.read("data/global_mean_CO2.csv", DataFrame)
+co2[!, :log_CO2] = log.(co2[!, :CO2_ppm])
+mrg = innerjoin(co2, annmax_prcp; on=:year)
+plot(mrg[!, :year], mrg[!, :CO2_ppm]; label=false, xlabel="Year", ylabel="CO2 (ppm)")
+```
+
+## Location trend
+
+$$
+\begin{aligned}
+y_t &\sim \text{GEV} \left( \mu_t, \sigma, \xi \right) \\
+\mu_t &= \alpha + \beta X_t
+\end{aligned}
+$$
+
+If we are OK with default uniform priors (🫤) we can use `Extremes.jl`
+
+```{julia}
+fit1 = gevfitbayes(mrg, :prcp_in; locationcovid=[:log_CO2])
+p1 = plot_rl_extremes(fit1, annmax_prcp.prcp_in)
+title!(p1, "Location Trend: 2017")
+```
+
+## Scale trend
+
+```{julia}
+fit2 = gevfitbayes(mrg, :prcp_in; logscalecovid=[:log_CO2])
+p2 = plot_rl_extremes(fit2, annmax_prcp.prcp_in)
+title!(p2, "Scale Trend: 2017")
+```
+
+## Both
+
+```{julia}
+fit3 = gevfitbayes(mrg, :prcp_in; locationcovid=[:log_CO2], logscalecovid=[:log_CO2])
+p3 = plot_rl_extremes(fit3, annmax_prcp.prcp_in)
+title!(p3, "Location and Scale Trend: 2017")
+```
+
+## Comparison
+
+```{julia}
+plot(p0, p1, p2, p3; link=:all, layout=(2, 2), size=(900, 700), ylims=(0, 25))
+```
+
+# Wrapup
+
+## Key ideas
+
+- Nonstationary models reduce bias, increase variance
+    - Physical process knowledge is valuable
+    - Large parametric uncertainty
+- Model comparison is challenging

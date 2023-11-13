@@ -1,0 +1,329 @@
+---
+title: "Regionalization and Spatial Pooling"
+subtitle: "Lecture"
+date: 2023-11-13
+
+# metadata for the schedule page
+kind: "Lecture"
+Module: "3"
+categories:
+    - "Module 3"
+    - "Lectures"
+
+# do not edit anything below this line
+format: revealjs
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CSV
+using DataFrames
+using Distributions
+using DynamicHMC
+using Plots
+using Turing
+
+Plots.default(; margin=4Plots.mm, linewidth=2)
+```
+
+## Motivation
+
+::: {#fig-fagnant}
+![](../_assets/img/fagnant-2020-fig4.png)
+
+@fagnant_spatiotemporal:2020
+:::
+
+## Rationale
+
+::: {.incremental}
+1. Nearby stations should (usually) have similar precipitation probabilities
+    1. Alternatively: flood, fire, etc.
+1. Reduce estimation error by pooling information
+1. Reduce sampling error of random variation betweeen nearby stations
+1. DOES NOT reduce sampling error of major regional events
+:::
+
+## Data {.smaller}
+
+[NOAA Atlas 14](https://hdsc.nws.noaa.gov/pub/hdsc/data/tx/dur01d_ams_na14v11.txt) for stations with $29.25 \leq ~\text{lat}~ \leq 30.25$ and $-96 \leq ~\text{lon}~ \leq -95$
+
+```{julia}
+#| code-fold: true
+annmax_precip = CSV.read("data/dur01d_ams_na14v11_houston.csv", DataFrame)
+stations = combine(groupby(annmax_precip, :stnid), :lat => first => :lat, :lon => first => :lon, :name => first => :name, :stnid => length => :n)
+scatter(stations.lon, stations.lat, zcolor=stations.n, xlabel="Longitude", ylabel="Latitude", colorbar_title="Number of Years", title="Locations of $(nrow(stations)) Stations")
+```
+
+## Four longest records {.smaller}
+
+```{julia}
+#| code-fold: true
+stn_plots = []
+for stnid in sort(stations, :n, rev=true)[!, :stnid][1:4]
+    sub = annmax_precip[annmax_precip.stnid.==stnid, :]
+    name = stations[stations.stnid.==stnid, :name][1]
+    pᵢ = plot(sub.year, sub.precip_in, marker=:circ, xlabel="Year", ylabel="Annual Maximum Precipitation [in]", label=name)
+    push!(stn_plots, pᵢ)
+end
+plot(stn_plots..., layout=(2, 2), size=(1600, 700), link=:all)
+```
+
+## All stations
+
+```{julia}
+precip_df = sort(unstack(annmax_precip, :year, :stnid, :precip_in), :year)
+plot(precip_df.year, Matrix(precip_df[!, Not(:year)]), label=false, yscale=:log10, yticks=([2, 5, 10, 15, 20, 25], ["2", "5", "10", "15", "20", "25"]), ylabel="Annual Maximum Precip [in]", linewidth=0.5)
+```
+
+## Learning objectives
+
+1. Discuss the motivation for regionalization
+1. Describe key assumptions of different regionalization approaches
+1. Outline several specific models that implement regionalization
+
+# Classical approaches
+
+## Recall: $L$ moment estimators
+
+::: {.incremental}
+1. Linear combinations of order statistics
+1. Can choose parameters of a distribution so that the theoretical $L$ moments of the distribution "match" the empirical $L$ moments of the data
+1. Pros:
+    1. Computationally efficient
+    1. Work well inpractice
+1. Cons:
+    1. Inflexible
+    1. Difficult to quantify parametric uncertainty
+:::
+
+See @hosking_lmoments:1990 for details.
+
+## Regional Frequency Analysis
+
+::: {.incremental}
+1. Assign sites to regions
+1. Estimate $L$ moments for each site
+1. Check for homogeneity
+1. Take regional $L$ moments as the weighted mean of the site $L$ moments
+    1. For floods: apply scaling factor (e.g., average annual maximum flood)
+:::
+
+Best implemented in the R [`lmomRFA` package](https://cran.r-project.org/web/packages/lmomRFA/lmomRFA.pdf).
+(Can use [`RCall`](https://juliainterop.github.io/RCall.jl/stable/) to call R from Julia.)
+
+## Region of Influence
+
+::: {.incremental}
+1. RFA assumes that all sites are assigned to a single region
+    1. But often regions are not distinct!
+1. ROI: define a "similarity" between each pair of sites. E.g., distance, land use, elevation, climate.
+1. To make estimates at site $i$, define its "region of influence" as the most similar sites (similar to KNN)
+1. Estimate $L$ moments for each site and compute weighted average as in RFA
+:::
+
+# Hierarchical models
+
+## Bayesian GEV in Turing {.scrollable}
+
+We've used `Extremes.jl`, but we need our own model for customization.
+Here's a GEV model for a single site.
+
+```{julia}
+#| output: false
+@model function stationary_gev(y::AbstractVector)
+    # priors
+    μ ~ Normal(5, 5) # <1>
+    σ ~ LogNormal(0, 2) # <2>
+    ξ ~ Uniform(-0.5, 0.5) # <3>
+    y .~ GeneralizedExtremeValue(μ, σ, ξ)
+end
+```
+
+1. Wide priors on our parameters for now
+2. Work on the log scale for $\sigma$ to ensure positivity
+3. Restrict shape parameter to the interval $(-1, 1)$
+
+## Sampling {.scrollable}
+
+We draw samples as
+
+```{julia}
+chn_stationary_gev = let # variables defined in a let...end block are temporary
+    sub = vec(annmax_precip[annmax_precip.stnid.=="41-4321", :precip_in])
+    model = stationary_gev(sub)
+    sampler = Turing.NUTS()
+    n_per_chain = 5000
+    nchains = 4
+    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)
+end
+summarystats(chn_stationary_gev)
+```
+
+## Visualization
+
+```{julia}
+#| code-fold: true
+dists = [
+    GeneralizedExtremeValue(μ, σ, ξ) for (μ, σ, ξ) in
+    zip(vec(chn_stationary_gev[:μ]), vec(chn_stationary_gev[:σ]), vec(chn_stationary_gev[:ξ]))
+]
+histogram(quantile.(dists, 0.99), normalize=:pdf, label=false, xlabel="Annual Maximum Precipitation [in]", ylabel="Density", title="100 Year Return Level Posterior", linewidth=0)
+```
+
+## Full pooling: concept
+
+Stations should "pool" information
+
+::: {.incremental}
+1. Assume: within a region, all sites have the same distribution
+1. Estimate a single distribution for the entire region   
+1. Analagrous to regional frequency analysis
+:::
+
+## Full pooling: model
+
+```{julia}
+#| output: false
+@model function gev_fully_pooled(y::AbstractMatrix)
+    N_yr, N_stn = size(y)
+    μ ~ Normal(5, 5)
+    σ ~ LogNormal(0, 2)
+    ξ ~ Uniform(-0.5, 0.5)
+    for s in 1:N_stn
+        for t in 1:N_yr
+            if !ismissing(y[t, s])
+                y[t, s] ~ GeneralizedExtremeValue(μ, σ, ξ)
+            end
+        end
+    end
+end
+```
+
+## Full pooling: sampling
+
+We have a lot of data per parameter, so sampling is pretty fast.
+
+```{julia}
+#| code-fold: true
+precip_array = Matrix(precip_df[!, Not(:year)])
+chn_gev_fully_pooled = let # variables defined in a let...end block are temporary
+    model = gev_fully_pooled(precip_array)
+    sampler = Turing.NUTS()
+    n_per_chain = 5000
+    nchains = 4
+    sample(model, sampler, MCMCThreads(), n_per_chain, nchains; drop_warmup=true)
+end
+summarystats(chn_gev_fully_pooled)
+```
+
+## Important caveat!
+
+::: {.incremental}
+1. We weight each observation equally, regardless of site or year
+1. If we have more observations for some years than others, we are implicitly weighting those years more heavily
+1. A better model would correct for this and weight each year equally
+:::
+
+## Partial pooling: concept {.scrollable}
+
+What if we believe there should be *some variation* between stations, but that they should still share information?
+
+::: {.incremental}
+1. In between the two extremes of "full pooling" and "no pooling"
+1. Model the parameters at each site as **being drawn from a common distribution**
+:::
+
+::: {.fragment}
+This leads to models that look like this:
+$$
+\begin{aligned}
+    y_{s, t} &\sim \text{GEV}(\mu_s, \sigma_s, \xi_s) \\
+    \mu_s &\sim \text{Normal}(\mu^0, \tau^\mu) \\
+    \ldots
+\end{aligned}
+$$
+:::
+where $s$ is the site index and $t$ is the year index.
+
+## Hyperparameters
+
+In machine learning (e.g., Random Forests) we studied hyperparameters that the user must "tune".
+In Bayesian statistics, hyperparameters are learned as part of the model.
+
+::: {.fragment}
+In our model, the hyperparameters are $\mu^0$ and $\tau^\mu$.
+These describe the distribution from which the $\mu_s$ are drawn.
+(And similarly for $\sigma$ and, optionally, $\xi$.)
+:::
+
+## Implementation {.scrollable .smaller}
+
+We implement full pooling on $\xi$ and partial pooling on $\mu$ and $\sigma$.
+
+```{julia}
+#| output: false
+@model function gev_partial_pool(y::AbstractMatrix)
+    N_yr, N_stn = size(y)
+
+    # First define the hyperparameters. Stronger priors are helpful!
+    μ₀ ~ Normal(5, 3)
+    τμ ~ LogNormal(0, 0.5)
+    σ₀ ~ LogNormal(0.5, 0.5)
+    τσ ~ LogNormal(0, 0.5)
+
+    # Parameters depend on the hyperparameters
+    μ ~ filldist(Normal(μ₀, τμ), N_stn)
+    σ ~ filldist(truncated(Normal(σ₀, τσ), 0, Inf), N_stn)
+
+    # Parameters that don't depend on hyperparameters
+    ξ ~ Uniform(-0.5, 0.5)
+
+    # Likelihood
+    for s in 1:N_stn
+        for t in 1:N_yr
+            y[t, s] ~ GeneralizedExtremeValue(μ[s], σ[s], ξ)
+        end
+    end
+end
+```
+
+## Computation
+
+Downside: we have a lot of parameters to estimate!
+If we have $N$ stations, then we have $4 + N + N + 1 = 5+2N$ parameters to estimate.
+This makes sampling slower.
+
+::: {.callout-info}
+Sampling is left as an exercise
+:::
+
+## Spatial Models
+
+We can also model the paramteters as a function of location.
+This can simplify our model because we only need to estimate the parameters that describe how our parameters vary spatially.
+
+## Example
+
+We can imagine a very simple toy model:
+
+$$
+\begin{aligned}
+    \mu(s) &= \alpha^\mu + \beta^\mu_1 \cdot \text{lat}(s) + \beta^\mu_2 \cdot \text{lon}(s) \\
+    \sigma(s) &= \alpha^\sigma + \beta^\sigma_1 \cdot \text{lat}(s) + \beta^\sigma_2 \cdot \text{lon}(s)
+    y &\sim \text{GEV}(\mu(s), \sigma(s), \xi)
+\end{aligned}
+$$
+
+## Last Friday
+
+I presented work from my group combining Bayesian and spatial models at the [2023 Statistical Hydrology conference](https://drive.google.com/file/d/1oDXot_L1fcT43-55tkbU3pArizKmj8xb/view).
+[Slides here](https://jamesdossgollin.me/presentations-site/slides-public/2023-11-10-stahy.html#/title-slide).
+
+## References

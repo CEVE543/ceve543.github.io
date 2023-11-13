@@ -1,19 +1,19 @@
 ---
-title: "Classical Extreme Value Theory and Models"
+title: "Extreme Value Theory and Models"
 subtitle: "Lecture"
-date: 2023-11-08
+date: 2023-11-06
 
 # metadata for the schedule page
-kind: "Planned"
+kind: "Lecture"
 Module: "3"
 categories:
     - "Module 3"
-    - "Planned"
+    - "Lectures"
 
 # do not edit anything below this line
 format:
     revealjs:
-        scrolalble: true
+        scrollable: true
 
 author: "{{< var instructor.name >}}!"
 course: "{{< var course.number >}}, {{< var course.title >}}"
@@ -234,7 +234,7 @@ function plot_rl_extremes(fit, obs)
         xticks=(x_ticks, string.(x_ticks)),
         xlabel="Return Period",
         ylabel="Return Level",
-        legend=false
+        legend=false,
     )
 
     rl = zero(return_period)
