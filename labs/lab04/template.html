@@ -471,7 +471,7 @@ y_i \sim \mathcal{N} \left( \beta X_i , \sigma \right).
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1"><code>cor</code> expects a <code>Matrix</code> input and will throw an error if we give it a <code>DataFrame.</code> <code>Matrix(df)</code> just extracts numeric values for our <code>DataFrame</code>. This won’t work well if we have non-numeric columns, but we don’t here.</span>
+<span data-code-annotation="1" data-code-lines="3" data-code-cell="annotated-cell-3"><code>cor</code> expects a <code>Matrix</code> input and will throw an error if we give it a <code>DataFrame.</code> <code>Matrix(df)</code> just extracts numeric values for our <code>DataFrame</code>. This won’t work well if we have non-numeric columns, but we don’t here.</span>
 </dd>
 </dl>
 </div>
@@ -1009,27 +1009,27 @@ Task
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">This function extracts the parameters from the chain</span>
+<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-7">This function extracts the parameters from the chain</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="2">If we use multiple chains, then <code>p[:α]</code> is a Matrix. We convert it to a vector so that it’s “flat”.</span>
+<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-7">If we use multiple chains, then <code>p[:α]</code> is a Matrix. We convert it to a vector so that it’s “flat”.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="3">If we have multiple predictors (multivariate linear regression) then <code>p[:β]</code> is a tuple of vectors. We convert it into a vector of vectors so that <code>β[i]</code> is a vector of coefficients for the <span class="math inline">\(i\)</span>th sample.</span>
+<span data-code-annotation="3" data-code-lines="4" data-code-cell="annotated-cell-7">If we have multiple predictors (multivariate linear regression) then <code>p[:β]</code> is a tuple of vectors. We convert it into a vector of vectors so that <code>β[i]</code> is a vector of coefficients for the <span class="math inline">\(i\)</span>th sample.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="10" data-code-annotation="4">We randomly select <code>N</code> samples from the posterior.</span>
+<span data-code-annotation="4" data-code-lines="10" data-code-cell="annotated-cell-7">We randomly select <code>N</code> samples from the posterior.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="11" data-code-annotation="5">We calculate the predictions for each of the <code>N</code> samples.</span>
+<span data-code-annotation="5" data-code-lines="11" data-code-cell="annotated-cell-7">We calculate the predictions for each of the <code>N</code> samples.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="14" data-code-annotation="6">If <code>N</code> is 1, then we return a vector, not a vector of vectors.</span>
+<span data-code-annotation="6" data-code-lines="14" data-code-cell="annotated-cell-7">If <code>N</code> is 1, then we return a vector, not a vector of vectors.</span>
 </dd>
 </dl>
 </div>
@@ -1133,11 +1133,11 @@ Task
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="8" data-code-annotation="1"><code>β</code> is a vector, so we use a multivariate normal distribution. Here, we assume that the predictors are uncorrelated, so we use a diagonal covariance matrix.</span>
+<span data-code-annotation="1" data-code-lines="8" data-code-cell="annotated-cell-12"><code>β</code> is a vector, so we use a multivariate normal distribution. Here, we assume that the predictors are uncorrelated, so we use a diagonal covariance matrix.</span>
 </dd>
 <dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="9" data-code-annotation="2">We use a log-normal distribution for <span class="math inline">\(\sigma\)</span> because it is a positive quantity. This is an alternative to a truncated Normal.</span>
+<span data-code-annotation="2" data-code-lines="9" data-code-cell="annotated-cell-12">We use a log-normal distribution for <span class="math inline">\(\sigma\)</span> because it is a positive quantity. This is an alternative to a truncated Normal.</span>
 </dd>
 </dl>
 <div class="callout callout-style-simple callout-important callout-titled">
