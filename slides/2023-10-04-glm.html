@@ -767,15 +767,15 @@ p_i &amp;= \frac{\exp(\alpha + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">Here we are saying that <code>x</code> and <code>y</code> have to be vectors, but we don’t care what kind of vector (e.g.&nbsp;<code>Vector{Float64}</code>, <code>Vector{Int}</code>, etc.)</span>
+<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-3">Here we are saying that <code>x</code> and <code>y</code> have to be vectors, but we don’t care what kind of vector (e.g.&nbsp;<code>Vector{Float64}</code>, <code>Vector{Int}</code>, etc.)</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="2">This is a more robust way to write <code>for i in 1:length(y)</code></span>
+<span data-code-lines="4" data-code-annotation="2" data-code-cell="annotated-cell-3">This is a more robust way to write <code>for i in 1:length(y)</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="3"><code>inv_logit</code> is defined above.</span>
+<span data-code-lines="6" data-code-annotation="3" data-code-cell="annotated-cell-3"><code>inv_logit</code> is defined above.</span>
 </dd>
 </dl>
 </div>
@@ -799,7 +799,7 @@ p_i &amp;= \frac{\exp(\alpha + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="1">This sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!</span>
+<span data-code-lines="5" data-code-annotation="1" data-code-cell="annotated-cell-4">This sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!</span>
 </dd>
 </dl>
 </div>
@@ -1082,7 +1082,7 @@ f(\lambda_i) = \alpha + \beta x_i
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="7" data-code-annotation="1"><code>@.</code> means all the operations to the right use dot syntax – this is equivalent to <code>exp.(α .+ β .* x)</code>.</span>
+<span data-code-lines="7" data-code-annotation="1" data-code-cell="annotated-cell-6"><code>@.</code> means all the operations to the right use dot syntax – this is equivalent to <code>exp.(α .+ β .* x)</code>.</span>
 </dd>
 </dl>
 </div>
