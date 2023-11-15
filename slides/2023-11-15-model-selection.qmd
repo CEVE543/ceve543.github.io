@@ -1,0 +1,292 @@
+---
+title: "Quantitative and Graphical Model Selection"
+subtitle: "Lecture"
+date: 2023-11-20
+
+# metadata for the schedule page
+kind: "Planned"
+Module: "3"
+categories:
+    - "Module 3"
+    - "Planned"
+
+# do not edit anything below this line
+format: 
+    revealjs:
+        incremental: true
+        scrollable: true
+
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CSV
+using DataFrames
+using Distributions
+using Extremes
+using Plots
+
+Plots.default(; margin=4Plots.mm, linewidth=2)
+```
+
+## Motivation
+
+We have to make choices about which distribution to use, which covariates (if any) to use for nonstationarity, which (if any) parameters to model as nonstationary, how to pool information across space, etc.
+There is no single "right" answer; how can we proceed in a principled way?
+
+::: {.fragment}
+This is a general problem in statistics beyond extreme value analysis.
+:::
+
+# Plotting the Vibes
+
+## Data and fit
+
+```{julia}
+#| code-fold: true
+annmax_precip = CSV.read("data/dur01d_ams_na14v11_houston.csv", DataFrame)
+hobby = annmax_precip[annmax_precip.name.=="HOUSTON HOBBY AP", :]
+hobby_bayes = gevfitbayes(hobby, :precip_in)
+plot(
+    hobby.year,
+    hobby.precip_in;
+    xlabel="Year",
+    ylabel="Annual Max Precip (in)",
+    label="HOUSTON HOBBY AP",
+    marker=:circ,
+)
+```
+
+## Plot the distribution
+
+- **What we plot:** histogram of the data and the probability density function
+- **Ideal case:** the histogram and the PDF appear to show the same distribution
+- **Warnings:** systematic deviations
+- **Limitations:** hard to learn much about the tails of the distribution from this plot
+
+---
+
+```{julia}
+Extremes.histplot(hobby_bayes)
+```
+
+## Probability plot
+
+- **What we plot:** empirical CDF (1 - AEP) of against the fitted GEV's CDF
+- **Ideal case:** a straight line, indicating perfect agreement between the empirical CDF ann the fitted CDF
+- **Warnings:** curvature or systematic deviations from the line, especially in the tails
+- **Limitations:** sampling uncertainty!
+
+---
+
+```{julia}
+Extremes.probplot(hobby_bayes)
+```
+
+## QQ plot
+
+- **What we plot:** quantiles (i.e., return levels) of the data against quantiles of the fitted GEV 
+- **Ideal case:** a straight line through the data
+- **Warnings:** curvature or systematic deviations from the line, especially in the tails
+- **Limitations:** sampling uncertainty!
+
+---
+
+```{julia}
+Extremes.qqplot(hobby_bayes)
+```
+
+## With Uncertainty
+
+```{julia}
+Extremes.qqplotci(hobby_bayes)
+```
+
+## All in one
+
+```{julia}
+Extremes.diagnosticplots(hobby_bayes)
+```
+
+## Calibration histogram
+
+Sometimes we want to summarize calibration across a large number of sites at once
+
+- **What we plot:** a histogram, where each observation is the observed quantile of the data, given the (conditional) GEV at that location / year
+- **Ideal case:** a uniform distribution
+- **Warnings:** systematic deviations from uniformity
+- **Limitations:** aggregating over sites can hide local issues
+
+---
+
+![](https://jamesdossgollin.me/presentations-site/_assets/img/lu-2023/2023-11-09/quantiles.png){width=100%}
+
+# Just Give Me a Number
+
+## Credit
+
+This content borrows heavily from a [literature review](https://github.com/vsrikrish/model-selection/blob/master/doc/2020-07-16-presentation-keller-lab.ipynb) that I developed with [Vivek Srikrishnan](viveks.bee.cornell.edu/).
+
+For a more accessible discussion, see Chapter 7 of @mcelreath_rethinking2:2020.
+For a more technical discussion, see @piironen_comparison:2017.
+
+## The challenge
+
+We want to make probabilistic predictions about **unobserved** data $\tilde{y}$.
+This is hard because Earth systems are:
+
+1. high-dimensional
+1. multi-scale
+1. nonlinear / complex
+
+To approximate the true system, we come up with a **model space** $\mathcal{M}$ defining a family of candidate models, then use them to make predictions.
+
+## Note
+
+This content gets fairly technical.
+You will not be tested on the equations, but you should understand the key points (which we will recap).
+
+## How similar are two distributions?
+
+$$
+D_\text{KL} (P \parallel Q) = \sum_{x \in \mathcal{X}} P(x) \log \left[ \frac{P(x)}{Q(x)} \right]
+$$
+
+One interpretation of $D_\text{KL} (P \parallel Q)$ is the measure of information gained by revising one's beliefes from the prior distribution $Q$ to the posterior distribution $P$.
+Another interpretation is the amount of information lost when $Q$ is used to approximate $P$.
+Note that for continuous RVs the above sum can be written as an integral.
+
+## Measures of predictive accuracy
+
+Predictive performance of a model defined in terms of a utility function $u(M, \tilde{y})$.
+Commonly used: log predictive density: 
+$$
+\log p(\tilde{y} | D, M).
+$$
+Future observations $\tilde{y}$ are unknown, so we must approach it in expectation:
+$$
+\overline{u}(M) = \mathbb{E}\left[ \log p(\tilde{y} | D, M) \right] = \int p_t(\tilde{y}) \log [(\tilde{y} | D, M) d\tilde{y}
+$$
+where $p_t(\tilde{y})$ is the true data generating distribution (unknown!)
+
+::: {.fragment}
+Maximizing $\overline{u}(M)$ is equivalent to minimizing KL divergence from candidate model $p(\tilde{y} | D, M)$ to true data distribution $p_t(\tilde{y})$
+:::
+
+## In practice we work with estimates
+
+We don't know the true distribution $\theta$ so we have to approximate it.
+The log pointwise predictive density is
+$$
+\begin{align}
+\text{lppd} &= \log \prod_{i=1}^N p_\text{post}(y_i) = \sum_{i=1}^N \log \int p(y_i | \theta) p_\text{post} (\theta) d \theta \\
+&\approx \sum_{i=1}^N \log \left[ \frac{1}{S} \sum_{i=1}^S p(y_i | \theta^s) \right]
+\end{align}
+$$
+where we have approximated the posterior with $S$ simulations from the posterior (eg, using MCMC).
+
+::: {.fragment}
+the LPPD of observed data $y$ is an overestimate of the expected LPPD for future data.
+Thus tools will start with our approximate form and then derive some correction.
+:::
+
+## Model combination
+
+We could treat "which model to use" as a parameter.
+If we have an exhaustive list of candidate models $\{ M_\ell \}_{\ell=1}^L$, then the distribution over the *model space* is given by
+$$
+p(M | D) \propto p(D | M) p(M)
+$$
+and we can average over them
+$$
+p(\tilde{y} | D) = \sum_{\ell=1}^L p(\tilde{y}|D, M_\ell) p(M_\ell | D)
+$$
+
+## Setting up Information Criteria
+
+If our inference on the parameters is summarized by a point estimate $\hat{\theta}$ (e.g., the MAP estimate) then out of sample predictive accuracy is defined by
+$$
+\text{elpd}_\hat{\theta} = \mathbb{E}_f \left[ \log p(\tilde{y} | \hat{\theta}(y)) \right]
+$$
+
+## AIC Criterion {.smaller}
+
+If the model estimates $k$ parameters, and if they are assumed asymptotically normal (ie a normal linear model with known variance and uniofrm prior) then fitting $k$ parameters will increase the predictive accuracy by chance alone:
+$$
+\hat{\text{elpd}}_\text{AIC} = \log p(y | \hat{\theta}_\text{mle}) - k
+$$
+::: {.fragment}
+Thus we can define
+$$
+\text{AIC} = 2 k - 2 \ln \hat{\mathcal{L}}
+$$
+and select the model that minimizes it.
+:::
+::: {.fragment}
+_For complicated models, what is $k$?_
+There are formula to approximate effective number of parameters.
+Note that AIC asssumes residuals are independent given $\hat{\theta}$
+:::
+
+## ## DIC Criterion
+
+1. Start with AIC
+1. Replace $\hat{\theta}_\text{mle}$ by posterior mean $\hat{\theta}_\text{Bayes} = \mathbb{E}[\theta | y]$
+1. Replace $k$ by a data-based bias correction; there are different forms
+
+$$
+\hat{\text{elpd}}_\text{DIC} = \log p(y | \hat{\theta}_\text{Bayes}) - p_\text{DIC}
+$$
+where $p_\text{DIC}$ is derived from assumptions about the effective number of parameters.
+The quantity
+$$
+\text{DIC} = -2 \log p(y | \hat{\theta}_\text{Bayes}) + 2 p_\text{DIC}
+$$
+can be assigned to each model, and the model with lowest DIC chosen.
+Note that DIC asssumes residuals are independent given $\hat{\theta}$
+
+## Schwarz criterion / "Bayesian" information criterion (BIC, SBC, SIC, SBIC)
+
+Goal: approximate marginal probability of the data $p(y)$ (this is different)
+
+Assuming the existence of a true model ($\mathcal{M}-closed$), the model that minimizes BIC converges to the "true" model.
+$$
+\text{BIC} = k \ln (n) - 2 \ln \hat{\mathcal{L}}
+$$
+where
+$$
+\hat{\mathcal{L}}= \max_\theta p(x | \theta, M)
+$$
+and where $k$ is the number of model parameters.
+The BIC can be viewed as a rough approximation to the Bayes factor [@kass_bayesfactor:1995].
+
+## Significance criteria
+
+Use Null Hypothesis Significance Testing (NHST) to decide whether to include a variable.
+For example, should we add a trend term in our regression?
+
+1. Form a null hypothesis: $\beta = 0$
+1. Test statistics $\Rightarrow$ $p$-value
+1. If $p < \alpha$ then use $M_2$ else use $M_1$
+
+Note that
+
+* This is equivalent to Bayes factor.
+* Still assumes existence of a true model (hence the many problems with NHST)
+
+**This is widely used in practice, often without justification**
+
+## Key points: NO MAGIC HERE
+
+- You cannot look at a single criterion and decide whether a model is good or not; beware those who do!
+- Model comparison and selection is subjective 🤷‍♂️
+    - Make your assumptions **transparent** so others can follow and critique them, rather than pretending to be objective [@doss-gollin_subjective:2022]
+    - Subjective doesn't mean arbitrary or "in the dark". We know stuff!
+
+## References
