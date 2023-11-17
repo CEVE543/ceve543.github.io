@@ -44,14 +44,14 @@ There is no single "right" answer; how can we proceed in a principled way?
 This is a general problem in statistics beyond extreme value analysis.
 :::
 
-# Plotting the Vibes
+# Vibe checks with plots
 
 ## Data and fit
 
 ```{julia}
 #| code-fold: true
 annmax_precip = CSV.read("data/dur01d_ams_na14v11_houston.csv", DataFrame)
-hobby = annmax_precip[annmax_precip.name.=="HOUSTON HOBBY AP", :]
+hobby = annmax_precip[annmax_precip.name .== "HOUSTON HOBBY AP", :]
 hobby_bayes = gevfitbayes(hobby, :precip_in)
 plot(
     hobby.year,
