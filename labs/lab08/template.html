@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CEVE 543 - Fall 2023 - Lab 08</title>
+<title>CEVE 543 - Fall 2023 - Lab 08: \(K\)-Means Clustering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,8 +117,8 @@ window.MathJax = {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="CEVE 543 - Fall 2023 - Lab 08">
-<meta property="og:description" content="\(K\)-Means Clustering">
+<meta property="og:title" content="CEVE 543 - Fall 2023 - Lab 08: \(K\)-Means Clustering">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="{{< var course.number >}} - {{< var course.semester >}}">
 </head>
 
@@ -268,8 +268,7 @@ window.MathJax = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 08</h1>
-<p class="subtitle lead"><span class="math inline">\(K\)</span>-Means Clustering</p>
+<h1 class="title">Lab 08: <span class="math inline">\(K\)</span>-Means Clustering</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Module 3</div>
     <div class="quarto-category">Labs</div>
@@ -317,7 +316,7 @@ window.MathJax = {
 </section>
 <section id="instructions" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Instructions</h1>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -325,9 +324,9 @@ window.MathJax = {
 </div>
 <p>We will work in an external script. Open the file <code>kmeans.jl</code> and edit the functions provided. It’s a Julia file, so you can run line by line and work in the REPL.</p>
 <p>To make the functions created available to you here, run the following command:</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"kmeans.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>check_convergence (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -354,7 +353,7 @@ window.MathJax = {
 <section id="k-means-algorithm" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="k-means-algorithm"><span class="header-section-number">2.5</span> <span class="math inline">\(K\)</span>-means algorithm</h2>
 <p>This function is provided for you. You do not need to edit it. You simply need to define all the functions it calls.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">kmeans</span>(X<span class="op">::</span><span class="dt">AbstractMatrix</span>, k<span class="op">::</span><span class="dt">Int</span>; τ<span class="op">=</span><span class="fl">1e-5</span>, maxiter<span class="op">=</span><span class="fl">500</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n, d <span class="op">=</span> <span class="fu">size</span>(X) <span class="co"># get the number of observations and features</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -378,24 +377,25 @@ window.MathJax = {
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if we have run too many iterations, throw an error (avoid infinite loops)</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">&gt;</span> maxiter</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">throw</span>(<span class="st">"Failed to converge after </span><span class="sc">$</span>j<span class="st"> iterations"</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># increase the counter</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    cluster_assignments <span class="op">=</span> <span class="fu">assign_clusters</span>(X, μ)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cluster_assignments, μ_history</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            <span class="pp">@warn</span> <span class="st">"Failed to converge after </span><span class="sc">$</span>j<span class="st"> iterations"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> cluster_assignments, μ_history</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># increase the counter</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    cluster_assignments <span class="op">=</span> <span class="fu">assign_clusters</span>(X, μ)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cluster_assignments, μ_history</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
-<p>Our input data for this clustering analysis will be stations from the GHCND dataset (original <a href="https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/ghcnd-stations.txt">here</a>). We will subset only stations in Texas, and we will cluster on their longitude, latitude, and elevation. Importantly, we’ll need to <em>rescale our data</em> because latitude/longitude and elevation are on different scales.</p>
-<div class="cell" data-execution_count="5">
+<p>Our input data for this clustering analysis will be stations from the GHCND dataset (original <a href="https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/ghcnd-stations.txt">here</a>). We will subset only stations in Texas, and we will cluster on their longitude and latitude.</p>
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to parse each line</span></span>
@@ -423,11 +423,11 @@ window.MathJax = {
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">"data/ghcnd_stations.txt"</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> <span class="fu">read_file</span>(filename)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> stations[stations[!, <span class="st">"State"</span>] <span class="op">.==</span> <span class="st">"TX"</span>, <span class="op">:</span>]</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> stations[stations[!, <span class="st">"State"</span>]<span class="op">.==</span><span class="st">"TX"</span>, <span class="op">:</span>]</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(stations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div><div style="float: left;"><span>6×7 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -519,12 +519,16 @@ window.MathJax = {
 </div>
 </div>
 <p>Now we can run the clustering analysis we’ve implemented</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">Matrix</span>(stations[!, [<span class="op">:</span>Latitude, <span class="op">:</span>Longitude]])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X_rescaled <span class="op">=</span> (X <span class="op">.-</span> <span class="fu">mean</span>(X; dims<span class="op">=</span><span class="fl">1</span>)) <span class="op">./</span> <span class="fu">std</span>(X; dims<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cluster_assignments, μ_history <span class="op">=</span> <span class="fu">kmeans</span>(X_rescaled, <span class="fl">10</span>) <span class="co"># change the value of k here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>([2, 2, 2, 2, 3, 7, 7, 7, 7, 7  …  1, 1, 2, 1, 1, 1, 1, 1, 1, 7], [[1.029375771050526 0.19954557022615105; 1.0920741972218821 -0.08246377258850816; … ; -0.12990965609754393 -0.02625747812130351; 0.1312102251954907 -0.11094956479200586], [1.0380803595098007 0.753429357330718; 1.8870137435754095 -0.9714611771840803; … ; -0.37094656146408994 0.026961603314033838; 0.23180620632056048 0.14313832518680983], [1.0380803595098007 0.753429357330718; 1.8870137435754095 -0.9714611771840803; … ; -0.37094656146408994 0.026961603314033838; 0.23180620632056048 0.14313832518680983]])</code></pre>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="fl">10</span> <span class="co"># choose your own!</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cluster_assignments, μ_history <span class="op">=</span> <span class="fu">kmeans</span>(X, K)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Warning: Failed to converge after 501 iterations
+└ @ Main In[4]:24</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0  …  0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [[0.6924714269977296 0.6962110318652964; 0.6259030145293129 0.87127835572007; … ; 0.003348178439155025 0.754848559535719; 0.31065773120916007 0.39888112705202994], [0.2912184734253984 0.05713249860815439; 0.44248262070902666 0.6857924158453635; … ; 0.07862607015577872 0.6693958254592649; 0.28116040073961 0.03112434384822471], [0.9927677349698448 0.05700977478912517; 0.7556099047696231 0.7364937554651219; … ; 0.5375157940315076 0.7967287493418366; 0.10365074633597338 0.239635727100037], [0.6527812011431092 0.0008469689739153408; 0.3726570784587615 0.2449547770453676; … ; 0.23307751672903432 0.05757210669637769; 0.5845619141633854 0.2442490110667388], [0.23342030846971717 0.4432742722318017; 0.47212574170059807 0.4955277986808433; … ; 0.9111599692985358 0.5931215331763536; 0.9212868730963414 0.5091097381083487], [0.5771820869251851 0.8740032217601138; 0.3208027623056847 0.054730216777086116; … ; 0.1828888375979204 0.3145764400783143; 0.3236548779397048 0.65565376116711], [0.4572551478332446 0.3136157069576161; 0.5377980622636014 0.9958887200229909; … ; 0.257003966708075 0.34518286605303894; 0.7515356547960557 0.9490410206026162], [0.2944726497775503 0.8588866484733644; 0.8081901362042295 0.030936422235445127; … ; 0.7593892356406593 0.07006636528452104; 0.36966591511471525 0.009995069267803247], [0.3827439234338541 0.6318554724266231; 0.8839377364620469 0.6474610232716261; … ; 0.12008422423658749 0.5397181616895426; 0.23381131759689222 0.44944895170284527], [0.9086281090113925 0.6213892366802397; 0.726815355712053 0.43233981971877855; … ; 0.39663348024296097 0.7510489974123733; 0.708898474752221 0.08046286185354623]  …  [0.7416194879266291 0.32060892682663134; 0.3578308065488579 0.39515105410304685; … ; 0.31374587344283233 0.04593156280335664; 0.22042179360293224 0.8115205308338613], [0.365799880130541 0.2348127618870387; 0.29494954958186426 0.9993663468017806; … ; 0.5537202607018014 0.22732740151211583; 0.37662210606802915 0.47873641362344443], [0.032774458982583576 0.2594603828863018; 0.3596254423448626 0.054699435984045364; … ; 0.8495119748658995 0.7302572622057525; 0.017040066033314094 0.7890034715133567], [0.38251737622780446 0.8085213354597058; 0.14839380991157936 0.6469622440942167; … ; 0.5989688650545714 0.6714815596091346; 0.15769525367660553 0.08246913106290021], [0.2566268040228028 0.054260461200818066; 0.9853918035239604 0.7275171864579367; … ; 0.4526920427250909 0.9854704727063749; 0.28225658930577135 0.126817618334907], [0.8143477175205598 0.0647497394308244; 0.009897466658926768 0.6545766208165796; … ; 0.21187621616695995 0.5613941858892403; 0.6977656865531349 0.14964692221513387], [0.4127506512594371 0.8850558526122456; 0.006488755394073342 0.3918315098536951; … ; 0.3702697059968182 0.008436005360728971; 0.415084244369505 0.8446938178605216], [0.37149149492205147 0.6753120604409721; 0.01165817395248614 0.2756208328098704; … ; 0.9321253215949296 0.8498658220321677; 0.8131547440772328 0.4964460756879733], [0.9120862533675511 0.7217560266843958; 0.905638722449366 0.6451494639938661; … ; 0.401598256308223 0.2758081538307465; 0.7607409607468221 0.8950464320498235], [0.5241241352959185 0.3137283446360699; 0.4364743472049293 0.11180734927364211; … ; 0.5359059063121435 0.06890693286441918; 0.2564378076404309 0.47118683084701196]])</code></pre>
 </div>
 </div>
 </section>
@@ -537,7 +541,7 @@ window.MathJax = {
 <li>Plot the (two-dimensional) cluster centroids as a function of the number of iterations.</li>
 <li>Try different values of <span class="math inline">\(k\)</span>. How does the clustering change? What is the best value of <span class="math inline">\(k\)</span> in your opinion? How could you determine this?</li>
 </ol>
-<p>If you have extra time, alter other parts of the code (e.g., don’t use the elevation to cluster, or use a different distance metric). How does this change your results?</p>
+<p>If you have extra time, alter other parts of the code (e.g., use elevation to cluster, or use a different distance metric). How does this change your results?</p>
 
 
 </section>
