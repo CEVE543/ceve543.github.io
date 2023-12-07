@@ -12,6 +12,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Dr.&nbsp;James Doss-Gollin!">
+  <meta name="dcterms.date" content="2023-10-04">
   <title>CEVE 543 - Fall 2023 - Generalized Linear Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -405,13 +406,6 @@
       margin-right: 0; 
     }
   </style>
-  <!-- Mathjax 3 config -->
-  <script>
-    window.MathJax = {
-      loader: { load: ['[tex]/physics'] },
-      tex: { packages: { '[+]': ['physics'] } }
-    };
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -427,7 +421,7 @@
     <h1 class="title">Generalized Linear Models</h1>
   <hr>
 <p class="subtitle">Lecture</p>
-<p class="date">Wed., Oct.&nbsp;4</p>
+<p class="date">2023-10-04</p>
 </section>
 <section id="practice-problem-regression" class="slide level2 smaller">
 <h2>Practice problem: regression</h2>
@@ -767,15 +761,15 @@ p_i &amp;= \frac{\exp(\alpha + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-3">Here we are saying that <code>x</code> and <code>y</code> have to be vectors, but we don’t care what kind of vector (e.g.&nbsp;<code>Vector{Float64}</code>, <code>Vector{Int}</code>, etc.)</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-3" data-code-annotation="1">Here we are saying that <code>x</code> and <code>y</code> have to be vectors, but we don’t care what kind of vector (e.g.&nbsp;<code>Vector{Float64}</code>, <code>Vector{Int}</code>, etc.)</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="4" data-code-cell="annotated-cell-3">This is a more robust way to write <code>for i in 1:length(y)</code></span>
+<span data-code-lines="4" data-code-cell="annotated-cell-3" data-code-annotation="2">This is a more robust way to write <code>for i in 1:length(y)</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="6" data-code-cell="annotated-cell-3"><code>inv_logit</code> is defined above.</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-3" data-code-annotation="3"><code>inv_logit</code> is defined above.</span>
 </dd>
 </dl>
 </div>
@@ -799,7 +793,7 @@ p_i &amp;= \frac{\exp(\alpha + \beta x_i)}{1 + \exp(\alpha + \beta x_i)}
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="5" data-code-cell="annotated-cell-4">This sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!</span>
+<span data-code-lines="5" data-code-cell="annotated-cell-4" data-code-annotation="1">This sets the random number generator seed so that we get the same results every time we run this code. This is useful for reproducibility, but you don’t need to do this in your own code!</span>
 </dd>
 </dl>
 </div>
@@ -1082,7 +1076,7 @@ f(\lambda_i) = \alpha + \beta x_i
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="7" data-code-cell="annotated-cell-6"><code>@.</code> means all the operations to the right use dot syntax – this is equivalent to <code>exp.(α .+ β .* x)</code>.</span>
+<span data-code-lines="7" data-code-cell="annotated-cell-6" data-code-annotation="1"><code>@.</code> means all the operations to the right use dot syntax – this is equivalent to <code>exp.(α .+ β .* x)</code>.</span>
 </dd>
 </dl>
 </div>
@@ -1495,7 +1489,7 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1516,7 +1510,7 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1532,7 +1526,7 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
         respondToHashChanges: true,
 
         // Push each slide change to the browser history
-        history: false,
+        history: true,
 
         // Enable keyboard shortcuts for navigation
         keyboard: true,
@@ -1641,15 +1635,15 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1050,
 
-        height: 720,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1782,92 +1776,6 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
           return note.innerHTML;
         });
       }
-          let selectedAnnoteEl;
-          const selectorForAnnotation = ( cell, annotation) => {
-            let cellAttr = 'data-code-cell="' + cell + '"';
-            let lineAttr = 'data-code-annotation="' +  annotation + '"';
-            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-            return selector;
-          }
-          const selectCodeLines = (annoteEl) => {
-            const doc = window.document;
-            const targetCell = annoteEl.getAttribute("data-target-cell");
-            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-            const lineIds = lines.map((line) => {
-              return targetCell + "-" + line;
-            })
-            let top = null;
-            let height = null;
-            let parent = null;
-            if (lineIds.length > 0) {
-                //compute the position of the single el (top and bottom and make a div)
-                const el = window.document.getElementById(lineIds[0]);
-                top = el.offsetTop;
-                height = el.offsetHeight;
-                parent = el.parentElement.parentElement;
-              if (lineIds.length > 1) {
-                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-                height = bottom - top;
-              }
-              if (top !== null && height !== null && parent !== null) {
-                // cook up a div (if necessary) and position it 
-                let div = window.document.getElementById("code-annotation-line-highlight");
-                if (div === null) {
-                  div = window.document.createElement("div");
-                  div.setAttribute("id", "code-annotation-line-highlight");
-                  div.style.position = 'absolute';
-                  parent.appendChild(div);
-                }
-                div.style.top = top - 2 + "px";
-                div.style.height = height + 4 + "px";
-                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-                if (gutterDiv === null) {
-                  gutterDiv = window.document.createElement("div");
-                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                  gutterDiv.style.position = 'absolute';
-                  const codeCell = window.document.getElementById(targetCell);
-                  const gutter = codeCell.querySelector('.code-annotation-gutter');
-                  gutter.appendChild(gutterDiv);
-                }
-                gutterDiv.style.top = top - 2 + "px";
-                gutterDiv.style.height = height + 4 + "px";
-              }
-              selectedAnnoteEl = annoteEl;
-            }
-          };
-          const unselectCodeLines = () => {
-            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-            elementsIds.forEach((elId) => {
-              const div = window.document.getElementById(elId);
-              if (div) {
-                div.remove();
-              }
-            });
-            selectedAnnoteEl = undefined;
-          };
-          // Attach click handler to the DT
-          const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-          for (const annoteDlNode of annoteDls) {
-            annoteDlNode.addEventListener('click', (event) => {
-              const clickedEl = event.target;
-              if (clickedEl !== selectedAnnoteEl) {
-                unselectCodeLines();
-                const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-                if (activeEl) {
-                  activeEl.classList.remove('code-annotation-active');
-                }
-                selectCodeLines(clickedEl);
-                clickedEl.classList.add('code-annotation-active');
-              } else {
-                // Unselect the line
-                unselectCodeLines();
-                clickedEl.classList.remove('code-annotation-active');
-              }
-            });
-          }
       const findCites = (el) => {
         const parentEl = el.parentElement;
         if (parentEl) {
@@ -1905,20 +1813,6 @@ Rözer, V., Kreibich, H., Schröter, K., Müller, M., Sairam, N., Doss-Gollin, J
           });
         }
       }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-              // target, if specified
-              link.setAttribute("target", "_blank");
-          }
-        }
     });
     </script>
     
