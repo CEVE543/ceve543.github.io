@@ -71,7 +71,6 @@ format:
   html:
     theme: 
       [simplex, _assets/sass/theme.scss]
-    mainfont: "Atkinson Hyperlegible"
     copy-code: true
     code-overflow: wrap
     toc: true
@@ -82,34 +81,6 @@ format:
     code-annotations: hover
     html-math-method: mathjax
     include-in-header: mathjax-config.html
-    date-format: "ddd., MMM. D"
-  
-  # customization for RevealJS (i.e., the slides)
-  revealjs:
-    
-    # page numbering
-    slide-number: c/t
-    show-slide-number: all
-
-    # page layout and transition
-    center-title-slide: true
-    width: 1280
-    height: 720
-    transition: none
-    toc: false
-    history: false
-    theme: _assets/sass/slides.scss
-    menu:
-        numbers: true
-    
-    # code, links, and refs
-    link-external-newwindow: true
-    citations-hover: true
-    code-annotations: below
-    
-    # math and code
-    html-math-method: mathjax
-    include-in-header: slides/mathjax-config.html
     date-format: "ddd., MMM. D"
 
 # references

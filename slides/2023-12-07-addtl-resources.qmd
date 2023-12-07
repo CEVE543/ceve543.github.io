@@ -1,0 +1,137 @@
+---
+title: "Additional Resources"
+subtitle: "Lecture"
+date: 2023-12-01
+
+# metadata for the schedule page
+kind: "Resources"
+Module: "3"
+categories:
+    - "Module 3"
+
+# do not edit anything below this line
+format: html
+author: "{{< var instructor.name >}}!"
+course: "{{< var course.number >}}, {{< var course.title >}}"
+institution: "{{< var course.institution >}}}"
+template-partials:
+    - title-slide.html
+---
+
+```{julia}
+#| output: false
+using Distributions
+using DynamicHMC
+using HDF5
+using MCMCChains
+using MCMCChainsStorage
+using Random
+using Turing
+```
+
+## Caching MCMChains Objects
+
+Most of the Bayesian models that we've used this semester are computationally cheap to read and write, so it's not a problem if we have to re-run our code to regenerate posterior samples every time we re-run the code.
+Ideally, we should specify a random number generator to increase reproducibility.
+
+For your project, however, you may have a model that takes a long time to run, or you may want to share your posterior samples with collaborators.
+To do that, you need code to read and write the posterior samples to disk.
+Here, I provide that code.
+
+This is a function that writes an existing chain to disk.
+Note that you need to explicitly import the `MCMCChains` package with `using MCMCChains` for this to work.
+
+```{julia}
+#| output: false
+"""Write a MCMC Chain to disk"""
+function write_chain(chain::MCMCChains.Chains, fname::AbstractString)
+    mkpath(dirname(fname))
+    HDF5.h5open(fname, "w") do f
+        write(f, chain)
+    end
+end
+
+"""Read a MCMCChain from disk"""
+function read_chain(fname::AbstractString)
+    HDF5.h5open(fname, "r") do f
+        read(f, MCMCChains.Chains)
+    end
+end
+
+"""User-facing interface"""
+function get_posterior(
+    model::DynamicPPL.Model, # the model to sample
+    fname::String; # where to save it
+    n_samples::Int=2_000, # number of samples per chain
+    n_chains::Int=1, # how many chains to run?
+    overwrite::Bool=false,
+    kwargs...,
+)
+
+    # unless we're overwriting, try to load from file
+    if !overwrite
+        try
+            samples = read_chain(fname)
+            return samples
+        catch
+        end
+    end
+
+    # if we're here, we didn't want to or weren't able to
+    # read the chain in from file. Generate the samples and
+    # write them to disk.
+    chn = let
+        rng = Random.MersenneTwister(1041)
+        sampler = externalsampler(DynamicHMC.NUTS()) #
+        n_per_chain = n_samples
+        nchains = n_chains
+        sample(rng, model, sampler, MCMCThreads(), n_per_chain, nchains; kwargs...)
+    end
+    write_chain(chn, fname)
+    return chn
+end
+```
+
+We can use this as follows
+
+```{julia}
+#| output: false
+@model function BayesGEV(x)
+    μ ~ Normal(0, 10)
+    σ ~ InverseGamma(2, 3)
+    ξ ~ Normal(0, 0.5)
+    return x ~ Normal(μ, σ)
+end
+
+x = rand(GeneralizedExtremeValue(6, 1, 0.2), 100)
+model = BayesGEV(x)
+```
+
+We can see the time savings here.
+The first time we run, we have to generate the samples, which takes a while.
+
+```{julia}
+if (isfile("bayes_gev.h5"))
+    rm("bayes_gev.h5")
+end
+@time posterior = get_posterior(model, "bayes_gev.h5"; n_samples=10_000, n_chains=4)
+```
+
+The second time we run, we can just read the samples from disk.
+
+```{julia}
+@time posterior = get_posterior(model, "bayes_gev.h5"; n_samples=10_000, n_chains=4)
+```
+
+::: {.callout-tip}
+## Don't commit `.h5` files
+
+You don't need to share your `.h5` files in your repository (and in fact, since your version history is tracked, you generally shouldn't -- some exceptions apply).
+Make sure you add `*.h5` to your `.gitignore` file to keep it out of your version history!
+:::
+
+::: {.callout-tip}
+## Alternative APproach
+
+[`Arviz.jl`](https://arviz-devs.github.io/ArviZ.jl/stable/) may offer a more permanent and sophisticated solution, but requires learning its own (often good!) conventions.
+:::
