@@ -11,7 +11,7 @@ In this tutorial, you will learn how to typeset mathematics and equations in Jup
 
 * [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
 * [LaTeX Cheatsheet](https://ctan.math.washington.edu/tex-archive/info/undergradmath/undergradmath.pdf)
-* [Mathpix Snpi](https://mathpix.com/snip) allows you to convert images of equations to LaTeX code (there is a free tier)
+* [Mathpix Snip](https://mathpix.com/snip) allows you to convert images of equations to LaTeX code (there is a free tier)
 * [Detexify](https://detexify.kirelabs.org/classify.html) lets you draw a symbol and suggests the LaTeX code for the corresponding symbol 
 
 This tutorial was inspired and draws from [Justin Bois' tutorial](http://chebe163.caltech.edu/2018w/handouts/intro_to_latex.html).
@@ -133,14 +133,3 @@ $$
 
 This is totally optional, but helps!
 
-## Using LaTeX in Figures
-
-You may want to use LaTeX in figures, for example if your $x$-axis should have a title like $x$. To do this, load the `LaTeXStrings` package and precede the relevant LaTeX-formatted string (within in-line dollar signs `$`) with `L`, as in:
-
-```{julia}
-using Plots
-using LaTeXStrings
-
-x = (-2π):0.01:(2π)
-plot(x, exp.(sin.(x)); xlabel=L"$x$", ylabel=L"$e^{\sin(x)}$", legend=false)
-```

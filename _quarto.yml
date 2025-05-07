@@ -47,16 +47,12 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
-      - text: "Installation"
-        href: setup.qmd
       - href: recommended_reading.qmd
         text: Textbooks
       - section: "Resources"
         contents:
           - href: resources/julia-basics.qmd
             text: Julia Basics
-          - href: resources/julia-plots.qmd
-            text: Making Plots
           - href: resources/github.qmd
             text: GitHub
           - href: resources/quarto.qmd
@@ -87,18 +83,14 @@ format:
 bibliography: references.bib
 csl: _assets/references/american-geophysical-union.csl
 
-# code to use
-jupyter: julia-1.9
 
 # execution options
 execute:
   freeze: auto  
   cache: true
 
-# reveal-auto-agenda extension
-filters:
-  - reveal-auto-agenda
-
 auto-agenda:
   bullets: numbered
   heading: Today
+
+engines: ['julia']

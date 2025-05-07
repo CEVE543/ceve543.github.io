@@ -1,26 +1,51 @@
 ---
-title: "{{< var course.number >}}: {{< var course.title >}}"
-format: html
-listing:
-  type: table
-  contents:
-    - "slides/*.qmd"
-    - "labs/*/template.qmd"
-  sort:
-    - "date"
-    - "title desc"
-  table-striped: true
-  table-hover: true
-  categories: numbered
-  fields: [date, title, Module, kind]
-  field-display-names: 
-    date: "Date"
-    title: "Title"
-    module: "Module"
-    kind: "Category"
-  page-size: 100
+title: "Course Schedule"
 ---
 
-This page contains a schedule of the topics, content, and assignments for the semester.
-This schedule **will be updated as necessary** over the course of the semester to accommodate logistics and to adapt to student needs.
-
+| Date                                   | Module | Lesson Plan          |
+|----------------------------------------|:------:|------------|
+| Monday, August 25                      |        |                      |
+| Wednesday, August 27                   |        |                      |
+| Friday, August 29                      |        |                      |
+| Monday, September 1                    |        | NO CLASS             |
+| Wednesday, September 3                 |        |                      |
+| Friday, September 5                    |        |                      |
+| Monday, September 8                    |        |                      |
+| Wednesday, September 10                |        |                      |
+| Friday, September 12                   |        |                      |
+| Monday, September 15                   |        |                      |
+| Wednesday, September 17                |        |                      |
+| Friday, September 19                   |        |                      |
+| Monday, September 22                   |        |                      |
+| Wednesday, September 24                |        |                      |
+| Friday, September 26                   |        |                      |
+| Monday, September 29                   |        |                      |
+| Wednesday, October 1                   |        |                      |
+| Friday, October 3                      |        |                      |
+| Monday, October 6                      |        |                      |
+| Wednesday, October 8                   |        |                      |
+| Friday, October 10                     |        |                      |
+| Monday, October 13                     |        | NO CLASS             |
+| Wednesday, October 15                  |        |                      |
+| Friday, October 17                     |        |                      |
+| Monday, October 20                     |        |                      |
+| Wednesday, October 22                  |        |                      |
+| Friday, October 24                     |        |                      |
+| Monday, October 27                     |        |                      |
+| Wednesday, October 29                  |        |                      |
+| Friday, October 31                     |        |                      |
+| Monday, November 3                     |        |                      |
+| Wednesday, November 5                  |        |                      |
+| Friday, November 7                     |        |                      |
+| Monday, November 10                    |        |                      |
+| Wednesday, November 12                 |        |                      |
+| Friday, November 14                    |        |                      |
+| Monday, November 17                    |        |                      |
+| Wednesday, November 19                 |        |                      |
+| Friday, November 21                    |        |                      |
+| Monday, November 24                    |        |                      |
+| Wednesday, November 26                 |        | NO CLASS             |
+| Friday, November 28                    |        | NO CLASS             |
+| Monday, December 1                     |        |                      |
+| Wednesday, December 3                  |        |                      |
+| Friday, December 5                     |        |                      |

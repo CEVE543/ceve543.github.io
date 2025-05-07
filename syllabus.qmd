@@ -1,24 +1,11 @@
 ---
+title: "{{< var course.number >}} ({{< var course.title >}}) Syllabus"
+subtitle: "{{< var course.semester >}}"
 format:
   html:
     toc-depth: 3
-    title: Syllabus
-  pdf:
-    documentclass: article
-    fontsize: 11pt
-    geometry:
-      - margin=1in  
-    include-in-header:
-      text: |
-        \renewcommand\toprule[2]\relax
-        \renewcommand\bottomrule[2]\relax
-    filters:
-      - _assets/filters/columns-to-tables.lua
-    title: "{{< var course.number >}} ({{< var course.title >}}) Syllabus"
-    subtitle: "{{< var course.semester >}}"
 ---
 
-## Course Overview
 
 This course covers the use of tools from data science (statistics, machine learning, and programming) to model climate hazards such as floods and droughts. Through hands-on programming assignments based on state-of-the-art published research, students will learn to apply methods to real-world problems with a strong emphasis on probabilistic methods and uncertainty quantification.
 
@@ -53,212 +40,121 @@ This course covers the use of tools from data science (statistics, machine learn
 
 ### Learning Objectives
 
-At the end of this class, students will:
+After completing this course, you will be able to:
 
-1. Write down generative or statistical models for climate hazards;
-1. Use Bayesian and maximum likelihood methods to estimate the parameters of simple statistical models ("inverse modeling");
-1. Use simulation models ("forward modeling") to assess the logical implications of statistical models;
-1. Understand and apply extreme value theory to estimate the probability of rare climate hazards;
-1. Critically interpret statistical analyses of environmental data applied in academic journals, government, and industry; and
-1. Understand and communicate subjective modeling choices to technical (e.g., scientist) and non-technical (e.g., policy-maker) audiences.
+1. Apply statistical and physical modeling to characterize hydroclimate extremes using modern techniques
+2. Evaluate and critique methodologies in research and technical reports on hydroclimate extremes
+3. Quantify and communicate uncertainty in probabilistic assessments of extreme events
+4. Design appropriate modeling strategies by comparing different statistical-physical methods
+5. Implement and validate models for hydroclimate extremes using good programming practices
+6. Communicate technical concepts effectively through presentations, discussions, and writing
 
 ### Prerequisites & Preparation
 
 * Linear algebra (you should be comfortable with matrix notation and basic operations)
 * A course in applied statistics (e.g., STAT 419/519)
-* Some exposure to Python, Julia, Matlab, R, or another programming language
+* Some exposure to Python, Julia, Matlab, R, or another programming language is strongly encouraged, though not strictly required
 
-In addition, a course covering machine learning, Bayesian statistics, or applied statistics is encouraged but not required.
-If you are unsure whether your background gives you an adequate preparation for this course, *please contact the instructor!*
-
-::: {.callout-tip}
-### What If My Skills Are Rusty?
-
-If your programming, mathematics, or statistics skills are a little rusty, don't worry!
-We will review concepts and build skills over the course of the semester.
-:::
-
-### Topics
-
-:::: {.columns}
-::: {.column width="48%"}
-The course will build core skills in:
-
-* Statistical inference
-* Machine learning
-* Data exploration and visualization
-* Extreme value statistics
-* Model selection, validation, and comparison
-:::
-
-::: {.column width="48%"}
-We will apply these methods to a variety of case studies, including three project-based assignments that cover:
-
-* Precipitation frequency analysis
-* Flood extent estimation
-* Stochastic streamflow generation
-:::
-::::
-
-For a full list of topics to be covered, see [the course schedule](./schedule.qmd).
+I will post a "Homework Zero" assignment before the start of the semester to help you assess your readiness for the course.
 
 ### Required Materials
 
 No textbook is required for this course.
-All materials will be posted as open source on [the course website]({{<var course.url >}}) or as PDFs on [Canvas](https://canvas.rice.edu/courses/{{<var course.canvas_id >}}).
 
-## A Community of Learning
 
-Rice's [core values](https://www.rice.edu/mission-values) are responsibility, integrity, community, and excellence.
-Our goal is to create a learning community aligned with these core values.
+### Rice Honor Code
 
-### Core Expectations
-
-Course success involves a dual responsibility on the part of the instructor and the student.
-
-:::: {.columns}
-
-::: {.column width="48%"}
-As the instructor, my responsibility is to provide you with a structure and opportunity to learn.
-To this end, I commit to:
-
-* provide organized and focused lectures, in-class activities, and assignments;
-* encourage students to regularly evaluate and provide feedback on the course;
-* manage the classroom atmosphere to promote learning;
-* schedule sufficient out-of-class contact opportunities, such as office hours;
-* allow adequate time for assignment completion;
-* make lecture materials, class policies, activities, and assignments accessible to students. 
-:::
-
-::: {.column width="48%"}
-Students are responsible for their own learning in the course and should commit to:
-
-* attending all lectures;
-* doing all required preparatory work before class; 
-* actively participating in online and in-class discussions;
-* beginning assignments and other work early; and
-* attending office hours as needed. 
-:::
-
-::::
-
-::: {.callout-important}
-## What If I'm Sick?
-
-Please stay home if you're feeling sick!
-This is beneficial for both for your own recovery and the health and safety of your classmates.
-We will also make any necessary arrangements for you to stay on top of the class material and if whatever is going on will negatively impact your grade, for example by causing you to be unable to submit an assignment on time.
-:::
-
-::: {.callout-important}
-## Canvas Discussions
-
-* If you wait until the day an assignment is due (or even late the previous night) to ask a question on Canvas, there is a strong chance that I will not see your post prior to the deadline. 
-* But if you see unanswered questions and you have some insight, please answer! This class will work best when we all work together as a community.
-:::
-
-### Diversity, Equity, and Inclusion
-
-Rice is committed to building and maintaining an equitable and inclusive campus community.
-Diversity can refer to multiple ways that we identify ourselves, including but not limited to race, color, national origin, language, sex, disability, age, sexual orientation, gender identity, religion, creed, ancestry, belief, veteran status, or genetic information.
-Each of these diverse identities, along with many others not mentioned here, shape the perspectives our students, faculty, and staff bring to our campus.
-We, at Rice, will work to promote diversity, equity and inclusion not only because diversity fuels excellence and innovation, but because we want to pursue justice.
-We acknowledge our imperfections while we also fully commit to the work, inside and outside of our classrooms, of building and sustaining a campus community that increasingly embraces these core values.
-
-Each of us is responsible for creating a safer, more inclusive environment.y.
-
-### Accommodation for Students with Disabilities
-
-If you have a documented disability or other condition that may affect academic performance you should: 1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / [adarice@rice.edu](mailto:adarice@rice.edu) / x5841) to determine the accommodations you need; and 2) talk with me to discuss your accommodation needs.
-
-### Accommodation for Scheduling Conflicts
-
-If any of our class meetings conflict with your religious events, student athletics, or other non-negotiable scheduling conflict, please let me know ASAP so that we can make arrangements for you.
-
-### Mask Policies
-
-Masks are welcome but not required in the classroom.
-However, I *strongly encourage* compliance with requests to mask from students, faculty, and staff who are concerned about the risk of infection.
-Please be respectful of these concerns and requests and do not ask someone making such a request to disclose their underlying medical condition.
-If for some reason you need your instructor or classmates to wear a mask, please let me know and I will communicate this to the class without disclosing your identity.
-
-These policies may change over the course of the semester as the situation evolves.
-
-### Policy on Web Posting of Course Materials
-
-Uploading course materials to web sites is not an authorized use of the course material.
-Both the poster and the user are in violation of the university policy, which is actionable.
-
-### Academic Integrity
-
-This class is designed to encourage collaboration, and students are encouraged to discuss their work with other students.
-Engineering as a profession relies upon the honesty and integrity of its practitioners (see *e.g.* the [American Society for Civil Engineers' Code of Ethics](https://www.asce.org/-/media/asce-images-and-files/career-and-growth/ethics/documents/asce-code-ethics.pdf)).
-**All work submitted must represent the students' own work and understanding**, whether individually or as a group (depending on the particulars of the assignment).
-This includes analyses,  code,  software  runs,  and  reports.
-
-More specifically, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution.
-If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at [honor.rice.edu/honor-system-handbook/](https://honor.rice.edu/honor-system-handbook/).
+In this course, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution.
+If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at [honor.rice.edu/honor-system-handbook/](http://honor.rice.edu/honor-system-handbook/).
 This handbook outlines the University's expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.
-
-If you are ever unclear about academic integrity, please ask!
-Additionally, always err on the side of providing more information.)
 
 ### AI/ML Resource Policy {#sec-llm}
 
-AI/ML tools, like ChatGPT, can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure.
+AI tools, specifically Large Language Models (LLMs) can be incredibly powerful aids in learning, and can help beginner programmers with syntax and code structure.
 However, the use of these tools poses risks including the potential for plagiarism and the potential for students to rely on these tools without developing their own understanding.
+We will discuss the use of these tools in class, and I will provide guidance on how to use them responsibly.
+You are encouraged to use these tools for coding, but you *must be responsible for understanding the work you submit*.
+In general, graded assessments will be primarily in-class.
 
-As noted, all work submitted for a grade in this course must reflect your own understanding.
-You are welcome to use AI/ML tools to help you learn, but you *must* describe how you used the tool when you turn in your assignment.
-Moreover, you should not submit code that you do not understand as you be held responsible for explaining any code you submit.
-For more, see our [page](resources/llm.qmd) on LLMs.
+Please see the course [list of LLM resources](/resources/llm.qmd) for some helpful links and resources.
+
+### Disability Resource Center
+
+If you have a documented disability or other condition that may affect academic performance you should: (1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / [adarice@rice.edu](mailto:adarice@rice.edu) / x5841) to determine the accommodations you need; and (2) talk with me to discuss your accommodation needs.
+
+### Syllabus Change Policy
+
+This syllabus is only a guide for the course and is subject to change with advanced notice.
 
 ## Grading
 
-### Labs: 10%
-
-On most Fridays we will use class time for hands-on programming exercises ("labs") to give you guided practice applying the concepts and methods from class.
-These labs will be announced on [the course website]({{<var course.url >}}) ahead of time so anyone who is able can bring a laptop to class.
-These labs can be done in groups; if you cannot bring a laptop to class for whatever reason, you will be able to (and are encouraged to) work with other students, though you must turn in your own assignment for grading.
-
-Some details on lab logistics:
-
-- Labs will be designed to be completed in class, but you may occasionally require additional time to complete them.
-- Labs will be graded on a 3-point scale: strong (3/3), acceptable (2/3), lacking (1/3), or missing (0/3).
-- Detailed solutions will be provided and you will be responsible for reviewing them on your own. Material covered on labs may be covered in tests.
-
-### Tests: 40%
-
-In-class written exams will be given for each of the four modules of the course, on the dates listed on the [schedule](./schedule.qmd).
-Tests will cover material from lectures and labs, and we will dedicate a class to review before each exam.
-
-Based on past experience, students enter the class with a wide range of backgrounds and experience.
-The tests are designed so that students who meet the pre-requisites, but do not have extensive additional experience, can do well.
-Students with backgrounds that exceed the minimum pre-requisites may find the tests relatively straightforward.
-
-### Projects: 40%
-
-Modules 2-4 will culminate with a project designed to apply the tools we learn in class to a real-world problem.
-These projects will be introduced at the start of each module, will motivate the material we cover in class, and give you an opportunity to apply the methods we learn to a problem of your choosing.
-Projects also offer an opportunity for students with more experience to dig deeper.
-
-Specific instructions and rubrics will be provided for each project.
-You will submit your projects as a Quarto notebook (`.qmd` file) on Canvas using the provided GitHub classroom link.
-
-### Participation: 10%
-
-Participating fully in the class allows you to gain more from the class and contribute more to the learning of your classmates.
-Some ways to participate include:
-
-- Attending every class
-- Asking questions in class
-- Answering questions on Canvas
-- Coming to office hours
-
-You will be asked to evaluate your own participation over the course of the semester, and I will provide feedback on your participation as well
+TBD
 
 ### Late Work Policy
 
-- Late projects will be subjected to a 10% penalty per day, *which can accumulate to 100% of the total grade*.
-- Late labs will not be accepted, because we will discuss solutions in class.
-- Sometimes things come up in life. Please reach out *ahead of time* if you have extenuating circumstances (including University-approved absences or illnesses) which would make it difficult for you to submit your work on time. Work which would be late for appropriate reasons will be given extensions and the late penalty will be waived.
+Because assignments are designed to be ["LLM-proof"](#sec-llm), assessments will be primarily in-class.
+This makes it hard to make up late or missed work.
+
+If you need to miss a class because of illness, family emergency, or other unavoidable conflict, or for critical research travel, please let me know as soon as possible.
+Your grade will not be penalized for excused absences (you will be assigned zero out of zero).
+
+## Module Learning Objectives
+
+This course is organized into four modules, each building on the previous one.
+
+### Module 0: Introduction, Motivation, and Foundations
+
+By the end of this module, you will be able to:
+
+1. Articulate the core challenge in hydroclimate extremes assessment: balancing limited observations with imperfect models
+2. Explain the importance of quantifying uncertainty for engineering applications
+3. Connect hydroclimate hazards to underlying weather patterns and climate drivers
+4. Discuss model validation challenges, especially for rare events
+5. Use key terminology from probability, statistics, and machine learning correctly
+6. Set up the programming environment needed for computational assignments
+7. Describe the course approach to integrating statistical and physical methods
+
+### Module 1: Extreme Value Theory (EVT) for Hazard Assessment
+
+By the end of this module, you will be able to:
+
+1. Compare and apply block maxima (GEV) and peaks-over-threshold (GPD) approaches
+2. Implement parameter estimation using Maximum Likelihood and Bayesian methods
+3. Construct hazard curves with uncertainty bounds for events like floods
+4. Incorporate nonstationarity in EVT models using time-varying parameters
+5. Apply regionalization techniques to improve estimates in data-scarce environments
+6. Evaluate model fit using diagnostic plots and goodness-of-fit tests
+7. Critically analyze published studies that use EVT for hazard assessment
+
+### Module 2: Synthetic Events and Catastrophe Modeling
+
+By the end of this module, you will be able to:
+
+1. Explain the need for synthetic event generation for low-probability, high-impact events
+2. Implement components of a basic synthetic event generation scheme
+3. Evaluate how physical constraints and statistical properties are incorporated into models
+4. Connect synthetic event sets to probabilistic hazard assessment
+5. Identify key sources of uncertainty in synthetic event generation
+6. Critically evaluate different synthetic methodologies and justify your selections
+
+### Module 3: Climate Model Projections and Stochastic Weather Generators
+
+By the end of this module, you will be able to:
+
+1. Distinguish between climate model projections and weather forecasts
+2. Apply distribution adjustment techniques to improve climate model outputs
+3. Explain statistical downscaling approaches for connecting large-scale to local variables
+4. Implement and evaluate stochastic weather generators (SWGs)
+5. Analyze future changes in extreme events using climate-informed methods
+6. Assess limitations of statistical post-processing techniques
+7. Characterize uncertainty across the modeling chain from emissions to impacts
+
+### Module 4: Synthesis and Special Topics
+
+By the end of this module, you will be able to:
+
+1. Research and synthesize information on an advanced topic of your choice
+2. Explain complex methodologies clearly to your peers
+3. Evaluate specialized approaches for their strengths, weaknesses, and appropriate contexts
+4. Connect your special topic to core course concepts and cross-cutting themes
+5. Create effective learning materials about your chosen topic for others
