@@ -47,10 +47,10 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
-      - href: recommended_reading.qmd
-        text: Textbooks
       - section: "Resources"
         contents:
+          - href: recommended_reading.qmd
+            text: Helpful Textbooks
           - href: resources/julia-basics.qmd
             text: Julia Basics
           - href: resources/github.qmd
