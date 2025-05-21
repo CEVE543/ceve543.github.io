@@ -5,7 +5,7 @@ project:
 
 website:
   page-navigation: true
-  title: "{{< var course.number >}} - {{< var course.semester >}}"
+  title: CEVE 543 - Fall 2025
   description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
   site-url: https://ceve543.github.io/
   repo-url: https://www.github.com/ceve543/ceve543.github.io
