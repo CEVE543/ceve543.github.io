@@ -9,17 +9,12 @@ If you have a favorite resource that you think should be included here, please s
 
 ## Fundamentals
 
-### Probability and statistics
-
 - **@blitzstein_probability:2019** provides a thorough introduction to key concepts and ideas in probability. The book accompanies a free online course, [Stat 110](https://projects.iq.harvard.edu/stat110/home), which is a great resource for learning probability and statistics. Practice problems and solutions, handouts, and lecture videos are all available online.
 - **@downey_thinkbayes:2021** offers an introduction to Bayesian statistics using computational methods. It's not environment focused but provides code and a clear explanation of core concepts.
 - **@gelman_regression:2021** is a textbook designed for a first course on applied statistics. Clear and well-worked examples underpin discussion of fundamental ideas in statistical analysis and thinking about data.
-
-### Programming
-
 - **@nazarathy_julia:2021** offers tutorials on using Julia for statistics and machine learning; reading good code is a great way to improve your coding
-- **@lauwens_thinkjulia:2019** teaches key concepts in programming, using Julia for all examples. It's a great resource for beginners trying to understand code and for more experienced programmers who want to write better code.
 - The [Julia basics page](./julia-basics.qmd) includes a link to good resources for getting started with Julia.
+- The [MIT Computational Thinking course](https://computationalthinking.mit.edu/) provides a fantastic Julia-based introduction to applied mathematics and computational thinking and is a fantastic resource for the course.
 
 ## Environmental applications
 
