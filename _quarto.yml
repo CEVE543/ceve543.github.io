@@ -1,7 +1,7 @@
 project:
   type: website
   preview:
-    port: 4200
+    port: 4201
 
 website:
   page-navigation: true
@@ -47,18 +47,6 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
-      - section: "Resources"
-        contents:
-          - href: resources/recommended_reading.qmd
-            text: Helpful Textbooks
-          - href: resources/julia-basics.qmd
-            text: Julia Basics
-          - href: resources/github.qmd
-            text: GitHub
-          - href: resources/quarto.qmd
-            text: Quarto
-          - href: resources/llm.qmd
-            text: Large Language Models
 
 echo: true
 
