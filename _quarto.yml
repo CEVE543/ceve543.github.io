@@ -2,29 +2,29 @@ project:
   type: website
   preview:
     port: 4201
+  render:
+    - "*.qmd"
+    - "!instructor-notes.qmd"
 
 website:
   page-navigation: true
   title: CEVE 543 - Fall 2025
   description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
   site-url: https://ceve543.github.io/
-  repo-url: https://www.github.com/ceve543/ceve543.github.io
+  repo-url: "{{< var repo-url >}}"
   repo-actions: [edit, issue]
   open-graph: true
 
   page-footer:
-    right: |
-      Made with [Julia](https://julialang.org) and [Quarto](https://quarto.org/)<br>
-      [View the source on {{< fa brands github >}} GitHub]({{< var course.github >}})
-
     left: |
-      Content {{< fa copyright >}} {{< var course.copyright_year >}}  by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).
-      All content licensed under a {{< fa brands creative-commons >}}
-      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
-      [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
+      <span class="faux-block">{{< fa brands creative-commons >}} {{< var course.copyright_year >}} [James Doss-Gollin](https://jdossgollin.github.io)</span>
+      <span class="faux-block">
     center: |
-      **Page still under construction.**
+      All content licensed under [{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY-NC 4.0](/license.qmd)</span>
+
+    right: |
+      <span class="faux-block">Made with Julia and [Quarto](https://quarto.org/).</span>
+      <span class="faux-block">[View the source on {{< fa brands github >}} GitHub]({{< var repo-url >}})</span>
 
   sidebar:
     style: docked
@@ -47,6 +47,10 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
+      - text: <hr>
+      - href: license.qmd
+
+      
 
 echo: true
 

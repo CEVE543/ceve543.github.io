@@ -13,7 +13,7 @@ Through hands-on programming assignments based on state-of-the-art published res
 ## Course Information
 :::: {.columns .course-details}
 
-::: {.column width="30%"}
+::: {.column width="50%"}
 ### Instructor
 
 * {{< fa sharp user title="Name" >}} [[{{< var instructor.name_no_title >}}]({{< var instructor.url >}})]{.ms-1}
@@ -21,15 +21,7 @@ Through hands-on programming assignments based on state-of-the-art published res
 * {{< fa sharp building title="Office" >}} [{{< var instructor.office >}}]{.ms-2}
 :::
 
-::: {.column width="30%"}
-### TA
-
-* {{< fa sharp user title="Name" >}} [[{{< var ta.name_no_title >}}]({{< var ta.url >}})]{.ms-1}
-* {{< fa sharp envelope title="Email" >}} [[{{< var ta.email >}}](mailto:{{< var ta.email >}})]{.ms-1}
-* {{< fa sharp building title="Office" >}} [{{< var ta.office >}}]{.ms-2}
-::::
-
-::: {.column width="30%"}
+::: {.column width="50%"}
 ### Meetings
 
 * {{< fa sharp calendar title="Class Days" >}} {{< var course.days >}}
@@ -43,12 +35,13 @@ Through hands-on programming assignments based on state-of-the-art published res
 
 After completing this course, you will be able to:
 
-1. Apply statistical and physical modeling to characterize hydroclimate extremes using modern techniques
-2. Evaluate and critique methodologies in research and technical reports on hydroclimate extremes
-3. Quantify and communicate uncertainty in probabilistic assessments of extreme events
-4. Design appropriate modeling strategies by comparing different statistical-physical methods
-5. Implement and validate models for hydroclimate extremes using good programming practices
-6. Communicate technical concepts effectively through presentations, discussions, and writing
+**Module 1 - Extreme Value Analysis:** Apply extreme value theory from basic distribution fitting through hierarchical Bayesian models for regional precipitation analysis
+
+**Module 2 - Semi-Empirical Models:** Build and validate semi-empirical physical models, implementing multiple uncertainty quantification approaches including bootstrap and MCMC
+
+**Module 3 - Climate Model Integration:** Integrate observations with climate model output through bias correction and statistical downscaling methods
+
+**Synthesis:** Strategically combine limited observational data with abundant but biased model simulations to characterize hydroclimate extremes under uncertainty
 
 ### Prerequisites & Preparation
 
@@ -61,7 +54,10 @@ I will post a "Homework Zero" assignment before the start of the semester to hel
 ### Required Materials
 
 No textbook is required for this course.
+Reading will come from a [free, online textbook](https://dossgollin-lab.github.io/climate-risk-management-reference/) developed specifically for this class, or will be provided through Canvas.
 
+You do need a computer that you are able to install software on to complete the assignments and participate in class activities.
+If you do not have access to one, please contact me as soon as possible so that we can make arrangements.
 
 ### Rice Honor Code
 
@@ -71,26 +67,22 @@ This handbook outlines the University's expectations for the integrity of your a
 
 ### AI/LLM Resource Policy {#sec-llm}
 
+The rapid evolution of AI tools raises important questions about learning, assessment, and the skills you need for the future.
 AI tools, especially Large Language Models (LLMs), can be powerful aids in learning.
 They can outline, summarize, explain, and write code.
 However, these tools also pose risks, including the potential for plagiarism and for students to rely on them without developing their own understanding.
 
-The rapid evolution of AI tools raises important questions about learning, assessment, and the skills you need for the future.
-
-**The use of these models must be informed by our values and objectives, and we must be critical in thinking about when and how to use them.**
-Relevant values may include getting the correct answer on a task, our long-term cognitive development, mastering immediate skills, our engagement with the companies creating these models, which skills we want to prioritize, the potential risks and consequences of the topic we are working on, and other considerations, and many more.
-
-**It is important for students to understand these tools and think about how they want to use them.**
-It is not required that you use them, but it **IS** required that you be deliberate.
-If you choose not to use them, that should be deliberate.
-If you choose to use them, that should also be deliberate.
+**The use of these models must be informed by our values and goals, and we must be critical in thinking about when and how to use them.**
+For example, you may want to quickly get a plausible answer on a task, ensure you have the best possible answer on a task, develop your understanding of a particular topic, strengthen your long-term cognitive development, rapidly prototype an idea, or get feedback on something you have written.
+Each of these goals may take you in a different direction with respect to your use of LLMs.
+Depending on the task at hand, you may also wish to consider your relationship with the companies creating AI models, the potential risks and consequences of the topic you are working on, or the ethical implications of using these tools.
+My goal is not to give you a single "right" answer, but to require you to think critically about your use of these tools and to **make deliberate choices**.
 
 For this course, the goal of learning is articulated in the course learning objectives.
 Rather than focusing on preventing or punishing "cheating," we recognize that students will use LLMs on take-home and written material, and should learn to do so responsibly.
 Assessment will focus on approaches—including tests and in-class activities—that are not readily amenable to LLM use (note: the use of any hypothetical wearable AI device is prohibited).
 You are encouraged to explore the resources linked on the [LLM resources page](resources/llm.qmd) and elsewhere.
-
-This AI policy is reciprocal.
+This AI policy is **reciprocal**.
 For example, your instructors may use LLMs to draft rubrics or add comments to example code, but your assignments will not be graded by LLMs, and we will not use LLMs to write code or text we do not understand and fully stand behind.
 
 ### Disability Resource Center
@@ -103,73 +95,28 @@ This syllabus is only a guide for the course and is subject to change with advan
 
 ## Grading
 
-TBD
+Your final grade will be determined from a portfolio of work that includes regular low-stakes practice, in-class assessments of core concepts, and a final project.
+The goal is to reward consistent engagement, practice, and deep, applied learning.
+
+- **Weekly Quizzes (20%)** will assess your understanding of the course material. They will not test for deep understanding, but will give you immediate feedback if you start to fall behind. Your lowest quiz score will be dropped.
+- **Problem Sets (10%)** on each module will reinforce your understanding of the material and provide practice with the skills you are learning. Problem sets are graded for completion to reward consistent effort and practice.
+- **Labs (10%)** provide hands-on experience applying concepts and building technical skills. Labs are graded for completion to encourage exploration and learning from mistakes.
+- **Module Tests (40%)** on each module will closely follow the problem sets to assess your understanding of the material and your ability to apply the skills you have learned. If you do and understand the problem set, you should do well on the test.
+- **Final Project (20%)** is a semester-long, multi-stage assignment where you will perform a deep dive into a hydroclimate risk problem of your choosing. You will propose a research question and dataset, apply an advanced method to analyze it, and communicate your findings. Students are required to attend a one-on-one project check-in during office hours after their proposal is submitted. The final deliverables include: (1) a project proposal, (2) a final report written in the style of a new section for a textbook on a method you learned, and (3) a presentation to the class during our Course Symposium, effectively teaching your peers about the method and its application.
 
 ### Late Work Policy
 
-Because assignments are designed to be ["LLM-proof"](#sec-llm), assessments will be primarily in-class.
-This makes it hard to make up late or missed work.
+Late work is not accepted.
 
-If you need to miss a class because of illness, family emergency, or other unavoidable conflict, or for critical research travel, please let me know as soon as possible.
-Your grade will not be penalized for excused absences (you will be assigned zero out of zero).
+If you need to miss a class because of major illness, family emergency, or other unavoidable conflict, or for critical research travel, please let me know as soon as possible.
+In these cases, you will be assigned a score of 0/0, meaning it will not be reflected in the numerator or denominator.
 
-## Module Learning Objectives
+### Remote Learning Policy
 
-This course is organized into four modules, each building on the previous one.
+This course is designed for in-person attendance on Mondays and Wednesdays, and remote attendance on Fridays.
+While a standing Zoom link has been created for the class, I will not livestream or record lectures unless specifically requested.
+If you need to attend remotely, please ask in advance.
 
-### Module 0: Introduction, Motivation, and Foundations
+## Course schedule
 
-By the end of this module, you will be able to:
-
-1. Articulate the core challenge in hydroclimate extremes assessment: balancing limited observations with imperfect models
-2. Explain the importance of quantifying uncertainty for engineering applications
-3. Connect hydroclimate hazards to underlying weather patterns and climate drivers
-4. Discuss model validation challenges, especially for rare events
-5. Use key terminology from probability, statistics, and machine learning correctly
-6. Set up the programming environment needed for computational assignments
-7. Describe the course approach to integrating statistical and physical methods
-
-### Module 1: Extreme Value Theory (EVT) for Hazard Assessment
-
-By the end of this module, you will be able to:
-
-1. Compare and apply block maxima (GEV) and peaks-over-threshold (GPD) approaches
-2. Implement parameter estimation using Maximum Likelihood and Bayesian methods
-3. Construct hazard curves with uncertainty bounds for events like floods
-4. Incorporate nonstationarity in EVT models using time-varying parameters
-5. Apply regionalization techniques to improve estimates in data-scarce environments
-6. Evaluate model fit using diagnostic plots and goodness-of-fit tests
-7. Critically analyze published studies that use EVT for hazard assessment
-
-### Module 2: Synthetic Events and Catastrophe Modeling
-
-By the end of this module, you will be able to:
-
-1. Explain the need for synthetic event generation for low-probability, high-impact events
-2. Implement components of a basic synthetic event generation scheme
-3. Evaluate how physical constraints and statistical properties are incorporated into models
-4. Connect synthetic event sets to probabilistic hazard assessment
-5. Identify key sources of uncertainty in synthetic event generation
-6. Critically evaluate different synthetic methodologies and justify your selections
-
-### Module 3: Climate Model Projections and Stochastic Weather Generators
-
-By the end of this module, you will be able to:
-
-1. Distinguish between climate model projections and weather forecasts
-2. Apply distribution adjustment techniques to improve climate model outputs
-3. Explain statistical downscaling approaches for connecting large-scale to local variables
-4. Implement and evaluate stochastic weather generators (SWGs)
-5. Analyze future changes in extreme events using climate-informed methods
-6. Assess limitations of statistical post-processing techniques
-7. Characterize uncertainty across the modeling chain from emissions to impacts
-
-### Module 4: Synthesis and Special Topics
-
-By the end of this module, you will be able to:
-
-1. Research and synthesize information on an advanced topic of your choice
-2. Explain complex methodologies clearly to your peers
-3. Evaluate specialized approaches for their strengths, weaknesses, and appropriate contexts
-4. Connect your special topic to core course concepts and cross-cutting themes
-5. Create effective learning materials about your chosen topic for others
+The course schedule is given in the [online schedule](/schedule.qmd).

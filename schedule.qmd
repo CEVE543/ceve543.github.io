@@ -1,51 +1,55 @@
 ---
 title: "Course Schedule"
+format: 
+  html:
+    page-layout: full
 ---
 
-| Date                                   | Module | Lesson Plan          |
-|----------------------------------------|:------:|------------|
-| Monday, August 25                      |        |                      |
-| Wednesday, August 27                   |        |                      |
-| Friday, August 29                      |        |                      |
-| Monday, September 1                    |        | NO CLASS             |
-| Wednesday, September 3                 |        |                      |
-| Friday, September 5                    |        |                      |
-| Monday, September 8                    |        |                      |
-| Wednesday, September 10                |        |                      |
-| Friday, September 12                   |        |                      |
-| Monday, September 15                   |        |                      |
-| Wednesday, September 17                |        |                      |
-| Friday, September 19                   |        |                      |
-| Monday, September 22                   |        |                      |
-| Wednesday, September 24                |        |                      |
-| Friday, September 26                   |        |                      |
-| Monday, September 29                   |        |                      |
-| Wednesday, October 1                   |        |                      |
-| Friday, October 3                      |        |                      |
-| Monday, October 6                      |        |                      |
-| Wednesday, October 8                   |        |                      |
-| Friday, October 10                     |        |                      |
-| Monday, October 13                     |        | NO CLASS             |
-| Wednesday, October 15                  |        |                      |
-| Friday, October 17                     |        |                      |
-| Monday, October 20                     |        |                      |
-| Wednesday, October 22                  |        |                      |
-| Friday, October 24                     |        |                      |
-| Monday, October 27                     |        |                      |
-| Wednesday, October 29                  |        |                      |
-| Friday, October 31                     |        |                      |
-| Monday, November 3                     |        |                      |
-| Wednesday, November 5                  |        |                      |
-| Friday, November 7                     |        |                      |
-| Monday, November 10                    |        |                      |
-| Wednesday, November 12                 |        |                      |
-| Friday, November 14                    |        |                      |
-| Monday, November 17                    |        |                      |
-| Wednesday, November 19                 |        |                      |
-| Friday, November 21                    |        |                      |
-| Monday, November 24                    |        |                      |
-| Wednesday, November 26                 |        | NO CLASS             |
-| Friday, November 28                    |        | NO CLASS             |
-| Monday, December 1                     |        |                      |
-| Wednesday, December 3                  |        |                      |
-| Friday, December 5                     |        |                      |
+| Date                  | Module | Lesson                                                          | Assignments                               |
+|-----------------------|:------|:-----------------------------------------------------------------|:-----------------------------------|
+| Monday, August 25     |   0    | Course Introduction, Syllabus, and Core Concepts                | [PS0](/assignments/PS0/index.qmd) (ungraded)        |
+| Wednesday, August 27  |   1    | Module 1 Introduction: Extreme Value Theory                     | Assigned: PS1, Assigned: Final Project   |
+| Friday, August 29     |   1    | Lab: Julia Setup & Hello World                                  |                                           |
+| Monday, September 1   |   --   | NO CLASS - Labor Day                                            |                                           |
+| Wednesday, September 3|   1    | Lecture: Probability, Statistics, and Inference                 |                                           |
+| Friday, September 5   |   1    | Lab: Julia Data Handling and Plotting                           |                                           |
+| Monday, September 8   |   1    | Quiz 1.</br>Lecture: Likelihood and Maximum Likelihood         |                                           |
+| Wednesday, September 10|   1    | Tutorial: MLE with Turing.jl                                    |                                           |
+| Friday, September 12  |   1    | Lab: GEV Inference (Turing.jl, Extremes.jl, P-moments)         |                                           |
+| Monday, September 15  |   1    | Quiz 2.</br>Lecture: Bayesian Statistics                        |                                           |
+| Wednesday, September 17|   1    | Lecture: Monte Carlo and MCMC Methods                           |                                           |
+| Friday, September 19  |   1    | Lab: Bayesian Rainfall Analysis                                 |                                           |
+| Monday, September 22  |   1    | Quiz 3.</br>Lecture: Sampling Variability and Regionalization   |                                           |
+| Wednesday, September 24|   1    | Tutorial: Hierarchical Models for GEV                           |                                           |
+| Friday, September 26  |   1    | Lab: Regional Pooling Comparison                                |                                           |
+| Monday, September 29  |   1    | Quiz 4.</br>Lecture: Non-Stationarity                           |                                           |
+| Wednesday, October 1  |   1    | PS1 Review Session                                              | Due: PS1, Due: Project Proposals         |
+| Friday, October 3     |   1    | In-Class Module 1 Test                                          |                                           |
+| Monday, October 6     |   2    | Module 2 Introduction: Semi-Empirical Models                   | Assigned: PS2                             |
+| Wednesday, October 8  |   2    | Tutorial: Physics-Based Model Calibration                       |                                           |
+| Friday, October 10    |   2    | Lab: Semi-Empirical SLR Model Implementation                    |                                           |
+| Monday, October 13    |   --   | NO CLASS - Mid-term Recess                                      |                                           |
+| Wednesday, October 15 |   2    | Quiz 5.</br>Lecture: Bootstrap Methods                          |                                           |
+| Friday, October 17    |   2    | Lab: Bootstrap Uncertainty Quantification                       |                                           |
+| Monday, October 20    |   2    | Quiz 6.</br>Lecture: Temporal Models and Autocorrelation       |                                           |
+| Wednesday, October 22 |   2    | PS2 Review Session                                              | Due: PS2                                  |
+| Friday, October 24    |   2    | In-Class Module 2 Test                                          |                                           |
+| Monday, October 27    |   3    | Module 3 Introduction: Global Climate Models                   | Assigned: PS3                             |
+| Wednesday, October 29 |   3    | Tutorial: Bias Correction Methods                               |                                           |
+| Friday, October 31    |   3    | Lab: Bias Correction Implementation                             |                                           |
+| Monday, November 3    |   3    | Quiz 7.</br>Lecture: Statistical Downscaling                    |                                           |
+| Wednesday, November 5 |   3    | Tutorial: PCA for Climate Data                                  |                                           |
+| Friday, November 7    |   3    | Lab: PCA-Based Downscaling                                      |                                           |
+| Monday, November 10   |   3    | Quiz 8.</br>Lecture: Stochastic Weather Generation              |                                           |
+| Wednesday, November 12|   3    | Tutorial: HMM Implementation                                     |                                           |
+| Friday, November 14   |   3    | Lab: Weather Generator Development                               |                                           |
+| Monday, November 17   |   3    | PS3 Review Session                                              | Due: PS3                                  |
+| Wednesday, November 19|   3    | In-Class Module 3 Test                                          |                                           |
+| Friday, November 21   |   --   | Final Project Work Day                                           |                                           |
+| Monday, November 24   |   4    | Final Presentations - Day 1                                     |                                           |
+| Wednesday, November 26|   --   | NO CLASS - Thanksgiving                                         |                                           |
+| Friday, November 28   |   --   | NO CLASS - Thanksgiving                                         |                                           |
+| Monday, December 1    |   4    | Final Presentations - Day 2                                     |                                           |
+| Wednesday, December 3 |   4    | Final Presentations - Day 3                                     |                                           |
+| Friday, December 5    |   4    | Course Wrap-up, Review of Cross-Cutting Themes, Final Q&A       | Due: Final Project Report    |
+

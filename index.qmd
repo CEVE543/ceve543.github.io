@@ -3,7 +3,16 @@ title: "{{< var course.number >}}: {{< var course.title >}}"
 format: html
 ---
 
-This is the course website for the {{< var course.semester >}} edition of {{< var course.number >}}, {{< var course.title >}}, taught at [{{< var university.name >}}]({{< var university.url >}}) by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).
+Welcome to the course website for the {{< var course.semester >}} edition of {{< var course.number >}}, {{< var course.title >}}, taught at [{{< var university.name >}}]({{< var university.url >}}) by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).
+
+In this course, we will learn how to apply tools from applied math, statistics, Earth science, and machine learning to answer questions like
+
+- What is the probability distribution of extreme rainfall at a specific location?
+- What is the probability distribution of storm surges at a specific location?
+- What is the likelihood of experiencing low inflows (below some threshold) to a reservoir system over several years?
+- How do these probability distributions change in the next 50 years?
+- How uncertain are these estimates?
+- What specific mechanisms drive these uncertainties?
 
 ## Course Information
 
@@ -12,15 +21,18 @@ This is the course website for the {{< var course.semester >}} edition of {{< va
 
 ## Instructor
 
-{{< var instructor.name >}} is an assistant professor of Civil and Environmental Engineering at Rice University.
+Dr. James Doss-Gollin is an assistant professor of Civil and Environmental Engineering at Rice University.
 His research integrates Earth science, data science, and decision science to address challenges in climate risk management, water resources, and energy system resilience.
 He also teaches CEVE 421/521 (Climate Risk Management).
+See his [lab website](https://dossgollin-lab.github.io) for more information.
 
-## Software Tools
+## Required Tools
 
-- This course will use the [Julia](https://julialang.org) programming language. Julia is a modern, free, open source language designed for scientific computing.
-- No prior knowledge of Julia is required. Some prior programming experience is strongly encouraged.
-- Assignments will be distributed using [GitHub Classroom](https://github.com).
+This course
+
+This course will use the [Julia](https://julialang.org) programming language. Julia is a modern, free, open source language designed for scientific computing.
+No prior knowledge of Julia is required. However, some exposure to programming (Matlab, Python, R, git/GitHub, Jupyter, etc.) is **strongly** encouraged.
+Assignments will be distributed using [GitHub Classroom](https://github.com).
 
 ## Acknowledgements
 

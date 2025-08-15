@@ -1,0 +1,39 @@
+on:
+  repository_dispatch:
+  push:
+    branches: [Fall25]
+
+name: Render and Publish
+
+# you need these permissions to publish to GitHub pages
+permissions:
+  contents: write
+  pages: write
+
+# https://github.com/marketplace/actions/setup-miniconda
+defaults:
+      run:
+        shell: bash -l {0}
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    # run only on upstream, not on downstream
+    if: github.repository == 'ceve543/ceve543.github.io'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
