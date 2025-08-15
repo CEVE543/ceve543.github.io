@@ -1,10 +1,7 @@
 project:
   type: website
   preview:
-    port: 4201
-  render:
-    - "*.qmd"
-    - "!instructor-notes.qmd"
+    port: 5543
 
 website:
   page-navigation: true
@@ -12,7 +9,7 @@ website:
   description: "Homepage for {{< var course.number >}}, {{< var course.title >}}, at Rice University, {{< var course.semester >}}."
   site-url: https://ceve543.github.io/
   repo-url: "{{< var repo-url >}}"
-  repo-actions: [edit, issue]
+  repo-actions: [issue]
   open-graph: true
 
   page-footer:
@@ -47,8 +44,9 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
-      - text: <hr>
-      - href: license.qmd
+
+    footer: |
+      All content licensed under [{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY-NC 4.0](/license.qmd)</span>
 
       
 
@@ -60,29 +58,25 @@ format:
     theme: 
       [simplex, _assets/sass/theme.scss]
     copy-code: true
-    code-overflow: wrap
     toc: true
     anchor-sections: true
     callout-appearance: simple
     reference-location: document
     citations-hover: true
-    code-annotations: hover
     html-math-method: mathjax
     include-in-header: mathjax-config.html
     date-format: "ddd., MMM. D"
+    code-line-numbers: true
+    code-overflow: wrap
+    code-annotations: hover
+    code-copy: true
 
 # references
 bibliography: references.bib
-csl: _assets/references/american-geophysical-union.csl
+biblio-style: _assets/references/american-geophysical-union.csl
 
 
 # execution options
 execute:
   freeze: auto  
   cache: true
-
-auto-agenda:
-  bullets: numbered
-  heading: Today
-
-engines: ['julia']

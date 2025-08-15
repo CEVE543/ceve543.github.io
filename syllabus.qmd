@@ -1,9 +1,13 @@
 ---
-title: "{{< var course.number >}} ({{< var course.title >}}) Syllabus"
+title: "{{< var course.number >}}: {{< var course.title >}}"
 subtitle: "{{< var course.semester >}}"
 format:
   html:
     toc-depth: 3
+  typst:
+    margin:
+      x: 1in
+      y: 1in
 ---
 
 
@@ -35,13 +39,11 @@ Through hands-on programming assignments based on state-of-the-art published res
 
 After completing this course, you will be able to:
 
-**Module 1 - Extreme Value Analysis:** Apply extreme value theory from basic distribution fitting through hierarchical Bayesian models for regional precipitation analysis
-
-**Module 2 - Semi-Empirical Models:** Build and validate semi-empirical physical models, implementing multiple uncertainty quantification approaches including bootstrap and MCMC
-
-**Module 3 - Climate Model Integration:** Integrate observations with climate model output through bias correction and statistical downscaling methods
-
-**Synthesis:** Strategically combine limited observational data with abundant but biased model simulations to characterize hydroclimate extremes under uncertainty
+1. Apply extreme value theory from basic distribution fitting through hierarchical Bayesian models for regional precipitation analysis
+1. Combine physical models and observational data to project future hazard
+1. Apply multiple uncertainty quantification approaches including bootstrap and MCMC
+1. Strategically combine different types of models and data to characterize hydroclimate extremes under uncertainty
+1. Critically understand and articulate the strengths and limitations of different modeling approaches
 
 ### Prerequisites & Preparation
 
@@ -49,7 +51,7 @@ After completing this course, you will be able to:
 * A course in applied statistics (e.g., STAT 419/519)
 * Some exposure to Python, Julia, Matlab, R, or another programming language is strongly encouraged, though not strictly required
 
-I will post a "Homework Zero" assignment before the start of the semester to help you assess your readiness for the course.
+An ungraded **"Homework Zero"** assignment has been posted on Canvas to help you assess your readiness for the course.
 
 ### Required Materials
 
@@ -81,8 +83,9 @@ My goal is not to give you a single "right" answer, but to require you to think 
 For this course, the goal of learning is articulated in the course learning objectives.
 Rather than focusing on preventing or punishing "cheating," we recognize that students will use LLMs on take-home and written material, and should learn to do so responsibly.
 Assessment will focus on approaches—including tests and in-class activities—that are not readily amenable to LLM use (note: the use of any hypothetical wearable AI device is prohibited).
-You are encouraged to explore the resources linked on the [LLM resources page](resources/llm.qmd) and elsewhere.
-This AI policy is **reciprocal**.
+You are encouraged to explore the resources linked on the [LLM resources page]({{< var textbook-url >}}/chapters/appendices/llm.html) and elsewhere.
+
+**This AI policy is reciprocal**.
 For example, your instructors may use LLMs to draft rubrics or add comments to example code, but your assignments will not be graded by LLMs, and we will not use LLMs to write code or text we do not understand and fully stand behind.
 
 ### Disability Resource Center
