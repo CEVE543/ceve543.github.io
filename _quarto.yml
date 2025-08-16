@@ -61,8 +61,7 @@ format:
     callout-appearance: simple
     reference-location: document
     citations-hover: true
-    html-math-method: mathjax
-    include-in-header: mathjax-config.html
+    html-math-method: katex
     date-format: "ddd., MMM. D"
     code-line-numbers: true
     code-overflow: wrap
