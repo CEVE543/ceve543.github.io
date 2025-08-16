@@ -11,6 +11,27 @@ website:
   repo-url: "{{< var repo-url >}}"
   repo-actions: [issue]
   open-graph: true
+  
+  navbar:
+    logo: _assets/logos/Rice_Logo_280_Blue.svg
+    title: "CEVE 543"
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus
+      - href: schedule.qmd
+        text: Schedule
+      - href: assignments.qmd
+        text: Assignments
+    right:
+      - icon: github
+        href: "{{var course.github}}"
+        text: "Github Repository"
+      - icon: journal-check
+        href: https://canvas.rice.edu
+        text: "Canvas"
 
   page-footer:
     left: |
@@ -22,33 +43,6 @@ website:
     right: |
       <span class="faux-block">Made with Julia and [Quarto](https://quarto.org/).</span>
       <span class="faux-block">[View the source on {{< fa brands github >}} GitHub]({{< var repo-url >}})</span>
-
-  sidebar:
-    style: docked
-    align: center
-    logo: _assets/logos/Rice_Logo_280_Blue.svg
-    title: "{{< var course.number >}}"
-    search: true
-    tools: 
-      - icon: github
-        href: "{{var course.github}}"
-        text: "Github Repository"
-      - icon: journal-check
-        href: https://canvas.rice.edu
-        text: "Canvas"
-    collapse-level: 1
-    contents:
-      - href: index.qmd
-        text: Overview
-      - href: syllabus.qmd
-        text: Syllabus
-      - href: schedule.qmd
-        text: Schedule
-      - href: assignments.qmd
-        text: Assignments
-
-    footer: |
-      All content licensed under [{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY-NC 4.0](/license.qmd)</span>
 
       
 
