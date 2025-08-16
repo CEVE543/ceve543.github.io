@@ -1,0 +1,15 @@
+---
+title: "Labs"
+listing:
+  contents: "labs/*/index.qmd"
+  type: table
+  fields: [title, subtitle, date]
+  field-display-names:
+    title: "Lab"
+    subtitle: "Title"
+    date: "Date"
+  sort: "date"
+---
+
+All course labs are listed below.
+Labs will usually be scheduled during Friday class sessions and are intended to completed in the 50 minute time slot, although you may occasionally need extra time.

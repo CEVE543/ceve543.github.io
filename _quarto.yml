@@ -25,12 +25,14 @@ website:
         text: Schedule
       - href: assignments.qmd
         text: Assignments
+      - href: labs.qmd
+        text: Labs
     right:
       - icon: github
-        href: "{{var course.github}}"
+        href: "{{< var repo-url >}}"
         text: "Github Repository"
       - icon: journal-check
-        href: https://canvas.rice.edu
+        href: https://canvas.rice.edu/courses/82127
         text: "Canvas"
 
   page-footer:
