@@ -1,0 +1,16 @@
+---
+title: "Assignments"
+listing:
+  contents: "assignments/*/index.qmd"
+  type: table
+  fields: [title, subtitle, assigned_date, due_date]
+  field-display-names:
+    title: "Assignment"
+    subtitle: "Title"
+    assigned_date: "Date Assigned"
+    due_date: "Date Due"
+  sort: "due_date"
+---
+
+All course assignments are listed below.
+Assignments should be submitted through Google Classroom.
