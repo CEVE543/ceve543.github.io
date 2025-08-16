@@ -44,6 +44,8 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
+      - href: assignment.qmd
+        text: Assignments
 
     footer: |
       All content licensed under [{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY-NC 4.0](/license.qmd)</span>
