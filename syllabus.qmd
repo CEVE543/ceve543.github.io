@@ -20,17 +20,17 @@ Through hands-on programming assignments based on state-of-the-art published res
 ::: {.column width="50%"}
 ### Instructor
 
-* {{< fa sharp user title="Name" >}} [[{{< var instructor.name_no_title >}}]({{< var instructor.url >}})]{.ms-1}
-* {{< fa sharp envelope title="Email" >}} [[{{< var instructor.email >}}](mailto:{{< var instructor.email >}})]{.ms-1}
-* {{< fa sharp building title="Office" >}} [{{< var instructor.office >}}]{.ms-2}
+* {{< fa user title="Name" >}} [[{{< var instructor.name_no_title >}}]({{< var instructor.url >}})]{.ms-1}
+* {{< fa envelope title="Email" >}} [[{{< var instructor.email >}}](mailto:{{< var instructor.email >}})]{.ms-1}
+* {{< fa building title="Office" >}} [{{< var instructor.office >}}]{.ms-2}
 :::
 
 ::: {.column width="50%"}
 ### Meetings
 
-* {{< fa sharp calendar title="Class Days" >}} {{< var course.days >}}
-* {{< fa sharp clock title="Class Time" >}} {{< var course.time >}}
-* {{< fa sharp university title="Class Location" >}} {{< var course.location >}}
+* {{< fa calendar title="Class Days" >}} {{< var course.days >}}
+* {{< fa clock title="Class Time" >}} {{< var course.time >}}
+* {{< fa university title="Class Location" >}} {{< var course.location >}}
 :::
 
 ::::
@@ -50,6 +50,10 @@ After completing this course, you will be able to:
 * Linear algebra (you should be comfortable with matrix notation and basic operations)
 * A course in applied statistics (e.g., STAT 419/519)
 * Some exposure to Python, Julia, Matlab, R, or another programming language is strongly encouraged, though not strictly required
+
+This is a graduate-level course and students are expected to bring some domain knowledge from their research.
+Different expertise in the class is a strength that enhances learning for everyone.
+Students should also bring some interest in and/or knowledge of specific methods in statistics, optimization, machine learning, or similar quantitative approaches that we can apply to the problems covered in the course.
 
 An ungraded [Problem Set Zero](/assignments/PS0/index.qmd) has been posted.
 
@@ -94,24 +98,17 @@ Collaborative learning on these assignments will better prepare you for individu
 
 ### AI/LLM Resource Policy {#sec-llm}
 
-The rapid evolution of AI tools raises important questions about learning, assessment, and the skills you need for the future.
-AI tools, especially Large Language Models (LLMs), can be powerful aids in learning.
-They can outline, summarize, explain, and write code.
-However, these tools also pose risks, including the potential for plagiarism and for students to rely on them without developing their own understanding.
-
+AI tools, especially Large Language Models (LLMs), can be powerful aids in learning but also pose important risks.
+These include undermining your development of critical thinking skills, reducing your ability to work independently under time pressure, and preventing you from building the deep conceptual understanding needed for research and professional work.
 **The use of these models must be informed by our values and goals, and we must be critical in thinking about when and how to use them.**
-For example, you may want to quickly get a plausible answer on a task, ensure you have the best possible answer on a task, develop your understanding of a particular topic, strengthen your long-term cognitive development, rapidly prototype an idea, or get feedback on something you have written.
-Each of these goals may take you in a different direction with respect to your use of LLMs.
-Depending on the task at hand, you may also wish to consider your relationship with the companies creating AI models, the potential risks and consequences of the topic you are working on, or the ethical implications of using these tools.
-My goal is not to give you a single "right" answer, but to require you to think critically about your use of these tools and to **make deliberate choices**.
 
-For this course, the goal of learning is articulated in the course learning objectives.
-Rather than focusing on preventing or punishing "cheating," we recognize that students will use LLMs on take-home and written material, and should learn to do so responsibly.
-Assessment will focus on approaches—including tests and in-class activities—that are not readily amenable to LLM use (note: the use of any hypothetical wearable AI device is prohibited).
-You are encouraged to explore the resources linked on the [LLM resources page]({{< var textbook-url >}}/chapters/appendices/llm.html) and elsewhere.
+Rather than focusing on preventing cheating, this course will help you use these tools in ways that support our goals (particularly your developing key skills and concepts) while designing grading such that using them in unproductive ways will not offer even a short-term benefit.
+Consequently, assessment will focus on approaches -- like tests -- that are not readily amenable to LLM use.
 
 **This AI policy is reciprocal**.
-For example, your instructors may use LLMs to draft rubrics or add comments to example code, but your assignments will not be graded by LLMs, and we will not use LLMs to write code or text we do not understand and fully stand behind.
+Your instructors may use LLMs to draft rubrics revise website content, but your assignments will not be graded by LLMs, and we will not use LLMs to write code or text from scratch or without complete understanding.
+
+You are encouraged to explore the resources linked on the [LLM resources page]({{< var textbook-url >}}/chapters/appendices/llm.html).
 
 ### Disability Resource Center
 
@@ -119,7 +116,8 @@ If you have a documented disability or other condition that may affect academic 
 
 ### Syllabus Change Policy
 
-This syllabus is only a guide for the course and is subject to change with advanced notice.
+This syllabus is only a guide for the course and is subject to change with notice.
+Any changes to the syllabus will be automatically tracked through git version control, which you can see on the [course's GitHub repository]({{<var repo-url>}}).
 
 ## Grading
 
@@ -127,17 +125,24 @@ Your final grade will be determined from a portfolio of work that includes regul
 The goal is to reward consistent engagement, practice, and deep, applied learning.
 
 - **Problem Sets (10%)** provide comprehensive practice with all module concepts and are graded for completion to reward effort and exploration
-- **Labs (10%)** provide hands-on experience applying concepts and building technical skills. Labs are graded for completion to encourage exploration and learning from mistakes. Labs may require light setup before class and will be posted at least one week before they are assigned to allow adequate time for setup.
+- **Labs (10%)** provide hands-on experience applying concepts and building technical skills. Labs are graded for completion to encourage exploration and learning from mistakes. Most labs have some work required before the lab date, posted on the lab page. Labs may change up to 1 week before the official date.
 - **Module Tests (40%)** closely mirror problem sets to assess deep understanding of practiced concepts. This creates multiple opportunities to demonstrate understanding and reduces high-stakes assessment anxiety.
 - **Final Project (20%)** allows students to explore methods beyond the course scope and contribute to the course knowledge base. Students select a hydroclimate risk problem and either apply a familiar method to a new context or learn and apply a new method. The final deliverables include: (1) a lecture notes contribution explaining your chosen method, (2) a 15-20 minute teaching segment during our Course Symposium, and (3) a 10-page research proposal showing how your method could address a significant problem.
 - **Final Exam (20%)** is an in-class, interpretation-focused assessment that demonstrates mastery of the complete course framework through peer review of a compound hazard analysis.
+
+### Canvas Usage
+
+Canvas will be used only for tracking grades and for sharing solutions and other non-public material.
+Sometimes, this website will be updated faster than the Canvas page.
+If there are conflicts between this website and Canvas, **assume this website is correct and Canvas is wrong**.
 
 Assignments will typically be posted to Canvas.
 However, if assignments are posted to the course website, they are considered officially assigned even if they are not visible on Canvas.
 
 ### Late Work Policy
 
-Late work is not accepted.
+In general and by default, late work is not accepted.
+This is important because it allows me to post solutions immediately after assignments are due, helping everyone stay on track.
 
 If you need to miss a class because of major illness, family emergency, or other unavoidable conflict, or for critical research travel, please let me know as soon as possible.
 In these cases, you will be assigned a score of 0/0, meaning it will not be reflected in the numerator or denominator.

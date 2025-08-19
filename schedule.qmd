@@ -1,54 +1,67 @@
 ---
 title: "Course Schedule"
-format: 
+format:
   html:
-    page-layout: full
+    tbl-colwidths: [20, 50, 30]
+  typst:
+    fontsize: 10pt
+    tbl-colwidths: [20, 50, 30]
 ---
 
-| Date                  | Module | Lesson                                                          | Assignments                               |
-|-----------------------|:------|:-----------------------------------------------------------------|:-----------------------------------|
-| Monday, August 25     |   --   | Course Introduction                                             | Assigned: [PS0 (ungraded)](/assignments/PS0/index.qmd)        |
-| Wednesday, August 27  |   1    | Module 1 Introduction                                           | Assigned: [PS1](/assignments/PS1/index.qmd), [Final Project](/assignments/final-project/index.qmd)   |
-| Friday, August 29     |   1    | [Lab 1: Julia Setup & Hello World](/labs/Lab-1/index.qmd)                                  |                                           |
-| Monday, September 1   |   --   | NO CLASS - Labor Day                                            |                                           |
-| Wednesday, September 3|   1    | EVT Fundamentals                                                 |                                           |
-| Friday, September 5   |   1    | [Lab 2: Julia Data Handling](/labs/Lab-2/index.qmd)                                        |                                           |
-| Monday, September 8   |   1    | Likelihood & MLE                                                |                                           |
-| Wednesday, September 10|   1    | Tutorial: MLE with Turing.jl                                    |                                           |
-| Friday, September 12  |   1    | [Lab 3: GEV Inference](/labs/Lab-3/index.qmd)                                              |                                           |
-| Monday, September 15  |   1    | Bayesian Statistics                                             |                                           |
-| Wednesday, September 17|   1    | MCMC Methods                                                    |                                           |
-| Friday, September 19  |   1    | [Lab 4: Bayesian Rainfall Analysis](/labs/Lab-4/index.qmd)                                 |                                           |
-| Monday, September 22  |   1    | Nonstationarity & Covariates                                   |                                           |
-| Wednesday, September 24|   1    | Sampling Variability & Regionalization                         |                                           |
-| Friday, September 26  |   1    | [Lab 5: Regional Pooling Implementation](/labs/Lab-5/index.qmd)                            |                                           |
-| Monday, September 29  |   1    | Advanced Model Selection                                        |                                           |
-| Wednesday, October 1  |   1    | Guest Lecture: IDF Curves and Duration                         | PS1 Due         |
-| Friday, October 3     |   1    | PS1 Due & Module 1 Exam Review                                 |                                           |
-| Monday, October 6     |   2    | Module 1 Test                                                   | Assigned: [PS2](/assignments/PS2/index.qmd)                             |
-| Wednesday, October 8  |   2    | Module 2 Introduction                                           |                                           |
-| Friday, October 10    |   2    | [Lab 6: Why Uncertainty Matters](/labs/Lab-6/index.qmd)                                    |                                           |
-| Monday, October 13    |   --   | No Class: Fall Break                                           |                                           |
-| Wednesday, October 15 |   2    | Physics-Based Modeling, Discretization & Implementation        |                                           |
-| Friday, October 17    |   2    | [Lab 7: Model Implementation and Testing](/labs/Lab-7/index.qmd)                          |                                           |
-| Monday, October 20    |   2    | Calibration I: Hydrological Skill Scores & Optimization       |                                           |
-| Wednesday, October 22 |   2    | Calibration II: Bayesian Calibration with Autocorrelated Residuals |                                       |
-| Friday, October 24    |   2    | [Lab 8: Bayesian Calibration](/labs/Lab-8/index.qmd)                                       |                                           |
-| Monday, October 27    |   2    | Introduction to Climate Models & Bias Problems                 |                                           |
-| Wednesday, October 29 |   2    | Bias Correction Methods                                         |                                           |
-| Friday, October 31    |   2    | [Lab 9: Quantile Mapping Implementation](/labs/Lab-9/index.qmd)                           |                                           |
-| Monday, November 3    |   2    | Hidden Markov Models                                            |                                           |
-| Wednesday, November 5 |   2    | Non-Homogeneous HMMs & Climate Change                          |                                           |
-| Friday, November 7    |   2    | [Lab 10: HMM & NHMM Implementation](/labs/Lab-10/index.qmd)                                |                                           |
-| Monday, November 10   |   2    | Streamflow Generators & Advanced Methods                       |                                           |
-| Wednesday, November 12|   2    | GANs, Diffusion Models & Modern ML                             |                                           |
-| Friday, November 14   |   2    | [Lab 11: ML Downscaling Implementation](/labs/Lab-11/index.qmd)                            |                                           |
-| Monday, November 17   |   2    | Global Sensitivity Analysis                                     |                                           |
-| Wednesday, November 19|   2    | PS2 Due & Module 2 Review                                      | PS2 Due                                  |
-| Friday, November 21   |   2    | Module 2 Test                                                   |                                           |
-| Monday, November 24   |   --   | Workshop: Final Project Support                                |                                           |
-| Wednesday, November 26|   --   | No Class: Thanksgiving Week                                    |                                           |
-| Friday, November 28   |   --   | No Class: Thanksgiving Break                                   |                                           |
-| Monday, December 1    |   --   | Course Symposium Day 1                                         |                                           |
-| Wednesday, December 3 |   --   | Course Symposium Day 2                                         |                                           |
-| Friday, December 5    |   --   | Course Symposium Day 3 & Wrap-up                              | Due: Final Project    |
+Schedule is subject to change.
+All changes will be posted here.
+If there is a conflict between the due dates for an assignment between this page and Canvas, consider this page to be the correct version.
+
+<style>
+.table {
+  font-size: 0.85em;
+}
+</style>
+
+| Date                  | Lesson                                                          | Assignments                               |
+|:---------------------------|:-----------------------------------------------------------------|:-----------------------------------|
+| Mon., Aug. 25         | Course Introduction                                             | [PS0 (ungraded)](/assignments/PS0/index.qmd) Assigned, [Final Project](/assignments/final-project/index.qmd) Introduced        |
+| Wed., Aug. 27         | Module 1 Introduction                                           | [PS1](/assignments/PS1/index.qmd) Assigned   |
+| Fri., Aug. 29         | [Lab 1: Julia Setup & Hello World](/labs/Lab-1/index.qmd)                                  |                                           |
+| Mon., Sep. 1          | NO CLASS - Labor Day                                            |                                           |
+| Wed., Sep. 3          | EVT Fundamentals                                                 |                                           |
+| Fri., Sep. 5          | [Lab 2: Julia Data Handling](/labs/Lab-2/index.qmd)                                        |                                           |
+| Mon., Sep. 8          | Likelihood & MLE                                                |                                           |
+| Wed., Sep. 10         | Tutorial: MLE with Turing.jl                                    |                                           |
+| Fri., Sep. 12         | [Lab 3: GEV Inference](/labs/Lab-3/index.qmd)                                              |                                           |
+| Mon., Sep. 15         | Bayesian Statistics                                             |                                           |
+| Wed., Sep. 17         | MCMC Methods                                                    |                                           |
+| Fri., Sep. 19         | [Lab 4: Bayesian Rainfall Analysis](/labs/Lab-4/index.qmd)                                 |                                           |
+| Mon., Sep. 22         | Nonstationarity & Covariates                                   |                                           |
+| Wed., Sep. 24         | Sampling Variability & Regionalization                         |                                           |
+| Fri., Sep. 26         | [Lab 5: Regional Pooling Implementation](/labs/Lab-5/index.qmd)                            |                                           |
+| Mon., Sep. 29         | Advanced Model Selection                                        |                                           |
+| Wed., Oct. 1          | Guest Lecture: IDF Curves and Duration                         | [PS1](/assignments/PS1/index.qmd) Due         |
+| Fri., Oct. 3          | PS1 Due & Module 1 Exam Review                                 |                                           |
+| Mon., Oct. 6          | Module 1 Test                                                   | [PS2](/assignments/PS2/index.qmd) Assigned                             |
+| Wed., Oct. 8          | Module 2 Introduction                                           |                                           |
+| Fri., Oct. 10         | [Lab 6: Why Uncertainty Matters](/labs/Lab-6/index.qmd)                                    |                                           |
+| Mon., Oct. 13         | No Class: Fall Break                                           |                                           |
+| Wed., Oct. 15         | Physics-Based Modeling, Discretization & Implementation        | [Final Project Proposal Due](/assignments/final-project/index.qmd) |
+| Fri., Oct. 17         | [Lab 7: Model Implementation and Testing](/labs/Lab-7/index.qmd)                          |                                           |
+| Mon., Oct. 20         | Calibration I: Hydrological Skill Scores & Optimization       |                                           |
+| Wed., Oct. 22         | Calibration II: Bayesian Calibration with Autocorrelated Residuals |                                       |
+| Fri., Oct. 24         | [Lab 8: Bayesian Calibration](/labs/Lab-8/index.qmd)                                       |                                           |
+| Mon., Oct. 27         | Introduction to Climate Models & Bias Problems                 |                                           |
+| Wed., Oct. 29         | Bias Correction Methods                                         |                                           |
+| Fri., Oct. 31         | [Lab 9: Quantile Mapping Implementation](/labs/Lab-9/index.qmd)                           |                                           |
+| Mon., Nov. 3          | Hidden Markov Models                                            |                                           |
+| Wed., Nov. 5          | Non-Homogeneous HMMs & Climate Change                          |                                           |
+| Fri., Nov. 7          | [Lab 10: HMM & NHMM Implementation](/labs/Lab-10/index.qmd)                                |                                           |
+| Mon., Nov. 10         | Streamflow Generators & Advanced Methods                       |                                           |
+| Wed., Nov. 12         | GANs, Diffusion Models & Modern ML                             |                                           |
+| Fri., Nov. 14         | [Lab 11: ML Downscaling Implementation](/labs/Lab-11/index.qmd)                            |                                           |
+| Mon., Nov. 17         | Global Sensitivity Analysis                                     |                                           |
+| Wed., Nov. 19         | PS2 Due & Module 2 Review                                      | [PS2](/assignments/PS2/index.qmd) Due                                  |
+| Fri., Nov. 21         | Module 2 Test                                                   |                                           |
+| Mon., Nov. 24         | Workshop: Final Project Support                                |                                           |
+| Wed., Nov. 26         | No Class: Thanksgiving Week                                    |                                           |
+| Fri., Nov. 28         | No Class: Thanksgiving Break                                   |                                           |
+| Mon., Dec. 1          | Student Teaching Sessions                                       |                                           |
+| Wed., Dec. 3          | Student Teaching Sessions                                       |                                           |
+| Fri., Dec. 5          | Student Teaching Sessions & Course Wrap-up                     | [Final Project Research Proposal & Lecture Notes Due](/assignments/final-project/index.qmd) |

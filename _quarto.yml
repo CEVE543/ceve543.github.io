@@ -59,10 +59,9 @@ echo: true
 format:
   # customization for HTML documents (i.e., the website)
   html:
-    theme: 
-      [simplex, _assets/sass/theme.scss]
-    copy-code: true
+    theme: simplex
     toc: true
+    copy-code: true
     anchor-sections: true
     callout-appearance: simple
     reference-location: document
@@ -73,6 +72,13 @@ format:
     code-overflow: wrap
     code-annotations: hover
     code-copy: true
+  typst:
+    margin: 
+      top: 1in
+      bottom: 1in
+      left: 1in
+      right: 1in
+    fontsize: 11pt
 
 # references
 bibliography: references.bib
