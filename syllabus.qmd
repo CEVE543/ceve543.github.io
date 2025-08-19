@@ -35,15 +35,15 @@ Through hands-on programming assignments based on state-of-the-art published res
 
 ::::
 
+
 ### Learning Objectives
 
 After completing this course, you will be able to:
 
-1. Apply extreme value theory from basic distribution fitting through hierarchical Bayesian models for regional precipitation analysis
-1. Combine physical models and observational data to project future hazard
-1. Apply multiple uncertainty quantification approaches including bootstrap and MCMC
-1. Strategically combine different types of models and data to characterize hydroclimate extremes under uncertainty
-1. Critically understand and articulate the strengths and limitations of different modeling approaches
+1. Fit and interpret extreme value distributions for environmental data, including parameter estimation and uncertainty quantification
+2. Combine observations with process-based models to predict and quantify uncertainty in physical systems through calibration, validation, and uncertainty propagation
+3. Apply and understand quantitative model comparison techniques and communicate qualitative model strengths and limitations
+4. Integrate multiple data sources (observations, climate models, physical understanding) to address complex environmental problems
 
 ### Prerequisites & Preparation
 
@@ -74,6 +74,23 @@ Otherwise, you need to be present and offline.
 In this course, all students will be held to the standards of the Rice Honor Code, a code that you pledged to honor when you matriculated at this institution.
 If you are unfamiliar with the details of this code and how it is administered, you should consult the Honor System Handbook at [honor.rice.edu/honor-system-handbook/](http://honor.rice.edu/honor-system-handbook/).
 This handbook outlines the University's expectations for the integrity of your academic work, the procedures for resolving alleged violations of those expectations, and the rights and responsibilities of students and faculty members throughout the process.
+
+### Collaboration Policy
+
+You are encouraged to work together on problem sets and labs.
+Collaboration helps you learn from your peers and develop problem-solving skills through discussion.
+However, you must turn in your own work and acknowledge those you worked with.
+
+When collaborating:
+
+- You must write your own code and explanations in your own words
+- Include the names of students you worked with in your submission
+- Understand every line of code and every step of your analysis
+- Do not copy and paste code or text from others
+
+Since problem sets and labs are graded for completion rather than correctness, there is little incentive to cheat.
+These assignments are designed to help you practice concepts that will appear on module tests and the final exam.
+Collaborative learning on these assignments will better prepare you for individual assessments.
 
 ### AI/LLM Resource Policy {#sec-llm}
 
@@ -109,11 +126,11 @@ This syllabus is only a guide for the course and is subject to change with advan
 Your final grade will be determined from a portfolio of work that includes regular low-stakes practice, in-class assessments of core concepts, and a final project.
 The goal is to reward consistent engagement, practice, and deep, applied learning.
 
-- **Weekly Quizzes (20%)** will assess your understanding of the course material. They will not test for deep understanding, but will give you immediate feedback if you start to fall behind. Your lowest quiz score will be dropped.
-- **Problem Sets (10%)** on each module will reinforce your understanding of the material and provide practice with the skills you are learning. Problem sets are graded for completion to reward consistent effort and practice.
+- **Problem Sets (10%)** provide comprehensive practice with all module concepts and are graded for completion to reward effort and exploration
 - **Labs (10%)** provide hands-on experience applying concepts and building technical skills. Labs are graded for completion to encourage exploration and learning from mistakes. Labs may require light setup before class and will be posted at least one week before they are assigned to allow adequate time for setup.
-- **Module Tests (40%)** on each module will closely follow the problem sets to assess your understanding of the material and your ability to apply the skills you have learned. If you do and understand the problem set, you should do well on the test.
-- **Final Project (20%)** is a semester-long, multi-stage assignment where you will perform a deep dive into a hydroclimate risk problem of your choosing. You will propose a research question and dataset, apply an advanced method to analyze it, and communicate your findings. Students are required to attend a one-on-one project check-in during office hours after their proposal is submitted. The final deliverables include: (1) a project proposal, (2) a final report written in the style of a new section for a textbook on a method you learned, and (3) a presentation to the class during our Course Symposium, effectively teaching your peers about the method and its application.
+- **Module Tests (40%)** closely mirror problem sets to assess deep understanding of practiced concepts. This creates multiple opportunities to demonstrate understanding and reduces high-stakes assessment anxiety.
+- **Final Project (20%)** allows students to explore methods beyond the course scope and contribute to the course knowledge base. Students select a hydroclimate risk problem and either apply a familiar method to a new context or learn and apply a new method. The final deliverables include: (1) a lecture notes contribution explaining your chosen method, (2) a 15-20 minute teaching segment during our Course Symposium, and (3) a 10-page research proposal showing how your method could address a significant problem.
+- **Final Exam (20%)** is an in-class, interpretation-focused assessment that demonstrates mastery of the complete course framework through peer review of a compound hazard analysis.
 
 Assignments will typically be posted to Canvas.
 However, if assignments are posted to the course website, they are considered officially assigned even if they are not visible on Canvas.

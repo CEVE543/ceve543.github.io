@@ -5,14 +5,12 @@ format: html
 
 Welcome to the course website for the {{< var course.semester >}} edition of {{< var course.number >}}, {{< var course.title >}}, taught at [{{< var university.name >}}]({{< var university.url >}}) by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}).
 
-In this course, we will learn how to apply tools from applied math, statistics, Earth science, and machine learning to answer questions like
+In this course, we will learn how to apply tools from data science, statistics, and Earth science to answer questions like
 
-- What is the probability distribution of extreme rainfall at a specific location?
-- What is the probability distribution of storm surges at a specific location?
-- What is the likelihood of experiencing low inflows (below some threshold) to a reservoir system over several years?
-- How do these probability distributions change in the next 50 years?
-- How uncertain are these estimates?
-- What specific mechanisms drive these uncertainties?
+- How likely is Houston to experience different daily rainfall amounts, and how is this changing over time?
+- How can we simulate future streamflow at multiple Colorado River Basin sites by combining physical models with climate projections?
+- How do we quantify and communicate uncertainty in these predictions?
+- What are the strengths and limitations of different modeling approaches?
 
 ## Course Information
 

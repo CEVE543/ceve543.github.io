@@ -360,5 +360,7 @@ slides/lecture04-bayes2.tex
 *.jld2
 *.h5
 
-# Instructor planning notes (keep private)
-instructor-notes.*
+# keep instructor notes in a different repository and sym link.
+# don't commit it to git
+./instructor/
+instructor

@@ -3,6 +3,12 @@ project:
   preview:
     port: 5543
 
+render:
+  - "*"         # Render all files
+  - "!CLAUDE.md"  # EXCEPT this file
+  - "!instructor"
+  - "!instructor/"
+
 website:
   page-navigation: true
   title: CEVE 543 - Fall 2025
