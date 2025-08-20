@@ -34,9 +34,9 @@ website:
       - href: labs.qmd
         text: Labs
     right:
-      - icon: github
-        href: "{{< var repo-url >}}"
-        text: "Github Repository"
+      - icon: book
+        href: "{{< var textbook-url >}}"
+        text: "Textbook"
       - icon: journal-check
         href: https://canvas.rice.edu/courses/82127
         text: "Canvas"
