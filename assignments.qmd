@@ -5,10 +5,10 @@ listing:
   type: table
   fields: [title, subtitle, date, due_date]
   field-display-names:
-    title: "Assignment"
-    subtitle: "Title"
-    date: "Date Assigned"
-    due_date: "Date Due"
+    title: "<b>Assignment</b>"
+    subtitle: "<b>Title</b>"
+    date: "<b>Date Assigned</b>"
+    due_date: "<b>Date Due</b>"
   field-types:
     date: date
     due_date: date
