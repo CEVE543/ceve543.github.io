@@ -70,3 +70,4 @@ Focus on clear communication over stylistic formatting conventions.
 Always use LaTeX math syntax for mathematical symbols, Greek letters, and units rather than relying on Unicode characters.
 For example, write `$\tau$` instead of τ, `$^\circ$C` instead of °C, and `$\alpha$` instead of α.
 This ensures consistent rendering across all output formats and avoids font-dependent display issues.
+- Do not rely on println statements for all output in notebooks
