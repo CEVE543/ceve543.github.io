@@ -34,14 +34,14 @@ What are potential limitations of GEV and nonstationary GEV methods for climate 
 :::
 
 ::: {.fragment}
-**Module 2 addresses these using climate model output.**
+**In Module 2 we will explore how climate models can mitigate these limitations.**
 :::
 
 # Logistics
 
 ## Problem Set 2
 
-Due **Wednesday, November 19th**.
+Due [Wednesday, November 19th](/schedule.qmd).
 
 Topics:
 
@@ -53,7 +53,7 @@ Focus on practice problems for exam preparation.
 
 ## Proposed Syllabus Update
 
-**Proposal:** Remove final exam, redistribute points.
+Proposal: Remove final exam, redistribute points.
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -79,21 +79,21 @@ Focus on practice problems for exam preparation.
 
 Three-part weekly rhythm:
 
-1. **Method Lecture** - Statistical/computational methods
-2. **Paper Discussion** - Research paper applying these methods
-3. **Lab** - Hands-on Julia implementation
+1. **Monday** - lecture on statistical/computational methods (whiteboard)
+2. **Wednesday** - Paper Discussion (slides and class discussion)
+3. **Friday** - Virtual lab implementing subset of methods
 
 ## Module 2 Schedule {.smaller}
 
-| Week | Method | Paper | Lab |
-|------|--------|-------|-----|
-| Oct 20-24 | Bias Correction | TBD | Lab 7 |
-| Oct 27-31 | Weather Typing | TBD | Lab 8 |
-| Nov 3-7 | HMMs | TBD | Lab 9 |
-| Nov 10-14 | Weather Generators | TBD | Lab 10 |
-| Nov 17-21 | Sensitivity Analysis | TBD | Exam |
+| Week | Method | Lab |
+|------|--------|-----|
+| Oct 15-27 | Climate data overview | Climate data in Julia |
+| Oct 20-24 | Bias Correction | QQ-mapping |
+| Oct 27-31 | Weather Typing | PCA + $K$-means |
+| Nov 3-7 | Hidden Markov models | HMMs |
+| Nov 10-14 | Stochastic Weather Generators | TBD |
+| Nov 17-21 | Sensitivity Analysis | Exam |
 
-Papers announced one week ahead.
 
 # Climate Risks and Variability
 
@@ -126,7 +126,20 @@ From daily weather to multi-decadal variability:
 
 ## Nonlinear Dynamics {.smaller}
 
+::: {.columns}
+::: {.column width="30%"}
+- Recurrence and persistence of weather patterns ("regimes") drive many extremes
+- Study of low-dimensional chaotic systems provides insight
+
+![@lorenz_deterministic:1963 attractor](lorenz-1963.png)
+:::
+::: {.column width="50%"}
 ![(a) Segment of the jet stream latitude time series corresponding to the first ten winters: DJF 1957/1967. (b) Trajectory of the winter jet latitude time series in delay coordinates using a 10-day lag. (c) Histogram and PDFs of the jet stream latitude anomaly using a kernel density estimate (solid) and a three-component Gaussian mixture model (dashed). In (b) and (c) the whole time series (DJF 1957–2002) was used. [@hannachi_jetstream:2011]](hannachi-2011-fig2.jpg)
+:::
+::: {.column width="20%"}
+![Conceptual sketch of nonlinear dynamics [@palmer_dynamical:1999]](palmer-jclim-1999.png)
+:::
+:::
 
 # Climate Models Overview
 
@@ -146,106 +159,96 @@ What equations do climate models solve?
 
 ## Weather vs Climate {.smaller}
 
-::: {.fragment}
-**Weather (IVP):**
+::: {.columns}
+::: {.column width="50%" .fragment}
+### Weather
 
+- Initial value problem
 - Specific atmospheric states
 - Days to weeks
 - Sensitive to initial conditions
 :::
+::: {.column width="50%" .fragment}
+### Climate
 
-::: {.fragment}
-**Climate (BVP):**
-
+- Boundary value problem
 - Long-term statistics
 - Decades to centuries
 - Forced by boundary conditions
 :::
+:::
+
+## History {.smaller}
+
+::: {.fragment}
+Key milestones (per [CarbonBrief](https://www.carbonbrief.org/timeline-history-climate-modelling/)):
+
+- 1956: Norman Phillips creates first general circulation model
+- 1967: Manabe & Wetherald publish groundbreaking GCM study with doubled CO$_2$
+- 1979: Charney Report provides critical assessment
+- 1988: James Hansen presents climate scenarios to Congress
+- 1995: CMIP launched for model intercomparison
+:::
+
+::: {.fragment}
+Evolution: energy balance models $\rightarrow$ GCMs $\rightarrow$ ESMs
+:::
+
+## Using Climate Model Simulations {.smaller}
+
+::: {.fragment}
+Climate models are computationally expensive.
+We rarely run them ourselves—instead, we use existing simulations.
+:::
+
+::: {.fragment}
+**Coupled Model Intercomparison Project (CMIP):** Coordinated effort where modeling centers run standardized experiments.
+:::
+
+::: {.fragment}
+**Key features:**
+
+- **Common scenarios:** All models run same experiments (historical, future emissions pathways)
+- **Multiple models:** Compare structural differences across models
+- **Ensembles:** Multiple realizations per model to quantify internal variability
+:::
+
+::: {.callout-note .fragment}
+## Discussion
+
+Why coordinate all models to run the *same* scenarios rather than letting each center choose their own?
+:::
+
+## CMIP6 {.smaller}
+
+::: {.fragment}
+[Sixth phase](https://wcrp-cmip.org/cmip-phases/cmip6/) (2015-present) addresses three questions:
+
+1. How does the Earth system respond to forcing?
+2. What are the origins and consequences of systematic model biases?
+3. How can we assess future climate changes given variability and uncertainty?
+:::
+
+::: {.fragment}
+**Scale:** 100+ models from ~50 institutions running 23 endorsed experiments.
+:::
+
+::: {.fragment}
+**Experiments include:** Historical simulations (1850-2014), future scenarios (SSP1-1.9 through SSP5-8.5), detection & attribution, and specialized experiments.
+:::
 
 ## AI/ML Models
 
-::: {.fragment}
-Recent developments:
-
-- GraphCast, FourCastNet, Pangu-Weather, Aurora
-- Data-driven vs. physics-based
-- Fast inference, competitive weather skill
+::: {.incremental}
+- Weather models: GraphCast, FourCastNet, Pangu-Weather
+- Foundation models: Aurora, ClimaX
+- Climate emulators: LUCIE, etc.
 :::
 
 ::: {.callout-note .fragment}
 ## Discussion
 
 What are the advantages and limitations of AI vs. physics-based models?
-:::
-
-## History
-
-::: {.fragment}
-Milestones:
-
-- 1967: Manabe & Wetherald - first GCM with doubled CO$_2$
-- 1990s-present: CMIP coordination
-- Evolution: energy balance $\rightarrow$ GCMs $\rightarrow$ ESMs
-:::
-
-::: {.callout-note .fragment}
-## Discussion
-
-Do you have experience with climate model output?
-:::
-
-## CMIP6
-
-::: {.fragment}
-Coordinated international effort:
-
-- Standardized experiments across centers
-- Model evaluation and comparison
-- IPCC assessment support
-- Climate impacts research
-:::
-
-::: {.fragment}
-100+ models from ~50 institutions.
-:::
-
-## CMIP6 Experiments {.smaller}
-
-::: {.fragment}
-**Historical (1850-2014):**
-
-- Observed forcings
-- Model evaluation
-:::
-
-::: {.fragment}
-**SSPs (future scenarios):**
-
-- SSP1-1.9 through SSP5-8.5
-- Different emissions paths
-- "What if" scenarios, not predictions
-:::
-
-::: {.fragment}
-**Detection & Attribution:**
-
-- Isolate forcing factors
-:::
-
-## Why Ensembles?
-
-::: {.fragment}
-Multiple realizations separate:
-
-- Internal variability
-- Forced response
-- Projection uncertainty
-:::
-
-::: {.callout-note .fragment}
-## Discussion
-
-Why run ensembles for identical scenarios?
 :::
 
 # Model Limitations and the Need for Statistical Methods
