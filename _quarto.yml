@@ -89,3 +89,6 @@ biblio-style: _assets/references/american-geophysical-union.csl
 execute:
   freeze: auto  
   cache: true
+
+filters:
+  - reveal-auto-agenda

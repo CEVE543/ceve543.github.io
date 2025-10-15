@@ -26,6 +26,12 @@ The main pages include `index.qmd`, `syllabus.qmd`, `schedule.qmd`, `assignments
 Assignments are located in `assignments/` and labs in `labs/`, both using Git submodules from the CEVE543 GitHub organization (e.g., CEVE543/PS0, CEVE543/Lab-1).
 Each assignment and lab contains `index.qmd` and `README.md` files.
 
+Lecture materials (slides or notes) are located in `lectures/` with each lecture in a dated subdirectory (e.g., `lectures/2025-10-15/`).
+Each lecture includes `index.qmd` as the main file.
+Slide decks use `format: revealjs` and may use shared template partials (`title-slide.html`, `mathjax-config.html`) located in the `lectures/` directory.
+Lecture notes may use standard HTML format instead of revealjs when whiteboard teaching is preferred.
+All lectures must be manually linked from `schedule.qmd` in the appropriate date row.
+
 Configuration files include `_quarto.yml` for main Quarto settings, `_variables.yml` for course variables, `references.bib` for citations, and `_assets/` for static assets including logos and CSS themes.
 
 The site uses computational caching (`freeze: auto`, `cache: true`), a custom theme based on Simplex with SCSS, KaTeX for mathematical expressions, and supports Julia code execution.
