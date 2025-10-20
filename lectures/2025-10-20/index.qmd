@@ -23,13 +23,13 @@ bibliography: ../../references.bib
 ---
 
 ::: {.callout-note}
-## Lecture Timeline (45 minutes)
+## Outline (45 minutes)
 
 - Motivation and GCM biases (minutes 0-4)
 - Weather vs climate distinction + supervised learning (minutes 4-9)
 - Delta method (minutes 9-21)
-- Quantile delta mapping (QDM) (minutes 21-29)
-- QQ-mapping (minutes 29-41)
+- QQ-mapping (minutes 21-33)
+- Quantile delta mapping (QDM) (minutes 33-41)
 - Uncertainty and critical considerations (minutes 41-44)
 - Wrap-up and looking ahead (minutes 44-45)
 :::
@@ -38,19 +38,19 @@ bibliography: ../../references.bib
 
 *Minutes 0-4*
 
-Climate models have systematic biases that affect impact assessments.
-Even when seasonal totals are correct, the distribution of events matters for impacts.
+- Climate models have systematic biases that directly affect impact assessments.
+- Impacts depend on distributions (frequency, intensity, duration) — not just means or totals.
 
 ### Two Types of GCM Biases
 
-The "drizzle bias" is pervasive in GCMs.
-They simulate too many light rainfall events with mean intensity too low relative to station observations.
-This arises from spatial averaging within grid cells ($\approx 100-300$ km) and sub-grid parameterizations.
-Even if total monthly rainfall is correct, this frequency/intensity distortion strongly affects crop growth, soil moisture dynamics, and flood generation.
+- Drizzle bias (pervasive):
+  - Too many light rainfall events with intensities too low relative to stations
+  - Root causes: spatial averaging within large grid cells (≈100–300 km) and sub-grid parameterizations
+  - Impacts: distorts frequency/intensity; affects crop growth, soil moisture dynamics, infiltration/runoff, and floods even when monthly totals match
 
-Dynamical biases are systematic errors in large-scale circulation patterns.
-Examples include errors in ENSO amplitude and frequency, monsoon timing, and midlatitude storm tracks.
-These affect both climatology and the predictability of interannual variations.
+- Dynamical biases (circulation errors):
+  - Examples: ENSO amplitude/frequency, monsoon onset/timing, midlatitude storm tracks
+  - Impacts: shifts climatology and interannual variability; affects predictability and teleconnections
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -66,35 +66,34 @@ Suggested format: 2 min pair + 2 min share.
 
 *Minutes 4-9*
 
-Weather forecasting is an initial value problem.
-We have paired observations (forecast-observation pairs from the past) that enable supervised learning.
-Standard machine learning methods work well.
+- Weather forecasting: initial value problem with paired forecast–observation data → supervised learning works well.
+- Climate projection: boundary value problem with no paired future observations → compare distributions under like-forcing; different statistical tools.
+
+| Aspect | Weather forecasting | Climate projection |
+|---|---|---|
+| Mathematical framing | Initial value problem | Boundary value problem |
+| Training data | Paired forecasts and observations | No pairs for the future; rely on historical distributions under same forcings |
+| Target | Next state/field at high resolution | Changes in distributions, moments, quantiles, extremes |
+| Horizon | Hours–weeks | Decades–centuries |
+| Typical methods | Supervised ML, data assimilation, super-resolution | Bias correction, quantile mapping, QDM, emulators respecting physics |
+| Validation | Skill vs paired observations | Hindcast distributional match under historical forcings |
+| Failure modes | Error growth, chaos | Nonstationarity, regime shifts, process changes |
+| Outputs | Deterministic/probabilistic fields | Corrected time series, deltas, distributional adjustments |
 
 ::: {.callout-note}
 ## Note: Rapid progress in supervised downscaling
 
-Supervised learning for weather forecasting/downscaling has seen impressive advances (e.g., diffusion-model approaches like CorrDiff) because we can train on large collections of forecast–observation pairs.
-However, training a downscaler for climate change signals (e.g., a climate emulator) is much harder: no paired future data, strong distribution shift and nonstationarity, and the need to respect long-term physical constraints.
-Not impossible—this is active research—but higher risk and requires careful validation and uncertainty quantification.
+- Why progress is fast: large paired forecast–observation datasets enable powerful supervised models (e.g., diffusion models like CorrDiff).
+- Why climate downscalers are harder: no paired future data, large distribution shift/nonstationarity, long-term physical constraints.
+- Implication: higher risk; requires rigorous validation and uncertainty quantification.
 :::
 
-Climate modeling is a boundary value problem.
-We have no paired observations for future climate.
-We can only compare distributions over the historical period under the same forcing conditions.
-This fundamental difference requires different statistical approaches.
+When we do have paired data (predictor–predictand), supervised learning is natural:
 
-When we have paired data (predictand and predictor), we can use supervised learning.
-
-Super-resolution takes coarse-resolution fields as input and produces high-resolution fields as output.
-This can be done deterministically (single best estimate) or probabilistically (ensemble of possibilities).
-
-Precipitation modules take other atmospheric fields like temperature, humidity, and winds as inputs and estimate precipitation at finer spatial scales.
-These are often trained patch-by-patch, though emerging methods ensure consistency across patches.
-
-Simple bias correction fixes systematic errors in means and variances.
-For example, if a weather model is consistently 2°C too warm, we can correct using linear regression on historical forecast-observation pairs.
-
-The key advantage is direct training on paired observations using standard machine learning.
+- Super-resolution: coarse → fine fields (deterministic or probabilistic ensembles)
+- Learned precipitation modules: use T, q, winds → estimate precip at fine scales; often patch-based, newer methods improve cross-patch consistency
+- Simple bias correction for forecast systems: regress out mean/variance errors (e.g., +2°C warm bias)
+- Key advantage: train directly on paired observations with standard ML losses
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -107,13 +106,10 @@ Suggested format: 2 min pair + 2 min share.
 
 ### Climate: The Hard Case
 
-For future climate, we have no observations.
-We can only train on distributions from the historical period.
-The core assumption is that GCM and observations represent the same climate under the same forcings during this period.
-
-We must compare the GCM distribution for the historical period (e.g., 1980-2010) with the observed distribution for the same period.
-Then we assume the bias correction transfer function applies to the future.
-This is a strong assumption that may fail if the climate system transitions to a new regime.
+- No future observations → train/fit on historical distributions only (under same forcings)
+- Core assumption: model and observed describe the same climate distribution historically
+- Workflow: match GCM-hist to Obs-hist → derive transfer function → apply to GCM-fut
+- Caveat: may fail under regime shifts/nonstationarity or novel process changes
 
 ## Delta Method
 
@@ -121,14 +117,18 @@ This is a strong assumption that may fail if the climate system transitions to a
 
 The delta method is simple but widely used [@hay_comparison:2000].
 
+#### Delta method (at a glance)
+- Inputs: Observed historical series; GCM historical and future series (or statistics) by month/season
+- Use when: You trust the modeled change signal more than model absolute levels
+- Outputs: Corrected future series/statistics anchored to observations, preserving modeled change
+- Pitfalls: Stationary-bias assumption; no frequency/intensity correction; deterministic
+- Quick steps: compute Δ (additive for T, multiplicative for P) by month → apply Δ to observed baseline
+
 ### Assumption and When to Use
 
-The GCM may have systematic biases in absolute values.
-These could arise from radiation parameterization errors, ocean heat transfer, or topographic representation.
-However, we assume the change signal is credible.
-
-For example, a model might be 2°C too warm everywhere due to a cloud parameterization error, but it correctly simulates a 3°C warming trend from increased greenhouse gases.
-The delta method preserves the change while correcting the bias.
+- GCM can have systematic absolute biases (e.g., radiation/clouds, ocean heat transport, topography)
+- Assume the modeled change signal (trend/delta) is credible
+- Example: model is +2°C warm bias but simulates +3°C future warming → apply +3°C to observed baseline
 
 ### Mathematical Framework
 
@@ -149,6 +149,8 @@ $$
 X^\text{corr}_\text{fut} = X^\text{obs}_\text{hist} + \Delta
 $$
 
+Note on notation: in the delta method, we apply the modeled change signal (the delta) to an observed baseline series. That’s why the baseline term is $X^\text{obs}_\text{hist}$ (not GCM). By contrast, QQ-mapping and QDM directly transform the GCM daily values to corrected values.
+
 ### Variants
 
 For temperature, we typically use an additive delta:
@@ -163,6 +165,24 @@ For precipitation, we use a multiplicative delta:
 $$
 P^\text{corr}(d, m, y) = P^\text{obs}(d, m, y_\text{hist}) \times \frac{\bar{P}^\text{GCM}_\text{fut}(m)}{\bar{P}^\text{GCM}_\text{hist}(m)}
 $$
+
+#### Applying delta to derived statistics (quantiles, IDF curves)
+
+The same idea applies when the target is a derived statistic rather than the raw daily series. Two common cases:
+
+- Quantiles (e.g., monthly temperature quantiles), additive form:
+$$
+Q^\text{corr}_{X}(p, m) = Q^\text{obs}_{X,\,\text{hist}}(p, m) + \Big[Q^\text{GCM}_{X,\,\text{fut}}(p, m) - Q^\text{GCM}_{X,\,\text{hist}}(p, m)\Big]
+$$
+
+- IDF curves (precipitation intensity–duration–frequency), multiplicative form:
+$$
+	\text{IDF}^\text{corr}(D, r) = \text{IDF}^\text{obs}_\text{hist}(D, r) \times \frac{\text{IDF}^\text{GCM}_\text{fut}(D, r)}{\text{IDF}^\text{GCM}_\text{hist}(D, r)}
+$$
+
+Here $p$ is a percentile, $m$ a month, $D$ a duration, and $r$ a return period (or equivalently a high quantile). This “delta-on-statistics” approach preserves the modeled change in the statistic of interest while anchoring to observed historical levels.
+
+Practical note: to reduce noise and month-boundary discontinuities, practitioners sometimes compute deltas on moving windows (e.g., 15–31 days) or seasonal aggregates; we use monthly deltas here for clarity and speed in class.
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -189,13 +209,14 @@ We preserve the GCM's 3°C warming signal while removing the 2°C warm bias.
 
 ### Advantages and Limitations
 
-The delta method is simple, transparent, and preserves the GCM-simulated change signal.
-It works for any statistic including means, quantiles, or variances.
-We can apply different deltas for different months or seasons.
-
-However, it is deterministic (single-valued correction with no uncertainty representation).
-It assumes the bias structure doesn't change with climate.
-It doesn't correct frequency or intensity distributions directly, only aggregated statistics.
+- Advantages:
+  - Simple, transparent; preserves modeled change signal
+  - Works for many statistics (means, quantiles, variances)
+  - Seasonal specificity: apply deltas by month/season
+- Limitations:
+  - Deterministic; no explicit uncertainty
+  - Assumes stationary bias structure across climate states
+  - Doesn’t correct frequency/intensity structure directly
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -212,70 +233,24 @@ For example:
 *Think about: process-level changes, nonlinear responses, threshold effects.*
 :::
 
-## Quantile Delta Mapping (QDM)
-
-*Minutes 21-29*
-
-QDM blends the strengths of delta change and quantile mapping [@cannon_GCMbc:2015].
-It corrects historical bias while preserving the GCM’s projected change at each quantile.
-This avoids “erasing” the modeled climate-change signal during bias correction.
-
-### Assumptions and Idea
-
-We assume the quantile relationship between model and observations during the historical period is informative, and that the GCM’s change signal by quantile is credible.
-QDM applies quantile mapping on the historical relationship, then adjusts by the modeled change factor at the same quantile.
-
-### Notation
-
-- $F^\text{mod}_\text{hist}$, $F^\text{obs}_\text{hist}$: historical CDFs (model, observed)
-- $Q^\text{mod}_\text{hist}(p)$, $Q^\text{mod}_\text{fut}(p)$, $Q^\text{obs}_\text{hist}(p)$: corresponding quantile functions
-- For a modeled future value $y_i$ (from the GCM future series), define its modeled future percentile $p_i = F^\text{mod}_\text{fut}(y_i)$
-
-### QDM formula
-
-- Additive variables (e.g., temperature):
-$$
-x^{\text{QDM}}_{\text{fut}, i} = Q^\text{obs}_\text{hist}(p_i) + \Big[Q^\text{mod}_\text{fut}(p_i) - Q^\text{mod}_\text{hist}(p_i)\Big]
-$$
-
-- Multiplicative variables (e.g., precipitation):
-$$
-x^{\text{QDM}}_{\text{fut}, i} = Q^\text{obs}_\text{hist}(p_i) \times \frac{Q^\text{mod}_\text{fut}(p_i)}{Q^\text{mod}_\text{hist}(p_i)}
-$$
-
-Intuition: map the modeled future value to a percentile $p_i$, take the observed historical value at that percentile, and then apply the model’s projected change at that percentile (absolute for temperature, relative for precipitation) [@cannon_GCMbc:2015].
-
-### Pros and caveats
-
-- Preserves modeled change signal across the distribution; mitigates “delta erosion.”
-- Handles non-uniform changes (e.g., heavier tails) better than plain delta.
-- Still assumes historical quantile relationships carry forward; tail extrapolation remains tricky.
-- Requires care for zero-inflation and frequency changes for precipitation.
-
-::: {.callout-tip}
-## Discussion Question
-
-When would you prefer QDM over plain QQ-mapping or the basic delta method?
-Give one example where preserving quantile-specific change matters for impacts, and one case where QDM’s assumptions might be risky.
-
-Suggested format: 1 min think + 2 min pair + 2 min share.
-:::
-
-The delta method is simple but widely used [@hay_comparison:2000].
-
 ## Quantile-Quantile (QQ) Mapping
 
-*Minutes 29-41*
+*Minutes 21-33*
 
 QQ-mapping is more sophisticated and directly addresses the drizzle bias [@ines_biascorrection:2006].
 
+#### QQ-mapping (at a glance)
+- Inputs: Daily/ sub-daily GCM and observed series (historical), by month/season
+- Use when: Large-scale dynamics credible; need to fix wet-day frequency and intensity distribution
+- Outputs: Bias-corrected series matching observed distribution (hist), applied to future with assumed stationarity
+- Pitfalls: Can distort modeled change signal when applied to future; deterministic; tail extrapolation
+- Quick steps: adjust wet-day frequency via threshold → map intensities via CDF-to-CDF transform (by month)
+
 ### Assumption and When to Use
 
-We assume the GCM captures the physical processes generating precipitation, such as frontal systems and convection, but has systematic errors in the frequency and intensity of individual events.
-The relationship between GCM and observed distributions should hold in the future.
-
-This is reasonable if the GCM simulates realistic large-scale dynamics but fails at the sub-grid scale.
-It is less reasonable if the GCM completely misses key processes.
+- Assumes large-scale dynamics are credible but frequency/intensity at sub-grid scales are biased
+- Historical GCM–Obs distributional relationship is assumed to hold in the future
+- Reasonable when GCM gets large-scale patterns right; risky if key processes are missing
 
 ### Motivation
 
@@ -367,21 +342,87 @@ Empirical-Gamma (EG) uses the empirical CDF for GCM data but gamma for observed.
 
 ### Why This Matters
 
-Crop and hydrologic models are sensitive to the timing of rainfall events (wet versus dry days), individual event intensities (which determine soil infiltration and runoff generation), and dry spell lengths (which determine water stress).
-
-Correcting only monthly totals can give very different impact predictions than correcting frequency and intensity separately.
-@ines_biascorrection:2006 show that even with perfect monthly totals, simulated crop yields can be biased if the daily structure is wrong.
+- Impact models are sensitive to:
+  - Wet/dry timing → dry spell lengths
+  - Event intensities → infiltration/runoff generation
+  - Temporal clustering → water stress and extreme flows
+- Monthly-total-only correction can mislead impacts; frequency/intensity corrections matter (@ines_biascorrection:2006)
 
 ### Limitations
 
-QQ-mapping is still deterministic.
-It provides a single-valued mapping from GCM to observed quantiles with no representation of uncertainty.
-It assumes the quantile-quantile relationship holds for future climate, which may fail if precipitation-generating mechanisms change.
+- Deterministic; no explicit uncertainty
+- Assumes quantile relationship is time-invariant; process changes can break it
+- Plain QM can distort modeled climate-change signals when applied to future data → motivation for QDM [@cannon_GCMbc:2015]
+- Terminology: “quantile mapping (QM)” ≈ “QQ-mapping” in common use
+- QDM preserves quantile-specific change by construction [@cannon_GCMbc:2015]
 
-Critically, standard quantile mapping can unintentionally alter the GCM’s projected climate change signal (inflating or suppressing trends in means and extremes) when applied to future data—one of the central motivations for QDM [@cannon_GCMbc:2015].
+## Quantile Delta Mapping (QDM)
 
-Terminology: in the literature, “quantile mapping” (QM) is the common term; “QQ-mapping” is used informally and interchangeably in some communities. Both refer to the same family of methods.
+*Minutes 33-41*
 
+QDM blends the strengths of delta change and quantile mapping [@cannon_GCMbc:2015].
+It corrects historical bias while preserving the GCM’s projected change at each quantile.
+This avoids “erasing” the modeled climate-change signal during bias correction.
+
+### Assumptions and Idea
+
+- Historical quantile relation (model ↔ obs) is informative
+- Modeled change signal by quantile is credible
+- Procedure: quantile-map using historical relation → adjust by modeled change at the same percentile
+
+### Notation
+
+- $F^\text{mod}_\text{hist}$, $F^\text{obs}_\text{hist}$: historical CDFs (model, observed)
+- $Q^\text{mod}_\text{hist}(p)$, $Q^\text{mod}_\text{fut}(p)$, $Q^\text{obs}_\text{hist}(p)$: corresponding quantile functions
+- For a modeled future value $y_i$ (from the GCM future series), define its modeled future percentile $p_i = F^\text{mod}_\text{fut}(y_i)$
+
+### QDM formula
+
+- Additive variables (e.g., temperature):
+$$
+x^{\text{QDM}}_{\text{fut}, i} = Q^\text{obs}_\text{hist}(p_i) + \Big[Q^\text{mod}_\text{fut}(p_i) - Q^\text{mod}_\text{hist}(p_i)\Big]
+$$
+
+- Multiplicative variables (e.g., precipitation):
+$$
+x^{\text{QDM}}_{\text{fut}, i} = Q^\text{obs}_\text{hist}(p_i) \times \frac{Q^\text{mod}_\text{fut}(p_i)}{Q^\text{mod}_\text{hist}(p_i)}
+$$
+
+Intuition: map the modeled future value to a percentile $p_i$, take the observed historical value at that percentile, and then apply the model’s projected change at that percentile (absolute for temperature, relative for precipitation) [@cannon_GCMbc:2015].
+
+### Pros and caveats
+- QDM (at a glance)
+  - Inputs: Historical GCM/Obs distributions and modeled future distribution
+  - Use when: You need bias correction that preserves quantile-specific modeled change
+  - Outputs: Corrected future series with preserved change at each percentile
+  - Pitfalls: Assumes historical quantile relation persists; zero-inflation care; tail handling
+  - Quick steps: find percentile of modeled future value → map to observed-hist quantile → apply modeled change at that percentile (additive/multiplicative)
+
+- Preserves modeled change signal across the distribution; mitigates “delta erosion.”
+- Handles non-uniform changes (e.g., heavier tails) better than plain delta.
+- Still assumes historical quantile relationships carry forward; tail extrapolation remains tricky.
+- Requires care for zero-inflation and frequency changes for precipitation.
+
+### Method comparison (cheat sheet)
+
+| Feature | Delta | QQ-mapping (QM) | QDM |
+|---|---|---|---|
+| Preserves modeled change signal | Yes (mean/target stat) | No (can distort) | Yes (by quantile) |
+| Corrects wet-day frequency | No | Yes (with threshold) | Yes (if combined with frequency step) |
+| Corrects intensity distribution | No (only target stat) | Yes | Yes |
+| Assumes stationarity of bias | Yes | Yes (quantile relation) | Yes (quantile relation + change factors) |
+| Handles non-uniform change across quantiles | No | Not guaranteed | Yes |
+| Uncertainty representation | Deterministic | Deterministic | Deterministic |
+| Data requirements | Means/quantiles by month | Full distribution by month | Full distribution by month (hist + fut percentiles) |
+
+::: {.callout-tip}
+## Discussion Question
+
+When would you prefer QDM over plain QQ-mapping or the basic delta method?
+Give one example where preserving quantile-specific change matters for impacts, and one case where QDM’s assumptions might be risky.
+
+Suggested format: 1 min think + 2 min pair + 2 min share.
+:::
 ## Uncertainty in Bias Correction
 
 *Minutes 41-43*
@@ -390,14 +431,9 @@ Bias correction is not a panacea and introduces additional uncertainty.
 
 ### Sources of Uncertainty
 
-Sampling uncertainty arises from the limited length of observational records.
-A 30-year calibration period has few extreme events, leading to uncertainty in estimating distribution parameters, especially in the tails.
-
-Structural uncertainty comes from the choice of method (delta versus QQ versus others), the choice of distribution (gamma versus empirical versus others), the choice of temporal aggregation (daily versus monthly), and how to handle wet-day thresholds.
-
-Extrapolation uncertainty asks whether the bias correction transfer function will hold for future climate.
-What if the future climate has no historical analog?
-New atmospheric circulation patterns, unprecedented temperature/moisture combinations, or changes in precipitation-generating processes could all violate our assumptions.
+- Sampling: limited records → few extremes → uncertain tail parameters
+- Structural: method choice (delta/QQ/QDM), distributional form (gamma/empirical), temporal aggregation (daily/monthly), wet-day thresholds
+- Extrapolation: does the transfer function hold in future climates with no historical analog? New circulation regimes, unprecedented T–q combinations, process changes
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -414,10 +450,8 @@ In 2080, the GCM simulates a month with 400 mm.
 
 ### Methods Can Disagree Strongly
 
-@hay_comparison:2000 compared delta change and statistical downscaling for three US basins.
-Both methods used the same GCM outputs but gave markedly different runoff projections.
-Differences were largest in mountainous regions with complex terrain.
-Neither method was clearly "better" without independent validation data.
+- @hay_comparison:2000: delta vs statistical downscaling for three US basins → markedly different runoff projections
+- Differences largest in complex terrain; “better” method depends on validation context
 
 ::: {.callout-important}
 ## Bias Correction Can ADD Uncertainty
@@ -429,8 +463,8 @@ Multiple methods should always be compared.
 
 ### Quantifying Uncertainty
 
-Best practices include using multiple bias correction methods, using multiple GCMs, generating ensembles to sample uncertainty, and validating on independent data when possible.
-However, validation is challenging because we care most about future conditions where no validation data exists.
+- Use multiple methods and multiple GCMs; generate ensembles; validate on independent data when available
+- Validation is hardest where it matters most (future conditions)
 
 ## Critical Considerations
 
@@ -438,14 +472,10 @@ However, validation is challenging because we care most about future conditions 
 
 ### Extrapolation
 
-Bias correction methods must extrapolate beyond their calibration range.
-QQ-mapping often uses constant extrapolation (mapping to the maximum observed value) or linear extrapolation (extending the trend at the tail).
-Both can produce unrealistic extremes or violate physical constraints like negative precipitation.
-
-The delta method assumes constant absolute (additive) or relative (multiplicative) bias.
-This may be unreasonable if precipitation-generating processes change, such as a shift from frontal to convective precipitation.
-
-Future climate may have no historical analog with new atmospheric circulation patterns, unprecedented temperature/moisture combinations, and changes in precipitation mechanisms.
+- All methods must extrapolate beyond calibration range
+  - QM: often uses constant (cap at max obs) or linear tail extrapolation → risk of unrealistic extremes or violations (e.g., negative P)
+  - Delta: assumes constant absolute (T) or relative (P) bias → may break if processes change (e.g., frontal → convective)
+- No-analog futures: new circulation regimes, unprecedented T–q combos, shifts in precipitation mechanisms → transfer functions may fail
 
 ### Missing Processes
 
@@ -461,10 +491,10 @@ Many global GCMs don't resolve tropical cyclones, which require roughly 50 km ho
 Observations clearly show TCs in coastal regions like Houston and Miami, but the GCM shows smooth, large-scale precipitation instead.
 
 What happens with QQ-mapping?
-It will create intense rainfall events to match the observed distribution.
-However, the timing will be wrong (spread throughout the season versus clustered in actual TC events).
-The location will be wrong (GCM has different storm tracks or no organized tracks).
-The dynamics will be wrong (no organized rotation, no rapid intensification, no realistic structure).
+- It will create intense events to match the observed distribution, but:
+  - Timing wrong (seasonally smeared vs clustered TC events)
+  - Location wrong (tracks absent/shifted)
+  - Dynamics wrong (no rotation/RI/structure)
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -482,9 +512,8 @@ You apply QQ-mapping for a coastal location.
 ### Credibility Check and Scale Considerations
 
 The GCM must credibly simulate the target variable at some level.
-Good uses include correcting drizzle bias when the GCM captures large-scale precipitation patterns, correcting temperature biases when circulation is realistic, and adjusting timing and magnitude when the seasonal cycle is captured.
-
-Poor uses include trying to "fix" completely missing processes, applying corrections where GCM circulation is unrealistic, and extrapolating far beyond historical conditions.
+- Good uses: correct drizzle bias when large-scale patterns are realistic; adjust temperature when circulation is credible; tweak timing/magnitude when seasonal cycle is captured
+- Poor uses: “fixing” missing processes; correcting where circulation is unrealistic; extrapolating far beyond historical range
 
 ::: {.callout-tip}
 ## Discussion Question
@@ -512,18 +541,10 @@ This preserves GCM information where it is credible while using process models f
 The delta method and QQ-mapping are starting points.
 More sophisticated methods exist and will be covered later in the course.
 
-Stochastic weather generators can generate multiple realizations conditioned on GCM output.
-They represent sub-monthly variability and uncertainty naturally.
-We will cover these later in Module 2.
-
-Weather typing and hidden Markov models classify GCM output into discrete weather states and link states to local precipitation distributions.
-These are naturally probabilistic and will be covered in the next two weeks.
-
-Multivariate bias correction corrects multiple variables simultaneously while preserving correlations like temperature-precipitation relationships.
-This remains an active research area.
-
-Spatial consistency is challenging because basic QQ-mapping is univariate (one location at a time) and can destroy the spatial coherence of precipitation fields.
-Emerging methods include rank-based approaches and optimal transport.
+- Stochastic weather generators: multiple realizations conditioned on GCM; represent sub-monthly variability and uncertainty (Module 2)
+- Weather typing, HMMs: classify states and link to local distributions; naturally probabilistic (next two weeks)
+- Multivariate bias correction: adjust multiple variables jointly while preserving correlations (active research)
+- Spatial consistency: univariate QM can break spatial coherence → rank-based approaches, optimal transport, spatial QDM
 
 ### Preparing for Wednesday
 
@@ -531,18 +552,11 @@ On Wednesday we will discuss @ines_biascorrection:2006 in detail.
 
 Key questions to consider while reading:
 
-1. How well does the bias correction improve crop yield simulations?
+1. How well does bias correction improve crop yield simulations?
 2. What limitations remain even after bias correction?
-3. Why do yields remain under-predicted even with "perfect" rainfall distributions?
+3. Why are yields under-predicted even with “perfect” rainfall distributions?
 
 The paper provides a concrete case study of the methods we discussed today and highlights remaining challenges.
-
-### Preparing for Lab 7
-
-Friday's lab will implement bias correction methods in Julia.
-
-You will apply the delta method for temperature, QQ-mapping for precipitation, and compare results for a case study basin.
-This hands-on implementation will solidify your understanding of the mathematical details and practical considerations.
 
 ## References
 
