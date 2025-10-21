@@ -275,35 +275,19 @@ $$
 In other words, it's just applying the delta method at each quantile after mapping to the observed distribution.
 Applying to intermediate percentiles typically requires an interpolation or similar (there are many flavors of these methods)
 
-## Uncertainty in Bias Correction
-
-*Minutes 41-43*
-
-Bias correction is not a panacea and introduces additional uncertainty.
-
-### Sources of Uncertainty
-
-- Sampling: limited records → few extremes → uncertain tail parameters
-- Structural: method choice (delta/QQ/QDM), distributional form (gamma/empirical), temporal aggregation (daily/monthly), wet-day thresholds
-- Extrapolation: does the transfer function hold in future climates with no historical analog? New circulation regimes, unprecedented T–q combinations, process changes
-
-::: {.callout-important}
-## Bias Correction Can ADD Uncertainty
-
-Applying bias correction doesn't necessarily improve impact predictions.
-It transforms one type of uncertainty (GCM bias) into another (correction uncertainty).
-Multiple methods should always be compared.
-:::
-
-### Quantifying Uncertainty
-
-- Use multiple methods and multiple GCMs; generate ensembles; validate on independent data when available
-- Validation is hardest where it matters most (future conditions)
-
 ## Critical Considerations
 
-*Minutes 43-44*
+*Minutes 41-45*
 
+### Uncertainty
+
+Bias correction is not a panacea and introduces additional uncertainty.
+Sources of uncertainty include:
+
+- Sampling uncertainty (limited historical data). **Recall:** bias corrections are statistical models and are subject to the limitations of any statistical inference.
+- Methodological details (distribution fits, thresholds)
+- Model structural errors -- different methods yield different results [see @lafferty_downscaling:2023]
+ 
 ### Extrapolation
 
 - All methods must extrapolate beyond calibration range
