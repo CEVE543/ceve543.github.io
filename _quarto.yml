@@ -6,8 +6,7 @@ project:
 render:
   - "*"         # Render all files
   - "!CLAUDE.md"  # EXCEPT this file
-  - "!instructor"
-  - "!instructor/"
+  - "!labs/Lab-7/index.qmd"  # EXCEPT this file
 
 website:
   page-navigation: true
