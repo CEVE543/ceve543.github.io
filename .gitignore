@@ -1,6 +1,11 @@
 docs/
 *.nc
 
+*.typ
+*.html
+
+lectures/*/*_files/
+
 resources/.cache/
 site_libs/*
 */.jupyter_cache/*
