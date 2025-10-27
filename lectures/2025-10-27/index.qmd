@@ -335,7 +335,7 @@ This gives each unit area equal influence in the analysis.
 
 Use a **scree plot**: plot variance explained versus component number.
 
-![Example scree plot showing variance explained by each principal component. Look for an "elbow" but recognize this is subjective. Source: [Wikipedia](https://en.wikipedia.org/wiki/Scree_plot)](https://upload.wikimedia.org/wikipedia/commons/a/ac/Screeplotr.png){width=60%}
+![Example scree plot showing variance explained by each principal component. Look for an "elbow" but recognize this is subjective. Source: [Wikipedia](https://en.wikipedia.org/wiki/Scree_plot)](scree_plot.png){width=60%}
 
 **How to choose $k$?**
 
