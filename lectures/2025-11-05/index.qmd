@@ -1,0 +1,238 @@
+---
+title: "HMMs for Rainfall Downscaling"
+subtitle: "CEVE 543 - Fall 2025"
+date: 2025-11-05
+
+categories:
+  - Lecture
+
+format:
+  revealjs:
+    scrollable: true
+
+author: "{{< var instructor.name >}}"
+template-partials:
+  - ../title-slide.html
+bibliography: ../../references.bib
+
+---
+
+## Today's Paper
+
+@robertson_hmm:2004:
+
+::: {#refs}
+:::
+
+# Planned Questions
+
+---
+
+### Q1: NHMM vs HMM (EA)
+
+
+1. The HMM was intended to describe the nature of the Northeast Brazil monsoon by interpreting the four identified hidden States 1, 2, 3, and 4 (and their related pairs). Did it accomplish this? How could the HMM method be improved? 
+1.  How effectively does the NHMM downscale seasonal-mean GCM simulations to local daily rainfall? 
+
+---
+
+### Q2 (ZL)
+
+1. How might differences in elevation and topographic setting among the 10 rainfall stations, as shown in Figure 1, influence the interpretation of the hidden rainfall states, particularly where the HMM may not fully capture local topographic rainfall enhancement or rain shadow effects?
+2. Why was Ceará in Northeast Brazil selected as the study region for analyzing daily rainfall variability using a Hidden Markov Model, and what makes it a representative case of strong seasonal rainfall contrast?
+
+---
+
+### Table 1 (MM)
+
+![](tab-1.png)
+
+---
+
+### Figs 4-5 (FH) {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+![](fig-4.png)
+:::
+::: {.column width="50%"}
+![](fig-5.png)
+:::
+:::
+
+---
+
+::: {.columns}
+::: {.column width="50%"}
+### Fig 6
+:::
+::: {.column width="50%"}
+![](fig-6.png)
+:::
+:::
+
+---
+
+### Fig 9
+
+![](fig-9.png)
+
+---
+
+### Figs 10-11
+
+::: {.columns}
+::: {.column width="50%"}
+![](fig-10.png)
+:::
+::: {.column width="50%"}
+![](fig-11.png)
+:::
+:::
+
+---
+
+### Figs 19-20
+
+::: {.columns}
+::: {.column width="50%"}
+![](fig-19.png)
+:::
+::: {.column width="50%"}
+![](fig-20.png)
+:::
+:::
+
+# All Other Figures and Tables
+
+---
+
+### Figure 1
+
+![](fig-1.png)
+
+---
+
+### Figure 2
+
+![](fig-2.png)
+
+---
+
+### Figure 3
+
+![](fig-3.png)
+
+---
+
+### Figure 4
+
+![](fig-4.png)
+
+---
+
+### Figure 5
+
+![](fig-5.png)
+
+---
+
+### Figure 6
+
+![](fig-6.png)
+
+---
+
+### Figure 7
+
+![](fig-7.png)
+
+---
+
+### Figure 8
+
+![](fig-8.png)
+
+---
+
+### Figure 9
+
+![](fig-9.png)
+
+---
+
+### Figure 10
+
+![](fig-10.png)
+
+---
+
+### Figure 11
+
+![](fig-11.png)
+
+---
+
+### Figure 12
+
+![](fig-12.png)
+
+---
+
+### Figure 13
+
+![](fig-13.png)
+
+---
+
+### Figure 14
+
+![](fig-14.png)
+
+---
+
+### Figure 15
+
+![](fig-15.png)
+
+---
+
+### Figure 16
+
+![](fig-16.png)
+
+---
+
+### Figure 17
+
+![](fig-17.png)
+
+---
+
+### Figure 18
+
+![](fig-18.png)
+
+---
+
+### Figure 19
+
+![](fig-19.png)
+
+---
+
+### Figure 20
+
+![](fig-20.png)
+
+---
+
+### Table 1
+
+![](tab-1.png)
+
+---
+
+### Table 2
+
+![](tab-2.png)
