@@ -1,5 +1,5 @@
 ---
-title: "Downscaling Methods Comparison"
+title: "Deep Learning for Downscaling"
 subtitle: "CEVE 543 - Fall 2025"
 date: 2025-11-14
 
@@ -22,13 +22,36 @@ bibliography: ../../references.bib
 
 ## Today's Paper
 
-@lafferty_downscaling:2023
+@vandal_deepsd:2017
 
-## Discussion Questions
+## Reading Guide
 
-### Example Question
+For our upcoming class, please read "DeepSD: Generating High Resolution Climate Change Projections..." This paper presents a radically different philosophy from the Steinschneider paper.
 
-[TO BE FILLED IN]
+Your goal is to understand its "data-driven" approach.
+Think of this model not as a "physics simulator" but as an "image processing" tool.
+
+### What to Focus On
+
+- **The Core Analogy:** The entire paper is built on an analogy: "Downscaling is like 'Single Image Super-Resolution'." Make sure you understand this. What is the "low-resolution image"? What is the "high-resolution image"?
+- **The "Black Box":** The model uses a Convolutional Neural Network (CNN). You do not need to understand how a CNN works in detail. You only need to understand what it does: it learns a statistical mapping (a function) to get from the "low-res" input to the "high-res" output.
+- **Training vs. Projection:** Pay very close attention to Figure 1 and Section 3.
+    - **Training:** What data does the model learn from? (Hint: It's a pair of datasets).
+    - **Projection:** What data do you feed into the model to get a future high-res climate?
+
+### Key Concepts to Consider
+
+- **"Data-Driven":** This model is "data-driven," not "process-informed." What does that mean? What does it gain by not imposing physical rules? What might it lose?
+- **Spatial vs. Temporal:** This method treats climate data as an "image" (a spatial map). How does it handle the sequence of days (the temporal aspect)? Does it model it explicitly, or at all?
+- **Stationarity:** The model learns a relationship from historical data. It then applies that same relationship to future GCM output. What is the core assumption it's making about the future?
+
+## Questions for Preparation
+
+Please come to class prepared to discuss and share your answers to these three questions:
+
+1. Why treat downscaling as an "image processing" (super-resolution) problem? What specific climate features (e.g., spatial patterns, extremes) does this method gain that a simple, single-point method (like QQ-mapping) would miss?
+2. The Steinschneider paper distrusted the GCM's dynamics and replaced them. What does the DeepSD model trust about the GCM? And what part does it distrust (or "correct")?
+3. How does this model generate a future projection (e.g., for 2080)? What is the single biggest assumption it makes about the relationship between low-res and high-res climate for this to be a valid approach?
 
 ## References
 

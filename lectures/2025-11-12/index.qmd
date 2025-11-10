@@ -24,11 +24,41 @@ bibliography: ../../references.bib
 
 @steinschneider_generator:2019
 
-## Discussion Questions
+## Reading Guide
 
-### Example Question
+For our upcoming class, please read "A Weather-Regime-Based Stochastic Weather Generator..." As you read, your primary objective is to understand the model's conceptual framework and methodological approach.
 
-[TO BE FILLED IN]
+Your goal is not to master every mathematical detail.
+Instead, focus on understanding why the authors built the model this way, what each major component does, and how these components connect to form a coherent downscaling framework.
+
+### What to Focus On
+
+- Pay close attention to the Introduction. How do the authors critique GCMs and "traditional" statistical downscaling methods? What specific deficiencies are they trying to address with this new model?
+- The model is presented in logical sections. Your main task is to identify and understand the function of each component:
+    - **Large-Scale Atmospheric Patterns (Sec 3.1):** How are the "weather regimes" (WRs) defined and identified? How does this component relate to the Hidden Markov Models (HMMs) and "weather typing" concepts we have covered?
+    - **Local Weather Generation (Sec 3.2):** Given a specific "weather regime" on a given day, how does the model then generate the daily precipitation and temperature values for a specific location?
+    - **Climate Change Projections (Sec 3.3):** How is the trained model used to generate future climate scenarios? Be sure to understand the distinction between "dynamical" and "thermodynamic" changes.
+- What data are used to train the model (i.e., establish its parameters)? What data are used to drive the model for future projections? (Note the difference between reanalysis and GCM data).
+
+### What to Prioritize Less
+
+- Avoid getting lost in the specific mathematical derivations, for instance, of the Gaussian copula (Section 3.2.2) or the detailed parameter-fitting procedures for the HMM.
+- It is sufficient to understand what tools like "block bootstrapping" are used for (e.g., to preserve temporal structure) rather than the precise implementation details.
+- The key is to understand the purpose of a statistical tool within the model's framework, not necessarily the complete theory behind it.
+
+### Key Concepts to Consider
+
+- The authors describe their model as "process-informed." What do they mean by this? Where in the model's structure do you see them attempting to embed physical climate processes?
+- What are the most significant assumptions this model relies on? (e.g., what does it assume about the stability of relationships in a future climate?)
+- How does this model's philosophy differ from the QQ-mapping (quantile mapping) method we learned? What are the potential advantages or disadvantages (e.g., complexity, data needs) of this approach?
+
+## Questions for Preparation
+
+Please come to class prepared to discuss and share your answers to these three questions:
+
+1. Based on the paper's introduction, why might we need a stochastic weather generator like this one instead of only using a downscaling method (like QQ-mapping) on GCM output? What specific problems is this "generator" approach designed to solve?
+2. Compare this method to a standard QQ-mapping approach. In what way does this model's methodology reflect a greater "distrust" of GCM output?
+3. How does this model's structure (specifically the Hidden Markov Model for weather regimes) help it realistically simulate the temporal sequence of weather (e.g., the length of a dry spell or a 7-day wet period)? Why is this a key feature for vulnerability assessments?
 
 ## References
 
