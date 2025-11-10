@@ -1,0 +1,241 @@
+---
+title: "Model Selection"
+subtitle: "CEVE 543 - Fall 2025"
+date: 2025-11-10
+
+categories:
+  - Lecture
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+  typst:
+    fontsize: 11pt
+    margin:
+      x: 1in
+      y: 1in
+    number-sections: true
+
+author: "{{< var instructor.name >}}"
+bibliography: ../../references.bib
+---
+
+## Motivation
+
+Statistical modeling requires making many choices: which distribution family to use, which covariates (if any) to include for nonstationarity, which parameters to model as nonstationary, how to pool information across space, and more.
+There is no single "right" answer to these questions.
+How can we proceed in a principled way?
+
+This challenge extends well beyond extreme value analysis to all of statistical modeling [@heinze_myths:2017; @navarro_betweenthedevilandthedeepbluesea:2018].
+In this lecture, we explore quantitative criteria for model selection and comparison.
+
+::: {.callout-note}
+## Linear Regression as a Mental Model
+
+Many of the quantitative approaches we discuss were originally developed with linear regression in mind, though they apply more generally.
+When interpreting these methods for extreme value analysis or other complex models, it's worth keeping in mind that some of their theoretical guarantees may not hold exactly.
+:::
+
+::: {.callout-tip}
+## Further Reading
+
+For accessible discussions of model selection challenges, see @navarro_betweenthedevilandthedeepbluesea:2018 and @heinze_variableselection:2018.
+For more mathematical depth on Bayesian predictive methods, see @piironen_comparison:2017.
+@mcelreath_rethinking2:2020 (Chapter 7) provides an excellent conceptual introduction to information criteria.
+:::
+
+## Quantitative Model Selection
+
+::: {.callout-note}
+## Technical Content
+
+This section introduces some mathematical formalism.
+You should focus on understanding the key concepts and trade-offs rather than memorizing equations.
+:::
+
+### The Challenge
+
+We want to make probabilistic predictions about unobserved future data $\tilde{y}$.
+This is challenging because Earth systems are high-dimensional, multi-scale, nonlinear, and complex.
+
+To approximate the true system, we define a model space $\mathcal{M}$ containing candidate models, then use data to select among them [@piironen_comparison:2017].
+The key question becomes: how do we measure and compare the predictive performance of different models?
+
+### Kullback-Leibler Divergence
+
+The Kullback-Leibler (KL) divergence measures how similar two probability distributions are.
+Let $\mathcal{X}$ denote the set of all possible outcomes (e.g., possible values of annual maximum precipitation), and let $x$ denote a specific outcome.
+The KL divergence from distribution $P$ to distribution $Q$ is:
+$$
+D_\text{KL} (P \parallel Q) = \sum_{x \in \mathcal{X}} P(x) \log \left[ \frac{P(x)}{Q(x)} \right]
+$$
+
+One interpretation is the amount of information lost when $Q$ is used to approximate $P$.
+Another is the information gained by revising one's beliefs from $Q$ to $P$.
+For continuous random variables, the sum becomes an integral.
+
+Minimizing KL divergence from a candidate model to the true data-generating distribution is equivalent to maximizing expected predictive accuracy.
+
+### Measures of Predictive Accuracy
+
+We measure predictive performance using the log predictive density $\log p(\tilde{y} | D, M)$, where $D$ represents our data and $M$ represents our model.
+Since future observations $\tilde{y}$ are unknown, we evaluate this in expectation:
+$$
+\overline{u}(M) = \mathbb{E}\left[ \log p(\tilde{y} | D, M) \right] = \int p_t(\tilde{y}) \log p(\tilde{y} | D, M) \, d\tilde{y}
+$$
+where $p_t(\tilde{y})$ is the unknown true data-generating distribution.
+
+Maximizing this expected log predictive density is equivalent to minimizing KL divergence from our candidate model to the true distribution.
+
+In practice, we don't know the true distribution, so we approximate using the log pointwise predictive density (lppd):
+$$
+\text{lppd} = \sum_{i=1}^N \log \left[ \frac{1}{S} \sum_{s=1}^S p(y_i | \theta^s) \right]
+$$
+where we have approximated the posterior distribution with $S$ samples from MCMC.
+
+The lppd computed on observed data $y$ overestimates the expected predictive density for future data.
+Information criteria correct for this optimism.
+
+## Model Comparison Approaches
+
+### Significance Testing
+
+A common approach in practice is to use null hypothesis significance testing (NHST) to decide whether to include variables [@heinze_myths:2017; @heinze_variableselection:2018].
+For example, to decide whether to include a trend term with coefficient $\beta$:
+
+1. Specify a null hypothesis: $\beta = 0$
+2. Compute a test statistic and $p$-value
+3. If $p < \alpha$ (commonly $\alpha = 0.05$), include the variable; otherwise exclude it
+
+This approach is widely used but has well-documented problems [@gelman_philosophy:2013; @heinze_myths:2017].
+It assumes the existence of a true model ($\mathcal{M}$-closed) and is sensitive to arbitrary significance thresholds.
+Sequential testing (testing multiple variables one at a time) compounds these issues through the problem of multiple comparisons.
+
+### Information Criteria
+
+Information criteria provide quantitative measures for comparing models by balancing fit quality against model complexity.
+All of these criteria can be computed from fitted models and used to compare alternatives.
+
+#### Akaike Information Criterion (AIC)
+
+The AIC provides a simple correction for overfitting [@mcelreath_rethinking2:2020].
+If a model with maximum likelihood estimate $\hat{\theta}_\text{mle}$ fits $k$ parameters, then:
+$$
+\text{AIC} = 2k - 2 \ln \hat{\mathcal{L}}
+$$
+where $\hat{\mathcal{L}}$ is the maximized likelihood.
+
+The first term penalizes model complexity (more parameters increase AIC).
+The second term rewards fit to the data (higher likelihood decreases AIC).
+We select the model that minimizes AIC.
+
+**When to use:** AIC is appropriate for maximum likelihood estimation and focuses on predictive performance in an $\mathcal{M}$-open setting.
+It aims to select the model that will best predict future data, even if none of the candidate models is "true."
+
+**Assumptions:** The AIC assumes that parameters are asymptotically normally distributed and that residuals are independent given $\hat{\theta}$.
+These assumptions often hold approximately for linear regression but may be questionable for more complex models.
+
+**Key limitation:** For complex models, determining the effective number of parameters $k$ is not straightforward.
+
+#### Bayesian Information Criterion (BIC)
+
+The BIC takes a different approach by approximating the marginal probability of the data $p(y)$ [@kass_bayesfactor:1995]:
+$$
+\text{BIC} = k \ln(n) - 2 \ln \hat{\mathcal{L}}
+$$
+where $n$ is the sample size and $\hat{\mathcal{L}} = \max_\theta p(y | \theta, M)$.
+
+The BIC penalizes model complexity more heavily than AIC when $n > 7$, favoring simpler models.
+
+**When to use:** BIC is appropriate when you believe the true model is among your candidates (an $\mathcal{M}$-closed perspective) and want to identify it.
+The model with the lowest BIC will asymptotically be the "true" model if the true model is one of the choices.
+This makes BIC useful for hypothesis testing and model identification rather than pure prediction.
+
+**Key assumption:** BIC assumes that one of the candidate models is the true data-generating process.
+Under this assumption, BIC provides consistent model selection as sample size increases.
+
+#### Watanabe-Akaike Information Criterion (WAIC)
+
+WAIC is a more fully Bayesian approach that is asymptotically equivalent to Bayesian cross-validation [@gelman_bda3:2014].
+Unlike AIC and BIC, which use point estimates, WAIC uses the full posterior distribution.
+
+The WAIC is computed as:
+$$
+\text{WAIC} = -2 \left( \text{lppd} - p_\text{WAIC} \right)
+$$
+
+where lppd is the log pointwise predictive density (defined earlier) and $p_\text{WAIC}$ is the effective number of parameters, computed as:
+$$
+p_\text{WAIC} = \sum_{i=1}^N \text{Var}_{\text{post}} \left[ \log p(y_i | \theta) \right]
+$$
+
+The variance is computed over the posterior distribution of $\theta$.
+
+**When to use:** WAIC is the recommended default for Bayesian model comparison [@gelman_bda3:2014].
+Use it when you have MCMC samples and want to focus on predictive performance.
+It properly accounts for posterior uncertainty and works in both $\mathcal{M}$-open and $\mathcal{M}$-closed settings.
+
+**Advantages:** WAIC is fully Bayesian and works with posterior distributions rather than point estimates.
+
+**Limitations:** Like other information criteria, WAIC assumes that future data will be generated from the same process as the observed data.
+
+### Model Averaging
+
+Rather than selecting a single "best" model, we can treat model selection as a source of uncertainty [@piironen_comparison:2017].
+If we have candidate models $\{ M_\ell \}_{\ell=1}^L$, the posterior distribution over models is:
+$$
+p(M | D) \propto p(D | M) p(M)
+$$
+
+We can then make predictions by averaging over all models:
+$$
+p(\tilde{y} | D) = \sum_{\ell=1}^L p(\tilde{y}|D, M_\ell) p(M_\ell | D)
+$$
+
+This approach acknowledges model uncertainty explicitly rather than conditioning all inferences on a single selected model.
+Bayesian model averaging can improve predictive performance, especially when multiple models have similar support from the data [@gelman_bda3:2014].
+More advanced approaches like stacking can further enhance predictive accuracy [@yao_stacking:2018].
+
+## $\mathcal{M}$-Open vs $\mathcal{M}$-Closed Perspectives
+
+A fundamental distinction in model selection is whether we assume the "true" model is in our candidate set [@gelman_bda3:2014].
+
+**$\mathcal{M}$-Closed:** Assumes one of the candidate models is the true data-generating process.
+Under this assumption, methods like BIC have strong theoretical guarantees---as sample size increases, we will identify the true model.
+This perspective motivates selection approaches that choose a single "best" model.
+
+**$\mathcal{M}$-Open:** Recognizes that all models are approximations, and the true data-generating process is not in our candidate set.
+This is the reality we face in practice, especially for complex Earth systems.
+Under this perspective, we should focus on predictive performance rather than identifying a "true" model [@piironen_comparison:2017].
+
+The distinction has practical implications.
+In an $\mathcal{M}$-closed world, theoretical guarantees about convergence and optimality apply.
+In an $\mathcal{M}$-open world (where we actually live), these guarantees break down, and judgment becomes essential [@gelman_subjectiveobjective:2017; @navarro_betweenthedevilandthedeepbluesea:2018].
+
+This is why model selection requires more than just computing information criteria and selecting the minimum.
+We must consider the scientific context, check assumptions, examine multiple metrics, and acknowledge uncertainty.
+Statistical theory provides useful tools, but cannot replace domain knowledge and careful thinking about what we're trying to accomplish.
+
+## Key Takeaways
+
+Model comparison and selection involves subjective judgments [@gelman_subjectiveobjective:2017; @navarro_betweenthedevilandthedeepbluesea:2018].
+There is no purely objective, automatic way to identify the "best" model [@heinze_variableselection:2018].
+Several important principles guide good practice:
+
+1. **No single criterion is definitive.** Be skeptical of analyses that rely on a single metric (like "AIC selected this model") without additional justification [@heinze_variableselection:2018].
+
+2. **Transparency matters.** Make your assumptions and decision criteria explicit so others can evaluate and critique your choices [@doss-gollin_subjective:2023; @gelman_subjectiveobjective:2017].
+
+3. **Context and purpose guide selection.** Different applications may prioritize different aspects of model performance (e.g., tail behavior vs. central tendency, parsimony vs. flexibility) [@navarro_betweenthedevilandthedeepbluesea:2018].
+
+4. **Uncertainty about model form deserves attention.** When multiple models perform similarly, model averaging acknowledges this uncertainty rather than pretending we know the true model [@piironen_comparison:2017].
+
+Statistical modeling requires judgment informed by domain knowledge, diagnostic checking, and awareness of the assumptions underlying different selection criteria [@gelman_workflow:2020].
+Subjective does not mean arbitrary---we can and should use principled approaches while acknowledging the limits of formal procedures [@gelman_subjectiveobjective:2017].
+
+## References
+
+::: {#refs}
+:::

@@ -1,0 +1,36 @@
+---
+title: "Downscaling Methods Comparison"
+subtitle: "CEVE 543 - Fall 2025"
+date: 2025-11-14
+
+categories:
+  - Lecture
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+  typst:
+    fontsize: 11pt
+    margin:
+      x: 1in
+      y: 1in
+
+author: "{{< var instructor.name >}}"
+bibliography: ../../references.bib
+---
+
+## Today's Paper
+
+@lafferty_downscaling:2023
+
+## Discussion Questions
+
+### Example Question
+
+[TO BE FILLED IN]
+
+## References
+
+::: {#refs}
+:::
