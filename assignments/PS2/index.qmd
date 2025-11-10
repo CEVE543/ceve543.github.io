@@ -1,0 +1,175 @@
+---
+title: "PS2 (Due Nov 19)"
+subtitle: "Module 2 Questions"
+author: CEVE 543 Fall 2025
+due_date: "2025-11-19"
+date: "2025-10-15"
+type: "assignment"
+module: 2
+points: "10%"
+description: "Conceptual analysis of bias correction methods, temporal dependence modeling, and stochastic weather generation procedures"
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-block-bg: "#f8f8f8"
+    code-block-border-left: "#e1e4e5"
+    theme: simplex
+    number-sections: false
+    fig-format: svg
+  typst:
+    fontsize: 11pt
+    margin:
+      x: 1in
+      y: 1in
+    number-sections: false
+    fig-format: svg
+
+# Code formatting options
+code-overflow: wrap
+code-line-numbers: false
+code-block-font-size: "0.85em"
+---
+
+This problem set is designed to test your conceptual understanding of the modeling *procedures* and *assumptions* we've covered in Module 2.
+It is entirely "pen and paper."
+You will not write or run any code, although you may use code or a calculator to help with arithmetic.
+
+Your goal is to articulate *why* we choose certain methods, *how* those methods work procedurally, and *what* their critical limitations are.
+
+## Question 1
+
+We've focused on QQ-mapping to correct GCM bias.
+A simpler, older method is **Linear Scaling** (or "delta-change" for variance).
+This method works as follows:
+
+1. You calculate the historical `GCM_Mean`, `GCM_Std`, `Obs_Mean`, and `Obs_Std`.
+2. To "correct" a *future* GCM value (`GCM_Future_Val`), you "shift" and "scale" it:
+   `Corrected_Val = Obs_Mean + (GCM_Future_Val - GCM_Mean) * (Obs_Std / GCM_Std)`
+
+**(a):** You have the following statistics:
+
+- GCM (Hist) Mean = 20$^\circ$C, GCM (Hist) Std = 3$^\circ$C
+- Obs (Hist) Mean = 15$^\circ$C, Obs (Hist) Std = 2$^\circ$C
+
+A future GCM projects a day with a temperature of **26$^\circ$C**.
+What is the corrected temperature using **Linear Scaling**?
+Show your calculation.
+
+**(b)** In 1-2 sentences, describe the *one* bias this method corrects and the *one* bias it scales.
+
+**(c):** Imagine a GCM is "too Gaussian"—it has a perfect bell-curve shape, but observations are heavily *skewed* (e.g., lots of low values, long tail of high values).
+Why would the **Linear Scaling** method *fail* to create a realistic distribution of corrected values?
+In your answer, consider what aspects of the distribution's shape (beyond mean and standard deviation) are important.
+Include a sketch showing the GCM distribution, the observed distribution, and the corrected distribution after Linear Scaling to illustrate your explanation.
+
+**(d):** In 2-3 sentences, explain *why* **QQ-mapping** *would* successfully fix this "skew" problem when Linear Scaling fails.
+In your answer, explicitly discuss the role of the inverse CDF (or quantile function) in the QQ-mapping procedure.
+
+## Question 2
+
+You used HMMs to model weather, which have "memory" (the next state depends on the current state).
+A simpler alternative is to treat each day as independent.
+
+You use a simple **K-Means Clustering** model on large-scale atmospheric data.
+You find two clusters, "Cluster 0" (Dry) and "Cluster 1" (Wet).
+You find that "Cluster 0" occurs 70% of the time and "Cluster 1" occurs 30% of the time.
+
+**(a)** Using this model, what is the probability of getting a 3-day wet spell (i.e., Day 1 is "Wet", Day 2 is "Wet", AND Day 3 is "Wet")?
+Show your calculation.
+
+**(b)** Now, you use a 2-state **Hidden Markov Model (HMM)**.
+You get this transition matrix:
+
+```
+      To: Dry   To: Wet
+From: Dry  [ 0.95,   0.05 ]
+From: Wet  [ 0.10,   0.90 ]
+```
+
+Assuming the "stationary" probability of being in the "Wet" state is 30% (just like in 2a), what is the probability of a 3-day wet spell *using the HMM*?
+Show your calculation.
+
+**(c)** Compare your answers from (a) and (b).
+In 2-3 sentences, explain *why* the HMM is critically important for modeling *persistence* (like droughts or wet spells) in a way the K-Means model is not.
+
+## Question 3
+
+You conduct the following weather typing analysis:
+
+1. You have $n = 1000$ days of sea-level pressure data at $p = 500$ grid cells, stored in matrix $\mathbf{X}$ (dimensions: $n \times p$)
+2. You perform PCA and retain $k = 4$ principal components
+3. You transform your data to PC space: $\mathbf{Z} = \mathbf{X} \mathbf{V}_k$, where $\mathbf{V}_k$ contains the first $k$ eigenvectors (PC loadings)
+4. You run K-means clustering with $m = 3$ clusters on the PC scores $\mathbf{Z}$
+5. K-means returns cluster centroids $\mathbf{C}$ in PC space (dimensions: $m \times k$)
+
+You want to visualize what Cluster 1 "looks like" by creating a composite pressure pattern.
+You have two options:
+
+- **Option A**: Transform the centroid from PC space back to the original 500-dimensional space
+- **Option B**: Calculate the mean of all days assigned to Cluster 1 in the original space
+
+**(a)** For **Option A**, write the mathematical formula to transform centroid $\mathbf{c}_1$ (the first row of $\mathbf{C}$, dimensions: $1 \times k$) back to the original pressure space.
+Your answer should use the notation $\mathbf{c}_1$, $\mathbf{V}_k$, and the mean vector $\boldsymbol{\mu}$ (dimensions: $1 \times p$) that was subtracted before PCA.
+What are the dimensions of the resulting reconstructed pattern?
+
+**(b)** In 2-3 sentences, explain why **Option A** (reconstructing from the centroid) and **Option B** (averaging original days) will give *different* results.
+What information is lost when you use only $k = 4$ PCs instead of all $p = 500$ dimensions?
+
+**(c)** In 2-3 sentences, explain when you would prefer Option A versus Option B for interpreting your weather types.
+Consider what each option reveals about the cluster structure.
+
+## Question 4
+
+You fit two models to precipitation data and calculate the following information criteria:
+
+- **Simple Model** (2 parameters): AIC = 450, BIC = 458
+- **Complex Model** (6 parameters): AIC = 442, BIC = 466
+
+**(a)** Which model would you select based on AIC?
+Which would you select based on BIC?
+
+**(b)** In 1-2 sentences, explain why AIC and BIC disagree in this case.
+What does each criterion prioritize?
+
+**(c)** You plan to use the selected model for **climate change impact assessment** 50 years into the future.
+In 2-3 sentences, explain why the "M-open" perspective suggests that neither criterion may identify the "true" model, and how this affects your interpretation of the model selection results.
+
+## Question 5
+
+You are bias-correcting precipitation using two methods: the **Delta Method** and **Quantile Delta Mapping (QDM)**.
+
+Historical data:
+
+- GCM 95th percentile: 40 mm/day
+- GCM 50th percentile: 10 mm/day
+- Observed 95th percentile: 50 mm/day
+- Observed 50th percentile: 12 mm/day
+
+Future GCM projects:
+
+- 95th percentile increases to 48 mm/day (20% increase from 40)
+- 50th percentile increases to 11 mm/day (10% increase from 10)
+
+**(a)** Using the **multiplicative Delta Method**, what are the corrected future values for both the 50th and 95th percentiles?
+Show your calculations.
+
+**(b)** Using **QDM** (which preserves the *relative* change at each quantile), what are the corrected future values?
+Show your calculations.
+
+**(c)** In 2-3 sentences, explain what assumption QDM makes that the Delta Method doesn't.
+Why might this be important for extreme precipitation (high percentiles) versus typical precipitation (median)?
+
+## Question 6
+
+Consider the comparison between the deep learning approach in @vandal_deepsd:2017 and the process-informed stochastic weather generator in @steinschneider_generator:2019.
+
+**(a)** In 2-3 sentences, explain what @vandal_deepsd:2017 assumes to be **stationary** (unchanged between historical and future climate) and what it allows to be **non-stationary** (able to change).
+Consider both spatial patterns and statistical relationships.
+
+**(b)** @steinschneider_generator:2019 explicitly separates changes in **weather regime frequencies** (dynamical changes) from changes in **within-regime precipitation intensities** (thermodynamic changes).
+In 2-3 sentences, explain why this separation is useful for climate change applications and what physical understanding motivates this approach.
+
+**(c)** In 2-3 sentences, describe one advantage and one disadvantage of the deep learning approach compared to the process-informed approach.
+Consider factors such as: amount of training data needed, interpretability, physical constraints, and ability to extrapolate beyond training conditions.
