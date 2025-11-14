@@ -1,0 +1,128 @@
+---
+title: "Debate: Weather Generators vs Downscaling"
+subtitle: "CEVE 543 - Fall 2025"
+date: 2025-11-17
+
+categories:
+  - Lecture
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+  typst:
+    fontsize: 11pt
+    margin:
+      x: 1in
+      y: 1in
+
+author: "{{< var instructor.name >}}"
+bibliography: ../../references.bib
+---
+
+## Objective
+
+To prepare for our in-class debate, use this document to organize your thoughts.
+You will be assigned to one of two "consulting firms" and must pitch your assigned model to a "City Council" as the best tool for a critical infrastructure project.
+Prepare your arguments for both sides.
+You will not know which firm you are assigned to until class begins.
+
+## The Case Study
+
+The client is a city in the Sierra Nevada foothills.
+The project is designing a new, multi-billion dollar stormwater drainage and reservoir system.
+The engineers are worried about two specific climate scenarios that could cause catastrophic failure:
+
+1. Failure Mode 1: The system failing after a long (e.g., 5-7 day) period of persistent, moderate rain that saturates the soil.
+
+2. Failure Mode 2: The system failing because a very intense, but small-scale, convective storm (thunderstorm) "parks" over a single critical sub-watershed.
+
+## The "Consulting Firms"
+
+### Firm A: "Process-Informed Solutions"
+
+Your product is the Stochastic Weather Generator described in @steinschneider_generator:2019.
+Your philosophy: We build models from the "bottom-up" based on known physical processes (weather regimes, HMMs, thermodynamics).
+We do not trust GCMs.
+Our models are tools for exploring sensitivity and "what-if" storylines.
+
+### Firm B: "Data-Driven Analytics"
+
+Your product is the @vandal_deepsd:2017 deep learning downscaling model.
+Your philosophy: We build models that learn complex patterns from data.
+
+## Part 1: Your "Pitch"
+
+Prepare arguments for your assigned firm.
+Since you don't know which firm you'll represent, prepare both!
+
+### Firm A Prep
+
+#### Your "Elevator Pitch" (1-2 sentences)
+
+Why is your "process-informed" model the safest, most responsible choice for this multi-billion dollar project?
+
+#### Handling Failure Mode 1
+
+This is your strength.
+Explain why your model (specifically, the HMM component) is the perfect tool to evaluate this risk.
+
+#### Handling Failure Mode 2
+
+This is your weakness.
+First, state the weakness honestly (e.g., "Our model is point-based and does not explicitly model spatial patterns...").
+Now, defend it.
+How will you mitigate this?
+For example: "We would pair this with a spatial disaggregator..." or "The temporal risk is the true driver of failure, and our competitors miss it completely...".
+
+### Firm B Prep
+
+#### Your "Elevator Pitch" (1-2 sentences)
+
+Why is your "data-driven" model the most advanced and spatially realistic choice for this project?
+
+#### Handling Failure Mode 2
+
+This is your strength.
+Explain why your model (specifically, the CNN's "image processing" ability) is the only tool that can realistically capture this risk.
+
+#### Handling Failure Mode 1
+
+This is your weakness.
+First, state the weakness honestly (e.g., "Our model treats each day as a separate 'image' and has no explicit 'memory'...").
+Now, defend it.
+How will you mitigate this?
+For example: "The GCM's low-res input provides the temporal sequence..." or "We can use a post-processing temporal model..." or "We can train a spatio-temporal version of the model, like a ConvLSTM...".
+
+## Part 2: "Cross-Examination"
+
+Prepare questions for the other team.
+Write 2-3 "tough" questions for your opponent.
+
+Example questions:
+
+- "Your model is point-based. How can you possibly claim to protect us from a spatial storm event? Aren't you just ignoring the biggest risk?"
+- "Your model is a 'sensitivity' tool where the user 'turns the knobs.' How is that a projection? Aren't you just making up a future instead of forecasting one?"
+
+### Questions for Firm B (Vandal)
+
+Example questions:
+
+- "Your model is a 'black box.' You can't even explain why it gets an answer. How can we bet billions of dollars on a model no one understands?"
+- "Your model's core assumption is 'stationarity'—that the relationship between GCMs and reality is fixed. Isn't that assumption guaranteed to fail in a changing climate, leaving us vulnerable?"
+
+## Preparing for Class
+
+Before class on 11/17, complete your prep for both firms.
+Think carefully about:
+
+1. The fundamental trade-offs between process-based and data-driven approaches
+2. How you would honestly acknowledge your model's limitations while still making a compelling case
+3. The types of questions that would expose the weaknesses of each approach
+
+During class, you will be randomly assigned to a firm and must present your arguments to the "City Council" (your classmates and instructor).
+
+## References
+
+::: {#refs}
+:::
