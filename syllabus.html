@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CEVE 543: Hydroclimate Hazard and Extremes – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./schedule.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-52fa22bea7520e4fe9e21a0162a18092.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="CEVE 543: Hydroclimate Hazard and Extremes – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Fall 2026">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">CEVE 543: Hydroclimate Hazard and Extremes</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CEVE 543</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://www.github.com/CEVE543/ceve543.github.io" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Reference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assessments/final-project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final project</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-information" id="toc-course-information" class="nav-link active" data-scroll-target="#course-information">Course information</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#course-objectives" id="toc-course-objectives" class="nav-link" data-scroll-target="#course-objectives">Course objectives</a></li>
+  <li><a href="#prerequisites-and-preparation" id="toc-prerequisites-and-preparation" class="nav-link" data-scroll-target="#prerequisites-and-preparation">Prerequisites and preparation</a></li>
+  <li><a href="#required-materials" id="toc-required-materials" class="nav-link" data-scroll-target="#required-materials">Required materials</a></li>
+  </ul></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a>
+  <ul class="collapse">
+  <li><a href="#participation" id="toc-participation" class="nav-link" data-scroll-target="#participation">Participation</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice problems</a></li>
+  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
+  <li><a href="#written-tests" id="toc-written-tests" class="nav-link" data-scroll-target="#written-tests">Written tests</a></li>
+  <li><a href="#oral-examinations" id="toc-oral-examinations" class="nav-link" data-scroll-target="#oral-examinations">Oral examinations</a></li>
+  <li><a href="#final-project" id="toc-final-project" class="nav-link" data-scroll-target="#final-project">Final project</a></li>
+  </ul></li>
+  <li><a href="#a-community-of-learning" id="toc-a-community-of-learning" class="nav-link" data-scroll-target="#a-community-of-learning">A community of learning</a>
+  <ul class="collapse">
+  <li><a href="#ai-policy" id="toc-ai-policy" class="nav-link" data-scroll-target="#ai-policy">AI policy</a></li>
+  <li><a href="#device-policy" id="toc-device-policy" class="nav-link" data-scroll-target="#device-policy">Device policy</a></li>
+  <li><a href="#recording" id="toc-recording" class="nav-link" data-scroll-target="#recording">Recording</a></li>
+  <li><a href="#diversity-and-inclusion" id="toc-diversity-and-inclusion" class="nav-link" data-scroll-target="#diversity-and-inclusion">Diversity and inclusion</a></li>
+  <li><a href="#accommodation-for-students-with-disabilities" id="toc-accommodation-for-students-with-disabilities" class="nav-link" data-scroll-target="#accommodation-for-students-with-disabilities">Accommodation for students with disabilities</a></li>
+  <li><a href="#accommodation-for-scheduling-conflicts" id="toc-accommodation-for-scheduling-conflicts" class="nav-link" data-scroll-target="#accommodation-for-scheduling-conflicts">Accommodation for scheduling conflicts</a></li>
+  <li><a href="#mental-health" id="toc-mental-health" class="nav-link" data-scroll-target="#mental-health">Mental health</a></li>
+  <li><a href="#title-ix" id="toc-title-ix" class="nav-link" data-scroll-target="#title-ix">Title IX</a></li>
+  </ul></li>
+  <li><a href="#course-logistics" id="toc-course-logistics" class="nav-link" data-scroll-target="#course-logistics">Course logistics</a>
+  <ul class="collapse">
+  <li><a href="#canvas" id="toc-canvas" class="nav-link" data-scroll-target="#canvas">Canvas</a></li>
+  <li><a href="#late-work" id="toc-late-work" class="nav-link" data-scroll-target="#late-work">Late work</a></li>
+  <li><a href="#syllabus-change-policy" id="toc-syllabus-change-policy" class="nav-link" data-scroll-target="#syllabus-change-policy">Syllabus change policy</a></li>
+  <li><a href="#rice-honor-code" id="toc-rice-honor-code" class="nav-link" data-scroll-target="#rice-honor-code">Rice Honor Code</a></li>
+  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">Collaboration</a></li>
+  </ul></li>
+  <li><a href="#course-schedule" id="toc-course-schedule" class="nav-link" data-scroll-target="#course-schedule">Course schedule</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">CEVE 543: Hydroclimate Hazard and Extremes</h1>
+<p class="subtitle lead">Fall 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="course-information" class="level2">
+<h2 class="anchored" data-anchor-id="course-information">Course information</h2>
+<p>Registrar title: CEVE 543, Statistical-Physical Methods for Hydroclimate Extremes and Catastrophes.</p>
+<div class="columns course-details">
+<div class="column" style="width:50%;">
+<section id="instructor" class="level3">
+<h3 class="anchored" data-anchor-id="instructor">Instructor</h3>
+<ul>
+<li><i class="fa-solid fa-user" title="Name" aria-label="user"></i> <span class="ms-1"><a href="https://dossgollin-lab.github.io">James Doss-Gollin</a></span></li>
+<li><i class="fa-solid fa-envelope" title="Email" aria-label="envelope"></i> <span class="ms-1"><a href="mailto:jdossgollin@rice.edu">jdossgollin@rice.edu</a></span></li>
+<li><i class="fa-solid fa-building" title="Office" aria-label="building"></i> <span class="ms-2">Ryon 215</span></li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="meetings" class="level3">
+<h3 class="anchored" data-anchor-id="meetings">Meetings</h3>
+<ul>
+<li><i class="fa-solid fa-calendar" title="Class Days" aria-label="calendar"></i> MWF</li>
+<li><i class="fa-solid fa-clock" title="Class Time" aria-label="clock"></i> 1:00-1:50 pm</li>
+<li><i class="fa-solid fa-comments" title="Office Hours" aria-label="comments"></i> Office hours by appointment; email to arrange</li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Engineering design, financial risk management, and emergency management protocols all rest on estimates of the frequency, severity, and duration of weather and climate extremes. In this course, you will learn to apply tools from statistics, hydrology, and climate science to answer questions like:</p>
+<ol type="1">
+<li>How often does a wind gust at a given facility exceed its design threshold, and is that frequency changing?</li>
+<li>What is the distribution of expected annual flood loss for a portfolio spread across a large region?</li>
+<li>What is the probability that a reservoir does not have adequate inflows to meet specified water demands?</li>
+<li>Do large-ensemble simulations (event sets) generated by AI weather models credibly represent the characteristics of local and regional hydroclimate hazards?</li>
+</ol>
+<section id="course-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="course-objectives">Course objectives</h3>
+<p>By the end of this course, you will be able to:</p>
+<ol type="1">
+<li>Frame an engineering or financial decision as a risk analysis problem, identifying the scales, processes, and quantities that have to be estimated.</li>
+<li>Implement extreme value models, time series analysis, regional pooling, and event set generation to quantify the probability distribution of decision-relevant intensity measures, and propagate parameter and sampling uncertainty through to the answer.</li>
+<li>Choose appropriate methods for a given problem, defend those choices, and communicate their assumptions and limitations to technical and non-technical audiences.</li>
+<li>Use (and choose not to use) AI tools appropriately and responsibly in support of (i) achieving learning objectives and (ii) analyzing hydroclimate hazard.</li>
+</ol>
+</section>
+<section id="prerequisites-and-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-and-preparation">Prerequisites and preparation</h3>
+<ul>
+<li>A course in applied statistics beyond introduction to probability; you should be familiar with probability density and mass functions, cumulative distribution functions, expectation, variance, and conditional distributions, and you should have built and analyzed regression models.</li>
+<li>Linear algebra: matrix notation and basic operations.</li>
+<li>Programming experience in Julia, Python, R, MATLAB, or another language. The course uses Julia. Prior Julia experience is not required; prior programming experience is strongly encouraged.</li>
+</ul>
+<p>This is a graduate course, and I expect you to bring domain knowledge from your own work or research. Your expertise will differ from your classmates’, and the discussions are better for it.</p>
+</section>
+<section id="required-materials" class="level3">
+<h3 class="anchored" data-anchor-id="required-materials">Required materials</h3>
+<p>No textbook is required. Lecture notes written for this course serve as the textbook and are released weekly. Readings are drawn from published papers, agency documents, and industry references, provided through the course website or Canvas.</p>
+<p>You need a computer you can install software on. If you do not have access to one, contact me as soon as possible so we can make arrangements.</p>
+<p>You also need to pay for a subscription to Claude Code, which costs $20 per month. If the cost is a hardship, contact me and we will make arrangements.</p>
+</section>
+</section>
+<section id="assessment" class="level2">
+<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Participation</td>
+<td style="text-align: left;">10%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Labs</td>
+<td style="text-align: left;">10%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Written tests (2)</td>
+<td style="text-align: left;">30%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oral examinations (2)</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Final project</td>
+<td style="text-align: left;">30%</td>
+</tr>
+</tbody>
+</table>
+<p>There is no final exam. The final project defense is scheduled in the course’s final examination slot.</p>
+<section id="participation" class="level3">
+<h3 class="anchored" data-anchor-id="participation">Participation</h3>
+<p>Participation is judged on preparation and effort, not on correctness. To earn full points:</p>
+<ul>
+<li>Attend class, and tell me when you cannot.</li>
+<li>Do the reading and the pre-work, and submit your reading questions.</li>
+<li>Take part in discussion, and answer as best you can when called on.</li>
+</ul>
+<p>We will use a software called <em>Poll Everywhere</em> to make interactive questions in class, and you should use your Rice NetID as a screen name to document your in-class participation.</p>
+</section>
+<section id="practice-problems" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problems">Practice problems</h3>
+<p>Practice problems are published with the reading each week. They are not graded and not submitted, but you are encouraged to work on them to prepare for exams, and we will work on problems in class (typically Wednesdays).</p>
+</section>
+<section id="labs" class="level3">
+<h3 class="anchored" data-anchor-id="labs">Labs</h3>
+<p>A lab accompanies most weeks. We start it together in the Friday session and you finish it on your own; it is due on Canvas one week after that session, as a rendered PDF plus a link to your repository.</p>
+<p>Each lab is worth 3 points, and I grade the answers you write in the lab rather than your code:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Points</th>
+<th style="text-align: left;">What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">A thoughtful answer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">A quick answer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">You turned it in</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">You did not turn it in</td>
+</tr>
+</tbody>
+</table>
+<p>Your two lowest labs are dropped. These are meant to be free points: everyone who does the work and writes down what they found gets nearly all of them, and there is no autograder deciding whether your code matches mine.</p>
+</section>
+<section id="written-tests" class="level3">
+<h3 class="anchored" data-anchor-id="written-tests">Written tests</h3>
+<p>Two exams will be drawn from questions like the published practice problems, and from the labs.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Test</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Test 1</td>
+<td style="text-align: left;">Fri Oct 16</td>
+<td style="text-align: left;">Weeks 1-7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test 2</td>
+<td style="text-align: left;">Mon Nov 30</td>
+<td style="text-align: left;">Weeks 8-14</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="oral-examinations" class="level3">
+<h3 class="anchored" data-anchor-id="oral-examinations">Oral examinations</h3>
+<p>Each student completes two oral examinations, one following each written test. Each oral exam will take approximately 15 minutes.</p>
+<p>Oral exams will be recorded so that grading can be audited for consistency. The questions will come from the same question bank as the written exams, but I may interrupt to see you follow-up more clearly. We will discuss oral exams in-class and practice before you have graded exams.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Orals</th>
+<th style="text-align: left;">When</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Format introduction, rubric walkthrough, and a demonstration oral</td>
+<td style="text-align: left;">Fri Sep 11, in class</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oral 1, covering weeks 1-7</td>
+<td style="text-align: left;">By signup, weeks 9-10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oral 2, covering weeks 8-14</td>
+<td style="text-align: left;">By signup, week 15</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="final-project" class="level3">
+<h3 class="anchored" data-anchor-id="final-project">Final project</h3>
+<p>The final project will give you an opportunity to:</p>
+<ol type="1">
+<li>Develop understanding of a new method or technique beyond what we have covered in class</li>
+<li>Get guided practice applying the core tools and techniques from this class to an open-ended hydroclimate hazard assessment problem.</li>
+</ol>
+<p>See the <a href="./assessments/final-project/index.html">final project page</a> for the full description and deadlines for the final project.</p>
+</section>
+</section>
+<section id="a-community-of-learning" class="level2">
+<h2 class="anchored" data-anchor-id="a-community-of-learning">A community of learning</h2>
+<p>Course success is a shared responsibility of the instructor and the student.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p>As the instructor, <strong>my responsibility</strong> is to give you the structure and the opportunity to learn. I commit to:</p>
+<ul>
+<li>provide organized and focused lectures, activities, and assignments;</li>
+<li>ask for and act on feedback about the course;</li>
+<li>manage the classroom atmosphere to promote learning;</li>
+<li>hold sufficient office hours;</li>
+<li>allow adequate time for assignments;</li>
+<li>make materials, policies, and activities accessible.</li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<p>Students are responsible for their own learning. It is <strong>your responsibility</strong> to:</p>
+<ul>
+<li>attend class;</li>
+<li>do the preparatory work before class;</li>
+<li>participate actively in discussion;</li>
+<li>start assignments early;</li>
+<li>come to office hours as needed.</li>
+</ul>
+</div>
+</div>
+<section id="ai-policy" class="level3">
+<h3 class="anchored" data-anchor-id="ai-policy">AI policy</h3>
+<p>There is no blanket ban on AI in this course. The labs assume you will use an LLM, and they use Claude Code, so you need access to it.</p>
+<p>Three principles govern AI use:</p>
+<ol type="1">
+<li>Shared responsibility: I commit to teaching you; you commit to learning. If you use AI to bypass thinking, such as generating code you do not understand, you cheat yourself of the skills you are spending your time (and money!) to learn.</li>
+<li>Assessment design: most of the grade comes from oral examinations and in-person written tests, which are hard to game with a model.</li>
+<li>Open dialogue: we will talk in class about how we are using these tools. That means being able to admit AI use without being shamed for it, and being willing to hear constructive criticism of misuse.</li>
+</ol>
+<p>Conceptual practice problems allow neither code nor generated prose. Written tests and oral examinations are closed-book and closed-model.</p>
+<p>The policy binds me too. I may use a model to draft a rubric or revise website content, but your work will not be graded by a model, and I will not use one to write code or text I do not fully understand.</p>
+<p>See the <a href="./ai.html">AI policy page</a> for detail.</p>
+</section>
+<section id="device-policy" class="level3">
+<h3 class="anchored" data-anchor-id="device-policy">Device policy</h3>
+<p>We meet for fewer than three hours per week, so we want to make the most of this limited class time. To help us do that, please be fully present and disconnected during class time, except during lab exercises or online polls. Please get in the habit of taking notes with pen and paper, or using a a tablet used flat on the desk for handwritten notes.</p>
+</section>
+<section id="recording" class="level3">
+<h3 class="anchored" data-anchor-id="recording">Recording</h3>
+<p>Video or audio recording of class, including through transcription tools, is not permitted. This includes</p>
+</section>
+<section id="diversity-and-inclusion" class="level3">
+<h3 class="anchored" data-anchor-id="diversity-and-inclusion">Diversity and inclusion</h3>
+<p>Our goal is an inclusive learning environment where everyone is comfortable, regardless of social identity, background, or specific learning needs. As engineers, our work touches many critical aspects of society, and questions of inclusion cannot be separated from systems analysis, objective selection, risk analysis, and trade-offs.</p>
+<p>Members of this class community are expected to be respectful and inclusive in all communications. We ask all participants to share their experiences, values, and beliefs; to be open to and respectful of the views of others; and to communicate respectfully.</p>
+<p>[Credit: <a href="https://github.com/vsrikrish/environmental-systems-analysis/blob/Fall24/syllabus.qmd">Vivek Srikrishnan, Cornell</a>]</p>
+</section>
+<section id="accommodation-for-students-with-disabilities" class="level3">
+<h3 class="anchored" data-anchor-id="accommodation-for-students-with-disabilities">Accommodation for students with disabilities</h3>
+<p>If you have a documented disability or other condition that may affect academic performance you should: (1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / <a href="mailto:adarice@rice.edu">adarice@rice.edu</a> / x5841) to determine the accommodations you need; and (2) talk with me to discuss your accommodation needs.</p>
+<p>Accommodations that affect the oral examination format should be arranged before the first oral examination.</p>
+</section>
+<section id="accommodation-for-scheduling-conflicts" class="level3">
+<h3 class="anchored" data-anchor-id="accommodation-for-scheduling-conflicts">Accommodation for scheduling conflicts</h3>
+<p>If any class meeting conflicts with a religious observance, student athletics, or another non-negotiable commitment, tell me as soon as possible so we can make arrangements. This matters most for the oral examinations, which are scheduled by signup.</p>
+</section>
+<section id="mental-health" class="level3">
+<h3 class="anchored" data-anchor-id="mental-health">Mental health</h3>
+<p>Your wellbeing matters to your work in this course and beyond it. Rice provides cost-free, confidential mental health services through the <a href="https://wellbeing.rice.edu/">Wellbeing and Counseling Center</a>. If stress, anxiety, or anything else is making it hard to keep up, reach out to them, and tell me if I can help.</p>
+</section>
+<section id="title-ix" class="level3">
+<h3 class="anchored" data-anchor-id="title-ix">Title IX</h3>
+<p>I am a mandatory reporter. If you tell me about an experience of sexual harassment, sexual assault, dating or domestic violence, or stalking, I am required to report it to the Rice Title IX Coordinator. For confidential support with no obligation to report, contact <a href="https://safe.rice.edu/">The SAFE Office</a> or the <a href="https://wellbeing.rice.edu/">Wellbeing and Counseling Center</a>. The <a href="https://titleix.rice.edu/">Title IX office</a> explains your options and resources.</p>
+</section>
+</section>
+<section id="course-logistics" class="level2">
+<h2 class="anchored" data-anchor-id="course-logistics">Course logistics</h2>
+<section id="canvas" class="level3">
+<h3 class="anchored" data-anchor-id="canvas">Canvas</h3>
+<p>The Canvas site is at <a href="https://canvas.rice.edu/courses/92734">https://canvas.rice.edu/courses/92734</a>. Canvas is used for grades and for material that cannot be public. The course website is updated faster. <strong>If the website and Canvas conflict, the website is correct.</strong></p>
+<p>Practice problems are posted to Canvas as PDFs. Labs and lecture notes are on the course website.</p>
+</section>
+<section id="late-work" class="level3">
+<h3 class="anchored" data-anchor-id="late-work">Late work</h3>
+<p>Practice problems are never submitted, so there is nothing to turn in late.</p>
+<p>Labs are due one week after the session that starts them, which is already a week of slack for a busy stretch. Late labs are not accepted, and dropping your two lowest labs is how the course absorbs a missed week. If you are going to miss more than two because of something serious, come talk to me rather than letting them lapse.</p>
+<p>Written tests and oral examinations are scheduled events. If you must miss one because of illness, family emergency, or unavoidable research travel, tell me as soon as you can and we will arrange a make-up. Make-ups require documentation.</p>
+<p>The <a href="./assessments/final-project/index.html">final project page</a> carries that project’s deadlines. Extensions must be arranged in advance.</p>
+</section>
+<section id="syllabus-change-policy" class="level3">
+<h3 class="anchored" data-anchor-id="syllabus-change-policy">Syllabus change policy</h3>
+<p>This syllabus is a guide and is subject to change with notice. All changes are tracked in git and visible on the <a href="https://www.github.com/CEVE543/ceve543.github.io">course repository</a>.</p>
+</section>
+<section id="rice-honor-code" class="level3">
+<h3 class="anchored" data-anchor-id="rice-honor-code">Rice Honor Code</h3>
+<p>All students will be held to the standards of the Rice Honor Code, which you pledged to honor when you matriculated. If you are unfamiliar with the details of this code and how it is administered, consult the Honor System Handbook at <a href="https://honor.rice.edu/honor-system-handbook/">honor.rice.edu/honor-system-handbook/</a>. The handbook outlines the University’s expectations for the integrity of your academic work, the procedures for resolving alleged violations, and the rights and responsibilities of students and faculty throughout the process.</p>
+</section>
+<section id="collaboration" class="level3">
+<h3 class="anchored" data-anchor-id="collaboration">Collaboration</h3>
+<p>You are encouraged to work together on practice problems and labs; the purpose is for you to strengthen your learning, and a lab is graded on the answers you write rather than on whether your code matches anyone else’s. You may work together on final projects by providing feedback on presentations and written documents, but must turn in your own work.</p>
+</section>
+</section>
+<section id="course-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="course-schedule">Course schedule</h2>
+<p>The week-by-week schedule is on the <a href="./schedule.html">schedule page</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Home">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./schedule.html" class="pagination-link" aria-label="Schedule">
+        <span class="nav-page-text">Schedule</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

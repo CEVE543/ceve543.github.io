@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Software Reference – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assessments/final-project/index.html" rel="next">
+<link href="./ai.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Software Reference – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Software Reference</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./_assets/logos/Rice_Logo_280_Blue.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CEVE 543</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://www.github.com/CEVE543/ceve543.github.io" title="Github Repository" class="quarto-navigation-tool px-1" aria-label="Github Repository"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stack.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Software Reference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assessments/final-project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final project</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#your-weekly-workflow" id="toc-your-weekly-workflow" class="nav-link active" data-scroll-target="#your-weekly-workflow">Your weekly workflow</a>
+  <ul class="collapse">
+  <li><a href="#the-lab-loop" id="toc-the-lab-loop" class="nav-link" data-scroll-target="#the-lab-loop">The lab loop</a></li>
+  <li><a href="#turning-in-a-lab" id="toc-turning-in-a-lab" class="nav-link" data-scroll-target="#turning-in-a-lab">Turning in a lab</a></li>
+  </ul></li>
+  <li><a href="#using-the-tools" id="toc-using-the-tools" class="nav-link" data-scroll-target="#using-the-tools">Using the tools</a>
+  <ul class="collapse">
+  <li><a href="#the-julia-repl" id="toc-the-julia-repl" class="nav-link" data-scroll-target="#the-julia-repl">The Julia REPL</a></li>
+  <li><a href="#quarto-preview" id="toc-quarto-preview" class="nav-link" data-scroll-target="#quarto-preview">Quarto preview</a></li>
+  <li><a href="#environments-and-packages" id="toc-environments-and-packages" class="nav-link" data-scroll-target="#environments-and-packages">Environments and packages</a></li>
+  </ul></li>
+  <li><a href="#getting-unstuck" id="toc-getting-unstuck" class="nav-link" data-scroll-target="#getting-unstuck">Getting unstuck</a>
+  <ul class="collapse">
+  <li><a href="#when-something-breaks" id="toc-when-something-breaks" class="nav-link" data-scroll-target="#when-something-breaks">When something breaks</a></li>
+  <li><a href="#claude-code" id="toc-claude-code" class="nav-link" data-scroll-target="#claude-code">Claude Code</a></li>
+  <li><a href="#reference-links" id="toc-reference-links" class="nav-link" data-scroll-target="#reference-links">Reference links</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/stack.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Software Reference</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>You install everything once, in the <a href="./labs/lab-01/index.html">Lab 1 setup</a>. This page covers what comes after: what you do every week, how to use the tools, and where to look when something breaks.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Helper
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are debugging your code with the help of an AI tool, share this URL so that it has access to the most relevant context.</p>
+</div>
+</div>
+<section id="your-weekly-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="your-weekly-workflow">Your weekly workflow</h2>
+<section id="the-lab-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-lab-loop">The lab loop</h3>
+<p>Every lab follows the same rhythm:</p>
+<ol type="1">
+<li>Open the week’s template link from Canvas and create your copy of the lab repository.</li>
+<li>Clone it with <a href="https://desktop.github.com/">GitHub Desktop</a> (or another tool if you’re comfortable). <strong>IMPORTANT:</strong> do not clone into a folder that Google Drive or OneDrive or any other cloud service syncs. Git does not play nicely with these cloud services.</li>
+<li>Open it from GitHub Desktop (Repository &gt; Open in Visual Studio Code), which opens the lab folder.</li>
+<li>Open <code>index.qmd</code>.</li>
+<li>Run the first code cell; the Julia extension starts a REPL, and the cell selects the lab’s environment and installs its packages.</li>
+<li>Work through the notebook cell by cell, editing and re-running as you go.</li>
+<li>Commit, push, render to PDF, and upload it to Canvas, as described under <a href="#turning-in-a-lab">Turning in a lab</a>.</li>
+</ol>
+<p>The <em>first run</em> of that cell downloads and precompiles everything the lab needs, which can take several minutes. That is normal, and it only happens once per lab.</p>
+</section>
+<section id="turning-in-a-lab" class="level3">
+<h3 class="anchored" data-anchor-id="turning-in-a-lab">Turning in a lab</h3>
+<p>A lab is due on Canvas one week after the Friday session that starts it. You turn in two things: a rendered PDF of your notebook, and a link to your repository.</p>
+<ol type="1">
+<li><p>Fill in every <strong>Your answer</strong> block in the notebook.</p></li>
+<li><p>Commit and push, with GitHub Desktop or by asking Claude Code to do it.</p></li>
+<li><p>Render the PDF. In the terminal, from the lab folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="ex">quarto</span> render index.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This writes <code>index.pdf</code> beside the notebook. Use <code>--to typst</code> rather than <code>--to pdf</code>: Typst ships with Quarto, and <code>--to pdf</code> expects a LaTeX installation you probably do not have.</p></li>
+<li><p>Upload <code>index.pdf</code> to that week’s Canvas assignment, and paste your repository link into the same submission.</p></li>
+</ol>
+<p>Rendering runs the whole notebook from the top in a fresh process. A lab that renders cleanly is one that does not depend on leftover REPL state, so this is also the check that your work reproduces correctly. If the render fails and you cannot fix it, upload what you have and say where it broke.</p>
+</section>
+</section>
+<section id="using-the-tools" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-tools">Using the tools</h2>
+<p>There are two ways to run your lab notebooks. As a general rule, work mostly in the REPL, and check with a render or preview as needed.</p>
+<section id="the-julia-repl" class="level3">
+<h3 class="anchored" data-anchor-id="the-julia-repl">The Julia REPL</h3>
+<p>Each <code>{julia}</code> cell has a <strong>Run Cell</strong> button above it, and <code>Shift+Enter</code> runs the current cell and moves to the next. Code is sent to the Julia REPL, short for read-eval-print loop: the <code>julia&gt;</code> prompt takes one expression, works it out, prints the answer, and waits for the next one, keeping everything you have defined so far. See <a href="https://www.julia-vscode.org/docs/stable/userguide/runningcode/">Running code in the Julia extension</a> for the editor’s version of it, and the <a href="https://docs.julialang.org/en/v1/stdlib/REPL/">Julia manual’s REPL chapter</a> for the full reference.</p>
+<p>When you run code in the REPL, you will see outputs in three places:</p>
+<ul>
+<li><strong>Values</strong> (numbers, DataFrames, fitted models) render inline in the editor at the end of the cell, and also in the REPL panel.</li>
+<li><strong>Plots</strong> open in the Julia extension’s plot pane, a panel beside the editor that keeps a history of your plots.</li>
+<li><strong>Printed text</strong> (<code>println</code>, warnings, errors) appears in the REPL panel.</li>
+</ul>
+</section>
+<section id="quarto-preview" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-preview">Quarto preview</h3>
+<p>The REPL keeps definitions even after you delete the code that made them, so code can work in your session and still fail to reproduce.</p>
+<p><code>quarto render</code> and <code>quarto preview</code> both run the document from the top in a fresh process, with caching if you enable it. If your lab is computationally light, previewing as you work is a good way to catch that problem early. See <a href="https://quarto.org/docs/tools/vscode/">Quarto in VS Code</a> for the editor integration.</p>
+</section>
+<section id="environments-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="environments-and-packages">Environments and packages</h3>
+<p>Each lab repository keeps a <code>Project.toml</code> at its root listing the packages that lab needs. The lab’s first cell selects that environment and installs from it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>lab_dir <span class="op">=</span> <span class="fu">dirname</span>(<span class="pp">@__FILE__</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(lab_dir)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>!<span class="fu">isfile</span>(<span class="fu">joinpath</span>(lab_dir, <span class="st">"Manifest.toml"</span>)) <span class="op">&amp;&amp;</span> <span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Two commands are worth knowing, both typed at the REPL’s <code>pkg&gt;</code> prompt (press <code>]</code> to get there, backspace to leave):</p>
+<ul>
+<li><code>status</code> lists the active environment and its packages, whose name also appears in the status bar at the bottom of the window.</li>
+<li><code>add SomePackage</code> installs a package the lab does not already carry, into whichever environment is active.</li>
+</ul>
+<p>When a package fails to load, run <code>pkg&gt; status</code> first. If the environment named in the output is not the lab’s, re-run the lab’s first cell. For the full picture of what <code>Project.toml</code> and <code>Manifest.toml</code> do, see <a href="https://pkgdocs.julialang.org/v1/environments/">Pkg environments</a>.</p>
+</section>
+</section>
+<section id="getting-unstuck" class="level2">
+<h2 class="anchored" data-anchor-id="getting-unstuck">Getting unstuck</h2>
+<section id="when-something-breaks" class="level3">
+<h3 class="anchored" data-anchor-id="when-something-breaks">When something breaks</h3>
+<p>Check these in order; they cover most failures:</p>
+<ol type="1">
+<li><strong>Wrong environment</strong>: <code>pkg&gt; status</code> shows a different project than the lab. Fix by re-running the lab’s first cell.</li>
+<li><strong>Packages not installed</strong>: the environment is right but <code>using SomePackage</code> fails. Fix with <code>pkg&gt; instantiate</code>, or by re-running the first cell.</li>
+<li><strong>Stale REPL state</strong>: the code references a variable from a cell you edited or deleted. Restart the REPL (Command Palette &gt; “Julia: Restart REPL”) and run the notebook from the top.</li>
+<li><strong>A cell works interactively but <code>quarto render</code> fails</strong>: the notebook depends on state that is not created by the cells above it; run from the top in a fresh REPL to find the gap.</li>
+</ol>
+<p>If none of these fit, ask an LLM, and paste the complete error message rather than paraphrasing it.</p>
+</section>
+<section id="claude-code" class="level3">
+<h3 class="anchored" data-anchor-id="claude-code">Claude Code</h3>
+<p>This page does not teach Claude Code. For that, read the <a href="https://docs.claude.com/en/docs/claude-code/overview">official documentation</a> and Anthropic’s <a href="https://www.anthropic.com/engineering/claude-code-best-practices">best-practices guide</a>. A few things to keep in mind when you use it on a lab:</p>
+<ul>
+<li><strong>Scope</strong>: start it inside the lab folder, so it sees the lab and nothing else. A session started in your home directory can read and edit far more than you intend.</li>
+<li><strong>Permissions</strong>: it asks before running commands or editing files. Read what it is asking to do before approving, and be stingy with “always allow”.</li>
+<li><strong>Small requests</strong>: ask about one exercise or one error at a time. A vague “do the lab” produces work you cannot check.</li>
+<li><strong>Verify</strong>: run the code it wrote and read it. You are responsible for whatever you submit or present, including the parts a model wrote.</li>
+</ul>
+</section>
+<section id="reference-links" class="level3">
+<h3 class="anchored" data-anchor-id="reference-links">Reference links</h3>
+<ul>
+<li><a href="https://docs.julialang.org/en/v1/">Julia manual</a>: the language reference, including the REPL and the standard library.</li>
+<li><a href="https://modernjuliaworkflows.org/">Modern Julia Workflows</a>: a practical guide to writing, running, and sharing Julia code, and the best single place to go once the basics are working.</li>
+<li><a href="https://www.julia-vscode.org/docs/stable/">Julia VS Code extension documentation</a>: the REPL, plot pane, and inline results.</li>
+<li><a href="https://pkgdocs.julialang.org/v1/environments/">Pkg environments</a>: what <code>Project.toml</code> and <code>Manifest.toml</code> are and how <code>activate</code> and <code>instantiate</code> work.</li>
+<li><a href="https://quarto.org/docs/tools/vscode/">Quarto in VS Code</a>: the Quarto extension, cell execution, and rendering.</li>
+<li><a href="https://quarto.org/docs/computations/julia.html">Quarto’s Julia engine</a>: how <code>engine: julia</code> documents execute.</li>
+<li><a href="https://docs.github.com/en/desktop">GitHub Desktop documentation</a>: cloning, committing, and pushing without the command line.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ai.html" class="pagination-link" aria-label="AI Policy">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">AI Policy</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./assessments/final-project/index.html" class="pagination-link" aria-label="Final project">
+        <span class="nav-page-text">Final project</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/stack.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
