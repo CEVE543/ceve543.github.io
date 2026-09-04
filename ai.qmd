@@ -1,0 +1,104 @@
+---
+title: "AI Policy"
+status: "published"
+release: "public"
+---
+
+::: {.callout-note}
+
+## Definition
+
+Although "AI" often refers to physics-informed machine learning and similar tools, on this page AI means large language model tools like Claude, Gemini, and ChatGPT.
+:::
+
+The world, including academia, is struggling to adapt to rapid technological changes.
+This course aims to train you to use AI appropriately in your work and learning, which means that **our use of AI must be guided by our values and objectives**.
+You are welcome to use AI for assignments unless specifically stated otherwise, but you should note that things AI can do for you comprise a very small part of your grade.
+
+## Principles
+
+1. **Shared responsibility:** I commit to teaching you; you commit to learning.
+   If you use AI to bypass thinking, such as generating code you do not understand, you cheat yourself of the skills you are spending your time (and money!) to learn.
+1. **Assessment design:** AI tools are very good at doing problem sets and computational labs.
+   This shifts the value of mastering different skills.
+   Consequently, most of your grade comes from oral examinations and in-person written tests, which are hard to game with a model; there is no incentive to turn in AI-generated work.
+1. **Open dialogue:** we will talk in class about how we are using AI tools.
+   That means being able to share your AI use without being shamed for it, but it also means keeping an open mind to ways your AI use could potentially be harming your objectives.
+
+## Risks
+
+We are all bombarded with messages that if we don't use ever-increasing amounts of AI, we will become obsolete.
+While learning to use AI is an important skill that you will develop in this course, there are also many risks of AI use.
+
+### Social responsibility
+
+AI use has important social and environmental costs, ranging from water and energy use to power centralization and concentration.
+The following resources critique the technology, politics, economics, and business of AI:
+
+* [The real energy use of agentic AI](https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai), written by a climate scientist
+* [AI Snake Oil](https://www.aisnakeoil.com/) works to dispel hype and clarify the limits of AI.
+  The authors are computer scientists at Princeton.
+* [Where's Your Ed At](https://www.wheresyoured.at/) is a newsletter and podcast that is deeply critical of the politics and business of AI.
+* [Tech Won't Save Us](https://techwontsave.us/) is a podcast covering the tech industry, AI included, from a critical political perspective.
+
+You may agree or disagree with these critiques, and you are encouraged to seek out a broad set of perspectives.
+
+### Inaccuracy
+
+AI models produce fluent text whether or not the content is correct, and they give no warning when they are wrong.
+You have likely read about hallucination and inaccuracies.
+Of course, human-generated material can also be inaccurate, and there are interesting approaches to agentic workflows that reduce inaccuracies in AI output.
+However, there is ultimately a disparity between how accurate AI output *seems*, especially to non-experts, and how accurate it actually *is*.
+
+### Dependence
+
+AI misuse can create dependency that weakens the critical thinking and technical skills of its users.
+
+* In an (sometimes criticized) field experiment with high school math students, unrestricted GPT-4 access raised scores while the tool was available and lowered them once it was removed [@bastani_gpt4:2025].
+* A smaller EEG study of essay writing found the weakest neural engagement, and the weakest recall of their own text, among participants who wrote with an LLM [@kosmyna_yourbrainonchatgpt:2025].
+* Employers report serious concerns about hiring "AI Native" students who have not mastered critical thinking ([Futurism](https://futurism.com/future-society/college-critical-thinking-ai) and [Financial Times](https://www.ft.com/content/c0aec3de-b553-4089-b5d3-074c5b83be57?syn-25a6b1a6=1)).
+
+Broadly, relying on AI tools can lead to weakened technical skills and critical thinking.
+Dependence also leads to vulnerabilities (what happens if the tools are no longer available or if prices rise) and weakens your value proposition in a competitive job market (why do I need *you* if all you're doing is asking AI everything?)
+
+## Tools
+
+The course uses [Claude Code](https://claude.com/claude-code), one of the most popular AI tools for coding; see the [syllabus](syllabus.qmd#required-materials).
+Many other tools pair a model with a harness, and the skills of directing and verifying them transfer between tools:
+
+* Proprietary tools include [Codex](https://openai.com/codex/), [Cursor](https://cursor.com/), and [GitHub Copilot](https://github.com/features/copilot), which is [free for students](https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-setting-up-github-student-and-github-copilot-as-an/ba-p/3736279).
+* Tools such as [Ollama](https://ollama.com/) and [LocalAI](https://localai.io/) run open models on your own machine.
+  Local models cost nothing per query and keep your data on your hardware, and a vendor cannot reprice or withdraw them.
+  The trade-off is that they need capable hardware, and the models small enough to run locally are weaker than the frontier ones.
+
+As a Rice student you also have free access to several tools:
+
+* Rice provides access to [Gemini](https://gemini.google.com/), and Google states it will not train on your data when you use your Rice login.
+  The [guided learning](https://blog.google/outreach-initiatives/education/guided-learning/) mode is designed for studying rather than answer-getting.
+* [NotebookLM](https://notebooklm.google/) answers questions about documents you give it, which makes it useful for reading papers.
+  It is still an LLM that can hallucinate, and it is only as good as its text extraction from the underlying PDF.
+* [Grammarly](https://kb.rice.edu/132065) sits somewhere between an AI tool and a spell checker and can give useful writing feedback.
+
+You are permitted to use these tools, provided you do so appropriately.
+
+## Some suggestions
+
+These are practices I have tried and found useful; we will expand on this through the course of the semester.
+
+1. I disable AI autocomplete in VS Code.
+   I find it distracting, and it robs me of my own thinking.
+1. Asking a model for feedback on your work can help, but remember that the model is a program with no opinion of its own.
+   Do not ask "what do you think?"; it cannot think.
+1. When coding, resist asking for a finished program.
+   Start by asking the model to help you structure the problem, then use it for documentation and syntax.
+
+## Reciprocity
+
+This policy binds me too.
+I may use a model to draft a rubric or revise website content, but your work will not be graded by a model.
+Additionally, I will not use one to write code or text I do not fully understand.
+
+## References
+
+:::{#refs}
+:::

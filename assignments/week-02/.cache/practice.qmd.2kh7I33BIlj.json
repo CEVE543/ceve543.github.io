@@ -1,0 +1,427 @@
+{
+    "cells": [
+        {
+            "id": "1",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "---\n",
+                "title: \"Week 02 Practice Problems (Optional)\"\n",
+                "week: 2\n",
+                "module: 1\n",
+                "status: \"published\"\n",
+                "release: \"public\"\n",
+                "date: 2026-08-31\n",
+                "---"
+            ]
+        },
+        {
+            "id": "2",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| code-fold: true\n",
+                "#| output: false\n",
+                "#| solution: false\n",
+                "using Printf"
+            ],
+            "outputs": [
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "3",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "Attempt these before Wednesday.\n",
+                "These problems are optional; keep your work for yourself.\n",
+                "Open the worked answer after you have tried the problem.\n",
+                "\n",
+                "The module 1 written test draws from this pool.\n",
+                "\n",
+                "## Persistence from a linear reservoir\n",
+                "\n",
+                "A linear reservoir has release constant $k = 0.3$.\n",
+                "Its output under white-noise precipitation is an AR(1) process with coefficient $a = 1/(k+1)$.\n",
+                "\n",
+                "a.\n",
+                "Compute $a$.\n",
+                "b.\n",
+                "Compute the autocorrelation at lags 1, 2, and 5 using $\\rho_h = a^{|h|}$.\n",
+                "\n",
+                "::: {.answer}\n",
+                "$$\n",
+                "\\begin{aligned}\n",
+                "a &= \\frac{1}{k+1} = \\frac{1}{1.3} \\\\\n",
+                "\\rho_1 &= a \\\\\n",
+                "\\rho_2 &= a^2 \\\\\n",
+                "\\rho_5 &= a^5\n",
+                "\\end{aligned}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "4",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "k = 0.3\n",
+                "a = 1 / (k + 1)\n",
+                "@printf(\"a = %.3g\\n\", a)\n",
+                "@printf(\"ρ₁ = %.3g, ρ₂ = %.3g, ρ₅ = %.3g\", a, a^2, a^5)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "a = 0.769\nρ₁ = 0.769, ρ₂ = 0.592, ρ₅ = 0.269"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "5",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "A single linear reservoir with one release constant turns white-noise precipitation into a persistent AR(1) output.\n",
+                ":::\n",
+                "\n",
+                "## Estimation bias at short record length\n",
+                "\n",
+                "The Kendall (1954) bias formula for the lag-1 autocorrelation estimated from a record of length $n$ with unknown mean is\n",
+                "\n",
+                "$$\n",
+                "E(\\hat a) \\approx a - \\frac{1 + 3a}{n - 1}\n",
+                "$$\n",
+                "\n",
+                "where $a$ is the true value and $\\hat a$ is the estimate [@mudelsee_climatetimeseriesanalysis:2010, pp. 56-57].\n",
+                "\n",
+                "a.\n",
+                "At $n = 50$ and $a = 0.7$, what is the expected estimate, and what percentage of the true value does the bias represent?\n",
+                "b.\n",
+                "The bias-correction recipe inverts the formula: given an observed $\\hat a$, solve for the corrected $\\hat a'$.\n",
+                "Show that $\\hat a' = [\\hat a(n-1) + 1]/(n - 4)$, and verify that applying it to your answer from part a recovers $a = 0.7$.\n",
+                "\n",
+                "::: {.answer}\n",
+                "**Part a.**\n",
+                "\n",
+                "$$\n",
+                "\\begin{aligned}\n",
+                "E(\\hat a) &\\approx 0.7 - \\frac{1 + 3(0.7)}{50 - 1} \\\\\n",
+                "&= 0.7 - \\frac{3.1}{49}\n",
+                "\\end{aligned}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "6",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "a = 0.7\n",
+                "n = 50\n",
+                "bias = (1 + 3a) / (n - 1)\n",
+                "expected = a - bias\n",
+                "@printf(\"E(â) = %.3g, bias = %.3g, percentage = %.3g%%\", expected, bias, 100 * bias / a)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "E(â) = 0.637, bias = 0.0633, percentage = 9.04%"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "7",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "A 50-year record underestimates the persistence by about 9 percent.\n",
+                "\n",
+                "**Part b.** In the bias formula, replace $E(\\hat a)$ with the observed $\\hat a$ and $a$ with the unknown $\\hat a'$.\n",
+                "\n",
+                "$$\n",
+                "\\begin{aligned}\n",
+                "\\hat a &= \\hat a' - \\frac{1 + 3\\hat a'}{n - 1} \\\\\n",
+                "\\hat a(n-1) &= \\hat a'(n-1) - 1 - 3\\hat a' \\\\\n",
+                "\\hat a(n-1) + 1 &= \\hat a'(n - 4) \\\\\n",
+                "\\hat a' &= \\frac{\\hat a(n-1) + 1}{n - 4}\n",
+                "\\end{aligned}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "8",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "a_hat = expected\n",
+                "a_corrected = (a_hat * (n - 1) + 1) / (n - 4)\n",
+                "@printf(\"â = %.3g → â' = %.3g\", a_hat, a_corrected)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "â = 0.637 → â' = 0.7"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "9",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "The formula assumes a stationary AR(1) process with unknown mean and $|a| < 1$.\n",
+                "It breaks down for $a$ above about 0.9, where higher-order terms matter.\n",
+                ":::\n",
+                "\n",
+                "## Variance of a time average under persistence\n",
+                "\n",
+                "A 50-year climate record has lag-1 autocorrelation $a = 0.7$.\n",
+                "\n",
+                "a.\n",
+                "Compute the variance inflation factor $V = (1+a)/(1-a)$.\n",
+                "b.\n",
+                "Compute the effective number of independent years $n' = n/V$.\n",
+                "c.\n",
+                "A colleague tests whether the 50-year mean differs significantly from the historical baseline, treating the years as independent, and gets a test statistic of 2.0.\n",
+                "By what factor is the test statistic inflated, and does the result survive the correction?\n",
+                "\n",
+                "::: {.answer}\n",
+                "**Part a.**\n",
+                "\n",
+                "$$\n",
+                "V = \\frac{1+a}{1-a}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "10",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "a = 0.7\n",
+                "V = (1 + a) / (1 - a)\n",
+                "@printf(\"V = %.3g\", V)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "V = 5.67"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "11",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "**Part b.**\n",
+                "\n",
+                "$$\n",
+                "n' = \\frac{n}{V}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "12",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "n = 50\n",
+                "n_eff = n / V\n",
+                "@printf(\"n' = %.3g effective independent years\", n_eff)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "n' = 8.82 effective independent years"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "13",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "**Part c.** The test uses $\\sigma_X^2/n$ for the variance of the mean, but the true variance is $V\\sigma_X^2/n$.\n",
+                "The standard error is $\\sqrt{V}$ times larger than assumed, so the test statistic is $\\sqrt{V}$ times too large."
+            ]
+        },
+        {
+            "id": "14",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "t_stat = 2.0\n",
+                "inflation = sqrt(V)\n",
+                "corrected = t_stat / inflation\n",
+                "@printf(\"inflation factor = %.3g, corrected t = %.3g\", inflation, corrected)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "inflation factor = 2.38, corrected t = 0.84"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "15",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "The corrected test statistic is well below any conventional threshold.\n",
+                "The apparent trend comes from persistence alone.\n",
+                "\n",
+                "The large-sample formula $V = (1+a)/(1-a)$ assumes $n$ is large enough that the finite-sample weights $(1 - h/n)$ are close to 1.\n",
+                "At $n = 50$ and $a = 0.7$ this is a reasonable approximation.\n",
+                ":::\n",
+                "\n",
+                "## Reproducing a published autoregressive series\n",
+                "\n",
+                "Example 9.6 of @wilks_atmosphericsciences:2011 generates AR(1) and AR(2) series from one printed innovation sequence, starting from $x_0 = 0$.\n",
+                "The first five innovations are $\\varepsilon_1 = 1.526$, $\\varepsilon_2 = 0.623$, $\\varepsilon_3 = -0.272$, $\\varepsilon_4 = 0.092$, $\\varepsilon_5 = 0.823$.\n",
+                "\n",
+                "The textbook writes $\\phi_1$ for the AR coefficient we have been calling $a$.\n",
+                "\n",
+                "a.\n",
+                "For the AR(1) model with $\\phi_1 = 0.5$, compute $x_1$ through $x_5$ using $x_t = \\phi_1 x_{t-1} + \\varepsilon_t$.\n",
+                "b.\n",
+                "The textbook also fits an AR(2) with $\\phi_1 = 0.9$ and $\\phi_2 = -0.6$, initializing $x_0 = x_{-1} = 0$.\n",
+                "Compute $x_1$ for this model.\n",
+                "The running text prints $x_1 = 1.562$.\n",
+                "Does your arithmetic agree?\n",
+                "\n",
+                "::: {.answer}\n",
+                "**Part a.**\n",
+                "\n",
+                "$$\n",
+                "\\begin{aligned}\n",
+                "x_1 &= 0.5(0) + 1.526 = 1.526 \\\\\n",
+                "x_2 &= 0.5(1.526) + 0.623 = 1.386 \\\\\n",
+                "x_3 &= 0.5(1.386) - 0.272 = 0.421 \\\\\n",
+                "x_4 &= 0.5(0.421) + 0.092 = 0.303 \\\\\n",
+                "x_5 &= 0.5(0.303) + 0.823 = 0.974\n",
+                "\\end{aligned}\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "16",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "ϕ = 0.5\n",
+                "ε = [1.526, 0.623, -0.272, 0.092, 0.823]\n",
+                "x = zeros(5)\n",
+                "x[1] = ε[1]\n",
+                "for t in 2:5\n",
+                "    x[t] = ϕ * x[t-1] + ε[t]\n",
+                "end\n",
+                "for t in 1:5\n",
+                "    @printf(\"x_%d = %.3g\\n\", t, x[t])\n",
+                "end"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "x_1 = 1.53\nx_2 = 1.39\nx_3 = 0.421\nx_4 = 0.302\nx_5 = 0.974\n"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "17",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "These match Table 9.4 of the textbook to three figures.\n",
+                "\n",
+                "**Part b.** The AR(2) recursion is $x_t = \\phi_1 x_{t-1} + \\phi_2 x_{t-2} + \\varepsilon_t$, with $x_0 = x_{-1} = 0$.\n",
+                "\n",
+                "$$\n",
+                "x_1 = 0.9(0) + (-0.6)(0) + 1.526 = 1.526\n",
+                "$$"
+            ]
+        },
+        {
+            "id": "18",
+            "cell_type": "code",
+            "metadata": {
+            },
+            "source": [
+                "#| solution: true\n",
+                "@printf(\"x₁ = 0.9(0) + (-0.6)(0) + 1.526 = %.3g\", 0.9 * 0 + (-0.6) * 0 + 1.526)"
+            ],
+            "outputs": [
+                {
+                    "output_type": "stream",
+                    "name": "stdout",
+                    "text": "x₁ = 0.9(0) + (-0.6)(0) + 1.526 = 1.53"
+                }
+            ],
+            "execution_count": 1
+        },
+        {
+            "id": "19",
+            "cell_type": "markdown",
+            "metadata": {
+            },
+            "source": [
+                "\n",
+                "The arithmetic gives 1.526, not 1.562.\n",
+                "Table 9.4 also lists 1.526, and the next step in the textbook multiplies by 1.526, so the running text's 1.562 is a digit transposition.\n",
+                "The rest of the worked example is correct.\n",
+                ":::"
+            ]
+        }
+    ],
+    "timestamp": "2026-09-04T18:15:31.623",
+    "file": "/home/runner/work/CEVE543-instructor/CEVE543-instructor/_public/assignments/week-02/practice.qmd",
+    "qnr_schema_version": "1.0.0"
+}

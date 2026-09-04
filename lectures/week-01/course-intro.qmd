@@ -1,0 +1,129 @@
+---
+title: "Course logistics and expectations"
+subtitle: "{{< var course.number >}}"
+week: 1
+module: 1
+order: 2
+kind: "slides"
+date: 2026-08-24
+status: "published"
+release: "public"
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## By the end of this course, you will be able to...
+
+1. Frame an engineering or financial decision as a risk analysis problem, and name the quantities that have to be estimated.
+1. Fit extreme value models, analyze time series, pool information across sites, and generate event sets, carrying the uncertainty through to the answer.
+1. Choose a method, defend the choice, and explain its assumptions to someone who is not a specialist.
+1. Use, and choose not to use, AI tools in your learning and in your analysis.
+
+## Course organization
+
+| Module | Weeks | Driving question |
+| :---------------------- | :---------- | :-------------------------------------------------------------------- |
+| Foundations | 1-3 | Why do we care about quantitative representations of climate hazard? |
+| Univariate extremes | 4-7 | How do we characterize the distribution of one hazard at one location, and with what uncertainty? |
+| Spatiotemporal extremes | 8-14 | How do we sample hazards across space and time to characterize complex extremes? |
+| Synthesis | 15 | |
+
+## Grade
+
+| Component | Weight |
+| :--- | :--- |
+| Participation | 10% |
+| Labs | 10% |
+| Written tests (2) | 30% |
+| Oral examinations (2) | 20% |
+| Final project | 30% |
+
+There is no final exam; we will use the final examination slot for final presentations.
+
+## Written tests
+
+Questions will parallel weekly practice problems (ungraded) and labs.
+Closed book and no calculator; some equations may be provided.
+
+| Test | Date | Covers |
+| :--- | :--- | :--- |
+| Test 1 | Fri Oct 16 | Weeks 1-7 |
+| Test 2 | Mon Nov 30 | Weeks 8-14 |
+
+## Oral examinations
+
+One after each written test, about 15 minutes each.
+**We will practice these.**
+Orals are recorded so grading can be audited for consistency.
+
+| Orals | When |
+| :--- | :--- |
+| Format, rubric, and a demonstration oral | Fri Sep 11, in class |
+| Oral 1, weeks 1-7 | By signup, weeks 9-10 |
+| Oral 2, weeks 8-14 | By signup, week 15 |
+
+## Labs
+
+1. Do setup *before* in-class lab
+1. We will work through labs together
+1. Labs are due on Canvas as a rendered PDF plus a link to your repository
+
+| Points | What it means |
+| :--- | :--- |
+| 3 | A thoughtful answer |
+| 2 | A quick answer |
+| 1 | You turned it in |
+| 0 | You did not turn it in |
+
+I grade the answers you write, not whether your code matches mine.
+Two lowest dropped.
+Labs assume you use an LLM, and they use Claude Code.
+
+## Final project
+
+Either:
+
+1. Research a method the course does not cover and compare it against alternatives.
+1. Learn a software package that answers a question like the ones we cover, then use methods from the course to assess it.
+
+## Participation
+
+Judged on preparation and effort, not on correctness.
+
+- Attend, and tell me when you cannot.
+- Do the reading and submit your reading questions.
+- Answer as best you can when called on.
+
+## Devices
+
+- Please don't use laptops for note taking (fine for labs!)
+- Please stay focused; avoid devices except for polling
+- Recording class is not permitted, including transcription tools
+
+## There is no blanket ban on AI
+
+1. Shared responsibility.
+   I commit to teaching you; you commit to learning.
+   Using AI to bypass thinking costs you the skills you are paying for.
+1. Assessment design.
+   Most of the grade comes from oral examinations and in-person written tests, so there is no incentive to turn in work a model wrote.
+1. Open dialogue.
+   We talk in class about how we are using these tools, which means you can say what you did without being shamed for it.
+
+## What is the best thing you have used AI for?
+
+{{< include ../../_includes/poll-ev.qmd >}}
+
+## What is the worst thing you have used AI for?
+
+{{< include ../../_includes/poll-ev.qmd >}}
+
+## Everything else is on the course website
+
+[{{< var course.url >}}]({{< var course.url >}})

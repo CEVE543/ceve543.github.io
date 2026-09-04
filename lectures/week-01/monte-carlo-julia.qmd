@@ -1,0 +1,260 @@
+---
+title: "Monte Carlo in Julia"
+subtitle: "{{< var course.number >}}"
+week: 1
+module: 1
+order: 4
+kind: "slides"
+date: 2026-08-28
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+# Hazard
+
+## Realistic data
+
+```{julia}
+#| echo: false
+#| output: false
+using CEVE543Utils, CSV, DataFrames, Distributions
+using CairoMakie, LaTeXStrings, Random, Printf, Statistics
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+```
+
+```{julia}
+#| output: false
+rng = MersenneTwister(824)
+annmax = CSV.read("8638610-annmax.csv", DataFrame)
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(760, 250))
+ax = Axis(
+    fig[1, 1];
+    title="Sewells Point, Norfolk",
+    xlabel="Year",
+    ylabel="Annual Maximum Water Level",
+)
+scatter!(ax, annmax.year, annmax.lsl)
+fig
+```
+
+## Fitting
+
+We fit a Generalized Extreme Value distribution (more on that soon!)
+
+```{julia}
+gev = only(getdistribution(gevfit(annmax.lsl)))
+#| echo: false
+fig = Figure(; size=(760, 350))
+ax = Axis(fig[1, 1]; xlabel="annual maximum water level (ft)", ylabel="density")
+hist!(ax, annmax.lsl; bins=20, normalization=:pdf, color=(:gray, 0.5))
+lines!(ax, range(3, 9; length=400), pdf.(gev, range(3, 9; length=400)); linewidth=3)
+fig
+```
+
+## Return Levels
+
+```{julia}
+#| output: false
+n_obs = nrow(annmax)
+lsl = sort(annmax.lsl; rev=true)
+p_obs = (1:n_obs) ./ (n_obs + 1)
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(760, 330))
+ax = Axis(
+    fig[1, 1];
+    xscale=log10,
+    xlabel=L"\text{return period } T \text{ (years)}",
+    ylabel=L"\text{annual maximum water level (ft)}",
+    xticks=([1, 2, 5, 10, 25, 100, 1000], string.([1, 2, 5, 10, 25, 100, 1000])),
+)
+Ts = 10 .^ range(0.05, 3; length=300)
+lines!(
+    ax,
+    Ts,
+    quantile.(gev, 1 .- 1 ./ Ts);
+    linewidth=3,
+    color=colors[1],
+    label=L"\text{fitted GEV}",
+)
+scatter!(ax, 1 ./ p_obs, lsl; color=colors[2], label=L"\text{observations}")
+axislegend(ax; position=:lt)
+fig
+```
+
+# Risk
+
+## Illustrative damage function
+
+Let $h$ be the water level at the gauge, in feet.
+A building sits 5.5 ft above the gauge.
+Assume total loss at 8.5 ft; between those two the curve is convex.
+
+```{julia}
+#| output: false
+damage(h) = clamp((h - 5.5) / 3, 0, 1)^1.5
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(760, 260))
+ax = Axis(fig[1, 1]; xlabel=L"\text{water level (ft)}", ylabel=L"\text{damage (fraction)}")
+xs = range(3, 9; length=400)
+lines!(ax, xs, damage.(xs); linewidth=3, color=:firebrick)
+fig
+```
+
+## Expected damage with $n = 10$
+
+```{julia}
+levels = rand(rng, gev, 10)
+
+println("level   ", round.(levels; digits=2))
+println("damage  ", round.(damage.(levels); digits=2))
+@printf("average %.3g", mean(damage.(levels)))
+```
+
+## The estimator
+
+$\hat\theta_n = \frac{1}{n}\sum_{i=1}^{n} g(X_i)$, with $X$ the water level and $g$ the damage function, estimates $\theta = E[g(X)]$:
+
+1. Draw $n$ years.
+1. Apply $g$ to each.
+1. Average.
+
+```{julia}
+#| output: false
+function expected_damage(dist, n)
+    levels = rand(rng, dist, n)
+    return mean(damage.(levels))
+end
+```
+
+## $\hat\theta_n$: a random variable with $\mathrm{SE} = \mathrm{sd}(g(X))/\sqrt{n}$
+
+
+```{julia}
+#| echo: false
+#| output: false
+draws = rand(rng, gev, 1_000_000)
+```
+
+```{julia}
+#| output: false
+sd_g = std(damage.(draws))
+sample_sizes = (100, 10_000)
+estimates = [[expected_damage(gev, n) for _ in 1:10_000] for n in sample_sizes]
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(900, 300))
+for (col, n) in enumerate(sample_sizes)
+    ests = estimates[col]
+    se = sd_g / sqrt(n)
+    ax = Axis(fig[1, col]; title="n = $n", xlabel=L"\hat\theta_n")
+    hideydecorations!(ax)
+    hist!(ax, ests; bins=60, normalization=:pdf, color=(colors[2], 0.7))
+    vlines!(ax, [mean(ests)]; color=colors[1], linewidth=3)
+    vlines!(ax, mean(ests) .+ [-1, 1] .* se; color=colors[1], linewidth=2, linestyle=:dash)
+end
+fig
+```
+
+## How many years do we need to simulate?
+
+From the whiteboard, we know we need $n = (\mathrm{CV}/\varepsilon)^2$ simulations, where $\varepsilon$ is one standard error expressed as a fraction of the answer.
+
+```{julia}
+#| output: false
+cv(v) = std(v) / mean(v)
+n_years(c, ε) = ceil(Int, (c / ε)^2)
+```
+
+## Comparing simulations
+
+How many draws do we need to estimate damage versus hazard with $\varepsilon = 0.01$?
+
+```{julia}
+ε = 0.01
+cv_damage = cv(damage.(draws))
+cv_hazard = cv(draws)
+
+@printf("damage  CV %.3g, n %d\n", cv_damage, n_years(cv_damage, ε))
+@printf("hazard  CV %.3g, n %d\n", cv_hazard, n_years(cv_hazard, ε))
+```
+
+## The exceedance probability curve
+
+Sort the simulated damages from largest to smallest.
+Rank $i$ gets $\hat p_i = i/(n+1)$ and $\hat T_i = 1/\hat p_i$ per Weibull plotting positions.
+
+```{julia}
+#| output: false
+n_sim = 10_000
+losses = sort(damage.(rand(rng, gev, n_sim)); rev=true)
+p_sim = (1:n_sim) ./ (n_sim + 1)
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(760, 280))
+ax = Axis(
+    fig[1, 1];
+    xscale=log10,
+    xlabel=L"\text{return period } T \text{ (years)}",
+    ylabel=L"\text{damage (fraction of value)}",
+    xticks=([1, 2, 5, 10, 25, 100, 1000], string.([1, 2, 5, 10, 25, 100, 1000])),
+)
+lines!(ax, 1 ./ p_sim, losses; linewidth=3, color=:firebrick)
+fig
+```
+
+## If we know $F$, we can use smarter sampling
+
+Write $F$ for the cumulative distribution function of the water level and $f$ for its density.
+Substituting $u = F(x)$ turns the integral into an average over quantiles, which we evaluate on a uniform grid of $u$.
+
+$$
+\theta = \int d(x) f(x)\,\mathrm{d}x = \int_0^1 d(F^{-1}(u))\,\mathrm{d}u
+$$
+
+## The two compared at two sample sizes
+
+```{julia}
+function run_mc_comparison(n)
+    u = (0.5:1.0:n) ./ n
+    theta_grid = mean(damage.(quantile.(gev, u)))
+
+    @printf(
+        "n = %6d  Monte Carlo %.4g  quantiles %.4g\n",
+        n,
+        expected_damage(gev, n),
+        theta_grid
+    )
+end
+run_mc_comparison(1_000)
+run_mc_comparison(10_000)
+```
+
+## When might we prefer brute force Monte Carlo?
+
+{{< include ../../_includes/poll-ev.qmd >}}

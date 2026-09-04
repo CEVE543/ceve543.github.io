@@ -1,0 +1,201 @@
+---
+title: "Return periods in Julia"
+subtitle: "{{< var course.number >}}"
+week: 1
+module: 1
+order: 2
+kind: "slides"
+date: 2026-08-26
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CSV, CairoMakie, DataFrames, Distributions, LaTeXStrings, Printf, Random
+set_theme!(theme_minimal(); fontsize=20)
+```
+
+```{julia}
+#| echo: false
+#| output: false
+rng = MersenneTwister(543)
+annmax = CSV.read("8638610-annmax.csv", DataFrame)
+n = nrow(annmax)
+```
+
+# Waiting and risk
+
+## Waiting time for the next exceedance, by hand
+
+$\tau$ is the number of years until the "coin" next comes up "heads".
+By the geometric distribution:
+
+$$
+p_\tau(k) = (1-p)^{k-1} p, \qquad E[\tau] = \frac{1}{p} = T
+$$
+
+## Waiting time for the next exceedance, by simulation
+
+$p = 0.01$
+
+```{julia}
+#| echo: false
+p = 0.01
+k = 1:400
+fig = Figure(; size=(1000, 400))
+ax = Axis(fig[1, 1]; xlabel=L"\text{wait } \tau \text{ (years)}", ylabel=L"P(\tau = k)")
+stem!(ax, k, p .* (1 - p) .^ (k .- 1); markersize=4)
+vlines!(ax, [1 / p]; color=:firebrick, linestyle=:dash)
+text!(ax, 110, 0.008; text=L"\text{mean} = 100", color=:firebrick)
+fig
+```
+
+## How variable is that wait?
+
+$$
+\mathrm{Var}(\tau) = \frac{1-p}{p^2}, \qquad \mathrm{sd}(\tau) = \frac{\sqrt{1-p}}{p} \approx T \text{ for small } p
+$$
+
+The spread is as large as the mean wait, so the mass near 1 and the long tail are the same picture.
+
+```{julia}
+#| echo: false
+τ = rand(rng, Geometric(p), 20_000) .+ 1
+fig = Figure(; size=(760, 220))
+ax = Axis(
+    fig[1, 1]; xlabel=L"\text{simulated wait } \tau \text{ (years)}", ylabel=L"\text{count}"
+)
+ax.title = @sprintf("simulated mean %.3g years, sd %.3g years", mean(τ), sqrt(1 - p) / p)
+hist!(ax, τ; bins=0:20:700)
+vlines!(ax, [mean(τ)]; color=:firebrick)
+fig
+```
+
+## How likely are two exceedances in ten years, at $p = 1/4$?
+
+Ten flips of the bent coin, so $N = 10$, with $Y$ the number of heads.
+
+$$
+p_Y(y) = \binom{N}{y} p^y (1-p)^{N-y}
+$$
+
+```{julia}
+Y = Binomial(10, 0.25)
+p_two_or_more = 1 - pdf(Y, 0) - pdf(Y, 1)
+@printf("P(Y >= 2) = %.3g", p_two_or_more)
+```
+
+A "4-year flood" turns up at least twice per decade more often than not.
+
+## Rarer events: $p = 1/10$
+
+Same ten flips, same count $Y$, a coin bent one tenth of the way instead of one quarter.
+
+```{julia}
+Y = Binomial(10, 0.1)
+p_two_or_more = 1 - pdf(Y, 0) - pdf(Y, 1)
+@printf("P(Y >= 2) = %.3g", p_two_or_more)
+```
+
+We get two "ten-year floods" in a decade a quarter of the time.
+
+## What risk does a design life carry?
+
+$$
+R = 1 - (1-p)^N, \qquad T = \frac{1}{1 - (1 - R)^{1/N}}
+$$
+
+```{julia}
+risk(T, N) = 1 - (1 - 1 / T)^N
+T_needed(R, N) = 1 / (1 - (1 - R)^(1 / N))
+
+@printf("100-year flood, 50-year life: R = %.3g\n", risk(100, 50))
+@printf("10%% risk over a 5-year job needs T = %.3g years", T_needed(0.10, 5))
+```
+
+# Return periods from data
+
+## A histogram hides the tail
+
+Histograms make it hard to compare and visualize tails.
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(760, 300))
+ax = Axis(
+    fig[1, 1]; xlabel=L"\text{annual maximum water level (ft)}", ylabel=L"\text{count}"
+)
+hist!(ax, annmax.lsl; bins=20)
+ylims!(ax, 0, 24)
+for T in (10, 50)
+    x = quantile(annmax.lsl, 1 - 1 / T)
+    vlines!(ax, [x]; color=:firebrick, linestyle=:dash)
+    text!(
+        ax,
+        x + 0.05,
+        22;
+        text=latexstring(@sprintf("T = %d", T)),
+        color=:firebrick,
+        fontsize=16,
+        align=(:left, :top),
+    )
+end
+fig
+```
+
+## What does a return period plot show?
+
+::: {.columns}
+::: {.column width="62%"}
+
+```{julia}
+#| echo: false
+lsl = sort(annmax.lsl; rev=true)
+p̂ = (1:n) ./ (n + 1)
+T̂ = 1 ./ p̂
+fig = Figure(; size=(520, 340))
+ax = Axis(
+    fig[1, 1];
+    xscale=log10,
+    xlabel=L"\text{return period } T \text{ (years)}",
+    ylabel=L"\text{annual maximum water level (ft)}",
+    xticks=([1, 2, 5, 10, 25, 100], string.([1, 2, 5, 10, 25, 100])),
+)
+scatter!(ax, T̂, lsl)
+fig
+```
+
+:::
+::: {.column width="38%"}
+
+### Which axis is data, and which is an estimate?
+
+- Level: a number a gauge recorded.
+- Return period: computed from the rank of that level in a finite record.
+
+:::
+:::
+
+## How is the return period estimated?
+
+Sort descending, so rank $i = 1$ is the largest, and a hat marks a quantity computed from the record rather than known.
+
+$$
+\hat p_i = \frac{i}{n + 1}, \qquad \hat T_i = \frac{1}{\hat p_i}
+$$
+
+Over $n$ years an event with annual probability $p$ is exceeded about $np$ times, so a value exceeded $i$ times out of $n$ estimates $\hat p \approx i/n$.
+Dividing by $n+1$ instead gives the Weibull plotting position.

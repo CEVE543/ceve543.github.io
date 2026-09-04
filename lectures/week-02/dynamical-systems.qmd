@@ -1,0 +1,186 @@
+---
+title: "Climate as a dynamical system"
+subtitle: "{{< var course.number >}}"
+week: 2
+module: 1
+order: 2
+kind: "slides"
+date: 2026-08-31
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, Distributions, LaTeXStrings, Random, Statistics
+set_theme!(theme_minimal(); fontsize=20)
+```
+
+## Why simple models?
+
+Deterministic dynamical systems, with and without random forcing, can produce much of the behavior we saw in the first deck: persistence, clustering, apparent trends, regime-like shifts.
+
+These models help you build intuition about what kinds of behavior are possible and how to describe them mathematically.
+
+## A dynamical system
+
+A dynamical system has a **state** $X = (X_1, \ldots, X_p)$ and a **rule** $F$ that determines how the state changes.
+In continuous time:
+
+$$
+\dot X_i = F_i(X_1, \ldots, X_p), \qquad 1 \le i \le p
+$$
+
+In discrete time:
+
+$$
+X_{t+1} = G(X_t)
+$$
+
+The system is **nonlinear** when the rule involves products or powers of the state variables, like $x \cdot z$ or $x(1-x)$.
+Linear systems cannot produce chaos.
+
+## Important terms
+
+- **Trajectory:** the sequence of states the system visits over time.
+- **Phase space:** the space of all possible states.
+- **Attractor:** the set of states the system settles onto over long times.
+- **Sensitive dependence:** small changes in initial conditions lead to diverging trajectories.
+
+## Lorenz and sensitive dependence
+
+::: {.columns}
+::: {.column width="55%"}
+
+In 1961, Edward Lorenz restarted a weather simulation from a printout that rounded the state to three decimal places instead of the six stored in memory.
+The restarted run diverged completely from the original within a few simulated days.
+
+For supplementary notes on this discovery, read James Gleick's *Chaos* (1987), chapters 1-2.
+
+:::
+::: {.column width="45%"}
+
+```{julia}
+#| echo: false
+dt = 0.01
+n = 10000
+x, y, z = zeros(n), zeros(n), zeros(n)
+x[1], y[1], z[1] = 1.0, 1.0, 1.0
+for i in 1:(n - 1)
+    x[i + 1] = x[i] + dt * 10.0 * (y[i] - x[i])
+    y[i + 1] = y[i] + dt * (x[i] * (28.0 - z[i]) - y[i])
+    z[i + 1] = z[i] + dt * (x[i] * y[i] - (8 / 3) * z[i])
+end
+fig = Figure(; size=(350, 220))
+ax = Axis(fig[1, 1])
+lines!(ax, x, z; linewidth=0.3, color=:steelblue)
+hidedecorations!(ax)
+hidespines!(ax)
+fig
+```
+
+$$
+\begin{aligned}
+\dot x &= 10(y - x) \\
+\dot y &= x(28 - z) - y \\
+\dot z &= xy - \tfrac{8}{3}z
+\end{aligned}
+$$
+
+:::
+:::
+
+## The logistic map
+
+::: {.columns}
+::: {.column width="45%"}
+
+A model of bounded growth:
+
+$$
+x_{t+1} = r\,x_t\,(1 - x_t)
+$$
+
+The parameter $r$ controls how strongly the system overshoots.
+
+:::
+::: {.column width="55%"}
+
+```{julia}
+#| output: false
+function logistic(r; n=200, x0=0.4)
+    x = zeros(n)
+    x[1] = x0
+    for t in 1:(n - 1)
+        x[t + 1] = r * x[t] * (1 - x[t])
+    end
+    return x
+end
+```
+
+:::
+:::
+
+## Six values of $r$, six behaviors
+
+```{julia}
+#| echo: false
+rs = [1.5, 2.8, 3.2, 3.5, 3.8, 4.0]
+labels = ["fixed point", "fixed point", "period 2", "period 4", "chaos", "chaos"]
+fig = Figure(; size=(900, 400))
+for (i, r) in enumerate(rs)
+    row = (i - 1) ÷ 3 + 1
+    col = (i - 1) % 3 + 1
+    ax = Axis(fig[row, col]; title=L"r = %$(r)\text{ (%$(labels[i]))}")
+    lines!(ax, logistic(r); linewidth=1.0, color=:steelblue)
+    hideydecorations!(ax)
+    hidexdecorations!(ax)
+end
+fig
+```
+
+## What do we see?
+
+A **fixed point**: the system settles to a constant.
+
+A **periodic orbit**: the system repeats exactly every $k$ steps.
+
+**Chaos**: the system is deterministic but sensitive to initial conditions, so small differences grow exponentially and the trajectory never repeats.
+
+## Measuring memory
+
+The **autocorrelation** at lag $h$ measures how much today's value tells you about the value $h$ steps later [@kantz_nonlinear:2004, §2.2]:
+
+$$
+\rho_h = \frac{\mathrm{Cov}(X_t, X_{t+h})}{\mathrm{Var}(X_t)}
+$$
+
+If $\rho_h = 0$, the process has no memory at lag $h$.
+If $\rho_h > 0$, high values tend to follow high values.
+
+## What about randomness?
+
+Processes no model can predict force real systems: weather, wind bursts, volcanic eruptions.
+
+Adding a noise term $\varepsilon_t$ to a deterministic rule gives a **stochastic dynamical system**.
+
+## Discussion
+
+Given a single observed record of finite length: why is it hard to reconstruct the system that produced it?
+
+## Logistics
+
+- Lab 1 due Friday
+- Set up the software for Lab 2 before Friday's session
+- I posted this week's practice problems

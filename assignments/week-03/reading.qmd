@@ -1,0 +1,38 @@
+---
+title: "Week 03 Reading: Inference and resampling (nothing to submit)"
+subtitle: "Likelihood, Bayes, the probability integral transform, and the bootstrap"
+week: 3
+module: 1
+status: "published"
+release: "public"
+date: 2026-09-07
+---
+
+No Monday class (Labor Day), so reading questions are due Tuesday 9/8 at 11:59 pm on Canvas.
+
+## Assigned
+
+1. Chapters 1 through 3 of @downey_thinkbayes:2021, which build from probability through Bayes's theorem to working with distributions as priors and posteriors.
+The book is [free online](https://allendowney.github.io/ThinkBayes2/).
+If you already know Bayes's theorem well, skim chapters 1 and 2 and read chapter 3 carefully.
+1. Sections 3.1 and 3.2 of @mudelsee_climatetimeseriesanalysis:2010, which introduce the bootstrap in a climate context and explain why a naïve bootstrap fails on a record with autocorrelation.
+This reading is available through the Rice library; search the ISBN 978-90-481-9936-4 at [library.rice.edu](https://library.rice.edu).
+
+## Further reading
+
+1. Chapter 2 of @davison_bootstrap:1997 for the formal treatment of bootstrap theory.
+This is the standard reference; read it if you want the proofs behind what we do on Friday.
+1. John Rauser, "Statistics Without the Agonizing Pain," Strata 2014.
+A 25-minute talk that builds the bootstrap from scratch with no equations.
+Search the title on YouTube.
+
+## Questions
+
+Write a few sentences on each.
+
+1. In the Downey reading, the prior is updated by data to produce a posterior.
+In your own words, what happens to the posterior as you collect more data: does the prior matter more or less?
+1. A colleague fits an AR(1) model to a 30-year temperature record and bootstraps the lag-1 coefficient by resampling individual years with replacement.
+What assumption does that bootstrap make, and why might it give confidence intervals that are too narrow?
+1. The Mudelsee reading introduces the block bootstrap as a fix for dependent data.
+What does the block length control, and what goes wrong if the blocks are too short or too long?

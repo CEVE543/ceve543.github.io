@@ -1,0 +1,30 @@
+---
+title: "Return periods and exceedance probabilities"
+week: 1
+module: 1
+date: 2026-08-26
+format: "typst"
+---
+
+## Summary
+
+Treating a hazard as a yearly coin flip, and what follows from that.
+
+- A Bernoulli process needs one flip per year, independence, and the same probability every year.
+- The wait between events is geometric, and the return period is its mean, $T = 1/p$.
+- The wait is memoryless, so a basin is no safer the year after a flood.
+- The spread of the wait is about as large as the mean wait itself.
+- Risk over a design life is one minus the probability of no events, which the binomial gives.
+- A return level inverts the distribution: $x_T$ is the level exceeded with probability $1/T$ in a year.
+- With a record instead of a distribution, rank the values and use $\hat p_i = i/(n+1)$.
+
+Key results.
+
+$$\tau \sim \mathrm{Geometric}(p), \qquad T = E[\tau] = \frac{1}{p}$$
+
+$$R = 1 - (1-p)^N$$
+
+$$x_T = F_X^{-1}\!\left(1 - \frac{1}{T}\right)$$
+
+The two worked cases were a house in the 100-year floodplain over a 30-year mortgage, and a cofferdam sized to a stated 10% risk over 5 years.
+The longest return period an $n$-year record can estimate is $n+1$ years.
