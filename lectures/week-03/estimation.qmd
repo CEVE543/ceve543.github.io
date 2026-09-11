@@ -1,0 +1,219 @@
+---
+title: "Estimating parameters from data"
+subtitle: "{{< var course.number >}}"
+week: 3
+module: 1
+order: 2
+kind: "slides"
+date: 2026-09-09
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, Distributions, LaTeXStrings, Printf, Random, Statistics
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+rng = MersenneTwister(543)
+```
+
+# Likelihood
+
+## How often does rainfall exceed the culvert's capacity?
+
+A stormwater culvert was sized to a design storm.
+You want to know how often rainfall exceeds that capacity: what is $p$, the annual probability of exceedance?
+
+You have $n$ years of record.
+Each year either exceeded the threshold ($Y_i = 1$) or did not ($Y_i = 0$).
+This is the coin flip from week 1, with unknown bias $p$.
+Here $p$ plays the role of the $\theta$ from the board.
+
+## Likelihood of $p$ from 20 years of data
+
+Suppose 3 of 20 years exceeded the threshold.
+The likelihood is the binomial probability of observing $k = 3$ in $n = 20$, viewed as a function of $p$:
+
+$$
+L(p) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+```{julia}
+#| echo: false
+n = 20
+k = 3
+ps = range(0.001, 0.5; length=500)
+liks = [pdf(Binomial(n, p), k) for p in ps]
+liks ./= maximum(liks)
+fig = Figure(; size=(800, 280))
+ax = Axis(fig[1, 1]; xlabel=L"p", ylabel="normalized likelihood")
+lines!(ax, ps, liks; linewidth=3, color=colors[1])
+vlines!(ax, [k / n]; color=colors[2], linewidth=2, linestyle=:dash, label=L"\hat{p}_{\text{MLE}} = 3/20")
+axislegend(ax; position=:rt)
+fig
+```
+
+## How the likelihood sharpens with more data
+
+Same true $p = 0.15$, but now with 20, 100, and 500 years of record.
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel=L"p", ylabel="normalized likelihood")
+ps = range(0.001, 0.4; length=500)
+for (i, n_obs) in enumerate([20, 100, 500])
+    k_obs = round(Int, 0.15 * n_obs)
+    liks = [pdf(Binomial(n_obs, p), k_obs) for p in ps]
+    liks ./= maximum(liks)
+    lines!(ax, ps, liks; linewidth=2.5, color=colors[i], label="n = $n_obs")
+end
+axislegend(ax; position=:rt)
+fig
+```
+
+Even with 500 years of record the 95% CI for a roughly 7-year event is [0.12, 0.18].
+Estimation is harder than it looks.
+
+# Is a point estimate enough?
+
+## Two engineers, same MLE
+
+Both fit $\hat p = 0.15$.
+One has 20 years of record, the other has 200.
+Same point estimate, very different certainty.
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 280))
+ax = Axis(fig[1, 1]; xlabel=L"p", ylabel="normalized likelihood")
+ps = range(0.001, 0.4; length=500)
+for (i, (n_obs, k_obs)) in enumerate([(20, 3), (200, 30)])
+    liks = [pdf(Binomial(n_obs, p), k_obs) for p in ps]
+    liks ./= maximum(liks)
+    lines!(ax, ps, liks; linewidth=2.5, color=colors[i], label="n = $n_obs")
+end
+vlines!(ax, [0.15]; color=:gray40, linewidth=1.5, linestyle=:dash, label=L"\hat{p} = 0.15")
+axislegend(ax; position=:rt)
+fig
+```
+
+## Uncertainty from MLE: the Fisher information
+
+The **Fisher information** $I(\theta)$ measures the curvature of the log-likelihood at the peak.
+Sharp peak → high information → low variance.
+
+$$
+\mathrm{Var}(\hat\theta) \approx \frac{1}{I(\theta)}, \qquad \text{binomial: } \mathrm{Var}(\hat p) \approx \frac{p(1-p)}{n}
+$$
+
+Tedious to compute for most models (not on the test).
+Bayes and the bootstrap give uncertainty more naturally.
+
+
+# Bayesian estimation
+
+## Bayes' theorem in one slide
+
+From the board:
+
+$$
+\overbrace{p(\theta \mid y)}^{\text{posterior}} \;\propto\; \overbrace{p(y \mid \theta)}^{\text{likelihood}} \;\cdot\; \overbrace{p(\theta)}^{\text{prior}}
+$$
+
+- **Prior** $p(\theta)$: what you believe before seeing data
+- **Likelihood** $p(y \mid \theta)$: how consistent the data are with each $\theta$
+- **Posterior** $p(\theta \mid y)$: your updated belief, a full distribution over $\theta$
+
+## The Beta-Binomial model
+
+The coin has unknown bias $p$.
+A Beta prior on $p$ is **conjugate** to the Binomial likelihood, so the posterior has a closed form:
+
+$$
+p \sim \mathrm{Beta}(\alpha, \beta), \quad Y \mid p \sim \mathrm{Binomial}(n, p) \quad\Rightarrow\quad p \mid Y{=}k \;\sim\; \mathrm{Beta}(\alpha + k,\; \beta + n - k)
+$$
+
+$\alpha + \beta$ controls how strongly the prior concentrates.
+Most models are not conjugate; **Markov chain Monte Carlo** draws samples from the posterior when no closed form exists (week 5).
+
+## Small sample: the prior helps
+
+True bias $p = 0.55$, only 10 flips, observed 7 heads.
+A Beta(10, 10) prior says coins are usually near 0.5.
+
+```{julia}
+#| echo: false
+n_flip = 10
+k_flip = 7
+prior = Beta(10, 10)
+posterior = Beta(10 + k_flip, 10 + n_flip - k_flip)
+ps = range(0.01, 0.99; length=400)
+lik_vals = [pdf(Binomial(n_flip, p), k_flip) for p in ps]
+lik_vals ./= maximum(lik_vals) / maximum(pdf.(posterior, ps))
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel=L"p", ylabel="density")
+lines!(ax, ps, pdf.(prior, ps); linewidth=2.5, color=colors[1], label="prior")
+lines!(ax, ps, lik_vals; linewidth=2, color=:gray50, linestyle=:dash, label="likelihood")
+lines!(ax, ps, pdf.(posterior, ps); linewidth=2.5, color=colors[2], label="posterior")
+vlines!(ax, [k_flip / n_flip]; color=colors[3], linewidth=2, linestyle=:dot)
+vlines!(ax, [0.55]; color=:black, linewidth=1, linestyle=:dashdot)
+text!(ax, k_flip / n_flip + 0.02, 0.3; text=L"\hat{p}_{\text{MLE}}", fontsize=16, color=colors[3])
+text!(ax, 0.55 - 0.08, 0.3; text=L"p_{\text{true}}", fontsize=16)
+axislegend(ax; position=:lt)
+fig
+```
+
+The MLE overshoots at 0.70.
+The posterior lands at 0.57, closer to the truth.
+
+## The posterior is a compromise between prior and likelihood
+
+Same coin ($p = 0.55$), now with 10, 50, and 200 flips.
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel=L"p", ylabel="density")
+ps = range(0.2, 0.9; length=400)
+lines!(ax, ps, pdf.(Beta(10, 10), ps); linewidth=2, color=:gray60, label="prior")
+for (i, n_flips) in enumerate([10, 50, 200])
+    n_heads = round(Int, 0.55 * n_flips)
+    post = Beta(10 + n_heads, 10 + n_flips - n_heads)
+    lines!(ax, ps, pdf.(post, ps); linewidth=2.5, color=colors[i], label="n = $n_flips")
+end
+vlines!(ax, [0.55]; color=:black, linewidth=1, linestyle=:dashdot)
+axislegend(ax; position=:rt)
+fig
+```
+
+With enough data, two analysts with different priors converge.
+
+## Three ways to get uncertainty
+
+The posterior is a distribution over $\theta$: credible interval, predictive distribution, threshold probability, all from the same object.
+
+| Method | Uncertainty | Needs |
+| :--- | :--- | :--- |
+| MLE | Asymptotic CI, per quantity | Model + Fisher information |
+| Bayes | Posterior, all at once | Model + prior |
+| Bootstrap | Resampled spread | Data only |
+
+## What is next
+
+- **Friday**: the bootstrap and lab 3
+- **Next week**: extreme value theory
+- Module 1 test: **Friday October 16**

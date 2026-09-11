@@ -1,0 +1,46 @@
+---
+title: "Week 04 Reading: Extreme value theory"
+subtitle: "The GEV, the GPD, and why block maxima and exceedances give different answers"
+week: 4
+module: 2
+status: "draft"
+release: "public"
+date: 2026-09-14
+---
+
+Submit your questions on Canvas by Sunday 9/13 at 11:59 pm, before Monday's class.
+
+## Assigned
+
+1. The HEC "Extreme Value Theory" video series from the USACE course *Statistical Methods in Hydrology*.
+Watch the [YouTube playlist](https://www.youtube.com/playlist?list=PL3IxmyGu6qQAOrfzuJU8fGwrZknW0lWJM) (four parts plus a key-takeaways video, about 90 minutes total).
+The [downloadable slides with speaker notes](https://www.hec.usace.army.mil/confluence/sspdocs/ssptr/class-materials/058-statistical-methods-in-hydrology-april-2025/statistical-methods-in-hydrology-april-2025-course-material) read standalone if you prefer to read rather than watch.
+Focus on Parts I--III (slides 1--33): order statistics, the Fisher-Tippett-Gnedenko theorem, the GEV distribution, and convergence.
+Part IV (slides 34--48) introduces the GPD and peaks over threshold, which we cover fully in week 5; watch it now for context or save it for next week.
+1. Section 3.1 of @ghil_extremes:2011, which states the extremal types theorem and the three GEV families in the context you already know from weeks 2 and 3.
+This reading is [open access](https://npg.copernicus.org/articles/18/295/2011/).
+
+**Notation warning.** The HEC deck uses $\kappa$ for the GEV and GPD shape parameter.
+Most statistics texts, including @coles_extremes:2001 and @ghil_extremes:2011, use $\xi$.
+They are the same parameter; the sign convention also differs in some sources.
+When you see $\kappa$ in the videos and $\xi$ in the papers, they refer to the same thing.
+
+## Further reading
+
+1. Sections 3.1.4 and 3.1.5 of @coles_extremes:2001 for the max-stability derivation of the extremal types theorem and three closed-form examples (exponential gives Gumbel, Frechet gives Frechet, uniform gives Weibull).
+Section 3.3.3 for the return-level plot and how the shape parameter controls concavity.
+1. Chapter 4 of @coles_extremes:2001 for the GPD and threshold models, including the four-line derivation of the GPD from the GEV (section 4.2.2).
+This is next week's primary source and pairs with Part IV of the HEC series.
+
+## Questions
+
+Write a few sentences on each.
+
+1. The Fisher-Tippett-Gnedenko theorem says that block maxima converge to one of three distributions depending on the parent population's tail.
+In your own words, what property of the parent distribution determines which of the three you get?
+1. The HEC deck (slides 28--32) discusses reasons why annual maximum streamflow might not look GEV-distributed even though the theorem says it should.
+Name two of those reasons, and say which one you think is hardest to check for in practice.
+1. @ghil_extremes:2011 section 3.1 states the same theorem more concisely.
+What does the paper add, in its brief treatment, that the HEC deck does not cover?
+1. The GEV shape parameter controls whether the distribution has a heavy tail, a light tail, or a bounded upper tail.
+For annual maximum streamflow at a site you know, which case do you think applies, and why?

@@ -1,0 +1,326 @@
+---
+title: "Bootstrap"
+subtitle: "{{< var course.number >}}"
+week: 3
+module: 1
+order: 3
+kind: "slides"
+date: 2026-09-11
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CEVE543Utils,
+    CSV,
+    CairoMakie,
+    DataFrames,
+    Distributions,
+    Interpolations,
+    LaTeXStrings,
+    Printf,
+    Random,
+    Statistics,
+    StatsBase,
+    Turing
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+rng = MersenneTwister(543)
+here = @__DIR__
+annmax = CSV.read(joinpath(here, "..", "week-01", "8638610-annmax.csv"), DataFrame)
+y = annmax.lsl
+n_obs = length(y)
+```
+
+# Why uncertainty matters
+
+## Return-level uncertainty grows in the tail
+
+Wednesday's MLE gave one $\hat\theta$ and one return-level curve.
+A different $\hat\theta$ gives a different curve, and the curves diverge at long return periods.
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Return periods for Sewells Point, VA [@doss-gollin_subjective:2023]
+:::
+
+## Depth-damage curve
+
+Europa depth-damage function [@doss-gollin_subjective:2023]:
+
+```{julia}
+#| echo: false
+dd = CSV.read(joinpath(here, "fragility_europa.csv"), DataFrame)
+dd_interp = linear_interpolation(
+    dd.depth_feet, dd.damage_frac; extrapolation_bc=Interpolations.Flat()
+)
+damage_frac(depth_ft) = depth_ft < 0 ? 0.0 : dd_interp(depth_ft)
+fig = Figure(; size=(800, 300))
+ax = Axis(
+    fig[1, 1]; xlabel=L"\text{flood depth above floor (ft)}", ylabel="damage fraction"
+)
+lines!(ax, dd.depth_feet, dd.damage_frac; linewidth=3, color=colors[1])
+fig
+```
+
+## How much does parameter uncertainty change the damage?
+
+Expected annual damage for a house at 7 ft elevation, Sewells Point annual maxima.
+
+- **MLE**: one $\hat\theta$, one expected annual damage (vertical line)
+- **Posterior**: each draw of $\theta$ from Wednesday's posterior gives a different expected annual damage (histogram)
+
+```{julia}
+#| echo: false
+#| output: false
+house_elev = 7.0
+N_mc = 500
+gev_mle = only(getdistribution(gevfit(y)))
+ead_mle = mean(damage_frac.(rand(rng, gev_mle, N_mc) .- house_elev))
+gev_model = CEVE543Utils.gev_model(y, ones(n_obs, 1), ones(n_obs, 1), ones(n_obs, 1), 5.0)
+posterior_chain = sample(rng, gev_model, NUTS(0.9), MCMCThreads(), 4_000, 4)
+post_df = DataFrame(posterior_chain)
+n_post = nrow(post_df)
+ead_posterior = zeros(n_post)
+for i in 1:n_post
+    d = GeneralizedExtremeValue(
+        post_df[i, Symbol("β_location[1]")],
+        exp(post_df[i, Symbol("β_logscale[1]")]),
+        post_df[i, Symbol("β_shape[1]")],
+    )
+    ead_posterior[i] = mean(damage_frac.(rand(rng, d, N_mc) .- house_elev))
+end
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="expected annual damage fraction", ylabel="density")
+hideydecorations!(ax; label=false)
+hist!(
+    ax,
+    ead_posterior;
+    bins=40,
+    normalization=:pdf,
+    color=(colors[1], 0.6),
+    label="each posterior θ",
+)
+vlines!(ax, [ead_mle]; color=colors[2], linewidth=3, label="MLE point estimate")
+axislegend(ax; position=:rt)
+fig
+```
+
+Even modest uncertainty in the return level produces large uncertainty in expected damage, because the damage curve is steep in the tail.
+
+# The bootstrap
+
+## Resampling from data: the mosquitoes experiment
+
+@lefevre_beermosquitoes:2010 counted mosquito bites on 25 beer drinkers and 18 water drinkers.
+**Skeptic:** the difference is chance and the group labels are arbitrary.
+
+```{julia}
+#| echo: false
+beer = [
+    27,
+    20,
+    21,
+    26,
+    27,
+    31,
+    24,
+    21,
+    20,
+    19,
+    23,
+    24,
+    28,
+    19,
+    24,
+    29,
+    18,
+    20,
+    17,
+    31,
+    20,
+    25,
+    28,
+    21,
+    27,
+]
+water = [21, 22, 15, 12, 21, 16, 19, 15, 22, 24, 19, 23, 13, 22, 20, 24, 18, 20]
+observed_diff = mean(beer) - mean(water)
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="mosquito bites", ylabel="density")
+xgrid = range(10, 34; length=200)
+for (grp, lbl, c) in [(beer, "beer (n=25)", colors[1]), (water, "water (n=18)", colors[2])]
+    hist!(ax, grp; bins=10:1:34, normalization=:pdf, color=(c, 0.4), label=lbl)
+    d = fit(Normal, grp)
+    lines!(ax, xgrid, pdf.(d, xgrid); color=c, linewidth=2, linestyle=:dash)
+end
+axislegend(ax; position=:rt)
+fig
+```
+
+## The permutation test
+
+If the labels are arbitrary, shuffle them and recompute.
+Each shuffle gives a mean difference under the null hypothesis:
+
+```{julia}
+#| output: false
+function shuffled_difference(y1, y2)
+    pooled = shuffle(rng, vcat(y1, y2))
+    return mean(pooled[1:length(y1)]) - mean(pooled[(length(y1) + 1):end])
+end
+null_diffs = [shuffled_difference(beer, water) for _ in 1:10_000]
+p_value = mean(null_diffs .>= observed_diff)
+```
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="mean difference (beer − water)", ylabel="density")
+hideydecorations!(ax; label=false)
+hist!(
+    ax,
+    null_diffs;
+    bins=40,
+    normalization=:pdf,
+    color=(colors[1], 0.6),
+    label="null distribution",
+)
+vlines!(ax, [observed_diff]; color=colors[2], linewidth=3, label="observed")
+axislegend(ax; position=:lt)
+fig
+```
+
+```{julia}
+#| echo: false
+@printf("p-value: %.4f", p_value)
+```
+
+## The bootstrap idea
+
+The permutation test shuffled labels to test a null hypothesis.
+The bootstrap resamples the data **with replacement** to estimate uncertainty in $\hat\theta$ [@efron_:1994].
+
+Drawing $n$ values with replacement from your data treats the sample as if it were the population.
+Some observations appear twice, others drop out, and the estimate changes each time.
+
+## The procedure
+
+1. Draw a **resample**: $n$ values from the original data, with replacement
+1. Compute $\hat\theta^*$ on the resample
+1. Repeat $B$ times to get $\hat\theta^{*1}, \ldots, \hat\theta^{*B}$
+
+A 95% confidence interval is the 2.5th and 97.5th percentiles of the $\hat\theta^*$ values.
+
+For supplementary notes, read @mudelsee_climatetimeseriesanalysis:2010 §3.2 (pp. 74--76) on the bootstrap principle and Figure 3.3.
+
+## Bootstrap the return level
+
+Resample the Sewells Point annual maxima, fit a GEV on each resample, and compute the return-level curve $z_T = F^{-1}(1 - 1/T; \hat\theta^*)$:
+
+```{julia}
+#| output: false
+n = n_obs
+B = 100
+return_periods = exp.(range(log(2), log(200); length=50))
+boot_curves = zeros(B, length(return_periods))
+for b in 1:B
+    ys = y[rand(rng, 1:n, n)]
+    d_b = only(getdistribution(gevfit(ys)))
+    boot_curves[b, :] = [quantile(d_b, 1 - 1 / T) for T in return_periods]
+end
+```
+
+```{julia}
+#| echo: false
+mle_curve = [quantile(gev_mle, 1 - 1 / T) for T in return_periods]
+fig = Figure(; size=(800, 350))
+ax = Axis(
+    fig[1, 1];
+    xlabel="return period (years)",
+    ylabel=L"\text{return level (ft)}",
+    xscale=log10,
+)
+for b in 1:B
+    lines!(ax, return_periods, boot_curves[b, :]; color=(colors[1], 0.1), linewidth=0.5)
+end
+lines!(ax, return_periods, mle_curve; color=colors[2], linewidth=3, label="MLE")
+obs_rp = (n_obs + 1) ./ (n_obs + 1 .- (1:n_obs))
+scatter!(ax, obs_rp, sort(y); color=:black, markersize=4, label="observed")
+axislegend(ax; position=:lt)
+fig
+```
+
+100 bootstrap resamples.
+The curves agree at short return periods and spread in the tail.
+
+## Bootstrap vs Bayes
+
+The bootstrap 95% CI on the 100-year return level is doing something that is conceptually *similar* to the Bayesian posterior:
+
+```{julia}
+#| echo: false
+boot_rl100 = boot_curves[:, argmin(abs.(return_periods .- 100))]
+ci_boot = quantile(boot_rl100, [0.025, 0.975])
+post_rl100 = zeros(n_post)
+for i in 1:n_post
+    d = GeneralizedExtremeValue(
+        post_df[i, Symbol("β_location[1]")],
+        exp(post_df[i, Symbol("β_logscale[1]")]),
+        post_df[i, Symbol("β_shape[1]")],
+    )
+    post_rl100[i] = quantile(d, 1 - 1 / 100)
+end
+ci_bayes = quantile(post_rl100, [0.025, 0.975])
+rl_mle = quantile(gev_mle, 1 - 1 / 100)
+@printf("MLE:       %.2f ft\n", rl_mle)
+@printf("Bootstrap: [%.2f, %.2f] ft  (100 resamples)\n", ci_boot[1], ci_boot[2])
+@printf("Bayes:     [%.2f, %.2f] ft  (16,000 posterior draws)", ci_bayes[1], ci_bayes[2])
+```
+
+# Resampling schemes
+
+## The ordinary bootstrap assumes exchangeability
+
+The Sewells Point bootstrap resampled individual years with replacement.
+That assumes any reordering of the data is equally likely.
+When the data has structure the resampling does not preserve, the confidence intervals are wrong.
+
+## Autocorrelated data: the block bootstrap
+
+Annual temperature anomalies are positively autocorrelated: a warm year is more likely to follow a warm year.
+Resampling individual years destroys that dependence and makes the confidence interval too narrow [@mudelsee_climatetimeseriesanalysis:2010, §3.3].
+
+The block bootstrap resamples **blocks** of $l$ consecutive values, preserving the local dependence.
+
+## Parametric model: the parametric bootstrap
+
+If you fitted a distribution by MLE, you can resample from the fitted distribution $\hat F(\hat\theta)$, re-estimate on each synthetic sample, and look at the spread.
+
+This is Monte Carlo from week 1, except the distribution itself is uncertain.
+With a Bayesian model you get this from the posterior predictive; the parametric bootstrap is the frequentist version.
+
+## Lab 3
+
+Houston Hobby Airport, 88 years of annual minimum temperatures.
+The 2021 freeze reached $-9.3$ °C: how rare is that, and how sure are you?
+
+1. Fit a Normal by MLE and by Bayes (conjugate prior)
+1. Bootstrap the return period of a $-9.3$ °C winter
+1. Compare the three uncertainty estimates side by side

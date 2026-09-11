@@ -1,0 +1,47 @@
+# What the schedule needs that no page owns.
+#
+# Every piece of material is a dated page in lectures/, assignments/, labs/, or
+# assessments/, and the schedule table is collated from those dates. Only two
+# things have no page to live on: which weeks belong to which module, and why
+# a no-class day is off. They live here.
+#
+# THE COURSE HAS FOUR MODULES AND TWO TESTS. This is settled; do not ask again,
+# and do not infer a module count from the number of tests. The two do not line
+# up one to one, which is what makes it look unsettled:
+#
+#   Module 1  Foundations              weeks 1-3   \_ Test 1, Fri Oct 16
+#   Module 2  Univariate extremes      weeks 4-7   /
+#   Module 3  Spatiotemporal extremes  weeks 8-14  --- Test 2, Mon Nov 30
+#   Module 4  Synthesis                week 15     --- no test
+#
+# Test dates and the oral windows are student-facing and live in syllabus.qmd,
+# which agrees with this and is where they are edited. Nothing reads the
+# mapping above; it is written here because this is where a reader looks for
+# the module structure.
+
+modules:
+  1:
+    title: Foundations
+    weeks: [1, 2, 3]
+    question: Why do we care about quantitative representations of climate hazard?
+  2:
+    title: Univariate extremes
+    weeks: [4, 5, 6, 7]
+    question: How do we characterize the probability distribution of a single hydroclimate hazard at a single location, and what are the associated uncertainties?
+  3:
+    title: Spatiotemporal extremes
+    weeks: [8, 9, 10, 11, 12, 13, 14]
+    question: How do we sample hydroclimate hazard(s) across space and/or time to characterize complex extremes?
+  4:
+    title: Synthesis
+    weeks: [15]
+
+no_class:
+  - date: 2026-09-07
+    reason: Labor Day
+  - date: 2026-10-12
+    reason: Midterm recess
+  - date: 2026-11-25
+    reason: Thanksgiving
+  - date: 2026-11-27
+    reason: Thanksgiving

@@ -1,0 +1,142 @@
+---
+title: "Software Reference"
+status: "published"
+release: "public"
+engine: markdown
+---
+
+You install everything once, in the [Lab 1 setup](labs/lab-01/index.qmd).
+This page covers what comes after: what you do every week, how to use the tools, and where to look when something breaks.
+
+::: {.callout-tip}
+## AI Helper
+
+If you are debugging your code with the help of an AI tool, share this URL so that it has access to the most relevant context.
+:::
+
+## Your weekly workflow
+
+### The lab loop
+
+Every lab follows the same rhythm:
+
+1. Open the week's template link from Canvas and create your copy of the lab repository.
+1. Clone it with [GitHub Desktop](https://desktop.github.com/) (or another tool if you're comfortable). **IMPORTANT:** do not clone into a folder that Google Drive or OneDrive or any other cloud service syncs.
+   Git does not play nicely with these cloud services.
+1. Open it from GitHub Desktop (Repository > Open in Visual Studio Code), which opens the lab folder.
+1. Open `index.qmd`.
+1. Run the first code cell; the Julia extension starts a REPL, and the cell selects the lab's environment and installs its packages.
+1. Work through the notebook cell by cell, editing and re-running as you go.
+1. Commit, push, render to PDF, and upload it to Canvas, as described under [Turning in a lab](#turning-in-a-lab).
+
+The *first run* of that cell downloads and precompiles everything the lab needs, which can take several minutes.
+That is normal, and it only happens once per lab.
+
+### Turning in a lab
+
+A lab is due on Canvas one week after the Friday session that starts it.
+You turn in two things: a rendered PDF of your notebook, and a link to your repository.
+
+1. Fill in every **Your answer** block in the notebook.
+1. Commit and push, with GitHub Desktop or by asking Claude Code to do it.
+1. Render the PDF.
+   In the terminal, from the lab folder, run:
+
+   ```bash
+   quarto render index.qmd --to typst
+   ```
+
+   This writes `index.pdf` beside the notebook.
+   Use `--to typst` rather than `--to pdf`: Typst ships with Quarto, and `--to pdf` expects a LaTeX installation you probably do not have.
+1. Upload `index.pdf` to that week's Canvas assignment, and paste your repository link into the same submission.
+
+Rendering runs the whole notebook from the top in a fresh process.
+A lab that renders cleanly is one that does not depend on leftover REPL state, so this is also the check that your work reproduces correctly.
+If the render fails and you cannot fix it, upload what you have and say where it broke.
+
+## Using the tools
+
+There are two ways to run your lab notebooks.
+As a general rule, work mostly in the REPL, and check with a render or preview as needed.
+
+### The Julia REPL
+
+Each `{julia}` cell has a **Run Cell** button above it, and `Shift+Enter` runs the current cell and moves to the next.
+Code is sent to the Julia REPL, short for read-eval-print loop: the `julia>` prompt takes one expression, works it out, prints the answer, and waits for the next one, keeping everything you have defined so far.
+See [Running code in the Julia extension](https://www.julia-vscode.org/docs/stable/userguide/runningcode/) for the editor's version of it, and the [Julia manual's REPL chapter](https://docs.julialang.org/en/v1/stdlib/REPL/) for the full reference.
+
+When you run code in the REPL, you will see outputs in three places:
+
+- **Values** (numbers, DataFrames, fitted models) render inline in the editor at the end of the cell, and also in the REPL panel.
+- **Plots** open in the Julia extension's plot pane, a panel beside the editor that keeps a history of your plots.
+- **Printed text** (`println`, warnings, errors) appears in the REPL panel.
+
+### Quarto preview
+
+The REPL keeps definitions even after you delete the code that made them, so code can work in your session and still fail to reproduce.
+
+`quarto render` and `quarto preview` both run the document from the top in a fresh process, with caching if you enable it.
+If your lab is computationally light, previewing as you work is a good way to catch that problem early.
+See [Quarto in VS Code](https://quarto.org/docs/tools/vscode/) for the editor integration.
+
+### Environments and packages
+
+Each lab repository keeps a `Project.toml` at its root listing the packages that lab needs.
+The lab's first cell selects that environment and installs from it:
+
+```julia
+using Pkg
+lab_dir = dirname(@__FILE__)
+Pkg.activate(lab_dir)
+!isfile(joinpath(lab_dir, "Manifest.toml")) && Pkg.instantiate()
+```
+
+Two commands are worth knowing, both typed at the REPL's `pkg>` prompt (press `]` to get there, backspace to leave):
+
+- `status` lists the active environment and its packages, whose name also appears in the status bar at the bottom of the window.
+- `add SomePackage` installs a package the lab does not already carry, into whichever environment is active.
+
+When a package fails to load, run `pkg> status` first.
+If the environment named in the output is not the lab's, re-run the lab's first cell.
+For the full picture of what `Project.toml` and `Manifest.toml` do, see [Pkg environments](https://pkgdocs.julialang.org/v1/environments/).
+
+## Getting unstuck
+
+### When something breaks
+
+Check these in order; they cover most failures:
+
+1. **Wrong environment**: `pkg> status` shows a different project than the lab.
+   Fix by re-running the lab's first cell.
+1. **Packages not installed**: the environment is right but `using SomePackage` fails.
+   Fix with `pkg> instantiate`, or by re-running the first cell.
+1. **Stale REPL state**: the code references a variable from a cell you edited or deleted.
+   Restart the REPL (Command Palette > "Julia: Restart REPL") and run the notebook from the top.
+1. **A cell works interactively but `quarto render` fails**: the notebook depends on state that is not created by the cells above it; run from the top in a fresh REPL to find the gap.
+
+If none of these fit, ask an LLM, and paste the complete error message rather than paraphrasing it.
+
+### Claude Code
+
+This page does not teach Claude Code.
+For that, read the [official documentation](https://docs.claude.com/en/docs/claude-code/overview) and Anthropic's [best-practices guide](https://www.anthropic.com/engineering/claude-code-best-practices).
+A few things to keep in mind when you use it on a lab:
+
+- **Scope**: start it inside the lab folder, so it sees the lab and nothing else.
+  A session started in your home directory can read and edit far more than you intend.
+- **Permissions**: it asks before running commands or editing files.
+  Read what it is asking to do before approving, and be stingy with "always allow".
+- **Small requests**: ask about one exercise or one error at a time.
+  A vague "do the lab" produces work you cannot check.
+- **Verify**: run the code it wrote and read it.
+  You are responsible for whatever you submit or present, including the parts a model wrote.
+
+### Reference links
+
+- [Julia manual](https://docs.julialang.org/en/v1/): the language reference, including the REPL and the standard library.
+- [Modern Julia Workflows](https://modernjuliaworkflows.org/): a practical guide to writing, running, and sharing Julia code, and the best single place to go once the basics are working.
+- [Julia VS Code extension documentation](https://www.julia-vscode.org/docs/stable/): the REPL, plot pane, and inline results.
+- [Pkg environments](https://pkgdocs.julialang.org/v1/environments/): what `Project.toml` and `Manifest.toml` are and how `activate` and `instantiate` work.
+- [Quarto in VS Code](https://quarto.org/docs/tools/vscode/): the Quarto extension, cell execution, and rendering.
+- [Quarto's Julia engine](https://quarto.org/docs/computations/julia.html): how `engine: julia` documents execute.
+- [GitHub Desktop documentation](https://docs.github.com/en/desktop): cloning, committing, and pushing without the command line.

@@ -1,0 +1,93 @@
+---
+title: "Welcome to CEVE 543"
+subtitle: "{{< var course.number >}}"
+week: 1
+module: 1
+order: 1
+kind: "slides"
+date: 2026-08-24
+status: "published"
+release: "public"
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Billion-dollar disasters, 1980 to 2024
+
+![NOAA NCEI Billion-dollar Disasters](noaa-billion-dollar-disasters-1980-2024.png){height=90%}
+
+
+## Who you are
+
+- Name
+- Field of study
+- One thing you want to learn
+
+# Example questions
+
+## How big does this culvert need to be?
+
+![Houston, TX](doss-gollin-buffalo-drainage.jpeg){height=90%}
+
+## Where is the floodplain?
+
+![Flood Insurance Rate Map, Hampton, VA (FEMA)](fema-5155270025H.jpg){height=90%}
+
+## How high should this surge gate be?
+
+![The Maeslantkering (Bert Knottenbeld on Flickr, CC BY-SA 2.0)](bert-knottenbeld-maeslant.jpg){height=90%}
+
+## What premium to charge?
+
+![Artemis.bm](nyc-artemis.png){width=100%}
+
+A parametric catastrophe bond is an insurance policy that pays out based on specified weather-related triggers, not on damages.
+
+## Will these thirty-year mortgages be repaid?
+
+::: {.columns}
+::: {.column width="45%"}
+
+![@thomson_systemic:2023, fig. 12](thomson-2023-fig12.jpg){width=100%}
+
+:::
+::: {.column width="55%"}
+
+When property owners experience uninsured damages that exceed the equity on their house, lenders and local governments can lose money.
+
+The financial sector is just starting to grapple with *physical risk* [@condon_myopia:2021]
+
+:::
+:::
+
+## How to combine green/gray infrastructure across a city?
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: A permeable park in a Chinese sponge city, built to hold and infiltrate stormwater instead of piping it away (Mu Yu/Xinhua via Getty Images)
+:::
+
+## Key insight
+
+With *probabilistic* estimates of hydroclimate hazard, *and associated uncertainties / limitations*, we can support decisions across sectors and scales.
+
+# Fundamental limitations
+
+## How to analyze records with few extremes?
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Historical major hurricane tracks near Tallahassee beside stochastic tracks from the same coastal box [@neubergerberman_catmod101:2025]
+:::
+
+## How do we leverage evolving AI methods?
+
+![Lagged historical initial conditions are perturbed, run through a machine-learning weather model, and turned into simulated precipitation and temperature [@ashcroft_aiensembles:2026, fig. 1]](ashcroft-2026-fig01.png){width=100%}
+
+## How would we know if it is right?
+
+{{< include ../../_includes/poll-ev.qmd >}}

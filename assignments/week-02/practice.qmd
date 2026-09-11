@@ -1,0 +1,228 @@
+---
+title: "Week 02 Practice Problems (Optional)"
+week: 2
+module: 1
+status: "published"
+release: "public"
+date: 2026-08-31
+---
+
+```{julia}
+#| code-fold: true
+#| output: false
+#| solution: false
+using Printf
+```
+
+Attempt these before Wednesday.
+These problems are optional; keep your work for yourself.
+Open the worked answer after you have tried the problem.
+
+The module 1 written test draws from this pool.
+
+## Persistence from a linear reservoir
+
+A linear reservoir has release constant $k = 0.3$.
+Its output under white-noise precipitation is an AR(1) process with coefficient $a = 1/(k+1)$.
+
+a.
+Compute $a$.
+b.
+Compute the autocorrelation at lags 1, 2, and 5 using $\rho_h = a^{|h|}$.
+
+::: {.answer}
+$$
+\begin{aligned}
+a &= \frac{1}{k+1} = \frac{1}{1.3} \\
+\rho_1 &= a \\
+\rho_2 &= a^2 \\
+\rho_5 &= a^5
+\end{aligned}
+$$
+
+```{julia}
+#| solution: true
+k = 0.3
+a = 1 / (k + 1)
+@printf("a = %.3g\n", a)
+@printf("ρ₁ = %.3g, ρ₂ = %.3g, ρ₅ = %.3g", a, a^2, a^5)
+```
+
+A single linear reservoir with one release constant turns white-noise precipitation into a persistent AR(1) output.
+:::
+
+## Estimation bias at short record length
+
+The Kendall (1954) bias formula for the lag-1 autocorrelation estimated from a record of length $n$ with unknown mean is
+
+$$
+E(\hat a) \approx a - \frac{1 + 3a}{n - 1}
+$$
+
+where $a$ is the true value and $\hat a$ is the estimate [@mudelsee_climatetimeseriesanalysis:2010, pp. 56-57].
+
+a.
+At $n = 50$ and $a = 0.7$, what is the expected estimate, and what percentage of the true value does the bias represent?
+b.
+The bias-correction recipe inverts the formula: given an observed $\hat a$, solve for the corrected $\hat a'$.
+Show that $\hat a' = [\hat a(n-1) + 1]/(n - 4)$, and verify that applying it to your answer from part a recovers $a = 0.7$.
+
+::: {.answer}
+**Part a.**
+
+$$
+\begin{aligned}
+E(\hat a) &\approx 0.7 - \frac{1 + 3(0.7)}{50 - 1} \\
+&= 0.7 - \frac{3.1}{49}
+\end{aligned}
+$$
+
+```{julia}
+#| solution: true
+a = 0.7
+n = 50
+bias = (1 + 3a) / (n - 1)
+expected = a - bias
+@printf("E(â) = %.3g, bias = %.3g, percentage = %.3g%%", expected, bias, 100 * bias / a)
+```
+
+A 50-year record underestimates the persistence by about 9 percent.
+
+**Part b.** In the bias formula, replace $E(\hat a)$ with the observed $\hat a$ and $a$ with the unknown $\hat a'$.
+
+$$
+\begin{aligned}
+\hat a &= \hat a' - \frac{1 + 3\hat a'}{n - 1} \\
+\hat a(n-1) &= \hat a'(n-1) - 1 - 3\hat a' \\
+\hat a(n-1) + 1 &= \hat a'(n - 4) \\
+\hat a' &= \frac{\hat a(n-1) + 1}{n - 4}
+\end{aligned}
+$$
+
+```{julia}
+#| solution: true
+a_hat = expected
+a_corrected = (a_hat * (n - 1) + 1) / (n - 4)
+@printf("â = %.3g → â' = %.3g", a_hat, a_corrected)
+```
+
+The formula assumes a stationary AR(1) process with unknown mean and $|a| < 1$.
+It breaks down for $a$ above about 0.9, where higher-order terms matter.
+:::
+
+## Variance of a time average under persistence
+
+A 50-year climate record has lag-1 autocorrelation $a = 0.7$.
+
+a.
+Compute the variance inflation factor $V = (1+a)/(1-a)$.
+b.
+Compute the effective number of independent years $n' = n/V$.
+c.
+A colleague tests whether the 50-year mean differs significantly from the historical baseline, treating the years as independent, and gets a test statistic of 2.0.
+By what factor is the test statistic inflated, and does the result survive the correction?
+
+::: {.answer}
+**Part a.**
+
+$$
+V = \frac{1+a}{1-a}
+$$
+
+```{julia}
+#| solution: true
+a = 0.7
+V = (1 + a) / (1 - a)
+@printf("V = %.3g", V)
+```
+
+**Part b.**
+
+$$
+n' = \frac{n}{V}
+$$
+
+```{julia}
+#| solution: true
+n = 50
+n_eff = n / V
+@printf("n' = %.3g effective independent years", n_eff)
+```
+
+**Part c.** The test uses $\sigma_X^2/n$ for the variance of the mean, but the true variance is $V\sigma_X^2/n$.
+The standard error is $\sqrt{V}$ times larger than assumed, so the test statistic is $\sqrt{V}$ times too large.
+
+```{julia}
+#| solution: true
+t_stat = 2.0
+inflation = sqrt(V)
+corrected = t_stat / inflation
+@printf("inflation factor = %.3g, corrected t = %.3g", inflation, corrected)
+```
+
+The corrected test statistic is well below any conventional threshold.
+The apparent trend comes from persistence alone.
+
+The large-sample formula $V = (1+a)/(1-a)$ assumes $n$ is large enough that the finite-sample weights $(1 - h/n)$ are close to 1.
+At $n = 50$ and $a = 0.7$ this is a reasonable approximation.
+:::
+
+## Reproducing a published autoregressive series
+
+Example 9.6 of @wilks_atmosphericsciences:2011 generates AR(1) and AR(2) series from one printed innovation sequence, starting from $x_0 = 0$.
+The first five innovations are $\varepsilon_1 = 1.526$, $\varepsilon_2 = 0.623$, $\varepsilon_3 = -0.272$, $\varepsilon_4 = 0.092$, $\varepsilon_5 = 0.823$.
+
+The textbook writes $\phi_1$ for the AR coefficient we have been calling $a$.
+
+a.
+For the AR(1) model with $\phi_1 = 0.5$, compute $x_1$ through $x_5$ using $x_t = \phi_1 x_{t-1} + \varepsilon_t$.
+b.
+The textbook also fits an AR(2) with $\phi_1 = 0.9$ and $\phi_2 = -0.6$, initializing $x_0 = x_{-1} = 0$.
+Compute $x_1$ for this model.
+The running text prints $x_1 = 1.562$.
+Does your arithmetic agree?
+
+::: {.answer}
+**Part a.**
+
+$$
+\begin{aligned}
+x_1 &= 0.5(0) + 1.526 = 1.526 \\
+x_2 &= 0.5(1.526) + 0.623 = 1.386 \\
+x_3 &= 0.5(1.386) - 0.272 = 0.421 \\
+x_4 &= 0.5(0.421) + 0.092 = 0.303 \\
+x_5 &= 0.5(0.303) + 0.823 = 0.974
+\end{aligned}
+$$
+
+```{julia}
+#| solution: true
+ϕ = 0.5
+ε = [1.526, 0.623, -0.272, 0.092, 0.823]
+x = zeros(5)
+x[1] = ε[1]
+for t in 2:5
+    x[t] = ϕ * x[t-1] + ε[t]
+end
+for t in 1:5
+    @printf("x_%d = %.3g\n", t, x[t])
+end
+```
+
+These match Table 9.4 of the textbook to three figures.
+
+**Part b.** The AR(2) recursion is $x_t = \phi_1 x_{t-1} + \phi_2 x_{t-2} + \varepsilon_t$, with $x_0 = x_{-1} = 0$.
+
+$$
+x_1 = 0.9(0) + (-0.6)(0) + 1.526 = 1.526
+$$
+
+```{julia}
+#| solution: true
+@printf("x₁ = 0.9(0) + (-0.6)(0) + 1.526 = %.3g", 0.9 * 0 + (-0.6) * 0 + 1.526)
+```
+
+The arithmetic gives 1.526, not 1.562.
+Table 9.4 also lists 1.526, and the next step in the textbook multiplies by 1.526, so the running text's 1.562 is a digit transposition.
+The rest of the worked example is correct.
+:::
