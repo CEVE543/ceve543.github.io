@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 03 Practice Problems (Optional) – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Week 03 Practice Problems (Optional) – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#likelihood-of-a-poisson-sample" id="toc-likelihood-of-a-poisson-sample" class="nav-link active" data-scroll-target="#likelihood-of-a-poisson-sample">Likelihood of a Poisson sample</a></li>
+  <li><a href="#bayes-theorem-with-a-conjugate-prior" id="toc-bayes-theorem-with-a-conjugate-prior" class="nav-link" data-scroll-target="#bayes-theorem-with-a-conjugate-prior">Bayes’ theorem with a conjugate prior</a></li>
+  <li><a href="#method-of-moments-versus-mle" id="toc-method-of-moments-versus-mle" class="nav-link" data-scroll-target="#method-of-moments-versus-mle">Method of moments versus MLE</a></li>
+  <li><a href="#what-a-bootstrap-confidence-interval-means" id="toc-what-a-bootstrap-confidence-interval-means" class="nav-link" data-scroll-target="#what-a-bootstrap-confidence-interval-means">What a bootstrap confidence interval means</a></li>
+  <li><a href="#prior-sensitivity" id="toc-prior-sensitivity" class="nav-link" data-scroll-target="#prior-sensitivity">Prior sensitivity</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/assignments/week-03/practice.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="practice.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 03 Practice Problems (Optional)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Wednesday, September 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="draft-banner">
+<p>Draft. This page is unfinished and will change.</p>
+</div>
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="im">using</span> <span class="bu">Printf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Attempt these before Wednesday. Not graded and not submitted. Open the worked answer after you have tried the problem.</p>
+<p>The module 1 written test draws from this pool.</p>
+<section id="likelihood-of-a-poisson-sample" class="level2">
+<h2 class="anchored" data-anchor-id="likelihood-of-a-poisson-sample">Likelihood of a Poisson sample</h2>
+<p>You observe the following annual counts of days below freezing in Houston: <span class="math inline">\(y = (8, 5, 12, 3, 7)\)</span>. Assume the counts are independent draws from a Poisson distribution with unknown rate <span class="math inline">\(\lambda\)</span>.</p>
+<ol type="a">
+<li>Write down the log-likelihood <span class="math inline">\(\log p(y \mid \lambda)\)</span> as a function of <span class="math inline">\(\lambda\)</span>, dropping terms that do not depend on <span class="math inline">\(\lambda\)</span>.</li>
+<li>Find the MLE <span class="math inline">\(\hat\lambda\)</span> by setting the derivative to zero.</li>
+<li>Compute <span class="math inline">\(\hat\lambda\)</span> numerically and give the probability of observing zero freezing days in a year under this estimate.</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> The Poisson log-likelihood for one observation is <span class="math inline">\(y_i \log\lambda - \lambda - \log(y_i!)\)</span>. Summing over <span class="math inline">\(n = 5\)</span> observations and dropping the constant:</p>
+<p><span class="math display">\[
+\log p(y \mid \lambda) = \left(\sum_{i=1}^5 y_i\right) \log\lambda - 5\lambda + \text{const.}
+\]</span></p>
+<p><strong>Part b.</strong> Differentiate and set to zero:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{d}{d\lambda}\log p &amp;= \frac{\sum y_i}{\lambda} - 5 = 0 \\
+\hat\lambda &amp;= \frac{\sum y_i}{5} = \bar y
+\end{aligned}
+\]</span></p>
+<p>The MLE is the sample mean.</p>
+<p><strong>Part c.</strong></p>
+<div id="4" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>y <span class="op">=</span> [<span class="fl">8</span>, <span class="fl">5</span>, <span class="fl">12</span>, <span class="fl">3</span>, <span class="fl">7</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>λ_hat <span class="op">=</span> <span class="fu">mean</span>(y)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>p_zero <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Poisson</span>(λ_hat), <span class="fl">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="pp">@printf</span>(<span class="st">"λ̂ = %.3g, P(Y=0) = %.3g"</span>, λ_hat, p_zero)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>λ̂ = 7, P(Y=0) = 0.000912</code></pre>
+</div>
+</div>
+<p>The MLE of the rate is the sample mean. The probability of zero freezing days is vanishingly small under this estimate.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="bayes-theorem-with-a-conjugate-prior" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-theorem-with-a-conjugate-prior">Bayes’ theorem with a conjugate prior</h2>
+<p>A Gamma(<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>) prior on the Poisson rate <span class="math inline">\(\lambda\)</span> is conjugate: after observing <span class="math inline">\(n\)</span> independent Poisson draws with sum <span class="math inline">\(s = \sum y_i\)</span>, the posterior is Gamma(<span class="math inline">\(\alpha + s\)</span>, <span class="math inline">\(\beta + n\)</span>).</p>
+<p>Using the same data as above and a prior Gamma(2, 1):</p>
+<ol type="a">
+<li>Write down the posterior distribution.</li>
+<li>Compute the posterior mean and compare it to the MLE.</li>
+<li>The prior mean is <span class="math inline">\(\alpha/\beta = 2\)</span>. In which direction does the prior pull the estimate, and why?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> With <span class="math inline">\(\alpha = 2\)</span>, <span class="math inline">\(\beta = 1\)</span>, <span class="math inline">\(s = 35\)</span>, <span class="math inline">\(n = 5\)</span>:</p>
+<p><span class="math display">\[
+\lambda \mid y \sim \text{Gamma}(2 + 35,\; 1 + 5) = \text{Gamma}(37, 6)
+\]</span></p>
+<p><strong>Part b.</strong> The posterior mean is <span class="math inline">\((\alpha + s)/(\beta + n)\)</span>.</p>
+<div id="6" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>α_post <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">35</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>β_post <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">5</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>post_mean <span class="op">=</span> α_post <span class="op">/</span> β_post</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="pp">@printf</span>(<span class="st">"Posterior mean = %.3g, MLE = %.3g"</span>, post_mean, <span class="fl">7.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Posterior mean = 6.17, MLE = 7</code></pre>
+</div>
+</div>
+<p><strong>Part c.</strong> The prior mean is 2, which is below the sample mean of 7. The posterior mean is pulled slightly below the MLE toward the prior. With only 5 observations the prior has a visible effect; with 50 it would be negligible.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="method-of-moments-versus-mle" class="level2">
+<h2 class="anchored" data-anchor-id="method-of-moments-versus-mle">Method of moments versus MLE</h2>
+<p>For a Normal distribution, the method of moments and MLE both give <span class="math inline">\(\hat\mu = \bar y\)</span>. For the variance, method of moments gives <span class="math inline">\(s^2 = \sum(y_i - \bar y)^2 / (n-1)\)</span> and MLE gives <span class="math inline">\(\hat\sigma^2 = \sum(y_i - \bar y)^2 / n\)</span>.</p>
+<ol type="a">
+<li>For <span class="math inline">\(n = 10\)</span>, by what percentage do the two variance estimates differ?</li>
+<li>At what sample size does the difference fall below 1%?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> The ratio is <span class="math inline">\(n/(n-1)\)</span>.</p>
+<div id="8" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>n <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>ratio <span class="op">=</span> n <span class="op">/</span> (n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="pp">@printf</span>(<span class="st">"MoM/MLE ratio = %.3g, difference = %.3g%%"</span>, ratio, <span class="fl">100</span> <span class="op">*</span> (ratio <span class="op">-</span> <span class="fl">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MoM/MLE ratio = 1.11, difference = 11.1%</code></pre>
+</div>
+</div>
+<p>The method-of-moments variance is about 11% larger than the MLE variance.</p>
+<p><strong>Part b.</strong> Solve <span class="math inline">\(n/(n-1) - 1 &lt; 0.01\)</span>, which gives <span class="math inline">\(1/(n-1) &lt; 0.01\)</span>, so <span class="math inline">\(n &gt; 101\)</span>.</p>
+<div id="10" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>n_threshold <span class="op">=</span> <span class="fu">ceil</span>(<span class="dt">Int</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">0.01</span>) <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a><span class="pp">@printf</span>(<span class="st">"n &gt; %d"</span>, n_threshold)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n &gt; 101</code></pre>
+</div>
+</div>
+<p>The difference is negligible for the record lengths used in this course.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-a-bootstrap-confidence-interval-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-a-bootstrap-confidence-interval-means">What a bootstrap confidence interval means</h2>
+<p>You bootstrap the 100-year return level of annual minimum temperature and obtain a 95% confidence interval of [15, 45] years.</p>
+<ol type="a">
+<li>A colleague says “there is a 95% probability the true return period is between 15 and 45 years.” Is this a correct interpretation of a frequentist confidence interval?</li>
+<li>Under what framework would that statement be correct?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> A frequentist confidence interval says: if you repeated the experiment many times and built a 95% CI each time, 95% of those intervals would contain the true value. Any single interval either contains the true value or it does not. The statement “95% probability the true value is in this interval” treats the parameter as random, which the frequentist framework does not.</p>
+<p><strong>Part b.</strong> Under the Bayesian framework, the parameter has a distribution, and a 95% credible interval does mean “95% posterior probability that the parameter lies in this range.” The two intervals often agree numerically but their interpretations differ.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="prior-sensitivity" class="level2">
+<h2 class="anchored" data-anchor-id="prior-sensitivity">Prior sensitivity</h2>
+<p>You are estimating the Poisson rate of days below freezing. Two analysts use the same data (<span class="math inline">\(n = 5\)</span>, <span class="math inline">\(s = 35\)</span>) but different priors:</p>
+<ul>
+<li>Analyst A: Gamma(2, 1), prior mean 2</li>
+<li>Analyst B: Gamma(50, 10), prior mean 5</li>
+</ul>
+<ol type="a">
+<li>Compute both posterior means.</li>
+<li>Which analyst’s prior has more influence, and why?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong></p>
+<div id="12" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>s <span class="op">=</span> <span class="fl">35</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>n <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>post_a <span class="op">=</span> (<span class="fl">2</span> <span class="op">+</span> s) <span class="op">/</span> (<span class="fl">1</span> <span class="op">+</span> n)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>post_b <span class="op">=</span> (<span class="fl">50</span> <span class="op">+</span> s) <span class="op">/</span> (<span class="fl">10</span> <span class="op">+</span> n)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a><span class="pp">@printf</span>(<span class="st">"Analyst A: %.3g, Analyst B: %.3g, MLE: %.3g"</span>, post_a, post_b, s <span class="op">/</span> n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analyst A: 6.17, Analyst B: 5.67, MLE: 7</code></pre>
+</div>
+</div>
+<p><strong>Part b.</strong> Analyst B’s prior has more influence because it carries a larger effective sample size (<span class="math inline">\(\beta = 10\)</span> prior “pseudo-observations” versus <span class="math inline">\(\beta = 1\)</span>). With only 5 real observations, a prior that acts like 10 observations dominates. Both posteriors would converge to the MLE with enough data.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/assignments/week-03/practice.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

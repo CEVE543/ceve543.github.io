@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 04 Practice Problems (Optional) – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Week 04 Practice Problems (Optional) – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#inverting-the-gumbel-cdf" id="toc-inverting-the-gumbel-cdf" class="nav-link active" data-scroll-target="#inverting-the-gumbel-cdf">Inverting the Gumbel CDF</a></li>
+  <li><a href="#what-a-climate-shift-does-to-a-return-period" id="toc-what-a-climate-shift-does-to-a-return-period" class="nav-link" data-scroll-target="#what-a-climate-shift-does-to-a-return-period">What a climate shift does to a return period</a></li>
+  <li><a href="#the-three-gev-families" id="toc-the-three-gev-families" class="nav-link" data-scroll-target="#the-three-gev-families">The three GEV families</a></li>
+  <li><a href="#sampling-variability-in-the-tail" id="toc-sampling-variability-in-the-tail" class="nav-link" data-scroll-target="#sampling-variability-in-the-tail">Sampling variability in the tail</a></li>
+  <li><a href="#block-size-and-convergence" id="toc-block-size-and-convergence" class="nav-link" data-scroll-target="#block-size-and-convergence">Block size and convergence</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/assignments/week-04/practice.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="practice.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 04 Practice Problems (Optional)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Monday, September 14, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="im">using</span> <span class="bu">Printf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Attempt these before Wednesday. Not graded and not submitted. Open the worked answer after you have tried the problem.</p>
+<p>The module 2 written test draws from this pool.</p>
+<section id="inverting-the-gumbel-cdf" class="level2">
+<h2 class="anchored" data-anchor-id="inverting-the-gumbel-cdf">Inverting the Gumbel CDF</h2>
+<p>The Gumbel distribution is the GEV with shape parameter <span class="math inline">\(\xi = 0\)</span>. Its CDF is</p>
+<p><span class="math display">\[
+F(z) = \operatorname{exp}\left[-\operatorname{exp}\left(-\frac{z - \mu}{\sigma}\right)\right]
+\]</span></p>
+<p>A stormwater system is designed using annual maximum daily precipitation that follows a Gumbel with location <span class="math inline">\(\mu = 50\text{ mm}\)</span> and scale <span class="math inline">\(\sigma = 15\text{ mm}\)</span>.</p>
+<ol type="a">
+<li>Derive the formula for the <span class="math inline">\(T\)</span>-year return level <span class="math inline">\(z_T\)</span> by setting <span class="math inline">\(F(z_T) = 1 - 1/T\)</span> and solving for <span class="math inline">\(z_T\)</span>.</li>
+<li>Compute the 100-year design storm.</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> Set <span class="math inline">\(F(z_T) = 1 - 1/T\)</span> and take the natural log of both sides twice.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{exp}\left[-\operatorname{exp}\left(-\frac{z_T - \mu}{\sigma}\right)\right] &amp;= 1 - \frac{1}{T} \\
+-\operatorname{exp}\left(-\frac{z_T - \mu}{\sigma}\right) &amp;= \ln\!\left(1 - \frac{1}{T}\right) \\
+\frac{z_T - \mu}{\sigma} &amp;= -\ln\!\left[-\ln\!\left(1 - \frac{1}{T}\right)\right] \\
+z_T &amp;= \mu - \sigma \ln\!\left[-\ln\!\left(1 - \frac{1}{T}\right)\right]
+\end{aligned}
+\]</span></p>
+<p>For large <span class="math inline">\(T\)</span>, <span class="math inline">\(\ln(1 - 1/T) \approx -1/T\)</span> (the first-order Taylor expansion of <span class="math inline">\(\ln(1 - x)\)</span> around <span class="math inline">\(x = 0\)</span>), so <span class="math inline">\(z_T \approx \mu + \sigma \ln T\)</span>. On an exam, I would give you this approximation rather than ask you to derive it. The return level grows logarithmically with <span class="math inline">\(T\)</span>, which is why the Gumbel return-level plot is linear in <span class="math inline">\(\log T\)</span>.</p>
+<p><strong>Part b.</strong></p>
+<div id="4" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>μ <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>σ <span class="op">=</span> <span class="fl">15</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>T <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>z_100 <span class="op">=</span> μ <span class="op">-</span> σ <span class="op">*</span> <span class="fu">log</span>(<span class="fu">-log</span>(<span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="pp">@printf</span>(<span class="st">"z₁₀₀ = %.3g mm"</span>, z_100)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z₁₀₀ = 119 mm</code></pre>
+</div>
+</div>
+<p>Check against the <code>Distributions.jl</code> quantile:</p>
+<div id="6" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="pp">@printf</span>(<span class="st">"z₁₀₀ = %.3g mm"</span>, <span class="fu">quantile</span>(<span class="fu">Gumbel</span>(μ, σ), <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z₁₀₀ = 119 mm</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-a-climate-shift-does-to-a-return-period" class="level2">
+<h2 class="anchored" data-anchor-id="what-a-climate-shift-does-to-a-return-period">What a climate shift does to a return period</h2>
+<p>A climate model projects that by 2050 the location parameter of the Gumbel in the previous problem increases to <span class="math inline">\(\mu = 65\text{ mm}\)</span>, while the scale stays at <span class="math inline">\(\sigma = 15\text{ mm}\)</span>.</p>
+<ol type="a">
+<li>Find the new return period for the exact design storm you computed above.</li>
+<li>A 15 mm shift equals the scale parameter <span class="math inline">\(\sigma\)</span>. Is the change in return period proportionally small or large?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> Plug <span class="math inline">\(z = z_{100}\)</span> into the new CDF and solve for <span class="math inline">\(T\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+F(z_{100}) &amp;= \operatorname{exp}\left[-\operatorname{exp}\left(-\frac{z_{100} - 65}{15}\right)\right] \\
+T_{\text{new}} &amp;= \frac{1}{1 - F(z_{100})}
+\end{aligned}
+\]</span></p>
+<div id="8" class="cell" data-solution="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>z_100_old <span class="op">=</span> <span class="fl">50</span> <span class="op">-</span> <span class="fl">15</span> <span class="op">*</span> <span class="fu">log</span>(<span class="fu">-log</span>(<span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">100</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>p_new <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">cdf</span>(<span class="fu">Gumbel</span>(<span class="fl">65</span>, <span class="fl">15</span>), z_100_old)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>T_new <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> p_new</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a><span class="pp">@printf</span>(<span class="st">"z₁₀₀ = %.3g mm, new exceedance prob = %.3g, new T = %.3g years"</span>, z_100_old, p_new, T_new)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z₁₀₀ = 119 mm, new exceedance prob = 0.0269, new T = 37.1 years</code></pre>
+</div>
+</div>
+<p><strong>Part b.</strong> A 30 percent shift in the location turns a 100-year event into roughly a 37-year event. The relationship is exponential, not proportional: the return level grows as <span class="math inline">\(\mu + \sigma \ln T\)</span>, so a linear shift in <span class="math inline">\(\mu\)</span> produces an exponential change in <span class="math inline">\(T\)</span>. A small change in the mean of the extremes produces a large change in the recurrence of a fixed design level.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-three-gev-families" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-gev-families">The three GEV families</h2>
+<p>The GEV CDF is</p>
+<p><span class="math display">\[
+F(z) = \operatorname{exp}\left\{-\left[1 + \xi\left(\frac{z - \mu}{\sigma}\right)\right]^{-1/\xi}\right\}
+\]</span></p>
+<p>where the expression inside the brackets must be positive.</p>
+<ol type="a">
+<li>What happens to the support of the distribution when <span class="math inline">\(\xi &gt; 0\)</span>? When <span class="math inline">\(\xi &lt; 0\)</span>?</li>
+<li>The exponential distribution has CDF <span class="math inline">\(F(x) = 1 - e^{-x/\beta}\)</span> for <span class="math inline">\(x \ge 0\)</span>. If <span class="math inline">\(M_n = \max(X_1, \ldots, X_n)\)</span> with the <span class="math inline">\(X_i\)</span> independent exponential, then <span class="math inline">\(F_{M_n}(z) = (1 - e^{-z/\beta})^n\)</span>. Show that with the normalizing constants <span class="math inline">\(a_n = \beta\)</span> and <span class="math inline">\(b_n = \beta \ln n\)</span>, the limit of <span class="math inline">\((M_n - b_n)/a_n\)</span> is a Gumbel.</li>
+<li>The uniform distribution on <span class="math inline">\([0, 1]\)</span> has CDF <span class="math inline">\(F(x) = x\)</span>. What is the exact distribution of <span class="math inline">\(M_n\)</span>? Which GEV family does it belong to? (This one requires normalizing constants from <span class="citation" data-cites="coles_extremes:2001">Coles (<a href="#ref-coles_extremes:2001" role="doc-biblioref">2001</a>)</span> §3.1.5.)</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> When <span class="math inline">\(\xi &gt; 0\)</span> the distribution has a lower bound at <span class="math inline">\(\mu - \sigma/\xi\)</span> and no upper bound. The tail is heavy (Fréchet type). When <span class="math inline">\(\xi &lt; 0\)</span> the distribution has no lower bound but has an upper endpoint at <span class="math inline">\(\mu - \sigma/\xi\)</span>. The tail is bounded (Weibull type).</p>
+<p><strong>Part b.</strong> The CDF of <span class="math inline">\((M_n - b_n)/a_n\)</span> is</p>
+<p><span class="math display">\[
+\begin{aligned}
+P\!\left(\frac{M_n - \beta\ln n}{\beta} \le z\right) &amp;= P(M_n \le \beta z + \beta\ln n) \\
+&amp;= \left(1 - e^{-(z + \ln n)}\right)^n \\
+&amp;= \left(1 - \frac{e^{-z}}{n}\right)^n
+\end{aligned}
+\]</span></p>
+<p>As <span class="math inline">\(n \to \infty\)</span>,</p>
+<p><span class="math display">\[
+\left(1 - \frac{e^{-z}}{n}\right)^{n} \to \operatorname{exp}(-e^{-z})
+\]</span></p>
+<p>which is the Gumbel CDF. The exponential parent falls in the Gumbel domain (<span class="math inline">\(\xi = 0\)</span>).</p>
+<p><strong>Part c.</strong> <span class="math inline">\(P(M_n \le z) = z^n\)</span> for <span class="math inline">\(z \in [0, 1]\)</span>. The maximum of <span class="math inline">\(n\)</span> uniforms on <span class="math inline">\([0, 1]\)</span> has a Beta(<span class="math inline">\(n\)</span>, 1) distribution, bounded above at 1.</p>
+<p>With <span class="math inline">\(a_n = 1/n\)</span> and <span class="math inline">\(b_n = 1\)</span>:</p>
+<p><span class="math display">\[
+P\!\left(\frac{M_n - 1}{1/n} \le z\right) = \left(1 + \frac{z}{n}\right)^n \to e^{z}
+\]</span></p>
+<p>for <span class="math inline">\(z \le 0\)</span>, which is the reverse Weibull (<span class="math inline">\(\xi = -1\)</span>). This matches the GEV CDF with <span class="math inline">\(\xi = -1\)</span>, <span class="math inline">\(\mu = -1\)</span>, and <span class="math inline">\(\sigma = 1\)</span>: <span class="math inline">\(\operatorname{exp}\{-[1 + (-1)(z - (-1))]^{1}\} = e^z\)</span>. The bounded parent gives a bounded extreme value distribution.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sampling-variability-in-the-tail" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-variability-in-the-tail">Sampling variability in the tail</h2>
+<p>You fit a GEV to 60 years of annual block maxima. The return-level plot projects a straight line (the Gumbel domain), but the three largest historical observations fall noticeably below it.</p>
+<p>Give two distinct explanations for why the highest empirical points might fall below the fitted curve. Which is more likely given a 60-year record?</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Model misspecification.</strong> The true tail could be lighter than Gumbel (Weibull domain, <span class="math inline">\(\xi &lt; 0\)</span>), so the fitted straight line overestimates the tail. The curve should flatten, and the largest observations sit where the flat part begins.</p>
+<p><strong>Sampling variability.</strong> The confidence band on the return-level curve is widest in the tail. With 60 years of data, the largest observation gets a plotting-position return period of about 61 years, and a 100-year or 200-year event may simply not have occurred yet. The three largest points falling below the line is well within what random chance produces.</p>
+<p>With only 60 observations, sampling variability is the more likely explanation. The empirical points in the tail are placed by their rank, not by the distribution, so a short record that happened not to see a very large event puts all its points below the extrapolated line. Concluding that the model class is wrong requires longer records or external evidence.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="block-size-and-convergence" class="level2">
+<h2 class="anchored" data-anchor-id="block-size-and-convergence">Block size and convergence</h2>
+<p>The extremal types theorem says block maxima converge to a GEV as the block size grows. In practice, annual blocks are standard.</p>
+<ol type="a">
+<li>Name two reasons annual blocks are used rather than, say, monthly or weekly blocks.</li>
+<li>If you used 5-year blocks instead of 1-year blocks, how many block maxima would 60 years of data give you? What would happen to the confidence interval on the 100-year return level?</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled" title="Answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Part a.</strong> Annual blocks remove seasonality: the distribution of summer and winter maxima differ, and mixing them in a monthly block violates the identical-distribution assumption. Annual blocks also match the convention that return periods and design standards are stated in years.</p>
+<p><strong>Part b.</strong> Sixty years gives 12 five-year maxima. Larger blocks bring the data closer to the GEV limit (less bias from the finite-sample approximation), but 12 observations carry far more sampling variability than 60. The confidence interval on the 100-year level would widen substantially.</p>
+<p>This is the bias-variance tradeoff of block size: small blocks give more data but a worse approximation to the limit distribution, and large blocks give fewer data but a better approximation. Annual blocks are a pragmatic default, not a principled optimum.</p>
+</div>
+</div>
+</div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-coles_extremes:2001" class="csl-entry" role="listitem">
+Coles, S. (2001). <em>An introduction to statistical modeling of extreme values</em>. London: Springer.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/assignments/week-04/practice.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

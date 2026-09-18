@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 4: Fitting a GEV to a tide gauge – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9e5d8427e0aa73b5eb56583ceb733ac0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Lab 4: Fitting a GEV to a tide gauge – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:image" content="https://ceve543.github.io/labs/lab-04/index_files/figure-html/fig-detrend-output-1.svg">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#lab-activity" id="toc-lab-activity" class="nav-link" data-scroll-target="#lab-activity">Lab activity</a>
+  <ul class="collapse">
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#maximum-likelihood-and-l-moments" id="toc-maximum-likelihood-and-l-moments" class="nav-link" data-scroll-target="#maximum-likelihood-and-l-moments">Maximum likelihood and L-moments</a></li>
+  <li><a href="#the-gev-log-likelihood" id="toc-the-gev-log-likelihood" class="nav-link" data-scroll-target="#the-gev-log-likelihood">The GEV log-likelihood</a></li>
+  <li><a href="#bayesian-estimation" id="toc-bayesian-estimation" class="nav-link" data-scroll-target="#bayesian-estimation">Bayesian estimation</a></li>
+  <li><a href="#posterior-fits-and-convergence-diagnostics" id="toc-posterior-fits-and-convergence-diagnostics" class="nav-link" data-scroll-target="#posterior-fits-and-convergence-diagnostics">Posterior fits and convergence diagnostics</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#change-the-gauge" id="toc-change-the-gauge" class="nav-link" data-scroll-target="#change-the-gauge">Change the gauge</a></li>
+  <li><a href="#the-shape-parameter" id="toc-the-shape-parameter" class="nav-link" data-scroll-target="#the-shape-parameter">The shape parameter</a></li>
+  <li><a href="#sensitivity-to-the-prior" id="toc-sensitivity-to-the-prior" class="nav-link" data-scroll-target="#sensitivity-to-the-prior">Sensitivity to the prior</a></li>
+  <li><a href="#reading-a-failed-diagnostic" id="toc-reading-a-failed-diagnostic" class="nav-link" data-scroll-target="#reading-a-failed-diagnostic">Reading a failed diagnostic</a></li>
+  <li><a href="#reporting-a-design-value" id="toc-reporting-a-design-value" class="nav-link" data-scroll-target="#reporting-a-design-value">Reporting a design value</a></li>
+  </ul></li>
+  <li><a href="#turning-it-in" id="toc-turning-it-in" class="nav-link" data-scroll-target="#turning-it-in">Turning it in</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4: Fitting a GEV to a tide gauge</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Friday, September 18, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this lab, you will fit a generalized extreme value (GEV) distribution to annual maximum water levels at a tide gauge by maximum likelihood, by L-moments, and by Bayesian inference, then compare the estimates.</p>
+<p>The code below runs end to end on Sewells Point, Virginia. Then you change one line to select a different gauge and rerun it. A different gauge may need different detrending and prior choices.</p>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Fit a GEV by maximum likelihood and by L-moments, and say why the two disagree.</li>
+<li>Write a GEV log-likelihood from the density and optimize it yourself.</li>
+<li>Read a prior predictive simulation and say whether the prior is defensible.</li>
+<li>Diagnose a Markov chain that has not converged, and say what to do about it.</li>
+</ol>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>The cell below activates this lab’s own package environment, installs what it lists, and loads the packages. Every lab starts with the same cell. It also creates the random number generator that the rest of the lab draws from, seeded so a fresh render gives the same figures every time.</p>
+<p>Four of these packages are new this week.</p>
+<ul>
+<li><code>CEVE543Utils</code> wraps GEV fitting and NOAA data loading for this course</li>
+<li><code>Turing</code> writes Bayesian models and draws from their posteriors (<a href="https://turinglang.org/">documentation</a>)</li>
+<li><code>Optim</code> minimizes the likelihood you write by hand</li>
+<li><code>Unitful</code> attaches physical units to numbers</li>
+</ul>
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-label="2"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(<span class="pp">@__DIR__</span>)</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-label="3"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-label="4"></a></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-label="5"></a><span class="im">using</span> <span class="bu">CEVE543Utils</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-label="6"></a><span class="im">using</span> <span class="bu">CairoMakie</span>, <span class="bu">DataFrames</span>, <span class="bu">Distributions</span>, <span class="bu">LaTeXStrings</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-label="7"></a><span class="im">using</span> <span class="bu">Optim</span>, <span class="bu">Printf</span>, <span class="bu">Random</span>, <span class="bu">Statistics</span>, <span class="bu">Turing</span>, <span class="bu">Unitful</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-label="8"></a><span class="im">using</span> <span class="bu">FlexiChains</span>: summarystats</span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-label="9"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-label="10"></a>rng <span class="op">=</span> <span class="fu">MersenneTwister</span>(<span class="fl">543</span>)</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-label="11"></a><span class="fu">set_theme!</span>(<span class="fu">theme_minimal</span>(); fontsize<span class="op">=</span><span class="fl">14</span>)</span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12" aria-label="12"></a>colors <span class="op">=</span> Makie.<span class="fu">wong_colors</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="1">Turing stores its output in a <code>FlexiChain</code>, and <code>summarystats</code> is the function that turns one into the table of convergence diagnostics used at the end of this lab.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="2">Passed to every function below that draws at random, so the results are reproducible.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="lab-activity" class="level2">
+<h2 class="anchored" data-anchor-id="lab-activity">Lab activity</h2>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The data</h3>
+<p><code>load_water_level</code> downloads every hourly reading a NOAA tide gauge has published and caches it beside this notebook. Sewells Point sits in Norfolk, Virginia, at the mouth of Chesapeake Bay, and has reported since 1928.</p>
+<div id="4" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-label="1"></a>station <span class="op">=</span> <span class="st">"8638610"</span></span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-label="2"></a>record <span class="op">=</span> <span class="fu">load_water_level</span>(</span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-label="3"></a>    station;</span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-label="4"></a>    name<span class="op">=</span><span class="st">"Sewells Point"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5" aria-label="5"></a>    cache<span class="op">=</span><span class="fu">joinpath</span>(<span class="pp">@__DIR__</span>, <span class="st">"</span><span class="sc">$</span>station<span class="st">-hourly.csv"</span>),</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-label="6"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">The line you will change later. Station ids are listed at <a href="https://tidesandcurrents.noaa.gov/stations.html">NOAA’s station browser</a>; pick one with a long record.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">Where the download is kept. <code>@__DIR__</code> is this notebook’s own folder, so the cache is found whether you render the notebook or run cells in the REPL. The first download of a century-long record takes a minute or two; every run after that reads the cache in seconds.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>WaterLevelRecord: 849657 readings in m
+  station: Sewells Point (8638610), MSL datum
+  period:  1928-01-01T00:00:00 to 2026-08-31T23:00:00
+  levels:  -1.504 to 2.032 m</code></pre>
+</div>
+</div>
+<p>The levels come back with units attached. <code>Unitful</code> attaches units to numbers, so a length cannot be added to a time and unit conversion is a function call rather than a hardcoded factor.</p>
+<div id="6" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-label="1"></a>reading <span class="op">=</span> record[<span class="fl">1</span>]</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-label="2"></a><span class="pp">@printf</span>(<span class="st">"%s at %s</span><span class="sc">\n</span><span class="st">"</span>, reading.level, reading.time)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-label="3"></a><span class="pp">@printf</span>(<span class="st">"in feet: %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">uconvert</span>(u<span class="st">"ft"</span>, reading.level))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4" aria-label="4"></a><span class="pp">@printf</span>(<span class="st">"as a bare number: %.3f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">ustrip</span>(reading.level))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1"><code>uconvert</code> changes the unit and the number together, so the physical quantity is unchanged.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="2"><code>ustrip</code> throws the unit away and hands back the number. Anything that does not understand units, which includes every fitting function in this lab, needs this.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-0.468 m at 1928-01-01T00:00:00
+in feet: -1.535433070866142 ft
+as a bare number: -0.468</code></pre>
+</div>
+</div>
+<section id="annual-maxima" class="level4">
+<h4 class="anchored" data-anchor-id="annual-maxima">Annual maxima</h4>
+<div id="8" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-label="1"></a>annmax <span class="op">=</span> <span class="fu">AnnMaxRecord</span>(record; detrend<span class="op">=:</span>msl, units<span class="op">=</span>u<span class="st">"ft"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1"><code>:msl</code> subtracts each year’s mean sea level, leaving the water level above that year’s mean. <code>:linear</code> subtracts an ordinary least squares fit to the maxima instead, and <code>:none</code> leaves the trend in. Try each one.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>AnnMaxRecord: 96 years in ft, detrended by :msl
+  station: Sewells Point (8638610), MSL datum
+  period:  1928 to 2025
+  levels:  3.5684841556498657 to 7.9812625776377395 ft</code></pre>
+</div>
+</div>
+<p>An observed water level is the sum of mean sea level, the astronomical tide, storm surge, and vertical land motion. Sewells Point has both eustatic sea-level rise and subsidence, so its mean sea level rises about 4.6 mm/yr. A stationary GEV requires that every year be drawn from the same distribution, so the trend must be removed first. Subtracting annual mean sea level removes the sea-level component but leaves the tide in the residual. A design study would remove the tide as well.</p>
+<div id="cell-fig-detrend" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-label="1"></a>y <span class="op">=</span> <span class="fu">ustrip</span>.(<span class="fu">waterlevels</span>(annmax))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-label="2"></a>raw <span class="op">=</span> y <span class="op">.+</span> annmax.baseline <span class="op">.-</span> <span class="fu">mean</span>(annmax.baseline[(<span class="kw">end</span><span class="op">-</span><span class="fl">4</span>)<span class="op">:</span><span class="kw">end</span>])</span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-label="3"></a></span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-label="4"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">320</span>))</span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5" aria-label="5"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; xlabel<span class="op">=</span><span class="st">"year"</span>, ylabel<span class="op">=</span><span class="st">"Annual Maximum [ft]"</span>)</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-label="6"></a><span class="fu">scatter!</span>(ax, <span class="fu">obsyears</span>(annmax), raw; color<span class="op">=</span>(<span class="op">:</span>gray, <span class="fl">0.6</span>), label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7" aria-label="7"></a><span class="fu">scatter!</span>(ax, <span class="fu">obsyears</span>(annmax), y; color<span class="op">=</span>colors[<span class="fl">1</span>], label<span class="op">=</span><span class="st">"detrended"</span>)</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-label="8"></a><span class="fu">lines!</span>(ax, <span class="fu">obsyears</span>(annmax), annmax.baseline; color<span class="op">=</span>colors[<span class="fl">2</span>], label<span class="op">=</span><span class="st">"mean sea level"</span>)</span>
+<span id="annotated-cell-5-9"><a href="#annotated-cell-5-9" aria-label="9"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lb)</span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10" aria-label="10"></a>fig</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">The fitting functions below all want bare numbers, so this is the vector every fit uses.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="2">Undoing the detrending to show what came in. <code>AnnMaxRecord</code> keeps the baseline it subtracted for exactly this reason.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-detrend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-detrend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-detrend-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-detrend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Annual maxima at Sewells Point before and after removing mean sea level. The baseline is what was subtracted.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="maximum-likelihood-and-l-moments" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-likelihood-and-l-moments">Maximum likelihood and L-moments</h3>
+<p><code>gevfit</code> fits by maximum likelihood and <code>gevfit_lmom</code> by L-moments. Both follow <a href="https://jojal5.github.io/Extremes.jl/dev/"><code>Extremes.jl</code></a>.</p>
+<div id="12" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>fit_mle <span class="op">=</span> <span class="fu">only</span>(<span class="fu">getdistribution</span>(<span class="fu">gevfit</span>(y)))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>fit_lmom <span class="op">=</span> <span class="fu">gevfit_lmom</span>(y)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="pp">@printf</span>(<span class="st">"MLE:       μ = %.3f, σ = %.3f, ξ = %.3f</span><span class="sc">\n</span><span class="st">"</span>, fit_mle.μ, fit_mle.σ, fit_mle.ξ)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a><span class="pp">@printf</span>(<span class="st">"L-moments: μ = %.3f, σ = %.3f, ξ = %.3f</span><span class="sc">\n</span><span class="st">"</span>, fit_lmom.μ, fit_lmom.σ, fit_lmom.ξ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MLE:       μ = 4.251, σ = 0.483, ξ = 0.203
+L-moments: μ = 4.252, σ = 0.493, ξ = 0.183</code></pre>
+</div>
+</div>
+</section>
+<section id="the-gev-log-likelihood" class="level3">
+<h3 class="anchored" data-anchor-id="the-gev-log-likelihood">The GEV log-likelihood</h3>
+<p>You can also write the log-likelihood yourself. The log-density, with <span class="math inline">\(v = 1 + \xi(y - \mu)/\sigma\)</span>, is:</p>
+<p><span class="math display">\[
+\log f(y \mid \mu, \sigma, \xi) = -\log\sigma - \left(1 + \frac{1}{\xi}\right)\log v - v^{-1/\xi}.
+\]</span></p>
+<p>Two cases need handling. When <span class="math inline">\(v \le 0\)</span> the observation is outside the support and the density is zero, so the log-density is <span class="math inline">\(-\infty\)</span>. When <span class="math inline">\(\xi = 0\)</span> the expression divides by zero, but the distribution is the Gumbel there and its log-density is <span class="math inline">\(-\log\sigma - z - e^{-z}\)</span> with <span class="math inline">\(z = (y - \mu)/\sigma\)</span>.</p>
+<div id="14" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">my_gev_logpdf</span>(y, μ, σ, ξ)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-label="2"></a>    σ <span class="op">&lt;=</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">return</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-label="3"></a>    z <span class="op">=</span> (y <span class="op">-</span> μ) <span class="op">/</span> σ</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-label="4"></a>    <span class="fu">abs</span>(ξ) <span class="op">&lt;</span> <span class="fl">1e-7</span> <span class="op">&amp;&amp;</span> <span class="cf">return</span> <span class="fu">-log</span>(σ) <span class="op">-</span> z <span class="op">-</span> <span class="fu">exp</span>(<span class="op">-</span>z)</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-label="5"></a>    v <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> ξ <span class="op">*</span> z</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6" aria-label="6"></a>    v <span class="op">&lt;=</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">return</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-label="7"></a>    <span class="cf">return</span> <span class="fu">-log</span>(σ) <span class="op">-</span> (<span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">/</span> ξ) <span class="op">*</span> <span class="fu">log</span>(v) <span class="op">-</span> v<span class="op">^</span>(<span class="op">-</span><span class="fl">1</span> <span class="op">/</span> ξ)</span>
+<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8" aria-label="8"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">A negative scale is not a distribution. Returning <code>-Inf</code> instead of raising an error lets the optimizer treat the point as impossible and continue.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="2">The Gumbel limit. Testing <code>abs(ξ) &lt; 1e-7</code> rather than <code>ξ == 0</code> catches the values an optimizer proposes near zero.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="3">The support condition. As <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\xi\)</span> change, the set of observations with finite density changes.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Now minimize the negative log-likelihood. Optimize over <span class="math inline">\(\log\sigma\)</span> so the scale stays positive.</p>
+<div id="16" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">negative_loglik</span>(θ, y)</span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-label="2"></a>    μ, log_σ, ξ <span class="op">=</span> θ</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-label="3"></a>    <span class="cf">return</span> <span class="fu">-sum</span>(<span class="fu">my_gev_logpdf</span>(yᵢ, μ, <span class="fu">exp</span>(log_σ), ξ) <span class="cf">for</span> yᵢ <span class="kw">in</span> y)</span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-label="4"></a><span class="cf">end</span></span>
+<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5" aria-label="5"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2">2</button><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-label="6"></a>θ₀ <span class="op">=</span> [<span class="fu">mean</span>(y), <span class="fu">log</span>(<span class="fu">std</span>(y)), <span class="fl">0.1</span>]</span>
+<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7" aria-label="7"></a>result <span class="op">=</span> <span class="fu">optimize</span>(θ <span class="op">-&gt;</span> <span class="fu">negative_loglik</span>(θ, y), θ₀, <span class="fu">NelderMead</span>())</span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-label="8"></a>μ̂, log_σ̂, ξ̂ <span class="op">=</span> Optim.<span class="fu">minimizer</span>(result)</span>
+<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9" aria-label="9"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3">3</button><span id="annotated-cell-8-10" class="code-annotation-target"><a href="#annotated-cell-8-10" aria-label="10"></a><span class="pp">@printf</span>(<span class="st">"converged: %s</span><span class="sc">\n</span><span class="st">"</span>, Optim.<span class="fu">converged</span>(result))</span>
+<span id="annotated-cell-8-11"><a href="#annotated-cell-8-11" aria-label="11"></a><span class="pp">@printf</span>(<span class="st">"by hand:   μ = %.3f, σ = %.3f, ξ = %.3f</span><span class="sc">\n</span><span class="st">"</span>, μ̂, <span class="fu">exp</span>(log_σ̂), ξ̂)</span>
+<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12" aria-label="12"></a><span class="pp">@printf</span>(<span class="st">"gevfit:    μ = %.3f, σ = %.3f, ξ = %.3f</span><span class="sc">\n</span><span class="st">"</span>, fit_mle.μ, fit_mle.σ, fit_mle.ξ)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="1">Summing the log-densities and negating, since <code>optimize</code> minimizes.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="2">The starting guess: sample moments for location and scale, and a small positive shape. A bad starting guess is the usual reason this fails.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="10" data-code-annotation="3">Check convergence before using the result.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>converged: true
+by hand:   μ = 4.251, σ = 0.483, ξ = 0.203
+gevfit:    μ = 4.251, σ = 0.483, ξ = 0.203</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If <code>converged</code> prints <code>false</code>, the parameters are not a maximum likelihood estimate and nothing downstream of them is valid. Try a different starting guess or a different algorithm.</p>
+</div>
+</div>
+</div>
+<section id="return-levels-from-the-three-fits" class="level4">
+<h4 class="anchored" data-anchor-id="return-levels-from-the-three-fits">Return levels from the three fits</h4>
+<p>Plot return level against return period, with the observations at Weibull plotting positions.</p>
+<div id="cell-fig-three-fits" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-label="1"></a>return_periods <span class="op">=</span> <span class="fu">exp</span>.(<span class="fu">range</span>(<span class="fu">log</span>(<span class="fl">1.1</span>), <span class="fu">log</span>(<span class="fl">500</span>); length<span class="op">=</span><span class="fl">60</span>))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-label="2"></a>fit_hand <span class="op">=</span> <span class="fu">GeneralizedExtremeValue</span>(μ̂, <span class="fu">exp</span>(log_σ̂), ξ̂)</span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-label="3"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-label="4"></a>sorted_obs, _, observed_periods <span class="op">=</span> <span class="fu">plotting_positions</span>(y)</span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-label="5"></a></span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-label="6"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">400</span>))</span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-label="7"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{return level (ft)}"</span>)</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8" aria-label="8"></a><span class="cf">for</span> (d, colour, style, label) <span class="kw">in</span> (</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9" aria-label="9"></a>    (fit_mle, colors[<span class="fl">1</span>], <span class="op">:</span>solid, <span class="st">"gevfit (MLE)"</span>),</span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10" aria-label="10"></a>    (fit_lmom, colors[<span class="fl">2</span>], <span class="op">:</span>solid, <span class="st">"L-moments"</span>),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-11" class="code-annotation-target"><a href="#annotated-cell-9-11" aria-label="11"></a>    (fit_hand, colors[<span class="fl">3</span>], <span class="op">:</span>dash, <span class="st">"by hand"</span>),</span>
+<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12" aria-label="12"></a>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="5">5</button><span id="annotated-cell-9-13" class="code-annotation-target"><a href="#annotated-cell-9-13" aria-label="13"></a>    levels <span class="op">=</span> [<span class="fu">quantile</span>(d, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T) for T <span class="kw">in</span> return_periods]</span>
+<span id="annotated-cell-9-14"><a href="#annotated-cell-9-14" aria-label="14"></a>    <span class="fu">lines!</span>(</span>
+<span id="annotated-cell-9-15"><a href="#annotated-cell-9-15" aria-label="15"></a>        ax, return_periods, levels;</span>
+<span id="annotated-cell-9-16"><a href="#annotated-cell-9-16" aria-label="16"></a>        color<span class="op">=</span>colour, linewidth<span class="op">=</span><span class="fl">2</span>, linestyle<span class="op">=</span>style, label<span class="op">=</span>label</span>
+<span id="annotated-cell-9-17"><a href="#annotated-cell-9-17" aria-label="17"></a>    )</span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18" aria-label="18"></a><span class="cf">end</span></span>
+<span id="annotated-cell-9-19"><a href="#annotated-cell-9-19" aria-label="19"></a><span class="fu">scatter!</span>(ax, observed_periods, sorted_obs; color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">6</span>, label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="6">6</button><span id="annotated-cell-9-20" class="code-annotation-target"><a href="#annotated-cell-9-20" aria-label="20"></a><span class="fu">return_period_axis!</span>(ax)</span>
+<span id="annotated-cell-9-21"><a href="#annotated-cell-9-21" aria-label="21"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt)</span>
+<span id="annotated-cell-9-22"><a href="#annotated-cell-9-22" aria-label="22"></a>fig</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">Sixty return periods from just over 1 year to 500, log-spaced so the short ones do not crowd together.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">Your hand-fitted parameters, packaged as a distribution so one <code>quantile</code> call works on all three.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="3">Sorts the record and pairs each observation with the return period its rank implies.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="11" data-code-annotation="4">Dashed because your fit and <code>gevfit</code> maximize the same likelihood, so the two curves coincide. The dashed line following the solid one confirms your log-density is correct.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="13" data-code-annotation="5">The <span class="math inline">\(T\)</span>-year return level is the quantile with exceedance probability <span class="math inline">\(1/T\)</span>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="20" data-code-annotation="6">Log axis with return periods as tick labels.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-three-fits" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-three-fits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-three-fits-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-three-fits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Return levels from the three fits, with the observed record at Weibull plotting positions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bootstrap-confidence-bands" class="level4">
+<h4 class="anchored" data-anchor-id="bootstrap-confidence-bands">Bootstrap confidence bands</h4>
+<p>Each of those curves is one estimate from 96 years of data. A different 96 years from the same process would give different parameters and a different curve. The bootstrap estimates that spread: resample the record with replacement, refit, and repeat.</p>
+<p>Bootstrap the L-moment fit rather than the maximum likelihood fit. L-moments are closed form, so every resample returns an estimate. A maximum likelihood fit fails on some resamples, and the fits that survive are a biased subset.</p>
+<div id="20" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-label="1"></a>n_boot <span class="op">=</span> <span class="fl">1_000</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-label="2"></a>boot_fits <span class="op">=</span> [<span class="fu">gevfit_lmom</span>(y[<span class="fu">rand</span>(rng, <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(y), <span class="fu">length</span>(y))]) for _ <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n_boot]</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-label="3"></a>boot_curves <span class="op">=</span> [[<span class="fu">quantile</span>(d, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T) for T <span class="kw">in</span> return_periods] for d <span class="kw">in</span> boot_fits]</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="1">Resample <code>length(y)</code> values with replacement, refit, and keep the fitted distribution.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="cell-fig-bootstrap" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-label="1"></a>lower <span class="op">=</span> [<span class="fu">quantile</span>([c[k] for c <span class="kw">in</span> boot_curves], <span class="fl">0.025</span>) for k <span class="kw">in</span> <span class="fu">eachindex</span>(return_periods)]</span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-label="2"></a>upper <span class="op">=</span> [<span class="fu">quantile</span>([c[k] for c <span class="kw">in</span> boot_curves], <span class="fl">0.975</span>) for k <span class="kw">in</span> <span class="fu">eachindex</span>(return_periods)]</span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-label="3"></a></span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-label="4"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">400</span>))</span>
+<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5" aria-label="5"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{return level (ft)}"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6" aria-label="6"></a><span class="fu">band!</span>(ax, return_periods, lower, upper; color<span class="op">=</span>(colors[<span class="fl">2</span>], <span class="fl">0.25</span>), label<span class="op">=</span><span class="st">"95% bootstrap"</span>)</span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-label="7"></a><span class="fu">lines!</span>(</span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-label="8"></a>    ax, return_periods, [<span class="fu">quantile</span>(fit_lmom, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T) for T <span class="kw">in</span> return_periods];</span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-label="9"></a>    color<span class="op">=</span>colors[<span class="fl">2</span>], linewidth<span class="op">=</span><span class="fl">2</span>, label<span class="op">=</span><span class="st">"L-moments"</span></span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-label="10"></a>)</span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-label="11"></a><span class="fu">scatter!</span>(ax, observed_periods, sorted_obs; color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">6</span>, label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12" aria-label="12"></a><span class="fu">return_period_axis!</span>(ax)</span>
+<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-label="13"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt)</span>
+<span id="annotated-cell-11-14"><a href="#annotated-cell-11-14" aria-label="14"></a>fig</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="6" data-code-annotation="1"><code>band!</code> fills between the two quantile curves.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-bootstrap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bootstrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bootstrap-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bootstrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: L-moment fit with a bootstrap 95% confidence band, against the observed record.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="24" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="cf">for</span> T <span class="kw">in</span> (<span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    levels <span class="op">=</span> [<span class="fu">quantile</span>(d, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T) for d <span class="kw">in</span> boot_fits]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="pp">@printf</span>(<span class="st">"%3d-yr: %.2f [%.2f, %.2f] ft</span><span class="sc">\n</span><span class="st">"</span>, T, <span class="fu">quantile</span>(fit_lmom, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>        <span class="fu">quantile</span>(levels, <span class="fl">0.025</span>), <span class="fu">quantile</span>(levels, <span class="fl">0.975</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 10-yr: 5.62 [5.28, 5.96] ft
+ 50-yr: 7.06 [6.21, 7.77] ft
+100-yr: 7.80 [6.61, 8.86] ft
+500-yr: 9.94 [7.59, 12.50] ft</code></pre>
+</div>
+</div>
+<p>The band widens with return period, because the far tail is determined by the few largest observations. Compare its width to the gap between the three fits in the previous figure: the disagreement between estimators is small next to the uncertainty within any one of them.</p>
+</section>
+</section>
+<section id="bayesian-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-estimation">Bayesian estimation</h3>
+<p>The same model in Turing, with priors so wide they are meant to impose almost nothing. Priors this wide are often called uninformative.</p>
+<div id="26" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1" aria-label="1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">gev_vague</span>(y)</span>
+<span id="annotated-cell-13-2"><a href="#annotated-cell-13-2" aria-label="2"></a>    μ <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">100</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-3" class="code-annotation-target"><a href="#annotated-cell-13-3" aria-label="3"></a>    σ <span class="op">~</span> <span class="fu">truncated</span>(<span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">100</span>); lower<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="annotated-cell-13-4"><a href="#annotated-cell-13-4" aria-label="4"></a>    ξ <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">10</span>)</span>
+<span id="annotated-cell-13-5"><a href="#annotated-cell-13-5" aria-label="5"></a>    y <span class="op">.~</span> <span class="fu">GeneralizedExtremeValue</span>(μ, σ, ξ)</span>
+<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6" aria-label="6"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="3" data-code-annotation="1">Truncated so it stays positive.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Sampling the prior with <code>Prior()</code> ignores the data, so the draws show what the priors alone imply about water levels.</p>
+<div id="28" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1">1</button><span id="annotated-cell-14-1" class="code-annotation-target"><a href="#annotated-cell-14-1" aria-label="1"></a>prior_df <span class="op">=</span> <span class="fu">DataFrame</span>(<span class="fu">sample</span>(rng, <span class="fu">gev_vague</span>(y), <span class="fu">Prior</span>(), <span class="fl">1_000</span>; progress<span class="op">=</span><span class="cn">false</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="1" data-code-annotation="1"><code>Prior()</code> samples the prior rather than the posterior, which is what makes this a check on the prior alone.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="30" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1">1</button><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">return_curves</span>(df, periods; n_curves<span class="op">=</span><span class="fl">200</span>)</span>
+<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-label="2"></a>    curves <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Vector{Float64}}</span>()</span>
+<span id="annotated-cell-15-3"><a href="#annotated-cell-15-3" aria-label="3"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">min</span>(n_curves, <span class="fu">nrow</span>(df))</span>
+<span id="annotated-cell-15-4"><a href="#annotated-cell-15-4" aria-label="4"></a>        df.σ[i] <span class="op">&lt;=</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="cf">continue</span></span>
+<span id="annotated-cell-15-5"><a href="#annotated-cell-15-5" aria-label="5"></a>        d <span class="op">=</span> <span class="fu">GeneralizedExtremeValue</span>(df.μ[i], df.σ[i], df.ξ[i])</span>
+<span id="annotated-cell-15-6"><a href="#annotated-cell-15-6" aria-label="6"></a>        curve <span class="op">=</span> [<span class="fu">quantile</span>(d, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> T) for T <span class="kw">in</span> periods]</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2">2</button><span id="annotated-cell-15-7" class="code-annotation-target"><a href="#annotated-cell-15-7" aria-label="7"></a>        <span class="fu">all</span>(isfinite, curve) <span class="op">&amp;&amp;</span> <span class="fu">push!</span>(curves, curve)</span>
+<span id="annotated-cell-15-8"><a href="#annotated-cell-15-8" aria-label="8"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-15-9"><a href="#annotated-cell-15-9" aria-label="9"></a>    <span class="cf">return</span> curves</span>
+<span id="annotated-cell-15-10"><a href="#annotated-cell-15-10" aria-label="10"></a><span class="kw">end</span></span>
+<span id="annotated-cell-15-11"><a href="#annotated-cell-15-11" aria-label="11"></a></span>
+<span id="annotated-cell-15-12"><a href="#annotated-cell-15-12" aria-label="12"></a>prior_curves <span class="op">=</span> <span class="fu">return_curves</span>(prior_df, return_periods)</span>
+<span id="annotated-cell-15-13"><a href="#annotated-cell-15-13" aria-label="13"></a>implied_500yr <span class="op">=</span> [<span class="fu">last</span>(c) for c <span class="kw">in</span> prior_curves]</span>
+<span id="annotated-cell-15-14"><a href="#annotated-cell-15-14" aria-label="14"></a><span class="pp">@printf</span>(<span class="st">"500-year level implied by the prior:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="annotated-cell-15-15"><a href="#annotated-cell-15-15" aria-label="15"></a><span class="pp">@printf</span>(<span class="st">"  median %.3g ft, largest %.3g ft</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">median</span>(implied_500yr), <span class="fu">maximum</span>(implied_500yr))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">Turning each parameter draw into a return-level curve, which is the scale a coastal engineer can judge.</span>
+</dd>
+<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="7" data-code-annotation="2">A draw with <span class="math inline">\(\xi\)</span> large enough gives infinite or overflowing quantiles, so those are dropped rather than plotted.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>500-year level implied by the prior:
+  median 381 ft, largest 1.44e+74 ft</code></pre>
+</div>
+</div>
+<div id="cell-fig-prior-vague" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">340</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{return level (ft)}"</span>, title<span class="op">=</span><span class="st">"vague prior"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a><span class="cf">for</span> curve <span class="kw">in</span> prior_curves</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>    <span class="fu">lines!</span>(ax, return_periods, curve; color<span class="op">=</span>(colors[<span class="fl">1</span>], <span class="fl">0.06</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a><span class="cf">end</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a><span class="fu">ylims!</span>(ax, <span class="op">-</span><span class="fl">20</span>, <span class="fl">60</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a><span class="fu">hlines!</span>(ax, [<span class="fu">maximum</span>(y)]; color<span class="op">=:</span>black, linestyle<span class="op">=:</span>dash, label<span class="op">=</span><span class="st">"largest observed"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a><span class="fu">return_period_axis!</span>(ax)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-prior-vague" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prior-vague-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-prior-vague-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prior-vague-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Return-level curves implied by the vague prior, before seeing any data. The vertical axis is clipped; many draws run far off the top.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>These priors place substantial probability on 500-year water levels of several hundred feet and on negative water levels, neither of which any tide gauge has recorded. The prior is informative about return levels, and what it asserts is wrong.</p>
+<section id="quantile-priors" class="level4">
+<h4 class="anchored" data-anchor-id="quantile-priors">Quantile priors</h4>
+<p>The three parameters are hard to reason about jointly, which is why independently reasonable priors on each one produced the curves above. Return levels are easier to judge, so specify the prior in terms of return levels instead. Choose a few return periods, state what you believe about the level at each, and let those statements constrain the parameters.</p>
+<div id="34" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1">1</button><span id="annotated-cell-17-1" class="code-annotation-target"><a href="#annotated-cell-17-1" aria-label="1"></a>quantile_beliefs <span class="op">=</span> [</span>
+<span id="annotated-cell-17-2"><a href="#annotated-cell-17-2" aria-label="2"></a>    (period<span class="op">=</span><span class="fl">2</span>, belief<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">5.0</span>, <span class="fl">1.0</span>)),</span>
+<span id="annotated-cell-17-3"><a href="#annotated-cell-17-3" aria-label="3"></a>    (period<span class="op">=</span><span class="fl">100</span>, belief<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">8.0</span>, <span class="fl">2.5</span>)),</span>
+<span id="annotated-cell-17-4"><a href="#annotated-cell-17-4" aria-label="4"></a>    (period<span class="op">=</span><span class="fl">500</span>, belief<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">9.5</span>, <span class="fl">4.0</span>)),</span>
+<span id="annotated-cell-17-5"><a href="#annotated-cell-17-5" aria-label="5"></a>]</span>
+<span id="annotated-cell-17-6"><a href="#annotated-cell-17-6" aria-label="6"></a></span>
+<span id="annotated-cell-17-7"><a href="#annotated-cell-17-7" aria-label="7"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">gev_quantile</span>(y, beliefs)</span>
+<span id="annotated-cell-17-8"><a href="#annotated-cell-17-8" aria-label="8"></a>    μ <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">5</span>, <span class="fl">3</span>)</span>
+<span id="annotated-cell-17-9"><a href="#annotated-cell-17-9" aria-label="9"></a>    σ <span class="op">~</span> <span class="fu">truncated</span>(<span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">2</span>); lower<span class="op">=</span><span class="fl">0.01</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="2">2</button><span id="annotated-cell-17-10" class="code-annotation-target"><a href="#annotated-cell-17-10" aria-label="10"></a>    ξ <span class="op">~</span> <span class="fu">truncated</span>(<span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">0.2</span>); lower<span class="op">=-</span><span class="fl">0.5</span>, upper<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="annotated-cell-17-11"><a href="#annotated-cell-17-11" aria-label="11"></a>    d <span class="op">=</span> <span class="fu">GeneralizedExtremeValue</span>(μ, σ, ξ)</span>
+<span id="annotated-cell-17-12"><a href="#annotated-cell-17-12" aria-label="12"></a>    <span class="cf">for</span> b <span class="kw">in</span> beliefs</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="3">3</button><span id="annotated-cell-17-13" class="code-annotation-target"><a href="#annotated-cell-17-13" aria-label="13"></a>        Turing.<span class="pp">@addlogprob</span>! <span class="fu">logpdf</span>(b.belief, <span class="fu">quantile</span>(d, <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> b.period))</span>
+<span id="annotated-cell-17-14"><a href="#annotated-cell-17-14" aria-label="14"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-17-15"><a href="#annotated-cell-17-15" aria-label="15"></a>    <span class="cf">for</span> yᵢ <span class="kw">in</span> y</span>
+<span id="annotated-cell-17-16"><a href="#annotated-cell-17-16" aria-label="16"></a>        Turing.<span class="pp">@addlogprob</span>! <span class="fu">my_gev_logpdf</span>(yᵢ, μ, σ, ξ)</span>
+<span id="annotated-cell-17-17"><a href="#annotated-cell-17-17" aria-label="17"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-17-18"><a href="#annotated-cell-17-18" aria-label="18"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-17" data-code-lines="1" data-code-annotation="1">Each entry is a belief about one return level: the 2-year level is 5 ft with standard deviation 1 ft, the 100-year level is 8 ft with standard deviation 2.5 ft, and the 500-year level is 9.5 ft with standard deviation 4 ft. <strong>These numbers are for Sewells Point.</strong> A gauge with a different tidal range needs different ones.</span>
+</dd>
+<dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-17" data-code-lines="10" data-code-annotation="2">Bounding the shape rules out the distributions with no finite variance. This is a strong assumption; revisit it if the posterior for <span class="math inline">\(\xi\)</span> concentrates near a bound.</span>
+</dd>
+<dt data-target-cell="annotated-cell-17" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-17" data-code-lines="13" data-code-annotation="3">Each belief contributes its log-density evaluated at the return level the current parameters imply, so parameter sets implying return levels you called implausible receive lower posterior density.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="cell-fig-prior-quantile" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>quantile_prior_df <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    <span class="fu">sample</span>(rng, <span class="fu">gev_quantile</span>(y, quantile_beliefs), <span class="fu">Prior</span>(), <span class="fl">1_000</span>; progress<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>quantile_curves <span class="op">=</span> <span class="fu">return_curves</span>(quantile_prior_df, return_periods)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">340</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{return level (ft)}"</span>, title<span class="op">=</span><span class="st">"quantile prior"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a><span class="cf">for</span> curve <span class="kw">in</span> quantile_curves</span>
+<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>    <span class="fu">lines!</span>(ax, return_periods, curve; color<span class="op">=</span>(colors[<span class="fl">1</span>], <span class="fl">0.06</span>))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-label="10"></a><span class="cf">end</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-label="11"></a><span class="fu">hlines!</span>(ax, [<span class="fu">maximum</span>(y)]; color<span class="op">=:</span>black, linestyle<span class="op">=:</span>dash, label<span class="op">=</span><span class="st">"largest observed"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-label="12"></a><span class="fu">return_period_axis!</span>(ax)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-label="13"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-label="14"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-prior-quantile" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prior-quantile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-prior-quantile-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prior-quantile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Return-level curves implied by the quantile prior. Compare the vertical scale to the previous figure.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The implied return levels are now physically plausible, and they still span a wide range. A prior predictive check that produces a narrow band means the prior determines the posterior.</p>
+</section>
+</section>
+<section id="posterior-fits-and-convergence-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="posterior-fits-and-convergence-diagnostics">Posterior fits and convergence diagnostics</h3>
+<div id="38" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-19"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-label="1"></a>chain_vague <span class="op">=</span> <span class="fu">sample</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1">1</button><span id="annotated-cell-19-2" class="code-annotation-target"><a href="#annotated-cell-19-2" aria-label="2"></a>    rng, <span class="fu">gev_vague</span>(y), <span class="fu">NUTS</span>(<span class="fl">0.99</span>), <span class="fu">MCMCThreads</span>(), <span class="fl">1_000</span>, <span class="fl">4</span>; progress<span class="op">=</span><span class="cn">false</span></span>
+<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-label="3"></a>)</span>
+<span id="annotated-cell-19-4"><a href="#annotated-cell-19-4" aria-label="4"></a>chain_quantile <span class="op">=</span> <span class="fu">sample</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2">2</button><span id="annotated-cell-19-5" class="code-annotation-target"><a href="#annotated-cell-19-5" aria-label="5"></a>    rng, <span class="fu">gev_quantile</span>(y, quantile_beliefs), <span class="fu">NUTS</span>(<span class="fl">0.99</span>), <span class="fu">MCMCThreads</span>(), <span class="fl">1_000</span>, <span class="fl">4</span>;</span>
+<span id="annotated-cell-19-6"><a href="#annotated-cell-19-6" aria-label="6"></a>    progress<span class="op">=</span><span class="cn">false</span>,</span>
+<span id="annotated-cell-19-7"><a href="#annotated-cell-19-7" aria-label="7"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="2" data-code-annotation="1">Four chains of 1,000 draws, run from different starting points. <span class="math inline">\(\hat R\)</span> compares chains against each other, so it needs more than one.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="5" data-code-annotation="2">Target acceptance rate, raised from the default of 0.65. The GEV support depends on the parameters, so the posterior density falls to zero along a boundary that moves with <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\xi\)</span>. At the default step size NUTS crosses that boundary and reports a divergence. A higher target forces smaller steps, which costs a few seconds of runtime. Models whose support depends on their parameters usually need this; most models do not.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Check the chains before using them.</p>
+<div id="40" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-20"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1">1</button><span id="annotated-cell-20-1" class="code-annotation-target"><a href="#annotated-cell-20-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">check_chain</span>(chain, label)</span>
+<span id="annotated-cell-20-2"><a href="#annotated-cell-20-2" aria-label="2"></a>    stats <span class="op">=</span> <span class="fu">DataFrame</span>(<span class="fu">summarystats</span>(chain))</span>
+<span id="annotated-cell-20-3"><a href="#annotated-cell-20-3" aria-label="3"></a>    divergences <span class="op">=</span> <span class="fu">sum</span>(chain[<span class="op">:</span>numerical_error])</span>
+<span id="annotated-cell-20-4"><a href="#annotated-cell-20-4" aria-label="4"></a>    <span class="pp">@printf</span>(</span>
+<span id="annotated-cell-20-5"><a href="#annotated-cell-20-5" aria-label="5"></a>        <span class="st">"%-15s worst R̂ = %.3f, smallest ESS = %5.0f, divergences = %d</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="annotated-cell-20-6"><a href="#annotated-cell-20-6" aria-label="6"></a>        label, <span class="fu">maximum</span>(stats.rhat), <span class="fu">minimum</span>(stats.ess_bulk), divergences</span>
+<span id="annotated-cell-20-7"><a href="#annotated-cell-20-7" aria-label="7"></a>    )</span>
+<span id="annotated-cell-20-8"><a href="#annotated-cell-20-8" aria-label="8"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="annotated-cell-20-9"><a href="#annotated-cell-20-9" aria-label="9"></a><span class="kw">end</span></span>
+<span id="annotated-cell-20-10"><a href="#annotated-cell-20-10" aria-label="10"></a></span>
+<span id="annotated-cell-20-11"><a href="#annotated-cell-20-11" aria-label="11"></a><span class="fu">check_chain</span>(chain_vague, <span class="st">"vague prior"</span>)</span>
+<span id="annotated-cell-20-12"><a href="#annotated-cell-20-12" aria-label="12"></a><span class="fu">check_chain</span>(chain_quantile, <span class="st">"quantile prior"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="1" data-code-annotation="1">Turing records a flag per draw; summing gives the count.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>vague prior     worst R̂ = 1.001, smallest ESS =  2050, divergences = 0
+quantile prior  worst R̂ = 1.003, smallest ESS =  1890, divergences = 0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>What the numbers mean.</strong> <span class="math inline">\(\hat R\)</span> compares the variation within each chain to the variation between chains; at convergence it approaches 1, and anything above 1.01 means the chains have not mixed. The effective sample size is how many independent draws the correlated ones are worth, so 4,000 draws with an ESS of 200 carry the information of 200. Divergences should be as close to zero as possible.</p>
+</div>
+</div>
+</div>
+<div id="cell-fig-posterior" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-21"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-21-1"><a href="#annotated-cell-21-1" aria-label="1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">400</span>))</span>
+<span id="annotated-cell-21-2"><a href="#annotated-cell-21-2" aria-label="2"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{return level (ft)}"</span>)</span>
+<span id="annotated-cell-21-3"><a href="#annotated-cell-21-3" aria-label="3"></a><span class="cf">for</span> (chain, colour, label) <span class="kw">in</span></span>
+<span id="annotated-cell-21-4"><a href="#annotated-cell-21-4" aria-label="4"></a>    ((chain_vague, colors[<span class="fl">1</span>], <span class="st">"vague prior"</span>), (chain_quantile, colors[<span class="fl">2</span>], <span class="st">"quantile prior"</span>))</span>
+<span id="annotated-cell-21-5"><a href="#annotated-cell-21-5" aria-label="5"></a>    curves <span class="op">=</span> <span class="fu">return_curves</span>(<span class="fu">DataFrame</span>(chain), return_periods; n_curves<span class="op">=</span><span class="fl">2_000</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1">1</button><span id="annotated-cell-21-6" class="code-annotation-target"><a href="#annotated-cell-21-6" aria-label="6"></a>    lo <span class="op">=</span> [<span class="fu">quantile</span>([c[k] for c <span class="kw">in</span> curves], <span class="fl">0.025</span>) for k <span class="kw">in</span> <span class="fu">eachindex</span>(return_periods)]</span>
+<span id="annotated-cell-21-7"><a href="#annotated-cell-21-7" aria-label="7"></a>    hi <span class="op">=</span> [<span class="fu">quantile</span>([c[k] for c <span class="kw">in</span> curves], <span class="fl">0.975</span>) for k <span class="kw">in</span> <span class="fu">eachindex</span>(return_periods)]</span>
+<span id="annotated-cell-21-8"><a href="#annotated-cell-21-8" aria-label="8"></a>    med <span class="op">=</span> [<span class="fu">median</span>(c[k] for c <span class="kw">in</span> curves) for k <span class="kw">in</span> <span class="fu">eachindex</span>(return_periods)]</span>
+<span id="annotated-cell-21-9"><a href="#annotated-cell-21-9" aria-label="9"></a>    <span class="fu">band!</span>(ax, return_periods, lo, hi; color<span class="op">=</span>(colour, <span class="fl">0.2</span>))</span>
+<span id="annotated-cell-21-10"><a href="#annotated-cell-21-10" aria-label="10"></a>    <span class="fu">lines!</span>(ax, return_periods, med; color<span class="op">=</span>colour, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span>label)</span>
+<span id="annotated-cell-21-11"><a href="#annotated-cell-21-11" aria-label="11"></a><span class="cf">end</span></span>
+<span id="annotated-cell-21-12"><a href="#annotated-cell-21-12" aria-label="12"></a><span class="fu">scatter!</span>(ax, observed_periods, sorted_obs; color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">6</span>, label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<span id="annotated-cell-21-13"><a href="#annotated-cell-21-13" aria-label="13"></a><span class="fu">return_period_axis!</span>(ax)</span>
+<span id="annotated-cell-21-14"><a href="#annotated-cell-21-14" aria-label="14"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt, framevisible<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="annotated-cell-21-15"><a href="#annotated-cell-21-15" aria-label="15"></a>fig</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="6" data-code-annotation="1">The 2.5th and 97.5th percentiles across posterior draws at each return period, which bound the 95% credible interval.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-posterior" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posterior-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-posterior-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posterior-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Posterior median return level and 95% credible interval under each prior. Shaded bands are the credible intervals; the observed record is plotted at Weibull plotting positions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The two posteriors differ most at long return periods, where the data constrain the tail weakly.</p>
+<div id="44" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-22"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><button class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="1">1</button><span id="annotated-cell-22-1" class="code-annotation-target"><a href="#annotated-cell-22-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">return_level_summary</span>(chain, period)</span>
+<span id="annotated-cell-22-2"><a href="#annotated-cell-22-2" aria-label="2"></a>    df <span class="op">=</span> <span class="fu">DataFrame</span>(chain)</span>
+<span id="annotated-cell-22-3"><a href="#annotated-cell-22-3" aria-label="3"></a>    levels <span class="op">=</span> [</span>
+<span id="annotated-cell-22-4"><a href="#annotated-cell-22-4" aria-label="4"></a>        <span class="fu">quantile</span>(<span class="fu">GeneralizedExtremeValue</span>(df.μ[i], df.σ[i], df.ξ[i]), <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">/</span> period)</span>
+<span id="annotated-cell-22-5"><a href="#annotated-cell-22-5" aria-label="5"></a>        for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">nrow</span>(df)</span>
+<span id="annotated-cell-22-6"><a href="#annotated-cell-22-6" aria-label="6"></a>    ]</span>
+<span id="annotated-cell-22-7"><a href="#annotated-cell-22-7" aria-label="7"></a>    <span class="cf">return</span> <span class="fu">median</span>(levels), <span class="fu">quantile</span>(levels, <span class="fl">0.025</span>), <span class="fu">quantile</span>(levels, <span class="fl">0.975</span>)</span>
+<span id="annotated-cell-22-8"><a href="#annotated-cell-22-8" aria-label="8"></a><span class="kw">end</span></span>
+<span id="annotated-cell-22-9"><a href="#annotated-cell-22-9" aria-label="9"></a></span>
+<span id="annotated-cell-22-10"><a href="#annotated-cell-22-10" aria-label="10"></a><span class="cf">for</span> period <span class="kw">in</span> (<span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span>)</span>
+<span id="annotated-cell-22-11"><a href="#annotated-cell-22-11" aria-label="11"></a>    vm, vl, vu <span class="op">=</span> <span class="fu">return_level_summary</span>(chain_vague, period)</span>
+<span id="annotated-cell-22-12"><a href="#annotated-cell-22-12" aria-label="12"></a>    qm, ql, qu <span class="op">=</span> <span class="fu">return_level_summary</span>(chain_quantile, period)</span>
+<span id="annotated-cell-22-13"><a href="#annotated-cell-22-13" aria-label="13"></a>    <span class="pp">@printf</span>(</span>
+<span id="annotated-cell-22-14"><a href="#annotated-cell-22-14" aria-label="14"></a>        <span class="st">"%3d-yr   vague %5.2f [%5.2f, %6.2f]   quantile %5.2f [%5.2f, %6.2f]</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="annotated-cell-22-15"><a href="#annotated-cell-22-15" aria-label="15"></a>        period, vm, vl, vu, qm, ql, qu</span>
+<span id="annotated-cell-22-16"><a href="#annotated-cell-22-16" aria-label="16"></a>    )</span>
+<span id="annotated-cell-22-17"><a href="#annotated-cell-22-17" aria-label="17"></a><span class="cf">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-22" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-22" data-code-lines="1" data-code-annotation="1">Every posterior draw is a full parameter vector, so every draw gives a return level. The spread of those levels is the credible interval, and it accounts for uncertainty in all three parameters at once.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 50-yr   vague  7.23 [ 6.38,   9.04]   quantile  7.01 [ 6.32,   8.06]
+100-yr   vague  8.07 [ 6.86,  10.86]   quantile  7.72 [ 6.75,   9.33]
+500-yr   vague 10.53 [ 7.99,  17.61]   quantile  9.70 [ 7.76,  13.50]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>You are expected to use an LLM for the code. Write your answers in the <strong>Your answer</strong> block under each exercise, replacing the italic placeholder. Grading is on the answers.</p>
+<section id="change-the-gauge" class="level3">
+<h3 class="anchored" data-anchor-id="change-the-gauge">Change the gauge</h3>
+<p>Pick a different NOAA tide gauge from <a href="https://tidesandcurrents.noaa.gov/stations.html">the station browser</a> and change <code>station</code> in the data cell near the top. Choose one with at least 50 years of record. Then run the whole notebook from the top.</p>
+<p>Report what broke and what you did about it. Work through the notebook in order and say, at each stage, whether the output is still trustworthy: did the hand-written optimizer converge, do the two fits still agree, is <span class="math inline">\(\hat R\)</span> still close to 1, are there divergences.</p>
+<p>The quantile prior’s numbers were chosen for Sewells Point. A gauge with a different tidal range, meaning the difference between high and low tide, needs different ones. Sewells Point has a tidal range of about 2.5 ft and Boston about 9.5 ft, so Boston’s annual maxima exceed the levels this prior calls plausible. Look at your gauge’s record before choosing new numbers, and say what you changed them to and why.</p>
+<p><strong>Your answer.</strong></p>
+<blockquote class="blockquote">
+<p><em>Answer here</em></p>
+</blockquote>
+</section>
+<section id="the-shape-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="the-shape-parameter">The shape parameter</h3>
+<p>Compare the maximum likelihood, L-moment, and hand-optimized estimates on your gauge. Report all three.</p>
+<p>They should agree closely on <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> and less closely on <span class="math inline">\(\xi\)</span>. Explain why <span class="math inline">\(\xi\)</span> is the least well determined, and say which of the three you would report to a client and why.</p>
+<p><strong>Your answer.</strong></p>
+<blockquote class="blockquote">
+<p><em>Answer here</em></p>
+</blockquote>
+</section>
+<section id="sensitivity-to-the-prior" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-to-the-prior">Sensitivity to the prior</h3>
+<p>Compare the 500-year return level and its credible interval under the two priors on your gauge.</p>
+<p>The vague prior is sometimes described as letting the data speak for themselves. Using your prior predictive figures and your posterior intervals, say whether that description holds here.</p>
+<p><strong>Your answer.</strong></p>
+<blockquote class="blockquote">
+<p><em>Answer here</em></p>
+</blockquote>
+</section>
+<section id="reading-a-failed-diagnostic" class="level3">
+<h3 class="anchored" data-anchor-id="reading-a-failed-diagnostic">Reading a failed diagnostic</h3>
+<p>Suppose a colleague sends you this notebook, run on their own gauge, with <span class="math inline">\(\hat R = 1.08\)</span> on <span class="math inline">\(\xi\)</span> and 47 divergences, and asks whether the 100-year level in the summary is usable.</p>
+<p>Write your reply. Say what the two numbers mean, whether the estimate can be used, and what you would ask them to try.</p>
+<p><strong>Your answer.</strong></p>
+<blockquote class="blockquote">
+<p><em>Answer here</em></p>
+</blockquote>
+</section>
+<section id="reporting-a-design-value" class="level3">
+<h3 class="anchored" data-anchor-id="reporting-a-design-value">Reporting a design value</h3>
+<p>Report one 100-year return level for your gauge, with one interval, as you would for a report a city will act on.</p>
+<p>State the number and say what it rests on: which estimator, which detrending choice, which prior, and what you would want before trusting it further.</p>
+<p><strong>Your answer.</strong></p>
+<blockquote class="blockquote">
+<p><em>Answer here</em></p>
+</blockquote>
+</section>
+</section>
+<section id="turning-it-in" class="level2">
+<h2 class="anchored" data-anchor-id="turning-it-in">Turning it in</h2>
+<p>This lab is due on Canvas one week after the Friday session that starts it.</p>
+<ol type="1">
+<li><p>Check that every <strong>Your answer</strong> block is filled in.</p></li>
+<li><p>Render the notebook to a PDF. In the terminal, from the lab folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a><span class="ex">quarto</span> render index.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This writes <code>index.pdf</code> beside the notebook. It runs the whole notebook from the top in a fresh process, so it also confirms your work does not depend on leftover REPL state.</p></li>
+<li><p>Commit and push your work, with GitHub Desktop or by asking Claude to commit and push.</p></li>
+<li><p>Upload <code>index.pdf</code> to the Lab 4 assignment on Canvas.</p></li>
+<li><p>Paste the link to your repository in the same Canvas submission.</p></li>
+</ol>
+<p>If the render fails and you cannot fix it, upload what you have and say where it broke. A lab that does not render is worth more to me than a lab you did not turn in.</p>
+<p>Note what broke, what Claude got wrong, and what you had to fix by hand, and bring it to the next session.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
