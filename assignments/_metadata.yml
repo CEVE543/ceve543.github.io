@@ -1,0 +1,18 @@
+# Reading guides are distributed as PDFs on Canvas, so this directory renders
+# to Typst as well as HTML. The project-level config declares no Typst format,
+# because a project-level format applies to every page.
+
+format:
+  html: default
+  typst:
+    margin:
+      x: 0.9in
+      y: 0.85in
+    font-paths:
+      - ../../_typst/fonts
+    mainfont: "Fira Sans"
+    fontsize: 10.5pt
+    include-in-header:
+      - ../../_typst/document-header.typ
+    include-before-body:
+      - ../../_typst/document-body.typ

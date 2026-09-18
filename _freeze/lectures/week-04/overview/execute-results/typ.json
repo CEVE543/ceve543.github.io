@@ -1,0 +1,12 @@
+{
+  "hash": "c1cb76c5a15771d718885053703c6fc3",
+  "result": {
+    "engine": "julia",
+    "markdown": "---\ntitle: \"Week 4 overview\"\nsubtitle: \"{{< var course.number >}}\"\nweek: 4\nmodule: 2\norder: 1\nkind: \"slides\"\ndate: 2026-09-14\nstatus: \"published\"\nrelease: \"public\"\nexecute:\n  cache: true\nformat:\n  typst:\n    shift-heading-level-by: 0\n    font-paths:\n      - ../../_typst/fonts\n    template-partials:\n      - ../../_typst/slides/typst-template.typ\n      - ../../_typst/slides/typst-show.typ\n---\n\n\n\n\n# Module 2: univariate extremes\n\n## How do we characterize a single hazard at a single location?\n\nHow do we characterize the probability distribution of a single hydroclimate hazard at a single location, and what are the associated uncertainties?\n\n## We have already worked with annual maxima\n\n::: {.cell execution_count=1}\n\n::: {.cell-output .cell-output-display execution_count=1}\n![](overview_files/figure-typst/cell-3-output-1.svg){}\n:::\n:::\n\n\n\nSewells Point annual maximum storm surge, 1928-2023, at Weibull plotting positions.\nThe largest observation gets a return period of about 97 years.\nWhat is the 200-year level?\nThe 500-year level?\n\n## Extreme value theory gives us a principled answer\n\n- Extrapolating beyond the data requires a model\n- We would like a justification beyond \"it fits\"\n\nExtreme value theory to the rescue: a limit theorem says that block maxima converge to a specific family of distributions (the GEV).\n\n## What this week covers\n\n- **Monday:** the GEV distribution and how to estimate its parameters\n- **Wednesday:** fitting a GEV in Julia, diagnostics, and Bayesian inference\n- **Friday:** lab 4, writing your own model in Turing and testing its sensitivity\n\n",
+    "supporting": [
+      "overview_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

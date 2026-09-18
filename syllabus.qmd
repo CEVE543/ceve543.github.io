@@ -1,0 +1,303 @@
+---
+title: "{{< var course.number >}}: {{< var course.short_title >}}"
+subtitle: "{{< var course.semester >}}"
+format:
+  html:
+    toc-depth: 3
+  typst:
+    margin:
+      x: 0.9in
+      y: 0.85in
+    font-paths:
+      - _typst/fonts
+    mainfont: "Fira Sans"
+    fontsize: 10.5pt
+    include-in-header:
+      - _typst/document-header.typ
+    include-before-body:
+      - _typst/document-body.typ
+brand:
+  typography:
+    headings:
+      family: "Space Grotesk"
+status: "published"
+release: "public"
+---
+
+## Course information
+
+Registrar title: {{< var course.number >}}, {{< var course.title >}}.
+
+:::: {.columns .course-details}
+
+::: {.column width="50%"}
+
+### Instructor
+
+* {{< fa user title="Name" >}} [[{{< var instructor.name_no_title >}}]({{< var instructor.url >}})]{.ms-1}
+* {{< fa envelope title="Email" >}} [[{{< var instructor.email >}}](mailto:{{< var instructor.email >}})]{.ms-1}
+* {{< fa building title="Office" >}} [{{< var instructor.office >}}]{.ms-2}
+:::
+
+::: {.column width="50%"}
+
+### Meetings
+
+* {{< fa calendar title="Class Days" >}} {{< var course.days >}}
+* {{< fa clock title="Class Time" >}} {{< var course.time >}}
+* {{< fa comments title="Office Hours" >}} Office hours by appointment; email to arrange
+:::
+
+::::
+
+## Overview
+
+{{< include _includes/motivation.qmd >}}
+
+### Course objectives
+
+{{< include _includes/objectives.qmd >}}
+
+### Prerequisites and preparation
+
+* A course in applied statistics beyond introduction to probability; you should be familiar with probability density and mass functions, cumulative distribution functions, expectation, variance, and conditional distributions, and you should have built and analyzed regression models.
+* Linear algebra: matrix notation and basic operations.
+* Programming experience in Julia, Python, R, MATLAB, or another language.
+  The course uses Julia.
+  Prior Julia experience is not required; prior programming experience is strongly encouraged.
+
+This is a graduate course, and I expect you to bring domain knowledge from your own work or research.
+Your expertise will differ from your classmates', and the discussions are better for it.
+
+### Required materials
+
+No textbook is required.
+Lecture notes written for this course serve as the textbook and are released weekly.
+Readings are drawn from published papers, agency documents, and industry references, provided through the course website or Canvas.
+
+You need a computer you can install software on.
+If you do not have access to one, contact me as soon as possible so we can make arrangements.
+
+You also need to pay for a subscription to Claude Code, which costs $20 per month.
+If the cost is a hardship, contact me and we will make arrangements.
+
+## Assessment
+
+| Component | Weight |
+| :--- | :--- |
+| Participation | 10% |
+| Labs | 10% |
+| Written tests (2) | 30% |
+| Oral examinations (2) | 20% |
+| Final project | 30% |
+
+There is no final exam.
+The final project defense is scheduled in the course's final examination slot.
+
+### Participation
+
+Participation is judged on preparation and effort, not on correctness.
+To earn full points:
+
+* Attend class, and tell me when you cannot.
+* Do the reading and the pre-work, and submit your reading questions.
+* Take part in discussion, and answer as best you can when called on.
+
+We will use a software called *Poll Everywhere* to make interactive questions in class, and you should use your Rice NetID as a screen name to document your in-class participation.
+
+### Practice problems
+
+Practice problems are published with the reading each week.
+They are not graded and not submitted, but you are encouraged to work on them to prepare for exams, and we will work on problems in class (typically Wednesdays).
+
+### Labs
+
+A lab accompanies most weeks.
+We start it together in the Friday session and you finish it on your own; it is due on Canvas one week after that session, as a rendered PDF plus a link to your repository.
+
+Each lab is worth 3 points, and I grade the answers you write in the lab rather than your code:
+
+| Points | What it means |
+| :--- | :--- |
+| 3 | A thoughtful answer |
+| 2 | A quick answer |
+| 1 | You turned it in |
+| 0 | You did not turn it in |
+
+Your two lowest labs are dropped.
+These are meant to be free points: everyone who does the work and writes down what they found gets nearly all of them, and there is no autograder deciding whether your code matches mine.
+
+### Written tests
+
+Two exams will be drawn from questions like the published practice problems, and from the labs.
+
+| Test | Date | Covers |
+| :--- | :--- | :--- |
+| Test 1 | Fri Oct 16 | Weeks 1-7 |
+| Test 2 | Mon Nov 30 | Weeks 8-14 |
+
+### Oral examinations
+
+Each student completes two oral examinations, one following each written test.
+Each oral exam will take approximately 15 minutes.
+
+Oral exams will be recorded so that grading can be audited for consistency.
+The questions will come from the same question bank as the written exams, but I may interrupt to see you follow-up more clearly.
+We will discuss oral exams in-class and practice before you have graded exams.
+
+| Orals | When |
+| :--- | :--- |
+| Format introduction, rubric walkthrough, and a demonstration oral | Fri Sep 11, in class |
+| Oral 1, covering weeks 1-7 | By signup, weeks 9-10 |
+| Oral 2, covering weeks 8-14 | By signup, week 15 |
+
+### Final project
+
+The final project will give you an opportunity to:
+
+1. Develop understanding of a new method or technique beyond what we have covered in class
+1. Get guided practice applying the core tools and techniques from this class to an open-ended hydroclimate hazard assessment problem.
+
+See the [final project page](assessments/final-project/index.qmd) for the full description and deadlines for the final project.
+
+## A community of learning
+
+Course success is a shared responsibility of the instructor and the student.
+
+:::: {.columns}
+::: {.column width="45%"}
+As the instructor, **my responsibility** is to give you the structure and the opportunity to learn.
+I commit to:
+
+* provide organized and focused lectures, activities, and assignments;
+* ask for and act on feedback about the course;
+* manage the classroom atmosphere to promote learning;
+* hold sufficient office hours;
+* allow adequate time for assignments;
+* make materials, policies, and activities accessible.
+:::
+::: {.column width="10%"}
+:::
+::: {.column width="45%"}
+Students are responsible for their own learning.
+It is **your responsibility** to:
+
+* attend class;
+* do the preparatory work before class;
+* participate actively in discussion;
+* start assignments early;
+* come to office hours as needed.
+:::
+::::
+
+### AI policy
+
+There is no blanket ban on AI in this course.
+The labs assume you will use an LLM, and they use Claude Code, so you need access to it.
+
+Three principles govern AI use:
+
+1. Shared responsibility: I commit to teaching you; you commit to learning.
+   If you use AI to bypass thinking, such as generating code you do not understand, you cheat yourself of the skills you are spending your time (and money!) to learn.
+1. Assessment design: most of the grade comes from oral examinations and in-person written tests, which are hard to game with a model.
+1. Open dialogue: we will talk in class about how we are using these tools.
+   That means being able to admit AI use without being shamed for it, and being willing to hear constructive criticism of misuse.
+
+Conceptual practice problems allow neither code nor generated prose.
+Written tests and oral examinations are closed-book and closed-model.
+
+The policy binds me too.
+I may use a model to draft a rubric or revise website content, but your work will not be graded by a model, and I will not use one to write code or text I do not fully understand.
+
+See the [AI policy page](/ai.qmd) for detail.
+
+### Device policy
+
+We meet for fewer than three hours per week, so we want to make the most of this limited class time.
+To help us do that, please be fully present and disconnected during class time, except during lab exercises or online polls.
+Please get in the habit of taking notes with pen and paper, or using a a tablet used flat on the desk for handwritten notes.
+
+### Recording
+
+Video or audio recording of class, including through transcription tools, is not permitted.
+This includes
+
+### Diversity and inclusion
+
+Our goal is an inclusive learning environment where everyone is comfortable, regardless of social identity, background, or specific learning needs.
+As engineers, our work touches many critical aspects of society, and questions of inclusion cannot be separated from systems analysis, objective selection, risk analysis, and trade-offs.
+
+Members of this class community are expected to be respectful and inclusive in all communications.
+We ask all participants to share their experiences, values, and beliefs; to be open to and respectful of the views of others; and to communicate respectfully.
+
+[Credit: [Vivek Srikrishnan, Cornell](https://github.com/vsrikrish/environmental-systems-analysis/blob/Fall24/syllabus.qmd)]
+
+### Accommodation for students with disabilities
+
+If you have a documented disability or other condition that may affect academic performance you should: (1) make sure this documentation is on file with the Disability Resource Center (Allen Center, Room 111 / [adarice@rice.edu](mailto:adarice@rice.edu) / x5841) to determine the accommodations you need; and (2) talk with me to discuss your accommodation needs.
+
+Accommodations that affect the oral examination format should be arranged before the first oral examination.
+
+### Accommodation for scheduling conflicts
+
+If any class meeting conflicts with a religious observance, student athletics, or another non-negotiable commitment, tell me as soon as possible so we can make arrangements.
+This matters most for the oral examinations, which are scheduled by signup.
+
+### Mental health
+
+Your wellbeing matters to your work in this course and beyond it.
+Rice provides cost-free, confidential mental health services through the [Wellbeing and Counseling Center](https://wellbeing.rice.edu/).
+If stress, anxiety, or anything else is making it hard to keep up, reach out to them, and tell me if I can help.
+
+### Title IX
+
+I am a mandatory reporter.
+If you tell me about an experience of sexual harassment, sexual assault, dating or domestic violence, or stalking, I am required to report it to the Rice Title IX Coordinator.
+For confidential support with no obligation to report, contact [The SAFE Office](https://safe.rice.edu/) or the [Wellbeing and Counseling Center](https://wellbeing.rice.edu/).
+The [Title IX office](https://titleix.rice.edu/) explains your options and resources.
+
+## Course logistics
+
+### Canvas
+
+The Canvas site is at [{{< var course.canvas_url >}}]({{< var course.canvas_url >}}).
+Canvas is used for grades and for material that cannot be public.
+The course website is updated faster. **If the website and Canvas conflict, the website is correct.**
+
+Practice problems are posted to Canvas as PDFs.
+Labs and lecture notes are on the course website.
+
+### Late work
+
+Practice problems are never submitted, so there is nothing to turn in late.
+
+Labs are due one week after the session that starts them, which is already a week of slack for a busy stretch.
+Late labs are not accepted, and dropping your two lowest labs is how the course absorbs a missed week.
+If you are going to miss more than two because of something serious, come talk to me rather than letting them lapse.
+
+Written tests and oral examinations are scheduled events.
+If you must miss one because of illness, family emergency, or unavoidable research travel, tell me as soon as you can and we will arrange a make-up.
+Make-ups require documentation.
+
+The [final project page](assessments/final-project/index.qmd) carries that project's deadlines.
+Extensions must be arranged in advance.
+
+### Syllabus change policy
+
+This syllabus is a guide and is subject to change with notice.
+All changes are tracked in git and visible on the [course repository]({{< var course.github >}}).
+
+### Rice Honor Code
+
+All students will be held to the standards of the Rice Honor Code, which you pledged to honor when you matriculated.
+If you are unfamiliar with the details of this code and how it is administered, consult the Honor System Handbook at [honor.rice.edu/honor-system-handbook/](https://honor.rice.edu/honor-system-handbook/).
+The handbook outlines the University's expectations for the integrity of your academic work, the procedures for resolving alleged violations, and the rights and responsibilities of students and faculty throughout the process.
+
+### Collaboration
+
+You are encouraged to work together on practice problems and labs; the purpose is for you to strengthen your learning, and a lab is graded on the answers you write rather than on whether your code matches anyone else's.
+You may work together on final projects by providing feedback on presentations and written documents, but must turn in your own work.
+
+## Course schedule
+
+The week-by-week schedule is on the [schedule page](/schedule.qmd).

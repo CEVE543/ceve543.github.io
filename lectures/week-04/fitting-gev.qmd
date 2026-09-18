@@ -1,0 +1,507 @@
+---
+title: "Fitting a GEV in Julia"
+subtitle: "{{< var course.number >}}"
+week: 4
+module: 2
+order: 1
+kind: "slides"
+date: 2026-09-16
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+#| solution: false
+using CEVE543Utils, CSV, CairoMakie, DataFrames, Distributions
+using LaTeXStrings, Optim, Printf, Random, Statistics, Turing
+Random.seed!(543)
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+here = @__DIR__
+```
+
+# Port Pirie data
+
+## Annual maximum sea levels at Port Pirie
+
+65 years of annual maximum sea level (metres) at Port Pirie, South Australia, 1923--1987 [@coles_extremes:2001, §3.4].
+
+```{julia}
+#| solution: false
+portpirie = CSV.read(joinpath(here, "portpirie.csv"), DataFrame)
+y = portpirie.SeaLevel
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="year", ylabel=L"\text{sea level (m)}")
+scatter!(ax, portpirie.Year, y; color=colors[1], markersize=6)
+fig
+```
+
+## The data on a return-period scale
+
+Rank the data and assign Weibull plotting positions $\hat T_i = (n+1)/i$.
+
+```{julia}
+#| solution: false
+sorted, p_hat, T_hat = plotting_positions(y)
+fig = Figure(; size=(800, 350))
+ax1 = Axis(fig[1, 1]; xlabel="year", ylabel=L"\text{sea level (m)}")
+scatter!(ax1, portpirie.Year, y; color=colors[1], markersize=6)
+ax2 = Axis(fig[1, 2]; ylabel=L"\text{sea level (m)}")
+linkyaxes!(ax1, ax2)
+scatter!(ax2, T_hat, sorted; color=colors[1], markersize=6)
+return_period_axis!(ax2)
+fig
+```
+
+# Maximum likelihood by hand
+
+## The GEV log-density
+
+From the board: the GEV has three parameters $(\mu, \sigma, \xi)$ and its log-density is
+
+$$
+\log f(z \mid \mu, \sigma, \xi) = -\log\sigma - (1 + 1/\xi)\log t - t^{-1/\xi}
+$$
+
+where $t = 1 + \xi(z - \mu)/\sigma > 0$.
+
+## The negative log-likelihood
+
+MLE finds the parameter vector that maximises the sum of log-densities, or equivalently minimises the negative.
+
+```{julia}
+#| output: false
+#| solution: false
+function gev_nll(θ, y)
+    μ, logσ, ξ = θ
+    σ = exp(logσ)                      # optimise in log σ so scale stays positive
+    d = GeneralizedExtremeValue(μ, σ, ξ)
+    nll = 0.0
+    for yᵢ in y
+        lp = logpdf(d, yᵢ)
+        isfinite(lp) || return 1e10    # penalty for out-of-support proposals
+        nll -= lp
+    end
+    return nll
+end
+```
+
+## Optimising with Nelder-Mead
+
+```{julia}
+#| solution: false
+θ₀ = [mean(y), log(std(y)), 0.1]      # initial guess: sample moments, slight positive shape
+result = optimize(θ -> gev_nll(θ, y), θ₀, NelderMead())
+μ̂, logσ̂, ξ̂ = Optim.minimizer(result)
+σ̂ = exp(logσ̂)
+@printf("μ̂ = %.3f, σ̂ = %.3f, ξ̂ = %.3f", μ̂, σ̂, ξ̂)
+```
+
+## The convenience wrapper
+
+`CEVE543Utils.gevfit` wraps the same optimization with support for covariates.
+
+```{julia}
+#| solution: false
+fit_gev = gevfit(y)
+d_gev = only(getdistribution(fit_gev))
+@printf("gevfit: μ̂ = %.3f, σ̂ = %.3f, ξ̂ = %.3f", d_gev.μ, d_gev.σ, d_gev.ξ)
+```
+
+# L-moment estimation
+
+## L-moments
+
+MLE requires an optimizer and can be sensitive to starting values or small samples.
+L-moments are linear combinations of order statistics that give closed-form parameter estimates: no optimizer, always finite, and often more stable in small samples.
+
+They are estimated from probability weighted moments $b_r = \frac{1}{n} \sum_{i=1}^{n} y_{(i)} \binom{i-1}{r} / \binom{n-1}{r}$.
+
+The first three L-moments:
+
+$$
+\ell_1 = b_0 \qquad \ell_2 = 2b_1 - b_0 \qquad \ell_3 = 6b_2 - 6b_1 + b_0
+$$
+
+$\ell_1$ is the mean, $\ell_2$ measures spread, and the L-skewness ratio $\tau_3 = \ell_3 / \ell_2$ measures asymmetry.
+
+## From L-moments to GEV parameters
+
+The shape follows from the PWM ratios through the polynomial approximation of Hosking, Wallis & Wood (1985):
+
+$$
+c = \frac{2b_1 - b_0}{3b_2 - b_0} - \frac{\ln 2}{\ln 3} \qquad k = 7.859c + 2.955c^2 \qquad \xi = -k
+$$
+
+Then scale and location follow in closed form:
+
+$$
+\sigma = \frac{k(2b_1 - b_0)}{(1 - 2^{-k})\,\Gamma(1 + k)} \qquad \mu = b_0 - \frac{\sigma}{k}(1 - \Gamma(1 + k))
+$$
+
+```{julia}
+#| solution: false
+d_lmom = gevfit_lmom(y)
+@printf("L-moments: μ̂ = %.3f, σ̂ = %.3f, ξ̂ = %.3f", d_lmom.μ, d_lmom.σ, d_lmom.ξ)
+```
+
+## Two estimators, two answers
+
+```{julia}
+#| echo: false
+#| solution: false
+@printf("MLE:      μ = %.3f, σ = %.3f, ξ = %.4f\n", d_gev.μ, d_gev.σ, d_gev.ξ)
+@printf("L-moment: μ = %.3f, σ = %.3f, ξ = %.4f", d_lmom.μ, d_lmom.σ, d_lmom.ξ)
+```
+
+Different estimators give different answers on the same data, especially for $\xi$.
+The shape parameter is the hardest to estimate and the most consequential for the tail.
+
+# Gumbel vs GEV
+
+## Does the shape parameter matter?
+
+The Gumbel is the GEV with $\xi = 0$ forced: the tail is exponential by assumption.
+
+```{julia}
+#| solution: false
+T_grid = exp.(range(log(1.1), log(500); length=100))
+rl_gev = [quantile(d_gev, 1 - 1 / T) for T in T_grid]
+
+function gumbel_nll(θ, y)
+    μ, logσ = θ
+    σ = exp(logσ)
+    d = Gumbel(μ, σ)
+    nll = 0.0
+    for yᵢ in y
+        lp = logpdf(d, yᵢ)
+        isfinite(lp) || return 1e10
+        nll -= lp
+    end
+    return nll
+end
+res_gumbel = optimize(θ -> gumbel_nll(θ, y), [mean(y), log(std(y))], NelderMead())
+d_gumbel = Gumbel(Optim.minimizer(res_gumbel)[1], exp(Optim.minimizer(res_gumbel)[2]))
+rl_gumbel = [quantile(d_gumbel, 1 - 1 / T) for T in T_grid]
+@printf("Gumbel MLE: μ̂ = %.3f, σ̂ = %.3f", d_gumbel.μ, d_gumbel.θ)
+```
+
+## The two curves diverge in the tail
+
+```{julia}
+#| echo: false
+#| solution: false
+fig = Figure(; size=(800, 350))
+ax = Axis(fig[1, 1]; ylabel=L"\text{return level (m)}")
+scatter!(ax, T_hat, sorted; color=:black, markersize=5, label="observed")
+lines!(ax, T_grid, rl_gev; color=colors[1], linewidth=2, label="GEV")
+lines!(ax, T_grid, rl_gumbel; color=colors[2], linewidth=2, label="Gumbel")
+return_period_axis!(ax)
+axislegend(ax; position=:lt)
+fig
+```
+
+They agree at short return periods and diverge past 50 years.
+
+## Which fit should you use?
+
+$\hat\xi \approx -0.05$: the GEV bends slightly downward, the Gumbel stays straight.
+
+Coles [@coles_extremes:2001, §3.5.1]: the Gumbel's confidence interval on the 100-year level is narrower because forcing $\xi = 0$ removes a source of uncertainty.
+The data do not rule out $\xi \ne 0$, so the GEV's wider interval is the one that reflects what the data actually say.
+
+# Diagnostics
+
+## The QQ plot
+
+Sort the observed data from smallest to largest: $y_{(1)} \le y_{(2)} \le \cdots \le y_{(n)}$.
+These are the **observed quantiles**.
+
+The **model quantiles** come from the fitted CDF.
+The $i$-th model quantile is the value the fitted distribution predicts the $i$-th smallest observation should take:
+
+$$
+q_i = F^{-1}\left(\frac{i}{n+1};\; \hat\mu, \hat\sigma, \hat\xi\right)
+$$
+
+Plot one against the other.
+If the model fits well, each observed quantile is close to its model quantile, and the points fall near the diagonal.
+
+## QQ plot for Port Pirie
+
+```{julia}
+#| solution: false
+n_obs = length(y)
+y_sorted = sort(y)
+model_q = [quantile(d_gev, i / (n_obs + 1)) for i in 1:n_obs]
+fig = Figure(; size=(500, 500))
+ax = Axis(fig[1, 1]; xlabel=L"\text{model quantile (m)}",
+    ylabel=L"\text{observed quantile (m)}", aspect=1)
+scatter!(ax, model_q, y_sorted; color=colors[1], markersize=6)
+lims = (minimum(y_sorted) - 0.1, maximum(y_sorted) + 0.1)
+lines!(ax, collect(lims), collect(lims); color=:gray, linestyle=:dash)
+fig
+```
+
+## The probability plot
+
+Both axes on the CDF scale: $\hat F$ vs $F_{\hat\theta}$.
+The probability plot checks the body of the distribution, where most of the data sit.
+It compresses the tail, so use the QQ plot for the upper end.
+
+```{julia}
+#| solution: false
+F_empirical = (1:n_obs) ./ (n_obs + 1)
+F_model = [cdf(d_gev, y_sorted[i]) for i in 1:n_obs]
+fig = Figure(; size=(500, 500))
+ax = Axis(fig[1, 1]; xlabel=L"\text{model CDF}",
+    ylabel=L"\text{empirical CDF}", aspect=1)
+scatter!(ax, F_model, F_empirical; color=colors[1], markersize=6)
+lines!(ax, [0, 1], [0, 1]; color=:gray, linestyle=:dash)
+fig
+```
+
+# Bayesian inference
+
+## Why Bayes?
+
+MLE gives one $\hat\theta$ and one return-level curve.
+With 65 years of data, the parameters carry real uncertainty: a different 65-year draw from the same process would give a different $\hat\theta$.
+A Bayesian posterior is a distribution over $\theta$ that reflects that uncertainty.
+
+**Bayes' theorem:**
+
+$$
+p(\theta \mid y) \propto p(y \mid \theta) \, p(\theta)
+$$
+
+The posterior $p(\theta \mid y)$ combines the likelihood with a prior.
+There is no closed-form expression for the posterior, but you can sample from it.
+
+## Markov chain Monte Carlo
+
+**Markov chain Monte Carlo** builds a chain of parameter vectors $\theta^{(1)}, \theta^{(2)}, \ldots$ whose distribution converges to the posterior.
+
+The simplest version (Metropolis):
+
+1. Propose $\theta' = \theta^{(t)} + \varepsilon$, where $\varepsilon$ is a random step
+1. Compute the acceptance ratio $\alpha = p(\theta' \mid y) / p(\theta^{(t)} \mid y)$
+1. Accept the proposal with probability $\min(1, \alpha)$; otherwise stay at $\theta^{(t)}$
+
+Modern samplers (NUTS) use gradients to propose smarter steps, but the logic is the same: wander through parameter space, spending more time where the posterior is high.
+
+## A GEV model in Turing
+
+```{julia}
+#| output: false
+#| solution: false
+@model function gev_bayes(y)
+    μ ~ Normal(4.0, 2.0)
+    σ ~ truncated(Normal(0.2, 0.5); lower=0.001)
+    ξ ~ truncated(Normal(0, 0.3); lower=-0.35, upper=0.35)
+    if !any(ismissing.(y))
+        y .~ GeneralizedExtremeValue(μ, σ, ξ)
+    end
+end
+```
+
+## Prior predictive check: are the wide priors reasonable?
+
+A prior predictive check asks: do the priors, before seeing any data, produce return-level curves that look like something this site could plausibly produce?
+Pass `missing` as data so Turing samples everything from the prior.
+
+```{julia}
+#| output: false
+#| solution: false
+n_miss = length(y)
+wide_prior_chain = sample(gev_bayes(fill(missing, n_miss)), Prior(), 1000)
+wide_df = DataFrame(wide_prior_chain)
+```
+
+```{julia}
+#| echo: false
+#| solution: false
+fig = Figure(; size=(800, 350))
+ax = Axis(fig[1, 1]; ylabel=L"\text{return level (m)}",
+    title="wide priors: prior predictive")
+for i in 1:min(200, nrow(wide_df))
+    σ_i = wide_df.σ[i]
+    σ_i <= 0 && continue
+    d_i = GeneralizedExtremeValue(wide_df.μ[i], σ_i, wide_df.ξ[i])
+    rl_i = try
+        [quantile(d_i, 1 - 1 / T) for T in T_grid]
+    catch
+        continue
+    end
+    any(abs.(rl_i) .> 1e6) && continue
+    lines!(ax, T_grid, rl_i; color=(colors[1], 0.05), linewidth=0.5)
+end
+return_period_axis!(ax)
+fig
+```
+
+These priors place no constraint on the return levels: the 100-year sea level could be anything from $-10{,}000$ to $+10{,}000$ metres.
+
+## Quantile priors
+
+Instead of reasoning about $(\mu, \sigma, \xi)$ directly, express beliefs about observable quantities.
+
+"The 2-year sea level at Port Pirie is around 4 m."
+"The 100-year sea level is probably between 3 and 7 m."
+
+Translate each into a distribution over the return level at that return period, then add its log-density to the model [@coles_extremes:2001, §9.5; @doss-gollin_subjective:2023].
+
+## Defining quantile priors
+
+```{julia}
+#| output: false
+#| solution: false
+quantile_priors = [
+    (rt=2, dist=Normal(4.0, 1.0)),
+    (rt=10, dist=Normal(4.5, 1.5)),
+    (rt=100, dist=Normal(5.0, 2.0)),
+    (rt=500, dist=Normal(6.0, 3.0)),
+]
+```
+
+## The model with quantile priors
+
+```{julia}
+#| output: false
+#| solution: false
+@model function gev_bayes_qp(y, priors)
+    μ ~ Normal(4.0, 2.0)
+    σ ~ truncated(Normal(0.2, 0.5); lower=0.001)
+    ξ ~ truncated(Normal(0, 0.3); lower=-0.35, upper=0.35)
+    dist = GeneralizedExtremeValue(μ, σ, ξ)
+    for p in priors
+        rl = quantile(dist, 1.0 - 1.0 / p.rt)
+        Turing.@addlogprob! logpdf(p.dist, rl)
+    end
+    if !any(ismissing.(y))
+        y .~ dist
+    end
+end
+```
+
+## Prior predictive check: quantile priors
+
+```{julia}
+#| output: false
+#| solution: false
+qp_prior_chain = sample(gev_bayes_qp(fill(missing, n_miss), quantile_priors), Prior(), 2000)
+qp_df = DataFrame(qp_prior_chain)
+```
+
+```{julia}
+#| echo: false
+#| solution: false
+fig = Figure(; size=(800, 350))
+ax = Axis(fig[1, 1]; ylabel=L"\text{return level (m)}",
+    title="quantile priors: prior predictive")
+for i in 1:min(500, nrow(qp_df))
+    σ_i = qp_df.σ[i]
+    σ_i <= 0 && continue
+    d_i = GeneralizedExtremeValue(qp_df.μ[i], σ_i, qp_df.ξ[i])
+    rl_i = try
+        [quantile(d_i, 1 - 1 / T) for T in T_grid]
+    catch
+        continue
+    end
+    any(abs.(rl_i) .> 50) && continue
+    lines!(ax, T_grid, rl_i; color=(colors[1], 0.1), linewidth=0.6)
+end
+return_period_axis!(ax)
+fig
+```
+
+The quantile priors concentrate the curves toward physically plausible sea levels, but some draws still range widely.
+Compare this to the wide-prior plot: the quantile constraints are doing real work.
+
+## Posterior fit
+
+```{julia}
+#| output: false
+#| solution: false
+chain = sample(gev_bayes_qp(y, quantile_priors), NUTS(0.95), MCMCThreads(), 2_000, 4)
+```
+
+```{julia}
+#| echo: false
+#| solution: false
+post_df = DataFrame(chain)
+n_post = nrow(post_df)
+@printf("posterior draws: %d", n_post)
+```
+
+## Posterior return-level curves
+
+```{julia}
+#| echo: false
+#| solution: false
+n_draw = min(200, n_post)
+idx = rand(1:n_post, n_draw)
+
+post_rl = zeros(n_draw, length(T_grid))
+for (j, i) in enumerate(idx)
+    d_i = GeneralizedExtremeValue(post_df.μ[i], post_df.σ[i], post_df.ξ[i])
+    post_rl[j, :] = [quantile(d_i, 1 - 1 / T) for T in T_grid]
+end
+
+rl_median = [median(post_rl[:, k]) for k in eachindex(T_grid)]
+
+fig = Figure(; size=(800, 350))
+ax = Axis(fig[1, 1]; ylabel=L"\text{return level (m)}")
+ylims!(ax, 3, nothing)
+for j in 1:n_draw
+    lines!(ax, T_grid, post_rl[j, :]; color=(colors[1], 0.05), linewidth=0.5)
+end
+lines!(ax, T_grid, rl_median; color=colors[2], linewidth=2, label="posterior median")
+lines!(ax, T_grid, rl_gev; color=colors[3], linewidth=2, linestyle=:dash, label="MLE")
+scatter!(ax, T_hat, sorted; color=:black, markersize=5, label="observed")
+return_period_axis!(ax)
+axislegend(ax; position=:lt)
+fig
+```
+
+## MLE vs Bayes: the 100-year level
+
+```{julia}
+#| echo: false
+#| solution: false
+rl_mle_100 = quantile(d_gev, 1 - 1 / 100)
+post_rl100 = zeros(n_post)
+for i in 1:n_post
+    d_i = GeneralizedExtremeValue(post_df.μ[i], post_df.σ[i], post_df.ξ[i])
+    post_rl100[i] = quantile(d_i, 1 - 1 / 100)
+end
+ci = quantile(post_rl100, [0.025, 0.975])
+@printf("MLE:   %.2f m\n", rl_mle_100)
+@printf("Bayes: %.2f m  [%.2f, %.2f]  (95%% credible)", median(post_rl100), ci[1], ci[2])
+```
+
+The posterior median is close to the MLE.
+The credible interval accounts for parameter uncertainty, which the MLE point estimate alone does not.
+
+## Friday's lab
+
+In the lab you fit a GEV to a NOAA tide gauge four ways:
+
+- `gevfit` and `gevfit_lmom`, as above
+- a log-likelihood you write and optimize yourself
+- Turing, with wide priors and with quantile priors
+
+Then you change the gauge and see which conclusions survive.
