@@ -1,0 +1,26 @@
+---
+title: "Week 06 Reading: Nonstationary flood frequency at Brays Bayou (bring two questions Wednesday)"
+subtitle: "What changes in a flood frequency analysis when the watershed changes"
+week: 6
+module: 2
+status: "published"
+release: "public"
+date: 2026-09-28
+---
+
+Read the whole paper before Wednesday's class (9/30), and bring two questions to class: one factual question about something in the paper you did not follow, and one bigger-picture question about what the analysis means or where it could go wrong.
+
+## Assigned
+
+1. @smith_brays:2026 (open access)
+
+You should be able to follow nearly all steps of this paper.
+One thing to note is the authors fit a log-Pearson Type III (LPIII) distribution as mandated by US federal flood frequency guidelines (Bulletin 17C) require.
+For this reading, treat it as a lot like the GEV: a three-parameter distribution with a location, a scale, and a shape parameter that controls how heavy the upper tail is, fitted here to the logarithm of the annual peak flows.
+
+The Bayesian estimation, the posterior predictive frequency curves, and the credible intervals are the same ideas you used in labs 4 and 5.
+
+## Questions to bring
+
+1. **Factual.** A question about something specific in the paper: a method, a figure, a number, or a modeling choice you could not follow.
+2. **Bigger picture.** A question about what the results mean, whether you would trust them for a decision, or what the analysis leaves out.

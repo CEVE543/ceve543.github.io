@@ -1,0 +1,89 @@
+# Which TaskNotes file each generated key became, relative to the
+# vault's db/tasks/. Written by scripts/sync_tasks.py; a key present
+# here is never re-created, which is what keeps a completed task
+# from coming back. Drop a key to let the next sync make its task
+# again.
+grade-lab-1-due: 20260824T193643 CEVE 543 grade Lab 1 due.md
+grade-lab-10-due: 20260824T193656 CEVE 543 grade Lab 10 due.md
+grade-lab-11-due: 20260824T193658 CEVE 543 grade Lab 11 due.md
+grade-lab-12-due: 20260824T193700 CEVE 543 grade Lab 12 due.md
+grade-lab-2-due: 20260824T193644 CEVE 543 grade Lab 2 due.md
+grade-lab-3-due: 20260824T193645 CEVE 543 grade Lab 3 due.md
+grade-lab-4-due: 20260824T193646 CEVE 543 grade Lab 4 due.md
+grade-lab-5-due: 20260824T193648 CEVE 543 grade Lab 5 due.md
+grade-lab-6-due: 20260824T193650 CEVE 543 grade Lab 6 due.md
+grade-lab-7-due: 20260824T193651 CEVE 543 grade Lab 7 due.md
+grade-lab-8-due: 20260824T193653 CEVE 543 grade Lab 8 due.md
+grade-lab-9-due: 20260824T193655 CEVE 543 grade Lab 9 due.md
+milestone-project-checkpoint: 20260824T193655 CEVE 543 final project Read checkpoint
+  submissions and return feedback.md
+milestone-selection-due: 20260824T193652 CEVE 543 final project Open Canvas submission
+  and post selection rubric.md
+milestone-topic-menu-published: 20260824T193647 CEVE 543 final project Publish topic
+  menu.md
+milestone-written-version-due: 20260824T193659 CEVE 543 final project Post final rubric
+  and open Canvas submission.md
+test-1-grade: 20260824T193651 CEVE 543 grade Test 1.md
+test-1-write: 20260824T193648 CEVE 543 write Test 1.md
+test-2-grade: 20260824T193659 CEVE 543 grade Test 2.md
+test-2-write: 20260824T193657 CEVE 543 write Test 2.md
+week-04-lab: 6hX6FVMQVqQCWjwP
+week-04-mon-lecture: 6hX6FVH5GVfH93Mw
+week-04-practice: 6hX6FV943pP22qVP
+week-04-reading: 6hX6FV6jQfQmX64P
+week-04-wed-lecture: 6hX6FVGgjjVQxFJw
+week-05-lab: 20260918T173107 CEVE 543 week 05 Lab 05.md
+week-05-mon-lecture: 6hX6FVV8RgH6Pw4P
+week-05-practice: 20260918T173106 CEVE 543 week 05 practice problems.md
+week-05-reading: 6hX6FVMXPhW2GMww
+week-05-wed-lecture: 20260918T173107 CEVE 543 week 05 Wednesday lecture.md
+week-06-lab: 20260918T173110 CEVE 543 week 06 Lab 06.md
+week-06-mon-lecture: 20260918T173109 CEVE 543 week 06 Monday lecture.md
+week-06-practice: 20260918T173108 CEVE 543 week 06 practice problems.md
+week-06-reading: 20260918T173108 CEVE 543 week 06 reading page.md
+week-06-wed-lecture: 20260918T173109 CEVE 543 week 06 Wednesday lecture.md
+week-07-lab: 20260918T173112 CEVE 543 week 07 Lab 07.md
+week-07-mon-lecture: 20260918T173111 CEVE 543 week 07 Monday lecture.md
+week-07-practice: 20260918T173111 CEVE 543 week 07 practice problems.md
+week-07-reading: 20260918T173110 CEVE 543 week 07 reading page.md
+week-07-wed-lecture: 20260918T173112 CEVE 543 week 07 Wednesday lecture.md
+week-08-lab: 20260918T173115 CEVE 543 week 08 Lab 08.md
+week-08-mon-lecture: 20260918T173114 CEVE 543 week 08 Monday lecture.md
+week-08-practice: 20260918T173113 CEVE 543 week 08 practice problems.md
+week-08-reading: 20260918T173113 CEVE 543 week 08 reading page.md
+week-08-wed-lecture: 20260918T173114 CEVE 543 week 08 Wednesday lecture.md
+week-09-lab: 20260918T173117 CEVE 543 week 09 Lab 09.md
+week-09-mon-lecture: 20260918T173116 CEVE 543 week 09 Monday lecture.md
+week-09-practice: 20260918T173116 CEVE 543 week 09 practice problems.md
+week-09-reading: 20260918T173115 CEVE 543 week 09 reading page.md
+week-09-wed-lecture: 20260918T173117 CEVE 543 week 09 Wednesday lecture.md
+week-10-lab: 20260918T173120 CEVE 543 week 10 Lab 10.md
+week-10-mon-lecture: 20260918T173119 CEVE 543 week 10 Monday lecture.md
+week-10-practice: 20260918T173118 CEVE 543 week 10 practice problems.md
+week-10-reading: 20260918T173118 CEVE 543 week 10 reading page.md
+week-10-wed-lecture: 20260918T173119 CEVE 543 week 10 Wednesday lecture.md
+week-11-lab: 20260918T173122 CEVE 543 week 11 Lab 11.md
+week-11-mon-lecture: 20260918T173121 CEVE 543 week 11 Monday lecture.md
+week-11-practice: 20260918T173121 CEVE 543 week 11 practice problems.md
+week-11-reading: 20260918T173120 CEVE 543 week 11 reading page.md
+week-11-wed-lecture: 20260918T173122 CEVE 543 week 11 Wednesday lecture.md
+week-12-lab: 20260918T173125 CEVE 543 week 12 Lab 12.md
+week-12-mon-lecture: 20260918T173124 CEVE 543 week 12 Monday lecture.md
+week-12-practice: 20260918T173123 CEVE 543 week 12 practice problems.md
+week-12-reading: 20260918T173123 CEVE 543 week 12 reading page.md
+week-12-wed-lecture: 20260918T173124 CEVE 543 week 12 Wednesday lecture.md
+week-13-lab: 20260918T173127 CEVE 543 week 13 Lab 13.md
+week-13-mon-lecture: 20260918T173126 CEVE 543 week 13 Monday lecture.md
+week-13-practice: 20260918T173126 CEVE 543 week 13 practice problems.md
+week-13-reading: 20260918T173125 CEVE 543 week 13 reading page.md
+week-13-wed-lecture: 20260918T173127 CEVE 543 week 13 Wednesday lecture.md
+week-14-lab: 20260918T173130 CEVE 543 week 14 Lab 14.md
+week-14-mon-lecture: 20260918T173129 CEVE 543 week 14 Monday lecture.md
+week-14-practice: 20260918T173128 CEVE 543 week 14 practice problems.md
+week-14-reading: 20260918T173128 CEVE 543 week 14 reading page.md
+week-14-wed-lecture: 20260918T173129 CEVE 543 week 14 Wednesday lecture.md
+week-15-lab: 20260918T173132 CEVE 543 week 15 Lab 15.md
+week-15-mon-lecture: 20260918T173131 CEVE 543 week 15 Monday lecture.md
+week-15-practice: 20260918T173131 CEVE 543 week 15 practice problems.md
+week-15-reading: 20260918T173130 CEVE 543 week 15 reading page.md
+week-15-wed-lecture: 20260918T173132 CEVE 543 week 15 Wednesday lecture.md

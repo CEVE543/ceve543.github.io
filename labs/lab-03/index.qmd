@@ -1,0 +1,249 @@
+---
+title: "Lab 3: Estimation and uncertainty"
+week: 3
+module: 1
+date: 2026-09-11
+due:
+  - label: "Lab 3 due"
+    date: 2026-09-18
+status: "draft"
+release: "public"
+---
+
+In this lab you will estimate the distribution of annual minimum temperatures at Houston Hobby Airport and quantify how uncertain those estimates are.
+The question running through the lab is: how rare is a winter as cold as 2021, and how confident are you in that answer?
+
+## Background
+
+Houston Hobby Airport (GHCN station USW00012918) has daily minimum temperature records from 1930 to the present.
+The file `houston-hobby-annual-tmin.csv` contains the coldest temperature recorded in each year, in degrees Celsius.
+
+A Normal distribution is not the theoretically best choice for annual minimum temperatures (extreme value theory in week 4 gives a better one), but it is a decent approximation and a useful example for practicing estimation methods.
+
+You will fit a Normal to the data by MLE, estimate the same parameters with a Bayesian conjugate prior, and bootstrap the return period.
+The payoff is the side-by-side comparison: how do the three approaches agree, and where do they disagree?
+
+## Setup
+
+```{julia}
+#| solution: false
+#| output: false
+using Pkg
+lab_dir = dirname(@__FILE__)
+Pkg.activate(lab_dir)
+!isfile(joinpath(lab_dir, "Manifest.toml")) && Pkg.instantiate()
+```
+
+```{julia}
+#| solution: false
+#| output: false
+using CSV, DataFrames, CairoMakie, Distributions, LaTeXStrings, Printf, Random, Statistics, StatsBase
+set_theme!(theme_minimal(); fontsize=16)
+colors = Makie.wong_colors()
+rng = MersenneTwister(543)
+```
+
+```{julia}
+#| solution: false
+annmin = CSV.read(joinpath(lab_dir, "houston-hobby-annual-tmin.csv"), DataFrame)
+first(annmin, 5)
+```
+
+```{julia}
+#| solution: false
+fig = Figure(; size=(700, 300))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel=L"\text{annual minimum temperature (°C)}")
+scatter!(ax, annmin.year, annmin.tmin_c; color=colors[1], markersize=6)
+hlines!(ax, [-9.3]; color=:firebrick, linewidth=1.5, linestyle=:dash, label="2021: −9.3 °C")
+axislegend(ax; position=:rb)
+fig
+```
+
+## Analysis
+
+### Fitting a Normal by MLE
+
+```{julia}
+#| solution: false
+y = annmin.tmin_c
+n = length(y)
+μ_hat = mean(y)
+σ_hat = std(y)
+@printf("MLE: μ̂ = %.2f °C, σ̂ = %.2f °C, n = %d", μ_hat, σ_hat, n)
+```
+
+For the Normal, the MLE and the method of moments give the same answer: the sample mean and the sample standard deviation.
+
+```{julia}
+#| solution: false
+fig = Figure(; size=(700, 300))
+ax = Axis(fig[1, 1]; xlabel=L"\text{annual minimum temperature (°C)}", ylabel="density")
+hist!(ax, y; bins=15, normalization=:pdf, color=(colors[1], 0.5))
+xs = range(minimum(y) - 3, maximum(y) + 3; length=300)
+lines!(ax, xs, pdf.(Normal(μ_hat, σ_hat), xs); linewidth=3, color=colors[2], label="fitted Normal")
+axislegend(ax; position=:lt)
+fig
+```
+
+### Return period of the 2021 freeze
+
+From week 1, the return period of a level $x_0$ is $T = 1/p$.
+For cold extremes, $p = P(X \le x_0)$: the probability of falling *below* the threshold in a given year.
+
+```{julia}
+#| solution: false
+x_2021 = -9.3
+fit_mle = Normal(μ_hat, σ_hat)
+p_mle = cdf(fit_mle, x_2021)
+T_mle = 1 / p_mle
+@printf("MLE return period of %.1f °C: %.1f years", x_2021, T_mle)
+```
+
+```{julia}
+#| solution: false
+#| output: false
+y_sorted = sort(y)
+p_obs = (1:n) ./ (n + 1)
+T_obs = 1 ./ p_obs
+Ts = 10 .^ range(0.01, 2.5; length=300)
+B = 5000
+```
+
+### Bayesian estimation
+
+A conjugate prior for the Normal with known variance is another Normal distribution on $\mu$.
+Use a prior $\mu \sim \mathcal{N}(-3, 5^2)$ (wide enough to be weakly informative) and treat $\sigma$ as known at $\hat\sigma$.
+
+The posterior is $\mu \mid y \sim \mathcal{N}(\mu_{\text{post}}, \sigma_{\text{post}}^2)$ where:
+
+$$
+\sigma_{\text{post}}^2 = \left(\frac{n}{\hat\sigma^2} + \frac{1}{\sigma_{\text{prior}}^2}\right)^{-1}, \qquad \mu_{\text{post}} = \sigma_{\text{post}}^2 \left(\frac{n \bar y}{\hat\sigma^2} + \frac{\mu_{\text{prior}}}{\sigma_{\text{prior}}^2}\right)
+$$
+
+```{julia}
+# Your code here
+```
+
+### Bootstrap
+
+Resample the $n$ annual minima with replacement, refit the Normal each time, and recompute the return period of the 2021 freeze.
+
+```{julia}
+# Your code here
+```
+
+### Bayesian return period uncertainty
+
+Draw 5,000 samples of $\mu$ from the posterior and compute the return period for each.
+
+```{julia}
+# Your code here
+```
+
+### Return period plots with uncertainty
+
+Each gray line is one draw; the solid line is the MLE best fit.
+
+```{julia}
+# Your code here
+```
+
+### Autocorrelation
+
+```{julia}
+#| solution: false
+fig = Figure(; size=(700, 250))
+ax = Axis(fig[1, 1]; xlabel="lag (years)", ylabel="autocorrelation")
+acf_vals = autocor(y, 1:15)
+barplot!(ax, 1:15, acf_vals; color=colors[1])
+hlines!(ax, 1.96 / sqrt(n) .* [-1, 1]; color=:gray50, linestyle=:dash, label="white noise band")
+axislegend(ax; position=:rt)
+fig
+```
+
+The dashed lines show the range you would expect from white noise (independent draws): $\pm 1.96/\sqrt{n}$.
+The autocorrelations all fall inside this band, so year-to-year persistence is not a concern for this series.
+If they were large, the plain bootstrap would underestimate uncertainty because resampling individual years destroys the dependence structure.
+
+## Exercises
+
+### How does the posterior compare to the MLE?
+
+**Your answer:** How does the posterior mean compare to the MLE?
+Why are they so similar here, and when would you expect them to differ?
+
+::: {.answer}
+
+```{julia}
+#| echo: false
+# Your code here
+```
+
+With 88 years of data the likelihood dominates the prior, so the posterior mean is nearly identical to the MLE.
+They would differ more with a stronger prior or a shorter record.
+
+:::
+
+### Compare the 50-year return level
+
+**Your answer:** Compute the 50-year return level (the temperature exceeded once in 50 years on the cold side) from the MLE fit, and give bootstrap and Bayesian 95% intervals for it.
+
+::: {.answer}
+
+```{julia}
+# Your code here
+```
+
+:::
+
+### Does the Normal fit the tail?
+
+**Your answer:** Look at the return period plots from the analysis section, especially for return periods above 50 years.
+The observed coldest events fall below the fitted curve.
+What does this tell you about the Normal as a model for extreme cold in Houston?
+Why might the coldest winters be colder than a Normal predicts?
+
+::: {.answer}
+
+The Normal has thin tails: it assigns very low probability to values far from the mean.
+The coldest observed winters fall below the fitted curve, so the Normal underestimates the probability of extreme cold.
+
+The coldest winters in Houston are driven by Arctic cold air outbreaks, a different physical process from the year-to-year variability that produces the bulk of the record.
+A Normal fitted to the whole record sees one population where the data contain two.
+Extreme value theory (week 4) provides distributions with heavier tails that can accommodate this.
+
+:::
+
+### Why is the bootstrap band wider than the Bayesian band?
+
+**Your answer:** Look at the return period plots again.
+The bootstrap draws spread wider than the Bayesian draws, especially in the tail.
+Why?
+Hint: think about what each method holds fixed and what it varies.
+
+::: {.answer}
+
+The Bayesian approach here holds $\sigma$ fixed at $\hat\sigma$ and varies only $\mu$.
+The bootstrap refits both $\mu$ and $\sigma$ on each resample, so it picks up uncertainty in both parameters.
+
+A resample that happens to include more cold years gets a larger $\hat\sigma$, which pushes the tail further.
+The Bayesian band is artificially narrow because it treats $\hat\sigma$ as known.
+A fuller Bayesian model that puts a prior on $\sigma$ as well would be wider and closer to the bootstrap.
+
+:::
+
+### Wrapping up
+
+**Your answer:** A city planner asks you: how rare is a winter as cold as 2021?
+Give a point estimate and a plausible range, and explain in one or two sentences why the range matters more than the point estimate.
+
+::: {.answer}
+
+```{julia}
+# Your code here
+```
+
+The MLE says the 2021 freeze is roughly a once-in-several-decades event, but the confidence interval spans a wide range.
+The planner cannot distinguish "once in 20 years" from "once in 100 years" with this record and this model, and those two answers lead to very different decisions about infrastructure investment.
+
+:::

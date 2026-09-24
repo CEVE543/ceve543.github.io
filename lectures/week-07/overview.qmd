@@ -1,0 +1,19 @@
+---
+title: "Week 7 overview"
+subtitle: "{{< var course.number >}}"
+week: 7
+module: 2
+date: 2026-10-05
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Not posted yet
+
+This page is not posted yet.
