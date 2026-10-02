@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 6: Is extreme rainfall at Hobby changing? – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-13158bb5413ec8d02ccae6c99b3f37a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Lab 6: Is extreme rainfall at Hobby changing? – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:image" content="https://ceve543.github.io/labs/lab-06/index_files/figure-html/fig-daily-output-1.svg">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#rainfall-data" id="toc-rainfall-data" class="nav-link" data-scroll-target="#rainfall-data">Rainfall data</a></li>
+  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates">Covariates</a></li>
+  </ul></li>
+  <li><a href="#your-challenge" id="toc-your-challenge" class="nav-link" data-scroll-target="#your-challenge">Your challenge</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#gev-example" id="toc-gev-example" class="nav-link" data-scroll-target="#gev-example">GEV example</a></li>
+  <li><a href="#other-functional-forms" id="toc-other-functional-forms" class="nav-link" data-scroll-target="#other-functional-forms">Other functional forms</a></li>
+  <li><a href="#prior-information" id="toc-prior-information" class="nav-link" data-scroll-target="#prior-information">Prior information</a></li>
+  <li><a href="#gpd-example" id="toc-gpd-example" class="nav-link" data-scroll-target="#gpd-example">GPD example</a></li>
+  </ul></li>
+  <li><a href="#your-hobby-analysis" id="toc-your-hobby-analysis" class="nav-link" data-scroll-target="#your-hobby-analysis">Your Hobby analysis</a></li>
+  <li><a href="#turning-it-in" id="toc-turning-it-in" class="nav-link" data-scroll-target="#turning-it-in">Turning it in</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-06/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 6: Is extreme rainfall at Hobby changing?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Friday, October 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this lab, you will build your own nonstationary model of extreme daily rainfall at Houston Hobby Airport and decide whether the evidence supports a published claim that it is rising. Everyone uses the same record, and each of you makes different choices along the way. On Wednesday, October 7, you will present your results in class and defend those choices, as practice for the oral exam.</p>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Build a nonstationary extreme value model, choosing annual maxima or peaks over threshold, a covariate, and the form of the trend.</li>
+<li>Report a change in the 100-year rainfall with an interval, and say what the interval leaves out.</li>
+<li>Defend each choice behind your result.</li>
+</ol>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>First, load the packages.</p>
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>here <span class="op">=</span> <span class="fu">dirname</span>(<span class="pp">@__FILE__</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="im">using</span> <span class="bu">CEVE543Utils</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a><span class="im">using</span> <span class="bu">CairoMakie</span>, <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">Dates</span>, <span class="bu">Distributions</span>, <span class="bu">LaTeXStrings</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="im">using</span> <span class="bu">Printf</span>, <span class="bu">Random</span>, <span class="bu">Statistics</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a><span class="im">using</span> <span class="bu">FlexiChains</span>: summarystats</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>rng <span class="op">=</span> <span class="fu">MersenneTwister</span>(<span class="fl">543</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a><span class="fu">set_theme!</span>(<span class="fu">theme_minimal</span>(); fontsize<span class="op">=</span><span class="fl">14</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>colors <span class="op">=</span> Makie.<span class="fu">wong_colors</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="rainfall-data" class="level3">
+<h3 class="anchored" data-anchor-id="rainfall-data">Rainfall data</h3>
+<p>You will analyze daily precipitation at Houston Hobby Airport, station <code>USW00012918</code> in NOAA’s Global Historical Climatology Network, which is the record from Monday’s lectures. The file <code>hobby-daily.csv</code> has one row for each day with a valid reading, with the rainfall in the column <code>prcp_mm</code>, in millimeters.</p>
+<p><a href="#fig-daily" class="quarto-xref">Figure&nbsp;1</a> plots every wet day.</p>
+<div id="cell-fig-daily" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>daily <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">joinpath</span>(here, <span class="st">"hobby-daily.csv"</span>), DataFrame)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>daily.year <span class="op">=</span> <span class="fu">year</span>.(daily.date)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>wet <span class="op">=</span> <span class="fu">filter</span>(r <span class="op">-&gt;</span> r.prcp_mm <span class="op">&gt;</span> <span class="fl">0</span>, daily)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">300</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; xlabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{date}"</span>, ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{daily rainfall (mm)}"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a><span class="fu">scatter!</span>(ax, wet.date, wet.prcp_mm; color<span class="op">=</span>colors[<span class="fl">1</span>], markersize<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-daily" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-daily-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-daily-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-daily-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Daily rainfall at Houston Hobby Airport, wet days only.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Not every year is complete. <a href="#fig-days-per-year" class="quarto-xref">Figure&nbsp;2</a> counts the days with a valid reading in each year.</p>
+<div id="cell-fig-days-per-year" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>days_per_year <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(daily, <span class="op">:</span>year), nrow <span class="op">=&gt;</span> <span class="op">:</span>n_days)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">300</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; xlabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{year}"</span>, ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{days with a valid reading}"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a><span class="fu">scatterlines!</span>(ax, days_per_year.year, days_per_year.n_days; color<span class="op">=</span>colors[<span class="fl">1</span>], markersize<span class="op">=</span><span class="fl">5</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-days-per-year" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-days-per-year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-days-per-year-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-days-per-year-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Days with a valid reading in each year at Houston Hobby Airport.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Many years are missing days, and 2026 is not over yet, so you need to decide how to handle the gaps. Assume the data are <em>missing at random</em>: whether a day was recorded has nothing to do with how much rain fell. To see when this might fail, picture a rain gauge that breaks in the heaviest storms. A simple approach is to keep only the years with at least some number of valid days, such as 350. You are welcome to try other cutoffs or other ways to filter.</p>
+<div id="8" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>keep <span class="op">=</span> days_per_year.year[(days_per_year.n_days <span class="op">.&gt;=</span> <span class="fl">350</span>) <span class="op">.&amp;</span> (days_per_year.year <span class="op">.&lt;=</span> <span class="fl">2025</span>)]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="fu">filter!</span>(r <span class="op">-&gt;</span> r.year <span class="kw">in</span> keep, daily)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="covariates" class="level3">
+<h3 class="anchored" data-anchor-id="covariates">Covariates</h3>
+<p>You have three candidate covariates in <code>covariates.csv</code>, one row per year from 1880 to 2025:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">What it is</th>
+<th style="text-align: left;">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>log_CO2</code></td>
+<td style="text-align: left;">Natural log of annual mean atmospheric CO2, in parts per million</td>
+<td style="text-align: left;">Before 1959, the Law Dome ice core record <span class="citation" data-cites="etheridge_lawdomeco2:1996 macfarlingmeure_lawdomeextended:2006">(<a href="#ref-etheridge_lawdomeco2:1996" role="doc-biblioref">Etheridge et al., 1996</a>; <a href="#ref-macfarlingmeure_lawdomeextended:2006" role="doc-biblioref">MacFarling Meure et al., 2006</a>)</span>; from 1959, the Mauna Loa annual means from NOAA’s Global Monitoring Laboratory</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>gmst</code></td>
+<td style="text-align: left;">Global mean surface temperature anomaly, in °C relative to 1951-1980</td>
+<td style="text-align: left;">NASA’s GISTEMP version 4, January to December mean</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>nino34</code></td>
+<td style="text-align: left;">Sea surface temperature anomaly in the Niño 3.4 region of the tropical Pacific, in °C relative to 1981-2010</td>
+<td style="text-align: left;">HadISST, from NOAA’s Physical Sciences Laboratory, mean of the 12 calendar months</td>
+</tr>
+</tbody>
+</table>
+<p>CO2 and global temperature both rise over the record, so they are candidates for a long-term trend. Niño 3.4 measures the El Niño-Southern Oscillation, which shifts from year to year with no long-term trend, so it is a candidate for explaining which years are wet.</p>
+<div id="cell-fig-covariates" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>covariates <span class="op">=</span> <span class="fu">filter</span>(r <span class="op">-&gt;</span> r.year <span class="op">&gt;=</span> <span class="fl">1930</span>, CSV.<span class="fu">read</span>(<span class="fu">joinpath</span>(here, <span class="st">"covariates.csv"</span>), DataFrame))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">500</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="cf">for</span> (k, (col, label)) <span class="kw">in</span> <span class="fu">enumerate</span>(((<span class="op">:</span>log_CO2, <span class="st">"log CO2"</span>), (<span class="op">:</span>gmst, <span class="st">"GMST anomaly (°C)"</span>), (<span class="op">:</span>nino34, <span class="st">"Niño 3.4 anomaly (°C)"</span>)))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    <span class="fu">lines!</span>(<span class="fu">Axis</span>(fig[k, <span class="fl">1</span>]; ylabel<span class="op">=</span>label, xlabel<span class="op">=</span>k <span class="op">==</span> <span class="fl">3</span> ? <span class="st">"year"</span> <span class="op">:</span> <span class="st">""</span>), covariates.year, covariates[!, col]; color<span class="op">=</span>colors[k])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="cf">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-covariates" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-covariates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-covariates-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-covariates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The three candidate covariates over the years of the Hobby record.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="your-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="your-challenge">Your challenge</h2>
+<p><span class="citation" data-cites="fagnant_spatiotemporal:2020">Fagnant et al. (<a href="#ref-fagnant_spatiotemporal:2020" role="doc-biblioref">2020</a>)</span> analyzed more than 600 rain gauges in southeast Texas and reported that the 100-year daily rainfall at Hobby rose by 1.93 mm per year (95% interval 1.50 to 2.35). In this lab, you will analyze the same station, choose your own rule for which years to keep, and fit your own model. Their rule for keeping years differs from yours, so your answer need not match theirs. You will choose whether to fit a GEV to annual maxima or a GPD to peaks over threshold, which covariates to use and how each parameter depends on them, and which priors to include.</p>
+<p>Prepare a 5-10 minute slide presentation for class on Wednesday, October 7, that leads with your results and then explains your modeling choices. Upload your slides to the Canvas page for the Lab 6 presentations before class on Wednesday. Answer these four key questions.</p>
+<ol type="1">
+<li>What is your best estimate for the 10- and 100-year return levels in 2026?</li>
+<li>How uncertain are these estimates?</li>
+<li>How have these return levels changed over the past 40 years?</li>
+<li>How will these return levels change over the next 40 years, and what assumptions do you make in projecting these?</li>
+</ol>
+<p>Explain each key decision below, saying what you chose and why.</p>
+<ol type="1">
+<li>Did you fit a GEV to annual maxima or a GPD to peaks over threshold? If you fit a GEV, how did you handle years with missing data? If you fit a GPD, how did you decluster, and how did you choose the threshold?</li>
+<li>How did you decide between a stationary and a nonstationary model? If nonstationary, how did you choose the covariates and the functional form? If stationary, what gave you confidence in that choice?</li>
+<li>How did you estimate your uncertainty? If you used a Bayesian fit, how did you choose the priors? If you used a bootstrap, how did you choose how to resample?</li>
+</ol>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>You make more of the choices in this lab than in any earlier one. Two worked examples on synthetic (simulated) data give you all the code you need. Keep this section as a reference while you work; you may delete all of it, both the GEV and the GPD examples, from the notebook you turn in.</p>
+<section id="gev-example" class="level3">
+<h3 class="anchored" data-anchor-id="gev-example">GEV example</h3>
+<p>In the first example, you fit a GEV with a quadratic trend in the location and the log scale. A quadratic is a poor choice for a real record, for the reasons under Other functional forms, but it uses every keyword you will need.</p>
+<p><span class="math display">\[
+y_t \sim \text{GEV}\left(\alpha_0 + \alpha_1 x_t + \alpha_2 x_t^2, \; \exp(\beta_0 + \beta_1 x_t + \beta_2 x_t^2), \; \xi\right).
+\]</span></p>
+<p>The covariate is the year centered on 1985, <span class="math inline">\(x_t = t - 1985\)</span>. The synthetic dataset has one annual maximum for each year from 1946 to 2025. In 1985 its location rises by 0.5 mm per year and its scale shrinks by 0.5% per year; by 1990 both trends have reversed.</p>
+<div id="12" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>years <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">1946</span><span class="op">:</span><span class="fl">2025</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>x <span class="op">=</span> years <span class="op">.-</span> <span class="fl">1985</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>μ_true <span class="op">=</span> <span class="fl">90</span> <span class="op">.+</span> <span class="fl">0.5</span> <span class="op">.*</span> x <span class="op">.-</span> <span class="fl">0.05</span> <span class="op">.*</span> x <span class="op">.^</span> <span class="fl">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>σ_true <span class="op">=</span> <span class="fl">35</span> <span class="op">.*</span> <span class="fu">exp</span>.(<span class="op">-</span><span class="fl">0.005</span> <span class="op">.*</span> x <span class="op">.+</span> <span class="fl">0.0005</span> <span class="op">.*</span> x <span class="op">.^</span> <span class="fl">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>y_syn <span class="op">=</span> <span class="fu">rand</span>.(rng, <span class="fu">GeneralizedExtremeValue</span>.(μ_true, σ_true, <span class="fl">0.15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>gevfitbayes</code> function from the <code>CEVE543Utils</code> package fits a GEV whose location and log scale are each a linear combination of the covariates you pass. Passing <span class="math inline">\(x_t\)</span> and <span class="math inline">\(x_t^2\)</span> as two covariates gives the quadratic above:</p>
+<div id="14" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>gev_syn <span class="op">=</span> <span class="fu">gevfitbayes</span>(y_syn; locationcov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], rng<span class="op">=</span>rng, progress<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="fu">DataFrame</span>(<span class="fu">summarystats</span>(gev_syn.estimate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>failed to find valid initial parameters in 10 tries; consider providing a different initialisation strategy with the `initial_params` keyword
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Turing.Inference ~/.julia/packages/Turing/4sXd9/src/mcmc/abstractmcmc.jl:63</span>
+<span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>failed to find valid initial parameters in 10 tries; consider providing a different initialisation strategy with the `initial_params` keyword
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Turing.Inference ~/.julia/packages/Turing/4sXd9/src/mcmc/abstractmcmc.jl:63</span>
+<span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>failed to find valid initial parameters in 10 tries; consider providing a different initialisation strategy with the `initial_params` keyword
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Turing.Inference ~/.julia/packages/Turing/4sXd9/src/mcmc/abstractmcmc.jl:63</span>
+<span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>the tail effective sample size is 24% of the draws, below 25%, so the draws are far from independent. Keep every 5th draw with `thin(fit, 5)`, or sample again with `thinning=5` to keep `n_samples` draws per chain; if the share stays low the chains may be stuck, so try `sampler=:demczs`.
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ CEVE543Utils ~/.julia/packages/CEVE543Utils/wB1FE/src/fitting.jl:351</span>
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>7×10 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small">
+<thead>
+<tr class="columnLabelRow header">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">param</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">std</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">mcse</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ess_bulk</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ess_tail</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">rhat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q5</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q50</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q95</th>
+</tr>
+<tr class="columnLabelRow even">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="AbstractPPL.VarName{sym, AbstractPPL.Index{Tuple{Int64}, @NamedTuple{}, AbstractPPL.Iden}} where sym">VarName…</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">β_location[1]</td>
+<td style="text-align: right;">67.0963</td>
+<td style="text-align: right;">5.84589</td>
+<td style="text-align: right;">0.204974</td>
+<td style="text-align: right;">815.438</td>
+<td style="text-align: right;">1446.22</td>
+<td style="text-align: right;">1.00152</td>
+<td style="text-align: right;">57.4133</td>
+<td style="text-align: right;">66.9317</td>
+<td style="text-align: right;">76.7413</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">β_location[2]</td>
+<td style="text-align: right;">16.5278</td>
+<td style="text-align: right;">6.09354</td>
+<td style="text-align: right;">0.199623</td>
+<td style="text-align: right;">935.086</td>
+<td style="text-align: right;">1294.99</td>
+<td style="text-align: right;">1.00338</td>
+<td style="text-align: right;">6.21113</td>
+<td style="text-align: right;">16.5231</td>
+<td style="text-align: right;">26.6017</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">β_location[3]</td>
+<td style="text-align: right;">-21.3601</td>
+<td style="text-align: right;">6.01303</td>
+<td style="text-align: right;">0.203295</td>
+<td style="text-align: right;">875.332</td>
+<td style="text-align: right;">1616.49</td>
+<td style="text-align: right;">1.00526</td>
+<td style="text-align: right;">-31.1275</td>
+<td style="text-align: right;">-21.4385</td>
+<td style="text-align: right;">-11.4268</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">β_logscale[1]</td>
+<td style="text-align: right;">3.74746</td>
+<td style="text-align: right;">0.100699</td>
+<td style="text-align: right;">0.00346467</td>
+<td style="text-align: right;">848.234</td>
+<td style="text-align: right;">1225.67</td>
+<td style="text-align: right;">1.00099</td>
+<td style="text-align: right;">3.58602</td>
+<td style="text-align: right;">3.74687</td>
+<td style="text-align: right;">3.91614</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">β_logscale[2]</td>
+<td style="text-align: right;">-0.0231233</td>
+<td style="text-align: right;">0.0968261</td>
+<td style="text-align: right;">0.00340747</td>
+<td style="text-align: right;">806.303</td>
+<td style="text-align: right;">1245.12</td>
+<td style="text-align: right;">1.00256</td>
+<td style="text-align: right;">-0.180694</td>
+<td style="text-align: right;">-0.0257387</td>
+<td style="text-align: right;">0.139678</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">β_logscale[3]</td>
+<td style="text-align: right;">0.205127</td>
+<td style="text-align: right;">0.109836</td>
+<td style="text-align: right;">0.00413586</td>
+<td style="text-align: right;">707.9</td>
+<td style="text-align: right;">1207.26</td>
+<td style="text-align: right;">1.00459</td>
+<td style="text-align: right;">0.0274186</td>
+<td style="text-align: right;">0.201457</td>
+<td style="text-align: right;">0.392385</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">β_shape[1]</td>
+<td style="text-align: right;">0.0289429</td>
+<td style="text-align: right;">0.110946</td>
+<td style="text-align: right;">0.0039076</td>
+<td style="text-align: right;">822.978</td>
+<td style="text-align: right;">964.21</td>
+<td style="text-align: right;">1.00108</td>
+<td style="text-align: right;">-0.145494</td>
+<td style="text-align: right;">0.0235015</td>
+<td style="text-align: right;">0.218836</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><code>locationcov</code> and <code>logscalecov</code> each take a list of covariates, so <code>[x, x .^ 2]</code> is two of them. <code>rng</code> is the random number generator from the setup cell, and <code>progress=false</code> hides the progress bar.</p>
+<p>By default, priors in <code>gevfitbayes</code> are flat on every coefficient and uniform between <span class="math inline">\(-0.5\)</span> and <span class="math inline">\(0.5\)</span> on <span class="math inline">\(\xi\)</span>. The posterior is sampled with DE-MCzs, the sampler in the RMC-BestFit software that <span class="citation" data-cites="smith_brays:2026">Smith et al. (<a href="#ref-smith_brays:2026" role="doc-biblioref">2026</a>)</span> use. Pass <code>sampler=NUTS()</code> to use the NUTS sampler instead.</p>
+<p>The <code>summarystats</code> table is for checking the chains. Check the <code>rhat</code> column, which should be close to 1, and the <code>ess_bulk</code> column, which should be in the hundreds or more, as in lab 5. DE-MCzs takes no gradient steps, so it has no divergences to count. Before sampling, the fit centers each covariate and divides it by its standard deviation, so a slope in that table is a change per standard deviation of the covariate.</p>
+<p><code>params</code> gives the coefficients in the units of the covariate: a matrix for each of <code>β_location</code>, <code>β_logscale</code>, and <code>β_shape</code>, with one row per posterior draw and one column per coefficient. The first column is the intercept, which is the value at the means of the covariates rather than at <span class="math inline">\(x_t = 0\)</span>. The second column is <span class="math inline">\(\alpha_1\)</span>, the slope per year in 1985, and the third is <span class="math inline">\(\alpha_2\)</span>.</p>
+<div id="16" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>coefs <span class="op">=</span> <span class="fu">params</span>(gev_syn)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>α<span class="fl">1</span> <span class="op">=</span> coefs.β_location[<span class="op">:</span>, <span class="fl">2</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a><span class="pp">@printf</span>(<span class="st">"α1: median %.2f mm per year [%.2f, %.2f]; the true value is 0.5</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    <span class="fu">median</span>(α<span class="fl">1</span>), <span class="fu">quantile</span>(α<span class="fl">1</span>, <span class="fl">0.025</span>), <span class="fu">quantile</span>(α<span class="fl">1</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>α1: median 0.71 mm per year [0.19, 1.22]; the true value is 0.5</code></pre>
+</div>
+</div>
+<p><code>returnlevel</code> computes return levels at any covariate value you pass, giving one row per posterior draw and one column per value. Here the values are the years you want minus 1985, and their squares. So <code>rl100[:, 1]</code> is the 100-year level in 1986, <code>rl100[:, 2]</code> in 2026, and <code>rl100[:, 3]</code> in 2066, with one entry per draw. The cell also defines <code>interval</code>, which rounds the 2.5%, 50%, and 97.5% quantiles of the draws to whole millimeters: a 95% interval with the median in the middle. Each <code>println</code> line reports the 100-year level; to report the 10-year level, use <code>rl10</code> in place of <code>rl100</code>.</p>
+<div id="18" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>report_years <span class="op">=</span> [<span class="fl">1986</span>, <span class="fl">2026</span>, <span class="fl">2066</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>x_report <span class="op">=</span> report_years <span class="op">.-</span> <span class="fl">1985</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>rl10 <span class="op">=</span> <span class="fu">returnlevel</span>(gev_syn, <span class="fl">10</span>; locationcov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>rl100 <span class="op">=</span> <span class="fu">returnlevel</span>(gev_syn, <span class="fl">100</span>; locationcov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a><span class="fu">interval</span>(v) <span class="op">=</span> <span class="fu">round</span>.(<span class="fu">quantile</span>(v, [<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>]))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a><span class="fu">println</span>(<span class="st">"100-year level in 2026 (mm): "</span>, <span class="fu">interval</span>(rl100[<span class="op">:</span>, <span class="fl">2</span>]))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a><span class="fu">println</span>(<span class="st">"Change, 1986 to 2026 (mm): "</span>, <span class="fu">interval</span>(rl100[<span class="op">:</span>, <span class="fl">2</span>] <span class="op">.-</span> rl100[<span class="op">:</span>, <span class="fl">1</span>]))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a><span class="fu">println</span>(<span class="st">"Change, 2026 to 2066 (mm): "</span>, <span class="fu">interval</span>(rl100[<span class="op">:</span>, <span class="fl">3</span>] <span class="op">.-</span> rl100[<span class="op">:</span>, <span class="fl">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100-year level in 2026 (mm): [202.0, 369.0, 852.0]
+Change, 1986 to 2026 (mm): [-79.0, 107.0, 566.0]
+Change, 2026 to 2066 (mm): [-221.0, 1895.0, 53377.0]</code></pre>
+</div>
+</div>
+<p>The projection to 2066 assumes the quadratic keeps going for another 40 years, past the end of the data. With log CO2 or GMST as the covariate, you also have to choose a value for that covariate in 2066, and say what it is and why.</p>
+<p><a href="#fig-syn-trend" class="quarto-xref">Figure&nbsp;4</a> plots the fitted 2- and 100-year levels in each year of the record next to the true levels the synthetic data came from. With no covariates passed, <code>returnlevel</code> evaluates at each year in the record.</p>
+<div id="cell-fig-syn-trend" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">700</span>, <span class="fl">350</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; xlabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{year}"</span>, ylabel<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">ext{daily rainfall (mm)}"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a><span class="cf">for</span> (k, T) <span class="kw">in</span> <span class="fu">enumerate</span>([<span class="fl">2</span>, <span class="fl">100</span>])</span>
+<span id="cb12-5"><a href="#cb12-5" aria-label="5"></a>    rl_fit <span class="op">=</span> <span class="fu">returnlevel</span>(gev_syn, T)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-label="6"></a>    rl_true <span class="op">=</span> <span class="fu">returnlevel</span>.(<span class="fu">GeneralizedExtremeValue</span>.(μ_true, σ_true, <span class="fl">0.15</span>), T)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-label="7"></a>    <span class="fu">lines!</span>(ax, years, <span class="fu">median</span>.(<span class="fu">eachcol</span>(rl_fit)); color<span class="op">=</span>colors[k], linewidth<span class="op">=</span><span class="fl">2</span>, label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>T<span class="st">-year level, fitted"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-label="8"></a>    <span class="fu">lines!</span>(ax, years, rl_true; color<span class="op">=</span>colors[k], linestyle<span class="op">=:</span>dash, label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>T<span class="st">-year level, true"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-label="9"></a><span class="cf">end</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-label="10"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-label="11"></a><span class="fu">scatter!</span>(ax, years, y_syn; color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">5</span>, label<span class="op">=</span><span class="st">"synthetic annual maxima"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-label="12"></a><span class="fu">axislegend</span>(ax; position<span class="op">=:</span>lt)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-label="13"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-syn-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-syn-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-syn-trend-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-syn-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The 2- and 100-year levels through time from the GEV fit to the synthetic record (posterior median), the true levels, and the synthetic annual maxima.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>You can also fit by maximum likelihood and get an interval from a bootstrap. <code>gevfit</code> fits the same model by maximum likelihood, and <code>getdistribution</code> gives the fitted GEV for each year. A parametric bootstrap draws a new record from those distributions, refits it, and records its return levels, many times over. The spread of the refitted levels is the uncertainty.</p>
+<div id="22" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>gev_mle <span class="op">=</span> <span class="fu">gevfit</span>(y_syn; locationcov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>gev_by_year <span class="op">=</span> <span class="fu">getdistribution</span>(gev_mle)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>n_boot <span class="op">=</span> <span class="fl">500</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-label="5"></a>rl100_boot <span class="op">=</span> <span class="fu">zeros</span>(n_boot, <span class="fu">length</span>(report_years))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-label="6"></a><span class="cf">for</span> b <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n_boot</span>
+<span id="cb13-7"><a href="#cb13-7" aria-label="7"></a>    y_boot <span class="op">=</span> <span class="fu">rand</span>.(rng, gev_by_year)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-label="8"></a>    fit_boot <span class="op">=</span> <span class="fu">gevfit</span>(y_boot; locationcov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-label="9"></a>    rl100_boot[b, <span class="op">:</span>] <span class="op">=</span> <span class="fu">returnlevel</span>(fit_boot, <span class="fl">100</span>; locationcov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb13-10"><a href="#cb13-10" aria-label="10"></a><span class="cf">end</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-label="11"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-label="12"></a><span class="fu">println</span>(<span class="st">"100-year level in 2026 (mm): "</span>, <span class="fu">interval</span>(rl100_boot[<span class="op">:</span>, <span class="fl">2</span>]))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-label="13"></a><span class="fu">println</span>(<span class="st">"Change, 1986 to 2026 (mm): "</span>, <span class="fu">interval</span>(rl100_boot[<span class="op">:</span>, <span class="fl">2</span>] <span class="op">.-</span> rl100_boot[<span class="op">:</span>, <span class="fl">1</span>]))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-label="14"></a><span class="fu">println</span>(<span class="st">"Change, 2026 to 2066 (mm): "</span>, <span class="fu">interval</span>(rl100_boot[<span class="op">:</span>, <span class="fl">3</span>] <span class="op">.-</span> rl100_boot[<span class="op">:</span>, <span class="fl">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100-year level in 2026 (mm): [174.0, 311.0, 570.0]
+Change, 1986 to 2026 (mm): [-91.0, 70.0, 303.0]
+Change, 2026 to 2066 (mm): [-246.0, 977.0, 14336.0]</code></pre>
+</div>
+</div>
+</section>
+<section id="other-functional-forms" class="level3">
+<h3 class="anchored" data-anchor-id="other-functional-forms">Other functional forms</h3>
+<p>You choose the functional form: which parameters change with the covariate, and how. Every fitting function also takes a table and the names of its columns. For example, <code>gevfitbayes(annmax, :y; locationcovid=[:log_CO2], logscalecovid=[:log_CO2])</code> fits the column <code>y</code> of the table <code>annmax</code>, with the location and the log scale each a line in <code>log_CO2</code>. You build <code>annmax</code> under Your Hobby analysis below. With this table form, each functional form is a choice of covariate columns:</p>
+<ul>
+<li>For a trend in the location alone, pass <code>locationcovid</code> and leave out <code>logscalecovid</code>.</li>
+<li>For a trend in the scale alone, pass <code>logscalecovid</code> and leave out <code>locationcovid</code>.</li>
+<li>Leave out both to fit a stationary model.</li>
+<li>For a curved trend, add a column holding the covariate squared to your table, such as <code>annmax.log_CO2_sq = annmax.log_CO2 .^ 2</code>, and name it in <code>locationcovid</code>. A quadratic will find some curvature in almost any record, including one drawn from a straight line. Outside the data it grows without limit, so its 2066 level depends on a curvature the record barely pins down.</li>
+<li>For an abrupt change at a year you choose, add a column that is 0 before that year and 1 after it. Say why that year, and whether you chose it before or after looking at the data.</li>
+</ul>
+</section>
+<section id="prior-information" class="level3">
+<h3 class="anchored" data-anchor-id="prior-information">Prior information</h3>
+<p>You change the priors with two keywords. <code>trend_priors</code> puts a prior on the slopes, one for each parameter, and any you leave out stay flat. The slope priors are on the standardized scale of the <code>summarystats</code> table, so each is a change per standard deviation of the covariate. A <code>location</code> slope is in millimeters, so <code>trend_priors=(location=Normal(0, 5),)</code> says the location probably moves less than about 10 mm per standard deviation. The trailing comma makes it a named tuple with one entry. A <code>logscale</code> slope is a proportional change in the scale, so <code>logscale=Normal(0, 0.1)</code> says the scale probably changes by less than about 20% per standard deviation. <code>quantile_priors</code> states what you believe about return levels, as in lab 4. Each belief gives the position of a year in the record (<code>index=1</code> is the first year), a return period, and a distribution for that return level in that year. You can give as many as you like. The two beliefs below are hypothetical, made up to suit the synthetic record. For Hobby, base a belief on a source you can name, and say what it is.</p>
+<div id="24" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a>beliefs <span class="op">=</span> [</span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>    (index<span class="op">=</span><span class="fl">1</span>, period<span class="op">=</span><span class="fl">100</span>, belief<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">250</span>, <span class="fl">40</span>)),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a>    (index<span class="op">=</span><span class="fu">lastindex</span>(y_syn), period<span class="op">=</span><span class="fl">100</span>, belief<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">450</span>, <span class="fl">40</span>)),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-label="5"></a>gev_beliefs <span class="op">=</span> <span class="fu">gevfitbayes</span>(y_syn; locationcov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x, x <span class="op">.^</span> <span class="fl">2</span>], quantile_priors<span class="op">=</span>beliefs, rng<span class="op">=</span>rng, progress<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-label="6"></a>rl100_beliefs <span class="op">=</span> <span class="fu">returnlevel</span>(gev_beliefs, <span class="fl">100</span>; locationcov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>], logscalecov<span class="op">=</span>[x_report, x_report <span class="op">.^</span> <span class="fl">2</span>])</span>
+<span id="cb15-7"><a href="#cb15-7" aria-label="7"></a><span class="pp">@printf</span>(<span class="st">"2026 100-year level: median %.0f mm without beliefs, %.0f mm with them</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">median</span>(rl100[<span class="op">:</span>, <span class="fl">2</span>]), <span class="fu">median</span>(rl100_beliefs[<span class="op">:</span>, <span class="fl">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>failed to find valid initial parameters in 10 tries; consider providing a different initialisation strategy with the `initial_params` keyword
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Turing.Inference ~/.julia/packages/Turing/4sXd9/src/mcmc/abstractmcmc.jl:63</span>
+<span class="ansi-yellow-fg ansi-bold">┌ </span><span class="ansi-yellow-fg ansi-bold">Warning: </span>failed to find valid initial parameters in 10 tries; consider providing a different initialisation strategy with the `initial_params` keyword
+<span class="ansi-yellow-fg ansi-bold">└ </span><span class="ansi-bright-black-fg">@ Turing.Inference ~/.julia/packages/Turing/4sXd9/src/mcmc/abstractmcmc.jl:63</span>
+2026 100-year level: median 369 mm without beliefs, 442 mm with them
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="gpd-example" class="level3">
+<h3 class="anchored" data-anchor-id="gpd-example">GPD example</h3>
+<p>In the second example, you fit a GPD with a trend in the log scale, using the same centered year as the covariate. The synthetic storm record has 12 storms a year above a threshold of 25.4 mm, and the scale of each storm’s excess grows by 0.4% per year.</p>
+<div id="26" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a>x_storm <span class="op">=</span> <span class="fu">repeat</span>(x; inner<span class="op">=</span><span class="fl">12</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>peaks_syn <span class="op">=</span> <span class="fl">25.4</span> <span class="op">.+</span> <span class="fu">rand</span>.(rng, <span class="fu">GeneralizedPareto</span>.(<span class="fl">0</span>, <span class="fl">20</span> <span class="op">.*</span> <span class="fu">exp</span>.(<span class="fl">0.004</span> <span class="op">.*</span> x_storm), <span class="fl">0.15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>gpfitbayes</code> takes the peaks and the threshold <span class="math inline">\(u\)</span> and fits a GPD to the excesses. Its log scale is a straight line in the covariate, where <span class="math inline">\(x_i\)</span> is the year of storm <span class="math inline">\(i\)</span> minus 1985:</p>
+<p><span class="math display">\[
+y_i - u \sim \text{GPD}\left(\exp(\beta_0 + \beta_1 x_i), \; \xi\right).
+\]</span></p>
+<div id="28" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a>gp_syn <span class="op">=</span> <span class="fu">gpfitbayes</span>(peaks_syn, <span class="fl">25.4</span>; logscalecov<span class="op">=</span>[x_storm], rng<span class="op">=</span>rng, progress<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a><span class="fu">DataFrame</span>(<span class="fu">summarystats</span>(gp_syn.estimate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>3×10 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small">
+<thead>
+<tr class="columnLabelRow header">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">param</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">std</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">mcse</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ess_bulk</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ess_tail</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">rhat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q5</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q50</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">q95</th>
+</tr>
+<tr class="columnLabelRow even">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="AbstractPPL.VarName{sym, AbstractPPL.Index{Tuple{Int64}, @NamedTuple{}, AbstractPPL.Iden}} where sym">VarName…</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">β_logscale[1]</td>
+<td style="text-align: right;">3.03393</td>
+<td style="text-align: right;">0.0491283</td>
+<td style="text-align: right;">0.000949048</td>
+<td style="text-align: right;">2684.82</td>
+<td style="text-align: right;">3362.16</td>
+<td style="text-align: right;">0.999814</td>
+<td style="text-align: right;">2.95298</td>
+<td style="text-align: right;">3.03465</td>
+<td style="text-align: right;">3.11506</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">β_logscale[2]</td>
+<td style="text-align: right;">0.12723</td>
+<td style="text-align: right;">0.036788</td>
+<td style="text-align: right;">0.000703159</td>
+<td style="text-align: right;">2739.94</td>
+<td style="text-align: right;">3375.66</td>
+<td style="text-align: right;">0.999879</td>
+<td style="text-align: right;">0.067518</td>
+<td style="text-align: right;">0.125911</td>
+<td style="text-align: right;">0.187222</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">β_shape[1]</td>
+<td style="text-align: right;">0.140575</td>
+<td style="text-align: right;">0.0383701</td>
+<td style="text-align: right;">0.000795451</td>
+<td style="text-align: right;">2340.34</td>
+<td style="text-align: right;">3021.72</td>
+<td style="text-align: right;">1.00033</td>
+<td style="text-align: right;">0.0797338</td>
+<td style="text-align: right;">0.139521</td>
+<td style="text-align: right;">0.206701</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A GPD has no location parameter to trend, so you pass only <code>logscalecov</code>. A GPD return level also needs <code>rate</code>, the average number of storms per year above the threshold, which is 12 here. <code>gpfit</code> and <code>gpfitbayes</code> treat <code>rate</code> as one known number: they do not allow a trend in how often storms exceed the threshold, and their return-level intervals leave out the uncertainty in <code>rate</code>. If you want to model either, write the model in Turing directly.</p>
+<div id="30" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>rl100_gp <span class="op">=</span> <span class="fu">returnlevel</span>(gp_syn, <span class="fl">100</span>; rate<span class="op">=</span><span class="fl">12</span>, logscalecov<span class="op">=</span>[x_report])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a><span class="fu">println</span>(<span class="st">"100-year level in 2026 (mm): "</span>, <span class="fu">interval</span>(rl100_gp[<span class="op">:</span>, <span class="fl">2</span>]))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a><span class="fu">println</span>(<span class="st">"Change, 1986 to 2026 (mm): "</span>, <span class="fu">interval</span>(rl100_gp[<span class="op">:</span>, <span class="fl">2</span>] <span class="op">.-</span> rl100_gp[<span class="op">:</span>, <span class="fl">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100-year level in 2026 (mm): [266.0, 339.0, 457.0]
+Change, 1986 to 2026 (mm): [25.0, 61.0, 116.0]</code></pre>
+</div>
+</div>
+<p>With 960 storms in place of 80 annual maxima, the intervals are narrower.</p>
+</section>
+</section>
+<section id="your-hobby-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="your-hobby-analysis">Your Hobby analysis</h2>
+<p>Now use the code in the examples to answer the key questions above. If you fit a GEV, this cell makes a table of annual maxima joined to the covariates:</p>
+<div id="32" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a>annmax <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(daily, <span class="op">:</span>year), <span class="op">:</span>prcp_mm <span class="op">=&gt;</span> maximum <span class="op">=&gt;</span> <span class="op">:</span>y)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>annmax <span class="op">=</span> <span class="fu">sort</span>(<span class="fu">innerjoin</span>(annmax, covariates; on<span class="op">=:</span>year), <span class="op">:</span>year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If you fit a GPD, this cell finds the peaks over a threshold and joins each peak’s year to the covariates. The threshold of 25.4 mm and the 72-hour gap between storms are made up to show the code; choose your own and defend them, as in lab 5. <code>decluster</code> keeps the largest day in each storm, and <code>rate</code> is the number of peaks per year you kept, which you pass to <code>returnlevel</code>.</p>
+<div id="34" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a>u <span class="op">=</span> <span class="fl">25.4</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-label="2"></a>peak_idx, _ <span class="op">=</span> <span class="fu">decluster</span>(<span class="fu">DateTime</span>.(daily.date), daily.prcp_mm, u; min_gap_hours<span class="op">=</span><span class="fl">72</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-label="3"></a>peaks <span class="op">=</span> <span class="fu">innerjoin</span>(daily[peak_idx, [<span class="op">:</span>year, <span class="op">:</span>prcp_mm]], covariates; on<span class="op">=:</span>year)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-label="4"></a>rate <span class="op">=</span> <span class="fu">nrow</span>(peaks) <span class="op">/</span> <span class="fu">length</span>(keep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Fit the peaks with the table form, such as <code>gpfitbayes(peaks, :prcp_mm, u; logscalecovid=[:log_CO2], rng=rng, progress=false)</code>.</p>
+</section>
+<section id="turning-it-in" class="level2">
+<h2 class="anchored" data-anchor-id="turning-it-in">Turning it in</h2>
+<p>This lab is due on Canvas on Friday, October 9, one week after the Friday session that starts it.</p>
+<ol type="1">
+<li><p>Check that your notebook answers each key question and explains each key decision.</p></li>
+<li><p>Render the notebook to a PDF. In the terminal, from the lab folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a><span class="ex">quarto</span> render index.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This writes <code>index.pdf</code> beside the notebook. It runs the whole notebook from the top in a fresh process, so it also confirms your work does not depend on leftover REPL state.</p></li>
+<li><p>Commit and push your work, with GitHub Desktop or by asking Claude to commit and push.</p></li>
+<li><p>Upload <code>index.pdf</code> to the Lab 6 assignment on Canvas.</p></li>
+<li><p>Paste the link to your repository in the same Canvas submission.</p></li>
+</ol>
+<p>If the render fails and you cannot fix it, upload what you have and say where it broke. A lab that does not render is worth more to me than a lab you did not turn in.</p>
+<p>Note what broke, what Claude got wrong, and what you had to fix by hand, and bring it to the next session.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-etheridge_lawdomeco2:1996" class="csl-entry" role="listitem">
+Etheridge, D. M., Steele, L. P., Langenfelds, R. L., Francey, R. J., Barnola, J. ‐M., &amp; Morgan, V. I. (1996). Natural and anthropogenic changes in atmospheric <span>CO</span><span><sub>2</sub></span> over the last 1000 years from air in <span>Antarctic</span> ice and firn. <em>Journal of Geophysical Research: Atmospheres</em>, <em>101</em>(D2), 4115–4128. <a href="https://doi.org/10.1029/95jd03410">https://doi.org/10.1029/95jd03410</a>
+</div>
+<div id="ref-fagnant_spatiotemporal:2020" class="csl-entry" role="listitem">
+Fagnant, C., Gori, A., Sebastian, A., Bedient, P. B., &amp; Ensor, K. B. (2020). Characterizing spatiotemporal trends in extreme precipitation in <span>Southeast Texas</span>. <em>Natural Hazards</em>, <em>104</em>(2), 1597–1621. <a href="https://doi.org/10.1007/s11069-020-04235-x">https://doi.org/10.1007/s11069-020-04235-x</a>
+</div>
+<div id="ref-macfarlingmeure_lawdomeextended:2006" class="csl-entry" role="listitem">
+MacFarling Meure, C., Etheridge, D., Trudinger, C., Steele, P., Langenfelds, R., van Ommen, T., et al. (2006). Law dome <span>CO</span> <span><sub>2</sub></span>, <span>CH</span><span><sub>4</sub></span> and <span>N</span><span><sub>2</sub></span><span>O</span> ice core records extended to 2000 years <span>BP</span>. <em>Geophysical Research Letters</em>, <em>33</em>(14). <a href="https://doi.org/10.1029/2006gl026152">https://doi.org/10.1029/2006gl026152</a>
+</div>
+<div id="ref-smith_brays:2026" class="csl-entry" role="listitem">
+Smith, C. H., Skahill, B., &amp; Margo, D. A. (2026). Nonstationary <span>Flood Frequency Analysis</span> for <span>Urban Watersheds Using Open-Source Bayesian Software</span>: <span>Contrasting Case Studies</span> from <span>Texas</span>. <em>Water</em>, <em>18</em>(5), 636. <a href="https://doi.org/10.3390/w18050636">https://doi.org/10.3390/w18050636</a>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-06/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
