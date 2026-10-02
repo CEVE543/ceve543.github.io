@@ -1,0 +1,307 @@
+---
+title: "Nonstationary models in practice"
+subtitle: "{{< var course.number >}}"
+week: 6
+module: 2
+order: 3
+kind: "slides"
+date: 2026-09-28
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, CEVE543Utils, CSV, DataFrames, Distributions, LaTeXStrings, Printf, Random, Statistics, Turing
+
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+```
+
+## The data
+
+```{julia}
+#| output: false
+here = @__DIR__
+rng = MersenneTwister(543)
+
+hobby = CSV.read(joinpath(here, "hobby-annmax.csv"), DataFrame)
+hobby = hobby[hobby.n_valid_days .>= 350, :]     # the complete years
+co2 = CSV.read(joinpath(here, "logCO2.csv"), DataFrame)
+hobby = innerjoin(hobby, co2; on=:year)           # adds a log_CO2 column
+y = hobby.prcp_mm
+```
+
+Houston Hobby annual maximum daily rainfall, `{julia} nrow(hobby)` years, and the natural log of atmospheric CO2 in parts per million.
+
+# Choosing a covariate
+
+## Hobby annual maxima against two covariates
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(1000, 280))
+ax1 = Axis(fig[1, 1]; xlabel="Year", ylabel="Annual max daily rainfall (mm)")
+ax2 = Axis(fig[1, 2]; xlabel=L"\log(\text{CO}_2 \text{ in ppm})")
+scatter!(ax1, hobby.year, y; color=colors[1], markersize=8)
+scatter!(ax2, hobby.log_CO2, y; color=colors[1], markersize=8)
+hideydecorations!(ax2; grid=false)
+fig
+```
+
+::: {.callout-tip .pause}
+## Think
+
+Which covariate will fit better?
+:::
+
+## Over the record, year and log CO2 move together
+
+- Correlation `{julia} @sprintf("%.2f", cor(hobby.year, hobby.log_CO2))`: a fit on this record cannot tell them apart.
+- They differ once you extrapolate, which is where the choice matters.
+
+## Choose a covariate by mechanism
+
+The covariate-based recipe [@schlef_idf:2023, p. 8], where EVD is an extreme value distribution:
+
+- "Determine suitable covariates based on causative mechanisms"
+- "Fit an EVD, with parameters dependent on the covariates"
+- "Create future projections by forcing the EVDs with projections of the covariates"
+
+"Time, as a covariate, does not represent a mechanistic process" [@schlef_idf:2023, p. 9].
+
+## Three kinds of covariate
+
+Physical drivers used as covariates for extreme rainfall (from a paper in preparation in my group):
+
+- **Thermodynamic:** temperature, such as global mean surface temperature.
+- **Dynamical:** large-scale patterns that steer storms, such as El Niño (Niño 3.4).
+- **External forcing:** CO2 concentration, used here and in Friday's lab.
+
+## Which covariates published studies test
+
+Of the 16 covariate-based rainfall studies in the review [@schlef_idf:2023, Table 1]:
+
+- 12 test time, and 8 use nothing else.
+- 6 test a climate index such as El Niño, and 4 test a temperature.
+- None uses CO2.
+
+## Kendall's $\tau$ as a covariate screen
+
+Mann-Kendall's statistic is Kendall's $\tau$ between a record and the year.
+Put a covariate in place of the year and the same statistic screens the covariate.
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Kendall's rank correlation between smoothed global mean surface temperature and 1-hour (left) and 1-day (right) annual maximum rainfall at Texas stations with at least 60 years of record; blue is positive and red negative, and most stations are positive (preliminary, from a paper in preparation in my group).
+:::
+
+# Writing the model
+
+## Centering and scaling the covariate
+
+$$
+x_t = \frac{\log \text{CO}_{2,t} - \overline{\log \text{CO}_2}}{s_{\log \text{CO}_2}}
+$$
+
+```{julia}
+#| output: false
+x_center, x_scale = mean(hobby.log_CO2), std(hobby.log_CO2)
+x = (hobby.log_CO2 .- x_center) ./ x_scale
+```
+
+```{julia}
+#| echo: false
+#| output: false
+# params gives the intercept at the covariate's mean; this moves it back to zero
+function uncentered_intercept(covariate)
+    β = params(gevfit(y; locationcov=[covariate])).β_location
+    return β[1] - β[2] * mean(covariate)
+end
+raw_intercept_year = uncentered_intercept(hobby.year)
+raw_intercept_co2 = uncentered_intercept(hobby.log_CO2)
+```
+
+- Uncentered, the intercept is the location at the year 0, or at 1 ppm of CO2: `{julia} round(Int, raw_intercept_year)` mm and `{julia} round(Int, raw_intercept_co2)` mm.
+- Centered, the intercept is the location in an average year, and the slope is per standard deviation, so priors are easy to set.
+- Centering also makes the optimizer and the sampler faster.
+
+## A trend in the location
+
+$$
+y_t \sim \text{GEV}(\mu_0 + \mu_1 x_t, \sigma, \xi)
+$$
+
+```{julia}
+#| output: false
+@model function gev_location_trend(y, x)
+    μ0 ~ Normal(100, 50)        # mm, in an average year of the record
+    μ1 ~ Normal(0, 25)          # mm per standard deviation of x
+    logσ ~ Normal(3, 2)
+    ξ ~ Normal(0, 0.25)
+    σ := exp(logσ)
+    for t in eachindex(y)
+        y[t] ~ GEVKernel(μ0 + μ1 * x[t], σ, ξ)
+    end
+end
+location_model = gev_location_trend(y, x)
+```
+
+This is the week 4 model with $\mu$ replaced by a regression on $x_t$.
+
+## Maximum likelihood fit of the location trend
+
+```{julia}
+start = InitFromParams((μ0=median(y), μ1=0.0, logσ=log(std(y)), ξ=0.1))
+location_mle = maximum_likelihood(location_model; initial_params=start)
+θ̂ = NamedTuple(location_mle.params)
+@printf("μ0 = %.1f mm, μ1 = %.2f mm per sd, σ = %.1f mm, ξ = %.2f\n", θ̂.μ0, θ̂.μ1, θ̂.σ, θ̂.ξ)
+```
+
+## A trend in the location and the scale
+
+$$
+y_t \sim \text{GEV}\left(\mu_0 + \mu_1 x_t, \exp(\lambda_0 + \lambda_1 x_t), \xi\right)
+$$
+
+```{julia}
+#| output: false
+@model function gev_location_scale_trend(y, x)
+    μ0 ~ Normal(100, 50)
+    μ1 ~ Normal(0, 25)
+    λ0 ~ Normal(3, 2)           # log scale in an average year; exp keeps the scale positive
+    λ1 ~ Normal(0, 0.5)         # change in log scale per standard deviation of x
+    ξ ~ Normal(0, 0.25)
+    for t in eachindex(y)
+        y[t] ~ GEVKernel(μ0 + μ1 * x[t], exp(λ0 + λ1 * x[t]), ξ)
+    end
+end
+start = InitFromParams((μ0=median(y), μ1=0.0, λ0=log(std(y)), λ1=0.0, ξ=0.1))
+both_mle = maximum_likelihood(gev_location_scale_trend(y, x); initial_params=start)
+```
+
+## Fitting the same models with gevfit
+
+```{julia}
+# gevfit centers and scales covariates itself; gevfitbayes takes the same keywords
+fit_location = gevfit(y; locationcov=[hobby.log_CO2])
+fit_both = gevfit(y; locationcov=[hobby.log_CO2], logscalecov=[hobby.log_CO2])
+fit_year = gevfit(y; locationcov=[hobby.year])
+@printf("location: %.2f, %.2f\n", location_mle.lp, loglike(fit_location))
+@printf("both:     %.2f, %.2f\n", both_mle.lp, loglike(fit_both))
+@printf("year:     %.2f\n", loglike(fit_year))
+```
+
+- Log likelihoods by hand and from `gevfit` match, and year gives the same fit as log CO2.
+
+## The 100-year level under three models
+
+```{julia}
+#| echo: false
+fits = ["stationary" => gevfit(y), "trend in location" => fit_location, "trend in location and scale" => fit_both]
+fig = Figure(; size=(1000, 300))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel="Rainfall (mm)")
+scatter!(ax, hobby.year, y; color=:gray, markersize=6, label="annual maximum")
+for (k, (label, fit)) in enumerate(fits)
+    lines!(ax, hobby.year, returnlevel(fit, 100); color=colors[k], linewidth=3, label=label)
+end
+Legend(fig[1, 2], ax; framevisible=false)
+fig
+```
+
+Adding the scale trend raises the log likelihood by `{julia} @sprintf("%.1f", loglike(fit_both) - loglike(fit_location))` and moves the 2025 100-year level by `{julia} round(Int, last(returnlevel(fit_both, 100)) - last(returnlevel(fit_location, 100)))` mm.
+Wednesday's reading makes the same comparison for Brays Bayou [@smith_brays:2026].
+
+# Projecting
+
+## Three CO2 paths to 2100
+
+```{julia}
+#| output: false
+ppm_2025 = exp(last(co2.log_CO2))
+recent_rate = (ppm_2025 - exp(co2.log_CO2[end - 10])) / 10     # ppm per year, 2015-2025
+ppm_2100 = [
+    "held at 2025" => ppm_2025, "last decade's rate" => ppm_2025 + 75recent_rate, "doubled" => 2ppm_2025,
+]
+```
+
+The three paths span a range and are not published emissions scenarios.
+
+## Year and log CO2 extrapolate differently
+
+```{julia}
+#| echo: false
+future = 2025:2100
+μ_year(yr) = first(params(fit_year).β_location) + last(params(fit_year).β_location) * (yr - mean(hobby.year))
+μ_co2(logppm) = θ̂.μ0 + θ̂.μ1 * (logppm - x_center) / x_scale
+fig = Figure(; size=(1000, 190))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel="Location change (mm)")
+lines!(ax, future, μ_year.(future) .- μ_year(2025); color=:black, linewidth=3, label="trend in year")
+for (k, (label, ppm_end)) in enumerate(ppm_2100)
+    path = log.(range(ppm_2025, ppm_end; length=length(future)))
+    lines!(ax, future, μ_co2.(path) .- μ_co2(log(ppm_2025)); color=colors[k], linewidth=3, label="log CO2, $label")
+end
+axislegend(ax; position=:lt)
+fig
+```
+
+A trend in year gives one projection.
+A trend in log CO2 gives a different projection for each CO2 path.
+
+## Two sources of uncertainty in a projected level
+
+Let $z$ be the 100-year level in 2100 and $s$ the CO2 path.
+By the law of total variance,
+
+$$
+\mathrm{Var}(z) = \underbrace{E[\mathrm{Var}(z \mid s)]}_{\text{parameters}} + \underbrace{\mathrm{Var}(E[z \mid s])}_{\text{CO2 path}}
+$$
+
+```{julia}
+#| output: false
+chain = sample(rng, location_model, NUTS(0.99), MCMCThreads(), 1_000, 4; progress=false)
+draws = DataFrame(chain)
+level_100yr(μ, σ, ξ) = quantile(GeneralizedExtremeValue(μ, σ, ξ), 1 - 1 / 100)
+x_2100(ppm) = (log(ppm) - x_center) / x_scale
+levels_2100 = [label => [level_100yr(d.μ0 + d.μ1 * x_2100(ppm), d.σ, d.ξ) for d in eachrow(draws)] for (label, ppm) in ppm_2100]
+```
+
+Weighting the three paths equally is itself an assumption.
+
+## Most of the uncertainty comes from the parameters
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(900, 210))
+ax = Axis(fig[1, 1]; xlabel="100-year level in 2100 (mm)")
+for (k, (label, z)) in enumerate(levels_2100)
+    density!(ax, z; color=(colors[k], 0.3), strokecolor=colors[k], strokewidth=2, label=label)
+end
+hideydecorations!(ax)
+axislegend(ax; position=:rt)
+fig
+```
+
+```{julia}
+var_parameters = mean(var(z) for (_, z) in levels_2100)
+var_path = var([mean(z) for (_, z) in levels_2100]; corrected=false)
+@printf("parameters %.0f mm², CO2 path %.0f mm², path share %.1f%%\n",
+    var_parameters, var_path, 100var_path / (var_parameters + var_path))
+```
+
+## Every trend parameter costs precision in the tail
+
+- Each coefficient is estimated from the same `{julia} nrow(hobby)` years, and its uncertainty carries into every return level.
+- Without a covariate that represents a mechanism, "the more parsimonious stationary model should be assumed" (Serinaldi and Kilsby 2015, quoted in @schlef_idf:2023, p. 10).
+- On Wednesday, the Brays Bayou 100-year interval widens when the trend parameters are added [@smith_brays:2026, p. 16].

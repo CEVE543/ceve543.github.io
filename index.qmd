@@ -1,0 +1,49 @@
+---
+title: "{{< var course.number >}}: {{< var course.short_title >}}"
+subtitle: "{{< var university.name >}}, {{< var course.semester >}}"
+status: "published"
+release: "public"
+---
+
+{{< include _includes/motivation.qmd >}}
+
+Most of all, you will learn to identify the assumptions each method rests on, judge how they affect the validity of a result, and explain your conclusions to technical and non-technical audiences.
+
+## Logistics
+
+- Instructor: [{{< var instructor.name >}}]({{< var instructor.url >}})
+- Email: [{{< var instructor.email >}}](mailto:{{< var instructor.email >}})
+- Office: {{< var instructor.office >}}
+- Meetings: {{< var course.days >}}, {{< var course.time >}}
+- Canvas: [{{< var course.canvas_url >}}]({{< var course.canvas_url >}})
+
+## Course objectives
+
+{{< include _includes/objectives.qmd >}}
+
+## Organization
+
+The course is organized into three modules.
+
+{{< include _includes/module-table.qmd >}}
+
+Each week follows a regular rhythm; departures from it are noted in [the course schedule](./schedule.qmd).
+
+{{< include _includes/weekly-rhythm.qmd >}}
+
+## If you are using these materials
+
+Are you a student or an instructor somewhere else, working through this course?
+Wonderful, that is why it carries an open license.
+Take it, adapt it, teach with it.
+
+I have put a lot of time into this course, and I would love to know who is benefitting.
+Please [star the repository]({{< var course.github >}}), or send me an email and tell me where you are reading from.
+Corrections and suggestions are welcome as issues or pull requests.
+
+## Credit
+
+The layout for this site was inspired by and draws from Vivek Srikrishnan's [Environmental Systems Analysis](https://github.com/vsrikrish/environmental-systems-analysis/) course at Cornell, [STA 210](https://sta210-s22.github.io/website/) at Duke University, and [Andrew Heiss's](https://www.andrewheiss.com/teaching/) course materials at Georgia State.
+
+I thank {{< var university.name >}} and the National Science Foundation, under Grant No. [2543303](https://www.nsf.gov/awardsearch/show-award?AWD_ID=2543303), for supporting the development of these materials.
+Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author and do not necessarily reflect the views of the National Science Foundation.

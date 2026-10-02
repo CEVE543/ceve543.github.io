@@ -1,0 +1,26 @@
+---
+title: "The GPD and compound-Poisson model"
+week: 5
+module: 2
+date: 2026-09-21
+format: "typst"
+---
+
+## Summary
+
+The distribution of exceedances above a high threshold, and how to turn it into a return level.
+
+- The GPD has two parameters: a scale $\sigma > 0$ and a shape $\xi$.
+  The shape $\xi$ is the same parameter as in the GEV.
+- If block maxima follow a GEV, exceedances above a high threshold follow a GPD (Pickands-Balkema-de Haan).
+- Three key assumptions: the exceedances are independent, the threshold is high enough for the GPD to hold, and the process is stationary.
+- The compound-Poisson model combines a Poisson arrival rate $\lambda$ (exceedances per year) with the GPD for exceedance sizes to give annual exceedance probabilities.
+- The return level at return period $T$ is $x_T = u + \frac{\sigma}{\xi}\left[(T\lambda)^\xi - 1\right]$.
+
+Key results.
+
+$$G(d) = 1 - \left(1 + \frac{\xi d}{\sigma}\right)^{-1/\xi}, \qquad d > 0$$
+
+$$P(\text{annual max} > x) = 1 - \exp\bigl(-\lambda\,[1 - G(x - u)]\bigr)$$
+
+$$x_T = u + \frac{\sigma}{\xi}\left[(T\lambda)^\xi - 1\right]$$
