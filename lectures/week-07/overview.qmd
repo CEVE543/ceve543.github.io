@@ -1,0 +1,166 @@
+---
+title: "Week 7 overview"
+subtitle: "{{< var course.number >}}"
+week: 7
+module: 2
+order: 1
+kind: "slides"
+date: 2026-10-05
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, CEVE543Utils, CSV, DataFrames, Dates, Printf
+
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+here = dirname(@__FILE__)
+
+miles_between(lat1, lon1, lat2, lon2) =
+    2 * 3958.8 * asin(sqrt(sind((lat2 - lat1) / 2)^2 + cosd(lat1) * cosd(lat2) * sind((lon2 - lon1) / 2)^2))
+
+# Built by scripts/download_week07_data.py; provenance in week-07-sources.md
+storm = CSV.read(joinpath(here, "memorial2015-hcfcd.csv"), DataFrame)
+wettest = storm[argmax(storm.storm_total_in), :]
+storm.miles = miles_between.(wettest.latitude, wettest.longitude, storm.latitude, storm.longitude)
+addicks = only(eachrow(storm[storm.gauge_id .== 2110, :]))
+horsepen = only(eachrow(storm[storm.gauge_id .== 2130, :]))
+
+# NOAA Atlas 14 Texas 1-day annual maxima: a station header line, then one "MM/DD/YYYY value" line per year.
+# Station names can contain commas, so the coordinates are read from the right.
+function read_atlas14(path)
+    rows = NamedTuple[]
+    id, name, lat, lon = "", "", NaN, NaN
+    for line in Iterators.drop(eachline(path), 1)
+        isempty(strip(line)) && continue
+        if occursin(r"^\d\d/\d\d/\d{4}", line)
+            day, value = split(line)
+            push!(rows, (; id, name, lat, lon, date=Date(day, dateformat"mm/dd/yyyy"), prcp_in=parse(Float64, value)))
+        else
+            fields = strip.(split(line, ","))
+            id, lat, lon = fields[1], parse(Float64, fields[end-2]), parse(Float64, fields[end-1])
+            name = join(fields[2:(end-4)], ",")
+        end
+    end
+    return DataFrame(rows)
+end
+
+hobby_lat, hobby_lon = 29.6381, -95.2819
+ams = read_atlas14(joinpath(here, "dur01d_ams_na14v11.txt"))
+ams.year = year.(ams.date)
+ams.miles = miles_between.(hobby_lat, hobby_lon, ams.lat, ams.lon)
+near = ams[ams.miles .<= 25, :]
+stations = combine(
+    groupby(near, [:id, :name, :lat, :lon]),
+    nrow => :n_years,
+    [:prcp_in, :year] => ((p, y) -> y[argmax(p)]) => :record_year,
+)
+stations.level_100yr = [only(returnlevel(gevfit(near.prcp_in[near.id .== s]), 100)) for s in stations.id]
+largest_five = first(sort(stations, :level_100yr; rev=true), 5)
+
+# One degree of longitude is shorter than one of latitude by cos(latitude)
+houston_aspect = 1 / cosd(29.75)
+```
+
+## Trends at neighboring Texas stations
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Kendall's rank correlation between global temperature and 1-hour (left) and 1-day (right) annual maximum rainfall at Texas stations; blue is positive and red negative (preliminary).
+:::
+
+## CO2 trends fit station by station
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: The coefficient on CO2 in the location (top) and scale (bottom) of a nonstationary extreme value distribution, fit separately at each of 181 Gulf Coast stations; purple is an increase with CO2 and orange a decrease.
+:::
+
+## Memorial Day 2015
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(600, 520))
+ax = Axis(fig[1, 1]; autolimitaspect=houston_aspect, xlabel="Longitude", ylabel="Latitude")
+sc = scatter!(ax, storm.longitude, storm.latitude; color=storm.storm_total_in, colormap=:viridis,
+    colorrange=(0, maximum(storm.storm_total_in)), markersize=12)
+labelled = (
+    (wettest, "Brays", (-14, -14), (:right, :top)),
+    (addicks, "Addicks", (-16, 0), (:right, :center)),
+    (horsepen, "Horsepen", (0, 16), (:center, :bottom)),
+)
+for (gauge, label, offset, align) in labelled
+    scatter!(ax, [gauge.longitude], [gauge.latitude]; color=:transparent, strokecolor=:red, strokewidth=3,
+        markersize=22)
+    text!(ax, gauge.longitude, gauge.latitude; text=label, offset, align, fontsize=18, glowcolor=(:white, 0.9),
+        glowwidth=3)
+end
+# A 5-mile scale bar: one degree of longitude is 69.17 cos(latitude) miles
+bar_lon, bar_lat = minimum(storm.longitude), minimum(storm.latitude)
+lines!(ax, [bar_lon, bar_lon + 5 / (69.17 * cosd(bar_lat))], [bar_lat, bar_lat]; color=:black, linewidth=4)
+text!(ax, bar_lon, bar_lat; text="5 miles", offset=(0, 6), align=(:left, :bottom), fontsize=16)
+Colorbar(fig[1, 2], sc; label="Storm total (inches)")
+fig
+```
+
+:::
+::: {.column width="50%"}
+Totals for May 25-26 at `{julia} nrow(storm)` Harris County Flood Control District gauges.
+
+- Brays Bayou: `{julia} @sprintf("%.2f", wettest.storm_total_in)` inches.
+- Addicks Dam, `{julia} @sprintf("%.1f", addicks.miles)` miles from Brays: `{julia} @sprintf("%.2f", addicks.storm_total_in)` inches.
+- Horsepen Creek, `{julia} @sprintf("%.1f", horsepen.miles)` miles from Brays: `{julia} @sprintf("%.2f", horsepen.storm_total_in)` inches.
+
+Within `{julia} @sprintf("%.0f", horsepen.miles)` miles, one storm's totals ranged from `{julia} @sprintf("%.2f", horsepen.storm_total_in)` to `{julia} @sprintf("%.2f", wettest.storm_total_in)` inches.
+:::
+::::
+
+## Annual maximum rainfall near Hobby Airport
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(1000, 190))
+ax_map = Axis(fig[1, 1]; autolimitaspect=houston_aspect, xticks=WilkinsonTicks(3), yticks=WilkinsonTicks(3))
+sc = scatter!(ax_map, stations.lon, stations.lat; color=stations.n_years, colormap=:viridis, markersize=14)
+scatter!(ax_map, [hobby_lon], [hobby_lat]; marker=:star5, color=:black, markersize=22)
+Colorbar(fig[1, 2], sc; label="Years of record")
+ax_ts = Axis(fig[1, 3]; xlabel="Year", ylabel="Annual max (in)")
+scatter!(ax_ts, near.year, near.prcp_in; color=(:gray, 0.5), markersize=7)
+for (k, storm_year) in enumerate((2017, 2001))
+    in_year = near.year .== storm_year
+    scatter!(ax_ts, near.year[in_year], near.prcp_in[in_year]; color=colors[k+1], markersize=10,
+        label=string(storm_year))
+end
+axislegend(ax_ts; position=:lt)
+colsize!(fig.layout, 1, Relative(0.3))
+fig
+```
+
+- `{julia} nrow(stations)` Atlas 14 stations within 25 miles of Hobby Airport (star) [@perica_atlas14_texas:2018].
+- `{julia} sum(stations.record_year .== 2017)` had their largest year in 2017 (Harvey), and `{julia} sum(stations.record_year .== 2001)` in 2001 (Allison).
+- Fit alone, 100-year estimates run from `{julia} @sprintf("%.1f", minimum(stations.level_100yr))` to `{julia} @sprintf("%.1f", maximum(stations.level_100yr))` inches; the five largest come from `{julia} minimum(largest_five.n_years)`- to `{julia} maximum(largest_five.n_years)`-year records.
+
+## Objectives
+
+If nearby stations see the same storms, pooling their records should average out where each storm landed.
+
+By the end of this week, you can:
+
+1. Describe the sources of noise in one station's record of extremes.
+1. Describe, physically and statistically, the bias-variance trade-off in regionalization.
+1. State at least three ways to regionalize and the key assumptions each makes.
+1. Read a regional extremes analysis and assess whether its key assumptions hold.

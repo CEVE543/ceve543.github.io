@@ -1,0 +1,133 @@
+---
+title: "Week 5 overview"
+subtitle: "{{< var course.number >}}"
+week: 5
+module: 2
+order: 1
+kind: "slides"
+date: 2026-09-21
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CEVE543Utils
+using CairoMakie, CSV, DataFrames, Dates, LaTeXStrings, Statistics, Unitful
+
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+here = @__DIR__
+
+nh = load_water_level(
+    "8465705";
+    name="New Haven",
+    cache=joinpath(here, "8465705-hourly.csv"),
+    first_year=2000,
+)
+gv = load_water_level(
+    "8771450";
+    name="Galveston Pier 21",
+    cache=joinpath(here, "8771450-hourly.csv"),
+    first_year=1904,
+)
+```
+
+## This week
+
+- **Monday:** peaks over threshold and the GPD (today)
+- **Wednesday:** practice problems + Brays Bayou case study
+- **Friday:** lab 5, remote (no in-person meeting)
+
+Lab 5 will be posted by Wednesday.
+
+## The problem with block maxima
+
+```{julia}
+#| echo: false
+nh_annmax = AnnMaxRecord(nh; detrend=:none, units=u"m")
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel="Annual max (m above MSL)")
+scatter!(ax, obsyears(nh_annmax), nh_annmax.levels; color=colors[1], markersize=8)
+fig
+```
+
+New Haven, CT (NOAA 8465705).
+Sandy (2012) and Irene (2011) tower over everything else.
+Do we have 26 annual maxima, or 2 real extremes and 24 ordinary high tides?
+
+## Same story, different coast
+
+```{julia}
+#| echo: false
+gv_annmax = AnnMaxRecord(gv; detrend=:none, units=u"m")
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel="Annual max (m above MSL)")
+scatter!(ax, obsyears(gv_annmax), gv_annmax.levels; color=colors[2], markersize=8)
+fig
+```
+
+Galveston Pier 21 (NOAA 8771450), 120 years of hourly data.
+Ike (2008, 3.0 m) and Carla (1961, 2.3 m) stand apart; everything else is under 1.4 m.
+Block maxima treats the year with Ike and a quiet year the same way: one observation each.
+
+## Why peaks over threshold?
+
+Block maxima is **statistically wasteful** (Coles, §4.1).
+It reduces a year of sub-annual data to one number.
+
+The HEC fishing analogy: block maxima keeps only the biggest fish each day.
+Peaks over threshold keeps every fish above the legal length.
+
+Peaks over threshold uses **more of the data**, which means tighter confidence intervals on the same return level.
+The threshold is a modeling choice you can **diagnose** (mean residual life plot, parameter stability).
+"One year" is a convention nobody checks.
+
+We need two ingredients:
+
+1. **The distribution of exceedances** above the threshold (the GPD)
+2. **How often exceedances happen** (a rate, events per year)
+
+## What the hourly record looks like
+
+```{julia}
+#| echo: false
+gv_times = [r.time for r in gv]
+gv_levels = [ustrip(uconvert(u"m", r.level)) for r in gv]
+i_start = findfirst(t -> year(t) == 2008 && month(t) == 8, gv_times)
+i_end = findlast(t -> year(t) == 2008 && month(t) == 10, gv_times)
+t_sub = gv_times[i_start:i_end]
+l_sub = gv_levels[i_start:i_end]
+
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; xlabel="Date", ylabel="Water level (m)")
+lines!(ax, eachindex(t_sub), l_sub; color=colors[2], linewidth=0.5)
+hlines!(ax, [0.6]; color=:red, linestyle=:dash, linewidth=2)
+ax.xticks = (
+    [findfirst(t -> day(t) == 1, t_sub[i:end]) + i - 1 for i in 1:length(t_sub) if i == 1 || (month(t_sub[i]) != month(t_sub[i-1]))][1:3],
+    ["Aug", "Sep", "Oct"],
+)
+fig
+```
+
+Galveston, Aug--Oct 2008.
+The dashed line is a candidate threshold.
+Ike keeps the gauge above it for days: those are not independent exceedances.
+
+## Today's plan
+
+1. The GPD and compound-Poisson derivation (board)
+1. Threshold diagnostics worked on the Coles rainfall and Galveston (slides)
+
+The connection between the GEV and the GPD, the compound-Poisson structure, and the judgment calls in choosing a threshold.

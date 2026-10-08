@@ -1,0 +1,105 @@
+---
+title: "Regionalization"
+subtitle: "{{< var course.number >}}"
+week: 7
+module: 2
+order: 2
+kind: "slides"
+date: 2026-10-05
+status: "published"
+release: "public"
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Why pool stations
+
+- Nearby stations should usually have similar rainfall probabilities.
+  - The same holds for floods, fire, and other hazards.
+- Pooling reduces some forms of sampling error:
+  - where a severe thunderstorm went
+  - where a hurricane's rain bands persisted
+- Some sampling variability remains:
+  - there's one Harvey in the region
+
+## Bias-variance trade-off
+
+::: {.incremental}
+
+- One station's record gives a nearly **unbiased** but noisy (high-variance) estimate.
+- **Regionalization** makes some or all parameters similar or identical across the stations in a region.
+- Fewer stations: less bias, more variance.
+- More stations: less variance, possibly more bias.
+
+:::
+
+## Key considerations for regionalization
+
+1. What data do I have?
+1. **Physically**, what is driving sampling variability and can I reduce it with pooling?
+1. What are "similar" stations?
+1. Which parameters should be pooled?
+
+## L-moments, recalled
+
+- Linear combinations of order statistics.
+- Fit by choosing the parameters so that the distribution's L-moments match the data's [@hosking_lmoments:1990].
+- Pros:
+  - Fast: a closed form, no optimizer.
+  - Robust: they work well in practice, even on short records.
+- Cons:
+  - Rigid: hard to add covariates or priors.
+  - Hard to attach uncertainty to the parameters.
+
+## Regional frequency analysis (index flood)
+
+Idea: every station in the region has the same shape of **flood** distribution, up to a scaling factor [@hosking_rfa:1997].
+
+1. Divide each station's annual maxima by its mean, $m_s$ (the *index flood*).
+1. Average the stations' L-CV and L-skewness, weighted by record length, and fit one GEV to them: the regional growth curve $q(T)$.
+1. Scale back to each station: $x_T = m_s q(T)$.
+
+Fails when stations differ in more than size: for U.S. streamflow, variability falls as catchment area grows [@hosking_rfa:1997].
+
+## Region of influence
+
+Goal: the best estimate at one target station, using regional information [@hosking_rfa:1997].
+
+1. Include the stations that are reasonably similar to the target: nearby, at a similar elevation, in a similar climate.
+1. Weight each station $j$ by its similarity to the target, $w_j$.
+1. Fit by maximizing the weighted log-likelihood:
+
+$$\ell(\theta) = \sum_j w_j \sum_t \log f(y_{j,t} \mid \theta)$$
+
+A common two-step version fixes the shape at its regional estimate, then fits the station's location and scale from its own record.
+
+## Which stations are similar?
+
+::: {.callout-tip}
+## Ask
+
+A station's skewness is 0.10; its three nearest neighbors' are 0.37, 0.07, and 0.27.
+Should all three be in its region?
+:::
+
+## How Atlas 14 and Atlas 15 choose stations
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.callout-note appearance="simple"}
+Figure shown in class: Atlas 15's weighted region for one target station (black square): black stations get full weight, gray partial, and white zero, and some white stations sit close to the target.
+:::
+:::
+::: {.column width="50%"}
+
+- Atlas 14: the 15 nearest stations, edited by an analyst for ridges, elevation, and mean annual maximum [@perica_atlas14_texas:2018].
+- Atlas 15, a preliminary report, weights every station within 160 km (100 miles) by distance, rainfall climate, elevation, and terrain between [@perica_atlas15_pilot:2024].
+
+:::
+::::

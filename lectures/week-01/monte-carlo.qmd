@@ -1,0 +1,26 @@
+---
+title: "Monte Carlo simulation"
+week: 1
+module: 1
+date: 2026-08-28
+format: "typst"
+---
+
+## Summary
+
+Estimating an expectation by simulating years, and how far off the estimate is.
+
+- An expected annual damage is an integral that usually has no closed form, so we average simulated years instead.
+- The law of large numbers says the average converges, given independent draws, identical distribution, and a finite mean, and says nothing about how fast.
+- The estimator is unbiased: on average it lands on the right answer for any $n$.
+- Its variance falls like $1/n$, so the error falls like $1/\sqrt{n}$ and halving the error costs four times the draws.
+- Independence is what licenses splitting the variance of the sum, so draws that covary make the estimator noisier than $n$ independent ones.
+- The relative error depends on the coefficient of variation of the quantity being averaged, which is a property of that quantity and not of how the simulation is run.
+
+Key results.
+
+$$\theta = E[g(X)], \qquad \hat\theta_n = \frac{1}{n}\sum_{i=1}^{n} g(X_i), \qquad E[\hat\theta_n] = \theta$$
+
+$$\mathrm{SE}(\hat\theta_n) = \frac{\mathrm{sd}(g(X))}{\sqrt{n}}, \qquad \frac{\mathrm{SE}(\hat\theta_n)}{\theta} = \frac{\mathrm{CV}}{\sqrt{n}}$$
+
+Lab 1 breaks the finite-mean assumption and shows what happens, and has you find the coefficient of variation for several distributions to see which converge.

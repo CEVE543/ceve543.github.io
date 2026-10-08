@@ -1,0 +1,185 @@
+---
+title: "Week 03 Practice Problems (Optional)"
+week: 3
+module: 1
+status: "draft"
+release: "public"
+date: 2026-09-09
+---
+
+```{julia}
+#| code-fold: true
+#| output: false
+#| solution: false
+using Distributions
+using Printf
+```
+
+Attempt these before Wednesday.
+Not graded and not submitted.
+Open the worked answer after you have tried the problem.
+
+The module 1 written test draws from this pool.
+
+## Likelihood of a Poisson sample
+
+You observe the following annual counts of days below freezing in Houston: $y = (8, 5, 12, 3, 7)$.
+Assume the counts are independent draws from a Poisson distribution with unknown rate $\lambda$.
+
+a.
+Write down the log-likelihood $\log p(y \mid \lambda)$ as a function of $\lambda$, dropping terms that do not depend on $\lambda$.
+b.
+Find the MLE $\hat\lambda$ by setting the derivative to zero.
+c.
+Compute $\hat\lambda$ numerically and give the probability of observing zero freezing days in a year under this estimate.
+
+::: {.answer}
+**Part a.** The Poisson log-likelihood for one observation is $y_i \log\lambda - \lambda - \log(y_i!)$.
+Summing over $n = 5$ observations and dropping the constant:
+
+$$
+\log p(y \mid \lambda) = \left(\sum_{i=1}^5 y_i\right) \log\lambda - 5\lambda + \text{const.}
+$$
+
+**Part b.** Differentiate and set to zero:
+
+$$
+\begin{aligned}
+\frac{d}{d\lambda}\log p &= \frac{\sum y_i}{\lambda} - 5 = 0 \\
+\hat\lambda &= \frac{\sum y_i}{5} = \bar y
+\end{aligned}
+$$
+
+The MLE is the sample mean.
+
+**Part c.**
+
+```{julia}
+#| solution: true
+y = [8, 5, 12, 3, 7]
+λ_hat = mean(y)
+p_zero = pdf(Poisson(λ_hat), 0)
+@printf("λ̂ = %.3g, P(Y=0) = %.3g", λ_hat, p_zero)
+```
+
+The MLE of the rate is the sample mean.
+The probability of zero freezing days is vanishingly small under this estimate.
+:::
+
+## Bayes' theorem with a conjugate prior
+
+A Gamma($\alpha$, $\beta$) prior on the Poisson rate $\lambda$ is conjugate: after observing $n$ independent Poisson draws with sum $s = \sum y_i$, the posterior is Gamma($\alpha + s$, $\beta + n$).
+
+Using the same data as above and a prior Gamma(2, 1):
+
+a.
+Write down the posterior distribution.
+b.
+Compute the posterior mean and compare it to the MLE.
+c.
+The prior mean is $\alpha/\beta = 2$.
+In which direction does the prior pull the estimate, and why?
+
+::: {.answer}
+**Part a.** With $\alpha = 2$, $\beta = 1$, $s = 35$, $n = 5$:
+
+$$
+\lambda \mid y \sim \text{Gamma}(2 + 35,\; 1 + 5) = \text{Gamma}(37, 6)
+$$
+
+**Part b.** The posterior mean is $(\alpha + s)/(\beta + n)$.
+
+```{julia}
+#| solution: true
+α_post = 2 + 35
+β_post = 1 + 5
+post_mean = α_post / β_post
+@printf("Posterior mean = %.3g, MLE = %.3g", post_mean, 7.0)
+```
+
+**Part c.** The prior mean is 2, which is below the sample mean of 7.
+The posterior mean is pulled slightly below the MLE toward the prior.
+With only 5 observations the prior has a visible effect; with 50 it would be negligible.
+:::
+
+## Method of moments versus MLE
+
+For a Normal distribution, the method of moments and MLE both give $\hat\mu = \bar y$.
+For the variance, method of moments gives $s^2 = \sum(y_i - \bar y)^2 / (n-1)$ and MLE gives $\hat\sigma^2 = \sum(y_i - \bar y)^2 / n$.
+
+a.
+For $n = 10$, by what percentage do the two variance estimates differ?
+b.
+At what sample size does the difference fall below 1%?
+
+::: {.answer}
+**Part a.** The ratio is $n/(n-1)$.
+
+```{julia}
+#| solution: true
+n = 10
+ratio = n / (n - 1)
+@printf("MoM/MLE ratio = %.3g, difference = %.3g%%", ratio, 100 * (ratio - 1))
+```
+
+The method-of-moments variance is about 11% larger than the MLE variance.
+
+**Part b.** Solve $n/(n-1) - 1 < 0.01$, which gives $1/(n-1) < 0.01$, so $n > 101$.
+
+```{julia}
+#| solution: true
+n_threshold = ceil(Int, 1 / 0.01) + 1
+@printf("n > %d", n_threshold)
+```
+
+The difference is negligible for the record lengths used in this course.
+:::
+
+## What a bootstrap confidence interval means
+
+You bootstrap the 100-year return level of annual minimum temperature and obtain a 95% confidence interval of [15, 45] years.
+
+a.
+A colleague says "there is a 95% probability the true return period is between 15 and 45 years."
+Is this a correct interpretation of a frequentist confidence interval?
+b.
+Under what framework would that statement be correct?
+
+::: {.answer}
+**Part a.** A frequentist confidence interval says: if you repeated the experiment many times and built a 95% CI each time, 95% of those intervals would contain the true value.
+Any single interval either contains the true value or it does not.
+The statement "95% probability the true value is in this interval" treats the parameter as random, which the frequentist framework does not.
+
+**Part b.** Under the Bayesian framework, the parameter has a distribution, and a 95% credible interval does mean "95% posterior probability that the parameter lies in this range."
+The two intervals often agree numerically but their interpretations differ.
+:::
+
+## Prior sensitivity
+
+You are estimating the Poisson rate of days below freezing.
+Two analysts use the same data ($n = 5$, $s = 35$) but different priors:
+
+- Analyst A: Gamma(2, 1), prior mean 2
+- Analyst B: Gamma(50, 10), prior mean 5
+
+a.
+Compute both posterior means.
+b.
+Which analyst's prior has more influence, and why?
+
+::: {.answer}
+**Part a.**
+
+```{julia}
+#| solution: true
+s = 35
+n = 5
+post_a = (2 + s) / (1 + n)
+post_b = (50 + s) / (10 + n)
+@printf("Analyst A: %.3g, Analyst B: %.3g, MLE: %.3g", post_a, post_b, s / n)
+```
+
+**Part b.** Analyst B's prior has more influence because it carries a larger effective sample size ($\beta = 10$ prior "pseudo-observations" versus $\beta = 1$).
+With only 5 real observations, a prior that acts like 10 observations dominates.
+Both posteriors would converge to the MLE with enough data.
+:::

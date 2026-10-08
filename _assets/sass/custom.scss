@@ -1,0 +1,532 @@
+/*-- scss:defaults --*/
+
+// Ported from the lab's Typst slide theme (the `rice-warm` palette in
+// jdossgollin/presentation-2026-08-13-hcfcd/colors.typ) so the website and the
+// lecture slides read as one system.
+//
+// That theme defines seven semantic slots and derives the rest:
+//   callout body backgrounds = header color lightened 85%
+//   borders                  = text-muted lightened 60%
+//   surface-alt              = surface darkened 5%
+// The same derivations are applied below.
+
+// Rice University brand colors: https://brand.rice.edu/university-colors
+$rice-blue:     #00205b;  // primary
+$midnight-blue: #13133e;  // emphasis
+$rice-gray:     #7c7e7f;  // text-muted
+
+// Campus-inspired palette: https://brand.rice.edu/campus-inspired-palette
+$warm-yellow:   #e9a139;  // accent
+$brick-red:     #c04829;  // accent2
+
+$surface:       #f4f4f4;
+$text-color:    #111111;
+
+// Semantic slots, named as in colors.typ
+$primary:    $rice-blue;
+$emphasis:   $midnight-blue;
+$accent:     $warm-yellow;
+$accent2:    $brick-red;
+
+// The slide theme's muted gray serves two jobs that the web separates. On a
+// projector it only ever tints a rule or a caption; in a browser it also sets
+// running text, where WCAG AA asks for 4.5:1 against the background. Rice gray
+// measures about 4.0:1 on white, so text set in it fails.
+//
+// Splitting the slot keeps the palette honest. $text-muted is darkened to clear
+// AA and is the only one that may carry text; $rule-gray keeps the original
+// value for borders and rules, which carry no contrast obligation and would
+// look heavy-handed darkened.
+$text-muted: #5f6163;  // ~5.9:1 on white
+$rule-gray:  $rice-gray;
+
+// Line length, set here because the docked layout gives Quarto no setting for
+// it. body.docked hardcodes calc(950px - 3em) for the body track and never reads
+// grid.body-width from _quarto.yml, so on a wide screen prose runs past 100
+// characters. 46rem is 782px at the 17px body size, about 78 characters.
+//
+// The rem unit scales with the reader's font size, so someone browsing at 20px
+// gets a proportionally wider column rather than a shorter line.
+$body-measure: 46rem;
+
+// Derived, per the theme's stated rules. Typst's lighten() mixes toward
+// white; Sass's lighten() adds absolute lightness and clips these mid-
+// lightness colors to pure #fff, so the port uses mix() instead.
+$border-color:  mix(#ffffff, $rule-gray, 60%);
+$surface-alt:   darken($surface, 5%);
+
+$font-family-sans-serif: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+// JuliaMono rather than Fira Mono. Julia identifiers are routinely Unicode in
+// this material -- sigma, epsilon-in, the square root and summation signs,
+// subscripted indices -- and Fira Mono has no glyphs for most of them, so those
+// characters fall back to whatever the system offers and change width mid-line.
+//
+// The full face ships, all 11191 glyphs. woff2 compression alone takes the
+// 3.3 MB TTF to 1.0 MB, close enough to a subset that dropping glyphs buys
+// little, and a subset fails silently: a character outside the kept ranges
+// renders in a fallback face that nobody notices until a student sees it.
+$font-family-monospace:  "JuliaMono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Headings are Space Grotesk, a geometric grotesque, against a humanist sans
+// body. The two differ in construction rather than only in size and weight, so
+// a heading reads as a heading on shape alone and h2 no longer needs a rule
+// under it to separate sections.
+//
+// Bebas Neue stays, but only for the sidebar brand, where it is two words. It
+// has no lowercase, and a page title set in it becomes a block of caps: the
+// Lab 1 title ran to three lines with the word boundaries flattened, which is
+// exactly the close reading its own comment warned against.
+$headings-font-family: "Space Grotesk", $font-family-sans-serif;
+$display-font-family: "Space Grotesk", $font-family-sans-serif;
+$brand-font-family: "Bebas Neue", $font-family-sans-serif;
+
+$body-color:      $text-color;
+$body-bg:         #ffffff;
+$link-color:      $rice-blue;
+$link-hover-color: $brick-red;
+$code-color:      $brick-red;
+$code-block-font-size: 0.8em;
+$code-block-bg:   $surface;
+$code-bg:         rgba($warm-yellow, 0.16);
+
+$headings-color:  $emphasis;
+$h1-font-size:    2.5rem;
+$h2-font-size:    1.9rem;
+$h3-font-size:    1.4rem;
+
+$table-border-color: $border-color;
+$table-striped-bg:   rgba($rice-blue, 0.06);
+
+/*-- scss:rules --*/
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/_assets/fonts/FiraSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/_assets/fonts/FiraSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/_assets/fonts/FiraSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/_assets/fonts/FiraSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JuliaMono";
+  src: url("/_assets/fonts/JuliaMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// One variable file covers the whole weight axis, so the range is declared
+// rather than shipping a file per weight.
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/_assets/fonts/SpaceGrotesk.woff2") format("woff2-variations"),
+       url("/_assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/_assets/fonts/BebasNeue-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// The cap goes on main.content, not on the text blocks inside it. Capping the
+// children instead leaves the container at the full track width with the text
+// narrow inside it, so the unused remainder sits between the prose and the table
+// of contents instead of disappearing. It also needs every block type listed and
+// every .column-* wrapper exempted to match.
+//
+// One rule on the container needs none of that. The .column-* classes escape a
+// constrained body column by negative margin, so full-bleed content still works.
+main.content {
+  max-width: $body-measure;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $emphasis;
+  font-family: $headings-font-family;
+}
+
+// Space Grotesk is drawn tight, so the negative tracking is what the face
+// expects at display sizes rather than a correction.
+//
+// Lab titles wrap, and the two wrapping rules matter more than the tracking:
+// hyphens: none stops a break mid-word, which produced "EXCEEDANCE-/PROBABILITY"
+// on Lab 1 and reads as two words rather than one; text-wrap: balance evens the
+// lines so a wrapped title does not leave a single orphaned word below a full
+// one. Browsers without balance support fall back to normal wrapping.
+h1, .quarto-title h1.title {
+  font-family: $display-font-family;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  hyphens: none;
+  text-wrap: balance;
+  border-bottom: 3px solid $primary;
+  padding-bottom: 0.3rem;
+}
+
+// No rule under h2. The border existed because headings were set in the body
+// face, where only size and weight separated a section heading from bold running
+// text. A different face carries that distinction on its own, and the extra
+// margin above does the rest.
+h2 {
+  font-weight: 700;
+  margin-top: 2.4rem;
+  letter-spacing: -0.01em;
+}
+
+h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+a {
+  text-decoration-color: rgba($rice-blue, 0.4);
+  text-underline-offset: 0.15em;
+}
+
+code:not(.sourceCode) {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+div.sourceCode {
+  border-left: 3px solid $accent;
+  border-radius: 0 3px 3px 0;
+}
+
+.cell-output pre {
+  background: $surface-alt;
+  border-left: 3px solid $border-color;
+}
+
+// Callouts follow the slide theme's two-part construction: a solid colored
+// header bar over a body tinted with that same color lightened 85%.
+@mixin callout-scheme($color, $header-fg: #ffffff) {
+  border: 1px solid mix(#ffffff, $color, 55%);
+  border-top: 3px solid $color;
+  background-color: mix(#ffffff, $color, 85%);
+
+  > .callout-header {
+    background-color: $color;
+    color: $header-fg;
+
+    // Quarto bakes a dark fill into the inline SVGs for the icon and the
+    // collapse chevron; a filter is the only way to recolor them to match
+    // the header text.
+    .callout-icon::before,
+    .callout-toggle::before {
+      @if $header-fg == #ffffff {
+        filter: brightness(0) invert(1);
+      } @else {
+        filter: brightness(0);
+      }
+    }
+  }
+}
+
+// div.callout, not .callout: Quarto colors the left border with
+// div.callout-warning.callout (and kin), and the border override only wins
+// the cascade at equal specificity.
+div.callout {
+  border-radius: 3px;
+  overflow: hidden;
+
+  // Quarto's "simple" appearance pads the whole box, keeps its own 5px left
+  // border, and dims the header to 75% opacity. All three undercut the solid
+  // header bar, so they are reset here.
+  &.callout-style-simple {
+    padding: 0;
+
+    > div.callout-header {
+      opacity: 1;
+      padding: 0.3em 0.7em;
+    }
+
+    > .callout-body-container.callout-body {
+      padding: 0.2em 0.7em 0.4em;
+    }
+  }
+
+  &.callout-note      { @include callout-scheme($rice-blue); }
+  &.callout-important { @include callout-scheme($brick-red); }
+  &.callout-warning   { @include callout-scheme($accent2); }
+  &.callout-caution   { @include callout-scheme($rule-gray); }
+  &.callout-tip       { @include callout-scheme($accent, $text-color); }
+}
+
+// Bootstrap sets tables to width: 100%, which stretches them to the text column
+// whatever they hold. width: auto lets the columns size to their content and the
+// table end where the content ends; max-width keeps a wide one inside the column.
+//
+// display: block is what NOT to use here, though it also constrains width. It
+// drops table layout, so the element stretches to its container while the cells
+// stay at content width and the header band runs past the last column.
+main.content table {
+  width: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // A cell whose value comes through a shortcode renders inside <p>, whose
+  // bottom margin makes that row taller than its neighbors.
+  td > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// A <table> ignores overflow-x, so on a narrow screen its min-content width
+// inflates the page grid's content track and drags the prose column past the
+// viewport. display: block makes the table its own scroll container; the
+// header-band cosmetic cost noted above does not arise here because at these
+// widths the table always fills the column.
+@media (max-width: 767px) {
+  main.content table {
+    display: block;
+    width: 100%;
+  }
+}
+
+// Pandoc derives a <colgroup> from the separator row of a markdown table, so
+// `| :--- | :--- | :--- |` becomes an explicit 33% on every column. Those widths
+// are authored by dash count rather than by intent, and being element-level they
+// beat any stylesheet rule: a Weeks column holding "1-3" gets the same third of
+// the table as a column of full sentences, which then wraps to three lines.
+//
+// Dropping the colgroup returns sizing to the content. Writing the dashes to
+// scale instead would put layout in every source file and have to be redone
+// whenever the text changes.
+main.content table colgroup {
+  display: none;
+}
+
+// A table written as markdown gets no .table-responsive wrapper from Quarto, so
+// the scroll above is on the table itself. This covers the generated ones.
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Solid header bar, matching the slide theme's tables.
+table, .table {
+  thead {
+    background-color: $primary;
+    color: #ffffff;
+
+    th {
+      border-bottom: none;
+      font-weight: 500;
+    }
+  }
+
+  // Bootstrap gives the last row the same hairline as every row between, so the
+  // bottom edge reads as one more divider and the table trails off into the
+  // paragraph below it. A heavier rule in the heading color closes the block.
+  tbody tr:last-child > * {
+    border-bottom: 2px solid $primary;
+  }
+
+  // The same rule above the header bar, so the block is closed at both ends by
+  // the same weight and color. Bootstrap's default here is a 1px light gray that
+  // is invisible against the navy fill and leaves the top edge lighter than the
+  // bottom once the rule below is in place.
+  thead tr:first-child > * {
+    border-top: 2px solid $primary;
+  }
+
+  caption {
+    color: $text-muted;
+    font-size: 0.9em;
+  }
+}
+
+blockquote {
+  border-left: 3px solid $accent;
+  color: $text-muted;
+}
+
+figcaption {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: $text-muted;
+  font-size: 0.9em;
+}
+
+.course-details ul {
+  list-style: none;
+  text-indent: -0.7rem;
+  padding-left: 1.4rem;
+}
+
+.course-details .fa {
+  color: $primary;
+  width: 1.1em;
+}
+
+.sidebar {
+  padding-right: 1.5em;
+}
+
+// The only surviving Bebas. "CEVE 543" is two words, so the all-caps forms read
+// as a wordmark rather than as running text, and it keeps a visual tie to the
+// Typst slide decks now that page headings no longer use the face.
+.sidebar-title {
+  font-family: $brand-font-family;
+  letter-spacing: 0.04em;
+  font-size: 1.5rem;
+}
+
+// The collapsed header on narrow screens. Bebas does not belong here, because
+// this element is not the wordmark: it is an h1 carrying the current page's own
+// title, so it takes whatever the longest page name is, and the syllabus and
+// the lab titles both run past a phone's width. Caps forms flatten the word
+// boundaries that make a long title scannable.
+//
+// The h1 rule above also has to be undone. Its underline and display weight
+// suit a title at the top of an article and read as a heavy second rule in a
+// sticky bar that already sits on a border.
+.quarto-secondary-nav-title {
+  font-family: $headings-font-family;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.3;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sidebar-navigation .active > .sidebar-item-text,
+.sidebar-navigation a:hover {
+  color: $link-hover-color;
+}
+
+// Bootstrap sizes and positions the sidebar icons but never colors them, so
+// they inherit a washed-out default and read as broken. The GitHub tool icon
+// and the section chevrons both need an explicit color.
+.sidebar-tools-main .bi,
+.sidebar-tools-main a {
+  color: $primary;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+.sidebar-navigation .sidebar-item-toggle .bi {
+  color: $text-muted;
+}
+
+.sidebar-navigation .sidebar-item-toggle:hover .bi {
+  color: $primary;
+}
+
+.tools-wide {
+  padding-top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Draft banner, inserted by _assets/lua/draft-banner.lua on a page whose
+// frontmatter says `status: draft`. Quieter than the instructor block below:
+// the content is meant to be read, and the banner only says it may change.
+.draft-banner {
+  border-left: 4px solid $accent;
+  background: rgba($accent, 0.14);
+  padding: 0.6rem 1rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.9em;
+  color: $text-muted;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// A schedule row for a page that is not written yet. The link still resolves,
+// since a placeholder ships as a title-only stub, so this says the page exists
+// without inviting a student to open it. Generated by
+// scripts/write_schedule.py, which marks a page whose `status:` is placeholder.
+.not-posted a,
+a.not-posted {
+  color: $text-muted;
+  text-decoration-color: rgba($text-muted, 0.4);
+}
+
+// Summary blocks (`::: {.summary}`). The inverse of the instructor block: the
+// sanitizer keeps this and drops everything else when it stubs a page, so a
+// board plan that never ships still leaves a student something to read. It
+// renders on both sites, quiet here and alone on the public stub.
+.summary {
+  border-left: 4px solid $accent;
+  background: rgba($accent, 0.08);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+
+  &::before {
+    content: "Summary";
+    display: block;
+    font-weight: 600;
+    color: $accent;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Instructor-only blocks (`::: {.instructor}`). The sanitizer strips them from
+// every published page, so this style only ever renders in the instructor
+// repo. Loud on purpose: anything with this banner must never appear on the
+// public site.
+.instructor {
+  border-left: 4px solid $accent2;
+  background: lighten($accent2, 45%);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+
+  &::before {
+    content: "Instructor only";
+    display: block;
+    font-weight: 600;
+    color: $accent2;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+}

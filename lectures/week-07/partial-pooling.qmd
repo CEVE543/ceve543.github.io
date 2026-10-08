@@ -1,0 +1,257 @@
+---
+title: "Bayesian pooling"
+subtitle: "{{< var course.number >}}"
+week: 7
+module: 2
+order: 3
+kind: "slides"
+date: 2026-10-05
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CEVE543Utils, Dates, DataFrames, Printf, Turing
+
+here = dirname(@__FILE__)
+
+miles_between(lat1, lon1, lat2, lon2) =
+    2 * 3958.8 * asin(sqrt(sind((lat2 - lat1) / 2)^2 + cosd(lat1) * cosd(lat2) * sind((lon2 - lon1) / 2)^2))
+
+# NOAA Atlas 14 Texas 1-day annual maxima, read as in overview.qmd
+function read_atlas14(path)
+    rows = NamedTuple[]
+    id, name, lat, lon = "", "", NaN, NaN
+    for line in Iterators.drop(eachline(path), 1)
+        isempty(strip(line)) && continue
+        if occursin(r"^\d\d/\d\d/\d{4}", line)
+            day, value = split(line)
+            push!(rows, (; id, name, lat, lon, date=Date(day, dateformat"mm/dd/yyyy"), prcp_in=parse(Float64, value)))
+        else
+            fields = strip.(split(line, ","))
+            id, lat, lon = fields[1], parse(Float64, fields[end-2]), parse(Float64, fields[end-1])
+            name = join(fields[2:(end-4)], ",")
+        end
+    end
+    return DataFrame(rows)
+end
+
+hobby_lat, hobby_lon = 29.6381, -95.2819
+ams = read_atlas14(joinpath(here, "dur01d_ams_na14v11.txt"))
+ams.year = year.(ams.date)
+ams.miles = miles_between.(hobby_lat, hobby_lon, ams.lat, ams.lon)
+near = ams[ams.miles .<= 25, :]
+station_ids = unique(near.id)
+n_stations = length(station_ids)
+record_years = [count(==(s), near.id) for s in station_ids]
+station_index = indexin(near.id, station_ids)
+
+# No pooling: one maximum likelihood fit per station, as in overview.qmd
+level_100yr_alone = [only(returnlevel(gevfit(near.prcp_in[near.id .== s]), 100)) for s in station_ids]
+# Full pooling: one maximum likelihood fit to every station's maxima together
+level_100yr_pooled = only(returnlevel(gevfit(near.prcp_in), 100))
+# Full pooling of the shape only: station indicators give each station its own location and scale
+indicators = [Float64.(station_index .== k) for k in 2:n_stations]
+level_100yr_by_obs = returnlevel(gevfit(near.prcp_in; locationcov=indicators, logscalecov=indicators), 100)
+level_100yr_shared_shape = [level_100yr_by_obs[findfirst(==(k), station_index)] for k in 1:n_stations]
+```
+
+## Motivation: nonstationary models
+
+Nonstationary models do not fit the classical regionalization methods:
+
+- a trend adds a coefficient at every station: $\mu_{s,t} = \alpha_s + \beta_s X_t$
+- index flood and region of influence average stationary L-moments, which do not extend easily to covariates
+
+How can we share information between similar locations in a **principled** way?
+
+## Motivation: estimating nonstationary models
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Return levels at Little Sugar Creek from a stationary model (gray) and from nonstationary models (blue), with bootstrap 95% intervals; the nonstationary intervals are far wider, especially at long return periods [@serinaldi_undead:2015].
+:::
+
+## Case study: stations near Hobby Airport
+
+- The `{julia} n_stations` NOAA Atlas 14 stations within 25 miles of Hobby Airport, from the overview.
+- Data: 1-day annual maximum rainfall, `{julia} nrow(near)` station-years, with records of `{julia} minimum(record_years)` to `{julia} maximum(record_years)` years.
+- Goal: a 100-year estimate at each station.
+- Each pooling option below fits a different model to the same data.
+
+## Four ways to pool
+
+$$y_{s,t} \sim \mathrm{GEV}(\mu_{s,t}, \sigma_{s,t}, \xi_{s,t}), \quad \mu_{s,t} = \alpha_s + \beta_s X_t$$
+
+- $y_{s,t}$: annual maximum at station $s$ in year $t$; $X_t$: a covariate.
+- For each parameter, choose how much the stations share (today's fits are stationary, $\beta_s = 0$):
+
+1. No pooling: fit every station alone.
+1. Full pooling of every parameter: one distribution for all.
+1. Full pooling of some: share some, often the shape.
+1. Partial pooling of some: draw station values from a common distribution.
+
+## No pooling
+
+$$y_{s,t} \sim \mathrm{GEV}(\mu_{s,t}, \sigma_{s,t}, \xi_{s,t})$$
+
+:::: {.columns}
+::: {.column width="45%"}
+
+- Every parameter is fit at each station from its own record.
+- One model, run once per station.
+- Maximum likelihood fits give the `{julia} @sprintf("%.1f", minimum(level_100yr_alone))` to `{julia} @sprintf("%.1f", maximum(level_100yr_alone))` inch range of 100-year levels from the overview.
+
+:::
+::: {.column width="55%"}
+
+```{julia}
+#| echo: true
+#| output: false
+# y: one station's annual maxima
+@model function no_pooling(y)
+    μ ~ Normal(5, 5)
+    σ ~ LogNormal(0, 2)
+    ξ ~ Uniform(-0.5, 0.5)
+    y .~ GeneralizedExtremeValue(μ, σ, ξ)
+end
+```
+
+:::
+::::
+
+## Full pooling of every parameter
+
+$$y_{s,t} \sim \mathrm{GEV}(\mu_t, \sigma_t, \xi_t)$$
+
+:::: {.columns}
+::: {.column width="45%"}
+
+- Every station has the same distribution.
+- Same code as no pooling, fed every station's data.
+- Longer records count for more.
+- A maximum likelihood fit to all `{julia} nrow(near)` maxima gives a 100-year level of `{julia} @sprintf("%.1f", level_100yr_pooled)` inches at every station.
+
+:::
+::: {.column width="55%"}
+
+```{julia}
+#| echo: true
+#| output: false
+# y: every station's annual maxima, stacked
+@model function full_pooling(y)
+    μ ~ Normal(5, 5)
+    σ ~ LogNormal(0, 2)
+    ξ ~ Uniform(-0.5, 0.5)
+    y .~ GeneralizedExtremeValue(μ, σ, ξ)
+end
+```
+
+:::
+::::
+
+## Full pooling of some parameters
+
+$$y_{s,t} \sim \mathrm{GEV}(\mu_{s,t}, \sigma_{s,t}, \xi_t)$$
+
+:::: {.columns}
+::: {.column width="45%"}
+
+- Like regional shape estimation.
+- A maximum likelihood fit gives 100-year levels from `{julia} @sprintf("%.1f", minimum(level_100yr_shared_shape))` to `{julia} @sprintf("%.1f", maximum(level_100yr_shared_shape))` inches.
+
+:::
+::: {.column width="55%"}
+
+```{julia}
+#| echo: true
+#| output: false
+# station[i]: the station (1 to N) of y[i]
+@model function shared_shape(y, station, N)
+    μ ~ filldist(Normal(5, 5), N)
+    σ ~ filldist(LogNormal(0, 2), N)
+    ξ ~ Uniform(-0.5, 0.5)
+    y ~ arraydist(GeneralizedExtremeValue.(
+        μ[station], σ[station], ξ))
+end
+```
+
+:::
+::::
+
+## Partial pooling of some parameters
+
+$$
+\begin{aligned}
+y_{s,t} &\sim \mathrm{GEV}(\mu_{s,t}, \sigma_{s,t}, \xi_t), \quad \mu_{s,t} = \alpha_s + \beta_s X_t \\
+\alpha_s &\sim \mathrm{Normal}(\bar\alpha, \omega_\alpha), \quad \beta_s \sim \mathrm{Normal}(\bar\beta, \omega_\beta)
+\end{aligned}
+$$
+
+:::: {.columns}
+::: {.column width="45%"}
+
+- $\bar\alpha$ and $\omega_\alpha$ are the mean and spread of the station intercepts; $\bar\beta$ and $\omega_\beta$ are the same for the trends.
+- The shape is pooled fully: it is the hardest to estimate, and the region is small and flat.
+
+:::
+::: {.column width="55%"}
+
+```{julia}
+#| echo: true
+#| output: false
+# stationary: μ = α, so there is no β
+@model function partial_pooling(y, station, N)
+    ᾱ ~ Normal(5, 3)
+    ω_α ~ LogNormal(0, 0.5)
+    α ~ filldist(Normal(ᾱ, ω_α), N)
+    σ ~ filldist(LogNormal(0, 2), N)
+    ξ ~ Uniform(-0.5, 0.5)
+    y ~ arraydist(GeneralizedExtremeValue.(
+        α[station], σ[station], ξ))
+end
+```
+
+:::
+::::
+
+## Hyperparameters
+
+- The model estimates $\bar\alpha$, $\omega_\alpha$, $\bar\beta$, $\omega_\beta$ from the data, so the data decide how far each station is pulled toward the regional value.
+- The stationary version on the last slide has $2N + 3$ parameters for $N$ stations: `{julia} 2n_stations + 3` for the `{julia} n_stations` stations near Hobby, and 500 draws took about 7 seconds on my laptop.
+
+::: {.callout-tip}
+## Ask
+
+Whose $\alpha_s$ is pulled further toward $\bar\alpha$, a 30-year station or a 120-year one?
+:::
+
+## GEV parameters as a function of location
+
+$$
+\begin{aligned}
+y_{s,t} &\sim \mathrm{GEV}(\mu_{s,t}, \sigma, \xi) \\
+\mu_{s,t} &= \alpha + \beta_1 \mathrm{lat}_s + \beta_2 \mathrm{lon}_s
+\end{aligned}
+$$
+
+- One model, fit to all stations at once.
+- Week 6's covariate idea, with location in place of time.
+- Five parameters, however many stations.
+
+## Two regionalizations of Houston rainfall
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: CO2 coefficients on the GEV location (top) and scale (bottom) at 181 Gulf Coast stations, fit one station at a time (left) and pooled (right); purple is an increase with CO2 and orange a decrease.
+:::

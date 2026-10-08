@@ -1,0 +1,166 @@
+---
+title: "Final Project"
+status: "published"
+release: public
+kind: "milestone"
+occurrences:
+  - date: 2026-10-26
+    label: Selection due
+    task: Open Canvas submission and post selection rubric
+    duration: "[1h]"
+  - date: 2026-11-18
+    label: Project checkpoint
+    task: Read checkpoint submissions and return feedback
+    duration: "[3h]"
+  - date: 2026-12-04
+    label: Paper, memo, and code due
+    task: Post final rubric and open Canvas submission
+    duration: "[1h]"
+---
+
+For your final project, you will take on an open-ended hydroclimate hazard analysis related to your work or research interests.
+Through the project, you will:
+
+1. Practice working on open-ended hazard analysis problems.
+1. Compare multiple methods that make contrasting assumptions.
+1. Apply a sophisticated software tool (relative to what we can cover in a lab) to a problem of your choice, characterize how it differs from other approaches, and describe its key assumptions.
+1. Communicate your recommendation to technical and non-technical audiences.
+
+## Project Description
+
+The final project is your chance to learn a new method and a software tool that implements it.
+You should be ready to answer technical questions about the method (what it assumes, what it estimates, and how it fails) and questions about how the tool puts it into practice.
+Compare its answer with at least one other approach to the same question, which can be a more "standard" or "traditional" approach from the course.
+Then use methods from the course to assess how far each answer can be trusted.
+
+## Example Projects
+
+Below are some potential examples, listed alphabetically.
+Each names a method and a tool.
+The pairings are *suggestions*, not assignments.
+
+- **Compound events.** What is the joint distribution of two or more hazards, such as storm surge and river flow?
+  - Method: a tail-dependent copula, such as a vine copula, or a stochastic event generator that simulates both drivers.
+  - Tool: [`pyvinecopulib`](https://pypi.org/project/pyvinecopulib/) in Python, or [`copula`](https://cran.r-project.org/package=copula) in R.
+- **Downscaling.** How much fine-scale structure does bias correction miss, and does the missing structure change the hazard?
+  - Method: generative downscaling, which simulates fine-scale fields conditioned on coarse model output.
+  - Tool: [NVIDIA CorrDiff](https://docs.nvidia.com/physicsnemo/latest/physicsnemo/examples/weather/corrdiff/README.html), or [RainFARM](https://pysteps.readthedocs.io/en/stable/auto_examples/rainfarm_downscale.html) for a lighter spectral option without a GPU.
+- **Event attribution.** How much more or less likely is a specific observed extreme at your site than it once was?
+  - Method: a nonstationary extreme value fit, compared with a stationary one, to estimate the change in probability, or a storyline built from downscaled climate model runs.
+  - Tool: [`climextRemes`](https://pypi.org/project/climextremes/) or implement your own.
+- **Historical and paleoflood information.** How much does information from before the gauge record change the flood frequency curve?
+  - Method: a Bayesian fit that folds in historical or paleoflood information through perception thresholds.
+  - Tool: [USACE RMC-BestFit](https://github.com/USACE-RMC/RMC-BestFit), or the same model written in Stan or PyMC.
+- **Multisite simulation.** How likely is it that several places in your region get extreme rainfall at once?
+  - Method: a multisite stochastic rainfall generator, or a copula across sites.
+  - Tool: [`CoSMoS`](https://cran.r-project.org/package=CoSMoS) in R, or [AWE-GEN-2d](https://hyd.ifu.ethz.ch/research-data-models/awe-gen-2d.html).
+- **Regional frequency analysis.** What is the design value at a short-record or ungauged site, and how much does it change when you borrow information from elsewhere?
+  - Method: storm transposition, which resamples the regional storm catalog, or downscaling a climate model to the site, compared with regionalized extreme value models.
+  - Tool: [RainyDay](https://github.com/HydroclimateExtremesGroup/RainyDay) for transposition.
+
+## Deliverables
+
+Submit each written piece on Canvas.
+You may use any language or tool, as long as someone else can reproduce your analysis from what you submit.
+
+::: {.callout-tip}
+This is a good use of an LLM.
+Have an AI agent check that your analysis is reproducible and identify limitations.
+:::
+
+### Selection proposal
+
+Due Mon Oct 26.
+Submit one page that states:
+
+- The question you will answer, and the decision it informs.
+- The decision-maker your memo is for, named by role, such as "the city engineer deciding whether to upsize a culvert."
+- Your site and data, with their sources.
+- The two or more approaches you will compare, and the assumption on which they differ.
+- A prediction: which approach you expect to give the larger answer, and why, based on that assumption.
+- Your fallback: an approach, such as a second course method, that takes the tool's place in the comparison if the tool will not run.
+
+After you submit, sign up for a 15-minute meeting with me during the week of Oct 26 to settle the scope: [TODO: sign-up link].
+
+### Checkpoint
+
+Due Wed Nov 18.
+Submit a short write-up of two pages at most, with your code so far.
+By this date, you must have fit at least one course method to your data, and report whether your tool runs on your data.
+
+Nov 18 is the last day to get your tool running.
+If it has not run on your data by then, I tell you to switch in my checkpoint feedback.
+Your fallback from the proposal becomes the second approach in your comparison, and you write an account of the tool in place of its results.
+The account says what it assumes, where it broke, and what running it would take.
+It also shows the attempt: your environment, the commands you ran, and the errors they produced.
+The account is graded on the same rubric as a working analysis.
+
+Include a draft of your AI use statement, described below.
+
+### Peer review
+
+In class Mon Nov 23.
+Bring a draft of the methods section of your paper.
+You will read a classmate's draft and answer two questions about it.
+What assumption separates the approaches being compared?
+Which result, if it came out differently, would change the recommendation?
+This session counts toward your participation grade, as described in the [syllabus](../../syllabus.qmd), and carries no project points.
+
+### Paper, memo, code, and AI use statement
+
+Due Fri Dec 4.
+
+- **Paper**, ten pages at most, excluding references.
+  It states the question, explains each approach and what it assumes, compares their answers, and assesses their credibility with methods from the course.
+  Quote the prediction from your proposal and say whether it held; a wrong prediction costs no points.
+- **Memo**, one page, addressed to the decision-maker you named in your proposal.
+  It gives your recommendation and how confident you are in it, in terms that person can act on, with no equations.
+- **Code**, as a repository link or a zip archive, with a README.
+  Following the README should reproduce every figure and number in the paper.
+- **AI use statement**, a separate document of one page at most.
+  Say how you used AI tools in the project and why you think that use was appropriate, including what you take "appropriate" to mean.
+  I am looking for a considered answer.
+  The statement is required and unscored, and I do not grade your paper until I have it.
+
+### Defense
+
+During the final exam period, in the three-hour slot the registrar assigns this course: [TODO: date and time once the registrar posts it].
+The defense has two scored parts.
+In the talk, you present for 12 minutes, with a hard stop at 14 minutes, followed by 8 minutes of questions from me and your classmates.
+After all the talks, you meet with me one-on-one for about 10 minutes of questions.
+I ask detailed questions about your method, your tool, and your own analysis, and I prepare the questions from your paper.
+I record the one-on-one, as with the oral examinations, so that grading can be audited for consistency.
+
+## Grading
+
+The project is out of 100 points and is worth 30% of your course grade.
+
+| Component | Points |
+| :--- | :--- |
+| Selection proposal | 5 |
+| Checkpoint | 5 |
+| Paper | 25 |
+| Memo | 15 |
+| Code | 5 |
+| Talk | 15 |
+| One-on-one questions | 30 |
+
+The proposal and the checkpoint earn full credit for a complete submission that reports where your project actually stands.
+Each piece loses 20% of its points per day late, which is 1 point per day on the proposal or the checkpoint.
+Extensions must be arranged in advance, as described in the [syllabus](../../syllabus.qmd#late-work).
+
+The table scores the paper on three criteria and each other component on one.
+Every criterion below is scored at one of four levels: excellent earns full points, proficient 80%, developing 50%, and missing zero.
+The table describes the first three levels; missing means the piece was not submitted or does not address the criterion.
+
+| Criterion | Points | Excellent | Proficient | Developing |
+| :--- | :--- | :--- | :--- | :--- |
+| Question and method (paper) | 8 | The question is specific and tied to the decision. You explain what the method assumes, what it estimates, how it fails, and how the tool implements it. | The question is clear and the method is explained, but one of its assumptions or failure modes is missing. | The question is vague, or two or more of the method's assumptions and failure modes are missing. |
+| Comparison (paper) | 9 | You compare at least two approaches, explain how far apart their answers are through the assumption that separates them, and say whether your prediction held. | The approaches are compared, but the difference is reported without being explained. | Only one approach is carried through, or the comparison is a side-by-side list of results. |
+| Credibility and uncertainty (paper) | 8 | You use course methods, such as diagnostics, checks against data you did not fit to, or uncertainty intervals, to judge how far each answer can be trusted. | Uncertainty is quantified for some answers but not used to judge them. | Answers are reported without uncertainty or any check. |
+| Memo | 15 | A non-technical reader could act on it: the recommendation, its uncertainty, and what would change it, in one page. | The recommendation is clear, but the uncertainty or what would change it is missing or stated in technical terms. | The memo summarizes the analysis without making a recommendation, or runs past one page. |
+| Code | 5 | Following the README reproduces every figure and number. | It reproduces the main results with small fixes. | It runs only with major fixes, or the README does not say how to run it. |
+| Talk | 15 | Within 12 minutes, and a classmate could restate your question, the assumption that separates the approaches, and your recommendation. | Clear, but over 12 minutes or missing one of those three. | Hard to follow, or a tour of methods without a result. |
+| One-on-one questions | 30 | You answer detailed questions about the method, the tool, and your own choices, and reason correctly about what would change your answer. | You answer most questions, and need prompting on some. | You cannot explain parts of your own analysis. |
+
+If your tool did not run, the account of it replaces its results under "Question and method" and "Credibility and uncertainty", and your fallback counts as the second approach under "Comparison".

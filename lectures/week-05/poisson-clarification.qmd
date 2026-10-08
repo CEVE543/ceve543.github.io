@@ -1,0 +1,66 @@
+---
+title: "Poisson counts vs exponential waiting times"
+week: 5
+module: 2
+order: 5
+kind: "notes"
+date: 2026-09-23
+status: "published"
+release: "public"
+format: "typst"
+---
+
+This note clarifies a point I mis-stated during Monday's lecture.
+Read @coles_extremes:2001 §4.3.3 for more details and derivations.
+
+## Event arrival rates
+
+On Monday we wrote that extremes (where $x > u$) arrive at rate $\lambda$ per year and assumed these events to be independent and stationary.
+The GPD gives the probability distribution for the extremes, *conditional on them being extreme*.
+To say anything about return periods, we *also* need a model for their arrival.
+
+There are two questions, which are (as we will see) closely related.
+
+### How long until the next exceedance?
+
+The waiting time $W$ between consecutive cluster maxima is frequently modeled **exponential** (not Poisson as I mistakenly said on Monday).
+
+$$
+P(W > w) = e^{-\lambda w}
+$$
+
+where $w$ is measured in years (the same units as $\lambda$).
+The mean waiting time is $1/\lambda$ years (so $\lambda$ has units of $\text{year}^{-1}$.)
+The exponential distribution is continuous: it models durations.
+
+::: {.callout-note}
+Assuming exponential waiting times is a convenient and practical assumption widely used in the literature.
+However, it is a modeling choice / assumption rather than a theoretical result.
+As we noted, weather and climate extremes rarely meet this assumption (the expected waiting time between hurricanes is quite different between December vs June, or an El Niño vs La Niña year).
+:::
+
+### How many exceedances in a year?
+
+If the waiting times are exponential, the number of exceedances in a fixed interval follows a Poisson distribution.
+The count $N$ in one year is Poisson with rate $\lambda$:
+
+$$
+P(N = k) = \frac{\lambda^{k}}{k!} e^{-\lambda}
+$$
+
+::: {.callout-note}
+Once again, the Poisson distribution for the number of counts in a season is common but not required. 
+Other distributions, like the Negative Binomial, could also be used, although this would somewhat complicate the return period calculations.
+It is also fairly common to see applications that use the Poisson model for counts per year but not the exponential waiting period model, for example to model tropical cyclone arrivals in a given location which occur only during the summer months.
+:::
+
+## The return level formula
+
+The compound-Poisson model combines the Poisson rate $\lambda$ with the GPD to give the $T$-year return level:
+
+$$
+x_T = u + \frac{\sigma}{\xi}\left[(T\lambda)^\xi - 1\right]
+$$
+
+for $\xi \neq 0$.
+When $\xi = 0$, the formula becomes $x_T = u + \sigma \ln(T\lambda)$.

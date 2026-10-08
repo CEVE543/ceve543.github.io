@@ -1,0 +1,33 @@
+---
+title: "Course Schedule"
+format:
+  html:
+    tbl-colwidths: [6, 12, 52, 30]
+  typst:
+    fontsize: 10pt
+    tbl-colwidths: [6, 12, 52, 30]
+    margin:
+      x: 0.9in
+      y: 0.85in
+    font-paths:
+      - _typst/fonts
+    mainfont: "Fira Sans"
+    include-in-header:
+      - _typst/document-header.typ
+    include-before-body:
+      - _typst/document-body.typ
+brand:
+  typography:
+    headings:
+      family: "Space Grotesk"
+status: "published"
+release: "public"
+---
+
+Schedule is subject to change.
+All changes are posted here.
+If a due date here conflicts with Canvas, this page is correct.
+
+Materials link up as they are released; a week with no links is not published yet.
+
+{{< include _includes/schedule-table.qmd >}}
