@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 7: Regional frequency analysis with a CO2 trend – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ece3c0fd74f8eaa436072cd4dd0e8986.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-13158bb5413ec8d02ccae6c99b3f37a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Lab 7: Regional frequency analysis with a CO2 trend – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:image" content="https://ceve543.github.io/labs/lab-07/index_files/figure-html/fig-stations-output-1.svg">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#rainfall-data" id="toc-rainfall-data" class="nav-link" data-scroll-target="#rainfall-data">Rainfall data</a></li>
+  <li><a href="#co2-data" id="toc-co2-data" class="nav-link" data-scroll-target="#co2-data">CO2 data</a></li>
+  </ul></li>
+  <li><a href="#the-target-station" id="toc-the-target-station" class="nav-link" data-scroll-target="#the-target-station">The target station</a></li>
+  <li><a href="#choosing-the-stations" id="toc-choosing-the-stations" class="nav-link" data-scroll-target="#choosing-the-stations">Choosing the stations</a>
+  <ul class="collapse">
+  <li><a href="#the-weight-function" id="toc-the-weight-function" class="nav-link" data-scroll-target="#the-weight-function">The weight function</a></li>
+  </ul></li>
+  <li><a href="#nonstationary-model" id="toc-nonstationary-model" class="nav-link" data-scroll-target="#nonstationary-model">Nonstationary model</a></li>
+  <li><a href="#no-pooling" id="toc-no-pooling" class="nav-link" data-scroll-target="#no-pooling">No pooling</a></li>
+  <li><a href="#borrowing-from-neighbors" id="toc-borrowing-from-neighbors" class="nav-link" data-scroll-target="#borrowing-from-neighbors">Borrowing from neighbors</a></li>
+  <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link" data-scroll-target="#uncertainty">Uncertainty</a>
+  <ul class="collapse">
+  <li><a href="#mcmc" id="toc-mcmc" class="nav-link" data-scroll-target="#mcmc">MCMC</a></li>
+  <li><a href="#bootstrap-over-years" id="toc-bootstrap-over-years" class="nav-link" data-scroll-target="#bootstrap-over-years">Bootstrap over years</a></li>
+  </ul></li>
+  <li><a href="#your-analysis" id="toc-your-analysis" class="nav-link" data-scroll-target="#your-analysis">Your analysis</a>
+  <ul class="collapse">
+  <li><a href="#change-the-weight-function" id="toc-change-the-weight-function" class="nav-link" data-scroll-target="#change-the-weight-function">Change the weight function</a></li>
+  <li><a href="#share-only-the-trend-and-shape" id="toc-share-only-the-trend-and-shape" class="nav-link" data-scroll-target="#share-only-the-trend-and-shape">Share only the trend and shape</a></li>
+  <li><a href="#defend-a-choice" id="toc-defend-a-choice" class="nav-link" data-scroll-target="#defend-a-choice">Defend a choice</a></li>
+  </ul></li>
+  <li><a href="#turning-it-in" id="toc-turning-it-in" class="nav-link" data-scroll-target="#turning-it-in">Turning it in</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-07/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 7: Regional frequency analysis with a CO2 trend</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Friday, October 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this lab, you will estimate the 100-year daily rainfall in 2026 at a coastal gauge with a short record. You will let the rainfall extremes change with CO2, and borrow data from nearby gauges to make up for the short record. <strong>Class does not meet</strong> on Friday, October 9, so you will work through this lab on your own.</p>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Fit a GEV that changes with CO2 by weighted likelihood.</li>
+<li>Choose which stations to borrow from with a weight function.</li>
+<li>Get an interval by MCMC and by a bootstrap over years, and explain why they differ.</li>
+<li>Make and defend a choice of weight function and of which parameters to share.</li>
+</ol>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>First, load the packages.</p>
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>here <span class="op">=</span> <span class="fu">dirname</span>(<span class="pp">@__FILE__</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="im">using</span> <span class="bu">CairoMakie</span>, <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">Dates</span>, <span class="bu">Distributions</span>, <span class="bu">LaTeXStrings</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>      <span class="bu">NaturalEarth</span>, <span class="bu">Turing</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="im">using</span> <span class="bu">Printf</span>, <span class="bu">Random</span>, <span class="bu">Statistics</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">543</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a><span class="fu">set_theme!</span>(<span class="fu">theme_minimal</span>(); fontsize<span class="op">=</span><span class="fl">14</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>colors <span class="op">=</span> Makie.<span class="fu">wong_colors</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="rainfall-data" class="level3">
+<h3 class="anchored" data-anchor-id="rainfall-data">Rainfall data</h3>
+<p>You will analyze annual maximum daily rainfall from NOAA Atlas 14, Volume 11, which covers Texas <span class="citation" data-cites="perica_atlas14_texas:2018">(<a href="#ref-perica_atlas14_texas:2018" role="doc-biblioref">Perica et al., 2018</a>)</span>. The file <code>dur01d_ams_na14v11.txt</code> is the 1-day annual maximum series that NOAA published with the atlas, downloaded unchanged from the <a href="https://hdsc.nws.noaa.gov/pub/hdsc/data/tx/">NOAA Hydrometeorological Design Studies Center</a>. It holds 816 stations, with one annual maximum per calendar year, in inches, through 2017. After a title line, the file has one block per station, separated by blank lines. Each block starts with a header line giving the station’s ID, name, state, latitude, longitude, and elevation in feet, followed by one line per year giving the date of that year’s maximum and its value.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code Folds
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of the code blocks in this lab are “folded” to improve readability. Click the triangle next to a label such as “Show the file reader” to see the code. A numbered marker at the end of a line explains that line; hover over it to read the note.</p>
+</div>
+</div>
+<div id="4" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the file reader</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">read_station</span>(block)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-label="2"></a>    header, rows<span class="op">...</span> <span class="op">=</span> <span class="fu">split</span>(block, <span class="ch">'\n'</span>)</span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-label="3"></a>    fields <span class="op">=</span> <span class="fu">strip</span>.(<span class="fu">split</span>(header, <span class="ch">','</span>))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-label="4"></a>    lat, lon, elev_ft <span class="op">=</span> <span class="fu">parse</span>.(<span class="dt">Float64</span>, fields[(<span class="kw">end</span> <span class="op">-</span> <span class="fl">2</span>)<span class="op">:</span><span class="kw">end</span>])</span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-label="5"></a>    days <span class="op">=</span> <span class="fu">split</span>.(rows)</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-label="6"></a>    <span class="cf">return</span> <span class="fu">DataFrame</span>(;</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-label="7"></a>                     id<span class="op">=</span>fields[<span class="fl">1</span>], name<span class="op">=</span><span class="fu">join</span>(fields[<span class="fl">2</span><span class="op">:</span>(<span class="kw">end</span> <span class="op">-</span> <span class="fl">4</span>)], <span class="st">","</span>), lat,</span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-label="8"></a>                     lon, elev_ft,</span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-label="9"></a>                     date<span class="op">=</span><span class="fu">Date</span>.(<span class="fu">first</span>.(days), dateformat<span class="st">"mm/dd/yyyy"</span>),</span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-label="10"></a>                     prcp_in<span class="op">=</span><span class="fu">parse</span>.(<span class="dt">Float64</span>, <span class="fu">last</span>.(days)))</span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-label="11"></a><span class="kw">end</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-label="12"></a></span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-label="13"></a><span class="kw">function</span> <span class="fu">read_atlas14</span>(path)</span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-label="14"></a>    blocks <span class="op">=</span> <span class="fu">split</span>(<span class="fu">strip</span>(<span class="fu">join</span>(<span class="bu">Iterators</span>.<span class="fu">drop</span>(<span class="fu">eachline</span>(path), <span class="fl">1</span>), <span class="ch">'\n'</span>)),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-15" class="code-annotation-target"><a href="#annotated-cell-2-15" aria-label="15"></a>                   <span class="st">r"</span><span class="sc">\n\s*\n</span><span class="st">"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4">4</button><span id="annotated-cell-2-16" class="code-annotation-target"><a href="#annotated-cell-2-16" aria-label="16"></a>    <span class="cf">return</span> <span class="fu">reduce</span>(vcat, <span class="fu">read_station</span>.(blocks))</span>
+<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-label="17"></a><span class="kw">end</span></span>
+<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-label="18"></a></span>
+<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-label="19"></a>ann_max_texas <span class="op">=</span> <span class="fu">read_atlas14</span>(<span class="fu">joinpath</span>(here, <span class="st">"dur01d_ams_na14v11.txt"</span>))</span>
+<span id="annotated-cell-2-20"><a href="#annotated-cell-2-20" aria-label="20"></a>ann_max_texas.year <span class="op">=</span> <span class="fu">year</span>.(ann_max_texas.date)</span>
+<span id="annotated-cell-2-21"><a href="#annotated-cell-2-21" aria-label="21"></a><span class="fu">first</span>(ann_max_texas, <span class="fl">4</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">The first line of a block is the station’s header, and each line after it is one year.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="2">A station’s name can contain a comma, so the header is read from both ends: the ID is the first field, and the last three are latitude, longitude, and elevation.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="15" data-code-annotation="3">Skip the title line and split the rest of the file into one block per station.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="16" data-code-annotation="4">Turn each block into a table and stack the tables, one row per station and year.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>4×8 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small">
+<thead>
+<tr class="columnLabelRow header">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lon</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">elev_ft</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">prcp_in</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+</tr>
+<tr class="columnLabelRow even">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="SubString{String}">SubStrin…</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Dates.Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">60-0011</td>
+<td style="text-align: left;">CLEAR CK AT BAY AREA BLVD</td>
+<td style="text-align: right;">29.4977</td>
+<td style="text-align: right;">-95.1599</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">1987-06-11</td>
+<td style="text-align: right;">6.31</td>
+<td style="text-align: right;">1987</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">60-0011</td>
+<td style="text-align: left;">CLEAR CK AT BAY AREA BLVD</td>
+<td style="text-align: right;">29.4977</td>
+<td style="text-align: right;">-95.1599</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">1988-09-02</td>
+<td style="text-align: right;">5.46</td>
+<td style="text-align: right;">1988</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">60-0011</td>
+<td style="text-align: left;">CLEAR CK AT BAY AREA BLVD</td>
+<td style="text-align: right;">29.4977</td>
+<td style="text-align: right;">-95.1599</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">1989-08-01</td>
+<td style="text-align: right;">11.39</td>
+<td style="text-align: right;">1989</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">60-0011</td>
+<td style="text-align: left;">CLEAR CK AT BAY AREA BLVD</td>
+<td style="text-align: right;">29.4977</td>
+<td style="text-align: right;">-95.1599</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: left;">1990-05-03</td>
+<td style="text-align: right;">3.32</td>
+<td style="text-align: right;">1990</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="co2-data" class="level3">
+<h3 class="anchored" data-anchor-id="co2-data">CO2 data</h3>
+<p>The file <code>logCO2.csv</code> has one row per year from 1849 to 2025. Its column <code>log_CO2</code> is the natural log of annual mean atmospheric CO2, in parts per million. Before 1959 it comes from the Law Dome ice core record <span class="citation" data-cites="etheridge_lawdomeco2:1996 macfarlingmeure_lawdomeextended:2006">(<a href="#ref-etheridge_lawdomeco2:1996" role="doc-biblioref">Etheridge et al., 1996</a>; <a href="#ref-macfarlingmeure_lawdomeextended:2006" role="doc-biblioref">MacFarling Meure et al., 2006</a>)</span>; from 1959 it is the Mauna Loa annual mean from NOAA’s Global Monitoring Laboratory.</p>
+<p>The covariate is the number of doublings of CO2 above the pre-industrial level of 280 ppm:</p>
+<p><span class="math display">\[
+x_t = \log_2 \frac{\text{CO}_2(t)}{280}.
+\]</span></p>
+<p>The file stops at 2025, at 427 ppm. CO2 rose about 2.6 ppm per year from 2015 to 2025, so for 2026 we assume 430 ppm.</p>
+<div id="6" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>co2 <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">joinpath</span>(here, <span class="st">"logCO2.csv"</span>), DataFrame)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>co2.x <span class="op">=</span> (co2.log_CO2 <span class="op">.-</span> <span class="fu">log</span>(<span class="fl">280</span>)) <span class="op">./</span> <span class="fu">log</span>(<span class="fl">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>x_2026 <span class="op">=</span> <span class="fu">log2</span>(<span class="fl">430</span> <span class="op">/</span> <span class="fl">280</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>x_1950 <span class="op">=</span> <span class="fu">only</span>(co2.x[co2.year <span class="op">.==</span> <span class="fl">1950</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>ann_max_texas <span class="op">=</span> <span class="fu">innerjoin</span>(ann_max_texas, co2; on<span class="op">=:</span>year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="the-target-station" class="level2">
+<h2 class="anchored" data-anchor-id="the-target-station">The target station</h2>
+<p>You will estimate the 100-year daily rainfall in 2026 at Galveston Scholes Field (station 79-0047), on Galveston Island. Many real gauges have short records, so you will use only its 21 years from 1997 to 2017.</p>
+<div id="8" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">filter!</span>(row <span class="op">-&gt;</span> row.id <span class="op">!=</span> <span class="st">"79-0047"</span> <span class="op">||</span> row.year <span class="op">&gt;=</span> <span class="fl">1997</span>, ann_max_texas)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>scholes_field <span class="op">=</span> <span class="fu">first</span>(ann_max_texas[ann_max_texas.id <span class="op">.==</span> <span class="st">"79-0047"</span>, <span class="op">:</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="choosing-the-stations" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-stations">Choosing the stations</h2>
+<p>To borrow from neighbors, we first need each station’s distance to Scholes Field. With latitudes <span class="math inline">\(\phi_1, \phi_2\)</span> and longitudes <span class="math inline">\(\lambda_1, \lambda_2\)</span>, the haversine formula gives the great-circle distance</p>
+<p><span class="math display">\[
+d = 2R \arcsin \sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos\phi_1 \cos\phi_2 \sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)},
+\]</span></p>
+<p>where <span class="math inline">\(R = 3958.8\)</span> miles is the radius of the Earth.</p>
+<div id="10" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">miles_between</span>(lat1, lon1, lat2, lon2)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    R <span class="op">=</span> <span class="fl">3958.8</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    north_south <span class="op">=</span> <span class="fu">sind</span>((lat2 <span class="op">-</span> lat1) <span class="op">/</span> <span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    east_west <span class="op">=</span> <span class="fu">cosd</span>(lat1) <span class="op">*</span> <span class="fu">cosd</span>(lat2) <span class="op">*</span> <span class="fu">sind</span>((lon2 <span class="op">-</span> lon1) <span class="op">/</span> <span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    <span class="cf">return</span> <span class="fl">2</span>R <span class="op">*</span> <span class="fu">asin</span>(<span class="fu">sqrt</span>(north_south <span class="op">+</span> east_west))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a><span class="kw">end</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>ann_max_texas.miles <span class="op">=</span> <span class="fu">miles_between</span>.(scholes_field.lat, scholes_field.lon,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>                                     ann_max_texas.lat, ann_max_texas.lon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="the-weight-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-weight-function">The weight function</h3>
+<p>A weight function says how much each station counts, from 1 (as much as Scholes Field) to 0 (not at all). As an example, we consider one that falls linearly with distance <span class="math inline">\(d\)</span> and reaches zero at a radius <span class="math inline">\(r\)</span>:</p>
+<p><span class="math display">\[
+w(d) = \max\left(0, 1 - \frac{d}{r}\right).
+\]</span></p>
+<div id="12" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>radius <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="fu">weight</span>(miles) <span class="op">=</span> <span class="fu">max</span>(<span class="fl">0.0</span>, <span class="fl">1</span> <span class="op">-</span> miles <span class="op">/</span> radius)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To try a different weight function, edit <code>weight(miles)</code> above and rerun the notebook from there. Some options:</p>
+<ul>
+<li><strong>Region of influence:</strong> <span class="math inline">\(w(d) = 1\)</span> if <span class="math inline">\(d \le r\)</span>, and 0 otherwise.</li>
+<li><strong>Inverse distance squared:</strong> <span class="math inline">\(w(d) = \min\left(1, (d_0 / d)^2\right)\)</span> if <span class="math inline">\(d \le r\)</span>, and 0 otherwise.</li>
+<li><strong>Exponential kernel:</strong> <span class="math inline">\(w(d) = \exp(-d / L)\)</span>, with length scale <span class="math inline">\(L\)</span>.</li>
+</ul>
+<p>We keep the stations with weight above zero. The effective number of stations, <span class="math inline">\(n_\text{eff} = \sum_s w_s\)</span>, is how many stations’ worth of data the fit uses.</p>
+<div id="14" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>ann_max_texas.w <span class="op">=</span> <span class="fu">weight</span>.(ann_max_texas.miles)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>ann_max_region <span class="op">=</span> ann_max_texas[ann_max_texas.w <span class="op">.&gt;</span> <span class="fl">0</span>, <span class="op">:</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>stations <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(ann_max_region, [<span class="op">:</span>id, <span class="op">:</span>name, <span class="op">:</span>lat, <span class="op">:</span>lon, <span class="op">:</span>miles, <span class="op">:</span>w]),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>                   nrow <span class="op">=&gt;</span> <span class="op">:</span>n_years)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a><span class="fu">sort!</span>(stations, <span class="op">:</span>miles)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a><span class="pp">@printf</span>(<span class="st">"%d stations kept, n_eff = %.1f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(stations), <span class="fu">sum</span>(stations.w))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20 stations kept, n_eff = 6.1</code></pre>
+</div>
+</div>
+<p>The maps in this lab draw land from the 1:10m layer of <a href="https://www.naturalearthdata.com/">Natural Earth</a>, which the <code>NaturalEarth</code> package downloads on first use. <code>map_axis</code> makes an axis with that background.</p>
+<div id="16" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-label="1"></a>land <span class="op">=</span> <span class="fu">naturalearth</span>(<span class="st">"land"</span>, <span class="fl">10</span>)</span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-label="2"></a></span>
+<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3" aria-label="3"></a><span class="kw">function</span> <span class="fu">map_axis</span>(position)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-4" class="code-annotation-target"><a href="#annotated-cell-8-4" aria-label="4"></a>    ax <span class="op">=</span> <span class="fu">Axis</span>(position; autolimitaspect<span class="op">=</span><span class="fl">1</span> <span class="op">/</span> <span class="fu">cosd</span>(scholes_field.lat),</span>
+<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5" aria-label="5"></a>              backgroundcolor<span class="op">=:</span>aliceblue)</span>
+<span id="annotated-cell-8-6"><a href="#annotated-cell-8-6" aria-label="6"></a>    <span class="fu">poly!</span>(ax, land.geometry; color<span class="op">=:</span>gray95, strokecolor<span class="op">=:</span>gray60,</span>
+<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7" aria-label="7"></a>          strokewidth<span class="op">=</span><span class="fl">0.5</span>, xautolimits<span class="op">=</span><span class="cn">false</span>, yautolimits<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-label="8"></a>    <span class="fu">hidedecorations!</span>(ax)</span>
+<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9" aria-label="9"></a>    <span class="cf">return</span> ax</span>
+<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10" aria-label="10"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="4" data-code-annotation="1">Stretch latitude by <span class="math inline">\(1 / \cos\phi\)</span> at Scholes Field, so a mile east and a mile north are the same length on the map.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="cell-fig-stations" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the plotting code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="kw">let</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">800</span>, <span class="fl">380</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    ax_map <span class="op">=</span> <span class="fu">map_axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    stations_plot <span class="op">=</span> <span class="fu">scatter!</span>(ax_map, stations.lon, stations.lat;</span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>                             color<span class="op">=</span>stations.w, colormap<span class="op">=:</span>viridis,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>                             colorrange<span class="op">=</span>(<span class="fl">0</span>, <span class="fl">1</span>), markersize<span class="op">=</span><span class="fl">10</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>    <span class="fu">scatter!</span>(ax_map, [scholes_field.lon], [scholes_field.lat]; marker<span class="op">=:</span>star5,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>             color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">20</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>    <span class="fu">Colorbar</span>(fig[<span class="fl">1</span>, <span class="fl">2</span>], stations_plot; label<span class="op">=</span><span class="st">"weight"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>    at_scholes <span class="op">=</span> ann_max_region.id <span class="op">.==</span> scholes_field.id</span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>    ax_series <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">3</span>]; xlabel<span class="op">=</span><span class="st">"year"</span>, ylabel<span class="op">=</span><span class="st">"annual maximum (inches)"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>    <span class="fu">scatter!</span>(ax_series, ann_max_region.year, ann_max_region.prcp_in;</span>
+<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a>             color<span class="op">=</span>(colors[<span class="fl">1</span>], <span class="fl">0.4</span>), markersize<span class="op">=</span><span class="fl">5</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a>    <span class="fu">scatter!</span>(ax_series, ann_max_region.year[at_scholes],</span>
+<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>             ann_max_region.prcp_in[at_scholes]; color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">8</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>    fig</span>
+<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-stations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-stations-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Left: the kept stations, colored by weight, with Galveston Scholes Field as the star. Right: their annual maxima, with Scholes Field in black.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nonstationary-model" class="level2">
+<h2 class="anchored" data-anchor-id="nonstationary-model">Nonstationary model</h2>
+<p>We allow a trend in both the location and the scale, and assume the two are proportional:</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp;\sim \text{GEV}(\mu_t, \sigma_t, \xi) \\
+\mu_t &amp;= \mu_0 e^{\beta x_t} \\
+\sigma_t &amp;= \kappa \mu_t
+\end{aligned}
+\]</span></p>
+<p>In lab 6, the location and the log scale each had their own trend. Here a single parameter, <span class="math inline">\(\beta\)</span>, sets the trend in both:</p>
+<ul>
+<li><span class="math inline">\(\mu_0\)</span> is the location at the pre-industrial level, <span class="math inline">\(x = 0\)</span>.</li>
+<li>When <span class="math inline">\(x\)</span> rises by <span class="math inline">\(\Delta x\)</span>, both <span class="math inline">\(\mu_t\)</span> and <span class="math inline">\(\sigma_t\)</span> are multiplied by <span class="math inline">\(e^{\beta \Delta x}\)</span>.</li>
+<li><span class="math inline">\(\kappa\)</span> is the ratio of scale to location, the same in every year.</li>
+<li><span class="math inline">\(\xi\)</span> is the shape, also the same in every year.</li>
+</ul>
+<p>Since the location and scale change by the same factor and the shape does not change, every return level changes by that factor too. We report the trend as the percent change in every return level from 1950 to 2026, <span class="math inline">\(100\left(e^{\beta (x_{2026} - x_{1950})} - 1\right)\)</span>.</p>
+<p>To borrow from neighbors, we weight each station’s log-likelihood by <span class="math inline">\(w_s\)</span> and add them up:</p>
+<p><span class="math display">\[
+\ell(\mu_0, \kappa, \beta, \xi) = \sum_s w_s \sum_t \log f(y_{s,t} \mid \mu_0, \kappa, \beta, \xi),
+\]</span></p>
+<p>where <span class="math inline">\(f\)</span> is the GEV density. With a single station and <span class="math inline">\(w = 1\)</span>, this is the ordinary log-likelihood.</p>
+<p><code>weighted_gev</code> writes this as a Turing model.</p>
+<div id="20" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-label="1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">weighted_gev</span>(y, x, w)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-label="2"></a>    μ<span class="fl">0</span> <span class="op">~</span> <span class="fu">LogNormal</span>(<span class="fl">1.5</span>, <span class="fl">0.5</span>)</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-label="3"></a>    κ <span class="op">~</span> <span class="fu">LogNormal</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">0.5</span>)</span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4" aria-label="4"></a>    β <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">0.5</span>)</span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5" aria-label="5"></a>    ξ <span class="op">~</span> <span class="fu">Uniform</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6" aria-label="6"></a>    μ <span class="op">=</span> μ<span class="fl">0</span> <span class="op">.*</span> <span class="fu">exp</span>.(β <span class="op">.*</span> x)</span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7" aria-label="7"></a>    σ <span class="op">=</span> κ <span class="op">.*</span> μ</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-8" class="code-annotation-target"><a href="#annotated-cell-10-8" aria-label="8"></a>    <span class="cf">if</span> !<span class="fu">all</span>(σ <span class="op">.&gt;</span> <span class="fl">0</span>)</span>
+<span id="annotated-cell-10-9"><a href="#annotated-cell-10-9" aria-label="9"></a>        Turing.<span class="pp">@addlogprob</span>! <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="annotated-cell-10-10"><a href="#annotated-cell-10-10" aria-label="10"></a>        <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="annotated-cell-10-11"><a href="#annotated-cell-10-11" aria-label="11"></a>    <span class="cf">end</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3">3</button><span id="annotated-cell-10-12" class="code-annotation-target"><a href="#annotated-cell-10-12" aria-label="12"></a>    Turing.<span class="pp">@addlogprob</span>! <span class="fu">sum</span>(w <span class="op">.*</span> <span class="fu">logpdf</span>.(<span class="fu">GeneralizedExtremeValue</span>.(μ, σ, ξ), y))</span>
+<span id="annotated-cell-10-13"><a href="#annotated-cell-10-13" aria-label="13"></a><span class="kw">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2,3,4,5" data-code-annotation="1">These priors give 2026 100-year levels between about 3 and 70 inches, and trends between about <span class="math inline">\(-37\%\)</span> and <span class="math inline">\(+58\%\)</span> from 1950 to 2026.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="8" data-code-annotation="2">A large optimizer step can push <span class="math inline">\(\mu_t\)</span> so close to zero or so large that the scale rounds to 0 or becomes <code>NaN</code>; reject that step rather than stop with an error.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="12" data-code-annotation="3">A <code>y ~</code> line cannot weight observations, so the model adds the weighted log-likelihood itself.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p><code>weighted_gevfit</code> finds the parameters with the highest posterior density, using Turing’s <code>maximum_a_posteriori</code>. Two helper functions after it keep the later code short.</p>
+<div id="22" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">weighted_gevfit</span>(y, x, w)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-label="2"></a>    start <span class="op">=</span> <span class="fu">InitFromParams</span>((μ<span class="fl">0</span><span class="op">=</span><span class="fu">median</span>(y), κ<span class="op">=</span><span class="fu">std</span>(y) <span class="op">/</span> <span class="fu">median</span>(y), β<span class="op">=</span><span class="fl">0.0</span>, ξ<span class="op">=</span><span class="fl">0.1</span>))</span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-label="3"></a>    fit <span class="op">=</span> <span class="fu">maximum_a_posteriori</span>(<span class="fu">weighted_gev</span>(y, x, w); initial_params<span class="op">=</span>start)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4" aria-label="4"></a>    <span class="cf">if</span> <span class="fu">string</span>(fit.optim_result.retcode) <span class="op">!=</span> <span class="st">"Success"</span></span>
+<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5" aria-label="5"></a>        <span class="pp">@warn</span> <span class="st">"weighted_gevfit did not converge"</span> fit.optim_result.retcode</span>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6" aria-label="6"></a>    <span class="cf">end</span></span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-label="7"></a>    <span class="cf">return</span> <span class="fu">NamedTuple</span>(fit.params)</span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-label="8"></a><span class="kw">end</span></span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-label="9"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-10" class="code-annotation-target"><a href="#annotated-cell-11-10" aria-label="10"></a><span class="kw">function</span> <span class="fu">level_2026</span>(fit)</span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-label="11"></a>    μ <span class="op">=</span> fit.μ<span class="fl">0</span> <span class="op">*</span> <span class="fu">exp</span>(fit.β <span class="op">*</span> x_2026)</span>
+<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12" aria-label="12"></a>    <span class="cf">return</span> <span class="fu">quantile</span>(<span class="fu">GeneralizedExtremeValue</span>(μ, fit.κ <span class="op">*</span> μ, fit.ξ), <span class="fl">0.99</span>)</span>
+<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-label="13"></a><span class="kw">end</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="4">4</button><span id="annotated-cell-11-14" class="code-annotation-target"><a href="#annotated-cell-11-14" aria-label="14"></a><span class="fu">trend_percent</span>(fit) <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> (<span class="fu">exp</span>(fit.β <span class="op">*</span> (x_2026 <span class="op">-</span> x_1950)) <span class="op">-</span> <span class="fl">1</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">Start the optimizer from the data’s median and spread, with no trend.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="4" data-code-annotation="2">Warn if the optimizer fails, since the parameters it returns may then not be the best ones.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="10" data-code-annotation="3">The fitted 100-year level in 2026.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="14" data-code-annotation="4">The trend, as the percent change in every return level from 1950 to 2026.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="no-pooling" class="level2">
+<h2 class="anchored" data-anchor-id="no-pooling">No pooling</h2>
+<p>First, we fit each kept station to its own record.</p>
+<div id="24" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>stations.fit <span class="op">=</span> <span class="fu">map</span>(stations.id) <span class="cf">do</span> id</span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    rows <span class="op">=</span> ann_max_region[ann_max_region.id <span class="op">.==</span> id, <span class="op">:</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    <span class="cf">return</span> <span class="fu">weighted_gevfit</span>(rows.prcp_in, rows.x, <span class="fu">ones</span>(<span class="fu">nrow</span>(rows)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a><span class="cf">end</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>stations.κ <span class="op">=</span> [fit.κ for fit <span class="kw">in</span> stations.fit]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>stations.trend_percent <span class="op">=</span> <span class="fu">trend_percent</span>.(stations.fit)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>stations.level_2026 <span class="op">=</span> <span class="fu">level_2026</span>.(stations.fit)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>stations[<span class="op">:</span>, [<span class="op">:</span>name, <span class="op">:</span>miles, <span class="op">:</span>n_years, <span class="op">:</span>κ, <span class="op">:</span>trend_percent, <span class="op">:</span>level_2026]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>20×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame caption-top table table-sm table-striped small">
+<thead>
+<tr class="columnLabelRow header">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">miles</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">n_years</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">κ</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">trend_percent</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">level_2026</th>
+</tr>
+<tr class="columnLabelRow even">
+<th class="stubheadLabel" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">GALVESTON SCHOLES FLD</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0.406968</td>
+<td style="text-align: right;">2.72376</td>
+<td style="text-align: right;">13.9099</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">GALVESTON</td>
+<td style="text-align: right;">4.52325</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">0.409822</td>
+<td style="text-align: right;">-15.2855</td>
+<td style="text-align: right;">11.8514</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">ALVIN</td>
+<td style="text-align: right;">23.4338</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">0.358851</td>
+<td style="text-align: right;">6.0357</td>
+<td style="text-align: right;">16.6412</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">CLEAR CK AT BAY AREA BLVD</td>
+<td style="text-align: right;">23.8355</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.363389</td>
+<td style="text-align: right;">4.02144</td>
+<td style="text-align: right;">17.8668</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">TURKEY CK AT FM 1959</td>
+<td style="text-align: right;">29.176</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.283562</td>
+<td style="text-align: right;">16.1389</td>
+<td style="text-align: right;">19.3294</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">ARMAND BYU AT GENOARED BLF RD</td>
+<td style="text-align: right;">29.2355</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0.348342</td>
+<td style="text-align: right;">18.5771</td>
+<td style="text-align: right;">22.471</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">GOOSE CREEK</td>
+<td style="text-align: right;">32.434</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">0.349925</td>
+<td style="text-align: right;">-2.70805</td>
+<td style="text-align: right;">13.0548</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">HOUSTON DEER PARK</td>
+<td style="text-align: right;">35.4218</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0.376562</td>
+<td style="text-align: right;">-6.65699</td>
+<td style="text-align: right;">15.3583</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">HOUSTON HOBBY AP</td>
+<td style="text-align: right;">35.8056</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">0.370008</td>
+<td style="text-align: right;">24.2044</td>
+<td style="text-align: right;">17.5356</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">ANGLETON 2 W</td>
+<td style="text-align: right;">37.0614</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">0.388976</td>
+<td style="text-align: right;">1.80193</td>
+<td style="text-align: right;">15.3244</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">FREEPORT 2 NW</td>
+<td style="text-align: right;">37.2764</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">0.400511</td>
+<td style="text-align: right;">-22.464</td>
+<td style="text-align: right;">14.496</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">BAYTOWN</td>
+<td style="text-align: right;">37.4946</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">0.393318</td>
+<td style="text-align: right;">10.4499</td>
+<td style="text-align: right;">15.5509</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">ANAHUAC</td>
+<td style="text-align: right;">38.0354</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">0.343279</td>
+<td style="text-align: right;">24.7499</td>
+<td style="text-align: right;">17.9205</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">14</td>
+<td style="text-align: left;">HOUSTON-PORT</td>
+<td style="text-align: right;">41.2936</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">0.393411</td>
+<td style="text-align: right;">9.13171</td>
+<td style="text-align: right;">34.5485</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">15</td>
+<td style="text-align: left;">HOUSTON WB CITY</td>
+<td style="text-align: right;">45.2242</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">0.358468</td>
+<td style="text-align: right;">19.7183</td>
+<td style="text-align: right;">14.5521</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">16</td>
+<td style="text-align: left;">HOUSTON SAN JACINTO DA</td>
+<td style="text-align: right;">47.765</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">0.382318</td>
+<td style="text-align: right;">17.8083</td>
+<td style="text-align: right;">16.0254</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">17</td>
+<td style="text-align: left;">GREENS BYU AT MT HOUSTON PKWY</td>
+<td style="text-align: right;">48.4303</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0.414977</td>
+<td style="text-align: right;">7.86909</td>
+<td style="text-align: right;">27.4815</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">18</td>
+<td style="text-align: left;">THOMPSONS 3 WSW</td>
+<td style="text-align: right;">48.6821</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">0.37095</td>
+<td style="text-align: right;">0.20453</td>
+<td style="text-align: right;">15.2176</td>
+</tr>
+<tr class="dataRow odd">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">19</td>
+<td style="text-align: left;">CEDAR BYU AT US 90</td>
+<td style="text-align: right;">48.9298</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0.453029</td>
+<td style="text-align: right;">2.98738</td>
+<td style="text-align: right;">29.5425</td>
+</tr>
+<tr class="dataRow even">
+<td class="rowLabel" style="text-align: right; font-weight: bold;">20</td>
+<td style="text-align: left;">HOUSTON HEIGHTS</td>
+<td style="text-align: right;">49.426</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">0.280484</td>
+<td style="text-align: right;">88.8029</td>
+<td style="text-align: right;">20.8424</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="cell-fig-alone" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the plotting code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="kw">let</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">900</span>, <span class="fl">380</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>    biggest <span class="op">=</span> <span class="fu">maximum</span>(abs, stations.trend_percent)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>    ax_trend <span class="op">=</span> <span class="fu">map_axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>    trend_plot <span class="op">=</span> <span class="fu">scatter!</span>(ax_trend, stations.lon, stations.lat;</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>                          color<span class="op">=</span>stations.trend_percent, colormap<span class="op">=:</span>BrBG,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>                          colorrange<span class="op">=</span>(<span class="op">-</span>biggest, biggest), markersize<span class="op">=</span><span class="fl">12</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a>                          strokewidth<span class="op">=</span><span class="fl">0.5</span>, strokecolor<span class="op">=:</span>gray30)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>    <span class="fu">Colorbar</span>(fig[<span class="fl">1</span>, <span class="fl">2</span>], trend_plot; label<span class="op">=</span><span class="st">"trend, 1950 to 2026 (%)"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-label="11"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-label="12"></a>    ax_level <span class="op">=</span> <span class="fu">map_axis</span>(fig[<span class="fl">1</span>, <span class="fl">3</span>])</span>
+<span id="cb10-13"><a href="#cb10-13" aria-label="13"></a>    level_plot <span class="op">=</span> <span class="fu">scatter!</span>(ax_level, stations.lon, stations.lat;</span>
+<span id="cb10-14"><a href="#cb10-14" aria-label="14"></a>                          color<span class="op">=</span>stations.level_2026, colormap<span class="op">=:</span>viridis,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-label="15"></a>                          markersize<span class="op">=</span><span class="fl">12</span>, strokewidth<span class="op">=</span><span class="fl">0.5</span>, strokecolor<span class="op">=:</span>gray30)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-label="16"></a>    <span class="fu">Colorbar</span>(fig[<span class="fl">1</span>, <span class="fl">4</span>], level_plot; label<span class="op">=</span><span class="st">"2026 100-year level (inches)"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-label="17"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-label="18"></a>    <span class="cf">for</span> ax <span class="kw">in</span> (ax_trend, ax_level)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-label="19"></a>        <span class="fu">scatter!</span>(ax, [scholes_field.lon], [scholes_field.lat]; marker<span class="op">=:</span>star5,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-label="20"></a>                 color<span class="op">=:</span>black, markersize<span class="op">=</span><span class="fl">20</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-label="21"></a>    <span class="cf">end</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-label="22"></a>    fig</span>
+<span id="cb10-23"><a href="#cb10-23" aria-label="23"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-alone" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-alone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-alone-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Each station fit to its own record. Left: trend, as the percent change in every return level from 1950 to 2026. Right: 100-year daily rainfall in 2026. Scholes Field is the star.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Your answer:</strong> How much do the trends differ between stations a few miles apart? Is that more likely a real difference in climate or noise from short records, and what in the table supports your answer?</p>
+<p><strong>Your answer:</strong> How much does <span class="math inline">\(x_t\)</span> change over Scholes Field’s 21 years, compared with a record that starts around 1900? So what sets Scholes Field’s trend when you fit it alone?</p>
+</section>
+<section id="borrowing-from-neighbors" class="level2">
+<h2 class="anchored" data-anchor-id="borrowing-from-neighbors">Borrowing from neighbors</h2>
+<p>Now we fit Scholes Field with every kept station’s data, weighted by <code>weight</code>.</p>
+<div id="28" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>pooled <span class="op">=</span> <span class="fu">weighted_gevfit</span>(ann_max_region.prcp_in, ann_max_region.x,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>                         ann_max_region.w)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>scholes_alone <span class="op">=</span> <span class="fu">only</span>(stations.fit[stations.id <span class="op">.==</span> scholes_field.id])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a><span class="cf">for</span> (label, fit) <span class="kw">in</span> (<span class="st">"alone"</span> <span class="op">=&gt;</span> scholes_alone, <span class="st">"pooled"</span> <span class="op">=&gt;</span> pooled)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>    <span class="pp">@printf</span>(<span class="st">"%-6s trend %+.0f%% from 1950 to 2026, 2026 100-year level %.1f inches</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>            label, <span class="fu">trend_percent</span>(fit), <span class="fu">level_2026</span>(fit))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>alone  trend +3% from 1950 to 2026, 2026 100-year level 13.9 inches
+pooled trend +10% from 1950 to 2026, 2026 100-year level 16.2 inches</code></pre>
+</div>
+</div>
+</section>
+<section id="uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="uncertainty">Uncertainty</h2>
+<p>A point estimate alone does not say how much to trust it. We get an interval for the pooled fit in two ways.</p>
+<section id="mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="mcmc">MCMC</h3>
+<p>MCMC samples the posterior of the same weighted model.</p>
+<div id="30" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>chain <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">weighted_gev</span>(ann_max_region.prcp_in, ann_max_region.x,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>                            ann_max_region.w), <span class="fu">NUTS</span>(), <span class="fl">1000</span>; progress<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>mcmc_fits <span class="op">=</span> [(μ<span class="fl">0</span><span class="op">=</span>a, κ<span class="op">=</span>b, β<span class="op">=</span>c, ξ<span class="op">=</span>d)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>             for (a, b, c, d) <span class="kw">in</span> <span class="fu">zip</span>(<span class="fu">vec</span>(chain[<span class="op">:</span>μ<span class="fl">0</span>]), <span class="fu">vec</span>(chain[<span class="op">:</span>κ]),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-label="5"></a>                                     <span class="fu">vec</span>(chain[<span class="op">:</span>β]), <span class="fu">vec</span>(chain[<span class="op">:</span>ξ]))]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="bootstrap-over-years" class="level3">
+<h3 class="anchored" data-anchor-id="bootstrap-over-years">Bootstrap over years</h3>
+<p>The bootstrap refits the model to resampled data, drawing whole years rather than single values.</p>
+<div id="32" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-label="1"></a>years <span class="op">=</span> <span class="fu">unique</span>(ann_max_region.year)</span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-label="2"></a></span>
+<span id="annotated-cell-16-3"><a href="#annotated-cell-16-3" aria-label="3"></a><span class="kw">function</span> <span class="fu">bootstrap_fit</span>()</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1">1</button><span id="annotated-cell-16-4" class="code-annotation-target"><a href="#annotated-cell-16-4" aria-label="4"></a>    picked <span class="op">=</span> <span class="fu">rand</span>(years, <span class="fu">length</span>(years))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2">2</button><span id="annotated-cell-16-5" class="code-annotation-target"><a href="#annotated-cell-16-5" aria-label="5"></a>    rows <span class="op">=</span> <span class="fu">reduce</span>(vcat, [ann_max_region[ann_max_region.year <span class="op">.==</span> yr, <span class="op">:</span>]</span>
+<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6" aria-label="6"></a>                         for yr <span class="kw">in</span> picked])</span>
+<span id="annotated-cell-16-7"><a href="#annotated-cell-16-7" aria-label="7"></a>    <span class="cf">return</span> <span class="fu">weighted_gevfit</span>(rows.prcp_in, rows.x, rows.w)</span>
+<span id="annotated-cell-16-8"><a href="#annotated-cell-16-8" aria-label="8"></a><span class="kw">end</span></span>
+<span id="annotated-cell-16-9"><a href="#annotated-cell-16-9" aria-label="9"></a></span>
+<span id="annotated-cell-16-10"><a href="#annotated-cell-16-10" aria-label="10"></a>bootstrap_fits <span class="op">=</span> [<span class="fu">bootstrap_fit</span>() for _ <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span>]</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="4" data-code-annotation="1">Draw as many years as the record has, with replacement.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="5" data-code-annotation="2">Keep every station’s value from each drawn year, so a storm that hit many stations in one year stays together.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="cell-fig-uncertainty" class="cell" data-solution="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the plotting code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a><span class="kw">let</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">800</span>, <span class="fl">330</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-label="3"></a>    ax_trend <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>]; xlabel<span class="op">=</span><span class="st">"trend, 1950 to 2026 (%)"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-label="4"></a>    ax_level <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">2</span>]; xlabel<span class="op">=</span><span class="st">"2026 100-year level (inches)"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-label="5"></a>    <span class="cf">for</span> (i, (label, fits)) <span class="kw">in</span> <span class="fu">enumerate</span>((<span class="st">"MCMC"</span> <span class="op">=&gt;</span> mcmc_fits,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-label="6"></a>                                         <span class="st">"bootstrap"</span> <span class="op">=&gt;</span> bootstrap_fits))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-label="7"></a>        <span class="fu">hist!</span>(ax_trend, <span class="fu">trend_percent</span>.(fits); bins<span class="op">=</span><span class="fl">40</span>, normalization<span class="op">=:</span>pdf,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-label="8"></a>              color<span class="op">=</span>(colors[i], <span class="fl">0.5</span>), label<span class="op">=</span>label)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-label="9"></a>        <span class="fu">hist!</span>(ax_level, <span class="fu">level_2026</span>.(fits); bins<span class="op">=</span><span class="fl">40</span>, normalization<span class="op">=:</span>pdf,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-label="10"></a>              color<span class="op">=</span>(colors[i], <span class="fl">0.5</span>), label<span class="op">=</span>label)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-label="11"></a>    <span class="cf">end</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-label="12"></a>    <span class="fu">hideydecorations!</span>.((ax_trend, ax_level))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-label="13"></a>    <span class="fu">axislegend</span>(ax_level)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-label="14"></a>    fig</span>
+<span id="cb14-15"><a href="#cb14-15" aria-label="15"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-uncertainty" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-uncertainty-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The pooled fit at Scholes Field by MCMC and by the bootstrap over years. Left: trend. Right: 2026 100-year level.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="36" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a><span class="cf">for</span> (label, fits) <span class="kw">in</span> (<span class="st">"MCMC"</span> <span class="op">=&gt;</span> mcmc_fits, <span class="st">"bootstrap"</span> <span class="op">=&gt;</span> bootstrap_fits)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>    levels <span class="op">=</span> <span class="fu">level_2026</span>.(fits)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a>    <span class="pp">@printf</span>(<span class="st">"%-9s 2026 100-year level, 95%% interval %.1f to %.1f inches</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a>            label, <span class="fu">quantile</span>(levels, <span class="fl">0.025</span>), <span class="fu">quantile</span>(levels, <span class="fl">0.975</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-label="5"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MCMC      2026 100-year level, 95% interval 13.5 to 20.2 inches
+bootstrap 2026 100-year level, 95% interval 12.2 to 20.6 inches</code></pre>
+</div>
+</div>
+<p><strong>Your answer:</strong> How many kept stations have a 2017 annual maximum, and on what dates did those maxima fall? The weighted likelihood treats every station’s value as independent. Which method keeps the 2017 values together, and which interval would you expect to be wider?</p>
+<div id="38" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="your-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="your-analysis">Your analysis</h2>
+<section id="change-the-weight-function" class="level3">
+<h3 class="anchored" data-anchor-id="change-the-weight-function">Change the weight function</h3>
+<p>Change <code>radius</code> and rerun the notebook from the weight function down. Then code one of the other weight functions and run it the same way.</p>
+<p><strong>Your answer:</strong> Make a table with one row per weight function you tried, giving the number of stations kept, <span class="math inline">\(n_\text{eff}\)</span>, the pooled trend, and the 2026 100-year level with its bootstrap interval. Which settings give an estimate dominated by variance, and which by bias? Name a physical reason a wide region could be biased for a station on Galveston Island.</p>
+</section>
+<section id="share-only-the-trend-and-shape" class="level3">
+<h3 class="anchored" data-anchor-id="share-only-the-trend-and-shape">Share only the trend and shape</h3>
+<p>When every station shares every parameter, a wetter inland station pulls Scholes Field’s location toward its own. <code>weighted_shared_trend</code> gives each station its own <span class="math inline">\(\mu_{0,s}\)</span> and <span class="math inline">\(\kappa_s\)</span> and shares only <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\xi\)</span>:</p>
+<p><span class="math display">\[
+y_{s,t} \sim \text{GEV}(\mu_{s,t}, \kappa_s \mu_{s,t}, \xi), \qquad \mu_{s,t} = \mu_{0,s} e^{\beta x_{s,t}}.
+\]</span></p>
+<div id="40" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">weighted_shared_trend</span>(y, x, station, w, n_stations)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>    μ<span class="fl">0</span> <span class="op">~</span> <span class="fu">filldist</span>(<span class="fu">LogNormal</span>(<span class="fl">1.5</span>, <span class="fl">0.5</span>), n_stations)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a>    κ <span class="op">~</span> <span class="fu">filldist</span>(<span class="fu">LogNormal</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">0.5</span>), n_stations)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-label="4"></a>    β <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a>    ξ <span class="op">~</span> <span class="fu">Uniform</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-label="6"></a>    μ <span class="op">=</span> μ<span class="fl">0</span>[station] <span class="op">.*</span> <span class="fu">exp</span>.(β <span class="op">.*</span> x)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-label="7"></a>    σ <span class="op">=</span> κ[station] <span class="op">.*</span> μ</span>
+<span id="cb18-8"><a href="#cb18-8" aria-label="8"></a>    <span class="cf">if</span> !<span class="fu">all</span>(σ <span class="op">.&gt;</span> <span class="fl">0</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-label="9"></a>        Turing.<span class="pp">@addlogprob</span>! <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-label="10"></a>        <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-label="11"></a>    <span class="cf">end</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-label="12"></a>    Turing.<span class="pp">@addlogprob</span>! <span class="fu">sum</span>(w <span class="op">.*</span> <span class="fu">logpdf</span>.(<span class="fu">GeneralizedExtremeValue</span>.(μ, σ, ξ), y))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-label="13"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We fit it the same way as <code>weighted_gevfit</code>, starting every station from the same values, and keep Scholes Field’s parameters.</p>
+<div id="42" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-21"><pre class="sourceCode numberSource julia code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode julia"><span id="annotated-cell-21-1"><a href="#annotated-cell-21-1" aria-label="1"></a>y <span class="op">=</span> ann_max_region.prcp_in</span>
+<span id="annotated-cell-21-2"><a href="#annotated-cell-21-2" aria-label="2"></a>n_stations <span class="op">=</span> <span class="fu">nrow</span>(stations)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1">1</button><span id="annotated-cell-21-3" class="code-annotation-target"><a href="#annotated-cell-21-3" aria-label="3"></a>station <span class="op">=</span> [<span class="fu">findfirst</span>(<span class="op">==</span>(id), stations.id) for id <span class="kw">in</span> ann_max_region.id]</span>
+<span id="annotated-cell-21-4"><a href="#annotated-cell-21-4" aria-label="4"></a>start <span class="op">=</span> <span class="fu">InitFromParams</span>((μ<span class="fl">0</span><span class="op">=</span><span class="fu">fill</span>(<span class="fu">median</span>(y), n_stations),</span>
+<span id="annotated-cell-21-5"><a href="#annotated-cell-21-5" aria-label="5"></a>                        κ<span class="op">=</span><span class="fu">fill</span>(<span class="fu">std</span>(y) <span class="op">/</span> <span class="fu">median</span>(y), n_stations), β<span class="op">=</span><span class="fl">0.0</span>, ξ<span class="op">=</span><span class="fl">0.1</span>))</span>
+<span id="annotated-cell-21-6"><a href="#annotated-cell-21-6" aria-label="6"></a>model <span class="op">=</span> <span class="fu">weighted_shared_trend</span>(y, ann_max_region.x, station, ann_max_region.w,</span>
+<span id="annotated-cell-21-7"><a href="#annotated-cell-21-7" aria-label="7"></a>                              n_stations)</span>
+<span id="annotated-cell-21-8"><a href="#annotated-cell-21-8" aria-label="8"></a>shared_fit <span class="op">=</span> <span class="fu">maximum_a_posteriori</span>(model; initial_params<span class="op">=</span>start)</span>
+<span id="annotated-cell-21-9"><a href="#annotated-cell-21-9" aria-label="9"></a><span class="cf">if</span> <span class="fu">string</span>(shared_fit.optim_result.retcode) <span class="op">!=</span> <span class="st">"Success"</span></span>
+<span id="annotated-cell-21-10"><a href="#annotated-cell-21-10" aria-label="10"></a>    <span class="pp">@warn</span> <span class="st">"shared-trend fit did not converge"</span> shared_fit.optim_result.retcode</span>
+<span id="annotated-cell-21-11"><a href="#annotated-cell-21-11" aria-label="11"></a><span class="cf">end</span></span>
+<span id="annotated-cell-21-12"><a href="#annotated-cell-21-12" aria-label="12"></a>(; μ<span class="fl">0</span>, κ, β, ξ) <span class="op">=</span> <span class="fu">NamedTuple</span>(shared_fit.params)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="2">2</button><span id="annotated-cell-21-13" class="code-annotation-target"><a href="#annotated-cell-21-13" aria-label="13"></a>k <span class="op">=</span> <span class="fu">findfirst</span>(<span class="op">==</span>(scholes_field.id), stations.id)</span>
+<span id="annotated-cell-21-14"><a href="#annotated-cell-21-14" aria-label="14"></a>shared_trend <span class="op">=</span> (μ<span class="fl">0</span><span class="op">=</span>μ<span class="fl">0</span>[k], κ<span class="op">=</span>κ[k], β<span class="op">=</span>β, ξ<span class="op">=</span>ξ)</span>
+<span id="annotated-cell-21-15"><a href="#annotated-cell-21-15" aria-label="15"></a></span>
+<span id="annotated-cell-21-16"><a href="#annotated-cell-21-16" aria-label="16"></a><span class="cf">for</span> (label, fit) <span class="kw">in</span> (<span class="st">"all shared"</span> <span class="op">=&gt;</span> pooled,</span>
+<span id="annotated-cell-21-17"><a href="#annotated-cell-21-17" aria-label="17"></a>                     <span class="st">"trend and shape shared"</span> <span class="op">=&gt;</span> shared_trend)</span>
+<span id="annotated-cell-21-18"><a href="#annotated-cell-21-18" aria-label="18"></a>    <span class="pp">@printf</span>(<span class="st">"%-22s μ0 = %.2f, κ = %.2f, trend %+.0f%%, ξ = %.2f, 2026 100-year level %.1f inches</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="annotated-cell-21-19"><a href="#annotated-cell-21-19" aria-label="19"></a>            label, fit.μ<span class="fl">0</span>, fit.κ, <span class="fu">trend_percent</span>(fit), fit.ξ, <span class="fu">level_2026</span>(fit))</span>
+<span id="annotated-cell-21-20"><a href="#annotated-cell-21-20" aria-label="20"></a><span class="cf">end</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="3" data-code-annotation="1"><code>station[i]</code> is the row of <code>stations</code>, from 1 to <code>n_stations</code>, that <code>y[i]</code> came from.</span>
+</dd>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="13" data-code-annotation="2">Scholes Field’s row of <code>stations</code>.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>all shared             μ0 = 3.46, κ = 0.40, trend +10%, ξ = 0.22, 2026 100-year level 16.2 inches
+trend and shape shared μ0 = 3.52, κ = 0.41, trend +3%, ξ = 0.24, 2026 100-year level 16.2 inches</code></pre>
+</div>
+</div>
+<p><strong>Your answer:</strong> Which parameters should be shared for Scholes Field, and why?</p>
+</section>
+<section id="defend-a-choice" class="level3">
+<h3 class="anchored" data-anchor-id="defend-a-choice">Defend a choice</h3>
+<p><strong>Your answer:</strong> What is your estimate of the 100-year daily rainfall at Galveston Scholes Field in 2026, with an interval? Say which weight function and radius you chose, which parameters you shared, and which interval you report, and defend each choice.</p>
+</section>
+</section>
+<section id="turning-it-in" class="level2">
+<h2 class="anchored" data-anchor-id="turning-it-in">Turning it in</h2>
+<p>This lab is due on Canvas on Friday, October 16, the same day as Test 1.</p>
+<ol type="1">
+<li><p>Check that your notebook answers each <strong>Your answer</strong> question.</p></li>
+<li><p>Render the notebook to a PDF. In the terminal, from the lab folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a><span class="ex">quarto</span> render index.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This writes <code>index.pdf</code> beside the notebook. It runs the whole notebook from the top in a fresh process, so it also confirms your work does not depend on leftover REPL state.</p></li>
+<li><p>Commit and push your work, with GitHub Desktop or by asking Claude to commit and push.</p></li>
+<li><p>Upload <code>index.pdf</code> to the Lab 7 assignment on Canvas.</p></li>
+<li><p>Paste the link to your repository in the same Canvas submission.</p></li>
+</ol>
+<p>If the render fails and you cannot fix it, upload what you have and say where it broke. A lab that does not render is worth more to me than a lab you did not turn in.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-etheridge_lawdomeco2:1996" class="csl-entry" role="listitem">
+Etheridge, D. M., Steele, L. P., Langenfelds, R. L., Francey, R. J., Barnola, J. ‐M., &amp; Morgan, V. I. (1996). Natural and anthropogenic changes in atmospheric <span>CO</span><span><sub>2</sub></span> over the last 1000 years from air in <span>Antarctic</span> ice and firn. <em>Journal of Geophysical Research: Atmospheres</em>, <em>101</em>(D2), 4115–4128. <a href="https://doi.org/10.1029/95jd03410">https://doi.org/10.1029/95jd03410</a>
+</div>
+<div id="ref-macfarlingmeure_lawdomeextended:2006" class="csl-entry" role="listitem">
+MacFarling Meure, C., Etheridge, D., Trudinger, C., Steele, P., Langenfelds, R., van Ommen, T., et al. (2006). Law dome <span>CO</span><span><sub>2</sub></span>, <span>CH</span><span><sub>4</sub></span> and <span>N</span><span><sub>2</sub></span><span>O</span> ice core records extended to 2000 years <span>BP</span>. <em>Geophysical Research Letters</em>, <em>33</em>(14). <a href="https://doi.org/10.1029/2006gl026152">https://doi.org/10.1029/2006gl026152</a>
+</div>
+<div id="ref-perica_atlas14_texas:2018" class="csl-entry" role="listitem">
+Perica, S., Pavlovic, S., St. Laurent, M., Trypaluk, C., Unruh, D., &amp; Wilhite, O. (2018). <em><span>NOAA Atlas</span> 14</em> (No. Volume 11 Version 2.0: Texas) (p. 283). Silver Spring, MD: <span>National Weather Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce</span>. Retrieved from <a href="https://www.weather.gov/media/owp/oh/hdsc/docs/Atlas14_Volume11.pdf">https://www.weather.gov/media/owp/oh/hdsc/docs/Atlas14_Volume11.pdf</a>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-07/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
