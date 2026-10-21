@@ -1,0 +1,15 @@
+# Julia: the Manifest is machine-specific; instantiate rebuilds it.
+Manifest.toml
+
+# Quarto render outputs. Render locally, submit source.
+*.html
+*.pdf
+*_files/
+_site/
+_freeze/
+.cache/
+.quarto/
+*.quarto_ipynb
+
+# OS noise
+.DS_Store
