@@ -1,0 +1,70 @@
+---
+title: "Week 4 overview"
+subtitle: "{{< var course.number >}}"
+week: 4
+module: 2
+order: 1
+kind: "slides"
+date: 2026-09-14
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CSV, CairoMakie, DataFrames, Distributions, LaTeXStrings, Random, Statistics
+using CEVE543Utils
+Random.seed!(543)
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+here = @__DIR__
+annmax = CSV.read(joinpath(here, "..", "week-01", "8638610-annmax.csv"), DataFrame)
+```
+
+# Module 2: univariate extremes
+
+## How do we characterize a single hazard at a single location?
+
+How do we characterize the probability distribution of a single hydroclimate hazard at a single location, and what are the associated uncertainties?
+
+## We have already worked with annual maxima
+
+```{julia}
+#| echo: false
+y = annmax.lsl
+sorted, p_hat, T_hat = plotting_positions(y)
+fig = Figure(; size=(800, 300))
+ax = Axis(fig[1, 1]; ylabel=L"\text{storm surge (ft)}")
+scatter!(ax, T_hat, sorted; color=colors[1], markersize=6)
+return_period_axis!(ax)
+fig
+```
+
+Sewells Point annual maximum storm surge, 1928-2023, at Weibull plotting positions.
+The largest observation gets a return period of about 97 years.
+What is the 200-year level?
+The 500-year level?
+
+## Extreme value theory gives us a principled answer
+
+- Extrapolating beyond the data requires a model
+- We would like a justification beyond "it fits"
+
+Extreme value theory to the rescue: a limit theorem says that block maxima converge to a specific family of distributions (the GEV).
+
+## What this week covers
+
+- **Monday:** the GEV distribution and how to estimate its parameters
+- **Wednesday:** fitting a GEV in Julia, diagnostics, and Bayesian inference
+- **Friday:** lab 4, writing your own model in Turing and testing its sensitivity

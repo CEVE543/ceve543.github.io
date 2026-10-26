@@ -1,0 +1,19 @@
+---
+title: "Joint and conditional distributions"
+week: 9
+module: 3
+date: 2026-10-21
+format: "typst"
+---
+
+## Summary
+
+The joint distribution of extreme hazards, such as rain, wind, and surge, tells us the probability that they are all large as well as the distribution of one given the others.
+This session defines joint and conditional distributions in two and then $N$ dimensions, and then asks how to estimate one from data, using kernel density estimates, Bayesian networks, and copulas as examples.
+
+For helpful background, explore:
+
+- @blitzstein_probability:2019 §7.1, pp. 304-323, on joint, marginal, and conditional distributions, and §5.3, pp. 224-230, on the probability integral transform.
+- @friedman_elements:2009 §6.6.1, pp. 208-210, on kernel density estimation.
+- @sebastian_network:2017 §2, pp. 43-44, for a short introduction to Bayesian networks.
+- @genest_copulas:2007, pp. 347-353, on copulas.

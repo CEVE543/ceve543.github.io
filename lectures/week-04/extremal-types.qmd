@@ -1,0 +1,26 @@
+---
+title: "The extremal types theorem and the GEV"
+week: 4
+module: 2
+date: 2026-09-14
+format: "typst"
+---
+
+## Summary
+
+The GEV distribution, where it comes from, and how to estimate its parameters.
+
+- Block maxima of any iid sequence, suitably normalized, converge to a GEV.
+- The GEV has three parameters: location $\mu$, scale $\sigma > 0$, and shape $\xi$.
+- $\xi > 0$: heavy tail, unbounded (Fréchet). $\xi = 0$: exponential tail (Gumbel). $\xi < 0$: bounded upper tail (Weibull).
+- The $T$-year return level for the Gumbel is $z_T = \mu - \sigma \ln[-\ln(1 - 1/T)]$.
+- MLE finds the parameters that make the data most probable; L-moments are an alternative that is less sensitive to outliers.
+- Bayesian inference puts priors on $(\mu, \sigma, \xi)$ and samples the posterior, so uncertainty propagates automatically to return levels.
+
+Key results.
+
+$$F(z) = \exp\left\{-\left[1 + \xi\left(\frac{z - \mu}{\sigma}\right)\right]^{-1/\xi}\right\}$$
+
+$$z_T = \mu - \frac{\sigma}{\xi}\left\{1 - \left[-\ln\left(1 - \frac{1}{T}\right)\right]^{-\xi}\right\}$$
+
+$$p(\mu, \sigma, \xi \mid y) \propto \prod_{i=1}^{m} f_{\mathrm{GEV}}(y_i \mid \mu, \sigma, \xi) \, p(\mu, \sigma, \xi)$$
