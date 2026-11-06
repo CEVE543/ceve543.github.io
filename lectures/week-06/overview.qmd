@@ -1,0 +1,83 @@
+---
+title: "Week 6 overview"
+subtitle: "{{< var course.number >}}"
+week: 6
+module: 2
+order: 1
+kind: "slides"
+date: 2026-09-28
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, CSV, DataFrames, Distributions, LaTeXStrings, Random, StatsBase
+
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+here = @__DIR__
+
+# Built by scripts/write_hobby.jl; keep years with at least 350 valid days
+hobby = CSV.read(joinpath(here, "hobby-annmax.csv"), DataFrame)
+hobby = hobby[hobby.n_valid_days .>= 350, :]
+```
+
+## This week
+
+- **Monday:** nonstationarity, trend tests, and covariates
+- **Wednesday:** @smith_brays:2026; bring your two questions
+- **Friday:** lab 6, fitting nonstationary extreme value models
+
+## Annual maximum rainfall at Houston Hobby
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(800, 210))
+ax = Axis(fig[1, 1]; xlabel="Year", ylabel="Annual max daily rainfall (mm)")
+scatter!(ax, hobby.year, hobby.prcp_mm; color=colors[1], markersize=8)
+fig
+```
+
+Houston Hobby Airport (GHCN-Daily USW00012918), `{julia} nrow(hobby)` years with at least 350 days of data.
+
+::: {.callout-tip .pause}
+## Think
+
+Last week you subtracted mean sea level from the Galveston record before fitting.
+What would you subtract here?
+:::
+
+## A trend means the years are not identically distributed
+
+![Brays Bayou at Houston, annual peak flow, 1929-2024 [@smith_brays:2026, Fig. 2, CC BY 4.0].](smith-fig2-chronology.png){height=80%}
+
+## Subtracting a trend is not enough
+
+- Galveston: sea level adds to surge, so subtracting it shifts the distribution and keeps its shape.
+- Brays Bayou: after about 1968 the typical flood rose and the spread, on a log scale, narrowed [@smith_brays:2026, pp. 14, 24].
+- No single number subtracted from each year removes both changes.
+
+## Stationary given a covariate
+
+Let each year's distribution depend on a covariate $x_t$, such as sea level or CO2:
+
+$$
+Y_t \mid x_t \sim \text{GEV}(\mu(x_t), \sigma(x_t), \xi)
+$$
+
+- $\mu$, $\sigma$, and $\xi$ are the location, scale, and shape from week 4.
+- Given the covariate, the years are independent: **conditional independence**.
+- Subtracting mean sea level at Galveston was the special case $\mu(x_t) = \mu_0 + x_t$, with $\sigma$ and $\xi$ fixed.
+- Whether a record is "stationary" depends on what you condition on.

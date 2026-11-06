@@ -1,0 +1,742 @@
+---
+title: "Autocorrelation, partial autocorrelation, and the spectrum"
+subtitle: "{{< var course.number >}}"
+week: 2
+module: 1
+order: 1
+kind: "slides"
+date: 2026-09-02
+status: "published"
+release: "public"
+code-line-numbers: true
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Objectives
+
+By the end of today, you will be able to:
+
+1. Define the autocorrelation and partial autocorrelation functions
+1. Explain how the spectrum relates to the autocorrelation function
+1. Identify red noise, white noise, and a periodic component from a spectrum
+1. Read a spectrogram
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie,
+    CSV, DataFrames, Dates, DSP, LaTeXStrings, Printf, Random, Statistics, StatsBase
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+Random.seed!(543)
+```
+
+# Autocorrelation
+
+## Definition
+
+The **autocorrelation at lag $h$** is the correlation between $X_t$ and $X_{t-h}$:
+
+$$
+\rho_h = \frac{\mathrm{Cov}(X_t,\, X_{t-h})}{\mathrm{Var}(X_t)}
+$$
+
+Assuming stationarity, $\rho_h$ depends on $h$ alone.
+
+$\rho_0 = 1$, and $\rho_h \in [-1, 1]$.
+
+## The AR(1) model
+
+$$
+x_t = a\,x_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, \sigma^2), \qquad |a| < 1
+$$
+
+The autocorrelation is
+
+$$
+\rho_h = a^{|h|}
+$$
+
+## How the decay depends on $a$
+
+```{julia}
+#| echo: false
+lags = 0:30
+fig = Figure(; size=(900, 330))
+ax = Axis(fig[1, 1]; xlabel=L"\text{lag } h", ylabel=L"\rho_h")
+for (i, a) in enumerate([0.3, 0.7, 0.95])
+    lines!(ax, collect(lags), a .^ lags; linewidth=3, color=colors[i], label=L"a = %$(a)")
+    scatter!(ax, collect(lags), a .^ lags; markersize=7, color=colors[i])
+end
+hlines!(ax, [0]; color=:black, linewidth=0.8)
+axislegend(ax; position=:rt)
+fig
+```
+
+```{julia}
+#| echo: false
+for a in [0.3, 0.7, 0.95]
+    @printf("a = %.2f: rho_10 = %.4f\n", a, a^10)
+end
+```
+
+## $\sigma$ does not affect the autocorrelation
+
+```{julia}
+#| echo: false
+function simulate_ar(coefficients, n; sigma=1.0)
+    x = zeros(n)
+    p = length(coefficients)
+    for t in (p + 1):n
+        x[t] = sum(coefficients[j] * x[t - j] for j in 1:p) + sigma * randn()
+    end
+    return x
+end
+
+fig = Figure(; size=(900, 330))
+ax1 = Axis(fig[1, 1]; xlabel=L"t", ylabel=L"x_t", title="two runs, same a = 0.7")
+ax2 = Axis(
+    fig[1, 2]; xlabel=L"\text{lag } h", ylabel=L"\hat\rho_h", title="same autocorrelation"
+)
+for (i, sigma) in enumerate([1.0, 4.0])
+    x = simulate_ar([0.7], 20_000; sigma=sigma)
+    lines!(ax1, x[1:120]; linewidth=1.2, color=colors[i], label=L"\sigma = %$(sigma)")
+    scatter!(ax2, collect(lags), autocor(x, lags); markersize=8, color=colors[i])
+end
+lines!(ax2, collect(lags), 0.7 .^ lags; linewidth=2, color=:black, linestyle=:dash)
+axislegend(ax1; position=:rt)
+fig
+```
+
+Correlation is scale-free, so $a$ shows up in $\rho_h$; $\sigma$ does not.
+
+## What a short record can tell you
+
+The formula $\rho_h = a^{|h|}$ describes the model.
+An estimate $\hat\rho_h$ from $n$ observations is subject to *sampling variability*:
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(950, 330))
+for (i, n_obs) in enumerate([50, 200, 20_000])
+    ax = Axis(
+        fig[1, i];
+        xlabel=L"\text{lag } h",
+        ylabel=i == 1 ? L"\hat\rho_h" : "",
+        title="n = $(n_obs)",
+    )
+    x = simulate_ar([0.7], n_obs)
+    stem!(ax, collect(0:20), autocor(x, 0:20); color=colors[i])
+    lines!(ax, collect(0:20), 0.7 .^ (0:20); linewidth=2, color=:black, linestyle=:dash)
+    hlines!(ax, [0]; color=:black, linewidth=0.8)
+    ylims!(ax, -0.6, 1.05)
+end
+fig
+```
+
+# Partial autocorrelation
+
+## Definition
+
+An AR(1) has $\rho_2 = a^2 \neq 0$, but $x_{t-2}$ does not appear in the model.
+The lag-2 correlation exists because $x_{t-2}$ affects $x_{t-1}$, which affects $x_t$.
+
+The **partial autocorrelation at lag $h$** removes the contribution of intervening lags:
+
+$$
+\phi_h = \text{coefficient on } x_{t-h} \text{ in a regression of } x_t \text{ on } x_{t-1}, \ldots, x_{t-h}
+$$
+
+## PACF of an AR(1)
+
+$\phi_1 = a$, because regressing $x_t$ on $x_{t-1}$ alone recovers the AR(1) coefficient.
+
+Adding $x_{t-2}$ to the regression adds no predictive power, so $\phi_h = 0$ for $h > 1$.
+
+$$
+\phi_1 = a, \qquad \phi_h = 0 \ \text{ for } h > 1
+$$
+
+For an AR($p$), $\phi_h = 0$ for $h > p$.
+
+The autocorrelation decays gradually; the partial autocorrelation cuts off, and the cutoff identifies the order.
+
+## AR(1), both diagnostics
+
+```{julia}
+#| echo: false
+ar1 = simulate_ar([0.7], 20_000)
+fig = Figure(; size=(900, 330))
+ax1 = Axis(
+    fig[1, 1]; xlabel=L"\text{lag } h", ylabel=L"\hat\rho_h", title="autocorrelation"
+)
+stem!(ax1, collect(0:20), autocor(ar1, 0:20); color=colors[1])
+lines!(ax1, collect(0:20), 0.7 .^ (0:20); linewidth=2, color=:black, linestyle=:dash)
+ax2 = Axis(
+    fig[1, 2];
+    xlabel=L"\text{lag } h",
+    ylabel=L"\hat\phi_h",
+    title="partial autocorrelation",
+)
+stem!(ax2, collect(1:20), pacf(ar1, 1:20); color=colors[2])
+for ax in (ax1, ax2)
+    hlines!(ax, [0]; color=:black, linewidth=0.8)
+    ylims!(ax, -0.4, 1.05)
+end
+fig
+```
+
+# Second order
+
+## What does a second lag buy?
+
+An AR(1) can only decay: today's value drifts back toward zero, and the rate depends on $a$.
+
+Adding a second lag lets the process look back two steps:
+
+$$
+x_t = a_1 x_{t-1} + a_2 x_{t-2} + \varepsilon_t
+$$
+
+The character of the solution depends on $a_1$ and $a_2$:
+
+- **Decay** (both roots real and inside the unit circle)
+- **Oscillation** (complex roots inside the unit circle)
+- **Blow up** (a root outside the unit circle, the model is unstable)
+
+The roots of $z^2 - a_1 z - a_2 = 0$ are complex when $a_1^2 + 4a_2 < 0$.
+
+## Our AR(2) example
+
+Take $a_1 = 1.2$, $a_2 = -0.7$.
+
+$$
+a_1^2 + 4a_2 = 1.44 - 2.8 = -1.36 < 0
+$$
+
+Complex roots, so it oscillates: damped, and never repeating exactly.
+
+## AR(2) partial autocorrelation
+
+$$
+\phi_1 = \frac{a_1}{1 - a_2}, \qquad \phi_2 = a_2, \qquad \phi_h = 0 \text{ for } h > 2
+$$
+
+For our $a_1 = 1.2$, $a_2 = -0.7$:
+
+```{julia}
+#| echo: false
+a1, a2 = 1.2, -0.7
+@printf("φ₁ = %.3g, φ₂ = %.3g", a1 / (1 - a2), a2)
+```
+
+## AR(2), both diagnostics
+
+```{julia}
+#| echo: false
+ar2 = simulate_ar([1.2, -0.7], 20_000)
+fig = Figure(; size=(900, 330))
+ax1 = Axis(
+    fig[1, 1]; xlabel=L"\text{lag } h", ylabel=L"\hat\rho_h", title="autocorrelation"
+)
+stem!(ax1, collect(0:20), autocor(ar2, 0:20); color=colors[1])
+ax2 = Axis(
+    fig[1, 2];
+    xlabel=L"\text{lag } h",
+    ylabel=L"\hat\phi_h",
+    title="partial autocorrelation",
+)
+stem!(ax2, collect(1:20), pacf(ar2, 1:20); color=colors[2])
+for ax in (ax1, ax2)
+    hlines!(ax, [0]; color=:black, linewidth=0.8)
+    ylims!(ax, -0.8, 1.05)
+end
+fig
+```
+
+
+# The spectrum
+
+## Any time series is a sum of sine waves
+
+A zero-mean time series with $n$ points can be written exactly as
+
+$$
+x_t = \sum_{k=1}^{n/2} \left[ A_k \cos(2\pi f_k t) + B_k \sin(2\pi f_k t) \right]
+$$
+
+at frequencies $f_k = k/n$.
+Each frequency contributes some amplitude; the spectrum measures how much variance each one carries.
+
+## Reconstructing from frequencies
+
+```{julia}
+#| echo: false
+n_demo = 200
+t_demo = 1:n_demo
+x_demo = simulate_ar([1.2, -0.7], n_demo)
+ft = [sum(x_demo[t] * exp(-2π * im * k * t / n_demo) for t in 1:n_demo) for k in 0:(n_demo ÷ 2)]
+amplitudes = abs.(ft) ./ n_demo
+
+fig = Figure(; size=(900, 500))
+ax1 = Axis(fig[1, 1:2]; ylabel=L"x_t", title="original series")
+lines!(ax1, t_demo, x_demo; linewidth=1.2, color=colors[1])
+hidexdecorations!(ax1; grid=false)
+
+partial_sums = [3, 10, n_demo ÷ 2]
+for (i, K) in enumerate(partial_sums)
+    ax = Axis(
+        fig[2, i];
+        xlabel=L"t",
+        ylabel=i == 1 ? L"x_t" : "",
+        title="first $K frequencies",
+    )
+    reconstruction = zeros(n_demo)
+    for k in 1:K
+        for t in 1:n_demo
+            reconstruction[t] +=
+                2 * real(ft[k + 1]) / n_demo * cos(2π * k * t / n_demo) -
+                2 * imag(ft[k + 1]) / n_demo * sin(2π * k * t / n_demo)
+        end
+    end
+    reconstruction .+= real(ft[1]) / n_demo
+    lines!(ax, t_demo, reconstruction; linewidth=1.2, color=colors[i + 1])
+    ylims!(ax, extrema(x_demo) .* 1.1)
+end
+fig
+```
+
+Adding more frequencies recovers more of the original signal.
+All $n/2$ frequencies recover it exactly.
+
+## Variance by frequency
+
+- The **spectrum** $S(f)$ is the variance of the record at frequency $f$.
+- Frequency is in cycles per time step, so $f = 1/12$ is one cycle every 12 steps.
+- Frequencies run from 0 to $1/2$ (the Nyquist frequency).
+
+::: {.callout-note title="Wiener-Khinchin theorem"}
+The spectrum is the Fourier transform of the autocorrelation function:
+
+$$
+S(f) = \sum_{h=-\infty}^{\infty} \rho_h \, e^{-2\pi i f h}
+$$
+
+For supplementary notes, read @kantz_nonlinear:2004 §2.3, printed pp. 18-23.
+:::
+
+## White noise
+
+A **white noise** sequence is a set of independent, identically distributed random variables, each with mean zero and variance $\sigma^2$.
+
+$\rho_h = 0$ for all $h \neq 0$: because the draws are independent, there is no autocorrelation at any lag.
+
+Since $S(f)$ is the Fourier transform of $\rho_h$, and $\rho_h$ is zero everywhere except $h = 0$:
+
+$$
+S(f) = \sigma^2 \qquad \text{for every } f
+$$
+
+A flat spectrum: equal power at every frequency (by analogy with white light).
+Adding white noise to a signal adds the same amount of variance at every frequency.
+
+## AR(1) spectrum: red noise
+
+$$
+S(f) = \frac{\sigma^2}{\left|1 - a\,e^{-2\pi i f}\right|^{2}}
+    = \frac{\sigma^2}{1 - 2a\cos 2\pi f + a^{2}}
+$$
+
+At $f = 0$: denominator is $(1-a)^2$, power is largest.
+At $f = 1/2$: denominator is $(1+a)^2$, power is smallest.
+
+For $a > 0$, power decreases with frequency.
+Called **red noise** because red is the low-frequency end of visible light.
+
+## Two theoretical spectra
+
+```{julia}
+#| echo: false
+freqs = range(0.001, 0.5; length=400)
+ar1_spectrum(f, a) = 1 / (1 - 2a * cos(2π * f) + a^2)
+
+fig = Figure(; size=(900, 330))
+ax = Axis(
+    fig[1, 1];
+    xlabel=L"\text{frequency } f",
+    ylabel=L"S(f)",
+    yscale=log10,
+    title="theory, not simulation",
+)
+lines!(
+    ax,
+    collect(freqs),
+    fill(1.0, length(freqs));
+    linewidth=3,
+    color=:black,
+    label=L"\text{white noise}",
+)
+for (i, a) in enumerate([0.5, 0.9])
+    lines!(
+        ax,
+        collect(freqs),
+        [ar1_spectrum(f, a) for f in freqs];
+        linewidth=3,
+        color=colors[i],
+        label=L"\text{AR(1)}, a = %$(a)",
+    )
+end
+axislegend(ax; position=:rt)
+fig
+```
+
+# Some examples
+
+## Five test signals
+
+```{julia}
+#| output: false
+n = 20_000
+
+white_noise = randn(n)
+ar1 = simulate_ar([0.7], n)
+ar2 = simulate_ar([1.2, -0.7], n)
+seasonal = [sin(2π * t / 12) + 0.5 * randn() for t in 1:n]
+
+function lorenz_x(n; dt=0.01, subsample=10)
+    total = n * subsample
+    x, y, z = zeros(total), zeros(total), zeros(total)
+    x[1], y[1], z[1] = 1.0, 1.0, 1.0
+    for i in 1:(total - 1)
+        x[i + 1] = x[i] + dt * 10.0 * (y[i] - x[i])
+        y[i + 1] = y[i] + dt * (x[i] * (28.0 - z[i]) - y[i])
+        z[i + 1] = z[i] + dt * (x[i] * y[i] - (8 / 3) * z[i])
+    end
+    return x[1:subsample:end]
+end
+
+lorenz = lorenz_x(n)
+```
+
+The Lorenz system from Monday is included as a deterministic comparison (no noise term).
+
+## What they look like
+
+```{julia}
+#| echo: false
+#| output: false
+series = [
+    ("white noise", white_noise),
+    ("AR(1), a = 0.7", ar1),
+    ("AR(2), 1.2 and -0.7", ar2),
+    ("period 12 plus noise", seasonal),
+    ("Lorenz x", lorenz),
+]
+
+function each_panel(f; size_px=(950, 400), axis_kwargs...)
+    fig = Figure(; size=size_px)
+    for (i, (name, x)) in enumerate(series)
+        ax = Axis(fig[(i - 1) ÷ 3 + 1, (i - 1) % 3 + 1]; title=name, axis_kwargs...)
+        f(ax, x, i)
+    end
+    return fig
+end
+```
+
+```{julia}
+#| echo: false
+each_panel() do ax, x, i
+    lines!(ax, x[1:150]; linewidth=1.0, color=colors[i])
+    hideydecorations!(ax)
+    hidexdecorations!(ax)
+end
+```
+
+## Autocorrelation
+
+```{julia}
+#| echo: false
+acf_lags = 0:40
+each_panel(; xlabel=L"\text{lag } h", ylabel=L"\hat\rho_h") do ax, x, i
+    stem!(ax, collect(acf_lags), autocor(x, acf_lags); color=colors[i])
+    hlines!(ax, [0]; color=:black, linewidth=0.8)
+    ylims!(ax, -0.8, 1.05)
+end
+```
+
+## Partial autocorrelation
+
+```{julia}
+#| echo: false
+pacf_lags = 1:40
+each_panel(; xlabel=L"\text{lag } h", ylabel=L"\hat\phi_h") do ax, x, i
+    stem!(ax, collect(pacf_lags), pacf(x, pacf_lags); color=colors[i])
+    hlines!(ax, [0]; color=:black, linewidth=0.8)
+    ylims!(ax, -0.8, 1.05)
+end
+```
+
+The Lorenz $x$ has alternating partial autocorrelations that decay slowly, unlike any finite-order AR model.
+
+## Spectra
+
+```{julia}
+#| echo: false
+each_panel(; yscale=log10, xlabel=L"\text{frequency}", ylabel=L"\text{power}") do ax, x, i
+    pg = welch_pgram(x .- mean(x), 2048, 1024; fs=1.0)
+    lines!(ax, freq(pg)[2:end], power(pg)[2:end]; linewidth=1.5, color=colors[i])
+end
+```
+
+## Why the AR(2) peak is where it is
+
+The AR(2) spectrum is $S(f) = \sigma^2 / |1 - a_1 e^{-2\pi i f} - a_2 e^{-4\pi i f}|^2$.
+
+The denominator expands to
+
+$$
+|1 - a_1 e^{-2\pi i f} - a_2 e^{-4\pi i f}|^2 = (1 - a_1 \cos 2\pi f - a_2 \cos 4\pi f)^2 + (a_1 \sin 2\pi f + a_2 \sin 4\pi f)^2
+$$
+
+The peak sits at the frequency where this denominator is smallest.
+Setting the derivative to zero and using $\cos 4\pi f = 2\cos^2 2\pi f - 1$:
+
+$$
+f_{\text{peak}} = \frac{1}{2\pi}\arccos\!\left(\frac{-a_1(1 - a_2)}{4a_2}\right)
+$$
+
+```{julia}
+#| echo: false
+a1_ar2, a2_ar2 = 1.2, -0.7
+f_peak = acos(-a1_ar2 * (1 - a2_ar2) / (4 * a2_ar2)) / (2π)
+period_peak = 1 / f_peak
+@printf("f_peak = %.3g (period = %.3g time steps)", f_peak, period_peak)
+```
+
+# Real data
+
+## The American River at Folsom, California
+
+::: {.columns}
+::: {.column width="55%"}
+
+![The American River basin, draining the western Sierra Nevada into the Sacramento River.
+Map by Wikipedia user Kmusser from USGS data, CC BY-SA 2.5.](am-river-map.png){width=100%}
+
+:::
+::: {.column width="45%"}
+
+Daily flow, 1915 to 2015, 36,888 days.
+
+Snowmelt-driven, so expect a strong seasonal cycle.
+
+:::
+:::
+
+## What one wet year did
+
+![K Street in Sacramento during the Great Flood of 1862, with people rowing boats between the storefronts.
+Lithograph published by A. Rosenfield, San Francisco; public domain.](sacramento-1862.jpg){height=75%}
+
+## The record
+
+```{julia}
+#| echo: false
+river = CSV.read("am-river-daily.csv", DataFrame)
+flow = Float64.(river.streamflow)
+log_flow = log.(flow)
+centered = log_flow .- mean(log_flow)
+
+fig = Figure(; size=(900, 320))
+ax1 = Axis(
+    fig[1, 1]; xlabel=L"\text{year}", ylabel=L"\text{flow}", yscale=log10, title="1915-2015"
+)
+lines!(ax1, 1915 .+ (0:(length(flow) - 1)) ./ 365.25, flow; linewidth=0.3, color=colors[1])
+ax2 = Axis(
+    fig[1, 2]; xlabel=L"\text{year}", ylabel=L"\text{flow}", yscale=log10, title="1950-1955"
+)
+window = round(Int, (1950 - 1915) * 365.25):round(Int, (1955 - 1915) * 365.25)
+lines!(
+    ax2,
+    1950 .+ (0:(length(window) - 1)) ./ 365.25,
+    flow[window];
+    linewidth=0.8,
+    color=colors[1],
+)
+fig
+```
+
+The raw flow spans four orders of magnitude, so all analysis uses $\log$ flow.
+
+## Sketch it
+
+Draw the autocorrelation out to two years, and the spectrum.
+
+Where do the peaks go?
+
+## American River autocorrelation and spectrum
+
+```{julia}
+#| echo: false
+river_lags = 0:730
+pg_river = welch_pgram(centered, 8192, 4096; fs=1.0)
+f_river = freq(pg_river)[2:end]
+p_river = power(pg_river)[2:end]
+
+a_river = autocor(log_flow, [1])[1]
+white_level = var(centered) * 2
+red_level = [
+    white_level * (1 - a_river^2) / (1 - 2a_river * cos(2π * f) + a_river^2) for
+    f in f_river
+]
+
+fig = Figure(; size=(950, 330))
+ax1 = Axis(
+    fig[1, 1]; xlabel=L"\text{lag (days)}", ylabel=L"\hat\rho_h", title="autocorrelation"
+)
+lines!(
+    ax1, collect(river_lags), autocor(log_flow, river_lags); linewidth=1.5, color=colors[1]
+)
+hlines!(ax1, [0]; color=:black, linewidth=0.8)
+ax2 = Axis(
+    fig[1, 2];
+    xlabel=L"\text{frequency (cycles per day)}",
+    ylabel=L"\text{power}",
+    xscale=log10,
+    yscale=log10,
+    title="spectrum",
+    xticks=(
+        [1 / (20 * 365.25), 1 / (5 * 365.25), 1 / 365.25, 1 / 30, 1 / 7],
+        ["20 yr", "5 yr", "1 yr", "30 d", "7 d"],
+    ),
+    xticklabelrotation=π / 4,
+)
+lines!(ax2, f_river, p_river; linewidth=1.2, color=colors[1], label=L"\text{data}")
+lines!(
+    ax2,
+    f_river,
+    red_level;
+    linewidth=2.5,
+    color=:black,
+    linestyle=:dash,
+    label=L"\text{AR(1) fit}",
+)
+hlines!(
+    ax2,
+    [white_level];
+    color=:gray,
+    linestyle=:dot,
+    linewidth=2,
+    label=L"\text{white noise}",
+)
+axislegend(ax2; position=:lb)
+fig
+```
+
+Both axes are logarithmic, the convention for a spectrum spanning decades of frequency and power.
+
+Nothing stands above the red-noise fit at two to seven years, where the El Niño-Southern Oscillation (ENSO) would sit.
+
+## Spectrogram
+
+A **spectrogram** computes a spectrum in each of several overlapping windows of $m$ points:
+
+$$
+S(f, t) = \left| \sum_{s=1}^{m} w_s\, x_{t+s}\, e^{-2\pi i f s} \right|^{2}
+$$
+
+The frequency resolution is $1/m$, so a longer window separates nearby frequencies but blurs their timing.
+
+## American River spectrogram
+
+```{julia}
+#| echo: false
+spec = spectrogram(centered, 1461, 730; fs=1.0)
+spec_f = freq(spec)
+keep = findall(f -> 1 / 800 < f < 1 / 60, spec_f)
+
+fig = Figure(; size=(900, 330))
+ax = Axis(
+    fig[1, 1];
+    xlabel=L"\text{year}",
+    ylabel=L"\text{period (days)}",
+    yscale=log10,
+    yticks=([60, 91, 182, 365, 730], ["60", "91", "182", "365", "730"]),
+)
+hm = heatmap!(
+    ax,
+    1915 .+ time(spec) ./ 365.25,
+    1 ./ spec_f[keep],
+    log10.(power(spec)[keep, :])';
+    colormap=:viridis,
+)
+hlines!(ax, [365.25]; color=:white, linestyle=:dash, linewidth=2)
+Colorbar(fig[1, 2], hm; label=L"\log_{10} \text{power}")
+fig
+```
+
+The frequency grid is linear in $f$ but the $y$-axis is $\log$ period, so long periods get coarser blocks.
+
+## The half-year band fades
+
+```{julia}
+#| echo: false
+river.year = year.(river.date)
+river.doy = dayofyear.(river.date)
+
+function mean_cycle(mask)
+    return [mean(flow[mask .& (river.doy .== d)]) for d in 1:365]
+end
+
+early = mean_cycle(river.year .<= 1955)
+late = mean_cycle(river.year .>= 1965)
+
+fig = Figure(; size=(900, 330))
+ax = Axis(
+    fig[1, 1];
+    xlabel=L"\text{day of year}",
+    ylabel=L"\text{mean flow (cfs)}",
+    title="the average year, before and after",
+)
+lines!(ax, 1:365, early; linewidth=2.5, color=colors[1], label=L"1915-1955")
+lines!(ax, 1:365, late; linewidth=2.5, color=colors[2], label=L"1965-2015")
+axislegend(ax; position=:rt)
+fig
+```
+
+```{julia}
+#| echo: false
+function harmonic_amplitudes(cycle)
+    days = collect(1:365)
+    y = cycle .- mean(cycle)
+    first_harmonic = hypot(sum(y .* cos.(2π * days / 365)), sum(y .* sin.(2π * days / 365)))
+    second_harmonic = hypot(
+        sum(y .* cos.(4π * days / 365)), sum(y .* sin.(4π * days / 365))
+    )
+    return second_harmonic / first_harmonic
+end
+
+@printf(
+    "1915-1955: peak on day %d, second harmonic is %.2f of the first\n",
+    argmax(early),
+    harmonic_amplitudes(early)
+)
+@printf(
+    "1965-2015: peak on day %d, second harmonic is %.2f of the first",
+    argmax(late),
+    harmonic_amplitudes(late)
+)
+```
+
+## Friday
+
+Lab 2 runs a two-variable model of ENSO with fixed parameters and no trend, then samples 50-year windows from it.

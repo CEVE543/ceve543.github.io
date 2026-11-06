@@ -1,0 +1,15 @@
+---
+title: "Lab 8: Downscaling rainfall with quantile mapping and weather types"
+week: 12
+module: 3
+date: 2026-11-13
+---
+
+## Not posted yet
+
+This page is not posted yet.
+
+In this lab, you will correct a climate model's rainfall at a station in two ways that trust different parts of the model.
+First, you will quantile-map the model's daily rainfall onto the observed distribution, which trusts the model's local rainfall once its distribution is corrected.
+Second, you will find k-means weather types in reanalysis circulation, assign the climate model's days to them, and draw observed rainfall by type along the model's own sequence of types, which trusts the model's large-scale circulation and nothing about its rainfall.
+You will then compare the projected change in the 25-year daily rainfall from each route.
