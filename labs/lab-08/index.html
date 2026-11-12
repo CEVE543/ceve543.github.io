@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 8: Working with climate data in Julia – CEVE 543 – Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ba720e08786526302149465d7e6de25f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-13158bb5413ec8d02ccae6c99b3f37a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Lab 8: Working with climate data in Julia – CEVE 543 – Fall 2026">
+<meta property="og:description" content="Homepage for CEVE 543, Hydroclimate Hazard and Extremes, at Rice University, Fall 2026.">
+<meta property="og:site_name" content="CEVE 543 – Fall 2026">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#before-class" id="toc-before-class" class="nav-link" data-scroll-target="#before-class">Before class</a></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a>
+  <ul class="collapse">
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#selecting-data" id="toc-selecting-data" class="nav-link" data-scroll-target="#selecting-data">Selecting data</a></li>
+  <li><a href="#plotting-maps" id="toc-plotting-maps" class="nav-link" data-scroll-target="#plotting-maps">Plotting maps</a></li>
+  </ul></li>
+  <li><a href="#daily-temperature-in-a-5-x-5-degree-box" id="toc-daily-temperature-in-a-5-x-5-degree-box" class="nav-link" data-scroll-target="#daily-temperature-in-a-5-x-5-degree-box">Daily temperature in a 5 x 5 degree box</a></li>
+  <li><a href="#hottest-and-coldest-days" id="toc-hottest-and-coldest-days" class="nav-link" data-scroll-target="#hottest-and-coldest-days">Hottest and coldest days</a></li>
+  <li><a href="#early-and-late-21st-century" id="toc-early-and-late-21st-century" class="nav-link" data-scroll-target="#early-and-late-21st-century">Early and late 21st century</a></li>
+  <li><a href="#a-second-model" id="toc-a-second-model" class="nav-link" data-scroll-target="#a-second-model">A second model</a></li>
+  <li><a href="#turning-it-in" id="toc-turning-it-in" class="nav-link" data-scroll-target="#turning-it-in">Turning it in</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-08/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 8: Working with climate data in Julia</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Friday, November 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this lab, you will learn to download, load, subset, and plot climate model output in Julia with the <code>YAXArrays.jl</code> package. You will</p>
+<ol type="1">
+<li>work through the package’s tutorials, then</li>
+<li>use what you learned on a CMIP6 simulation of near-surface air temperature.</li>
+</ol>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Python’s <code>xarray</code> package has changed how climate scientists work with labeled multi-dimensional arrays. It was developed at The Climate Corporation, released as open source in 2014, and is now the standard tool for climate data analysis in Python. Julia is less widely used for climate data, but the <a href="https://clima.caltech.edu/">Climate Modeling Alliance</a> is building an Earth system model from scratch in Julia, and that work is driving the development of climate data tools in Julia.</p>
+<p>Julia has advantages for this course. Julia is fast, so you do not need to switch to C, Fortran, or C++ for code that has to run quickly. You can write a statistical method in plain Julia and apply it directly to climate data. This means you can write your own downscaling algorithms, bias corrections, and statistical models without learning a specialized library’s syntax or calling one language from another. Code that stays in one language is often easier to understand and maintain.</p>
+<p><code>xarray</code> remains excellent and widely used in practice. For this course, which focuses on implementing and understanding statistical methods, Julia’s speed and readability make it easier to write, test, and apply your own algorithms to real climate data.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Load and explore climate model output using <code>YAXArrays.jl</code>.</li>
+<li>Work with NetCDF files and understand how CMIP6 data are organized.</li>
+<li>Extract and plot climate model data for specific locations and time periods.</li>
+</ol>
+</section>
+<section id="before-class" class="level2">
+<h2 class="anchored" data-anchor-id="before-class">Before class</h2>
+<p>All the packages you need are in this lab’s environment, and the setup cell below installs them the first time you run it. The first run can take 15 minutes or more.</p>
+<p>The analysis after the tutorials uses daily near-surface air temperature (<code>tas</code>, in kelvin) from the CMIP6 archive hosted on Google Cloud, the same <code>gs://cmip6</code> bucket as the Plotting Maps tutorial. The data are CMIP6 simulations under SSP5-8.5, a very high emissions scenario, from two models, MPI-ESM1-2-LR (Max Planck Institute) and CanESM5 (Canadian Centre for Climate Modelling and Analysis).</p>
+<p>Each dataset in the archive has its own path, called a store, such as <code>store = "gs://cmip6/CMIP6/ScenarioMIP/DKRZ/MPI-ESM1-2-HR/ssp585/r1i1p1f1/3hr/tas/gn/v20190710/"</code>, which the Plotting Maps tutorial reads. Each part of that path names one choice, following the <a href="https://pcmdi.llnl.gov/CMIP6/Guide/dataUsers.html">CMIP6 Data Reference Syntax</a>:</p>
+<ul>
+<li><code>cmip6</code>: the top-level Google Cloud storage bucket (hence <code>gs</code>).</li>
+<li><code>CMIP6</code>: the root directory for the project.</li>
+<li><code>ScenarioMIP</code>: the Model Intercomparison Project (MIP).</li>
+<li><code>DKRZ</code>: the institution, here the German Climate Computing Center.</li>
+<li><code>MPI-ESM1-2-HR</code>: the model, here the Max Planck Institute Earth System Model, version 1.2, high-resolution version.</li>
+<li><code>ssp585</code>: the experiment, here Shared Socioeconomic Pathway 5-8.5, a very high emissions scenario.</li>
+<li><code>r1i1p1f1</code>: the variant label. <code>r1</code> is realization 1, which changes from one ensemble member (one run of the same model and scenario, started from different initial conditions) to the next. <code>i1</code> is initialization method 1, <code>p1</code> is physics version 1, and <code>f1</code> is forcing index 1.</li>
+<li><code>3hr</code>: the time frequency, 3-hourly.</li>
+<li><code>tas</code>: the variable, near-surface air temperature.</li>
+<li><code>gn</code>: the grid label, here the model’s native grid.</li>
+<li><code>v20190710</code>: the version date.</li>
+</ul>
+<p>The files you download below come from stores like this one, with the frequency <code>day</code>, so each value is one day’s mean. For MPI-ESM1-2-LR, the low-resolution version of the Max Planck model, the institution is <code>MPI-M</code>. For CanESM5, the institution is <code>CCCma</code> and the version is <code>v20190429</code>.</p>
+<p><strong>The day before class, run the five cells in this section, in order.</strong> The download cell saves only your box, under 10 MB in total in the <code>data/</code> folder in this lab, but each cloud file covers the whole globe, so it takes about 30 minutes. Each file is saved in the Zarr format, which is a folder of compressed chunks rather than a single file. If you run it again, it skips every file already downloaded, so it finishes in seconds. The file names include the box, so if you change the box, run the download cell again, which takes about 30 minutes. The files for the old box stay in <code>data/</code> and are not used.</p>
+<div id="2" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>here <span class="op">=</span> <span class="fu">dirname</span>(<span class="pp">@__FILE__</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next cell loads the packages used below.</p>
+<div id="4" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Dates</span>, <span class="bu">DimensionalData</span>, <span class="bu">IntervalSets</span>, <span class="bu">Statistics</span>, <span class="bu">YAXArrays</span>, <span class="bu">Zarr</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next cell names the variable, ensemble members, periods, and 5 x 5 degree box you will work with. Choose your box now: set <code>box_lon</code> and <code>box_lat</code> to any 5 x 5 degree box you like.</p>
+<div id="6" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>variable <span class="op">=</span> <span class="st">"tas"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>ensemble_members <span class="op">=</span> [<span class="st">"r1i1p1f1"</span>, <span class="st">"r2i1p1f1"</span>, <span class="st">"r3i1p1f1"</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>early <span class="op">=</span> <span class="fl">2015</span><span class="op">:</span><span class="fl">2034</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>late <span class="op">=</span> <span class="fl">2081</span><span class="op">:</span><span class="fl">2100</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a><span class="co"># Longitudes run from 0 to 360, so Houston is at about 265 degrees east.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>box_lon <span class="op">=</span> <span class="fl">265</span> <span class="op">..</span> <span class="fl">270</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>box_lat <span class="op">=</span> <span class="fl">28</span> <span class="op">..</span> <span class="fl">33</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next cell defines two functions. <code>cmip6_path</code> builds a data file’s path from a model, an ensemble member, a variable, and a range of years, and <code>load_cmip6</code> opens that file as a cube, the labeled array that the Getting Started guide below introduces.</p>
+<div id="8" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>data_dir <span class="op">=</span> <span class="fu">joinpath</span>(here, <span class="st">"data"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a><span class="co"># Return the path of the local file for one model, member, variable, and range of years, in your box.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="kw">function</span> <span class="fu">cmip6_path</span>(model, member, variable, years)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    box <span class="op">=</span> <span class="st">"lon</span><span class="sc">$</span>(box_lon.left)<span class="st">-</span><span class="sc">$</span>(box_lon.right)<span class="st">_lat</span><span class="sc">$</span>(box_lat.left)<span class="st">-</span><span class="sc">$</span>(box_lat.right)<span class="st">"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    file <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(model)<span class="st">_</span><span class="sc">$</span>(member)<span class="st">_</span><span class="sc">$</span>(variable)<span class="st">_</span><span class="sc">$</span>(<span class="fu">first</span>(years))<span class="st">-</span><span class="sc">$</span>(<span class="fu">last</span>(years))<span class="st">_</span><span class="sc">$</span>(box)<span class="st">.zarr"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>    <span class="cf">return</span> <span class="fu">joinpath</span>(data_dir, file)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a><span class="kw">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a><span class="co"># Open a downloaded file and return its data as a cube.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a><span class="kw">function</span> <span class="fu">load_cmip6</span>(model, member, variable, years)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>    <span class="cf">return</span> <span class="fu">Cube</span>(<span class="fu">open_dataset</span>(<span class="fu">cmip6_path</span>(model, member, variable, years)))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next cell downloads the data for the last tasks. It saves the data in the <code>data/</code> folder of this lab, which is not committed to Git. It does not run when this document is rendered (<code>eval: false</code>), so you must run it yourself the day before class, with the <strong>Run Cell</strong> button above it or <code>Shift+Enter</code>. <code>cmip6_store</code> builds the path of a cloud store like the one above. <code>download_cmip6</code> reads one model, member, variable, and range of years from that store, keeps only your box, and writes it to a local file, skipping a file that already exists.</p>
+<div id="10" class="cell" data-solution="false" data-execution_count="0">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="co"># Return the cloud store for daily SSP5-8.5 output of one model, member, and variable.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="kw">function</span> <span class="fu">cmip6_store</span>(model, member, variable)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>    institution <span class="op">=</span> <span class="fu">Dict</span>(<span class="st">"MPI-ESM1-2-LR"</span> <span class="op">=&gt;</span> <span class="st">"MPI-M"</span>, <span class="st">"CanESM5"</span> <span class="op">=&gt;</span> <span class="st">"CCCma"</span>)[model]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    version <span class="op">=</span> <span class="fu">Dict</span>(<span class="st">"MPI-ESM1-2-LR"</span> <span class="op">=&gt;</span> <span class="st">"v20190710"</span>, <span class="st">"CanESM5"</span> <span class="op">=&gt;</span> <span class="st">"v20190429"</span>)[model]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    <span class="cf">return</span> <span class="st">"gs://cmip6/CMIP6/ScenarioMIP/</span><span class="sc">$</span>institution<span class="st">/</span><span class="sc">$</span>model<span class="st">/ssp585/</span><span class="sc">$</span>member<span class="st">/day/</span><span class="sc">$</span>variable<span class="st">/gn/</span><span class="sc">$</span>version<span class="st">/"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a><span class="kw">end</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a><span class="co"># Download one model, member, variable, and range of years in your box, unless already saved.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a><span class="kw">function</span> <span class="fu">download_cmip6</span>(model, member, variable, years)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    path <span class="op">=</span> <span class="fu">cmip6_path</span>(model, member, variable, years)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>    <span class="cf">if</span> !<span class="fu">isdir</span>(path)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>        store <span class="op">=</span> <span class="fu">zopen</span>(<span class="fu">cmip6_store</span>(model, member, variable); consolidated<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>        cube <span class="op">=</span> <span class="fu">open_dataset</span>(store)[variable]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a>        subset <span class="op">=</span> cube[time<span class="op">=</span><span class="fu">Where</span>(t <span class="op">-&gt;</span> <span class="fu">year</span>(t) <span class="kw">in</span> years), lon<span class="op">=</span>box_lon, lat<span class="op">=</span>box_lat]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>        <span class="fu">rm</span>(path <span class="op">*</span> <span class="st">".partial"</span>; force<span class="op">=</span><span class="cn">true</span>, recursive<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>        <span class="fu">savecube</span>(subset, path <span class="op">*</span> <span class="st">".partial"</span>; driver<span class="op">=:</span>zarr)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>        <span class="fu">mv</span>(path <span class="op">*</span> <span class="st">".partial"</span>, path)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a>    <span class="cf">end</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a><span class="kw">end</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a><span class="fu">mkpath</span>(data_dir)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-label="22"></a><span class="cf">for</span> model <span class="kw">in</span> [<span class="st">"MPI-ESM1-2-LR"</span>, <span class="st">"CanESM5"</span>], member <span class="kw">in</span> ensemble_members, years <span class="kw">in</span> (early, late)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-label="23"></a>    <span class="fu">download_cmip6</span>(model, member, variable, years)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-label="24"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
+<p>Work through the three tutorials below in the Julia REPL or in a separate scratch file, not in this notebook. They are not part of what you turn in. You can copy and paste the code blocks, but make sure you understand what each line does. The <code>using</code> line under Before class needs only the packages the analysis steps use, so load a tutorial’s packages in the REPL.</p>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">Getting started</h3>
+<p>Work through the <a href="https://juliadatacubes.github.io/YAXArrays.jl/dev/get_started.html">Getting Started with <code>YAXArrays.jl</code></a> user guide.</p>
+</section>
+<section id="selecting-data" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-data">Selecting data</h3>
+<p>Much of the functionality of <code>YAXArrays.jl</code> comes from <a href="https://rafaqz.github.io/DimensionalData.jl/stable/basics"><code>DimensionalData.jl</code></a>, <strong>including the functions for selecting subsets of data and for grouping and aggregating it</strong>.</p>
+<ul>
+<li>Read the <a href="https://rafaqz.github.io/DimensionalData.jl/stable/dimensions">Dimensions</a>, <a href="https://rafaqz.github.io/DimensionalData.jl/stable/selectors">Selectors</a>, and other sections of the <code>DimensionalData.jl</code> documentation under “Getting Started”.</li>
+<li>Work through the <code>YAXArrays.jl</code> <a href="https://juliadatacubes.github.io/YAXArrays.jl/dev/UserGuide/select.html">tutorial on selecting data</a>. <strong>To avoid downloading the file again every time you run the code, start the REPL in this lab’s folder and replace <code>path = download(url, fname)</code> with <code>mkpath("data")</code>, then <code>path = joinpath("data", fname)</code>, then <code>isfile(path) || download(url, path)</code>, which saves the file in <code>data/</code>.</strong></li>
+</ul>
+<p>You do not need to work through every <code>YAXArrays.jl</code> user guide. Do take a few minutes to browse the other guides, so you know what the package can do when you need it later.</p>
+</section>
+<section id="plotting-maps" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-maps">Plotting maps</h3>
+<p>Work through the <a href="https://juliadatacubes.github.io/YAXArrays.jl/dev/tutorials/plottingmaps.html">Plotting Maps</a> tutorial.</p>
+<ul>
+<li>Use <code>CairoMakie.jl</code> instead of <code>GLMakie.jl</code>: replace <code>using GLMakie</code> and <code>using GLMakie.GeometryBasics</code> with <code>using CairoMakie</code> and <code>using CairoMakie.GeometryBasics</code>. The <code>Makie.jl</code> documentation explains the <a href="https://docs.makie.org/dev/explanations/backends/backends">backends</a>.</li>
+<li>You can skip the <code>AlgebraOfGraphics.jl</code> part, although the package is installed if you want to try it.</li>
+</ul>
+</section>
+</section>
+<section id="daily-temperature-in-a-5-x-5-degree-box" class="level2">
+<h2 class="anchored" data-anchor-id="daily-temperature-in-a-5-x-5-degree-box">Daily temperature in a 5 x 5 degree box</h2>
+<p>This step and the three after it each have a cell for your code, above the step’s <strong>Your answer</strong> line; add more cells there as you need them. Open the file for member <code>r1i1p1f1</code> of MPI-ESM1-2-LR, which holds your box, and compute the average <code>tas</code> over it for every day in each of the two periods, 2015-2034 and 2081-2100. If you want to go further, weight each grid cell by the cosine of its latitude, since grid cells shrink toward the poles, as in <a href="https://docs.xarray.dev/en/latest/examples/area_weighted_temperature.html">this <code>xarray</code> example</a>. Plot the two daily time series of <code>tas</code> for your box.</p>
+<p>To open a downloaded file, call <code>load_cmip6("MPI-ESM1-2-LR", "r1i1p1f1", "tas", early)</code>.</p>
+<div id="12" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="co"># Put your code for the daily temperature in your box here.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Your answer:</strong> Which 5 x 5 degree box did you choose, and how did you compute its daily average <code>tas</code>, including whether you weighted grid cells by latitude?</p>
+</section>
+<section id="hottest-and-coldest-days" class="level2">
+<h2 class="anchored" data-anchor-id="hottest-and-coldest-days">Hottest and coldest days</h2>
+<p>From those two time series, find the hottest and coldest days across both periods for your box, and report their dates.</p>
+<div id="14" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="co"># Put your code for the hottest and coldest days here.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Your answer:</strong> On which dates did the hottest and coldest days in your box fall, which period was each in, and how far was each from that period’s mean?</p>
+</section>
+<section id="early-and-late-21st-century" class="level2">
+<h2 class="anchored" data-anchor-id="early-and-late-21st-century">Early and late 21st century</h2>
+<p>Plot a histogram of the daily average <code>tas</code> over your box for 2015 to 2034, pooling the three ensemble members <code>r1i1p1f1</code>, <code>r2i1p1f1</code>, and <code>r3i1p1f1</code> of MPI-ESM1-2-LR. Use normalized histograms, so that distributions built from different numbers of days compare fairly. Make the same histogram for 2081 to 2100 and draw it over the first one, to compare the early and the late 21st century.</p>
+<p>To pool members, join their daily series end to end with <code>vcat</code>. For a normalized histogram, pass <code>normalization=:pdf</code> to <code>hist!</code>.</p>
+<div id="16" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="co"># Put your code for the early and late 21st century histograms here.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Your answer:</strong> How does the distribution of daily average <code>tas</code> in your box change between 2015-2034 and 2081-2100, both in its center and in its hot and cold tails?</p>
+</section>
+<section id="a-second-model" class="level2">
+<h2 class="anchored" data-anchor-id="a-second-model">A second model</h2>
+<p>Make the same early and late histograms for CanESM5 with the same box and its three ensemble members, and compare its histogram for one of the two periods to the MPI-ESM1-2-LR histogram for that period.</p>
+<div id="18" class="cell" data-solution="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a><span class="co"># Put your code for the CanESM5 histograms here.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Your answer:</strong> For the same period, which model is warmer in your box, by about how much, and which has the wider spread?</p>
+</section>
+<section id="turning-it-in" class="level2">
+<h2 class="anchored" data-anchor-id="turning-it-in">Turning it in</h2>
+<p>This lab is due on Canvas on Friday, November 20. It is worth 3 points, graded on your answers in the <strong>Your answer</strong> blocks rather than on your code.</p>
+<ol type="1">
+<li><p>Check that your notebook answers each <strong>Your answer</strong> question.</p></li>
+<li><p>Render the notebook to a PDF. In the terminal, from the lab folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="ex">quarto</span> render index.qmd <span class="at">--to</span> typst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This writes <code>index.pdf</code> beside the notebook. It runs the whole notebook from the top in a fresh process, so it also confirms your work does not depend on leftover REPL state. The download cell does not run in the render, so it needs the files in <code>data/</code> from the day before class.</p></li>
+<li><p>Commit and push your work, with GitHub Desktop or by asking Claude to commit and push. The downloaded data in <code>data/</code> is ignored by Git, so it is not part of your repository.</p></li>
+<li><p>Upload <code>index.pdf</code> to the Lab 8 assignment on Canvas.</p></li>
+<li><p>Paste the link to your repository in the same Canvas submission.</p></li>
+</ol>
+<p>If the render fails and you cannot fix it, upload what you have and say where it broke. A lab that does not render is worth more to me than a lab you did not turn in.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ceve543\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2026 <a href="https://dossgollin-lab.github.io">James Doss-Gollin</a> · <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://www.github.com/CEVE543/ceve543.github.io/edit/main/labs/lab-08/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://www.github.com/CEVE543/ceve543.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://www.github.com/CEVE543/ceve543.github.io"><i class="fa-brands fa-github" aria-label="github"></i> Source</a> · Built with <a href="https://julialang.org">Julia</a> and <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
