@@ -1,0 +1,235 @@
+---
+title: "Trend tests"
+subtitle: "{{< var course.number >}}"
+week: 6
+module: 2
+order: 2
+kind: "slides"
+date: 2026-09-28
+status: "published"
+release: "public"
+execute:
+  cache: true
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+```{julia}
+#| echo: false
+#| output: false
+using CairoMakie, CEVE543Utils, CSV, DataFrames, Dates, Distributions, Printf, Statistics, Unitful
+
+set_theme!(theme_minimal(); fontsize=20)
+colors = Makie.wong_colors()
+
+here = @__DIR__
+
+# Least-squares slope of y on t
+slope_of(t, y) = cov(t, y) / var(t)
+
+# Regression slope with a two-sided t-test on beta_1 = 0
+function slope_test(t, y)
+    n = length(y)
+    slope = slope_of(t, y)
+    resid = y .- (mean(y) .+ slope .* (t .- mean(t)))
+    se = sqrt(sum(resid .^ 2) / (n - 2) / sum((t .- mean(t)) .^ 2))
+    return 2 * ccdf(TDist(n - 2), abs(slope / se))
+end
+
+# Mann-Kendall S, no-ties variance, continuity-corrected normal approximation
+function mann_kendall(y)
+    n = length(y)
+    S = sum(sign(y[j] - y[i]) for i in 1:n for j in (i+1):n)
+    Z = (S - sign(S)) / sqrt(n * (n - 1) * (2n + 5) / 18)
+    return 2 * ccdf(Normal(), abs(Z))
+end
+
+fmt_p(p) = p < 0.001 ? "< 0.001" : @sprintf("%.2f", p)
+
+# Hobby annual maximum daily rainfall, built by scripts/write_hobby.jl
+hobby = CSV.read(joinpath(here, "hobby-annmax.csv"), DataFrame)
+hobby = hobby[hobby.n_valid_days .>= 350, :]
+
+# Brays Bayou annual peaks, USGS 08075000 (the week's reading)
+brays_rows = [split(l, '\t') for l in readlines(joinpath(here, "08075000-peaks.tsv")) if !startswith(l, "#")][3:end]
+brays_rows = filter(r -> !isempty(strip(r[5])), brays_rows)
+brays_year = [parse(Int, r[3][1:4]) for r in brays_rows]
+brays_peak = [parse(Float64, r[5]) for r in brays_rows]
+
+# Annual maximum water levels, raw and with annual mean sea level subtracted (weeks 4 and 5)
+sewells = load_water_level("8638610"; name="Sewells Point", cache=joinpath(here, "..", "..", "labs", "lab-04", "8638610-hourly.csv"))
+galveston = load_water_level("8771450"; name="Galveston Pier 21", cache=joinpath(here, "..", "week-05", "8771450-hourly.csv"), first_year=1904)
+annmax(record, detrend) = AnnMaxRecord(record; detrend=detrend, units=u"m")
+series(record, detrend) = (obsyears(annmax(record, detrend)), ustrip.(waterlevels(annmax(record, detrend))))
+
+records = [
+    ("Hobby rainfall", hobby.year, hobby.prcp_mm),
+    ("Brays Bayou peak flow", brays_year, brays_peak),
+    ("Sewells Point water level", series(sewells, :none)...),
+    ("... minus mean sea level", series(sewells, :msl)...),
+    ("Galveston water level", series(galveston, :none)...),
+    ("... minus mean sea level", series(galveston, :msl)...),
+]
+results = DataFrame(
+    "Record" => [r[1] for r in records],
+    "Years" => ["$(first(r[2]))-$(last(r[2]))" for r in records],
+    "Regression p" => [fmt_p(slope_test(r[2], r[3])) for r in records],
+    "Mann-Kendall p" => [fmt_p(mann_kendall(r[3])) for r in records],
+)
+
+# Hobby daily rainfall, restricted to the same complete years as the annual maxima
+daily_all = CSV.read(joinpath(here, "hobby-daily.csv"), DataFrame)
+daily = filter(r -> year(r.date) in Set(hobby.year), daily_all)
+
+# Storms above 2 inches over 1947-2025, where every year has at least 334 days;
+# rainy days within 3 days of each other are one storm
+storm_threshold = 50.8
+span = filter(r -> Date(1947) <= r.date <= Date(2025, 12, 31), daily_all)
+storm_idx, _ = decluster_daily(span.prcp_mm, storm_threshold; min_gap_days=3)
+storm_date = span.date[storm_idx]
+storm_peak = span.prcp_mm[storm_idx]
+storm_year = year.(storm_date)
+storm_decimal_year = [year(d) + (dayofyear(d) - 1) / 365.25 for d in storm_date]
+storms_per_year = [count(==(y), storm_year) for y in 1947:2025]
+days_between = Dates.value.(diff(storm_date))
+
+# Slope on the annual maxima, as a size rather than a p-value
+amax_slope = slope_of(hobby.year, hobby.prcp_mm)
+amax_change = amax_slope * (last(hobby.year) - first(hobby.year))
+```
+
+## Null hypothesis significance testing
+
+::: {.incremental}
+1. State a **null hypothesis** $H_0$, such as "no trend"
+1. Choose a **test statistic**
+1. Work out (derive or simulate) the statistic's distribution **if $H_0$ were true**
+1. Compare the observed statistic to that distribution
+:::
+
+::: {.fragment}
+The **p-value** is the probability, if $H_0$ were true, of a statistic at least as extreme as the one observed.
+
+- A small p-value means data like these would be unusual under $H_0$.
+- Reject $H_0$ when the p-value is below a level chosen in advance, usually 0.05.
+:::
+
+## What a p-value is not
+
+- A p-value is $P(\text{data this extreme} \mid H_0)$.
+- It is **not** $P(H_0 \mid \text{data})$, such as the probability that there is no trend [@serinaldi_untenablenonstationarity:2018, p. 136].
+- A large p-value does not show that $H_0$ is true.
+
+## Side rant
+
+A p-value is useful when interpreted carefully.
+The trouble comes from treating a hypothesis as simply true or false, and sorting effects into "real" and "not real".
+For more, read:
+
+- @mcshane_abandonsignificance:2017
+- @gelman_subjectiveobjective:2017
+- @stark_cargo-cultstatistics:2018
+- @gelman_philosophy:2013
+
+## The regression slope test
+
+- Fit $y_t = \beta_0 + \beta_1 t + \varepsilon_t$ by least squares; test $\beta_1 = 0$ with a $t$ statistic.
+- Assumes independent, normal residuals with constant variance.
+
+## The Mann-Kendall test
+
+- $S = \sum_{i < j} \operatorname{sign}(y_j - y_i)$: pairs where the later value is larger, minus pairs where it is smaller.
+- Under $H_0$ (independent, identically distributed years, no ties), $S$ is approximately normal with mean 0 and variance $n(n-1)(2n+5)/18$.
+- Uses only the ordering, so it assumes no distribution for $y$.
+
+## Trend tests on records we have seen
+
+```{julia}
+#| echo: false
+#| output: asis
+println("| Record | Years | Regression p | Mann-Kendall p |")
+println("| :--- | :--- | ---: | ---: |")
+for r in eachrow(results)
+    println("| ", join(r, " | "), " |")
+end
+```
+
+"... minus mean sea level" subtracts each year's mean water level before taking the maximum, as in week 5.
+For supplementary notes on both tests, read @helsel_waterresources:2020 §12.2, pp. 332-336.
+
+## Reading the table
+
+- Both coastal records reject "no trend", and neither does once mean sea level is subtracted.
+- Brays Bayou rejects; Hobby does not.
+
+::: {.callout-tip .pause}
+## Think
+
+If we already know the cause, what did the test add?
+:::
+
+## Daily rainfall at Hobby
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(1000, 170))
+ax = Axis(fig[1, 1]; xlabel="Date", ylabel="Daily rainfall (mm)")
+scatter!(ax, daily.date, daily.prcp_mm; color=colors[1], markersize=3)
+hlines!(ax, [storm_threshold]; color=colors[2], linestyle=:dash)
+fig
+```
+
+`{julia} length(storm_peak)` storms above 2 inches (dashed) from 1947 to 2025, counting rainy days within 3 days of each other as one storm.
+
+## Four things that could be changing at Hobby
+
+```{julia}
+#| echo: false
+fig = Figure(; size=(1100, 560))
+panels = [
+    ("Largest day each year (mm)", hobby.year, hobby.prcp_mm),
+    ("Storms per year", collect(1947:2025), storms_per_year),
+    ("Largest day of each storm (mm)", storm_decimal_year, storm_peak),
+    ("Days since the previous storm", storm_decimal_year[2:end], days_between),
+]
+for (k, (label, t, y)) in enumerate(panels)
+    ax = Axis(fig[fldmod1(k, 2)...]; title="$label: Mann-Kendall p = $(fmt_p(mann_kendall(y)))", titlesize=18)
+    scatter!(ax, t, y; color=colors[1], markersize=5)
+end
+fig
+```
+
+## A slope can be large and not significant
+
+- Hobby's annual maxima rise `{julia} @sprintf("%.2f", amax_slope)` mm per year, with p = `{julia} fmt_p(slope_test(hobby.year, hobby.prcp_mm))`.
+- That is `{julia} round(Int, amax_change)` mm over `{julia} last(hobby.year) - first(hobby.year)` years, `{julia} round(Int, 100amax_change / mean(hobby.prcp_mm))`% of the average annual maximum.
+
+::: {.callout-tip .pause}
+## Think
+
+What do you think is changing at Hobby, and why?
+:::
+
+## Two nearby rivers with a step change around 1975
+
+![Average annual discharge, 1916-2015, for two rivers the authors call the Nera and the Velino [@serinaldi_untenablenonstationarity:2018, Fig. 1a-b, CC BY 4.0].](serinaldi-fig1-rivers.png){width=100%}
+
+Every change-point test rejects "no change" for both [@serinaldi_untenablenonstationarity:2018, p. 133].
+
+## Neither series is a river
+
+![The "Nera" is independent noise plus a step; the "Velino" is a window, in the red box, of a stationary process with long memory [@serinaldi_untenablenonstationarity:2018, Fig. 1i-j, CC BY 4.0].](serinaldi-fig1-reveal.png){width=100%}
+
+## Memory alone makes Mann-Kendall reject
+
+Annual maximum flow at 250 US streamflow gauges [@serinaldi_untenablenonstationarity:2018, pp. 147-148]:
+
+- standard Mann-Kendall rejects "no trend" at 46;
+- a null that keeps each river's memory rejects at 12;
+- chance alone, at the 5% level, gives about 12.

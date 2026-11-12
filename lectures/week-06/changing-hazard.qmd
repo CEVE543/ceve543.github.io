@@ -1,0 +1,140 @@
+---
+title: "Example: nonstationarity and the 100-year flood"
+week: 6
+module: 2
+order: 4
+kind: "notes"
+date: 2026-09-28
+status: "published"
+release: "public"
+format: "typst"
+bibliographystyle: american-geophysical-union
+execute:
+  cache: true
+---
+
+We cover this at the board in class.
+For supplementary notes, read @honeycutt_cisa:2023 Appendix B, pp. 77-83.
+
+::: {.summary}
+What a 1-percent flood means once its probability changes from year to year.
+
+- When the hazard is changing, "the 100-year flood" has three reasonable meanings: the level today, the highest level over the planning period, and one level with the same chance of being flooded at least once over that period.
+- If the years are independent, the chance of at least one flood in $n$ years is one minus the product of the chances of no flood in each year.
+- A risk that changes every year can be reported as the single unchanging yearly chance that gives the same risk over the period.
+
+$$P_n = 1 - \prod_{i=1}^{n} (1 - p_i)$$
+
+$$p_{\text{equiv}} = 1 - (1 - P_n)^{1/n}$$
+
+:::
+
+```{julia}
+#| echo: false
+#| output: false
+using Printf
+
+pct(x; digits=2) = string(round(100x; digits=digits), "%")
+
+# Honeycutt et al. (2023) Table B2, p. 81: annual chance of exceeding
+# 6.9 ft at Grand Isle, LA, under the USACE High sea level scenario
+p_grand_isle = [1.00, 1.03, 1.07, 1.11, 1.15, 1.20, 1.24, 1.29, 1.34, 1.39,
+    1.45, 1.51, 1.57, 1.63, 1.70, 1.77, 1.84, 1.92, 2.00, 2.09,
+    2.18, 2.27, 2.37, 2.47, 2.58, 2.70, 2.82, 2.94, 3.08, 3.22] ./ 100
+
+risk_stationary(p, n) = 1 - (1 - p)^n
+risk_varying(ps) = 1 - prod(1 .- ps)
+equivalent_annual(P, n) = 1 - (1 - P)^(1 / n)
+
+n_years = length(p_grand_isle)
+risk_30_stationary = risk_stationary(0.01, n_years)
+risk_30_grand_isle = risk_varying(p_grand_isle)
+p_equiv_grand_isle = equivalent_annual(risk_30_grand_isle, n_years)
+```
+
+## Three definitions of the 1-percent flood
+
+Suppose the flow with a 1-percent annual chance at a river site is rising, and a floodplain map made this year will be used for the next 30 years.
+There are three reasonable levels to put on that map:
+
+1. The 1-percent level as it is today.
+1. The highest 1-percent level at any point in the 30 years.
+1. A single level chosen so that, over the 30 years, it has the same chance of being flooded at least once as the rising hazard does.
+
+![The 1-percent flow rising over a 30-year horizon (blue), with the three levels: today's (gray), the highest over the horizon (green), and the one with the same 30-year risk (red) [@honeycutt_cisa:2023, Fig. 13, p. 78].](honeycutt-fig13.png){width=80%}
+
+::: {.callout-tip title="Ask"}
+Which of the three should the map show?
+
+Each one is right for some purpose.
+The first is correct on the day the map is published and too low every year after that.
+The second is never too low, and it is too high in every year except the last.
+The third gets the chance of at least one flood over the 30 years right, and it matches the 1-percent level in only one year.
+:::
+
+::: {.callout-important title="Leave up"}
+The three levels.
+:::
+
+## Risk over a design life, stationary
+
+In week 1 we treated each year as a flip of a bent coin that comes up heads, a flood, with probability $p$.
+With independent flips and the same coin every year, the chance of no flood in $n$ years is the chance of $n$ tails in a row, so the chance of at least one flood is
+
+$$
+P_n = 1 - (1 - p)^n
+$$
+
+::: {.callout-note title="Say"}
+This is the mortgage number from week 1.
+A house on the 1-percent line has a `{julia} pct(risk_30_stationary; digits=1)` chance of flooding at least once over a 30-year mortgage.
+:::
+
+## Risk over a design life, changing
+
+Now the coin is bent a little further each year, so year $i$ has its own chance $p_i$.
+The flips are still independent, so the chance of no flood is still a product, now of 30 different factors:
+
+$$
+P_n = 1 - \prod_{i=1}^{n} (1 - p_i)
+$$
+
+At Grand Isle, Louisiana, sea level rise makes a 6.9-foot water level more likely every year: a `{julia} pct(first(p_grand_isle))` chance in the first year, rising to `{julia} pct(last(p_grand_isle))` in the thirtieth [@honeycutt_cisa:2023, p. 81].
+Over those 30 years, $P_{30}$ is `{julia} pct(risk_30_grand_isle)`.
+
+::: {.callout-note title="Say"}
+Grand Isle starts at the same 1-percent chance as the mortgage.
+If nothing changed, the chance of at least one flood would be `{julia} pct(risk_30_stationary; digits=1)`; with the rise it is `{julia} pct(risk_30_grand_isle)`.
+The years are still independent once we know the sea level in each one: this is the conditional independence from the start of class, with sea level as the covariate.
+:::
+
+## The stationary equivalent
+
+We can ask which unchanging coin would give the same 30-year risk.
+Set the stationary formula equal to $P_{30}$ and solve for the constant chance, $p_{\text{equiv}}$:
+
+$$
+1 - (1 - p_{\text{equiv}})^{30} = P_{30}
+$$
+
+$$
+p_{\text{equiv}} = 1 - (1 - P_{30})^{1/30}
+$$
+
+For Grand Isle, $p_{\text{equiv}}$ is `{julia} pct(p_equiv_grand_isle)`.
+
+::: {.callout-note title="Say"}
+The report suggests saying it to the public this way: your risk over this period is "the same as if the chances were an unchanging 1.87 percent per year" [@honeycutt_cisa:2023, p. 82].
+That is the third level on the first board.
+:::
+
+## The level in the Brays paper
+
+In the paper you are reading for Wednesday, every nonstationary flood estimate for Brays Bayou comes from the fitted distribution for 2024, the last year of the record [@smith_brays:2026, pp. 7-8].
+
+::: {.callout-tip title="Ask"}
+Which of the three levels is that?
+
+The first, the level today.
+The authors' reason is that dam and levee safety are judged against present-day conditions.
+:::
