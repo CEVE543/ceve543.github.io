@@ -1,0 +1,15 @@
+---
+title: "Markov chains and hidden Markov models"
+week: 13
+module: 3
+date: 2026-11-16
+format: "typst"
+---
+
+## Summary
+
+For more notes, read:
+
+- @wilks_atmosphericsciences:2011 §9.2, on two-state Markov chains for wet and dry days.
+- Jurafsky and Martin, *Speech and Language Processing*, [Appendix A](https://web.stanford.edu/~jurafsky/slp3/A.pdf) §A.3-A.5, on the three questions a fitted hidden Markov model answers: the likelihood, the most likely states, and the parameters.
+- Stamp, [*A Revealing Introduction to Hidden Markov Models*](https://www.cs.sjsu.edu/~stamp/RUA/HMM.pdf), whose opening example infers hot and cold years from tree-ring sizes.

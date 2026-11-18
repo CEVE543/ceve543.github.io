@@ -1,0 +1,16 @@
+---
+title: "Non-homogeneous hidden Markov models"
+week: 13
+module: 3
+date: 2026-11-18
+format: "typst"
+---
+
+## Summary
+
+Fitting an HMM favors likely transitions, so its states last longer than k-means types.
+A non-homogeneous HMM lets a climate index change the transition matrix.
+
+For more notes, read:
+
+- @greene_nhmm:2011 §5.1, pp. 350-351, on the non-homogeneous hidden Markov model and its long-run state probabilities.

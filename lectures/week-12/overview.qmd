@@ -1,0 +1,90 @@
+---
+title: "Week 12 overview"
+subtitle: "{{< var course.number >}}"
+week: 12
+module: 3
+order: 1
+kind: "slides"
+date: 2026-11-09
+status: "published"
+release: "public"
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+# What Should We Trust in a Climate Model?
+
+## What Can a Climate Model Tell You about Daily Rainfall in 2070?
+
+- Its rainfall at the nearest grid cell?
+- Its winds and pressure patterns over South America?
+- Its global mean temperature?
+
+## Ohio Extreme Rain Days
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Spring extreme-rain days per year (left) and their persistence (right), GFDL CM3 (black) and observed (red). @farnham_credibly:2018, Fig. 3.
+:::
+
+## On Those Days, the Model's Circulation Looks like Reanalysis
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: 700 hPa height anomalies on extreme-rain days: two GFDL CM3 runs and reanalysis. @farnham_credibly:2018, Fig. 5.
+:::
+
+## Two Ways to Use a Climate Model
+
+::: {.columns}
+::: {.column width="50%"}
+**Trust its local rainfall**
+
+- Correct the distribution at each grid cell.
+- The historical distribution matches observations by construction.
+- Wet and dry spells, and year-to-year variance, come from the model.
+:::
+::: {.column width="50%" .fragment}
+**Trust its large-scale circulation**
+
+- Take the _sequence of weather patterns_ from the model.
+- Model rainfall from large-scale weather patterns
+:::
+:::
+
+## Ohio Extreme Rainfall Days
+
+Logistic regression for the chance of a regional extreme-rain day, given five daily atmospheric indices (pressure patterns, humidity, vertical motion); fit to observations, then driven by the model's indices.
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Spring extreme-rain days from model rainfall (solid black), model circulation (dashed), and observations (red). @farnham_credibly:2018, Fig. 8.
+:::
+
+# Weather Types
+
+## Can We Cluster Circulations?
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Circulation (top) and rainfall (bottom) anomalies for six weather types over subtropical South America. @doss-gollin_pyfloods:2018, Fig. 6.
+:::
+
+## The 2015/16 Paraguay River Floods
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Daily rainfall over the lower Paraguay basin, NDJF 2015/16, labeled by weather type. @doss-gollin_pyfloods:2018, Fig. 7.
+:::
+
+## Do Models Reproduce Weather Type Patterns?
+
+::: {.callout-note appearance="simple"}
+Figure shown in class: Spring 500 hPa height anomalies by type (red high, blue low): reanalyses (top two rows), GFDL models. @munoz_crosstimescale:2017, Fig. 3.
+:::
+
+## This Week
+
+- Wednesday: discussion of @moron_senegal:2008. Read the paper, bring 2 questions and paper only.
+- Friday: Lab 8
