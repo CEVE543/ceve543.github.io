@@ -1,0 +1,310 @@
+---
+title: "Case study: Brays Bayou flood frequency"
+subtitle: "{{< var course.number >}}"
+week: 6
+module: 2
+order: 3
+kind: "slides"
+date: 2026-09-30
+status: "published"
+release: "public"
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Today
+
+We discuss @smith_brays:2026, a nonstationary flood frequency analysis of Brays Bayou at Houston, fit by Bayesian methods in the open-source RMC-BestFit software from the US Army Corps of Engineers.
+
+::: {.callout-important}
+Every figure is from the paper, which is open access under CC BY 4.0, so it's OK to share here.
+:::
+
+## Case study: two Texas watersheds
+
+::: {.columns}
+::: {.column width="50%"}
+![Brays Bayou and O.C. Fisher Reservoir [@smith_brays:2026, Fig. 1, CC BY 4.0].](smith-fig1-map.png){height=6cm}
+:::
+::: {.column width="50%"}
+Clear physical drivers and strong nonstationary signals
+
+- **Brays Bayou:** floods rising with urbanization
+- **O.C. Fisher:** floods falling with brush encroachment and groundwater pumping
+:::
+:::
+
+# The data
+
+## The record is a modeling choice
+
+![Annual maximum instantaneous flow at USGS 08075000, 1929-2024; the shaded band is 1930-1935, when only a perception threshold is known [@smith_brays:2026, Fig. 2, CC BY 4.0].](smith-fig2-chronology.png){height=75%}
+
+## The likelihood
+
+The stationary likelihood [@smith_brays:2026, eq. 1]:
+
+$$
+L(\mathbf{x} \mid \theta) = \prod_{i=1}^{N} f(x_i \mid \theta)
+$$
+
+::: {.fragment}
+In the **nonstationary model** the parameters depend on the year, $\theta_t$ [@smith_brays:2026, eq. 2]:
+
+$$
+L(\mathbf{x} \mid \theta) = \prod_{t=1}^{T} f(x_t \mid \theta_t)
+$$
+:::
+
+## A perception threshold is a censored observation
+
+A perception threshold is "the flow above which an event would have been recorded in any given year" [@smith_brays:2026, p. 11, eq. 3].
+
+$$
+L(\mathbf{x} \mid \theta) = \prod_{t=1}^{T}
+\begin{cases}
+f(x_t \mid \theta_t) & \text{exact data} \\
+F(x_t^{U} \mid \theta_t) & \text{left censored (below threshold)} \\
+1 - F(x_t^{L} \mid \theta_t) & \text{right censored (above threshold)} \\
+F(x_t^{U} \mid \theta_t) - F(x_t^{L} \mid \theta_t) & \text{interval censored}
+\end{cases}
+$$
+
+$f$ is the probability density and $F$ the cumulative distribution function.
+
+## Brays Bayou likelihood
+
+- 1929 and 1936-2024: $f(x_t \mid \theta_t)$.
+- Each of 1930-1935: $F(994 \mid \theta_t)$.
+
+A year with no measured flood still carries information: six years in a row below 994 m³/s rules out parameter values that make 994 m³/s common.
+
+For more, read @gelman_bda3:2014, §8.7, on censored data in a Bayesian model.
+
+## NHST
+
+| Test | Null hypothesis | $p$-value |
+| :--- | :--- | :--- |
+| Jarque-Bera | Normality | 0.0015 |
+| Ljung-Box Q | No autocorrelation | $< 10^{-15}$ |
+| Wald-Wolfowitz | Independence and stationarity | $1.84 \times 10^{-10}$ |
+| Mann-Whitney U | Homogeneity | $4.55 \times 10^{-11}$ |
+| Mann-Kendall | No monotonic trend | $1.33 \times 10^{-13}$ |
+| Linear trend | $\beta_1 = 0$ | $< 10^{-15}$ |
+| Equal-variance $t$-test | $\mu_1 = \mu_2$ | $4.23 \times 10^{-13}$ |
+| Unequal-variance $t$-test | $\mu_1 = \mu_2$ | $5.91 \times 10^{-12}$ |
+| $F$-test | $\sigma_1^2 = \sigma_2^2$ | $8.76 \times 10^{-7}$ |
+| Mixture model | Unimodality | 0.0004 |
+
+: Subperiod tests compare 1929-1980 against 1981-2024 [@smith_brays:2026, p. 13, Table 2]. {#tbl-brays-tests}
+
+## The autocorrelation of a trending record
+
+::: {.columns}
+::: {.column width="55%"}
+![Autocorrelation of the Brays annual maxima out to lag 20, with 95% bounds [@smith_brays:2026, Fig. 3, CC BY 4.0].](smith-fig3-acf.png){height=6cm}
+:::
+::: {.column width="45%"}
+
+- Nearly every lag out to 20 sits above the bound.
+- A trend does this: early years are all low and late years all high, so any two years close in time look alike.
+- The paper reads it as "characteristic of a strong monotonic trend" [@smith_brays:2026, p. 13].
+:::
+:::
+
+# The model
+
+## Log-Pearson Type III
+
+LP3 is used "consistent with federal guidelines established in Bulletin 17C" [@smith_brays:2026, p. 8].
+
+- Like the GEV, it is fit to annual maxima.
+- "Log" means it is fit to $\log_{10}$ of the flow.
+- Think: log-normal with a skewness parameter added.
+  - Positive means prone to floods far above the mean
+  - Negative means the watershed caps the largest flow.
+  - The skew is often similar at nearby gauges -- we will revisit this next week!
+
+## Trend formulas the software offers
+
+| Model | Formulation | Use case in the paper |
+| :--- | :--- | :--- |
+| Constant | $\mu_t = \alpha$ | No detectable trend |
+| Linear | $\mu_t = \alpha + \beta t$ | Gradual urban expansion |
+| Exponential | $\mu_t = \alpha e^{-\beta t}$ | Trend slowing as a watershed stabilizes |
+| Logistic | $\mu_t = \frac{\alpha}{1 + e^{-\beta t}}$ | Sprawl that plateaus |
+| Power | $\mu_t = \alpha t^{\beta}$ | Accelerating imperviousness |
+| Quadratic | $\mu_t = \alpha + \beta t + \gamma t^{2}$ | Rise then plateau |
+| Cubic | $\mu_t = \alpha + \beta t + \gamma t^{2} + \delta t^{3}$ | Sequential land-use changes |
+| Sinusoidal | $\mu_t = \alpha + \beta \sin(2 \pi \gamma t + \delta)$ | Multidecadal climate cycles |
+| Step | $\mu_t = \mu_1$ for $t \le t_c$, $\mu_2$ for $t > t_c$ | A land-cover change in a known year |
+
+## Time is the covariate
+
+::: {.callout-tip}
+## Think
+
+Monday's recipe said to choose a covariate by mechanism.
+What does $t$ _stand in_ for at Brays?
+:::
+
+::: {.fragment}
+
+- Imperviousness and channelization, neither of which is in the model.
+- The authors say so: "formal covariate-based attribution is beyond the current scope" [@smith_brays:2026, p. 13].
+:::
+
+## Bayes' theorem in Smith's notation
+
+@smith_brays:2026, eq. 4:
+
+$$
+p(\theta \mid \mathbf{x}) = \frac{L(\mathbf{x} \mid \theta) \cdot \pi(\theta)}{\int L(\mathbf{x} \mid \theta) \cdot \pi(\theta) d\theta}
+$$
+
+The joint prior over $p$ parameters, then with the parameters independent [@smith_brays:2026, eqs. 5-6]:
+
+$$
+\pi(\theta) = \pi(\theta_1 \cap \theta_2 \cap \cdots \cap \theta_p)
+$$
+
+$$
+\pi(\theta) = \prod_{i=1}^{p} f(\theta_i)
+$$
+
+## The default priors
+
+- Flat priors on location, scale, and shape, "centered near the likelihood with broad spread" [@smith_brays:2026, p. 5].
+- A Jeffreys prior on the scale, $\pi(\sigma) \propto 1/\sigma$, "equivalent to using a log-link function" (p. 5).
+- That is a flat prior on $\log \sigma$: the same log scale Monday's model used for $\sigma$.
+- Trend parameters (slopes, change points) get uninformative priors, and priors on the other parameters apply at the final year $T$ (p. 6).
+
+## Prior information on a flood quantile
+
+A quantile prior puts a distribution on the flood $x_p$ with annual exceedance probability $p$, with hyperparameters $\theta_h$ [@smith_brays:2026, eq. 7]:
+
+$$
+h(x_p) = f(x_p \mid \theta_h)
+$$
+
+The quantile is a function of the parameters in the final year [@smith_brays:2026, eq. 8]:
+
+$$
+x_p = F^{-1}(p \mid \theta_T)
+$$
+
+## A quantile prior becomes a prior on the parameters
+
+Substitute to evaluate it in parameter space [@smith_brays:2026, eq. 9]:
+
+$$
+\pi_q(\theta) = h\left(F^{-1}(p \mid \theta_T)\right)
+$$
+
+The posterior multiplies in every source [@smith_brays:2026, eq. 10]:
+
+$$
+p(\theta \mid \mathbf{x}) \propto L(\mathbf{x} \mid \theta) \cdot \pi(\theta) \cdot \pi_q(\theta)
+$$
+
+"The quantile prior acts as a penalty function, rewarding parameter sets that produce flood quantiles consistent with the prior information" (p. 6).
+O.C. Fisher uses one, taken from a rainfall-runoff model; Brays does not.
+
+## Sampling the posterior
+
+RMC-BestFit samples with DE-MCzs, a differential-evolution Markov chain with a "snooker update" [@smith_brays:2026, p. 9].
+
+- It uses no gradients.
+- It scales poorly to many parameters, where the NUTS sampler you used in `Turing` scales well (by leveraging gradients)
+- It can do better on a posterior with several modes, or a likelihood with discrete parameters, such as the step model's change year $t_c$.
+
+## The posterior predictive distribution
+
+The full distribution of a flood $k$ years into the future [@smith_brays:2026, eq. 14]:
+
+$$
+p(x_{T+k} \mid \mathbf{x}) = \int f(x_{T+k} \mid \theta_{T+k}) \cdot p(\theta \mid \mathbf{x}) d\theta
+$$
+
+- It "accounts for both parameter uncertainty (epistemic) and natural variability (aleatory)" (p. 10), as in labs 4 and 5.
+  - This is a _narrow_ definition of epistemic uncertainty
+- Think of it as "averaging over the posterior"
+
+# Choosing a model
+
+## Seven candidate models for Brays
+
+| Model | $k$ | AIC | BIC | DIC | $\Delta$DIC |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| Stationary | 3 | 1233.73 | 1241.23 | 1228.36 | 73.06 |
+| Linear ($\mu$) | 4 | 1182.14 | 1192.14 | 1180.76 | 25.45 |
+| Logistic ($\mu$) | 4 | 1179.94 | 1189.94 | 1179.23 | 23.93 |
+| Step ($\mu$) | 5 | 1177.04 | 1189.54 | 1162.28 | 6.98 |
+| Linear-logistic ($\mu$-$\sigma$) | 5 | 1168.70 | 1181.20 | 1172.04 | 16.74 |
+| Logistic-logistic ($\mu$-$\sigma$) | 5 | **1161.46** | **1173.96** | 1160.26 | 4.95 |
+| **Step-logistic ($\mu$-$\sigma$)** | 6 | 1165.24 | 1180.24 | **1155.30** | 0.00 |
+
+: Model comparison [@smith_brays:2026, p. 15, Table 3], with AIC, BIC, and DIC revisited in week 8. {#tbl-brays-models}
+
+## Four plausible models
+
+![The 2-year return level under (a) the stationary, (b) linear-logistic, (c) logistic-logistic, and (d) step-logistic models, with 90% credible intervals [@smith_brays:2026, Fig. 4, CC BY 4.0].](smith-fig4-trends.png){height=90%}
+
+## The fitted change point and the variance
+
+- The change point is estimated at 1968, near the start of Houston's most intensive development in the early 1970s [@smith_brays:2026, p. 14].
+- The location jumps at the change point, while the scale, the spread of the log-flows, declines smoothly over the whole record with no jump (logistic, $\beta = -0.014$).
+- Early floods spanned about 20-300 m³/s, more than a factor of ten; after urbanization, about 200-800 m³/s, a factor of four (p. 14).
+
+## Why urbanization narrows the log-space spread
+
+"In a pre-urbanization watershed, flood magnitudes are highly variable because antecedent soil moisture, infiltration capacity, and vegetation interception modulate rainfall-runoff partitioning differently for each event" [@smith_brays:2026, p. 23].
+
+Pave it over and the response "approaches a near-deterministic conversion of rainfall to runoff" (p. 24).
+
+# Results
+
+## Stationary and nonstationary flood quantiles
+
+Posterior predictive estimates and 90% intervals in m³/s, the nonstationary column at 2024 conditions [@smith_brays:2026, p. 16, Table 4].
+
+| AEP (return period) | Stationary | 90% CI | Nonstationary | 90% CI |
+| :--- | ---: | :--- | ---: | :--- |
+| 0.50 (2-yr) | 346 | [297, 400] | 511 | [462, 560] |
+| 0.20 (5-yr) | 607 | [542, 673] | 661 | [603, 727] |
+| 0.10 (10-yr) | 744 | [674, 815] | 749 | [675, 836] |
+| 0.02 (50-yr) | 940 | [865, 1046] | 924 | [798, 1076] |
+| 0.01 (100-yr) | 993 | [912, 1126] | 996 | [838, 1172] |
+
+## Frequency curves meet in the tail
+
+![Stationary (blue) and nonstationary (red) frequency curves for Brays Bayou, with 90% intervals; the plotting positions assume stationarity [@smith_brays:2026, Fig. 5, CC BY 4.0].](smith-fig5-frequency.png){height=75%}
+
+# Discussion
+
+## Step Model
+
+::: {.callout-tip}
+## Think
+
+The selected model has one level before 1968 and one after, forever.
+What would violate that?
+:::
+
+::: {.pause}
+
+- More urbanization after 1968.
+- More infrastructure: channelization and detention basins.
+:::
+
+## How you might address it
+
+- A better covariate: impervious area fraction in place of the year, which the paper names as future work [@smith_brays:2026, p. 25].
+- A different method: fit the extreme value model to rainfall, and run it through a flood model that represents land use and infrastructure.
+- The paper's own list adds hierarchical pooling across sites, model averaging over the trend forms, and alternative distributions (pp. 24-25).

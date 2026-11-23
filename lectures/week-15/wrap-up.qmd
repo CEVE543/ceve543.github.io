@@ -1,0 +1,19 @@
+---
+title: "Synthesis and wrap-up"
+subtitle: "{{< var course.number >}}"
+week: 15
+module: 4
+date: 2026-12-04
+format:
+  typst:
+    shift-heading-level-by: 0
+    font-paths:
+      - ../../_typst/fonts
+    template-partials:
+      - ../../_typst/slides/typst-template.typ
+      - ../../_typst/slides/typst-show.typ
+---
+
+## Not posted yet
+
+This page is not posted yet.

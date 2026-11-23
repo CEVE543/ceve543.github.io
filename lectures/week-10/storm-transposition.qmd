@@ -1,0 +1,25 @@
+---
+title: "Storm transposition"
+subtitle: "{{< var course.number >}}"
+week: 10
+module: 3
+date: 2026-10-26
+format: "typst"
+---
+
+## Summary
+
+An event set is a long list of plausible storms with a probability attached to each.
+In this session we compute risk measures from an event set, build one for a watershed by moving observed storms around its region (stochastic storm transposition), weight storms that come with return periods, and see what a single rainfall number per storm leaves out.
+
+- Average annual loss $\mathrm{AAL} = E[L]$, estimated by $\frac{1}{n}\sum_{i=1}^n L_i$ over $n$ equally likely synthetic years, where $L_i$ is the total loss in synthetic year $i$.
+- $\mathrm{VaR}_\alpha$ is the annual loss exceeded with probability $1 - \alpha$; TVaR, also called CVaR or expected shortfall, is $E[L \mid L \geq \mathrm{VaR}_\alpha]$.
+- From a ladder of design events (the 2- to 100-year storms, each with its damage $d_k$), AAL is the area under damage against annual exceedance probability $p_k = 1/T_k$, approximated with trapezoids: $\mathrm{AAL} \approx \sum_k (p_k - p_{k+1}) \frac{d_k + d_{k+1}}{2}$.
+- From a set of storms with no synthetic years, fit the distribution of an intensity measure, sort the storms from the rarest, $T_1 > T_2 > \cdots$, and weight each by its own rate $\lambda_j = 1/T_j - 1/T_{j-1}$ with $1/T_0 = 0$; then $\mathrm{AAL} = \sum_j \lambda_j d_j$.
+- An intensity measure is one number per storm, and its frequency need not match the frequency of flooding or damage.
+
+For supplementary notes, read:
+
+- @neubergerberman_catmod101:2025, pp. 9-10, on the exceedance probability curve, VaR, and TVaR.
+- @wright_transposition:2020 §2-3, pp. 2-5, on the transposition procedure and its assumptions.
+- @baer_designstorm:2026, pp. 1-7, this week's reading.

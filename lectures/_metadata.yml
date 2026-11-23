@@ -1,0 +1,4 @@
+# The bibliography is declared here rather than in _quarto.yml; see the note there.
+# Only the bibliography: a format map here would override each notes page's
+# scalar `format: "typst"` (see .claude/CLAUDE.md).
+bibliography: ../references.bib

@@ -1,0 +1,587 @@
+---
+title: "Lab 7: Regional frequency analysis with a CO2 trend"
+week: 7
+module: 2
+date: 2026-10-09
+due:
+  - label: "Lab 7 due"
+    date: 2026-10-16
+status: "published"
+release: "public"
+bibliography: references.bib
+engine: julia
+code-annotations: hover
+
+format:
+  html:
+    fig-format: svg
+  typst:
+    fontsize: 11pt
+    margin:
+      x: 1in
+      y: 1in
+    fig-format: svg
+
+execute:
+  cache: true
+  freeze: auto
+---
+
+In this lab, you will estimate the 100-year daily rainfall in 2026 at a coastal gauge with a short record.
+You will let the rainfall extremes change with CO2, and borrow data from nearby gauges to make up for the short record.
+**Class does not meet** on Friday, October 9, so you will work through this lab on your own.
+
+## Objectives
+
+By the end of this lab, you will be able to:
+
+1. Fit a GEV that changes with CO2 by weighted likelihood.
+1. Choose which stations to borrow from with a weight function.
+1. Get an interval by MCMC and by a bootstrap over years, and explain why they differ.
+1. Make and defend a choice of weight function and of which parameters to share.
+
+## Setup
+
+First, load the packages.
+
+```{julia}
+#| solution: false
+#| output: false
+using Pkg
+here = dirname(@__FILE__)
+Pkg.activate(here)
+Pkg.instantiate()
+
+using CairoMakie, CSV, DataFrames, Dates, Distributions, LaTeXStrings,
+      NaturalEarth, Turing
+using Printf, Random, Statistics
+
+Random.seed!(543)
+set_theme!(theme_minimal(); fontsize=14)
+colors = Makie.wong_colors()
+```
+
+### Rainfall data
+
+You will analyze annual maximum daily rainfall from NOAA Atlas 14, Volume 11, which covers Texas [@perica_atlas14_texas:2018].
+The file `dur01d_ams_na14v11.txt` is the 1-day annual maximum series that NOAA published with the atlas, downloaded unchanged from the [NOAA Hydrometeorological Design Studies Center](https://hdsc.nws.noaa.gov/pub/hdsc/data/tx/).
+It holds 816 stations, with one annual maximum per calendar year, in inches, through 2017.
+After a title line, the file has one block per station, separated by blank lines.
+Each block starts with a header line giving the station's ID, name, state, latitude, longitude, and elevation in feet, followed by one line per year giving the date of that year's maximum and its value.
+
+::: {.callout-note}
+## Code Folds
+
+Some of the code blocks in this lab are "folded" to improve readability.
+Click the triangle next to a label such as "Show the file reader" to see the code.
+A numbered marker at the end of a line explains that line; hover over it to read the note.
+:::
+
+```{julia}
+#| solution: false
+#| code-fold: true
+#| code-summary: "Show the file reader"
+#| output: true
+function read_station(block)
+    header, rows... = split(block, '\n') # <1>
+    fields = strip.(split(header, ','))
+    lat, lon, elev_ft = parse.(Float64, fields[(end - 2):end]) # <2>
+    days = split.(rows)
+    return DataFrame(;
+                     id=fields[1], name=join(fields[2:(end - 4)], ","), lat,
+                     lon, elev_ft,
+                     date=Date.(first.(days), dateformat"mm/dd/yyyy"),
+                     prcp_in=parse.(Float64, last.(days)))
+end
+
+function read_atlas14(path)
+    blocks = split(strip(join(Iterators.drop(eachline(path), 1), '\n')),
+                   r"\n\s*\n") # <3>
+    return reduce(vcat, read_station.(blocks)) # <4>
+end
+
+ann_max_texas = read_atlas14(joinpath(here, "dur01d_ams_na14v11.txt"))
+ann_max_texas.year = year.(ann_max_texas.date)
+first(ann_max_texas, 4)
+```
+
+1. The first line of a block is the station's header, and each line after it is one year.
+1. A station's name can contain a comma, so the header is read from both ends: the ID is the first field, and the last three are latitude, longitude, and elevation.
+1. Skip the title line and split the rest of the file into one block per station.
+1. Turn each block into a table and stack the tables, one row per station and year.
+
+### CO2 data
+
+The file `logCO2.csv` has one row per year from 1849 to 2025.
+Its column `log_CO2` is the natural log of annual mean atmospheric CO2, in parts per million.
+Before 1959 it comes from the Law Dome ice core record [@etheridge_lawdomeco2:1996; @macfarlingmeure_lawdomeextended:2006]; from 1959 it is the Mauna Loa annual mean from NOAA's Global Monitoring Laboratory.
+
+The covariate is the number of doublings of CO2 above the pre-industrial level of 280 ppm:
+
+$$
+x_t = \log_2 \frac{\text{CO}_2(t)}{280}.
+$$
+
+The file stops at 2025, at 427 ppm.
+CO2 rose about 2.6 ppm per year from 2015 to 2025, so for 2026 we assume 430 ppm.
+
+```{julia}
+#| solution: false
+#| output: false
+co2 = CSV.read(joinpath(here, "logCO2.csv"), DataFrame)
+co2.x = (co2.log_CO2 .- log(280)) ./ log(2)
+x_2026 = log2(430 / 280)
+x_1950 = only(co2.x[co2.year .== 1950])
+
+ann_max_texas = innerjoin(ann_max_texas, co2; on=:year)
+```
+
+## The target station
+
+You will estimate the 100-year daily rainfall in 2026 at Galveston Scholes Field (station 79-0047), on Galveston Island.
+Many real gauges have short records, so you will use only its 21 years from 1997 to 2017.
+
+```{julia}
+#| solution: false
+#| output: false
+filter!(row -> row.id != "79-0047" || row.year >= 1997, ann_max_texas)
+scholes_field = first(ann_max_texas[ann_max_texas.id .== "79-0047", :])
+```
+
+## Choosing the stations
+
+To borrow from neighbors, we first need each station's distance to Scholes Field.
+With latitudes $\phi_1, \phi_2$ and longitudes $\lambda_1, \lambda_2$, the haversine formula gives the great-circle distance
+
+$$
+d = 2R \arcsin \sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos\phi_1 \cos\phi_2 \sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)},
+$$
+
+where $R = 3958.8$ miles is the radius of the Earth.
+
+```{julia}
+#| solution: false
+#| output: false
+function miles_between(lat1, lon1, lat2, lon2)
+    R = 3958.8
+    north_south = sind((lat2 - lat1) / 2)^2
+    east_west = cosd(lat1) * cosd(lat2) * sind((lon2 - lon1) / 2)^2
+    return 2R * asin(sqrt(north_south + east_west))
+end
+
+ann_max_texas.miles = miles_between.(scholes_field.lat, scholes_field.lon,
+                                     ann_max_texas.lat, ann_max_texas.lon)
+```
+
+### The weight function
+
+A weight function says how much each station counts, from 1 (as much as Scholes Field) to 0 (not at all).
+As an example, we consider one that falls linearly with distance $d$ and reaches zero at a radius $r$:
+
+$$
+w(d) = \max\left(0, 1 - \frac{d}{r}\right).
+$$
+
+```{julia}
+#| solution: false
+#| output: false
+radius = 50
+weight(miles) = max(0.0, 1 - miles / radius)
+```
+
+To try a different weight function, edit `weight(miles)` above and rerun the notebook from there.
+Some options:
+
+- **Region of influence:** $w(d) = 1$ if $d \le r$, and 0 otherwise.
+- **Inverse distance squared:** $w(d) = \min\left(1, (d_0 / d)^2\right)$ if $d \le r$, and 0 otherwise.
+- **Exponential kernel:** $w(d) = \exp(-d / L)$, with length scale $L$.
+
+We keep the stations with weight above zero.
+The effective number of stations, $n_\text{eff} = \sum_s w_s$, is how many stations' worth of data the fit uses.
+
+```{julia}
+#| solution: false
+ann_max_texas.w = weight.(ann_max_texas.miles)
+ann_max_region = ann_max_texas[ann_max_texas.w .> 0, :]
+stations = combine(groupby(ann_max_region, [:id, :name, :lat, :lon, :miles, :w]),
+                   nrow => :n_years)
+sort!(stations, :miles)
+@printf("%d stations kept, n_eff = %.1f\n", nrow(stations), sum(stations.w))
+```
+
+The maps in this lab draw land from the 1:10m layer of [Natural Earth](https://www.naturalearthdata.com/), which the `NaturalEarth` package downloads on first use.
+`map_axis` makes an axis with that background.
+
+```{julia}
+#| solution: false
+#| output: false
+land = naturalearth("land", 10)
+
+function map_axis(position)
+    ax = Axis(position; autolimitaspect=1 / cosd(scholes_field.lat), # <1>
+              backgroundcolor=:aliceblue)
+    poly!(ax, land.geometry; color=:gray95, strokecolor=:gray60,
+          strokewidth=0.5, xautolimits=false, yautolimits=false)
+    hidedecorations!(ax)
+    return ax
+end
+```
+
+1. Stretch latitude by $1 / \cos\phi$ at Scholes Field, so a mile east and a mile north are the same length on the map.
+
+```{julia}
+#| solution: false
+#| code-fold: true
+#| code-summary: "Show the plotting code"
+#| label: fig-stations
+#| fig-cap: "Left: the kept stations, colored by weight, with Galveston Scholes Field as the star. Right: their annual maxima, with Scholes Field in black."
+let
+    fig = Figure(; size=(800, 380))
+    ax_map = map_axis(fig[1, 1])
+    stations_plot = scatter!(ax_map, stations.lon, stations.lat;
+                             color=stations.w, colormap=:viridis,
+                             colorrange=(0, 1), markersize=10)
+    scatter!(ax_map, [scholes_field.lon], [scholes_field.lat]; marker=:star5,
+             color=:black, markersize=20)
+    Colorbar(fig[1, 2], stations_plot; label="weight")
+
+    at_scholes = ann_max_region.id .== scholes_field.id
+    ax_series = Axis(fig[1, 3]; xlabel="year", ylabel="annual maximum (inches)")
+    scatter!(ax_series, ann_max_region.year, ann_max_region.prcp_in;
+             color=(colors[1], 0.4), markersize=5)
+    scatter!(ax_series, ann_max_region.year[at_scholes],
+             ann_max_region.prcp_in[at_scholes]; color=:black, markersize=8)
+    fig
+end
+```
+
+## Nonstationary model
+
+We allow a trend in both the location and the scale, and assume the two are proportional:
+
+$$
+\begin{aligned}
+y_t &\sim \text{GEV}(\mu_t, \sigma_t, \xi) \\
+\mu_t &= \mu_0 e^{\beta x_t} \\
+\sigma_t &= \kappa \mu_t
+\end{aligned}
+$$
+
+In lab 6, the location and the log scale each had their own trend.
+Here a single parameter, $\beta$, sets the trend in both:
+
+- $\mu_0$ is the location at the pre-industrial level, $x = 0$.
+- When $x$ rises by $\Delta x$, both $\mu_t$ and $\sigma_t$ are multiplied by $e^{\beta \Delta x}$.
+- $\kappa$ is the ratio of scale to location, the same in every year.
+- $\xi$ is the shape, also the same in every year.
+
+Since the location and scale change by the same factor and the shape does not change, every return level changes by that factor too.
+We report the trend as the percent change in every return level from 1950 to 2026, $100\left(e^{\beta (x_{2026} - x_{1950})} - 1\right)$.
+
+To borrow from neighbors, we weight each station's log-likelihood by $w_s$ and add them up:
+
+$$
+\ell(\mu_0, \kappa, \beta, \xi) = \sum_s w_s \sum_t \log f(y_{s,t} \mid \mu_0, \kappa, \beta, \xi),
+$$
+
+where $f$ is the GEV density.
+With a single station and $w = 1$, this is the ordinary log-likelihood.
+
+`weighted_gev` writes this as a Turing model.
+
+```{julia}
+#| solution: false
+#| output: false
+@model function weighted_gev(y, x, w)
+    μ0 ~ LogNormal(1.5, 0.5) # <1>
+    κ ~ LogNormal(-1, 0.5) # <1>
+    β ~ Normal(0, 0.5) # <1>
+    ξ ~ Uniform(-0.5, 0.5) # <1>
+    μ = μ0 .* exp.(β .* x)
+    σ = κ .* μ
+    if !all(σ .> 0) # <2>
+        Turing.@addlogprob! -Inf
+        return nothing
+    end
+    Turing.@addlogprob! sum(w .* logpdf.(GeneralizedExtremeValue.(μ, σ, ξ), y)) # <3>
+end
+```
+
+1. These priors give 2026 100-year levels between about 3 and 70 inches, and trends between about $-37\%$ and $+58\%$ from 1950 to 2026.
+1. A large optimizer step can push $\mu_t$ so close to zero or so large that the scale rounds to 0 or becomes `NaN`; reject that step rather than stop with an error.
+1. A `y ~` line cannot weight observations, so the model adds the weighted log-likelihood itself.
+
+`weighted_gevfit` finds the parameters with the highest posterior density, using Turing's `maximum_a_posteriori`.
+Two helper functions after it keep the later code short.
+
+```{julia}
+#| solution: false
+#| output: false
+function weighted_gevfit(y, x, w)
+    start = InitFromParams((μ0=median(y), κ=std(y) / median(y), β=0.0, ξ=0.1)) # <1>
+    fit = maximum_a_posteriori(weighted_gev(y, x, w); initial_params=start)
+    if string(fit.optim_result.retcode) != "Success" # <2>
+        @warn "weighted_gevfit did not converge" fit.optim_result.retcode
+    end
+    return NamedTuple(fit.params)
+end
+
+function level_2026(fit) # <3>
+    μ = fit.μ0 * exp(fit.β * x_2026)
+    return quantile(GeneralizedExtremeValue(μ, fit.κ * μ, fit.ξ), 0.99)
+end
+trend_percent(fit) = 100 * (exp(fit.β * (x_2026 - x_1950)) - 1) # <4>
+```
+
+1. Start the optimizer from the data's median and spread, with no trend.
+1. Warn if the optimizer fails, since the parameters it returns may then not be the best ones.
+1. The fitted 100-year level in 2026.
+1. The trend, as the percent change in every return level from 1950 to 2026.
+
+## No pooling
+
+First, we fit each kept station to its own record.
+
+```{julia}
+#| solution: false
+stations.fit = map(stations.id) do id
+    rows = ann_max_region[ann_max_region.id .== id, :]
+    return weighted_gevfit(rows.prcp_in, rows.x, ones(nrow(rows)))
+end
+stations.κ = [fit.κ for fit in stations.fit]
+stations.trend_percent = trend_percent.(stations.fit)
+stations.level_2026 = level_2026.(stations.fit)
+stations[:, [:name, :miles, :n_years, :κ, :trend_percent, :level_2026]]
+```
+
+```{julia}
+#| solution: false
+#| code-fold: true
+#| code-summary: "Show the plotting code"
+#| label: fig-alone
+#| fig-cap: "Each station fit to its own record. Left: trend, as the percent change in every return level from 1950 to 2026. Right: 100-year daily rainfall in 2026. Scholes Field is the star."
+let
+    fig = Figure(; size=(900, 380))
+    biggest = maximum(abs, stations.trend_percent)
+
+    ax_trend = map_axis(fig[1, 1])
+    trend_plot = scatter!(ax_trend, stations.lon, stations.lat;
+                          color=stations.trend_percent, colormap=:BrBG,
+                          colorrange=(-biggest, biggest), markersize=12,
+                          strokewidth=0.5, strokecolor=:gray30)
+    Colorbar(fig[1, 2], trend_plot; label="trend, 1950 to 2026 (%)")
+
+    ax_level = map_axis(fig[1, 3])
+    level_plot = scatter!(ax_level, stations.lon, stations.lat;
+                          color=stations.level_2026, colormap=:viridis,
+                          markersize=12, strokewidth=0.5, strokecolor=:gray30)
+    Colorbar(fig[1, 4], level_plot; label="2026 100-year level (inches)")
+
+    for ax in (ax_trend, ax_level)
+        scatter!(ax, [scholes_field.lon], [scholes_field.lat]; marker=:star5,
+                 color=:black, markersize=20)
+    end
+    fig
+end
+```
+
+**Your answer:** How much do the trends differ between stations a few miles apart?
+Is that more likely a real difference in climate or noise from short records, and what in the table supports your answer?
+
+**Your answer:** How much does $x_t$ change over Scholes Field's 21 years, compared with a record that starts around 1900?
+So what sets Scholes Field's trend when you fit it alone?
+
+
+## Borrowing from neighbors
+
+Now we fit Scholes Field with every kept station's data, weighted by `weight`.
+
+```{julia}
+#| solution: false
+pooled = weighted_gevfit(ann_max_region.prcp_in, ann_max_region.x,
+                         ann_max_region.w)
+scholes_alone = only(stations.fit[stations.id .== scholes_field.id])
+for (label, fit) in ("alone" => scholes_alone, "pooled" => pooled)
+    @printf("%-6s trend %+.0f%% from 1950 to 2026, 2026 100-year level %.1f inches\n",
+            label, trend_percent(fit), level_2026(fit))
+end
+```
+
+## Uncertainty
+
+A point estimate alone does not say how much to trust it.
+We get an interval for the pooled fit in two ways.
+
+### MCMC
+
+MCMC samples the posterior of the same weighted model.
+
+```{julia}
+#| solution: false
+#| output: false
+chain = sample(weighted_gev(ann_max_region.prcp_in, ann_max_region.x,
+                            ann_max_region.w), NUTS(), 1000; progress=false)
+mcmc_fits = [(μ0=a, κ=b, β=c, ξ=d)
+             for (a, b, c, d) in zip(vec(chain[:μ0]), vec(chain[:κ]),
+                                     vec(chain[:β]), vec(chain[:ξ]))]
+```
+
+### Bootstrap over years
+
+The bootstrap refits the model to resampled data, drawing whole years rather than single values.
+
+```{julia}
+#| solution: false
+#| output: false
+years = unique(ann_max_region.year)
+
+function bootstrap_fit()
+    picked = rand(years, length(years)) # <1>
+    rows = reduce(vcat, [ann_max_region[ann_max_region.year .== yr, :] # <2>
+                         for yr in picked])
+    return weighted_gevfit(rows.prcp_in, rows.x, rows.w)
+end
+
+bootstrap_fits = [bootstrap_fit() for _ in 1:500]
+```
+
+1. Draw as many years as the record has, with replacement.
+1. Keep every station's value from each drawn year, so a storm that hit many stations in one year stays together.
+
+```{julia}
+#| solution: false
+#| code-fold: true
+#| code-summary: "Show the plotting code"
+#| label: fig-uncertainty
+#| fig-cap: "The pooled fit at Scholes Field by MCMC and by the bootstrap over years. Left: trend. Right: 2026 100-year level."
+let
+    fig = Figure(; size=(800, 330))
+    ax_trend = Axis(fig[1, 1]; xlabel="trend, 1950 to 2026 (%)")
+    ax_level = Axis(fig[1, 2]; xlabel="2026 100-year level (inches)")
+    for (i, (label, fits)) in enumerate(("MCMC" => mcmc_fits,
+                                         "bootstrap" => bootstrap_fits))
+        hist!(ax_trend, trend_percent.(fits); bins=40, normalization=:pdf,
+              color=(colors[i], 0.5), label=label)
+        hist!(ax_level, level_2026.(fits); bins=40, normalization=:pdf,
+              color=(colors[i], 0.5), label=label)
+    end
+    hideydecorations!.((ax_trend, ax_level))
+    axislegend(ax_level)
+    fig
+end
+```
+
+```{julia}
+#| solution: false
+for (label, fits) in ("MCMC" => mcmc_fits, "bootstrap" => bootstrap_fits)
+    levels = level_2026.(fits)
+    @printf("%-9s 2026 100-year level, 95%% interval %.1f to %.1f inches\n",
+            label, quantile(levels, 0.025), quantile(levels, 0.975))
+end
+```
+
+**Your answer:** How many kept stations have a 2017 annual maximum, and on what dates did those maxima fall?
+The weighted likelihood treats every station's value as independent.
+Which method keeps the 2017 values together, and which interval would you expect to be wider?
+
+```{julia}
+# Your code here
+```
+
+
+## Your analysis
+
+### Change the weight function
+
+Change `radius` and rerun the notebook from the weight function down.
+Then code one of the other weight functions and run it the same way.
+
+**Your answer:** Make a table with one row per weight function you tried, giving the number of stations kept, $n_\text{eff}$, the pooled trend, and the 2026 100-year level with its bootstrap interval.
+Which settings give an estimate dominated by variance, and which by bias?
+Name a physical reason a wide region could be biased for a station on Galveston Island.
+
+
+### Share only the trend and shape
+
+When every station shares every parameter, a wetter inland station pulls Scholes Field's location toward its own.
+`weighted_shared_trend` gives each station its own $\mu_{0,s}$ and $\kappa_s$ and shares only $\beta$ and $\xi$:
+
+$$
+y_{s,t} \sim \text{GEV}(\mu_{s,t}, \kappa_s \mu_{s,t}, \xi), \qquad \mu_{s,t} = \mu_{0,s} e^{\beta x_{s,t}}.
+$$
+
+```{julia}
+#| solution: false
+#| output: false
+@model function weighted_shared_trend(y, x, station, w, n_stations)
+    μ0 ~ filldist(LogNormal(1.5, 0.5), n_stations)
+    κ ~ filldist(LogNormal(-1, 0.5), n_stations)
+    β ~ Normal(0, 0.5)
+    ξ ~ Uniform(-0.5, 0.5)
+    μ = μ0[station] .* exp.(β .* x)
+    σ = κ[station] .* μ
+    if !all(σ .> 0)
+        Turing.@addlogprob! -Inf
+        return nothing
+    end
+    Turing.@addlogprob! sum(w .* logpdf.(GeneralizedExtremeValue.(μ, σ, ξ), y))
+end
+```
+
+We fit it the same way as `weighted_gevfit`, starting every station from the same values, and keep Scholes Field's parameters.
+
+```{julia}
+#| solution: false
+y = ann_max_region.prcp_in
+n_stations = nrow(stations)
+station = [findfirst(==(id), stations.id) for id in ann_max_region.id] # <1>
+start = InitFromParams((μ0=fill(median(y), n_stations),
+                        κ=fill(std(y) / median(y), n_stations), β=0.0, ξ=0.1))
+model = weighted_shared_trend(y, ann_max_region.x, station, ann_max_region.w,
+                              n_stations)
+shared_fit = maximum_a_posteriori(model; initial_params=start)
+if string(shared_fit.optim_result.retcode) != "Success"
+    @warn "shared-trend fit did not converge" shared_fit.optim_result.retcode
+end
+(; μ0, κ, β, ξ) = NamedTuple(shared_fit.params)
+k = findfirst(==(scholes_field.id), stations.id) # <2>
+shared_trend = (μ0=μ0[k], κ=κ[k], β=β, ξ=ξ)
+
+for (label, fit) in ("all shared" => pooled,
+                     "trend and shape shared" => shared_trend)
+    @printf("%-22s μ0 = %.2f, κ = %.2f, trend %+.0f%%, ξ = %.2f, 2026 100-year level %.1f inches\n",
+            label, fit.μ0, fit.κ, trend_percent(fit), fit.ξ, level_2026(fit))
+end
+```
+
+1. `station[i]` is the row of `stations`, from 1 to `n_stations`, that `y[i]` came from.
+1. Scholes Field's row of `stations`.
+
+**Your answer:** Which parameters should be shared for Scholes Field, and why?
+
+
+### Defend a choice
+
+**Your answer:** What is your estimate of the 100-year daily rainfall at Galveston Scholes Field in 2026, with an interval?
+Say which weight function and radius you chose, which parameters you shared, and which interval you report, and defend each choice.
+
+## Turning it in
+
+This lab is due on Canvas on Friday, October 16, the same day as Test 1.
+
+1. Check that your notebook answers each **Your answer** question.
+1. Render the notebook to a PDF.
+   In the terminal, from the lab folder, run:
+
+   ```bash
+   quarto render index.qmd --to typst
+   ```
+
+   This writes `index.pdf` beside the notebook.
+   It runs the whole notebook from the top in a fresh process, so it also confirms your work does not depend on leftover REPL state.
+1. Commit and push your work, with GitHub Desktop or by asking Claude to commit and push.
+1. Upload `index.pdf` to the Lab 7 assignment on Canvas.
+1. Paste the link to your repository in the same Canvas submission.
+
+If the render fails and you cannot fix it, upload what you have and say where it broke.
+A lab that does not render is worth more to me than a lab you did not turn in.
